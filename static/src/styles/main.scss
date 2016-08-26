@@ -1,0 +1,18 @@
+/*!
+** Project: Project name
+** Author: Author name
+** --------------------------------
+**/
+
+@import 'setup/variables';
+
+// Vendor dependencies
+@import 'flexgridy/styles/flexgridy';
+
+@import 'setup/mixins';
+@import 'setup/normalize';
+
+@import 'common/*';
+@import 'vendor/*';
+@import 'utils/*';
+@import 'modules/*';

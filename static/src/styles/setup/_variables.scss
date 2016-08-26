@@ -1,0 +1,50 @@
+/*
+** Setup - Variables
+** -----------------------------------------------------------------------------*/
+
+// Color definitions
+$color-black:           #000000 !default;
+$color-white:           #ffffff !default;
+
+// Z-indexes
+$zindex-negative:       -1 !default;
+$zindex-neutral:        0 !default;
+$zindex-base:           1 !default;
+
+// Font definitions
+$font-arial:            'Arial', 'Helvetica Neue', Helvetica, sans-serif !default;
+
+$font-color:            $color-black !default;
+$font-family:           $font-arial !default;
+$font-size:             1.4em !default;
+$font-line-height:      1.2 !default;
+
+// Base path for assets
+$base-path:             '..' !default;
+
+// Grid definitions
+$breakpoints: (
+  xs: (
+    min-width: 0,
+    container: 450px,
+    gutter: 20px,
+    columns: 2
+  ),
+  sm: (
+    min-width: 490px,
+    gutter: 20px,
+    columns: 4
+  ),
+  md: (
+    min-width: 680px,
+    container: 620px,
+    gutter: 30px,
+    columns: 6
+  ),
+  lg: (
+    min-width: 992px,
+    container: 1032px,
+    gutter: 30px,
+    columns: 12
+  )
+) !default;

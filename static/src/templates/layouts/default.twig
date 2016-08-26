@@ -1,0 +1,17 @@
+{% include '../partials/head.twig' with {'pageName': pageName } %}
+
+<body class="{{ bodyClass }}">
+  <div class="body-bag">
+    {% include '../partials/page-head.twig' %}
+
+    {% block content %}
+      No content
+    {% endblock %}
+
+    {% include '../partials/page-foot.twig' %}
+  </div>
+  <!-- /.body-bag -->
+
+  {% include '../partials/scripts.twig' %}
+</body>
+</html>
