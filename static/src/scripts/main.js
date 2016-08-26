@@ -1,6 +1,6 @@
 /*!
-** Project: Project name
-** Author: Author name
+** Project: Chipmunk Theme
+** Author: Piotr Kulpinski, Jan Wennesland
 ** --------------------------------
 **/
 

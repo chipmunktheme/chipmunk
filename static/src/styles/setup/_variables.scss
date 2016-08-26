@@ -3,8 +3,13 @@
 ** -----------------------------------------------------------------------------*/
 
 // Color definitions
-$color-black:           #000000 !default;
-$color-white:           #ffffff !default;
+$color-primary:         #F38181 !default;
+$color-black:           #333333 !default;
+$color-gray:            #333333 !default;
+$color-gray-light:      #808080 !default;
+$color-gray-lighter:    #E6E6E6 !default;
+$color-gray-lightest:   #FAFAFA !default;
+$color-white:           #FFFFFF !default;
 
 // Z-indexes
 $zindex-negative:       -1 !default;
@@ -12,12 +17,12 @@ $zindex-neutral:        0 !default;
 $zindex-base:           1 !default;
 
 // Font definitions
-$font-arial:            'Arial', 'Helvetica Neue', Helvetica, sans-serif !default;
+$font-poppins:          'Poppins', 'Arial', 'Helvetica Neue', Helvetica, sans-serif !default;
 
 $font-color:            $color-black !default;
-$font-family:           $font-arial !default;
-$font-size:             1.4em !default;
-$font-line-height:      1.2 !default;
+$font-family:           $font-poppins !default;
+$font-size:             1.6em !default;
+$font-line-height:      1.875 !default;
 
 // Base path for assets
 $base-path:             '..' !default;
@@ -37,14 +42,14 @@ $breakpoints: (
   ),
   md: (
     min-width: 680px,
-    container: 620px,
-    gutter: 30px,
+    container: 640px,
+    gutter: 20px,
     columns: 6
   ),
   lg: (
-    min-width: 992px,
-    container: 1032px,
-    gutter: 30px,
+    min-width: 1000px,
+    container: 960px,
+    gutter: 20px,
     columns: 12
   )
 ) !default;
