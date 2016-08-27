@@ -5,8 +5,8 @@
 // Color definitions
 $color-primary:         #F38181 !default;
 $color-black:           #333333 !default;
-$color-gray:            #333333 !default;
-$color-gray-light:      #808080 !default;
+$color-gray:            #808080 !default;
+$color-gray-light:      #CDCDCD !default;
 $color-gray-lighter:    #E6E6E6 !default;
 $color-gray-lightest:   #FAFAFA !default;
 $color-white:           #FFFFFF !default;
@@ -19,10 +19,13 @@ $zindex-base:           1 !default;
 // Font definitions
 $font-poppins:          'Poppins', 'Arial', 'Helvetica Neue', Helvetica, sans-serif !default;
 
-$font-color:            $color-black !default;
+$font-color:            $color-gray !default;
 $font-family:           $font-poppins !default;
 $font-size:             1.6em !default;
 $font-line-height:      1.875 !default;
+
+// Separators
+$separator:             2rem !default;
 
 // Base path for assets
 $base-path:             '..' !default;
