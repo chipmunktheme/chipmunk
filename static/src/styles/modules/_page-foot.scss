@@ -4,5 +4,24 @@
 
 .page-foot {
   background-color: $color-gray-lighter;
+
+  a {
+    &:hover {
+      color: $color-black;
+    }
+  }
+}
+
+.page-foot__description {
+  p {
+    margin-top: 1.875em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.page-foot__copy {
   line-height: 1;
 }
