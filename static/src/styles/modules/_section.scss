@@ -44,5 +44,10 @@
     input::placeholder {
       color: $color-white;
     }
+
+    .button_secondary:hover {
+      background-color: $color-white;
+      color: $color-primary;
+    }
   }
 }

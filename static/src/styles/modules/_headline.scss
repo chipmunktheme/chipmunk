@@ -7,9 +7,13 @@
   font-weight: bold;
 
   &_sm {
-    margin-bottom: $separator;
+    margin-bottom: $separator / 2;
     font-size: 1.6rem;
     line-height: 1.6;
+
+    @include breakpoint(lg) {
+      margin-bottom: $separator;
+    }
   }
 
   &_md {
@@ -30,6 +34,6 @@
 
   &_thin {
     font-weight: normal;
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 }

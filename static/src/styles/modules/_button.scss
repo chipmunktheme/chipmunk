@@ -13,10 +13,22 @@
   &_primary {
     background-color: $color-primary;
     color: $color-white;
+
+    &:hover {
+      background-color: transparent;
+      border-color: currentColor;
+      color: $color-primary;
+    }
   }
 
   &_secondary {
     border-color: currentColor;
     color: $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+      border-color: transparent;
+      color: $color-white;
+    }
   }
 }

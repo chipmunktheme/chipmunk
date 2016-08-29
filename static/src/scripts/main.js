@@ -7,5 +7,5 @@
 'use strict';
 
 (function () {
-  require('./modules/module')();
+  require('./modules/search')();
 })();

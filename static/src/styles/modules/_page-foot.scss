@@ -10,14 +10,28 @@
       color: $color-black;
     }
   }
-}
 
-.page-foot__description {
-  p {
-    margin-top: 1.875em;
+  .column {
+    margin-top: $separator;
 
     &:first-child {
       margin-top: 0;
+    }
+
+    @include breakpoint(md) {
+      margin-top: 0;
+    }
+  }
+}
+
+.page-foot__description {
+  @include breakpoint(md) {
+    p {
+      margin-top: 1.875em;
+
+      &:first-child {
+        margin-top: 0;
+      }
     }
   }
 }
