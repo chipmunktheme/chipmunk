@@ -11,7 +11,7 @@
     font-size: 1.6rem;
     line-height: 1.6;
 
-    @include breakpoint(lg) {
+    @include breakpoint(md) {
       margin-bottom: $separator;
     }
   }
@@ -34,6 +34,10 @@
 
   &_thin {
     font-weight: normal;
-    font-size: 2rem;
+    font-size: 1.6rem;
+
+    @include breakpoint(md) {
+      font-size: 2rem;
+    }
   }
 }
