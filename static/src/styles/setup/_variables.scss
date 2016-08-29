@@ -18,14 +18,14 @@ $zindex-base:           1 !default;
 
 // Font definitions
 $font-poppins:          'Poppins', 'Arial', 'Helvetica Neue', Helvetica, sans-serif !default;
-
 $font-color:            $color-gray !default;
 $font-family:           $font-poppins !default;
 $font-size:             1.6em !default;
 $font-line-height:      1.875 !default;
 
-// Separators
+// Others
 $separator:             2rem !default;
+$transition-speed:      0.25s !default;
 
 // Base path for assets
 $base-path:             '..' !default;
@@ -50,8 +50,8 @@ $breakpoints: (
     columns: 6
   ),
   lg: (
-    min-width: 1000px,
-    container: 960px,
+    min-width: 980px,
+    container: 940px,
     gutter: 20px,
     columns: 12
   )

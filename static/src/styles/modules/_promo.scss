@@ -1,0 +1,11 @@
+/*
+** Module - Promo
+** -----------------------------------------------------------------------------*/
+
+.promo {
+  margin-top: $separator * 2;
+
+  @include breakpoint(md) {
+    margin-top: $separator * 4;
+  }
+}

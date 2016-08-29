@@ -3,4 +3,21 @@
 ** -----------------------------------------------------------------------------*/
 
 .nav-primary {
+  flex: 1;
+
+  ul {
+    display: flex;
+  }
+}
+
+.nav-primary__item {
+  margin-left: 4rem;
+
+  a {
+    display: block;
+    
+    &:hover {
+      color: $color-black;
+    }
+  }
 }

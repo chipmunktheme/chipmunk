@@ -1,0 +1,18 @@
+/*
+** Module - Toolbox
+** -----------------------------------------------------------------------------*/
+
+.toolbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbox__cta {
+  display: flex;
+  align-items: center;
+}
+
+.toolbox__button {
+  margin-left: 2.5rem;
+}

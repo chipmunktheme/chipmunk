@@ -38,7 +38,10 @@
     background-color: $color-primary;
     color: $color-white;
 
-    .headline {
+    .headline,
+    .button_secondary,
+    input,
+    input::placeholder {
       color: $color-white;
     }
   }
