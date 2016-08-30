@@ -28,8 +28,12 @@
   }
 
   &_xl {
-    font-size: 4.8rem;
+    font-size: 3.6rem;
     line-height: 1.45;
+
+    @include breakpoint(md) {
+      font-size: 4.8rem;
+    }
   }
 
   &_thin {

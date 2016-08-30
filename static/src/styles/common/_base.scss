@@ -23,12 +23,20 @@ body {
     }
   }
 
+  &::after {
+    @include cover;
+    content: '';
+    z-index: $zindex-popup - 1;
+    background-color: rgba($color-black, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity $transition-speed;
+  }
+
   &.has-popup-open {
     &::after {
-      @include cover;
-      content: '';
-      z-index: $zindex-popup - 1;
-      background-color: rgba($color-black, 0.8);
+      opacity: 1;
+      pointer-events: all;
     }
   }
 }

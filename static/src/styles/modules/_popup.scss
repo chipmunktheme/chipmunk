@@ -1,0 +1,79 @@
+/*
+** Module - Popup
+** -----------------------------------------------------------------------------*/
+
+.popup {
+  @include cover;
+  z-index: $zindex-popup;
+  overflow: hidden;
+  pointer-events: none;
+
+  .has-popup-open & {
+    pointer-events: all;
+  }
+}
+
+.popup__close {
+  position: absolute;
+  top: $separator;
+  right: $separator;
+  z-index: $zindex-utils;
+  color: $color-black;
+  font-size: 2.2rem;
+  line-height: 1;
+  opacity: 0;
+  transition-property: opacity, color;
+  transition-duration: $transition-speed * 1.5;
+
+  @include breakpoint(md) {
+    font-size: 2.4rem;
+  }
+
+  @include breakpoint(lg) {
+    top: $separator * 2;
+    right: $separator * 2;
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  .has-popup-open & {
+    opacity: 1;
+  }
+}
+
+.popup__content {
+  position: relative;
+  padding: $separator;
+  margin-top: $separator * 2;
+  background-color: $color-white;
+  opacity: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transform: scale(0.95) translateY(-7.5%);
+  transition-property: opacity, transform;
+  transition-duration: $transition-speed * 1.5;
+
+  @include breakpoint(md) {
+    padding: $separator * 2;
+    margin-top: $separator * 4;
+  }
+
+  @include breakpoint(lg) {
+    padding: $separator * 3;
+    margin-top: $separator * 8;
+  }
+
+  .has-popup-open & {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  > img {
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    margin: auto;
+  }
+}

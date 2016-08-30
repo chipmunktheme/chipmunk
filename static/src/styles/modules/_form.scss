@@ -3,6 +3,13 @@
 ** -----------------------------------------------------------------------------*/
 
 .form {
+  margin-top: $separator;
+  text-align: center;
+
+  @include breakpoint(md) {
+    margin-top: $separator * 2;
+  }
+
   input,
   textarea {
     display: block;
@@ -14,7 +21,7 @@
     font-size: 1.8rem;
     line-height: normal;
 
-    @include breakpoint(md) {
+    @include breakpoint(lg) {
       border-bottom-width: 3px;
       font-size: 2.2rem;
     }
@@ -29,12 +36,6 @@
   }
 
   &_compact {
-    margin-top: $separator;
-
-    @include breakpoint(md) {
-      margin-top: $separator * 2;
-    }
-
     input,
     textarea {
       text-align: center;
@@ -43,9 +44,65 @@
 }
 
 .form__field {
-  margin-top: $separator;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: $separator * 1.5;
 
   &:first-child {
     margin-top: 0;
+  }
+
+  .form_compact & {
+    margin-top: $separator;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .button {
+    margin-left: auto;
+    margin-right: auto;
+
+    @include breakpoint(md) {
+      margin-top: $separator * 1.5;
+
+      .form_compact & {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &_separated {
+    @include breakpoint(md) {
+      margin-top: $separator * 3;
+    }
+  }
+}
+
+.form__child {
+  width: 100%;
+  margin-top: $separator * 1.5;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @include breakpoint(md) {
+    margin-top: 0;
+    width: 47.5%;
+  }
+}
+
+.form__message {
+  margin-top: $separator;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+  @include breakpoint(md) {
+    margin-top: $separator * 2;
   }
 }
