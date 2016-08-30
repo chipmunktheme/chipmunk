@@ -1,8 +1,9 @@
 {
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.2",
+    "flexgridy": "^0.x",
     "jquery": "^3.1.0",
     "select2": "^4.0.3",
-    "flexgridy": "^0.x",
     "slick-carousel": "^1.6.0"
   }
 }

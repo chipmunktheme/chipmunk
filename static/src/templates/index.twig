@@ -2,7 +2,7 @@
 {% set pageName = 'Index' %}
 
 {% block content %}
-  {% include 'sections/products.twig' with { title: 'Featured' } %}
+  {% include 'sections/resources-tabs.twig' with { rows: 2 } %}
   {% include 'sections/toolbox.twig' %}
   {% include 'sections/categories.twig' with { showPromo: true } %}
 {% endblock %}

@@ -4,6 +4,7 @@
 
 .tile {
   position: relative;
+  display: block;
   margin-top: $separator;
   overflow: hidden;
 
@@ -27,6 +28,18 @@
         transform: translateX(66.6%);
       }
     }
+  }
+}
+
+.tile__list {
+  margin: 0 (-$separator / 2);
+}
+
+.tile__wrapper {
+  padding: 0 ($separator / 2);
+
+  &:focus {
+    outline: none;
   }
 }
 
@@ -76,7 +89,6 @@
 }
 
 .tile__copy {
-  height: 100%;
   font-size: 1.4rem;
 
   .icon {
@@ -106,5 +118,15 @@
     font-size: 1.6rem;
     line-height: inherit;
     vertical-align: middle;
+  }
+}
+
+.tab-content {
+  > .tab-pane {
+    display: none;
+  }
+
+  > .active {
+    display: block;
   }
 }

@@ -6,6 +6,11 @@
 
 'use strict';
 
+var $ = require('jquery');
+window.$ = $;
+window.jQuery = $;
+require('bootstrap/dist/js/umd/tab');
+
 (function () {
   require('./modules/search')();
   require('./modules/popup')();

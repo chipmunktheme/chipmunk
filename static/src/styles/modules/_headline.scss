@@ -17,9 +17,13 @@
   }
 
   &_md {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     line-height: 1.6;
     text-transform: uppercase;
+
+    @include breakpoint(md) {
+      font-size: 2.2rem;
+    }
   }
 
   &_lg {
@@ -43,5 +47,23 @@
     @include breakpoint(md) {
       font-size: 2rem;
     }
+  }
+}
+
+.headline__tabs {
+  display: flex;
+
+}
+
+.headline__link {
+  margin-left: $separator;
+  color: $color-gray;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &.active {
+    color: $color-black;
   }
 }
