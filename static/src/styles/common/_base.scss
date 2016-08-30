@@ -3,6 +3,7 @@
 ** -----------------------------------------------------------------------------*/
 
 body {
+  position: relative;
   background-color: $color-gray-lightest;
   color: $font-color;
   font-family: $font-family;
@@ -19,6 +20,15 @@ body {
       @include breakpoint($breakpoint) {
         content: '#{$breakpoint}';
       }
+    }
+  }
+
+  &.has-popup-open {
+    &::after {
+      @include cover;
+      content: '';
+      z-index: $zindex-popup - 1;
+      background-color: rgba($color-black, 0.8);
     }
   }
 }

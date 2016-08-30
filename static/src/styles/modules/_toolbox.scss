@@ -4,13 +4,22 @@
 
 .toolbox {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+
+  @include breakpoint(md) {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
 }
 
 .toolbox__cta {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  padding-left: $separator * 2;
+  text-align: right;
 }
 
 .toolbox__button {

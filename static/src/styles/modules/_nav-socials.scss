@@ -5,15 +5,23 @@
 .nav-socials {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 
   ul {
     display: flex;
-    margin-left: 0.5rem;
   }
+}
+
+.nav-socials__title {
+  margin-right: $separator;
 }
 
 .nav-socials__item {
   margin-left: 1.5rem;
+
+  &:first-child {
+    margin-left: 0;
+  }
 
   a {
     display: block;
