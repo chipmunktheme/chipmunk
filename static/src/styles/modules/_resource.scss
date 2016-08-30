@@ -1,0 +1,59 @@
+/*
+** Module - Resource
+** -----------------------------------------------------------------------------*/
+
+.resource {
+}
+
+.resource__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include breakpoint(md) {
+    padding: ($separator / 2) 0;
+  }
+}
+
+.resource__image {
+  a {
+    display: block;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+}
+
+.resource__info {
+  margin: $separator 0;
+}
+
+.resource__stats {
+  color: $color-black;
+}
+
+.resource__description {
+  font-size: 1.8rem;
+  line-height: 1.68;
+
+  @include breakpoint(md) {
+    font-size: 2.2rem;
+  }
+}
+
+.resource__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .button {
+    margin-right: $separator;
+
+    @include breakpoint(lg) {
+      margin-right: $separator * 2;
+    }
+  }
+}

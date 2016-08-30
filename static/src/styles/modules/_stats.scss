@@ -1,0 +1,25 @@
+/*
+** Module - Stats
+** -----------------------------------------------------------------------------*/
+
+.stats {
+  display: flex;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.stats__item {
+  margin-left: $separator;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  .icon {
+    margin-right: 0.5rem;
+    margin-top: -2px;
+    font-size: 1.6rem;
+    line-height: inherit;
+    vertical-align: middle;
+  }
+}
