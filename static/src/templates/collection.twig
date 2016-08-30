@@ -1,5 +1,7 @@
 {% extends 'layouts/default.twig' %}
-{% set pageName = 'Category' %}
+{% set pageName = 'Collection' %}
 
 {% block content %}
+  {% include 'sections/resources.twig' with { title: 'Products', rows: 5, showPromo: true } %}
+  {% include 'sections/toolbox.twig' %}
 {% endblock %}

@@ -3,7 +3,6 @@
 <body class="{{ bodyClass }}">
   <div class="body-bag">
     {% include '../partials/page-head.twig' %}
-    {% include '../partials/search-bar.twig' %}
 
     {% block content %}
       No content
@@ -14,6 +13,7 @@
   </div>
   <!-- /.body-bag -->
 
+  {% include '../partials/search-bar.twig' %}
   {% include '../partials/popup.twig' %}
   {% include '../partials/scripts.twig' %}
 </body>

@@ -2,4 +2,7 @@
 {% set pageName = 'Resource' %}
 
 {% block content %}
+  {% include 'sections/resource.twig' %}
+  {% include 'sections/resources.twig' with { title: 'Related', showPromo: true } %}
+  {% include 'sections/toolbox.twig' %}
 {% endblock %}

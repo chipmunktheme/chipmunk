@@ -3,6 +3,9 @@
 ** -----------------------------------------------------------------------------*/
 
 .page-head {
+  position: relative;
+  z-index: $zindex-base;
+  margin-bottom: -1px;
   padding-top: $separator;
   padding-bottom: $separator;
   background-color: $color-gray-lightest;

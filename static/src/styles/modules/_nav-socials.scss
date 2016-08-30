@@ -17,10 +17,18 @@
 }
 
 .nav-socials__item {
-  margin-left: 1.5rem;
+  margin-left: 1rem;
 
   &:first-child {
     margin-left: 0;
+  }
+
+  @include breakpoint(md) {
+    margin-left: 1.5rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 
   a {
