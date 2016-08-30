@@ -8,4 +8,8 @@
   @include breakpoint(md) {
     margin-top: $separator * 4;
   }
+
+  a {
+    display: block;
+  }
 }
