@@ -32,11 +32,14 @@
 }
 
 .tile__list {
+  @include clearfix;
   margin: 0 (-$separator / 2);
 }
 
 .tile__wrapper {
   padding: 0 ($separator / 2);
+  float: left;
+  width: 33.3%;
 
   &:focus {
     outline: none;
