@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: $zindex-utils;
+  z-index: $zindex-head + 1;
   padding-top: $separator;
   padding-bottom: $separator;
   background-color: $color-gray-lightest;
@@ -32,6 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 40px;
 }
 
 .search-bar__icon {
