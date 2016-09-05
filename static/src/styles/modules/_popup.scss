@@ -7,9 +7,13 @@
   z-index: $zindex-popup;
   overflow: hidden;
   pointer-events: none;
+  transform: translateX(-300%);
+  transition: transform 0s $transition-speed;
 
   .has-popup-open & {
+    transform: translateX(0);
     pointer-events: all;
+    transition: none;
   }
 }
 
@@ -44,6 +48,7 @@
 
 .popup__content {
   position: relative;
+  top: -300%;
   padding: $separator;
   margin-top: $separator * 2;
   background-color: $color-white;
@@ -51,8 +56,7 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   transform: scale(0.95) translateY(-7.5%);
-  transition-property: opacity, transform;
-  transition-duration: $transition-speed * 1.5;
+  transition: opacity $transition-speed * 1.5, transform $transition-speed * 1.5;
 
   @include breakpoint(md) {
     padding: $separator * 2;

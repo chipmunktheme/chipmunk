@@ -8,6 +8,7 @@ body {
   color: $font-color;
   font-family: $font-family;
   font-size: $font-size;
+  font-weight: normal;
   line-height: $font-line-height;
 
   // These values will not show up in content, but can be
@@ -30,13 +31,16 @@ body {
     background-color: rgba($color-black, 0.8);
     opacity: 0;
     pointer-events: none;
-    transition: opacity $transition-speed;
+    transform: translateX(-300%);
+    transition: opacity $transition-speed, transform 0s $transition-speed;
   }
 
   &.has-popup-open {
     &::after {
       opacity: 1;
+      transform: translateX(0);
       pointer-events: all;
+      transition: opacity $transition-speed 0s, transform 0s 0s;
     }
   }
 }
