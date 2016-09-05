@@ -1,0 +1,27 @@
+/*
+** Module - Card
+** -----------------------------------------------------------------------------*/
+
+.card {
+  margin-top: $separator;
+}
+
+.card__image {
+  display: block;
+
+  img {
+    width: 100%;
+  }
+}
+
+.card__title {
+  margin-top: $separator;
+  color: $color-black;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1.4;
+
+  @include breakpoint(md) {
+    font-size: 2.2rem;
+  }
+}

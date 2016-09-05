@@ -10,12 +10,22 @@
   flex-direction: column;
   justify-content: space-between;
 
-  @include breakpoint(md) {
+  @include breakpoint(lg) {
     padding: ($separator / 2) 0;
   }
 }
 
 .resource__image {
+  margin-top: $separator;
+
+  @include breakpoint(md) {
+    margin-top: $separator * 2;
+  }
+
+  @include breakpoint(lg) {
+    margin-top: 0;
+  }
+
   a {
     display: block;
     -webkit-backface-visibility: hidden;
@@ -25,6 +35,10 @@
       opacity: 0.75;
     }
   }
+
+  img {
+    width: 100%;
+  }
 }
 
 .resource__info {
@@ -33,6 +47,12 @@
 
 .resource__stats {
   color: $color-black;
+}
+
+.resource__title {
+  a:hover {
+    color: $color-gray;
+  }
 }
 
 .resource__description {

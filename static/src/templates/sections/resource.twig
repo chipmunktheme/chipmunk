@@ -9,7 +9,17 @@
         </ul>
 
         <div class="resource__info">
-          <h2 class="resource__title headline headline_xl">Startup Stash</h2>
+          <h2 class="resource__title headline headline_xl">
+            {% if not loop is empty %}
+              <a href="#">
+            {% endif %}
+
+            Startup Stash
+
+            {% if not loop is empty %}
+              </a>
+            {% endif %}
+          </h2>
           <p class="resource__description">A curated directory of resources & tools to help you build your Startup</p>
         </div>
 

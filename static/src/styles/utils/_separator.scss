@@ -1,0 +1,11 @@
+/*
+** Utils - Separator
+** -----------------------------------------------------------------------------*/
+
+.separator {
+  margin-top: $separator * 2;
+
+  @include breakpoint(md) {
+    margin-top: $separator * 4;
+  }
+}

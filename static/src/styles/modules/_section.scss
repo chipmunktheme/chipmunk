@@ -21,6 +21,10 @@
     }
   }
 
+  &_compact-bottom {
+    padding-bottom: 1em;
+  }
+
   &_separated {
     border-top: 1px solid $color-gray-light;
     border-bottom: 1px solid $color-gray-light;
