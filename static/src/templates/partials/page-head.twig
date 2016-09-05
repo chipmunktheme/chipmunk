@@ -3,19 +3,27 @@
     <div class="page-head__inner">
       <h1 class="page-head__logo"><a href="#" rel="index">Chipmunk Theme</a></h1>
 
+
       <nav class="nav-primary">
+        <button type="button" class="nav-primary__close hidden-lg" data-nav-toggle>
+          <span class="sr-only">Close</span>
+          <i class="icon icon_close"></i>
+        </button>
+
         <ul>
           <li class="nav-primary__item"><a href="#">Collections</a></li>
           <li class="nav-primary__item"><a href="#">About</a></li>
           <li class="nav-primary__item"><a href="#">Contact</a></li>
           <li class="nav-primary__item"><a href="#">FAQ</a></li>
+          <li class="nav-primary__item hidden-lg"><button type="button" class="button button_secondary" data-popup-toggle>Submit</a></li>
         </ul>
       </nav>
       <!-- /.nav-primary -->
 
       <div class="page-head__cta">
         <button type="button" class="page-head__search" data-search-toggle><i class="icon icon_search"></i><span class="sr-only">Search</span></button>
-        <button type="button" class="button button_secondary" data-popup-toggle>Submit</a>
+        <button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>Submit</a>
+        <button type="button" class="page-head__trigger button button_secondary hidden-lg" data-nav-toggle>Menu</button>
       </div>
       <!-- /.page-head__cta -->
     </div>

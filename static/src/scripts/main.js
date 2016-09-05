@@ -12,13 +12,14 @@ window.jQuery = $;
 require('bootstrap/dist/js/umd/tab');
 
 (function () {
+  require('./modules/nav')();
   require('./modules/search')();
   require('./modules/popup')();
   require('./modules/extras')();
 })();
 
 var closePanels = function () {
-  $(document.body).removeClass('has-search-open has-popup-open');
+  $(document.body).removeClass('has-search-open has-popup-open has-nav-open');
 };
 
 document.addEventListener('keyup', function (ev) {

@@ -3,21 +3,93 @@
 ** -----------------------------------------------------------------------------*/
 
 .nav-primary {
-  flex: 1;
+  @include cover;
+  position: fixed;
+  bottom: auto;
+  height: 100%;
+  z-index: $zindex-nav;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: $color-white;
+  opacity: 0;
+  transform: translateY(-10%);
+  pointer-events: none;
+  transition: opacity, transform;
+  transition-duration: $transition-speed * 2;
+
+  .has-nav-open & {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  @include breakpoint(lg) {
+    position: relative;
+    z-index: $zindex-base;
+    display: block;
+    flex: 1;
+    background-color: transparent;
+    opacity: 1;
+    transform: none;
+    transition: none;
+    pointer-events: all;
+  }
 
   ul {
     display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    @include breakpoint(lg) {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
   }
 }
 
 .nav-primary__item {
   margin-left: 4rem;
+  font-size: 2.2rem;
+
+  @include breakpoint(lg) {
+    font-size: 1.6rem;
+  }
+
+  &:not(:first-child) {
+    margin-top: 3rem;
+
+    @include breakpoint(lg) {
+      margin-top: 0;
+    }
+  }
 
   a {
     display: block;
-    
+
     &:hover {
       color: $color-black;
     }
+  }
+}
+
+.nav-primary__close {
+  position: absolute;
+  top: $separator;
+  right: $separator;
+  color: $color-black;
+  font-size: 2.2rem;
+  line-height: 1;
+
+  @include breakpoint(md) {
+    top: $separator * 2;
+    right: $separator * 2;
+    font-size: 2.4rem;
+  }
+
+  &:hover {
+    color: $color-primary;
   }
 }

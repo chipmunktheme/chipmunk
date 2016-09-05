@@ -35,9 +35,13 @@
 
 .page-head__search {
   display: block;
-  margin-right: 2.5rem;
+  margin-right: 1.5rem;
   font-size: 2.2rem;
   line-height: 1;
+
+  @include breakpoint(md) {
+    margin-right: 2.5rem;
+  }
 
   &:hover {
     color: $color-black;
