@@ -1,5 +1,5 @@
 {
-  "source": "src",
+  "source": "app",
   "targets": [
     {
       "path": "dist",
@@ -9,6 +9,15 @@
         "scripts",
         "styles",
         "templates"
+      ]
+    },
+    {
+      "path": "static",
+      "tasks": [
+        "assets",
+        "icons",
+        "scripts",
+        "styles"
       ]
     }
   ]
