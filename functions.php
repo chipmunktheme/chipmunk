@@ -13,14 +13,29 @@ class Chipmunk
     add_theme_support('post-thumbnails');
 
     // Image sizes
-    // add_image_size('sm', 320, 240, true);
+    add_image_size('lg', 640, 444, true);
+    add_image_size('md', 460, 320, true);
+    add_image_size('sm', 300, 210, true);
 
     // Init functions
     add_action('init', array($this, 'register_menus'));
     add_action('init', array($this, 'register_post_types'));
     add_action('admin_menu', array(&$this, 'remove_admin_pages'));
+    add_action('wp_enqueue_scripts', array(&$this, 'enqueue_assets'));
     add_action('wp_before_admin_bar_render', array(&$this, 'remove_admin_bar_pages'));
     add_filter('upload_mimes', array(&$this, 'cc_mime_types'));
+  }
+
+  /**
+   * Enqueue scripts and styles.
+   */
+  public function enqueue_assets()
+  {
+  	// Load our main stylesheet
+  	wp_enqueue_style('chipmunk-styles', get_template_directory_uri().'/static/styles/main.min.css', array(), '1.0.0');
+
+  	// Load our main script.
+  	wp_enqueue_script('chipmunk-scripts', get_template_directory_uri().'/static/scripts/main.min.js', array(), '1.0.0', true);
   }
 
   /**
@@ -34,7 +49,7 @@ class Chipmunk
   /**
    * Register custom navigations
    */
-  function register_menus()
+  public function register_menus()
   {
     register_nav_menus(array(
       'nav-primary'   => 'Header nav',

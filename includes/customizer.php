@@ -16,7 +16,7 @@ if (!class_exists('ChipmunkCustomizer'))
           'slug' => 'colors_section'
         ),
         array(
-          'name' => 'Social profiles',
+          'name' => 'Social Profiles',
           'slug' => 'socials_section'
         ),
         array(
@@ -24,7 +24,11 @@ if (!class_exists('ChipmunkCustomizer'))
           'slug' => 'ads_section'
         ),
         array(
-          'name' => 'Theme options',
+          'name' => 'Newsletter',
+          'slug' => 'newsletter_section'
+        ),
+        array(
+          'name' => 'Theme Options',
           'slug' => 'theme_section'
         )
       );
