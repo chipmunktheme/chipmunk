@@ -103,9 +103,10 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control(new WP_Customize_Image_Control($this->customize, 'logo', array(
-        'label'    => 'Site Logo',
-        'section'  => 'title_tagline',
-        'settings' => 'chipmunk_settings[logo]'
+        'label'       => 'Site Logo',
+        'section'     => 'title_tagline',
+        'settings'    => 'chipmunk_settings[logo]',
+        'description' => 'Upload a logo for your theme.'
       )));
     }
 
