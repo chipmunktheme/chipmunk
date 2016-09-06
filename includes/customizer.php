@@ -65,6 +65,7 @@ if (!class_exists('ChipmunkCustomizer'))
       // Add settings fields and controls
       $this->register_identity();
       $this->register_socials();
+      $this->register_newsletter();
     }
 
     /**
@@ -116,6 +117,39 @@ if (!class_exists('ChipmunkCustomizer'))
       foreach($this->socials as $social) {
         $this->register_social($social);
       }
+    }
+
+    /**
+     * Register site newsletter options
+     */
+    private function register_newsletter()
+    {
+      // Newsletter action
+      $this->customize->add_setting('chipmunk_settings[newsletter_action]', array(
+        'capability' => $this->capability,
+        'type'       => 'option',
+      ));
+
+      $this->customize->add_control('newsletter_action', array(
+        'type'        => 'text',
+        'label'       => 'Mailchimp form action URL',
+        'description' => '<a href="http://help.semplicelabs.com/customer/en/portal/articles/2175294-get-a-mailchimp-form-action-url" target="_blank">Where do I find my MailChimp form action URL?</a>',
+        'section'     => 'newsletter_section',
+        'settings'    => 'chipmunk_settings[newsletter_action]'
+      ));
+
+      // Newsletter tagline
+      $this->customize->add_setting('chipmunk_settings[newsletter_tagline]', array(
+        'capability' => $this->capability,
+        'type'       => 'option',
+      ));
+
+      $this->customize->add_control('newsletter_tagline', array(
+        'type'     => 'text',
+        'label'    => 'Newsletter tagline',
+        'section'  => 'newsletter_section',
+        'settings' => 'chipmunk_settings[newsletter_tagline]'
+      ));
     }
 
     /**
