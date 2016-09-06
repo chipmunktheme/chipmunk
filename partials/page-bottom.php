@@ -20,7 +20,7 @@
             <li class="nav-secondary__item"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
           <?php endforeach; ?>
 
-          <li class="nav-secondary__item"><a href="#">Submit</a></li>
+          <li class="nav-secondary__item"><button type="button" data-popup-toggle><?php _e('Submit', 'chipmunk'); ?></button></li>
         </ul>
       </div>
 

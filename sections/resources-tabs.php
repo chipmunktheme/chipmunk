@@ -2,9 +2,9 @@
   <div class="container">
     <h3 class="headline headline_md">
       <ul class="headline__tabs" role="tablist">
-        <a class="headline__link active" data-tab-toggle href="#featured" role="tab">Featured</a>
-        <a class="headline__link" data-tab-toggle href="#latest" role="tab">Latest</a>
-        <a class="headline__link visible-sm-block" data-tab-toggle href="#popular" role="tab">Popular</a>
+        <a class="headline__link active" data-tab-toggle href="#featured" role="tab"><?php _e('Featured', 'chipmunk'); ?></a>
+        <a class="headline__link" data-tab-toggle href="#latest" role="tab"><?php _e('Latest', 'chipmunk'); ?></a>
+        <a class="headline__link visible-sm-block" data-tab-toggle href="#popular" role="tab"><?php _e('Popular', 'chipmunk'); ?></a>
       </ul>
     </h3>
 
@@ -49,8 +49,8 @@
     <!-- /.tab-content -->
   </div>
 
-  {% if showPromo %}
-    {% include 'promo.twig' %}
-  {% endif %}
+  <?php if (!is_home()) : ?>
+    <?php get_template_part('sections/promo'); ?>
+  <?php endif; ?>
 </div>
 <!-- /.section -->

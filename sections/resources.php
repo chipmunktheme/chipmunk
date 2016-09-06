@@ -13,8 +13,6 @@
     {% endfor %}
   </div>
 
-  {% if showPromo %}
-    {% include 'promo.twig' %}
-  {% endif %}
+  <?php get_template_part('sections/promo'); ?>
 </div>
 <!-- /.section -->

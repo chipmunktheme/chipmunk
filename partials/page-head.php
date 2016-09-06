@@ -2,7 +2,7 @@
   <div class="container">
     <div class="page-head__inner">
       <h1 class="page-head__logo">
-        <a href="<?php echo esc_url(site_url()); ?>" rel="index">
+        <a href="<?php echo home_url(); ?>" rel="index">
           <?php if ($logo = Chipmunk::theme_option('logo')) : ?>
             <img src="<?php echo $logo; ?>" alt="" />
           <?php else : ?>

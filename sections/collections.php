@@ -1,6 +1,6 @@
 <div class="section section_theme-gray">
   <div class="container">
-    <h3 class="headline headline_md">Collections</h3>
+    <h3 class="headline headline_md"><?php _e('Collections', 'chipmunk'); ?></h3>
 
     <div class="row">
       {% set collections = ['Design', 'Development', 'Technology', 'Products', 'Apps', 'Podcasts', 'Startups', 'Business', 'Marketing', 'Writings', 'Newsletters', 'Typography', 'Bots', 'Themes', 'Photography'] %}
@@ -28,8 +28,8 @@
     </div>
   </div>
 
-  {% if showPromo %}
-    {% include 'promo.twig' %}
-  {% endif %}
+  <?php if (is_home()) : ?>
+    <?php get_template_part('sections/promo'); ?>
+  <?php endif; ?>
 </div>
 <!-- /.section -->

@@ -10,8 +10,8 @@
     </div>
 
     <ul class="stats">
-      <li class="stats__item" title="Published"><i class="icon icon_clock"></i> {{ random(30) + 1 }}. August</li>
-      <li class="stats__item" title="Views"><i class="icon icon_view"></i> {{ random(2000) }}</li>
+      <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> {{ random(30) + 1 }}. August</li>
+      <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> {{ random(2000) }}</li>
     </ul>
   </div>
 </a>
