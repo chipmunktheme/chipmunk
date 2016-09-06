@@ -12,6 +12,8 @@
 
 .error-404__image {
   margin-top: $separator;
+  user-select: none;
+  pointer-events: none;
 
   @include breakpoint(lg) {
     margin-top: 0;

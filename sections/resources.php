@@ -1,6 +1,10 @@
 <div class="section section_theme-gray">
   <div class="container">
-    <h3 class="headline headline_md">{{ title }}</h3>
+    <h3 class="headline headline_md">
+      <?php if (is_single()) : ?>
+        <?php _e('Related', 'chipmunk'); ?>
+      <?php endif; ?>
+    </h3>
 
     {% for i in 1..rows | default(1) %}
       <div class="row">
@@ -13,6 +17,8 @@
     {% endfor %}
   </div>
 
-  <?php get_template_part('sections/promo'); ?>
+  <?php if (!is_home()) : ?>
+    <?php get_template_part('sections/promo'); ?>
+  <?php endif; ?>
 </div>
 <!-- /.section -->

@@ -1,3 +1,10 @@
+<?php
+// If the search query is shorter than 3 letters redirect to homepage
+if (strlen(get_search_query()) < 3) :
+  wp_redirect(home_url()); exit;
+endif;
+?>
+
 <?php get_header(); ?>
 
   <div class="section section_compact-bottom section_theme-gray">
@@ -7,9 +14,13 @@
   </div>
   <!-- /.section -->
 
-  <!-- {% for i in 1..3 %}
-    {% include 'sections/resource.twig' %}
-  {% endfor %} -->
+	<?php if (have_posts()) : ?>
+    <?php while (have_posts()) : the_post(); ?>
+
+      <?php get_template_part('sections/resource'); ?>
+
+    <?php endwhile; ?>
+  <?php endif; ?>
 
   <div class="section section_theme-gray">
   	<?php get_template_part('sections/promo'); ?>

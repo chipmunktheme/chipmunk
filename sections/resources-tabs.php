@@ -11,39 +11,34 @@
 
     <div class="tab-content">
       <div class="tile__list tab-pane fade in active" id="featured" role="tabpanel" data-resource-slider>
-        {% for i in 1..rows | default(1) %}
-          {% set resources = ['Startup Stash', 'Color Hunt', 'Canopy'] %}
+        <?php $latest_query = new WP_Query(array(
+          'numberposts'   => 9,
+          'post_type'     => 'resource',
+        )); ?>
 
-          {% for resource in resources %}
+        <?php if ($latest_query->have_posts()) : ?>
+          <?php while ($latest_query->have_posts()) : $latest_query->the_post(); ?>
+
             <div class="tile__wrapper">
-              {% include 'resource-item.twig' %}
+              <?php get_template_part('sections/resource-tile'); ?>
             </div>
-          {% endfor %}
-        {% endfor %}
+
+          <?php endwhile; wp_reset_postdata(); ?>
+        <?php else : ?>
+
+          <?php if (current_user_can('publish_posts')) : ?>
+            <p class="text-empty"><?php printf(__('Ready to publish your first resource? <a href="%1$s">Get started here</a>.', 'chipmunk'), esc_url(admin_url('post-new.php?post_type=resource'))); ?></p>
+          <?php else : ?>
+            <p class="text-empty"><?php _e('Sorry, there are no resources to display yet.', 'chipmunk'); ?></p>
+          <?php endif; ?>
+
+        <?php endif; ?>
       </div>
 
       <div class="tile__list tab-pane fade in" id="latest" role="tabpanel" data-resource-slider>
-        {% for i in 1..rows | default(1) %}
-          {% set resources = ['Startup Stash', 'Color Hunt', 'Canopy'] %}
-
-          {% for resource in resources %}
-            <div class="tile__wrapper">
-              {% include 'resource-item.twig' %}
-            </div>
-          {% endfor %}
-        {% endfor %}
       </div>
 
       <div class="tile__list tab-pane fade in" id="popular" role="tabpanel" data-resource-slider>
-        {% for i in 1..rows | default(1) %}
-          {% set resources = ['Startup Stash', 'Color Hunt', 'Canopy'] %}
-
-          {% for resource in resources %}
-            <div class="tile__wrapper">
-              {% include 'resource-item.twig' %}
-            </div>
-          {% endfor %}
-        {% endfor %}
       </div>
     </div>
     <!-- /.tab-content -->

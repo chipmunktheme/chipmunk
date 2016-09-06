@@ -11,6 +11,10 @@
 .stats__item {
   margin-left: $separator;
 
+  a:hover {
+    color: $color-gray;
+  }
+
   &:first-child {
     margin-left: 0;
   }

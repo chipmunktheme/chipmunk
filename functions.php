@@ -1,12 +1,14 @@
 <?php
 
 require __DIR__.'/includes/customizer.php';
+require __DIR__.'/includes/custom_posts.php';
 
 class Chipmunk
 {
   public function __construct()
   {
     new ChipmunkCustomizer();
+    new ChipmunkCustomPosts();
 
     // Theme Support
     add_theme_support('menus');
@@ -19,7 +21,6 @@ class Chipmunk
 
     // Init functions
     add_action('init', array($this, 'register_menus'));
-    add_action('init', array($this, 'register_post_types'));
     add_action('admin_menu', array(&$this, 'remove_admin_pages'));
     add_action('wp_enqueue_scripts', array(&$this, 'enqueue_assets'));
     add_action('wp_before_admin_bar_render', array(&$this, 'remove_admin_bar_pages'));
@@ -36,14 +37,6 @@ class Chipmunk
 
   	// Load our main script.
   	wp_enqueue_script('chipmunk-scripts', get_template_directory_uri().'/static/dist/scripts/main.min.js', array(), '1.0.0', true);
-  }
-
-  /**
-   * Register custom post types
-   */
-  public function register_post_types()
-  {
-    // CustomTypes::register_type_project();
   }
 
   /**
