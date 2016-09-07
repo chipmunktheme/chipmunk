@@ -2,14 +2,18 @@
 ** Module - Promo
 ** -----------------------------------------------------------------------------*/
 
-.promo:not(:first-child) {
-  margin-top: $separator * 2;
+.promo {
+  user-select: none;
 
-  @include breakpoint(md) {
-    margin-top: $separator * 4;
-  }
+  &:not(:first-child) {
+    margin-top: $separator * 2;
 
-  a {
-    display: block;
+    @include breakpoint(md) {
+      margin-top: $separator * 4;
+    }
+
+    a {
+      display: block;
+    }
   }
 }

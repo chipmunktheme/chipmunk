@@ -2,9 +2,15 @@
   <div class="container">
     <h3 class="headline headline_md">
       <ul class="headline__tabs" role="tablist">
-        <a class="headline__link active" data-tab-toggle href="#featured" role="tab"><?php _e('Featured', 'chipmunk'); ?></a>
-        <a class="headline__link" data-tab-toggle href="#latest" role="tab"><?php _e('Latest', 'chipmunk'); ?></a>
-        <a class="headline__link visible-sm-block" data-tab-toggle href="#popular" role="tab"><?php _e('Popular', 'chipmunk'); ?></a>
+        <?php if (!Chipmunk::theme_option('disable_featured')) : ?>
+          <a class="headline__link active" data-tab-toggle href="#featured" role="tab"><?php _e('Featured', 'chipmunk'); ?></a>
+        <?php endif; ?>
+
+        <a class="headline__link<?php echo Chipmunk::theme_option('disable_featured') ? ' active' : ''; ?>" data-tab-toggle href="#latest" role="tab"><?php _e('Latest', 'chipmunk'); ?></a>
+
+        <?php if (!Chipmunk::theme_option('disable_views')) : ?>
+          <a class="headline__link<?php echo Chipmunk::theme_option('disable_featured') ? '' : ' visible-sm-block'; ?>" data-tab-toggle href="#popular" role="tab"><?php _e('Popular', 'chipmunk'); ?></a>
+        <?php endif; ?>
       </ul>
     </h3>
 
@@ -38,8 +44,10 @@
       <div class="tile__list tab-pane fade in" id="latest" role="tabpanel" data-resource-slider>
       </div>
 
-      <div class="tile__list tab-pane fade in" id="popular" role="tabpanel" data-resource-slider>
-      </div>
+      <?php if (!Chipmunk::theme_option('disable_views')) : ?>
+        <div class="tile__list tab-pane fade in" id="popular" role="tabpanel" data-resource-slider>
+        </div>
+      <?php endif; ?>
     </div>
     <!-- /.tab-content -->
   </div>

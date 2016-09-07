@@ -3,7 +3,7 @@
     <div class="search-bar__inner">
       <form action="<?php echo home_url(); ?>" method="get" class="search-bar__form" role="search">
         <button type="submit"><i class="search-bar__icon icon icon_search"></i></button>
-        <input type="search" name="s" placeholder="<?php _e('Search query...', 'chipmunk'); ?>" value="<?php echo get_search_query(); ?>">
+        <input type="search" name="s" placeholder="<?php _e('Search query...', 'chipmunk'); ?>" value="<?php echo get_search_query(); ?>" required pattern=".{3,}" title="<?php _e('3 characters minimum', 'chipmunk'); ?>">
       </form>
 
       <button type="button" class="search-bar__close" data-search-toggle>

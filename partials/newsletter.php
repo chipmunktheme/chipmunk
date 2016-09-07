@@ -1,4 +1,4 @@
-<?php if (Chipmunk::theme_option('newsletter_action')) : ?>
+<?php if (!Chipmunk::theme_option('disable_newsletter') and Chipmunk::theme_option('newsletter_action')) : ?>
   <div class="section section_theme-primary text-center">
     <div class="container">
       <h2 class="headline headline_xl"><?php _e('Newsletter', 'chipmunk'); ?></h2>

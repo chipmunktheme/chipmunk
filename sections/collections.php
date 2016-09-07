@@ -14,26 +14,28 @@
         <?php foreach ($collections as $collection) : ?>
           <a href="<?php echo esc_url(get_term_link($collection)); ?>" class="tile column column_md-3 column_lg-4">
             <div class="tile__image">
-              <?php
-                $collection_resources = get_posts(array(
-                  'numberposts'   => Chipmunk::theme_option('collection_thumb_count', 3),
-                  'post_type'     => 'resource',
-                  'tax_query'     => array(
-                    array(
-                      'taxonomy'  => 'resource-collection',
-                      'field'     => 'term_id',
-                      'terms'     => $collection->term_id,
+              <?php if (!Chipmunk::theme_option('disable_collection_thumbs')) : ?>
+                <?php
+                  $collection_resources = get_posts(array(
+                    'numberposts'   => 3,
+                    'post_type'     => 'resource',
+                    'tax_query'     => array(
+                      array(
+                        'taxonomy'  => 'resource-collection',
+                        'field'     => 'term_id',
+                        'terms'     => $collection->term_id,
+                      )
                     )
-                  )
-                ));
-              ?>
+                  ));
+                ?>
 
-              <?php if (!empty($collection_resources)) : ?>
-                <?php foreach($collection_resources as $resource) : ?>
-                  <?php if (has_post_thumbnail($resource)) : ?>
-                    <?php echo get_the_post_thumbnail($resource, 'sm'); ?>
-                  <?php endif; ?>
-                <?php endforeach; ?>
+                <?php if (!empty($collection_resources)) : ?>
+                  <?php foreach($collection_resources as $resource) : ?>
+                    <?php if (has_post_thumbnail($resource)) : ?>
+                      <?php echo get_the_post_thumbnail($resource, 'sm'); ?>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
+                <?php endif; ?>
               <?php endif; ?>
             </div>
 

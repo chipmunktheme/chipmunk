@@ -5,7 +5,10 @@
         <ul class="resource__stats stats">
           <li class="stats__item" title="<?php _e('Collection', 'chipmunk'); ?>"><i class="icon icon_tag"></i> <?php the_terms(get_the_ID(), 'resource-collection'); ?></li>
           <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> <?php the_time('j. F'); ?></li>
-          <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> 0</li>
+
+          <?php if (!Chipmunk::theme_option('disable_views')) : ?>
+            <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> 0</li>
+          <?php endif; ?>
         </ul>
 
         <div class="resource__info">
@@ -22,14 +25,7 @@
         <div class="resource__actions">
           <a href="#" class="button button_secondary" target="_blank"><?php _e('Visit website', 'chipmunk'); ?></a>
 
-          <nav class="nav-socials">
-            <h4 class="nav-socials__title"><?php _e('Share', 'chipmunk'); ?></h4>
-            <ul>
-              <li class="nav-socials__item"><a href="#" title="<?php _e('Twitter', 'chipmunk'); ?>"><i class="icon icon_twitter"></i><span class="sr-only"><?php _e('Twitter', 'chipmunk'); ?></span></a></li>
-              <li class="nav-socials__item"><a href="#" title="<?php _e('Facebook', 'chipmunk'); ?>"><i class="icon icon_facebook"></i><span class="sr-only"><?php _e('Facebook', 'chipmunk'); ?></span></a></li>
-            </ul>
-          </nav>
-          <!-- /.nav-socials -->
+          <?php get_template_part('partials/share-box'); ?>
         </div>
       </div>
 

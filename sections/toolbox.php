@@ -40,10 +40,12 @@
         <!-- /.nav-socials -->
       </div>
 
-      <div class="toolbox__cta visible-md-flex">
-        <p class="visible-lg-block"><?php echo Chipmunk::theme_option('submit_tagline', 'Internet is huge! Help us find great content'); ?></p>
-        <button type="button" class="toolbox__button button button_primary" data-popup-toggle><?php _e('Submit', 'chipmunk'); ?></a>
-      </div>
+      <?php if (!Chipmunk::theme_option('disable_submissions')) : ?>
+        <div class="toolbox__cta visible-md-flex">
+          <p class="visible-lg-block"><?php echo Chipmunk::theme_option('submit_tagline', 'Internet is huge! Help us find great content'); ?></p>
+          <button type="button" class="toolbox__button button button_primary" data-popup-toggle><?php _e('Submit', 'chipmunk'); ?></a>
+        </div>
+      <?php endif; ?>
     </div>
     <!-- /.toolbox -->
   </div>

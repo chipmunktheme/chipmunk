@@ -25,14 +25,20 @@
 }
 
 .page-foot__description {
-  @include breakpoint(md) {
-    p {
-      margin-top: 1.875em;
-
-      &:first-child {
-        margin-top: 0;
+  p {
+    @include breakpoint(md) {
+      &:not(:first-child) {
+        margin-top: 1.875em;
       }
     }
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  i {
+    font-style: italic;
   }
 }
 

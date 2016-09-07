@@ -1,16 +1,19 @@
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-  <meta charset="<?php bloginfo( 'charset' ); ?>">
-  <title><?php wp_title( '' ); ?><?php if ( wp_title( '', false ) ) {
-      echo ' : ';
-    } ?><?php bloginfo( 'name' ); ?></title>
+  <meta charset="<?php bloginfo('charset'); ?>">
+  <title>
+    <?php if (wp_title('', false)) : ?>
+      <?php wp_title(' - ', true, 'right'); ?>
+    <?php endif; ?>
+
+    <?php bloginfo('name'); ?><?php if (is_home() and get_bloginfo('description')) : ?>: <?php bloginfo('description'); ?><?php endif; ?>
+  </title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <meta name="description" content="<?php bloginfo( 'description' ); ?>">
+  <meta name="description" content="<?php bloginfo('description'); ?>">
 
-  <link rel="dns-prefetch" href="//www.google-analytics.com">
-  <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=Poppins:400,700">
+  <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=<?php echo Chipmunk::theme_option('primary_font', 'Poppins'); ?>:400,700">
   <link rel="icon" href="<?php echo has_site_icon() ? get_site_icon_url() : get_template_directory_uri().'/static/dist/images/chipmunk.png'; ?>">
 
   <?php wp_head(); ?>

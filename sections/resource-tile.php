@@ -13,7 +13,10 @@
 
     <ul class="stats">
       <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> <?php the_time('j. F'); ?></li>
-      <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> 0</li>
+
+      <?php if (!Chipmunk::theme_option('disable_views')) : ?>
+        <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> 0</li>
+      <?php endif; ?>
     </ul>
   </div>
 </a>

@@ -4,10 +4,11 @@
       <div class="column column_md-3 column_lg-5">
         <h4 class="headline headline_sm"><?php _e('About', 'chipmunk'); ?></h4>
 
-        <div class="page-foot__description">
-          <p>Internet Curated is a collection of all the best curated resources on the internet.</p>
-          <p>Created by <a href="#">@piotrkulpinski</a> and <a href="#">@janwennesland</a></p>
-        </div>
+        <?php if ($about_copy = Chipmunk::theme_option('about_copy')) : ?>
+          <div class="page-foot__description">
+            <?php echo strip_tags(wpautop($about_copy), '<p><a><strong><i>'); ?>
+          </div>
+        <?php endif; ?>
       </div>
 
       <div class="column column_md-2 column_md-offset-1 column_lg-2 column_lg-offset-3">
@@ -20,7 +21,9 @@
             <li class="nav-secondary__item"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
           <?php endforeach; ?>
 
-          <li class="nav-secondary__item"><button type="button" data-popup-toggle><?php _e('Submit', 'chipmunk'); ?></button></li>
+          <?php if (!Chipmunk::theme_option('disable_submissions')) : ?>
+            <li class="nav-secondary__item"><button type="button" data-popup-toggle><?php _e('Submit', 'chipmunk'); ?></button></li>
+          <?php endif; ?>
         </ul>
       </div>
 

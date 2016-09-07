@@ -25,11 +25,13 @@
               <li class="nav-primary__item<?php echo (is_page($menu_item->object_id) ? ' nav-primary__item_active' : ''); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
             <?php endforeach; ?>
 
-            <li class="nav-primary__item hidden-lg">
-              <button type="button" class="button button_secondary" data-popup-toggle>
-                <?php _e('Submit', 'chipmunk'); ?>
-              </button>
-            </li>
+            <?php if (!Chipmunk::theme_option('disable_submissions')) : ?>
+              <li class="nav-primary__item hidden-lg">
+                <button type="button" class="button button_secondary" data-popup-toggle>
+                  <?php _e('Submit', 'chipmunk'); ?>
+                </button>
+              </li>
+            <?php endif; ?>
           </ul>
         </div>
         <!-- /.nav-primary__inner -->
@@ -37,14 +39,18 @@
       <!-- /.nav-primary -->
 
       <div class="page-head__cta">
-        <button type="button" class="page-head__search" data-search-toggle>
-          <i class="icon icon_search" aria-hidden="true"></i>
-          <span class="sr-only"><?php _e('Search', 'chipmunk'); ?></span>
-        </button>
+        <?php if (!Chipmunk::theme_option('disable_search')) : ?>
+          <button type="button" class="page-head__search" data-search-toggle>
+            <i class="icon icon_search" aria-hidden="true"></i>
+            <span class="sr-only"><?php _e('Search', 'chipmunk'); ?></span>
+          </button>
+        <?php endif; ?>
 
-        <button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>
-          <?php _e('Submit', 'chipmunk'); ?>
-        </button>
+        <?php if (!Chipmunk::theme_option('disable_submissions')) : ?>
+          <button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>
+            <?php _e('Submit', 'chipmunk'); ?>
+          </button>
+        <?php endif; ?>
 
         <button type="button" class="page-head__trigger button button_secondary hidden-lg" data-nav-toggle>
           <?php _e('Menu', 'chipmunk'); ?>
