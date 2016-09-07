@@ -9,13 +9,15 @@
 var $ = require('jquery');
 window.$ = $;
 window.jQuery = $;
-require('bootstrap/js/dist/tab');
 
 (function () {
   require('./modules/nav')();
   require('./modules/search')();
   require('./modules/popup')();
   require('./modules/extras')();
+
+  var Tabs = require('./modules/tabs');
+  new Tabs('[data-tabs]');
 })();
 
 var closePanels = function () {

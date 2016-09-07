@@ -36,13 +36,7 @@ var Extras = function () {
     ]
   });
 
-  // Tabs
-  $('[data-tab-toggle]').on('click', function (ev) {
-    ev.preventDefault();
-    $(this).tab('show');
-  });
-
-  $('[data-tab-toggle]').on('shown.bs.tab', function () {
+  $(document).on('shown.tab', function () {
     $('[data-resource-slider]').slick('setPosition');
   });
 };

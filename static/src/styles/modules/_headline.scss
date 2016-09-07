@@ -59,20 +59,19 @@
   }
 }
 
-.headline__tabs {
-  display: flex;
-
-}
-
 .headline__link {
+  display: inline-block;
   margin-left: $separator;
   color: $color-gray;
+  cursor: pointer;
+  transition: color $transition-speed;
 
   &:first-child {
     margin-left: 0;
   }
 
-  &.active {
+  &.active,
+  &:hover {
     color: $color-black;
   }
 }

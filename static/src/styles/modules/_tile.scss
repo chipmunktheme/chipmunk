@@ -104,13 +104,3 @@
     transition: transform $transition-speed ease-in-out 0.05s;
   }
 }
-
-.tab-content {
-  > .tab-pane {
-    display: none;
-  }
-
-  > .active {
-    display: block;
-  }
-}
