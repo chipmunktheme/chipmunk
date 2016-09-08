@@ -2,7 +2,7 @@
 
   <div class="section section_theme-gray">
     <div class="container">
-      <h3 class="headline headline_md"><?php single_term_title(); ?> <?php _e('Collection', 'chipmunk'); ?></h3>
+      <h3 class="heading heading_md"><?php single_term_title(); ?> <?php _e('Collection', 'chipmunk'); ?></h3>
 
       <div class="row">
         <?php if (have_posts()) : ?>

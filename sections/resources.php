@@ -1,6 +1,6 @@
 <div class="section section_theme-gray">
   <div class="container">
-    <h3 class="headline headline_md">
+    <h3 class="heading heading_md">
       <?php if (is_single()) : ?>
         <?php _e('Related', 'chipmunk'); ?>
       <?php endif; ?>

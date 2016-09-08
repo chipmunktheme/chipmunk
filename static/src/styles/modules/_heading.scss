@@ -1,8 +1,8 @@
 /*
-** Module - Headline
+** Module - Heading
 ** -----------------------------------------------------------------------------*/
 
-.headline {
+.heading {
   color: $color-black;
   font-weight: bold;
 
@@ -59,7 +59,7 @@
   }
 }
 
-.headline__link {
+.heading__link {
   display: inline-block;
   margin-left: $separator;
   color: $color-gray;

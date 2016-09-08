@@ -37,12 +37,17 @@
 }
 
 .tile__wrapper {
+  display: none;
   padding: 0 ($separator / 2);
   float: left;
   width: 33.3%;
 
   &:focus {
     outline: none;
+  }
+
+  &.slick-slide {
+    display: block;
   }
 }
 

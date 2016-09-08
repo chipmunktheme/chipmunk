@@ -12,7 +12,7 @@
         </ul>
 
         <div class="resource__info">
-          <h2 class="resource__title headline headline_xl">
+          <h2 class="resource__title heading heading_xl">
             <?php if (is_single()) : ?>
               <?php the_title(); ?>
             <?php else : ?>

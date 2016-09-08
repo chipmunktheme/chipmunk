@@ -9,7 +9,7 @@ endif;
 
   <div class="section section_compact-bottom section_theme-gray">
     <div class="container">
-      <h3 class="headline headline_md"><small><?php _e('Search results for:', 'chipmunk'); ?></small> <?php echo get_search_query(); ?></h3>
+      <h3 class="heading heading_md"><small><?php _e('Search results for:', 'chipmunk'); ?></small> <?php echo get_search_query(); ?></h3>
     </div>
   </div>
   <!-- /.section -->

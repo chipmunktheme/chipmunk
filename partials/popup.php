@@ -6,10 +6,10 @@
         <span class="sr-only"><?php _e('Close', 'chipmunk'); ?></span>
       </button>
 
-      <h2 class="headline headline_xl text-center"><?php _e('Submit', 'chipmunk'); ?></h2>
+      <h2 class="heading heading_xl text-center"><?php _e('Submit', 'chipmunk'); ?></h2>
 
       <div class="form__message" style="display: none;">
-        <p class="headline headline_thin"><?php echo Chipmunk::theme_option('submission_thanks', __('Thank you for your contribution. The submission was sent to the website owners for review.', 'chipmunk')); ?></p>
+        <p class="heading heading_thin"><?php echo Chipmunk::theme_option('submission_thanks', __('Thank you for your contribution. The submission was sent to the website owners for review.', 'chipmunk')); ?></p>
       </div>
 
       <form action="#" method="post" class="form">

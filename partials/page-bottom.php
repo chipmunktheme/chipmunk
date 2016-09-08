@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="column column_md-3 column_lg-5">
-        <h4 class="headline headline_sm"><?php _e('About', 'chipmunk'); ?></h4>
+        <h4 class="heading heading_sm"><?php _e('About', 'chipmunk'); ?></h4>
 
         <?php if ($about_copy = Chipmunk::theme_option('about_copy')) : ?>
           <div class="page-foot__description">
@@ -12,7 +12,7 @@
       </div>
 
       <div class="column column_md-2 column_md-offset-1 column_lg-2 column_lg-offset-3">
-        <h4 class="headline headline_sm"><?php _e('Navigation', 'chipmunk'); ?></h4>
+        <h4 class="heading heading_sm"><?php _e('Navigation', 'chipmunk'); ?></h4>
 
         <ul class="nav-secondary">
           <?php $menu_items = wp_get_nav_menu_items('Footer nav'); ?>
@@ -28,7 +28,7 @@
       </div>
 
       <div class="column column_lg-2 visible-lg-block">
-        <h4 class="headline headline_sm"><?php _e('Follow', 'chipmunk'); ?></h4>
+        <h4 class="heading heading_sm"><?php _e('Follow', 'chipmunk'); ?></h4>
 
         <ul class="nav-secondary">
           <?php if (Chipmunk::theme_option('twitter')) : ?>
