@@ -4,7 +4,7 @@ if (!class_exists('ChipmunkViewCounter'))
 {
   class ChipmunkViewCounter
   {
-    public static $db_key = 'post_views_count';
+    public static $db_key = 'chipmunk_view_count';
 
     public function __construct()
     {
@@ -44,11 +44,11 @@ if (!class_exists('ChipmunkViewCounter'))
       }
       else
       {
-        if (!isset($_COOKIE['post_views_count-'.$id]))
+        if (!isset($_COOKIE[self::$db_key.'-'.$id]))
         {
           $count++;
           update_post_meta($id, self::$db_key, $count);
-          setcookie('post_views_count-'.$id, true);
+          setcookie(self::$db_key.'-'.$id, true);
         }
       }
     }

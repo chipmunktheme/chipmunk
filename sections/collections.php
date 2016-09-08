@@ -14,7 +14,7 @@
         <?php foreach ($collections as $collection) : ?>
           <a href="<?php echo esc_url(get_term_link($collection)); ?>" class="tile column column_md-3 column_lg-4">
             <div class="tile__image">
-              <?php if (!Chipmunk::theme_option('disable_collection_thumbs')) : ?>
+              <?php if (!ChipmunkHelpers::theme_option('disable_collection_thumbs')) : ?>
                 <?php
                   $collection_resources = get_posts(array(
                     'numberposts'   => 3,
@@ -39,7 +39,7 @@
               <?php endif; ?>
             </div>
 
-            <div class="tile__content<?php echo !Chipmunk::theme_option('disable_collection_thumbs') ? ' tile__content_dimmed' : ''; ?>">
+            <div class="tile__content<?php echo !ChipmunkHelpers::theme_option('disable_collection_thumbs') ? ' tile__content_dimmed' : ''; ?>">
               <div>
                 <h3 class="tile__title"><?php echo $collection->name; ?></h3>
                 <p class="tile__copy"><?php _e('View this collection', 'chipmunk'); ?>&nbsp;<i class="icon icon_arrow" aria-hidden="true"></i></p>

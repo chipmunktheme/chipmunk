@@ -184,6 +184,7 @@ if (!class_exists('ChipmunkCustomizer'))
       $this->customize->add_setting('chipmunk_settings[resources_count]', array(
         'capability'  => $this->capability,
         'type'        => 'option',
+        'default'     => 9,
       ));
 
       $this->customize->add_control('resources_count', array(
@@ -204,6 +205,19 @@ if (!class_exists('ChipmunkCustomizer'))
         'label'       => 'Disable resource description',
         'section'     => 'resources_section',
         'settings'    => 'chipmunk_settings[disable_resource_desc]',
+        'type'        => 'checkbox',
+      ));
+
+      // Disable view count
+      $this->customize->add_setting('chipmunk_settings[disable_views]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+      ));
+
+      $this->customize->add_control('disable_views', array(
+        'label'       => 'Disable view count',
+        'section'     => 'resources_section',
+        'settings'    => 'chipmunk_settings[disable_views]',
         'type'        => 'checkbox',
       ));
 
@@ -409,19 +423,6 @@ if (!class_exists('ChipmunkCustomizer'))
         'label'       => 'Disable featured panel',
         'section'     => 'theme_section',
         'settings'    => 'chipmunk_settings[disable_featured]',
-        'type'        => 'checkbox',
-      ));
-
-      // Disable view count
-      $this->customize->add_setting('chipmunk_settings[disable_views]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_views', array(
-        'label'       => 'Disable view count',
-        'section'     => 'theme_section',
-        'settings'    => 'chipmunk_settings[disable_views]',
         'type'        => 'checkbox',
       ));
 
