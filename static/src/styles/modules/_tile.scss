@@ -79,11 +79,14 @@
   flex-direction: column;
   justify-content: space-between;
   padding: $separator;
-  background-color: rgba($color-black, 0.75);
   color: $color-white;
 
   @include breakpoint(md) {
     padding: $separator * 1.5;
+  }
+
+  &_dimmed {
+    background-color: rgba($color-black, 0.75);
   }
 }
 

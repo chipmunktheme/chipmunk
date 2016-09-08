@@ -20,7 +20,7 @@
         </div>
       <?php endif; ?>
 
-      <div class="tile__list tabs__item" id="latest" data-tabs-panel data-resource-slider role="tabpanel">
+      <div class="tile__list tabs__item<?php echo Chipmunk::theme_option('disable_featured') ? ' active' : ''; ?>" id="latest" data-tabs-panel data-resource-slider role="tabpanel">
         <?php $latest_query = new WP_Query(array(
           'posts_per_page'   => Chipmunk::theme_option('resources_count', 9),
           'post_type'     => 'resource',

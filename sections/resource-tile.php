@@ -5,10 +5,13 @@
     <?php endif; ?>
   </div>
 
-  <div class="tile__content">
+  <div class="tile__content tile__content_dimmed">
     <div>
       <h3 class="tile__title"><?php the_title(); ?></h3>
-      <p class="tile__copy"><?php echo get_the_content(); ?>&nbsp;<i class="icon icon_arrow"></i></p>
+
+      <?php if (!Chipmunk::theme_option('disable_resource_desc')) : ?>
+        <p class="tile__copy"><?php echo Chipmunk::truncate_string(get_the_content(), 60); ?>&nbsp;<i class="icon icon_arrow"></i></p>
+      <?php endif; ?>
     </div>
 
     <ul class="stats">

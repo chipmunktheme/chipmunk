@@ -194,6 +194,19 @@ if (!class_exists('ChipmunkCustomizer'))
         'type'        => 'number',
       ));
 
+      // Disable resource description
+      $this->customize->add_setting('chipmunk_settings[disable_resource_desc]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+      ));
+
+      $this->customize->add_control('disable_resource_desc', array(
+        'label'       => 'Disable resource description',
+        'section'     => 'resources_section',
+        'settings'    => 'chipmunk_settings[disable_resource_desc]',
+        'type'        => 'checkbox',
+      ));
+
       // Disable collection thumbs
       $this->customize->add_setting('chipmunk_settings[disable_collection_thumbs]', array(
         'capability'  => $this->capability,
