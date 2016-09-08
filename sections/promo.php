@@ -1,6 +1,6 @@
 <?php $enabled = !Chipmunk::theme_option('disable_ads'); ?>
-<?php $enabled_home = is_home() or !Chipmunk::theme_option('ads_only_home'); ?>
-<?php $has_content = $ad_image = Chipmunk::theme_option('ad_image') or $ad_code = Chipmunk::theme_option('ad_code'); ?>
+<?php $enabled_home = (is_home() or !Chipmunk::theme_option('ads_only_home')); ?>
+<?php $has_content = ($ad_image = Chipmunk::theme_option('ad_image') or $ad_code = Chipmunk::theme_option('ad_code')); ?>
 
 <?php if ($enabled and $enabled_home and $has_content) : ?>
   <div class="promo">

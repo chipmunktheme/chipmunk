@@ -41,6 +41,12 @@
 
   h4 {
     @extend .heading_md;
+
+    + p, blockquote {
+      &:not(:first-child) {
+        margin-top: 0.5em;
+      }
+    }
   }
 
   h5, h6 {

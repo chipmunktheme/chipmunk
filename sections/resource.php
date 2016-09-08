@@ -7,7 +7,7 @@
           <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> <?php the_time('j. F'); ?></li>
 
           <?php if (!Chipmunk::theme_option('disable_views')) : ?>
-            <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> 0</li>
+            <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> <?php echo ChipmunkViewCounter::get_post_views(get_the_ID()); ?></li>
           <?php endif; ?>
         </ul>
 

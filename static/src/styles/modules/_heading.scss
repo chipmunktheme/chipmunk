@@ -19,7 +19,7 @@
   &_md {
     font-size: 1.8rem;
     line-height: 1.6;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     text-transform: uppercase;
 
     @include breakpoint(md) {

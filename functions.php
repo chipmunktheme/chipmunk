@@ -2,6 +2,7 @@
 
 require __DIR__.'/includes/customizer.php';
 require __DIR__.'/includes/custom_posts.php';
+require __DIR__.'/includes/view_counter.php';
 
 class Chipmunk
 {
@@ -9,6 +10,7 @@ class Chipmunk
   {
     new ChipmunkCustomizer();
     new ChipmunkCustomPosts();
+    new ChipmunkViewCounter();
 
     // Theme Support
     add_theme_support('menus');
