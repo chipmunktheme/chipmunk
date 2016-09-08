@@ -16,35 +16,33 @@
     <div class="tab-content">
       <?php if (!Chipmunk::theme_option('disable_featured')) : ?>
         <div class="tile__list tabs__item active" id="featured" data-tabs-panel data-resource-slider role="tabpanel">
-          <?php $latest_query = new WP_Query(array(
-            'numberposts'   => 9,
-            'post_type'     => 'resource',
-          )); ?>
-
-          <?php if ($latest_query->have_posts()) : ?>
-            <?php while ($latest_query->have_posts()) : $latest_query->the_post(); ?>
-
-              <div class="tile__wrapper">
-                <?php get_template_part('sections/resource-tile'); ?>
-              </div>
-
-            <?php endwhile; wp_reset_postdata(); ?>
-          <?php else : ?>
-
-            <?php if (current_user_can('publish_posts')) : ?>
-              <p class="text-empty"><?php printf(__('Ready to publish your first resource? <a href="%1$s">Get started here</a>.', 'chipmunk'), esc_url(admin_url('post-new.php?post_type=resource'))); ?></p>
-            <?php else : ?>
-              <p class="text-empty"><?php _e('Sorry, there are no resources to display yet.', 'chipmunk'); ?></p>
-            <?php endif; ?>
-
-          <?php endif; ?>
+          Featured
         </div>
       <?php endif; ?>
 
       <div class="tile__list tabs__item" id="latest" data-tabs-panel data-resource-slider role="tabpanel">
-        <div class="tile__wrapper">
-          Latest
-        </div>
+        <?php $latest_query = new WP_Query(array(
+          'posts_per_page'   => Chipmunk::theme_option('resources_count', 9),
+          'post_type'     => 'resource',
+        )); ?>
+
+        <?php if ($latest_query->have_posts()) : ?>
+          <?php while ($latest_query->have_posts()) : $latest_query->the_post(); ?>
+
+            <div class="tile__wrapper">
+              <?php get_template_part('sections/resource-tile'); ?>
+            </div>
+
+          <?php endwhile; wp_reset_postdata(); ?>
+        <?php else : ?>
+
+          <?php if (current_user_can('publish_posts')) : ?>
+            <p class="text-empty"><?php printf(__('Ready to publish your first resource? <a href="%1$s">Get started here</a>.', 'chipmunk'), esc_url(admin_url('post-new.php?post_type=resource'))); ?></p>
+          <?php else : ?>
+            <p class="text-empty"><?php _e('Sorry, there are no resources to display yet.', 'chipmunk'); ?></p>
+          <?php endif; ?>
+
+        <?php endif; ?>
       </div>
 
       <?php if (!Chipmunk::theme_option('disable_views')) : ?>

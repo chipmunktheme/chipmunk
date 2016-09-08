@@ -181,16 +181,16 @@ if (!class_exists('ChipmunkCustomizer'))
     private function register_resources()
     {
       // Latest resources count
-      $this->customize->add_setting('chipmunk_settings[latest_resources_count]', array(
+      $this->customize->add_setting('chipmunk_settings[resources_count]', array(
         'capability'  => $this->capability,
         'type'        => 'option',
       ));
 
-      $this->customize->add_control('latest_resources_count', array(
+      $this->customize->add_control('resources_count', array(
         'label'       => 'Latest resources count',
         'section'     => 'resources_section',
-        'settings'    => 'chipmunk_settings[latest_resources_count]',
-        'description' => 'Enter the max resources number to show on Latest/Popular panel.',
+        'settings'    => 'chipmunk_settings[resources_count]',
+        'description' => 'Enter the max resources number to show on resource sliders.',
         'type'        => 'number',
       ));
 
@@ -335,8 +335,8 @@ if (!class_exists('ChipmunkCustomizer'))
 
       $this->customize->add_control('newsletter_action', array(
         'type'        => 'text',
-        'label'       => 'Mailchimp form action URL',
-        'description' => '<a href="http://chipmunktheme.com/help/mailchimp-url" target="_blank">Where do I find my MailChimp form action URL?</a>',
+        'label'       => 'Newsletter form action URL',
+        'description' => 'Where do I find my newsletter form action URL? <a href="http://chipmunktheme.com/help/mailchimp-url" target="_blank">Mailchimp</a> | <a href="http://chipmunktheme.com/help/campaign-monitor-url" target="_blank">Campaign Monitor</a>',
         'section'     => 'newsletter_section',
         'settings'    => 'chipmunk_settings[newsletter_action]'
       ));
