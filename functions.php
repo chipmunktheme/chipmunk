@@ -2,8 +2,8 @@
 
 require __DIR__.'/includes/helpers.php';
 require __DIR__.'/includes/customizer.php';
-require __DIR__.'/includes/custom_posts.php';
-require __DIR__.'/includes/view_counter.php';
+require __DIR__.'/includes/custom-posts.php';
+require __DIR__.'/includes/view-counter.php';
 
 class Chipmunk
 {

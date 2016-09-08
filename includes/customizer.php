@@ -154,9 +154,13 @@ if (!class_exists('ChipmunkCustomizer'))
         'settings' => 'chipmunk_settings[primary_font]',
         'type'     => 'select',
         'choices'  => array(
-          'Poppins'   => 'Poppins',
-          'Lato'      => 'Lato',
-          'Open+Sans' => 'Open Sans',
+          ''            => 'System font',
+          'Poppins'     => 'Poppins',
+          'Lato'        => 'Lato',
+          'Open+Sans'   => 'Open Sans',
+          'PT+Sans'     => 'PT Sans',
+          'Roboto'      => 'Roboto',
+          'Montserrat'  => 'Montserrat',
         ),
       ));
 
