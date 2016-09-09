@@ -4,7 +4,7 @@ if (!class_exists('ChipmunkViewCounter'))
 {
   class ChipmunkViewCounter
   {
-    public static $db_key = 'chipmunk_view_count';
+    public static $db_key = '_chipmunk_post_view_count';
 
     public function __construct()
     {

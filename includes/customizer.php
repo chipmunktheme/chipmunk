@@ -199,6 +199,34 @@ if (!class_exists('ChipmunkCustomizer'))
         'type'        => 'number',
       ));
 
+      // Number of resources per page
+      $this->customize->add_setting('chipmunk_settings[posts_per_page]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+        'default'     => 18,
+      ));
+
+      $this->customize->add_control('posts_per_page', array(
+        'label'       => 'Number of resources per page',
+        'section'     => 'resources_section',
+        'settings'    => 'chipmunk_settings[posts_per_page]',
+        'type'        => 'number',
+      ));
+
+      // Number of search results per page
+      $this->customize->add_setting('chipmunk_settings[results_per_page]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+        'default'     => 9,
+      ));
+
+      $this->customize->add_control('results_per_page', array(
+        'label'       => 'Number of search results per page',
+        'section'     => 'resources_section',
+        'settings'    => 'chipmunk_settings[results_per_page]',
+        'type'        => 'number',
+      ));
+
       // Disable resource description
       $this->customize->add_setting('chipmunk_settings[disable_resource_desc]', array(
         'capability'  => $this->capability,
@@ -404,32 +432,17 @@ if (!class_exists('ChipmunkCustomizer'))
      */
     private function register_theme()
     {
-      // Number of resources per page
-      $this->customize->add_setting('chipmunk_settings[posts_per_page]', array(
+      // Disable theme credits
+      $this->customize->add_setting('chipmunk_settings[disable_credits]', array(
         'capability'  => $this->capability,
         'type'        => 'option',
-        'default'     => 18,
       ));
 
-      $this->customize->add_control('posts_per_page', array(
-        'label'       => 'Number of resources per page',
+      $this->customize->add_control('disable_credits', array(
+        'label'       => 'Disable theme credits',
         'section'     => 'theme_section',
-        'settings'    => 'chipmunk_settings[posts_per_page]',
-        'type'        => 'number',
-      ));
-
-      // Number of search results per page
-      $this->customize->add_setting('chipmunk_settings[results_per_page]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => 9,
-      ));
-
-      $this->customize->add_control('results_per_page', array(
-        'label'       => 'Number of search results per page',
-        'section'     => 'theme_section',
-        'settings'    => 'chipmunk_settings[results_per_page]',
-        'type'        => 'number',
+        'settings'    => 'chipmunk_settings[disable_credits]',
+        'type'        => 'checkbox',
       ));
 
       // Disable search

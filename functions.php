@@ -3,6 +3,7 @@
 require __DIR__.'/includes/helpers.php';
 require __DIR__.'/includes/customizer.php';
 require __DIR__.'/includes/custom-posts.php';
+require __DIR__.'/includes/meta-boxes.php';
 require __DIR__.'/includes/view-counter.php';
 
 class Chipmunk
@@ -11,6 +12,7 @@ class Chipmunk
   {
     new ChipmunkCustomizer();
     new ChipmunkCustomPosts();
+    new ChipmunkMetaBoxes();
     new ChipmunkViewCounter();
 
     // Theme Support
@@ -28,7 +30,8 @@ class Chipmunk
     add_action('wp_enqueue_scripts', array(&$this, 'enqueue_assets'));
     add_action('wp_before_admin_bar_render', array(&$this, 'remove_admin_bar_pages'));
     add_filter('upload_mimes', array(&$this, 'cc_mime_types'));
-    add_filter('pre_get_posts', array(&$this, 'exclude_from_search'));
+    add_filter('pre_get_posts', array(&$this, 'update_search_query'));
+    add_filter('pre_get_posts', array(&$this, 'update_main_query'));
   }
 
   /**
@@ -63,12 +66,28 @@ class Chipmunk
     return $mimes;
   }
 
-  public function exclude_from_search($query)
+  /**
+   * Update search query
+   */
+  public function update_search_query($query)
   {
     if ($query->is_search)
     {
       $query->set('post_type', 'resource');
       $query->set('posts_per_page', ChipmunkHelpers::theme_option('results_per_page'));
+    }
+
+    return $query;
+  }
+
+  /**
+   * Update main query
+   */
+  public function update_main_query($query)
+  {
+    if ($query->is_tax or $query->is_main_query)
+    {
+      $query->set('posts_per_page', ChipmunkHelpers::theme_option('posts_per_page'));
     }
 
     return $query;

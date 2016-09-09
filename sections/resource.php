@@ -1,3 +1,5 @@
+<?php $resource_website = get_post_meta(get_the_ID(), '_chipmunk_resource_website', true); ?>
+
 <div class="section<?php echo (!$wp_query->current_post or $wp_query->current_post % 2 == 0) ? ' section_theme-white section_separated' : ' section_theme-gray'; ?>">
   <div class="container">
     <article class="resource row">
@@ -23,16 +25,24 @@
         </div>
 
         <div class="resource__actions">
-          <a href="#" class="button button_secondary" target="_blank"><?php _e('Visit website', 'chipmunk'); ?></a>
+          <?php if (!empty($resource_website)) : ?>
+            <a href="<?php echo $resource_website; ?>" class="button button_secondary" target="_blank"><?php _e('Visit website', 'chipmunk'); ?></a>
+          <?php endif; ?>
 
           <?php get_template_part('partials/share-box'); ?>
         </div>
       </div>
 
       <aside class="resource__image column column_lg-6">
-        <a href="#" target="_blank">
-          <?php the_post_thumbnail('lg'); ?>
-        </a>
+        <?php if (is_single()) : ?>
+          <?php if (!empty($resource_website)) : ?>
+            <a href="<?php echo $resource_website; ?>" target="_blank"><?php the_post_thumbnail('lg'); ?></a>
+          <?php else : ?>
+            <?php the_post_thumbnail('lg'); ?>
+          <?php endif; ?>
+        <?php else : ?>
+          <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('lg'); ?></a>
+        <?php endif; ?>
       </aside>
     </article>
     <!-- /.resource -->

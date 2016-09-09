@@ -5,8 +5,8 @@
     <div class="row">
       <?php
         $collections = get_terms('resource-collection', array(
-          'orderby'    => 'name',
-          'hide_empty' => 0,
+          'orderby'     => 'name',
+          'hide_empty'  => 0,
         ));
       ?>
 
@@ -63,8 +63,6 @@
     </div>
   </div>
 
-  <?php if (is_home()) : ?>
-    <?php get_template_part('sections/promo'); ?>
-  <?php endif; ?>
+  <?php get_template_part('sections/promo'); ?>
 </div>
 <!-- /.section -->
