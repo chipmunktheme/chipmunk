@@ -68,6 +68,7 @@ class Chipmunk
     if ($query->is_search)
     {
       $query->set('post_type', 'resource');
+      $query->set('posts_per_page', ChipmunkHelpers::theme_option('results_per_page'));
     }
 
     return $query;

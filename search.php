@@ -23,6 +23,7 @@ endif;
   <?php endif; ?>
 
   <div class="section section_theme-gray">
+    <?php get_template_part('sections/pagination'); ?>
   	<?php get_template_part('sections/promo'); ?>
   </div>
   <!-- /.section -->

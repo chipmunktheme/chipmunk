@@ -404,17 +404,32 @@ if (!class_exists('ChipmunkCustomizer'))
      */
     private function register_theme()
     {
-      // Disable theme credits
-      $this->customize->add_setting('chipmunk_settings[disable_credits]', array(
+      // Number of resources per page
+      $this->customize->add_setting('chipmunk_settings[posts_per_page]', array(
         'capability'  => $this->capability,
         'type'        => 'option',
+        'default'     => 18,
       ));
 
-      $this->customize->add_control('disable_credits', array(
-        'label'       => 'Disable theme credits',
+      $this->customize->add_control('posts_per_page', array(
+        'label'       => 'Number of resources per page',
         'section'     => 'theme_section',
-        'settings'    => 'chipmunk_settings[disable_credits]',
-        'type'        => 'checkbox',
+        'settings'    => 'chipmunk_settings[posts_per_page]',
+        'type'        => 'number',
+      ));
+
+      // Number of search results per page
+      $this->customize->add_setting('chipmunk_settings[results_per_page]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+        'default'     => 9,
+      ));
+
+      $this->customize->add_control('results_per_page', array(
+        'label'       => 'Number of search results per page',
+        'section'     => 'theme_section',
+        'settings'    => 'chipmunk_settings[results_per_page]',
+        'type'        => 'number',
       ));
 
       // Disable search
