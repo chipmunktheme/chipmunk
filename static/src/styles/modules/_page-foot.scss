@@ -42,6 +42,30 @@
   }
 }
 
-.page-foot__copy {
-  line-height: 1;
+.page-foot__inner {
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint(md) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.page-foot__credits {
+  user-select: none;
+  
+  img {
+    display: inline-block;
+    margin-left: 1rem;
+    max-height: #{$font-line-height}em;
+    vertical-align: middle;
+    opacity: 0.5;
+    transition: opacity $transition-speed;
+  }
+
+  a:hover img {
+    opacity: 0.9;
+  }
 }

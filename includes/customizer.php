@@ -212,6 +212,19 @@ if (!class_exists('ChipmunkCustomizer'))
         'type'        => 'checkbox',
       ));
 
+      // Disable featured panel
+      $this->customize->add_setting('chipmunk_settings[disable_featured]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+      ));
+
+      $this->customize->add_control('disable_featured', array(
+        'label'       => 'Disable featured panel',
+        'section'     => 'resources_section',
+        'settings'    => 'chipmunk_settings[disable_featured]',
+        'type'        => 'checkbox',
+      ));
+
       // Disable view count
       $this->customize->add_setting('chipmunk_settings[disable_views]', array(
         'capability'  => $this->capability,
@@ -417,23 +430,11 @@ if (!class_exists('ChipmunkCustomizer'))
         'type'        => 'checkbox',
       ));
 
-      // Disable featured panel
-      $this->customize->add_setting('chipmunk_settings[disable_featured]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_featured', array(
-        'label'       => 'Disable featured panel',
-        'section'     => 'theme_section',
-        'settings'    => 'chipmunk_settings[disable_featured]',
-        'type'        => 'checkbox',
-      ));
-
       // About copy (footer)
       $this->customize->add_setting('chipmunk_settings[about_copy]', array(
         'capability'  => $this->capability,
         'type'        => 'option',
+        'default'     => get_bloginfo('description'),
       ));
 
       $this->customize->add_control('about_copy', array(

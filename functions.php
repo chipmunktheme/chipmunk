@@ -28,6 +28,7 @@ class Chipmunk
     add_action('wp_enqueue_scripts', array(&$this, 'enqueue_assets'));
     add_action('wp_before_admin_bar_render', array(&$this, 'remove_admin_bar_pages'));
     add_filter('upload_mimes', array(&$this, 'cc_mime_types'));
+    add_filter('pre_get_posts', array(&$this, 'exclude_from_search'));
   }
 
   /**
@@ -56,9 +57,20 @@ class Chipmunk
   /**
    * Allow SVG upload
    */
-  public function cc_mime_types($mimes) {
+  public function cc_mime_types($mimes)
+  {
     $mimes['svg'] = 'image/svg+xml';
     return $mimes;
+  }
+
+  public function exclude_from_search($query)
+  {
+    if ($query->is_search)
+    {
+      $query->set('post_type', 'resource');
+    }
+
+    return $query;
   }
 
   /**

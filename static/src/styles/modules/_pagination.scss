@@ -1,0 +1,48 @@
+/*
+** Module - Pagination
+** -----------------------------------------------------------------------------*/
+
+.pagination {
+  color: $color-black;
+  margin-top: -($separator);
+
+  @include breakpoint(md) {
+    margin-top: -($separator * 2.5);
+  }
+
+  &:not(:first-child) {
+    margin-top: $separator;
+
+    @include breakpoint(md) {
+      margin-top: $separator * 1.5;
+    }
+  }
+}
+
+.pagination__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pagination__nav {
+  display: flex;
+}
+
+.pagination__item {
+  margin-left: $separator;
+  font-size: 2.5rem;
+  line-height: 1;
+
+  a {
+    display: block;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &_disabled {
+    color: $color-gray;
+  }
+}

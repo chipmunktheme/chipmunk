@@ -14,6 +14,7 @@
     .nav-primary__close:hover,
     .nav-socials__item a:hover,
     .page-head__logo,
+    .pagination__item a:hover,
     .popup__close:hover,
     .popup__close:hover,
     .popup__close:hover,
