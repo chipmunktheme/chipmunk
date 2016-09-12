@@ -16,25 +16,27 @@
             <div class="tile__image">
               <?php if (!ChipmunkHelpers::theme_option('disable_collection_thumbs')) : ?>
                 <?php
-                  $collection_resources = get_posts(array(
-                    'numberposts'   => 3,
-                    'post_type'     => 'resource',
-                    'tax_query'     => array(
+                  $query = new WP_Query(array(
+                    'posts_per_page' => 3,
+                    'post_type'       => 'resource',
+                    'tax_query'       => array(
                       array(
-                        'taxonomy'  => 'resource-collection',
-                        'field'     => 'term_id',
-                        'terms'     => $collection->term_id,
-                      )
-                    )
+                        'taxonomy'    => 'resource-collection',
+                        'field'       => 'term_id',
+                        'terms'       => $collection->term_id,
+                      ),
+                    ),
                   ));
                 ?>
 
-                <?php if (!empty($collection_resources)) : ?>
-                  <?php foreach($collection_resources as $resource) : ?>
-                    <?php if (has_post_thumbnail($resource)) : ?>
-                      <?php echo get_the_post_thumbnail($resource, 'sm'); ?>
+                <?php if ($query->have_posts()) : ?>
+                  <?php while ($query->have_posts()) : $query->the_post(); ?>
+
+                    <?php if (has_post_thumbnail()) : ?>
+                      <?php the_post_thumbnail('sm'); ?>
                     <?php endif; ?>
-                  <?php endforeach; ?>
+
+                  <?php endwhile; wp_reset_postdata(); ?>
                 <?php endif; ?>
               <?php endif; ?>
             </div>

@@ -41,11 +41,12 @@ if (!class_exists('ChipmunkHelpers'))
     /**
      * Get latest resources
      */
-    public static function get_latest_resources($limit = -1)
+    public static function get_latest_resources($limit = -1, $paged = false)
     {
       $query = new WP_Query(array(
         'post_type'       => 'resource',
         'posts_per_page'  => $limit,
+        'paged'           => $paged,
       ));
 
       return $query->have_posts() ? $query : false;
@@ -54,11 +55,25 @@ if (!class_exists('ChipmunkHelpers'))
     /**
      * Get featured resources
      */
-    public static function get_featured_resources($limit = -1)
+    public static function get_featured_resources($limit = -1, $paged = false)
     {
       $query = new WP_Query(array(
         'post_type'       => 'resource',
         'posts_per_page'  => $limit,
+        'paged'           => $paged,
+        'meta_query'      => array(
+          'featured'        => array(
+            'key'             => '_'.ChipmunkMetaBoxes::$field_name.'_is_featured',
+            'value'           => 'on',
+          ),
+          'views'           => array(
+            'key'             => ChipmunkViewCounter::$db_key,
+          )
+        ),
+        'orderby'         => array(
+          'views'           => 'DESC',
+          'date'            => 'DESC',
+        ),
       ));
 
       return $query->have_posts() ? $query : false;
@@ -67,11 +82,12 @@ if (!class_exists('ChipmunkHelpers'))
     /**
      * Get popular resources
      */
-    public static function get_popular_resources($limit = -1)
+    public static function get_popular_resources($limit = -1, $paged = false)
     {
       $query = new WP_Query(array(
         'post_type'       => 'resource',
         'posts_per_page'  => $limit,
+        'paged'           => $paged,
         'meta_key'        => ChipmunkViewCounter::$db_key,
         'orderby'         => 'meta_value_num',
         'order'           => 'DESC',

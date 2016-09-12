@@ -4,10 +4,10 @@ if (!class_exists('ChipmunkMetaBoxes'))
 {
   class ChipmunkMetaBoxes
   {
+    public static $field_name = 'chipmunk_resource';
+
     public function __construct()
     {
-      $this->field_name = 'chipmunk_resource';
-
       // Fire meta box setup function on the post editor screen.
       add_action('load-post.php', array(&$this, 'post_meta_boxes_setup'));
       add_action('load-post-new.php', array(&$this, 'post_meta_boxes_setup'));
@@ -22,7 +22,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
     public function add_post_meta_boxes()
     {
       add_meta_box(
-        $this->field_name,
+        self::$field_name,
         __('Custom fields', 'chipmunk'),
         array(&$this, 'resource_build_meta_boxes'),
         'resource',
@@ -38,14 +38,26 @@ if (!class_exists('ChipmunkMetaBoxes'))
      */
     public function resource_build_meta_boxes($post)
     {
-      wp_nonce_field(basename(__FILE__), $this->field_name.'_nonce');
-      $current_website = get_post_meta($post->ID, '_'.$this->field_name.'_website', true);
+      wp_nonce_field(basename(__FILE__), self::$field_name.'_nonce');
+      $website = get_post_meta($post->ID, '_'.self::$field_name.'_website', true);
+      $is_featured = get_post_meta($post->ID, '_'.self::$field_name.'_is_featured', true);
 
       ?>
-      <p>
-        <label for="website"><?php _e('Website URL', 'chipmunk'); ?></label><br>
-        <input type="url" name="website" value="<?php echo $current_website; ?>" class="widefat" />
-      </p>
+      <div class="chipmunk-fields">
+        <div class="chipmunk-field">
+          <label class="chipmunk-label" for="website"><?php _e('Website URL', 'chipmunk'); ?></label>
+          <input type="url" name="website" id="website" value="<?php echo $website; ?>" class="widefat" />
+        </div>
+
+        <div class="chipmunk-field">
+          <p class="chipmunk-label"><?php _e('Featured?', 'chipmunk'); ?></p>
+
+          <label for="is_featured">
+            <input type="checkbox" name="is_featured" id="is_featured" <?php echo $is_featured ? ' checked' : ''; ?> />
+            <?php _e('Featured on homepage', 'chipmunk'); ?>
+          </label>
+        </div>
+      </div>
       <?php
     }
 
@@ -57,7 +69,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
     public function resource_save_meta_boxes_data($post_id)
     {
       // verify taxonomies meta box nonce
-      if (!isset($_POST[$this->field_name.'_nonce']) || !wp_verify_nonce($_POST[$this->field_name.'_nonce'], basename(__FILE__)))
+      if (!isset($_POST[self::$field_name.'_nonce']) || !wp_verify_nonce($_POST[self::$field_name.'_nonce'], basename(__FILE__)))
       {
         return;
       }
@@ -77,7 +89,16 @@ if (!class_exists('ChipmunkMetaBoxes'))
       // store custom fields values
       if (isset($_REQUEST['website']))
       {
-        update_post_meta($post_id, '_'.$this->field_name.'_website', sanitize_text_field($_POST['website']));
+        update_post_meta($post_id, '_'.self::$field_name.'_website', sanitize_text_field($_POST['website']));
+      }
+
+      if (isset($_REQUEST['is_featured']))
+      {
+        update_post_meta($post_id, '_'.self::$field_name.'_is_featured', sanitize_text_field($_POST['is_featured']));
+      }
+      else
+      {
+        delete_post_meta($post_id, '_'.self::$field_name.'_is_featured');
       }
     }
   }

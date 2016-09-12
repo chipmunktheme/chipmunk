@@ -27,6 +27,7 @@ class Chipmunk
     // Init functions
     add_action('init', array($this, 'register_menus'));
     add_action('admin_menu', array(&$this, 'remove_admin_pages'));
+    add_action('admin_head', array(&$this, 'enqueue_admin_assets'));
     add_action('wp_enqueue_scripts', array(&$this, 'enqueue_assets'));
     add_action('wp_before_admin_bar_render', array(&$this, 'remove_admin_bar_pages'));
     add_filter('upload_mimes', array(&$this, 'cc_mime_types'));
@@ -44,6 +45,15 @@ class Chipmunk
 
   	// Load our main script.
   	wp_enqueue_script('chipmunk-scripts', get_template_directory_uri().'/static/dist/scripts/main.min.js', array(), '1.0.0', true);
+  }
+
+  /**
+   * Enqueue admin scripts and styles.
+   */
+  public function enqueue_admin_assets()
+  {
+  	// Load our main stylesheet
+  	wp_enqueue_style('chipmunk-admin-styles', get_template_directory_uri().'/admin.css', array(), '1.0.0');
   }
 
   /**
@@ -85,7 +95,7 @@ class Chipmunk
    */
   public function update_main_query($query)
   {
-    if ($query->is_tax or $query->is_main_query)
+    if (($query->is_tax and !$query->is_home) or $query->is_main_query)
     {
       $query->set('posts_per_page', ChipmunkHelpers::theme_option('posts_per_page'));
     }
@@ -98,6 +108,7 @@ class Chipmunk
    */
   public function remove_admin_pages()
   {
+    remove_menu_page('edit.php');
     remove_menu_page('edit-comments.php');
   }
 

@@ -27,7 +27,13 @@
     <div class="tab-content">
       <?php if ($resources['featured']) : ?>
         <div class="tile__list tabs__item active" data-tabs-panel data-resource-slider role="tabpanel">
-          Featured
+          <?php while ($resources['featured']->have_posts()) : $resources['featured']->the_post(); ?>
+
+            <div class="tile__wrapper">
+              <?php get_template_part('sections/resource-tile'); ?>
+            </div>
+
+          <?php endwhile; wp_reset_postdata(); ?>
         </div>
       <?php endif; ?>
 

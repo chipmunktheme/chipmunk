@@ -1,3 +1,5 @@
+<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
+
 <div class="section section_theme-gray">
   <div class="container">
     <h3 class="heading heading_md">
@@ -8,11 +10,11 @@
       <?php endif; ?>
     </h3>
 
-    <?php $resources = ChipmunkHelpers::get_latest_resources(ChipmunkHelpers::theme_option('posts_per_page')); ?>
+    <?php $custom_query = ChipmunkHelpers::get_latest_resources(ChipmunkHelpers::theme_option('posts_per_page'), $paged); ?>
 
-    <?php if ($resources->have_posts()) : ?>
+    <?php if ($custom_query->have_posts()) : ?>
       <div class="row">
-        <?php while ($resources->have_posts()) : $resources->the_post(); ?>
+        <?php while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
 
           <?php get_template_part('sections/resource-tile'); ?>
 
@@ -27,7 +29,7 @@
     <?php endif; ?>
   </div>
 
-  <?php get_template_part('sections/pagination'); ?>
+  <?php include(locate_template('sections/pagination.php')); ?>
 
   <?php if (!is_home()) : ?>
     <?php get_template_part('sections/promo'); ?>

@@ -1,0 +1,41 @@
+.chipmunk-fields {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  margin: -6px -12px -12px;
+}
+
+.chipmunk-field {
+  margin: 0;
+  padding: 15px 12px;
+  border-top: #EEEEEE solid 1px;
+  position: relative;
+  clear: left;
+}
+
+.chipmunk-field:first-of-type {
+  border-top: 0;
+}
+
+.chipmunk-field .chipmunk-label {
+  display: block;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 1.4em;
+  margin: 0 0 10px;
+}
+
+.chipmunk-field .chipmunk-label p {
+  color: #777777;
+  display: block;
+  font-size: 12px;
+  line-height: 1.4em;
+  font-style: normal;
+  margin: 3px 0 0 !important;
+  padding: 0 !important;
+}
+
+.chipmunk-field .chipmunk-input {
+  vertical-align: top;
+}

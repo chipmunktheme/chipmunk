@@ -1,4 +1,4 @@
-<?php $resource_website = get_post_meta(get_the_ID(), '_chipmunk_resource_website', true); ?>
+<?php $resource_website = get_post_meta(get_the_ID(), '_'.ChipmunkMetaBoxes::$field_name.'_website', true); ?>
 
 <div class="section<?php echo (!$wp_query->current_post or $wp_query->current_post % 2 == 0) ? ' section_theme-white section_separated' : ' section_theme-gray'; ?>">
   <div class="container">
