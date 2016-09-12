@@ -3,45 +3,12 @@
 <?php get_header(); ?>
 
   <div class="section section_theme-gray">
-    <div class="container">
-      <h3 class="entry__title heading heading_md"><?php the_title(); ?></h3>
-
-      <?php /* <div class="entry row">
-        <div class="entry__column column column_lg-5">
-          <h2>Lorem ipsum dolor sit amet</h2>
-        </div>
-
-        <div class="entry__column column column_lg-6 column_lg-offset-1">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat ultrices arcu a congue. Nullam est massa, fermentum a mauris ac, bibendum suscipit magna.</p>
-          <p>Morbi eu arcu ac massa vulputate bibendum quis nec nibh. Duis aliquam luctus lobortis.</p>
-        </div>
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+      <div class="container">
+        <h3 class="entry__title heading heading_md"><?php the_title(); ?></h3>
+        <?php the_content(); ?>
       </div>
-      <!-- /.entry -->
-
-      <div class="separator"></div>
-
-      <h3 class="heading heading_md">Curators</h3>
-
-      <div class="row">
-        <div class="card column column_md-3 column_lg-4">
-          <div class="card__image">
-            <img src="http://placehold.it/300x210?text=Curator" alt="" />
-          </div>
-
-          <h4 class="card__title">Piotr Kulpiński</h4>
-          <a href="#" target="_blank" class="card__handle">@piotrkulpinski</a>
-        </div>
-
-        <div class="card column column_md-3 column_lg-4">
-          <div class="card__image">
-            <img src="http://placehold.it/300x210?text=Curator" alt="" />
-          </div>
-
-          <h4 class="card__title">Jan Wennesland</h4>
-          <a href="#" target="_blank" class="card__handle">@janwennesland</a>
-        </div>
-      </div> */ ?>
-    </div>
+    <?php endwhile; endif; ?>
 
     <?php get_template_part('sections/promo'); ?>
   </div>

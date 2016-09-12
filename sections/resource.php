@@ -1,4 +1,4 @@
-<?php $resource_website = get_post_meta(get_the_ID(), '_'.ChipmunkMetaBoxes::$field_name.'_website', true); ?>
+<?php $resource_website = get_post_meta(get_the_ID(), '_'.ChipmunkMetaBoxes::$field_name.'_resource_website', true); ?>
 
 <div class="section<?php echo (!$wp_query->current_post or $wp_query->current_post % 2 == 0) ? ' section_theme-white section_separated' : ' section_theme-gray'; ?>">
   <div class="container">
@@ -26,7 +26,7 @@
 
         <div class="resource__actions">
           <?php if (!empty($resource_website)) : ?>
-            <a href="<?php echo $resource_website; ?>" class="button button_secondary" target="_blank"><?php _e('Visit website', 'chipmunk'); ?></a>
+            <a href="<?php echo $resource_website; ?>?ref=<?php echo sanitize_title(get_bloginfo('name')); ?>" class="button button_secondary" target="_blank"><?php _e('Visit website', 'chipmunk'); ?></a>
           <?php endif; ?>
 
           <?php get_template_part('partials/share-box'); ?>
@@ -36,7 +36,7 @@
       <aside class="resource__image column column_lg-6">
         <?php if (is_single()) : ?>
           <?php if (!empty($resource_website)) : ?>
-            <a href="<?php echo $resource_website; ?>" target="_blank"><?php the_post_thumbnail('lg'); ?></a>
+            <a href="<?php echo $resource_website; ?>?ref=<?php echo sanitize_title(get_bloginfo('name')); ?>" target="_blank"><?php the_post_thumbnail('lg'); ?></a>
           <?php else : ?>
             <?php the_post_thumbnail('lg'); ?>
           <?php endif; ?>

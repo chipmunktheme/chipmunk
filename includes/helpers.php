@@ -63,7 +63,7 @@ if (!class_exists('ChipmunkHelpers'))
         'paged'           => $paged,
         'meta_query'      => array(
           'featured'        => array(
-            'key'             => '_'.ChipmunkMetaBoxes::$field_name.'_is_featured',
+            'key'             => '_'.ChipmunkMetaBoxes::$field_name.'_resource_is_featured',
             'value'           => 'on',
           ),
           'views'           => array(

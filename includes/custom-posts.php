@@ -7,6 +7,7 @@ if (!class_exists('ChipmunkCustomPosts'))
     public function __construct()
     {
       $this->register_type_resource();
+      $this->register_type_curator();
     }
 
     public static function register_type_resource()
@@ -67,7 +68,33 @@ if (!class_exists('ChipmunkCustomPosts'))
           'new_item_name'     => __('New Tag Name', 'chipmunk'),
           'menu_name'         => __('Tags', 'chipmunk'),
         ),
-        // 'show_in_menu'      => false,
+        'show_in_menu'      => false,
+      ));
+    }
+
+    public static function register_type_curator()
+    {
+      register_post_type('curator', array(
+        'labels'             => array(
+          'name'               => _x('Curators', 'post type general name', 'chipmunk'),
+          'singular_name'      => _x('Curator', 'post type singular name', 'chipmunk'),
+          'menu_name'          => _x('Curators', 'admin menu', 'chipmunk'),
+          'name_admin_bar'     => _x('Curator', 'add new on admin bar', 'chipmunk'),
+          'add_new'            => __('Add New', 'chipmunk'),
+          'add_new_item'       => __('Add New Curator', 'chipmunk'),
+          'new_item'           => __('New Curator', 'chipmunk'),
+          'edit_item'          => __('Edit Curator', 'chipmunk'),
+          'view_item'          => __('View Curator', 'chipmunk'),
+          'all_items'          => __('All Curators', 'chipmunk'),
+          'search_items'       => __('Search Curators', 'chipmunk'),
+          'parent_item_colon'  => __('Parent Curator:', 'chipmunk'),
+          'not_found'          => __('No curators found.', 'chipmunk'),
+          'not_found_in_trash' => __('No curators found in Trash.', 'chipmunk'),
+        ),
+        'show_ui'            => true,
+        'public'             => false,
+        'menu_icon'          => 'dashicons-businessman',
+        'supports'           => array('title', 'thumbnail'),
       ));
     }
   }

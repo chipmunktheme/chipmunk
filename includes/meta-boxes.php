@@ -4,7 +4,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
 {
   class ChipmunkMetaBoxes
   {
-    public static $field_name = 'chipmunk_resource';
+    public static $field_name = 'chipmunk';
 
     public function __construct()
     {
@@ -17,15 +17,25 @@ if (!class_exists('ChipmunkMetaBoxes'))
     {
       add_action('add_meta_boxes', array(&$this, 'add_post_meta_boxes'));
       add_action('save_post_resource', array(&$this, 'resource_save_meta_boxes_data'));
+      add_action('save_post_curator', array(&$this, 'curator_save_meta_boxes_data'));
     }
 
     public function add_post_meta_boxes()
     {
       add_meta_box(
-        self::$field_name,
+        self::$field_name.'_resource',
         __('Custom fields', 'chipmunk'),
         array(&$this, 'resource_build_meta_boxes'),
         'resource',
+        'normal',
+        'high'
+      );
+
+      add_meta_box(
+        self::$field_name.'_curator',
+        __('Custom fields', 'chipmunk'),
+        array(&$this, 'curator_build_meta_boxes'),
+        'curator',
         'normal',
         'high'
       );
@@ -38,9 +48,9 @@ if (!class_exists('ChipmunkMetaBoxes'))
      */
     public function resource_build_meta_boxes($post)
     {
-      wp_nonce_field(basename(__FILE__), self::$field_name.'_nonce');
-      $website = get_post_meta($post->ID, '_'.self::$field_name.'_website', true);
-      $is_featured = get_post_meta($post->ID, '_'.self::$field_name.'_is_featured', true);
+      wp_nonce_field(basename(__FILE__), self::$field_name.'_resource_nonce');
+      $website = get_post_meta($post->ID, '_'.self::$field_name.'_resource_website', true);
+      $is_featured = get_post_meta($post->ID, '_'.self::$field_name.'_resource_is_featured', true);
 
       ?>
       <div class="chipmunk-fields">
@@ -69,7 +79,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
     public function resource_save_meta_boxes_data($post_id)
     {
       // verify taxonomies meta box nonce
-      if (!isset($_POST[self::$field_name.'_nonce']) || !wp_verify_nonce($_POST[self::$field_name.'_nonce'], basename(__FILE__)))
+      if (!isset($_POST[self::$field_name.'_resource_nonce']) || !wp_verify_nonce($_POST[self::$field_name.'_resource_nonce'], basename(__FILE__)))
       {
         return;
       }
@@ -89,16 +99,69 @@ if (!class_exists('ChipmunkMetaBoxes'))
       // store custom fields values
       if (isset($_REQUEST['website']))
       {
-        update_post_meta($post_id, '_'.self::$field_name.'_website', sanitize_text_field($_POST['website']));
+        update_post_meta($post_id, '_'.self::$field_name.'_resource_website', sanitize_text_field($_POST['website']));
       }
 
       if (isset($_REQUEST['is_featured']))
       {
-        update_post_meta($post_id, '_'.self::$field_name.'_is_featured', sanitize_text_field($_POST['is_featured']));
+        update_post_meta($post_id, '_'.self::$field_name.'_resource_is_featured', sanitize_text_field($_POST['is_featured']));
       }
       else
       {
-        delete_post_meta($post_id, '_'.self::$field_name.'_is_featured');
+        delete_post_meta($post_id, '_'.self::$field_name.'_resource_is_featured');
+      }
+    }
+
+    /**
+     * Build custom field meta box
+     *
+     * @param post $post The post object
+     */
+    public function curator_build_meta_boxes($post)
+    {
+      wp_nonce_field(basename(__FILE__), self::$field_name.'_curator_nonce');
+      $twitter = get_post_meta($post->ID, '_'.self::$field_name.'_curator_twitter', true);
+
+      ?>
+      <div class="chipmunk-fields">
+        <div class="chipmunk-field">
+          <label class="chipmunk-label" for="twitter"><?php _e('Twitter Handle', 'chipmunk'); ?></label>
+          <p>Add twitter username here (in the @username format).</p>
+          <input type="text" name="twitter" id="twitter" value="<?php echo $twitter; ?>" class="widefat" />
+        </div>
+      </div>
+      <?php
+    }
+
+    /**
+     * Store custom field meta box data
+     *
+     * @param int $post_id The post ID.
+     */
+    public function curator_save_meta_boxes_data($post_id)
+    {
+      // verify taxonomies meta box nonce
+      if (!isset($_POST[self::$field_name.'_curator_nonce']) || !wp_verify_nonce($_POST[self::$field_name.'_curator_nonce'], basename(__FILE__)))
+      {
+        return;
+      }
+
+      // return if autosave
+      if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+      {
+        return;
+      }
+
+      // Check the user's permissions.
+      if (!current_user_can('edit_post', $post_id))
+      {
+        return;
+      }
+
+      // store custom fields values
+      if (isset($_REQUEST['twitter']))
+      {
+        update_post_meta($post_id, '_'.self::$field_name.'_curator_twitter', sanitize_text_field($_POST['twitter']));
       }
     }
   }

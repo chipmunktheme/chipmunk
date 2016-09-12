@@ -1,13 +1,19 @@
+<?php
+  $primary_color  = ChipmunkHelpers::theme_option('primary_color');
+  $primary_font   = ChipmunkHelpers::theme_option('primary_font');
+  $custom_css     = ChipmunkHelpers::theme_option('custom_css');
+?>
+
 <style type="text/css">
   body {
-    <?php if ($primary_font = ChipmunkHelpers::theme_option('primary_font')) : ?>
+    <?php if ($primary_font) : ?>
       font-family: "<?php echo str_replace('+', ' ', $primary_font); ?>", "Helvetica Neue", Helvetica, Arial, sans-serif;
     <?php else : ?>
       font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
     <?php endif; ?>
   }
 
-  <?php if ($primary_color = ChipmunkHelpers::theme_option('primary_color') and $primary_color != '#F38181') : ?>
+  <?php if ($primary_color and $primary_color != '#F38181') : ?>
     .button_primary:hover,
     .button_secondary,
     .entry a:hover,
@@ -31,7 +37,7 @@
     }
   <?php endif; ?>
 
-  <?php if ($custom_css = ChipmunkHelpers::theme_option('custom_css')) : ?>
+  <?php if ($custom_css) : ?>
     <?php echo esc_textarea($custom_css); ?>
   <?php endif; ?>
 </style>
