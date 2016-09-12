@@ -4,7 +4,6 @@ require __DIR__.'/includes/helpers.php';
 require __DIR__.'/includes/customizer.php';
 require __DIR__.'/includes/custom-posts.php';
 require __DIR__.'/includes/meta-boxes.php';
-require __DIR__.'/includes/shortcodes.php';
 require __DIR__.'/includes/view-counter.php';
 
 class Chipmunk
@@ -14,7 +13,6 @@ class Chipmunk
     new ChipmunkCustomizer();
     new ChipmunkCustomPosts();
     new ChipmunkMetaBoxes();
-    new ChipmunkShortcodes();
     new ChipmunkViewCounter();
 
     // Theme Support

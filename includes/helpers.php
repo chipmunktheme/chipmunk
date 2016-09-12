@@ -141,5 +141,19 @@ if (!class_exists('ChipmunkHelpers'))
 
       return $query->have_posts() ? $query : false;
     }
+
+    /**
+     * Get curators
+     */
+    public static function get_curators($limit = -1)
+    {
+      $query = new WP_Query(array(
+        'post_type'       => 'curator',
+        'posts_per_page'  => $limit,
+        'order'           => 'ASC',
+      ));
+
+      return $query->have_posts() ? $query : false;
+    }
   }
 }
