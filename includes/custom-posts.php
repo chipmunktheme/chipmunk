@@ -52,6 +52,23 @@ if (!class_exists('ChipmunkCustomPosts'))
         'hierarchical'      => true,
         'rewrite'           => array('with_front' => false, 'slug' => __('collection', 'chipmunk')),
       ));
+
+      register_taxonomy('resource-tag', 'resource', array(
+        'labels'             => array(
+          'name'              => _x('Tags', 'taxonomy general name', 'chipmunk'),
+          'singular_name'     => _x('Tag', 'taxonomy singular name', 'chipmunk'),
+          'search_items'      => __('Search Tags', 'chipmunk'),
+          'all_items'         => __('All Tags', 'chipmunk'),
+          'parent_item'       => __('Parent Tag', 'chipmunk'),
+          'parent_item_colon' => __('Parent Tag:', 'chipmunk'),
+          'edit_item'         => __('Edit Tag', 'chipmunk'),
+          'update_item'       => __('Update Tag', 'chipmunk'),
+          'add_new_item'      => __('Add New Tag', 'chipmunk'),
+          'new_item_name'     => __('New Tag Name', 'chipmunk'),
+          'menu_name'         => __('Tags', 'chipmunk'),
+        ),
+        // 'show_in_menu'      => false,
+      ));
     }
   }
 }

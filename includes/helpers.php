@@ -95,5 +95,51 @@ if (!class_exists('ChipmunkHelpers'))
 
       return $query->have_posts() ? $query : false;
     }
+
+    /**
+     * Get related resources
+     */
+    public static function get_related_resources($post_id)
+    {
+      $args = array(
+        'posts_per_page'  => 3,
+        'post_type'       => 'resource',
+        'post__not_in'    => array($post_id),
+        'orderby'         => 'rand',
+      );
+
+      $tags = get_the_terms($post_id, 'resource-tag');
+      $collections = get_the_terms($post_id, 'resource-collection');
+
+      if (!empty($tags))
+      {
+        $args['tax_query'] = array(
+          array(
+            'taxonomy'    => 'resource-tag',
+            'field'       => 'term_id',
+            'terms'       => array_map(function ($result) { return $result->term_id; }, $tags),
+            'operator'    => 'IN',
+          ),
+        );
+      }
+      else
+      {
+        if (!empty($collections))
+        {
+          $args['tax_query'] = array(
+            array(
+              'taxonomy'    => 'resource-collection',
+              'field'       => 'term_id',
+              'terms'       => array_map(function ($result) { return $result->term_id; }, $collections),
+              'operator'    => 'IN',
+            ),
+          );
+        }
+      }
+
+      $query = new WP_Query($args);
+
+      return $query->have_posts() ? $query : false;
+    }
   }
 }

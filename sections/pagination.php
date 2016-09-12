@@ -4,7 +4,7 @@ $query = isset($custom_query) ? $custom_query : $wp_query;
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 ?>
 
-<?php if ($query->max_num_pages > 1) : ?>
+<?php if ($query and $query->max_num_pages > 1 and (!isset($query->query['orderby']) or $query->query['orderby'] != 'rand')) : ?>
   <nav class="pagination">
     <div class="container">
       <div class="pagination__inner">

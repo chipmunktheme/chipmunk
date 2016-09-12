@@ -95,7 +95,7 @@ class Chipmunk
    */
   public function update_main_query($query)
   {
-    if (($query->is_tax and !$query->is_home) or $query->is_main_query)
+    if ($query->is_tax and is_tax())
     {
       $query->set('posts_per_page', ChipmunkHelpers::theme_option('posts_per_page'));
     }

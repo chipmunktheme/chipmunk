@@ -10,9 +10,13 @@
       <?php endif; ?>
     </h3>
 
-    <?php $custom_query = ChipmunkHelpers::get_latest_resources(ChipmunkHelpers::theme_option('posts_per_page'), $paged); ?>
+    <?php if (is_single()) : ?>
+      <?php $custom_query = ChipmunkHelpers::get_related_resources(get_the_ID()); ?>
+    <?php else : ?>
+      <?php $custom_query = ChipmunkHelpers::get_latest_resources(ChipmunkHelpers::theme_option('posts_per_page'), $paged); ?>
+    <?php endif; ?>
 
-    <?php if ($custom_query->have_posts()) : ?>
+    <?php if ($custom_query and $custom_query->have_posts()) : ?>
       <div class="row">
         <?php while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
 
