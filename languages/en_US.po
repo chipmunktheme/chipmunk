@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-09-13 20:42+0200\n"
-"PO-Revision-Date: 2016-09-13 20:58+0200\n"
+"POT-Creation-Date: 2016-09-13 22:48+0200\n"
+"PO-Revision-Date: 2016-09-13 22:48+0200\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -33,6 +33,11 @@ msgstr "Please verify that you are not a robot."
 msgid "New user submission"
 msgstr "New user submission"
 
+#: includes/ajax.php:73
+#, php-format
+msgid "<a href=\"%1$s\">Review submission</a>"
+msgstr "<a href=“%1$s”>Review submission</a>"
+
 #: includes/custom-posts.php:17 includes/custom-posts.php:19
 #: includes/customizer.php:19 sections/collections.php:51
 #: sections/resources.php:9
@@ -43,7 +48,7 @@ msgstr "Resources"
 msgid "Resource"
 msgstr "Resource"
 
-#: includes/custom-posts.php:21 includes/custom-posts.php:72
+#: includes/custom-posts.php:21 includes/custom-posts.php:70
 msgid "Add New"
 msgstr "Add New"
 
@@ -83,90 +88,89 @@ msgstr "No resources found."
 msgid "No resources found in Trash."
 msgstr "No resources found in Trash."
 
-#: includes/custom-posts.php:43 includes/custom-posts.php:53
+#: includes/custom-posts.php:41 includes/custom-posts.php:51
 #: sections/collections.php:3
 msgid "Collections"
 msgstr "Collections"
 
-#: includes/custom-posts.php:44 partials/popup.php:25 sections/resource.php:9
-#: taxonomy.php:5
+#: includes/custom-posts.php:42 partials/popup.php:25 sections/resource.php:9
 msgid "Collection"
 msgstr "Collection"
 
-#: includes/custom-posts.php:45
+#: includes/custom-posts.php:43
 msgid "Search Collections"
 msgstr "Search Collections"
 
-#: includes/custom-posts.php:46
+#: includes/custom-posts.php:44
 msgid "All Collections"
 msgstr "All Collections"
 
-#: includes/custom-posts.php:47
+#: includes/custom-posts.php:45
 msgid "Parent Collection"
 msgstr "Parent Collection"
 
-#: includes/custom-posts.php:48
+#: includes/custom-posts.php:46
 msgid "Parent Collection:"
 msgstr "Parent Collection:"
 
-#: includes/custom-posts.php:49
+#: includes/custom-posts.php:47
 msgid "Edit Collection"
 msgstr "Edit Collection"
 
-#: includes/custom-posts.php:50
+#: includes/custom-posts.php:48
 msgid "Update Collection"
 msgstr "Update Collection"
 
-#: includes/custom-posts.php:51
+#: includes/custom-posts.php:49
 msgid "Add New Collection"
 msgstr "Add New Collection"
 
-#: includes/custom-posts.php:52
+#: includes/custom-posts.php:50
 msgid "New Collection Name"
 msgstr "New Collection Name"
 
-#: includes/custom-posts.php:68 includes/custom-posts.php:70
+#: includes/custom-posts.php:66 includes/custom-posts.php:68
 #: sections/curators.php:4
 msgid "Curators"
 msgstr "Curators"
 
-#: includes/custom-posts.php:69 includes/custom-posts.php:71
+#: includes/custom-posts.php:67 includes/custom-posts.php:69
 msgid "Curator"
 msgstr "Curator"
 
-#: includes/custom-posts.php:73
+#: includes/custom-posts.php:71
 msgid "Add New Curator"
 msgstr "Add New Curator"
 
-#: includes/custom-posts.php:74
+#: includes/custom-posts.php:72
 msgid "New Curator"
 msgstr "New Curator"
 
-#: includes/custom-posts.php:75
+#: includes/custom-posts.php:73
 msgid "Edit Curator"
 msgstr "Edit Curator"
 
-#: includes/custom-posts.php:76
+#: includes/custom-posts.php:74
 msgid "View Curator"
 msgstr "View Curator"
 
-#: includes/custom-posts.php:77
+#: includes/custom-posts.php:75
 msgid "All Curators"
 msgstr "All Curators"
 
-#: includes/custom-posts.php:78
+#: includes/custom-posts.php:76
 msgid "Search Curators"
 msgstr "Search Curators"
 
-#: includes/custom-posts.php:79
+#: includes/custom-posts.php:77
 msgid "Parent Curator:"
 msgstr "Parent Curator:"
 
-#: includes/custom-posts.php:80
+#: includes/custom-posts.php:78
 msgid "No curators found."
 msgstr "No curators found."
 
-#: includes/custom-posts.php:81
+#: includes/custom-posts.php:79
 msgid "No curators found in Trash."
 msgstr "No curators found in Trash."
 
@@ -580,6 +584,11 @@ msgstr "Sorry, there are no resources to display yet."
 #: sections/toolbox.php:6
 msgid "Follow us"
 msgstr "Follow us"
+
+#: taxonomy.php:5
+#, php-format
+msgid "%1$s Collection"
+msgstr "%1$s Collection"
 
 #~ msgid "Category"
 #~ msgstr "Category"

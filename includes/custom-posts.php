@@ -14,10 +14,10 @@ if (!class_exists('ChipmunkCustomPosts'))
     {
       register_post_type('resource', array(
         'labels'             => array(
-          'name'               => _x('Resources', 'post type general name', 'chipmunk'),
-          'singular_name'      => _x('Resource', 'post type singular name', 'chipmunk'),
-          'menu_name'          => _x('Resources', 'admin menu', 'chipmunk'),
-          'name_admin_bar'     => _x('Resource', 'add new on admin bar', 'chipmunk'),
+          'name'               => __('Resources', 'chipmunk'),
+          'singular_name'      => __('Resource', 'chipmunk'),
+          'menu_name'          => __('Resources', 'chipmunk'),
+          'name_admin_bar'     => __('Resource', 'chipmunk'),
           'add_new'            => __('Add New', 'chipmunk'),
           'add_new_item'       => __('Add New Resource', 'chipmunk'),
           'new_item'           => __('New Resource', 'chipmunk'),
@@ -33,15 +33,13 @@ if (!class_exists('ChipmunkCustomPosts'))
         'rewrite'               => array('with_front' => false, 'slug' => 'resource'),
         'public'                => true,
         'menu_icon'             => 'dashicons-screenoptions',
-        'show_in_rest'          => true,
-    		'rest_controller_class' => 'WP_REST_Posts_Controller',
         'supports'              => array('title', 'editor', 'thumbnail'),
       ));
 
       register_taxonomy('resource-collection', 'resource', array(
         'labels'             => array(
-          'name'              => _x('Collections', 'taxonomy general name', 'chipmunk'),
-          'singular_name'     => _x('Collection', 'taxonomy singular name', 'chipmunk'),
+          'name'              => __('Collections', 'chipmunk'),
+          'singular_name'     => __('Collection', 'chipmunk'),
           'search_items'      => __('Search Collections', 'chipmunk'),
           'all_items'         => __('All Collections', 'chipmunk'),
           'parent_item'       => __('Parent Collection', 'chipmunk'),
@@ -65,10 +63,10 @@ if (!class_exists('ChipmunkCustomPosts'))
     {
       register_post_type('curator', array(
         'labels'             => array(
-          'name'               => _x('Curators', 'post type general name', 'chipmunk'),
-          'singular_name'      => _x('Curator', 'post type singular name', 'chipmunk'),
-          'menu_name'          => _x('Curators', 'admin menu', 'chipmunk'),
-          'name_admin_bar'     => _x('Curator', 'add new on admin bar', 'chipmunk'),
+          'name'               => __('Curators', 'chipmunk'),
+          'singular_name'      => __('Curator', 'chipmunk'),
+          'menu_name'          => __('Curators', 'chipmunk'),
+          'name_admin_bar'     => __('Curator', 'chipmunk'),
           'add_new'            => __('Add New', 'chipmunk'),
           'add_new_item'       => __('Add New Curator', 'chipmunk'),
           'new_item'           => __('New Curator', 'chipmunk'),

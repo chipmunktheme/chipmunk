@@ -1,4 +1,5 @@
 <?php
+load_theme_textdomain('chipmunk', get_template_directory().'/languages');
 
 require __DIR__.'/includes/helpers.php';
 require __DIR__.'/includes/ajax.php';
@@ -31,7 +32,6 @@ class Chipmunk
     add_action('init', array($this, 'update_permalinks'));
     add_action('admin_menu', array(&$this, 'remove_admin_pages'));
     add_action('admin_head', array(&$this, 'enqueue_admin_assets'));
-    add_action('after_setup_theme', array(&$this, 'load_theme_textdomain'));
     add_action('wp_enqueue_scripts', array(&$this, 'enqueue_assets'));
     add_action('wp_before_admin_bar_render', array(&$this, 'remove_admin_bar_pages'));
     add_action('wp_head', array($this, 'add_fb_open_graph_tags'));
@@ -62,14 +62,6 @@ class Chipmunk
   {
     // Load our main stylesheet
     wp_enqueue_style('chipmunk-admin-styles', get_template_directory_uri().'/admin.css', array(), '1.0.0');
-  }
-
-  /**
-   * Register custom navigations
-   */
-  public function load_theme_textdomain()
-  {
-    load_theme_textdomain('chipmunk', get_template_directory().'/languages');
   }
 
   /**

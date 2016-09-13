@@ -70,7 +70,7 @@ if (!class_exists('ChipmunkAjax'))
         "From: $name <$from>",
       );
 
-      mail($to, $subject, '<a href="'.admin_url('post.php?post='.$post_id.'&action=edit').'">Review submission</a>', implode("\n", $headers));
+      mail($to, $subject, sprintf(__('<a href="%1$s">Review submission</a>', 'chipmunk'), admin_url('post.php?post='.$post_id.'&action=edit')), implode("\n", $headers));
     }
   }
 }
