@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
 "POT-Creation-Date: 2016-09-13 22:48+0200\n"
-"PO-Revision-Date: 2016-09-13 22:48+0200\n"
+"PO-Revision-Date: 2016-09-13 23:00+0200\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -133,47 +133,47 @@ msgstr "Nazwa Nowej Kolekcji"
 #: includes/custom-posts.php:66 includes/custom-posts.php:68
 #: sections/curators.php:4
 msgid "Curators"
-msgstr "Kolekcjonerzy"
+msgstr "Redaktorzy"
 
 #: includes/custom-posts.php:67 includes/custom-posts.php:69
 msgid "Curator"
-msgstr "Kolekcjoner"
+msgstr "Redaktor"
 
 #: includes/custom-posts.php:71
 msgid "Add New Curator"
-msgstr "Dodaj Nowego Kolekcjonera"
+msgstr "Dodaj Nowego Redaktora"
 
 #: includes/custom-posts.php:72
 msgid "New Curator"
-msgstr "Nowy Kolekcjoner"
+msgstr "Nowy Redaktor"
 
 #: includes/custom-posts.php:73
 msgid "Edit Curator"
-msgstr "Edytuj Kolekcjonera"
+msgstr "Edytuj Redaktora"
 
 #: includes/custom-posts.php:74
 msgid "View Curator"
-msgstr "Zobacz Kolekcjonera"
+msgstr "Zobacz Redaktora"
 
 #: includes/custom-posts.php:75
 msgid "All Curators"
-msgstr "Wszyscy Kolekcjonerzy"
+msgstr "Wszyscy Redaktorzy"
 
 #: includes/custom-posts.php:76
 msgid "Search Curators"
-msgstr "Szukaj Kolekcjonerów"
+msgstr "Szukaj Redaktorów"
 
 #: includes/custom-posts.php:77
 msgid "Parent Curator:"
-msgstr "Kolekcjoner Rodzica"
+msgstr "Redaktor Rodzica"
 
 #: includes/custom-posts.php:78
 msgid "No curators found."
-msgstr "Nie znaleziono kolekcjonerów."
+msgstr "Nie znaleziono redaktorów."
 
 #: includes/custom-posts.php:79
 msgid "No curators found in Trash."
-msgstr "Nie znaleziono kolekcjonerów w koszu."
+msgstr "Nie znaleziono redaktorów w koszu."
 
 #: includes/customizer.php:15
 msgid "Visuals"
@@ -436,11 +436,11 @@ msgstr ""
 
 #: includes/meta-boxes.php:215
 msgid "Enable curators"
-msgstr "Włącz kolekcjonerów"
+msgstr "Włącz redaktorów"
 
 #: includes/meta-boxes.php:219
 msgid "Enable curators listing on this page"
-msgstr "Włącz wyświetlanie kolekcjonerów na tej stronie"
+msgstr "Włącz wyświetlanie redaktorów na tej stronie"
 
 #: partials/newsletter.php:10
 msgid "Email address"
