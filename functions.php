@@ -15,6 +15,7 @@ class Chipmunk
     new ChipmunkCustomPosts();
     new ChipmunkMetaBoxes();
     new ChipmunkViewCounter();
+    $ajax = new ChipmunkAjax();
 
     // Theme Support
     add_theme_support('menus');
@@ -30,18 +31,16 @@ class Chipmunk
     add_action('init', array($this, 'update_permalinks'));
     add_action('admin_menu', array(&$this, 'remove_admin_pages'));
     add_action('admin_head', array(&$this, 'enqueue_admin_assets'));
+    add_action('after_setup_theme', array(&$this, 'load_theme_textdomain'));
     add_action('wp_enqueue_scripts', array(&$this, 'enqueue_assets'));
     add_action('wp_before_admin_bar_render', array(&$this, 'remove_admin_bar_pages'));
-    add_filter('upload_mimes', array(&$this, 'cc_mime_types'));
     add_action('wp_head', array($this, 'add_fb_open_graph_tags'));
+    add_filter('upload_mimes', array(&$this, 'cc_mime_types'));
     add_filter('pre_get_posts', array(&$this, 'update_search_query'));
     add_filter('pre_get_posts', array(&$this, 'update_main_query'));
 
-    // i18n Text domain
-    load_theme_textdomain('chipmunk', get_template_directory_uri().'/languages');
-
-    // Run functions
-    $this->prepare_ajax_callbacks();
+    add_action('wp_ajax_submit_resource', array($ajax, 'submit_resource'));
+    add_action('wp_ajax_nopriv_submit_resource', array($ajax, 'submit_resource'));
   }
 
   /**
@@ -63,6 +62,14 @@ class Chipmunk
   {
     // Load our main stylesheet
     wp_enqueue_style('chipmunk-admin-styles', get_template_directory_uri().'/admin.css', array(), '1.0.0');
+  }
+
+  /**
+   * Register custom navigations
+   */
+  public function load_theme_textdomain()
+  {
+    load_theme_textdomain('chipmunk', get_template_directory().'/languages');
   }
 
   /**
@@ -93,17 +100,6 @@ class Chipmunk
   {
     $mimes['svg'] = 'image/svg+xml';
     return $mimes;
-  }
-
-  /**
-   * Prepare AJAX callbacks
-   */
-  public function prepare_ajax_callbacks()
-  {
-    $ajax = new ChipmunkAjax();
-
-    add_action('wp_ajax_submit_resource', array($ajax, 'submit_resource'));
-    add_action('wp_ajax_nopriv_submit_resource', array($ajax, 'submit_resource'));
   }
 
   /**

@@ -2,7 +2,7 @@
   <div class="section section_theme-primary text-center">
     <div class="container">
       <h2 class="heading heading_xl"><?php _e('Newsletter', 'chipmunk'); ?></h2>
-      <p class="heading heading_thin"><?php echo ChipmunkHelpers::theme_option('newsletter_tagline', __('Never miss a thing! Sign up for our newsletter to stay updated.', 'chipmunk')); ?></p>
+      <p class="heading heading_thin"><?php echo ChipmunkHelpers::theme_option('newsletter_tagline'); ?></p>
 
       <div class="row">
         <form action="<?php echo $action; ?>" method="post" class="form form_compact column column_sm-4 column_sm-offset-1 column_md-4 column_md-offset-1 column_lg-6 column_lg-offset-3" target="_blank">

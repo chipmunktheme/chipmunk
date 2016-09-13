@@ -12,31 +12,31 @@ if (!class_exists('ChipmunkCustomizer'))
       // Define settings sections
       $this->sections = array(
         array(
-          'name' => 'Visuals',
+          'title' => __('Visuals', 'chipmunk'),
           'slug' => 'visuals_section'
         ),
         array(
-          'name' => 'Resources',
+          'title' => __('Resources', 'chipmunk'),
           'slug' => 'resources_section'
         ),
         array(
-          'name' => 'Submissions',
+          'title' => __('Submissions', 'chipmunk'),
           'slug' => 'submissions_section'
         ),
         array(
-          'name' => 'Social Profiles',
+          'title' => __('Social Profiles', 'chipmunk'),
           'slug' => 'socials_section'
         ),
         array(
-          'name' => 'Ads',
+          'title' => __('Ads', 'chipmunk'),
           'slug' => 'ads_section'
         ),
         array(
-          'name' => 'Newsletter',
+          'title' => __('Newsletter', 'chipmunk'),
           'slug' => 'newsletter_section'
         ),
         array(
-          'name' => 'Theme Options',
+          'title' => __('Theme Options', 'chipmunk'),
           'slug' => 'theme_section'
         )
       );
@@ -98,8 +98,8 @@ if (!class_exists('ChipmunkCustomizer'))
       foreach($this->sections as $index => $section) {
         $this->customize->add_section($section['slug'], array(
           'capability'  => $this->capability,
-          'title'       => $section['name'],
-          'priority'   => $index + 100
+          'title'       => $section['title'],
+          'priority'    => $index + 100
         ));
       }
     }
@@ -116,10 +116,10 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control(new WP_Customize_Image_Control($this->customize, 'logo', array(
-        'label'       => 'Site Logo',
+        'label'       => __('Site Logo', 'chipmunk'),
         'section'     => 'title_tagline',
         'settings'    => 'chipmunk_settings[logo]',
-        'description' => 'Upload a logo for your theme. You can leave it empty to use your site name as a plain text logo.'
+        'description' => __('Upload a logo for your theme. You can leave it empty to use your site name as a plain text logo.', 'chipmunk'),
       )));
     }
 
@@ -136,7 +136,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control(new WP_Customize_Color_Control($this->customize, 'primary_color', array(
-        'label'    => 'Primary Color',
+        'label'    => __('Primary Color', 'chipmunk'),
         'section'  => 'visuals_section',
         'settings' => 'chipmunk_settings[primary_color]'
       )));
@@ -149,12 +149,12 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('primary_font', array(
-        'label'    => 'Primary Font',
+        'label'    => __('Primary Font', 'chipmunk'),
         'section'  => 'visuals_section',
         'settings' => 'chipmunk_settings[primary_font]',
         'type'     => 'select',
         'choices'  => array(
-          ''            => 'System font',
+          ''            => __('System font', 'chipmunk'),
           'Poppins'     => 'Poppins',
           'Lato'        => 'Lato',
           'Open+Sans'   => 'Open Sans',
@@ -171,10 +171,10 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('custom_css', array(
-        'label'       => 'Custom CSS',
+        'label'       => __('Custom CSS', 'chipmunk'),
         'section'     => 'visuals_section',
         'settings'    => 'chipmunk_settings[custom_css]',
-        'description' => 'Quickly add some CSS to your theme by adding it to this block.',
+        'description' => __('Quickly add some CSS to your theme by adding it to this block.', 'chipmunk'),
         'type'        => 'textarea',
       ));
     }
@@ -192,10 +192,10 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('resources_count', array(
-        'label'       => 'Latest resources count',
+        'label'       => __('Latest resources count', 'chipmunk'),
         'section'     => 'resources_section',
         'settings'    => 'chipmunk_settings[resources_count]',
-        'description' => 'Enter the max resources number to show on resource sliders.',
+        'description' => __('Enter the max resources number to show on resource sliders.', 'chipmunk'),
         'type'        => 'number',
       ));
 
@@ -207,7 +207,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('posts_per_page', array(
-        'label'       => 'Number of resources per page',
+        'label'       => __('Number of resources per page', 'chipmunk'),
         'section'     => 'resources_section',
         'settings'    => 'chipmunk_settings[posts_per_page]',
         'type'        => 'number',
@@ -221,7 +221,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('results_per_page', array(
-        'label'       => 'Number of search results per page',
+        'label'       => __('Number of search results per page', 'chipmunk'),
         'section'     => 'resources_section',
         'settings'    => 'chipmunk_settings[results_per_page]',
         'type'        => 'number',
@@ -234,7 +234,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('disable_resource_desc', array(
-        'label'       => 'Disable resource description',
+        'label'       => __('Disable resource description', 'chipmunk'),
         'section'     => 'resources_section',
         'settings'    => 'chipmunk_settings[disable_resource_desc]',
         'type'        => 'checkbox',
@@ -247,7 +247,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('disable_featured', array(
-        'label'       => 'Disable featured panel',
+        'label'       => __('Disable featured panel', 'chipmunk'),
         'section'     => 'resources_section',
         'settings'    => 'chipmunk_settings[disable_featured]',
         'type'        => 'checkbox',
@@ -260,7 +260,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('disable_views', array(
-        'label'       => 'Disable view count',
+        'label'       => __('Disable view count', 'chipmunk'),
         'section'     => 'resources_section',
         'settings'    => 'chipmunk_settings[disable_views]',
         'type'        => 'checkbox',
@@ -273,7 +273,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('disable_collection_thumbs', array(
-        'label'       => 'Disable collection thumbs',
+        'label'       => __('Disable collection thumbs', 'chipmunk'),
         'section'     => 'resources_section',
         'settings'    => 'chipmunk_settings[disable_collection_thumbs]',
         'type'        => 'checkbox',
@@ -292,7 +292,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('disable_submissions', array(
-        'label'       => 'Disable user submissions',
+        'label'       => __('Disable user submissions', 'chipmunk'),
         'section'     => 'submissions_section',
         'settings'    => 'chipmunk_settings[disable_submissions]',
         'type'        => 'checkbox',
@@ -306,7 +306,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('inform_about_submissions', array(
-        'label'       => 'Inform me about new submissions',
+        'label'       => __('Inform me about new submissions', 'chipmunk'),
         'section'     => 'submissions_section',
         'settings'    => 'chipmunk_settings[inform_about_submissions]',
         'type'        => 'checkbox',
@@ -319,7 +319,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('disable_submitter_info', array(
-        'label'       => 'Disable asking for submitter info',
+        'label'       => __('Disable asking for submitter info', 'chipmunk'),
         'section'     => 'submissions_section',
         'settings'    => 'chipmunk_settings[disable_submitter_info]',
         'type'        => 'checkbox',
@@ -334,9 +334,23 @@ if (!class_exists('ChipmunkCustomizer'))
 
       $this->customize->add_control('submission_thanks', array(
         'type'     => 'textarea',
-        'label'    => 'Submission "Thank You" message',
+        'label'    => __('Submission "Thank You" message', 'chipmunk'),
         'section'  => 'submissions_section',
         'settings' => 'chipmunk_settings[submission_thanks]'
+      ));
+
+      // Submission tagline
+      $this->customize->add_setting('chipmunk_settings[submit_tagline]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+        'default'     => __('Internet is huge! Help us find great content', 'chipmunk'),
+      ));
+
+      $this->customize->add_control('submit_tagline', array(
+        'type'     => 'text',
+        'label'    => __('Submission tagline', 'chipmunk'),
+        'section'  => 'submissions_section',
+        'settings' => 'chipmunk_settings[submit_tagline]'
       ));
 
       // Submission "Failure" message
@@ -348,7 +362,7 @@ if (!class_exists('ChipmunkCustomizer'))
 
       $this->customize->add_control('submission_failure', array(
         'type'     => 'textarea',
-        'label'    => 'Submission "Failure" message',
+        'label'    => __('Submission "Failure" message', 'chipmunk'),
         'section'  => 'submissions_section',
         'settings' => 'chipmunk_settings[submission_failure]'
       ));
@@ -361,10 +375,10 @@ if (!class_exists('ChipmunkCustomizer'))
 
       $this->customize->add_control('recaptcha_site_key', array(
         'type'        => 'text',
-        'label'       => 'reCAPTCHA Site key',
+        'label'       => __('reCAPTCHA Site key', 'chipmunk'),
         'section'     => 'submissions_section',
         'settings'    => 'chipmunk_settings[recaptcha_site_key]',
-        'description' => 'Register at <a href="https://www.google.com/recaptcha/admin" target="_blank">reCAPTCHA</a>.',
+        'description' => sprintf(__('Register at <a href="%1$s" target="_blank">reCAPTCHA</a>.', 'chipmunk'), esc_url('https://www.google.com/recaptcha/admin')),
       ));
     }
 
@@ -390,7 +404,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('disable_ads', array(
-        'label'       => 'Disable ads',
+        'label'       => __('Disable ads', 'chipmunk'),
         'section'     => 'ads_section',
         'settings'    => 'chipmunk_settings[disable_ads]',
         'type'        => 'checkbox',
@@ -403,7 +417,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('ads_only_home', array(
-        'label'       => 'Show ads only on homepage',
+        'label'       => __('Show ads only on homepage', 'chipmunk'),
         'section'     => 'ads_section',
         'settings'    => 'chipmunk_settings[ads_only_home]',
         'type'        => 'checkbox',
@@ -416,10 +430,9 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control(new WP_Customize_Image_Control($this->customize, 'ad_image', array(
-        'label'       => 'Ad image',
+        'label'       => __('Ad image', 'chipmunk'),
         'section'     => 'ads_section',
         'settings'    => 'chipmunk_settings[ad_image]',
-        'description' => ''
       )));
 
       // Ad link URL
@@ -430,10 +443,23 @@ if (!class_exists('ChipmunkCustomizer'))
 
       $this->customize->add_control('ad_link', array(
         'type'        => 'text',
-        'label'       => 'Ad link URL',
+        'label'       => __('Ad link URL', 'chipmunk'),
         'section'     => 'ads_section',
         'settings'    => 'chipmunk_settings[ad_link]',
-        'description' => ''
+      ));
+
+      // Ad HTML code
+      $this->customize->add_setting('chipmunk_settings[ad_code]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+      ));
+
+      $this->customize->add_control('ad_code', array(
+        'type'        => 'textarea',
+        'label'       => __('Ad HTML code', 'chipmunk'),
+        'section'     => 'ads_section',
+        'settings'    => 'chipmunk_settings[ad_code]',
+        'description' => __('Insert your Google AdSense (or other) generated HTML code to display ads in designated areas.', 'chipmunk'),
       ));
     }
 
@@ -449,7 +475,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('disable_newsletter', array(
-        'label'       => 'Disable newsletter',
+        'label'       => __('Disable newsletter', 'chipmunk'),
         'section'     => 'newsletter_section',
         'settings'    => 'chipmunk_settings[disable_newsletter]',
         'type'        => 'checkbox',
@@ -463,8 +489,8 @@ if (!class_exists('ChipmunkCustomizer'))
 
       $this->customize->add_control('newsletter_action', array(
         'type'        => 'text',
-        'label'       => 'Newsletter form action URL',
-        'description' => 'Where do I find my newsletter form action URL? <a href="http://chipmunktheme.com/help/mailchimp-url" target="_blank">Mailchimp</a> | <a href="http://chipmunktheme.com/help/campaign-monitor-url" target="_blank">Campaign Monitor</a>',
+        'label'       => __('Newsletter form action URL', 'chipmunk'),
+        'description' => sprintf(__('Where do I find my newsletter form action URL? <a href="%1$s" target="_blank">Mailchimp</a> | <a href="%2$s" target="_blank">Campaign Monitor</a>', 'chipmunk'), esc_url('http://chipmunktheme.com/help/mailchimp-url'), esc_url('http://chipmunktheme.com/help/campaign-monitor-url')),
         'section'     => 'newsletter_section',
         'settings'    => 'chipmunk_settings[newsletter_action]'
       ));
@@ -473,11 +499,12 @@ if (!class_exists('ChipmunkCustomizer'))
       $this->customize->add_setting('chipmunk_settings[newsletter_tagline]', array(
         'capability'  => $this->capability,
         'type'        => 'option',
+        'default'     => __('Never miss a thing! Sign up for our newsletter to stay updated.', 'chipmunk'),
       ));
 
       $this->customize->add_control('newsletter_tagline', array(
         'type'     => 'text',
-        'label'    => 'Newsletter tagline',
+        'label'    => __('Newsletter tagline', 'chipmunk'),
         'section'  => 'newsletter_section',
         'settings' => 'chipmunk_settings[newsletter_tagline]'
       ));
@@ -495,7 +522,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('disable_credits', array(
-        'label'       => 'Disable theme credits',
+        'label'       => __('Disable theme credits', 'chipmunk'),
         'section'     => 'theme_section',
         'settings'    => 'chipmunk_settings[disable_credits]',
         'type'        => 'checkbox',
@@ -508,7 +535,7 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('disable_search', array(
-        'label'       => 'Disable search',
+        'label'       => __('Disable search', 'chipmunk'),
         'section'     => 'theme_section',
         'settings'    => 'chipmunk_settings[disable_search]',
         'type'        => 'checkbox',
@@ -522,10 +549,10 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('about_copy', array(
-        'label'       => 'About copy (footer)',
+        'label'       => __('About copy (footer)', 'chipmunk'),
         'section'     => 'theme_section',
         'settings'    => 'chipmunk_settings[about_copy]',
-        'description' => esc_html('Enter your site\'s description displayed in the footer section. You can use basic HTML tags here (<p>, <a>, <strong>, <i>).'),
+        'description' => esc_html(__('Enter your site\'s description displayed in the footer section. You can use basic HTML tags here (<p>, <a>, <strong>, <i>).', 'chipmunk')),
         'type'        => 'textarea',
       ));
 
@@ -536,10 +563,10 @@ if (!class_exists('ChipmunkCustomizer'))
       ));
 
       $this->customize->add_control('tracking_code', array(
-        'label'       => 'Tracking code',
+        'label'       => __('Tracking code', 'chipmunk'),
         'section'     => 'theme_section',
         'settings'    => 'chipmunk_settings[tracking_code]',
-        'description' => 'Paste your Google Analytics (or other) tracking code here. It will be inserted before the closing body tag of your theme.',
+        'description' => __('Paste your Google Analytics (or other) tracking code here. It will be inserted before the closing body tag of your theme.', 'chipmunk'),
         'type'        => 'textarea',
       ));
     }

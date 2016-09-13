@@ -22,7 +22,7 @@
 
         <div class="form__field">
           <div class="form__child">
-            <select name="collection" data-placeholder="<?php _e('Category', 'chipmunk'); ?>" class="custom-select" required aria-required="true">
+            <select name="collection" data-placeholder="<?php _e('Collection', 'chipmunk'); ?>" class="custom-select" required aria-required="true">
               <option value=""></option>
               <?php
                 $collections = get_terms('resource-collection', array(
