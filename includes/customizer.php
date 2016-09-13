@@ -298,10 +298,38 @@ if (!class_exists('ChipmunkCustomizer'))
         'type'        => 'checkbox',
       ));
 
+      // Inform me about new submissions
+      $this->customize->add_setting('chipmunk_settings[inform_about_submissions]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+        'default'     => true,
+      ));
+
+      $this->customize->add_control('inform_about_submissions', array(
+        'label'       => 'Inform me about new submissions',
+        'section'     => 'submissions_section',
+        'settings'    => 'chipmunk_settings[inform_about_submissions]',
+        'type'        => 'checkbox',
+      ));
+
+      // Disable asking for submitter info
+      $this->customize->add_setting('chipmunk_settings[disable_submitter_info]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+      ));
+
+      $this->customize->add_control('disable_submitter_info', array(
+        'label'       => 'Disable asking for submitter info',
+        'section'     => 'submissions_section',
+        'settings'    => 'chipmunk_settings[disable_submitter_info]',
+        'type'        => 'checkbox',
+      ));
+
       // Submission "Thank You" message
       $this->customize->add_setting('chipmunk_settings[submission_thanks]', array(
         'capability'  => $this->capability,
         'type'        => 'option',
+        'default'     => __('Thank you for your contribution. The submission was sent to the website owners for review.', 'chipmunk'),
       ));
 
       $this->customize->add_control('submission_thanks', array(
@@ -309,6 +337,34 @@ if (!class_exists('ChipmunkCustomizer'))
         'label'    => 'Submission "Thank You" message',
         'section'  => 'submissions_section',
         'settings' => 'chipmunk_settings[submission_thanks]'
+      ));
+
+      // Submission "Failure" message
+      $this->customize->add_setting('chipmunk_settings[submission_failure]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+        'default'     => __('Your submission could not be processed.', 'chipmunk'),
+      ));
+
+      $this->customize->add_control('submission_failure', array(
+        'type'     => 'textarea',
+        'label'    => 'Submission "Failure" message',
+        'section'  => 'submissions_section',
+        'settings' => 'chipmunk_settings[submission_failure]'
+      ));
+
+      // reCAPTCHA Site key
+      $this->customize->add_setting('chipmunk_settings[recaptcha_site_key]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+      ));
+
+      $this->customize->add_control('recaptcha_site_key', array(
+        'type'        => 'text',
+        'label'       => 'reCAPTCHA Site key',
+        'section'     => 'submissions_section',
+        'settings'    => 'chipmunk_settings[recaptcha_site_key]',
+        'description' => 'Register at <a href="https://www.google.com/recaptcha/admin" target="_blank">reCAPTCHA</a>.',
       ));
     }
 

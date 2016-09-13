@@ -29,11 +29,13 @@ if (!class_exists('ChipmunkCustomPosts'))
           'not_found'          => __('No resources found.', 'chipmunk'),
           'not_found_in_trash' => __('No resources found in Trash.', 'chipmunk'),
         ),
-        'show_ui'            => true,
-        'rewrite'            => array('with_front' => false, 'slug' => __('resource', 'chipmunk')),
-        'public'             => true,
-        'menu_icon'          => 'dashicons-screenoptions',
-        'supports'           => array('title', 'editor', 'thumbnail'),
+        'show_ui'               => true,
+        'rewrite'               => array('with_front' => false, 'slug' => __('resource', 'chipmunk')),
+        'public'                => true,
+        'menu_icon'             => 'dashicons-screenoptions',
+        'show_in_rest'          => true,
+    		'rest_controller_class' => 'WP_REST_Posts_Controller',
+        'supports'              => array('title', 'editor', 'thumbnail'),
       ));
 
       register_taxonomy('resource-collection', 'resource', array(

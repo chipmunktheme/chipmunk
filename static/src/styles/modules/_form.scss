@@ -80,6 +80,16 @@
       margin-top: $separator * 3;
     }
   }
+
+  &_center {
+    flex-direction: column;
+    align-items: center;
+
+    .g-recaptcha {
+      margin-top: 2rem;
+      margin-bottom: -1rem;
+    }
+  }
 }
 
 .form__child {

@@ -23,6 +23,9 @@
   <?php get_template_part('partials/custom-style'); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?>
+  data-assets-path="<?php echo get_template_directory_uri(); ?>/static"
+  data-ajax-source="<?php echo site_url(); ?>/wp-admin/admin-ajax.php">
+
   <div class="body-bag">
     <?php get_template_part('partials/page-head'); ?>

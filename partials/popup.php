@@ -8,23 +8,21 @@
 
       <h2 class="heading heading_xl text-center"><?php _e('Submit', 'chipmunk'); ?></h2>
 
-      <div class="form__message" style="display: none;">
-        <p class="heading heading_thin"><?php echo ChipmunkHelpers::theme_option('submission_thanks', __('Thank you for your contribution. The submission was sent to the website owners for review.', 'chipmunk')); ?></p>
-      </div>
+      <p class="form__message heading heading_thin" style="display: none;" data-remote-message></p>
 
-      <form action="#" method="post" class="form">
+      <form action="" method="post" class="form" data-remote-form="submit_resource">
         <div class="form__field">
           <div class="form__child">
-            <input type="text" name="name" placeholder="<?php _e('Resource name', 'chipmunk'); ?>" required>
+            <input type="text" name="name" placeholder="<?php _e('Resource name', 'chipmunk'); ?>" required aria-required="true">
           </div>
           <div class="form__child">
-            <input type="text" name="description" placeholder="<?php _e('Description', 'chipmunk'); ?>">
+            <input type="text" name="content" placeholder="<?php _e('Description', 'chipmunk'); ?>">
           </div>
         </div>
 
         <div class="form__field">
           <div class="form__child">
-            <select name="category" data-placeholder="<?php _e('Category', 'chipmunk'); ?>" class="custom-select" required>
+            <select name="collection" data-placeholder="<?php _e('Category', 'chipmunk'); ?>" class="custom-select" required aria-required="true">
               <option value=""></option>
               <?php
                 $collections = get_terms('resource-collection', array(
@@ -35,26 +33,33 @@
 
               <?php if (!empty($collections)) : ?>
                 <?php foreach ($collections as $collection) : ?>
-                  <option value="<?php echo $collection->slug; ?>"><?php echo $collection->name; ?></option>
+                  <option value="<?php echo $collection->term_id; ?>"><?php echo $collection->name; ?></option>
                 <?php endforeach; ?>
               <?php endif; ?>
             </select>
           </div>
           <div class="form__child">
-            <input type="url" name="url" placeholder="<?php _e('Website URL', 'chipmunk'); ?>" required>
+            <input type="url" name="website" placeholder="<?php _e('Website URL', 'chipmunk'); ?>" required aria-required="true">
           </div>
         </div>
 
-        <div class="form__field form__field_separated">
-          <div class="form__child">
-            <input type="text" name="submitter_name" placeholder="<?php _e('Your name', 'chipmunk'); ?>" required>
+        <?php if (!ChipmunkHelpers::theme_option('disable_submitter_info')) : ?>
+          <div class="form__field form__field_separated">
+            <div class="form__child">
+              <input type="text" name="submitter_name" placeholder="<?php _e('Your name', 'chipmunk'); ?>" required aria-required="true">
+            </div>
+            <div class="form__child">
+              <input type="email" name="submitter_email" placeholder="<?php _e('Your email', 'chipmunk'); ?>" required aria-required="true">
+            </div>
           </div>
-          <div class="form__child">
-            <input type="email" name="submitter_email" placeholder="<?php _e('Your email', 'chipmunk'); ?>" required>
-          </div>
-        </div>
-        
-        <div class="form__field">
+        <?php endif; ?>
+
+        <div class="form__field form__field_center">
+          <?php if (ChipmunkHelpers::theme_option('recaptcha_site_key')) : ?>
+            <div class="g-recaptcha" data-sitekey="<?php echo ChipmunkHelpers::theme_option('recaptcha_site_key'); ?>"></div>
+          <?php endif; ?>
+
+          <?php wp_nonce_field('submit_resource', 'chipmunk_nonce'); ?>
           <button type="submit" class="button button_secondary"><?php _e('Submit', 'chipmunk'); ?></button>
         </div>
       </form>

@@ -5,7 +5,10 @@
     <article class="resource row">
       <div class="resource__content column column_lg-6">
         <ul class="resource__stats stats">
-          <li class="stats__item" title="<?php _e('Collection', 'chipmunk'); ?>"><i class="icon icon_tag"></i> <?php the_terms(get_the_ID(), 'resource-collection'); ?></li>
+          <?php if (get_the_terms(get_the_ID(), 'resource-collection')) : ?>
+            <li class="stats__item" title="<?php _e('Collection', 'chipmunk'); ?>"><i class="icon icon_tag"></i> <?php the_terms(get_the_ID(), 'resource-collection'); ?></li>
+          <?php endif; ?>
+
           <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> <?php the_time('j. F'); ?></li>
 
           <?php if (!ChipmunkHelpers::theme_option('disable_views')) : ?>
