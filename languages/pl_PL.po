@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-09-13 22:48+0200\n"
-"PO-Revision-Date: 2016-09-13 23:00+0200\n"
+"POT-Creation-Date: 2016-09-14 12:44+0200\n"
+"PO-Revision-Date: 2016-09-14 12:44+0200\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -35,9 +35,8 @@ msgid "New user submission"
 msgstr "Nowe zgłoszenie od użytkownika"
 
 #: includes/ajax.php:73
-#, php-format
-msgid "<a href=\"%1$s\">Review submission</a>"
-msgstr "<a href=\"%1$s\">Sprawdź zgłoszenie</a>"
+msgid "Review submission"
+msgstr "Sprawdź zgłoszenie"
 
 #: includes/custom-posts.php:17 includes/custom-posts.php:19
 #: includes/customizer.php:19 sections/collections.php:51
@@ -591,6 +590,9 @@ msgstr "Obserwuj nas"
 #, php-format
 msgid "%1$s Collection"
 msgstr "Kolekcja %1$s"
+
+#~ msgid "<a href=\"%1$s\">Review submission</a>"
+#~ msgstr "<a href=\"%1$s\">Sprawdź zgłoszenie</a>"
 
 #~ msgid "Category"
 #~ msgstr "Kategoria"

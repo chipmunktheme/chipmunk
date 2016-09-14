@@ -15,6 +15,14 @@
   transition: opacity, transform;
   transition-duration: $transition-speed * 2;
 
+  .admin-bar & {
+    top: 46px;
+
+    @media screen and (min-width: 783px) {
+      top: 32px;
+    }
+  }
+
   .has-nav-open & {
     opacity: 1;
     transform: none;
@@ -30,6 +38,10 @@
     transform: none;
     transition: none;
     pointer-events: all;
+
+    .admin-bar & {
+      top: auto;
+    }
   }
 }
 

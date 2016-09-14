@@ -86,8 +86,12 @@
     align-items: center;
 
     .g-recaptcha {
-      margin-top: 2rem;
-      margin-bottom: -1rem;
+      margin-bottom: 2rem;
+
+      @include breakpoint(md) {
+        margin-top: 2rem;
+        margin-bottom: -1rem;
+      }
     }
   }
 }
