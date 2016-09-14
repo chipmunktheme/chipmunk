@@ -74,7 +74,11 @@ if (!class_exists('ChipmunkMetaBoxes'))
     {
       wp_nonce_field(basename(__FILE__), self::$field_name.'_resource_nonce');
       $website = get_post_meta($post->ID, '_'.self::$field_name.'_resource_website', true);
-      $is_featured = get_post_meta($post->ID, '_'.self::$field_name.'_resource_is_featured', true);
+
+      if (!ChipmunkHelpers::theme_option('disable_featured'))
+      {
+        $is_featured = get_post_meta($post->ID, '_'.self::$field_name.'_resource_is_featured', true);
+      }
 
       ?>
       <div class="chipmunk-fields">
@@ -83,14 +87,16 @@ if (!class_exists('ChipmunkMetaBoxes'))
           <input type="url" name="website" id="website" value="<?php echo $website; ?>" class="widefat" />
         </div>
 
-        <div class="chipmunk-field">
-          <p class="chipmunk-label"><?php _e('Featured?', 'chipmunk'); ?></p>
+        <?php if (!ChipmunkHelpers::theme_option('disable_featured')) : ?>
+          <div class="chipmunk-field">
+            <p class="chipmunk-label"><?php _e('Featured?', 'chipmunk'); ?></p>
 
-          <label for="is_featured">
-            <input type="checkbox" name="is_featured" id="is_featured" <?php echo $is_featured ? ' checked' : ''; ?> />
-            <?php _e('Featured on homepage', 'chipmunk'); ?>
-          </label>
-        </div>
+            <label for="is_featured">
+              <input type="checkbox" name="is_featured" id="is_featured" <?php echo $is_featured ? ' checked' : ''; ?> />
+              <?php _e('Featured on homepage', 'chipmunk'); ?>
+            </label>
+          </div>
+        <?php endif; ?>
       </div>
       <?php
     }
@@ -126,13 +132,16 @@ if (!class_exists('ChipmunkMetaBoxes'))
         update_post_meta($post_id, '_'.self::$field_name.'_resource_website', sanitize_text_field($_POST['website']));
       }
 
-      if (isset($_REQUEST['is_featured']))
+      if (!ChipmunkHelpers::theme_option('disable_featured'))
       {
-        update_post_meta($post_id, '_'.self::$field_name.'_resource_is_featured', sanitize_text_field($_POST['is_featured']));
-      }
-      else
-      {
-        delete_post_meta($post_id, '_'.self::$field_name.'_resource_is_featured');
+        if (isset($_REQUEST['is_featured']))
+        {
+          update_post_meta($post_id, '_'.self::$field_name.'_resource_is_featured', sanitize_text_field($_POST['is_featured']));
+        }
+        else
+        {
+          delete_post_meta($post_id, '_'.self::$field_name.'_resource_is_featured');
+        }
       }
     }
 

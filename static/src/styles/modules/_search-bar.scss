@@ -65,6 +65,7 @@
     color: $color-gray;
     font-size: 1.6rem;
     line-height: normal;
+    -webkit-appearance: none;
 
     &::placeholder {
       color: $color-gray;

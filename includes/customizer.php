@@ -325,20 +325,6 @@ if (!class_exists('ChipmunkCustomizer'))
         'type'        => 'checkbox',
       ));
 
-      // Submission "Thank You" message
-      $this->customize->add_setting('chipmunk_settings[submission_thanks]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => __('Thank you for your contribution. The submission was sent to the website owners for review.', 'chipmunk'),
-      ));
-
-      $this->customize->add_control('submission_thanks', array(
-        'type'     => 'textarea',
-        'label'    => __('Submission "Thank You" message', 'chipmunk'),
-        'section'  => 'submissions_section',
-        'settings' => 'chipmunk_settings[submission_thanks]'
-      ));
-
       // Submission tagline
       $this->customize->add_setting('chipmunk_settings[submit_tagline]', array(
         'capability'  => $this->capability,
@@ -351,6 +337,20 @@ if (!class_exists('ChipmunkCustomizer'))
         'label'    => __('Submission tagline', 'chipmunk'),
         'section'  => 'submissions_section',
         'settings' => 'chipmunk_settings[submit_tagline]'
+      ));
+
+      // Submission "Thank You" message
+      $this->customize->add_setting('chipmunk_settings[submission_thanks]', array(
+        'capability'  => $this->capability,
+        'type'        => 'option',
+        'default'     => __('Thank you for your contribution. The submission was sent to the website owners for review.', 'chipmunk'),
+      ));
+
+      $this->customize->add_control('submission_thanks', array(
+        'type'     => 'textarea',
+        'label'    => __('Submission "Thank You" message', 'chipmunk'),
+        'section'  => 'submissions_section',
+        'settings' => 'chipmunk_settings[submission_thanks]'
       ));
 
       // Submission "Failure" message
