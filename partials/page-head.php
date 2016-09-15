@@ -22,9 +22,11 @@
           <ul>
             <?php $menu_items = wp_get_nav_menu_items('Header nav'); ?>
 
-            <?php foreach ($menu_items as $menu_item) : ?>
-              <li class="nav-primary__item<?php echo (is_page($menu_item->object_id) ? ' nav-primary__item_active' : ''); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
-            <?php endforeach; ?>
+            <?php if (!empty($menu_items)) : ?>
+              <?php foreach ($menu_items as $menu_item) : ?>
+                <li class="nav-primary__item<?php echo (is_page($menu_item->object_id) ? ' nav-primary__item_active' : ''); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
+              <?php endforeach; ?>
+            <?php endif; ?>
 
             <?php if (!ChipmunkHelpers::theme_option('disable_submissions')) : ?>
               <li class="nav-primary__item hidden-lg">

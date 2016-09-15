@@ -17,9 +17,11 @@
         <ul class="nav-secondary">
           <?php $menu_items = wp_get_nav_menu_items('Footer nav'); ?>
 
-          <?php foreach ($menu_items as $menu_item) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
-          <?php endforeach; ?>
+          <?php if (!empty($menu_items)) : ?>
+            <?php foreach ($menu_items as $menu_item) : ?>
+              <li class="nav-secondary__item"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
+            <?php endforeach; ?>
+          <?php endif; ?>
 
           <?php if (!ChipmunkHelpers::theme_option('disable_submissions')) : ?>
             <li class="nav-secondary__item"><button type="button" data-popup-toggle><?php _e('Submit', 'chipmunk'); ?></button></li>

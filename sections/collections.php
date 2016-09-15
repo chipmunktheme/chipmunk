@@ -27,6 +27,8 @@
                       ),
                     ),
                   ));
+
+                  $query->posts = array_reverse($query->posts);
                 ?>
 
                 <?php if ($query->have_posts()) : ?>
