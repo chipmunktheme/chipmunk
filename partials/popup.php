@@ -43,7 +43,7 @@
           </div>
         </div>
 
-        <?php if (!ChipmunkHelpers::theme_option('disable_submitter_info')) : ?>
+        <?php if (!ChipmunkHelpers::theme_option('disable_submitter_info', true)) : ?>
           <div class="form__field form__field_separated">
             <div class="form__child">
               <input type="text" name="submitter_name" placeholder="<?php _e('Your name', 'chipmunk'); ?>" required>

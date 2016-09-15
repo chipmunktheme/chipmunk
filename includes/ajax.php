@@ -25,7 +25,7 @@ if (!class_exists('ChipmunkAjax'))
         $tax_input['resource-collection'] = array(wp_filter_kses($_REQUEST['collection']));
         $meta_input[$meta_prefix.'_website'] = esc_url(wp_filter_nohtml_kses($_REQUEST['website']));
 
-        if (!ChipmunkHelpers::theme_option('disable_submitter_info'))
+        if (!ChipmunkHelpers::theme_option('disable_submitter_info', true))
         {
           $meta_input[$meta_prefix.'_submitter_name'] = wp_filter_nohtml_kses($_REQUEST['submitter_name']);
           $meta_input[$meta_prefix.'_submitter_email'] = wp_filter_nohtml_kses($_REQUEST['submitter_email']);

@@ -33,7 +33,7 @@ if (!class_exists('ChipmunkCustomPosts'))
         'rewrite'               => array('with_front' => false, 'slug' => 'resource'),
         'public'                => true,
         'menu_icon'             => 'dashicons-screenoptions',
-        'supports'              => array('title', 'editor', 'thumbnail'),
+        'supports'              => array('title', 'editor', 'author', 'thumbnail'),
       ));
 
       register_taxonomy('resource-collection', 'resource', array(

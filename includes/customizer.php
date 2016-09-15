@@ -312,18 +312,19 @@ if (!class_exists('ChipmunkCustomizer'))
         'type'        => 'checkbox',
       ));
 
+      // TODO: Will be released in future versions
       // Disable asking for submitter info
-      $this->customize->add_setting('chipmunk_settings[disable_submitter_info]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_submitter_info', array(
-        'label'       => __('Disable asking for submitter info', 'chipmunk'),
-        'section'     => 'submissions_section',
-        'settings'    => 'chipmunk_settings[disable_submitter_info]',
-        'type'        => 'checkbox',
-      ));
+      // $this->customize->add_setting('chipmunk_settings[disable_submitter_info]', array(
+      //   'capability'  => $this->capability,
+      //   'type'        => 'option',
+      // ));
+      //
+      // $this->customize->add_control('disable_submitter_info', array(
+      //   'label'       => __('Disable asking for submitter info', 'chipmunk'),
+      //   'section'     => 'submissions_section',
+      //   'settings'    => 'chipmunk_settings[disable_submitter_info]',
+      //   'type'        => 'checkbox',
+      // ));
 
       // Submission tagline
       $this->customize->add_setting('chipmunk_settings[submit_tagline]', array(
