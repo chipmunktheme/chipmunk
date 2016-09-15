@@ -19,7 +19,7 @@
         <?php
         $link = strtr($provider['href'], array(
           '%url%'   => esc_url(get_permalink()),
-          '%title%' => get_the_title()
+          '%title%' => urlencode(get_the_title()),
         ));
         ?>
 

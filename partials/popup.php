@@ -10,10 +10,10 @@
 
       <p class="form__message heading heading_thin" style="display: none;" data-remote-message></p>
 
-      <form action="" method="post" class="form" data-remote-form="submit_resource">
+      <form action="#" method="post" class="form" data-remote-form="submit_resource">
         <div class="form__field">
           <div class="form__child">
-            <input type="text" name="name" placeholder="<?php _e('Resource name', 'chipmunk'); ?>" required aria-required="true">
+            <input type="text" name="name" placeholder="<?php _e('Resource name', 'chipmunk'); ?>" required>
           </div>
           <div class="form__child">
             <input type="text" name="content" placeholder="<?php _e('Description', 'chipmunk'); ?>">
@@ -22,8 +22,8 @@
 
         <div class="form__field">
           <div class="form__child">
-            <select name="collection" data-placeholder="<?php _e('Collection', 'chipmunk'); ?>" class="custom-select" required aria-required="true">
-              <option value=""></option>
+            <select name="collection" data-placeholder="<?php _e('Collection', 'chipmunk'); ?>" class="custom-select" required>
+              <option value=""><?php _e('Collection', 'chipmunk'); ?></option>
               <?php
                 $collections = get_terms('resource-collection', array(
                   'orderby'    => 'name',
@@ -39,17 +39,17 @@
             </select>
           </div>
           <div class="form__child">
-            <input type="url" name="website" placeholder="<?php _e('Website URL', 'chipmunk'); ?>" required aria-required="true">
+            <input type="url" name="website" placeholder="<?php _e('Website URL', 'chipmunk'); ?>" required>
           </div>
         </div>
 
         <?php if (!ChipmunkHelpers::theme_option('disable_submitter_info')) : ?>
           <div class="form__field form__field_separated">
             <div class="form__child">
-              <input type="text" name="submitter_name" placeholder="<?php _e('Your name', 'chipmunk'); ?>" required aria-required="true">
+              <input type="text" name="submitter_name" placeholder="<?php _e('Your name', 'chipmunk'); ?>" required>
             </div>
             <div class="form__child">
-              <input type="email" name="submitter_email" placeholder="<?php _e('Your email', 'chipmunk'); ?>" required aria-required="true">
+              <input type="email" name="submitter_email" placeholder="<?php _e('Your email', 'chipmunk'); ?>" required>
             </div>
           </div>
         <?php endif; ?>

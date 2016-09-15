@@ -43,7 +43,7 @@
       <?php if (!ChipmunkHelpers::theme_option('disable_submissions')) : ?>
         <div class="toolbox__cta visible-md-flex">
           <p class="visible-lg-block"><?php echo ChipmunkHelpers::theme_option('submit_tagline'); ?></p>
-          <button type="button" class="toolbox__button button button_primary" data-popup-toggle><?php _e('Submit', 'chipmunk'); ?></a>
+          <button type="button" class="toolbox__button button button_primary" data-popup-toggle><?php _e('Submit', 'chipmunk'); ?></button>
         </div>
       <?php endif; ?>
     </div>

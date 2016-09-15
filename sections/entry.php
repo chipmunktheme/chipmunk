@@ -4,8 +4,12 @@
 <?php if ($wide_content) : ?>
   <?php
     $dom = new DOMDocument('1.0', 'UTF-8');
-    $content = '<div>'.wpautop(get_the_content()).'</div>';
-    $dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+    $content = mb_convert_encoding('<div>'.wpautop(get_the_content()).'</div>', 'HTML-ENTITIES', 'UTF-8');
+
+    if (defined('LIBXML_HTML_NOIMPLIED'))
+      $dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    else
+      $dom->loadHTML($content);
 
     $content = $dom->getElementsByTagName('div')->item(0);
     $heading = $content->childNodes->item(0);

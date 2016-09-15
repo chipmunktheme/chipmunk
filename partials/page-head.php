@@ -4,6 +4,7 @@
       <h1 class="page-head__logo">
         <a href="<?php echo home_url(); ?>" rel="index">
           <?php if ($logo = ChipmunkHelpers::theme_option('logo')) : ?>
+            <span class="sr-only"><?php bloginfo('name'); ?></span>
             <img src="<?php echo $logo; ?>" alt="" />
           <?php else : ?>
             <?php bloginfo('name'); ?>
