@@ -298,11 +298,7 @@ if (!class_exists('ChipmunkCustomizer'))
       }
 
       // return field default if it exists
-      if ($field = self::find_field_by_name($name) and !empty($field['default'])) {
-        return apply_filters(self::$settings_name.'_$name', $field['default']);
-      }
-
-      return false;
+      return apply_filters(self::$settings_name.'_$name', self::find_default_by_name($name));
     }
 
     /**
@@ -425,15 +421,15 @@ if (!class_exists('ChipmunkCustomizer'))
     /**
      * Search for field by given name
      */
-    private static function find_field_by_name($name)
+    private static function find_default_by_name($name)
     {
       foreach (self::$sections as $section)
         if (!empty($section['fields']))
           foreach($section['fields'] as $field)
-            if ($field['name'] === $name)
-              return $field;
+            if ($field['name'] === $name and !empty($field['default']))
+              return $field['default'];
 
-      return null;
+      return false;
     }
   }
 }
