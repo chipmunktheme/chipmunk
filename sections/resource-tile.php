@@ -9,7 +9,7 @@
     <div class="tile__info">
       <h3 class="tile__title"><?php the_title(); ?></h3>
 
-      <?php if (!ChipmunkCustomizer::theme_option('disable_resource_desc')) : ?>
+      <?php if (!ChipmunkCustomizer::theme_option('disable_resource_desc') and !empty(get_the_content())) : ?>
         <p class="tile__copy"><?php echo ChipmunkHelpers::truncate_string(get_the_content(), 60); ?>&nbsp;<i class="icon icon_arrow"></i></p>
       <?php endif; ?>
     </div>
