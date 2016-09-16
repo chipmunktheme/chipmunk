@@ -9,7 +9,7 @@
     <div>
       <h3 class="tile__title"><?php the_title(); ?></h3>
 
-      <?php if (!ChipmunkHelpers::theme_option('disable_resource_desc')) : ?>
+      <?php if (!ChipmunkCustomizer::theme_option('disable_resource_desc')) : ?>
         <p class="tile__copy"><?php echo ChipmunkHelpers::truncate_string(get_the_content(), 60); ?>&nbsp;<i class="icon icon_arrow"></i></p>
       <?php endif; ?>
     </div>
@@ -17,7 +17,7 @@
     <ul class="stats">
       <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> <?php echo date_i18n('j. F'); ?></li>
 
-      <?php if (!ChipmunkHelpers::theme_option('disable_views')) : ?>
+      <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>
         <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> <?php echo ChipmunkViewCounter::get_post_views(get_the_ID()); ?></li>
       <?php endif; ?>
     </ul>

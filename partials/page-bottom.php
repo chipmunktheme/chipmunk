@@ -4,7 +4,7 @@
       <div class="column column_md-3 column_lg-5">
         <h4 class="heading heading_sm"><?php _e('About', 'chipmunk'); ?></h4>
 
-        <?php if ($about_copy = ChipmunkHelpers::theme_option('about_copy')) : ?>
+        <?php if ($about_copy = ChipmunkCustomizer::theme_option('about_copy')) : ?>
           <div class="page-foot__description">
             <?php echo strip_tags(wpautop($about_copy), '<p><a><strong><i>'); ?>
           </div>
@@ -23,7 +23,7 @@
             <?php endforeach; ?>
           <?php endif; ?>
 
-          <?php if (!ChipmunkHelpers::theme_option('disable_submissions')) : ?>
+          <?php if (!ChipmunkCustomizer::theme_option('disable_submissions')) : ?>
             <li class="nav-secondary__item"><button type="button" data-popup-toggle><?php _e('Submit', 'chipmunk'); ?></button></li>
           <?php endif; ?>
         </ul>
@@ -33,35 +33,35 @@
         <h4 class="heading heading_sm"><?php _e('Follow', 'chipmunk'); ?></h4>
 
         <ul class="nav-secondary">
-          <?php if (ChipmunkHelpers::theme_option('twitter')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkHelpers::theme_option('twitter'); ?>" target="_blank">Twitter</a></li>
+          <?php if (ChipmunkCustomizer::theme_option('twitter')) : ?>
+            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('twitter'); ?>" target="_blank">Twitter</a></li>
           <?php endif; ?>
-          <?php if (ChipmunkHelpers::theme_option('facebook')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkHelpers::theme_option('facebook'); ?>" target="_blank">Facebook</a></li>
+          <?php if (ChipmunkCustomizer::theme_option('facebook')) : ?>
+            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('facebook'); ?>" target="_blank">Facebook</a></li>
           <?php endif; ?>
-          <?php if (ChipmunkHelpers::theme_option('google')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkHelpers::theme_option('google'); ?>" target="_blank">Google</a></li>
+          <?php if (ChipmunkCustomizer::theme_option('google')) : ?>
+            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('google'); ?>" target="_blank">Google</a></li>
           <?php endif; ?>
-          <?php if (ChipmunkHelpers::theme_option('instagram')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkHelpers::theme_option('instagram'); ?>" target="_blank">Instagram</a></li>
+          <?php if (ChipmunkCustomizer::theme_option('instagram')) : ?>
+            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('instagram'); ?>" target="_blank">Instagram</a></li>
           <?php endif; ?>
-          <?php if (ChipmunkHelpers::theme_option('pinterest')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkHelpers::theme_option('pinterest'); ?>" target="_blank">Pinterest</a></li>
+          <?php if (ChipmunkCustomizer::theme_option('pinterest')) : ?>
+            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('pinterest'); ?>" target="_blank">Pinterest</a></li>
           <?php endif; ?>
-          <?php if (ChipmunkHelpers::theme_option('flickr')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkHelpers::theme_option('flickr'); ?>" target="_blank">Flickr</a></li>
+          <?php if (ChipmunkCustomizer::theme_option('flickr')) : ?>
+            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('flickr'); ?>" target="_blank">Flickr</a></li>
           <?php endif; ?>
-          <?php if (ChipmunkHelpers::theme_option('vimeo')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkHelpers::theme_option('vimeo'); ?>" target="_blank">Vimeo</a></li>
+          <?php if (ChipmunkCustomizer::theme_option('vimeo')) : ?>
+            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('vimeo'); ?>" target="_blank">Vimeo</a></li>
           <?php endif; ?>
-          <?php if (ChipmunkHelpers::theme_option('youtube')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkHelpers::theme_option('youtube'); ?>" target="_blank">YouTube</a></li>
+          <?php if (ChipmunkCustomizer::theme_option('youtube')) : ?>
+            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('youtube'); ?>" target="_blank">YouTube</a></li>
           <?php endif; ?>
-          <?php if (ChipmunkHelpers::theme_option('reddit')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkHelpers::theme_option('reddit'); ?>" target="_blank">Reddit</a></li>
+          <?php if (ChipmunkCustomizer::theme_option('reddit')) : ?>
+            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('reddit'); ?>" target="_blank">Reddit</a></li>
           <?php endif; ?>
-          <?php if (ChipmunkHelpers::theme_option('producthunt')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkHelpers::theme_option('producthunt'); ?>" target="_blank">ProductHunt</a></li>
+          <?php if (ChipmunkCustomizer::theme_option('producthunt')) : ?>
+            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('producthunt'); ?>" target="_blank">ProductHunt</a></li>
           <?php endif; ?>
         </ul>
       </div>

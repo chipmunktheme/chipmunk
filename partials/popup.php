@@ -43,7 +43,7 @@
           </div>
         </div>
 
-        <?php if (!ChipmunkHelpers::theme_option('disable_submitter_info', true)) : ?>
+        <?php if (!ChipmunkCustomizer::theme_option('disable_submitter_info', true)) : ?>
           <div class="form__field form__field_separated">
             <div class="form__child">
               <input type="text" name="submitter_name" placeholder="<?php _e('Your name', 'chipmunk'); ?>" required>
@@ -55,8 +55,8 @@
         <?php endif; ?>
 
         <div class="form__field form__field_center">
-          <?php if (ChipmunkHelpers::theme_option('recaptcha_site_key')) : ?>
-            <div class="g-recaptcha" data-sitekey="<?php echo ChipmunkHelpers::theme_option('recaptcha_site_key'); ?>"></div>
+          <?php if (ChipmunkCustomizer::theme_option('recaptcha_site_key')) : ?>
+            <div class="g-recaptcha" data-sitekey="<?php echo ChipmunkCustomizer::theme_option('recaptcha_site_key'); ?>"></div>
           <?php endif; ?>
 
           <?php wp_nonce_field('submit_resource', 'chipmunk_nonce'); ?>

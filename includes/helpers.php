@@ -5,22 +5,6 @@ if (!class_exists('ChipmunkHelpers'))
   class ChipmunkHelpers
   {
     /**
-     * Get Chipmunk theme option
-     */
-    public static function theme_option($name, $default = false)
-    {
-      $options = (get_option('chipmunk_settings')) ? get_option('chipmunk_settings') : null;
-
-      // return the option if it exists
-      if (isset($options[$name]) && ! empty($options[$name])) {
-        return apply_filters('chipmunk_settings_$name', $options[$name]);
-      }
-
-      // return default if nothing else
-      return apply_filters('chipmunk_settings_$name', $default);
-    }
-
-    /**
      * Truncate long strings
      */
     public static function truncate_string($str, $chars, $to_space = true, $replacement = '...')

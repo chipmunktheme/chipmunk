@@ -3,7 +3,7 @@
     <div class="page-head__inner">
       <h1 class="page-head__logo">
         <a href="<?php echo home_url(); ?>" rel="index">
-          <?php if ($logo = ChipmunkHelpers::theme_option('logo')) : ?>
+          <?php if ($logo = ChipmunkCustomizer::theme_option('logo')) : ?>
             <span class="sr-only"><?php bloginfo('name'); ?></span>
             <img src="<?php echo $logo; ?>" alt="" />
           <?php else : ?>
@@ -28,7 +28,7 @@
               <?php endforeach; ?>
             <?php endif; ?>
 
-            <?php if (!ChipmunkHelpers::theme_option('disable_submissions')) : ?>
+            <?php if (!ChipmunkCustomizer::theme_option('disable_submissions')) : ?>
               <li class="nav-primary__item hidden-lg">
                 <button type="button" class="button button_secondary" data-popup-toggle>
                   <?php _e('Submit', 'chipmunk'); ?>
@@ -42,14 +42,14 @@
       <!-- /.nav-primary -->
 
       <div class="page-head__cta">
-        <?php if (!ChipmunkHelpers::theme_option('disable_search')) : ?>
+        <?php if (!ChipmunkCustomizer::theme_option('disable_search')) : ?>
           <button type="button" class="page-head__search" data-search-toggle>
             <i class="icon icon_search" aria-hidden="true"></i>
             <span class="sr-only"><?php _e('Search', 'chipmunk'); ?></span>
           </button>
         <?php endif; ?>
 
-        <?php if (!ChipmunkHelpers::theme_option('disable_submissions')) : ?>
+        <?php if (!ChipmunkCustomizer::theme_option('disable_submissions')) : ?>
           <button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>
             <?php _e('Submit', 'chipmunk'); ?>
           </button>

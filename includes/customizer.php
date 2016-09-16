@@ -4,45 +4,267 @@ if (!class_exists('ChipmunkCustomizer'))
 {
   class ChipmunkCustomizer
   {
+    // Define settings access
+    public static $capability = 'edit_theme_options';
+    public static $settings_name = 'chipmunk_settings';
+
+    // Define settings sections
+    public static $sections = array();
+
+    // Define social services
+    public static $socials = array();
+
     public function __construct()
     {
-      // Define settings access
-      $this->capability = 'edit_theme_options';
+      self::$sections = array(
+        array(
+          'title'         => __('Site Identity', 'chipmunk'),
+          'slug'          => 'title_tagline',
+          'fields'        => array(
+            array(
+              'name'        => 'logo',
+              'type'        => 'image',
+              'label'       => __('Site Logo', 'chipmunk'),
+              'description' => __('Upload a logo for your theme. You can leave it empty to use your site name as a plain text logo.', 'chipmunk'),
+            ),
+          ),
+        ),
 
-      // Define settings sections
-      $this->sections = array(
         array(
-          'title' => __('Visuals', 'chipmunk'),
-          'slug' => 'visuals_section'
+          'title'         => __('Visuals', 'chipmunk'),
+          'slug'          => 'visuals_section',
+          'fields'        => array(
+            array(
+              'name'        => 'primary_color',
+              'type'        => 'color',
+              'label'       => __('Primary Color', 'chipmunk'),
+              'default'     => '#F38181',
+            ),
+            array(
+              'name'        => 'primary_font',
+              'type'        => 'select',
+              'label'       => __('Primary Font', 'chipmunk'),
+              'default'     => 'Poppins',
+              'choices'     => array(
+                ''            => __('System font', 'chipmunk'),
+                'Poppins'     => 'Poppins',
+                'Lato'        => 'Lato',
+                'Open+Sans'   => 'Open Sans',
+                'PT+Sans'     => 'PT Sans',
+                'Roboto'      => 'Roboto',
+                'Montserrat'  => 'Montserrat',
+              ),
+            ),
+            array(
+              'name'        => 'custom_css',
+              'type'        => 'textarea',
+              'label'       => __('Custom CSS', 'chipmunk'),
+              'default'     => '',
+              'description' => __('Quickly add some CSS to your theme by adding it to this block.', 'chipmunk'),
+            ),
+          ),
         ),
+
         array(
-          'title' => __('Resources', 'chipmunk'),
-          'slug' => 'resources_section'
+          'title'         => __('Resources', 'chipmunk'),
+          'slug'          => 'resources_section',
+          'fields'        => array(
+            array(
+              'name'        => 'resources_count',
+              'type'        => 'number',
+              'label'       => __('Latest resources count', 'chipmunk'),
+              'default'     => 9,
+              'description' => __('Enter the max resources number to show on resource sliders.', 'chipmunk'),
+            ),
+            array(
+              'name'        => 'posts_per_page',
+              'type'        => 'number',
+              'label'       => __('Number of resources per page', 'chipmunk'),
+              'default'     => 18,
+            ),
+            array(
+              'name'        => 'results_per_page',
+              'type'        => 'number',
+              'label'       => __('Number of search results per page', 'chipmunk'),
+              'default'     => 9,
+            ),
+            array(
+              'name'        => 'disable_resource_desc',
+              'type'        => 'checkbox',
+              'label'       => __('Disable resource description', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'disable_featured',
+              'type'        => 'checkbox',
+              'label'       => __('Disable featured panel', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'disable_views',
+              'type'        => 'checkbox',
+              'label'       => __('Disable view count', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'disable_collection_thumbs',
+              'type'        => 'checkbox',
+              'label'       => __('Disable collection thumbs', 'chipmunk'),
+              'default'     => false,
+            ),
+          ),
         ),
+
         array(
-          'title' => __('Submissions', 'chipmunk'),
-          'slug' => 'submissions_section'
+          'title'         => __('Submissions', 'chipmunk'),
+          'slug'          => 'submissions_section',
+          'fields'        => array(
+            array(
+              'name'        => 'disable_submissions',
+              'type'        => 'checkbox',
+              'label'       => __('Disable user submissions', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'inform_about_submissions',
+              'type'        => 'checkbox',
+              'label'       => __('Inform me about new submissions', 'chipmunk'),
+              'default'     => true,
+            ),
+            // TODO: Will be released in future versions
+            // array(
+            //   'name'        => 'disable_submitter_info',
+            //   'type'        => 'checkbox',
+            //   'label'       => __('Disable asking for submitter info', 'chipmunk'),
+            //   'default'     => false,
+            // ),
+            array(
+              'name'        => 'submit_tagline',
+              'type'        => 'textarea',
+              'label'       => __('Submission tagline', 'chipmunk'),
+              'default'     => __('Internet is huge! Help us find great content', 'chipmunk'),
+            ),
+            array(
+              'name'        => 'submission_thanks',
+              'type'        => 'textarea',
+              'label'       => __('Submission "Thank You" message', 'chipmunk'),
+              'default'     => __('Thank you for your contribution. The submission was sent to the website owners for review.', 'chipmunk'),
+            ),
+            array(
+              'name'        => 'submission_failure',
+              'type'        => 'textarea',
+              'label'       => __('Submission "Failure" message', 'chipmunk'),
+              'default'     => __('Your submission could not be processed.', 'chipmunk'),
+            ),
+            array(
+              'name'        => 'recaptcha_site_key',
+              'type'        => 'text',
+              'label'       => __('reCAPTCHA Site key', 'chipmunk'),
+              'description' => sprintf(__('Register at <a href="%1$s" target="_blank">reCAPTCHA</a>.', 'chipmunk'), esc_url('https://www.google.com/recaptcha/admin')),
+            ),
+          ),
         ),
+
         array(
-          'title' => __('Social Profiles', 'chipmunk'),
-          'slug' => 'socials_section'
+          'title'         => __('Social Profiles', 'chipmunk'),
+          'slug'          => 'socials_section',
+          'callback'      => 'register_socials',
         ),
+
         array(
-          'title' => __('Ads', 'chipmunk'),
-          'slug' => 'ads_section'
+          'title'         => __('Ads', 'chipmunk'),
+          'slug'          => 'ads_section',
+          'fields'        => array(
+            array(
+              'name'        => 'disable_ads',
+              'type'        => 'checkbox',
+              'label'       => __('Disable ads', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'ads_only_home',
+              'type'        => 'checkbox',
+              'label'       => __('Show ads only on homepage', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'ad_image',
+              'type'        => 'image',
+              'label'       => __('Ad image', 'chipmunk'),
+            ),
+            array(
+              'name'        => 'ad_link',
+              'type'        => 'text',
+              'label'       => __('Ad link URL', 'chipmunk'),
+            ),
+            array(
+              'name'        => 'ad_code',
+              'type'        => 'textarea',
+              'label'       => __('Ad HTML code', 'chipmunk'),
+              'description' => __('Insert your Google AdSense (or other) generated HTML code to display ads in designated areas.', 'chipmunk'),
+            ),
+          ),
         ),
+
         array(
-          'title' => __('Newsletter', 'chipmunk'),
-          'slug' => 'newsletter_section'
+          'title'         => __('Newsletter', 'chipmunk'),
+          'slug'          => 'newsletter_section',
+          'fields'        => array(
+            array(
+              'name'        => 'disable_newsletter',
+              'type'        => 'checkbox',
+              'label'       => __('Disable newsletter', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'newsletter_action',
+              'type'        => 'text',
+              'label'       => __('Newsletter form action URL', 'chipmunk'),
+              'description' => sprintf(__('Where do I find my newsletter form action URL? <a href="%1$s" target="_blank">Mailchimp</a> | <a href="%2$s" target="_blank">Campaign Monitor</a>', 'chipmunk'), esc_url('http://chipmunktheme.com/help/mailchimp-url'), esc_url('http://chipmunktheme.com/help/campaign-monitor-url')),
+            ),
+            array(
+              'name'        => 'newsletter_tagline',
+              'type'        => 'text',
+              'label'       => __('Newsletter tagline', 'chipmunk'),
+              'default'     => __('Never miss a thing! Sign up for our newsletter to stay updated.', 'chipmunk'),
+            ),
+          ),
         ),
+
         array(
-          'title' => __('Theme Options', 'chipmunk'),
-          'slug' => 'theme_section'
+          'title'         => __('Theme Options', 'chipmunk'),
+          'slug'          => 'theme_section',
+          'fields'        => array(
+            array(
+              'name'        => 'disable_credits',
+              'type'        => 'checkbox',
+              'label'       => __('Disable theme credits', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'disable_search',
+              'type'        => 'checkbox',
+              'label'       => __('Disable search', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'about_copy',
+              'type'        => 'textarea',
+              'label'       => __('About copy (footer)', 'chipmunk'),
+              'default'     => get_bloginfo('description'),
+              'description' => esc_html(__('Enter your site\'s description displayed in the footer section. You can use basic HTML tags here (<p>, <a>, <strong>, <i>).', 'chipmunk')),
+            ),
+            array(
+              'name'        => 'tracking_code',
+              'type'        => 'textarea',
+              'label'       => __('Tracking code', 'chipmunk'),
+              'description' => __('Paste your Google Analytics (or other) tracking code here. It will be inserted before the closing body tag of your theme.', 'chipmunk'),
+            ),
+          ),
         )
       );
 
-      // Define social services
-      $this->socials = array(
+      self::$socials = array(
         'Twitter',
         'Facebook',
         'Google',
@@ -59,6 +281,31 @@ if (!class_exists('ChipmunkCustomizer'))
     }
 
     /**
+     * Get Chipmunk theme option
+     */
+    public static function theme_option($name, $default = false)
+    {
+      $options = (get_option(self::$settings_name)) ? get_option(self::$settings_name) : null;
+
+      // return the option if it exists
+      if (isset($options[$name]) && !empty($options[$name])) {
+        return apply_filters(self::$settings_name.'_$name', $options[$name]);
+      }
+
+      // return default if it exists
+      if ($default) {
+        return apply_filters(self::$settings_name.'_$name', $default);
+      }
+
+      // return field default if it exists
+      if ($field = self::find_field_by_name($name) and !empty($field['default'])) {
+        return apply_filters(self::$settings_name.'_$name', $field['default']);
+      }
+
+      return false;
+    }
+
+    /**
      * Init customization options
      */
     public function customize_register($wp_customize)
@@ -69,16 +316,7 @@ if (!class_exists('ChipmunkCustomizer'))
       // Manipulate setting sections
       $this->remove_sections();
       $this->add_sections();
-
-      // Add settings fields and controls
-      $this->register_identity();
-      $this->register_visuals();
-      $this->register_resources();
-      $this->register_submissions();
-      $this->register_socials();
-      $this->register_ads();
-      $this->register_newsletter();
-      $this->register_theme();
+      $this->populate_sections();
     }
 
     /**
@@ -95,292 +333,28 @@ if (!class_exists('ChipmunkCustomizer'))
      */
     private function add_sections()
     {
-      foreach($this->sections as $index => $section) {
+      foreach(self::$sections as $index => $section)
         $this->customize->add_section($section['slug'], array(
-          'capability'  => $this->capability,
+          'capability'  => self::$capability,
           'title'       => $section['title'],
           'priority'    => $index + 100
         ));
+    }
+
+    /**
+     * Populate custom sections with customization options
+     */
+    private function populate_sections()
+    {
+      foreach(self::$sections as $index => $section)
+      {
+        if (!empty($section['callback']))
+          call_user_func(array(&$this, $section['callback']));
+
+        if (!empty($section['fields']))
+          foreach($section['fields'] as $field)
+            $this->register_field($section, $field);
       }
-    }
-
-    /**
-     * Register site identity options
-     */
-    private function register_identity()
-    {
-      // Site Logo
-      $this->customize->add_setting('chipmunk_settings[logo]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control(new WP_Customize_Image_Control($this->customize, 'logo', array(
-        'label'       => __('Site Logo', 'chipmunk'),
-        'section'     => 'title_tagline',
-        'settings'    => 'chipmunk_settings[logo]',
-        'description' => __('Upload a logo for your theme. You can leave it empty to use your site name as a plain text logo.', 'chipmunk'),
-      )));
-    }
-
-    /**
-     * Register site visual options
-     */
-    private function register_visuals()
-    {
-      // Primary Color
-      $this->customize->add_setting('chipmunk_settings[primary_color]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => '#F38181'
-      ));
-
-      $this->customize->add_control(new WP_Customize_Color_Control($this->customize, 'primary_color', array(
-        'label'    => __('Primary Color', 'chipmunk'),
-        'section'  => 'visuals_section',
-        'settings' => 'chipmunk_settings[primary_color]'
-      )));
-
-      // Primary Font
-      $this->customize->add_setting('chipmunk_settings[primary_font]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => 'Poppins'
-      ));
-
-      $this->customize->add_control('primary_font', array(
-        'label'    => __('Primary Font', 'chipmunk'),
-        'section'  => 'visuals_section',
-        'settings' => 'chipmunk_settings[primary_font]',
-        'type'     => 'select',
-        'choices'  => array(
-          ''            => __('System font', 'chipmunk'),
-          'Poppins'     => 'Poppins',
-          'Lato'        => 'Lato',
-          'Open+Sans'   => 'Open Sans',
-          'PT+Sans'     => 'PT Sans',
-          'Roboto'      => 'Roboto',
-          'Montserrat'  => 'Montserrat',
-        ),
-      ));
-
-      // Custom CSS
-      $this->customize->add_setting('chipmunk_settings[custom_css]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('custom_css', array(
-        'label'       => __('Custom CSS', 'chipmunk'),
-        'section'     => 'visuals_section',
-        'settings'    => 'chipmunk_settings[custom_css]',
-        'description' => __('Quickly add some CSS to your theme by adding it to this block.', 'chipmunk'),
-        'type'        => 'textarea',
-      ));
-    }
-
-    /**
-     * Register site resources options
-     */
-    private function register_resources()
-    {
-      // Latest resources count
-      $this->customize->add_setting('chipmunk_settings[resources_count]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => 9,
-      ));
-
-      $this->customize->add_control('resources_count', array(
-        'label'       => __('Latest resources count', 'chipmunk'),
-        'section'     => 'resources_section',
-        'settings'    => 'chipmunk_settings[resources_count]',
-        'description' => __('Enter the max resources number to show on resource sliders.', 'chipmunk'),
-        'type'        => 'number',
-      ));
-
-      // Number of resources per page
-      $this->customize->add_setting('chipmunk_settings[posts_per_page]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => 18,
-      ));
-
-      $this->customize->add_control('posts_per_page', array(
-        'label'       => __('Number of resources per page', 'chipmunk'),
-        'section'     => 'resources_section',
-        'settings'    => 'chipmunk_settings[posts_per_page]',
-        'type'        => 'number',
-      ));
-
-      // Number of search results per page
-      $this->customize->add_setting('chipmunk_settings[results_per_page]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => 9,
-      ));
-
-      $this->customize->add_control('results_per_page', array(
-        'label'       => __('Number of search results per page', 'chipmunk'),
-        'section'     => 'resources_section',
-        'settings'    => 'chipmunk_settings[results_per_page]',
-        'type'        => 'number',
-      ));
-
-      // Disable resource description
-      $this->customize->add_setting('chipmunk_settings[disable_resource_desc]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_resource_desc', array(
-        'label'       => __('Disable resource description', 'chipmunk'),
-        'section'     => 'resources_section',
-        'settings'    => 'chipmunk_settings[disable_resource_desc]',
-        'type'        => 'checkbox',
-      ));
-
-      // Disable featured panel
-      $this->customize->add_setting('chipmunk_settings[disable_featured]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_featured', array(
-        'label'       => __('Disable featured panel', 'chipmunk'),
-        'section'     => 'resources_section',
-        'settings'    => 'chipmunk_settings[disable_featured]',
-        'type'        => 'checkbox',
-      ));
-
-      // Disable view count
-      $this->customize->add_setting('chipmunk_settings[disable_views]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_views', array(
-        'label'       => __('Disable view count', 'chipmunk'),
-        'section'     => 'resources_section',
-        'settings'    => 'chipmunk_settings[disable_views]',
-        'type'        => 'checkbox',
-      ));
-
-      // Disable collection thumbs
-      $this->customize->add_setting('chipmunk_settings[disable_collection_thumbs]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_collection_thumbs', array(
-        'label'       => __('Disable collection thumbs', 'chipmunk'),
-        'section'     => 'resources_section',
-        'settings'    => 'chipmunk_settings[disable_collection_thumbs]',
-        'type'        => 'checkbox',
-      ));
-    }
-
-    /**
-     * Register site submissions options
-     */
-    private function register_submissions()
-    {
-      // Disable user submissions
-      $this->customize->add_setting('chipmunk_settings[disable_submissions]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_submissions', array(
-        'label'       => __('Disable user submissions', 'chipmunk'),
-        'section'     => 'submissions_section',
-        'settings'    => 'chipmunk_settings[disable_submissions]',
-        'type'        => 'checkbox',
-      ));
-
-      // Inform me about new submissions
-      $this->customize->add_setting('chipmunk_settings[inform_about_submissions]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => true,
-      ));
-
-      $this->customize->add_control('inform_about_submissions', array(
-        'label'       => __('Inform me about new submissions', 'chipmunk'),
-        'section'     => 'submissions_section',
-        'settings'    => 'chipmunk_settings[inform_about_submissions]',
-        'type'        => 'checkbox',
-      ));
-
-      // TODO: Will be released in future versions
-      // Disable asking for submitter info
-      // $this->customize->add_setting('chipmunk_settings[disable_submitter_info]', array(
-      //   'capability'  => $this->capability,
-      //   'type'        => 'option',
-      // ));
-      //
-      // $this->customize->add_control('disable_submitter_info', array(
-      //   'label'       => __('Disable asking for submitter info', 'chipmunk'),
-      //   'section'     => 'submissions_section',
-      //   'settings'    => 'chipmunk_settings[disable_submitter_info]',
-      //   'type'        => 'checkbox',
-      // ));
-
-      // Submission tagline
-      $this->customize->add_setting('chipmunk_settings[submit_tagline]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => __('Internet is huge! Help us find great content', 'chipmunk'),
-      ));
-
-      $this->customize->add_control('submit_tagline', array(
-        'type'     => 'text',
-        'label'    => __('Submission tagline', 'chipmunk'),
-        'section'  => 'submissions_section',
-        'settings' => 'chipmunk_settings[submit_tagline]'
-      ));
-
-      // Submission "Thank You" message
-      $this->customize->add_setting('chipmunk_settings[submission_thanks]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => __('Thank you for your contribution. The submission was sent to the website owners for review.', 'chipmunk'),
-      ));
-
-      $this->customize->add_control('submission_thanks', array(
-        'type'     => 'textarea',
-        'label'    => __('Submission "Thank You" message', 'chipmunk'),
-        'section'  => 'submissions_section',
-        'settings' => 'chipmunk_settings[submission_thanks]'
-      ));
-
-      // Submission "Failure" message
-      $this->customize->add_setting('chipmunk_settings[submission_failure]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => __('Your submission could not be processed.', 'chipmunk'),
-      ));
-
-      $this->customize->add_control('submission_failure', array(
-        'type'     => 'textarea',
-        'label'    => __('Submission "Failure" message', 'chipmunk'),
-        'section'  => 'submissions_section',
-        'settings' => 'chipmunk_settings[submission_failure]'
-      ));
-
-      // reCAPTCHA Site key
-      $this->customize->add_setting('chipmunk_settings[recaptcha_site_key]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('recaptcha_site_key', array(
-        'type'        => 'text',
-        'label'       => __('reCAPTCHA Site key', 'chipmunk'),
-        'section'     => 'submissions_section',
-        'settings'    => 'chipmunk_settings[recaptcha_site_key]',
-        'description' => sprintf(__('Register at <a href="%1$s" target="_blank">reCAPTCHA</a>.', 'chipmunk'), esc_url('https://www.google.com/recaptcha/admin')),
-      ));
     }
 
     /**
@@ -388,188 +362,8 @@ if (!class_exists('ChipmunkCustomizer'))
      */
     private function register_socials()
     {
-      foreach($this->socials as $social) {
+      foreach(self::$socials as $social)
         $this->register_social($social);
-      }
-    }
-
-    /**
-     * Register advertisement settings
-     */
-    private function register_ads()
-    {
-      // Disable ads
-      $this->customize->add_setting('chipmunk_settings[disable_ads]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_ads', array(
-        'label'       => __('Disable ads', 'chipmunk'),
-        'section'     => 'ads_section',
-        'settings'    => 'chipmunk_settings[disable_ads]',
-        'type'        => 'checkbox',
-      ));
-
-      // Show ads only on homepage
-      $this->customize->add_setting('chipmunk_settings[ads_only_home]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('ads_only_home', array(
-        'label'       => __('Show ads only on homepage', 'chipmunk'),
-        'section'     => 'ads_section',
-        'settings'    => 'chipmunk_settings[ads_only_home]',
-        'type'        => 'checkbox',
-      ));
-
-      // Ad image
-      $this->customize->add_setting('chipmunk_settings[ad_image]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control(new WP_Customize_Image_Control($this->customize, 'ad_image', array(
-        'label'       => __('Ad image', 'chipmunk'),
-        'section'     => 'ads_section',
-        'settings'    => 'chipmunk_settings[ad_image]',
-      )));
-
-      // Ad link URL
-      $this->customize->add_setting('chipmunk_settings[ad_link]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('ad_link', array(
-        'type'        => 'text',
-        'label'       => __('Ad link URL', 'chipmunk'),
-        'section'     => 'ads_section',
-        'settings'    => 'chipmunk_settings[ad_link]',
-      ));
-
-      // Ad HTML code
-      $this->customize->add_setting('chipmunk_settings[ad_code]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('ad_code', array(
-        'type'        => 'textarea',
-        'label'       => __('Ad HTML code', 'chipmunk'),
-        'section'     => 'ads_section',
-        'settings'    => 'chipmunk_settings[ad_code]',
-        'description' => __('Insert your Google AdSense (or other) generated HTML code to display ads in designated areas.', 'chipmunk'),
-      ));
-    }
-
-    /**
-     * Register site newsletter options
-     */
-    private function register_newsletter()
-    {
-      // Disable newsletter
-      $this->customize->add_setting('chipmunk_settings[disable_newsletter]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_newsletter', array(
-        'label'       => __('Disable newsletter', 'chipmunk'),
-        'section'     => 'newsletter_section',
-        'settings'    => 'chipmunk_settings[disable_newsletter]',
-        'type'        => 'checkbox',
-      ));
-
-      // Newsletter action
-      $this->customize->add_setting('chipmunk_settings[newsletter_action]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('newsletter_action', array(
-        'type'        => 'text',
-        'label'       => __('Newsletter form action URL', 'chipmunk'),
-        'description' => sprintf(__('Where do I find my newsletter form action URL? <a href="%1$s" target="_blank">Mailchimp</a> | <a href="%2$s" target="_blank">Campaign Monitor</a>', 'chipmunk'), esc_url('http://chipmunktheme.com/help/mailchimp-url'), esc_url('http://chipmunktheme.com/help/campaign-monitor-url')),
-        'section'     => 'newsletter_section',
-        'settings'    => 'chipmunk_settings[newsletter_action]'
-      ));
-
-      // Newsletter tagline
-      $this->customize->add_setting('chipmunk_settings[newsletter_tagline]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => __('Never miss a thing! Sign up for our newsletter to stay updated.', 'chipmunk'),
-      ));
-
-      $this->customize->add_control('newsletter_tagline', array(
-        'type'     => 'text',
-        'label'    => __('Newsletter tagline', 'chipmunk'),
-        'section'  => 'newsletter_section',
-        'settings' => 'chipmunk_settings[newsletter_tagline]'
-      ));
-    }
-
-    /**
-     * Register site theme options
-     */
-    private function register_theme()
-    {
-      // Disable theme credits
-      $this->customize->add_setting('chipmunk_settings[disable_credits]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_credits', array(
-        'label'       => __('Disable theme credits', 'chipmunk'),
-        'section'     => 'theme_section',
-        'settings'    => 'chipmunk_settings[disable_credits]',
-        'type'        => 'checkbox',
-      ));
-
-      // Disable search
-      $this->customize->add_setting('chipmunk_settings[disable_search]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('disable_search', array(
-        'label'       => __('Disable search', 'chipmunk'),
-        'section'     => 'theme_section',
-        'settings'    => 'chipmunk_settings[disable_search]',
-        'type'        => 'checkbox',
-      ));
-
-      // About copy (footer)
-      $this->customize->add_setting('chipmunk_settings[about_copy]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-        'default'     => get_bloginfo('description'),
-      ));
-
-      $this->customize->add_control('about_copy', array(
-        'label'       => __('About copy (footer)', 'chipmunk'),
-        'section'     => 'theme_section',
-        'settings'    => 'chipmunk_settings[about_copy]',
-        'description' => esc_html(__('Enter your site\'s description displayed in the footer section. You can use basic HTML tags here (<p>, <a>, <strong>, <i>).', 'chipmunk')),
-        'type'        => 'textarea',
-      ));
-
-      // Tracking code
-      $this->customize->add_setting('chipmunk_settings[tracking_code]', array(
-        'capability'  => $this->capability,
-        'type'        => 'option',
-      ));
-
-      $this->customize->add_control('tracking_code', array(
-        'label'       => __('Tracking code', 'chipmunk'),
-        'section'     => 'theme_section',
-        'settings'    => 'chipmunk_settings[tracking_code]',
-        'description' => __('Paste your Google Analytics (or other) tracking code here. It will be inserted before the closing body tag of your theme.', 'chipmunk'),
-        'type'        => 'textarea',
-      ));
     }
 
     /**
@@ -579,17 +373,67 @@ if (!class_exists('ChipmunkCustomizer'))
     {
       $social_slug = strtolower($social);
 
-      $this->customize->add_setting('chipmunk_settings['.$social_slug.']', array(
-        'capability'  => $this->capability,
+      $this->customize->add_setting(self::$settings_name.'['.$social_slug.']', array(
+        'capability'  => self::$capability,
         'type'        => 'option'
       ));
 
       $this->customize->add_control($social_slug, array(
-        'settings' => 'chipmunk_settings['.$social_slug.']',
+        'settings' => self::$settings_name.'['.$social_slug.']',
         'section'  => 'socials_section',
         'label'    => $social,
         'type'     => 'url',
       ));
+    }
+
+    /**
+     * Add setting and control for each field
+     */
+    private function register_field($section, $field)
+    {
+      $setting_args = array(
+        'capability'  => self::$capability,
+        'type'        => 'option',
+        'default'     => !empty($field['default']) ? $field['default'] : null,
+      );
+      $control_args = array(
+        'label'       => $field['label'],
+        'section'     => $section['slug'],
+        'settings'    => self::$settings_name.'['.$field['name'].']',
+        'description' => !empty($field['description']) ? $field['description'] : null,
+        'choices'     => !empty($field['choices']) ? $field['choices'] : null,
+      );
+
+      $this->customize->add_setting(self::$settings_name.'['.$field['name'].']', $setting_args);
+
+      switch ($field['type'])
+      {
+        case 'color':
+          $this->customize->add_control(new WP_Customize_Color_Control($this->customize, $field['name'], $control_args));
+          break;
+
+        case 'image':
+          $this->customize->add_control(new WP_Customize_Image_Control($this->customize, $field['name'], $control_args));
+          break;
+
+        default:
+          $control_args['type'] = $field['type'];
+          $this->customize->add_control($field['name'], $control_args);
+      }
+    }
+
+    /**
+     * Search for field by given name
+     */
+    private static function find_field_by_name($name)
+    {
+      foreach (self::$sections as $section)
+        if (!empty($section['fields']))
+          foreach($section['fields'] as $field)
+            if ($field['name'] === $name)
+              return $field;
+
+      return null;
     }
   }
 }

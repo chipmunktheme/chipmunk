@@ -7,7 +7,7 @@ if (!class_exists('ChipmunkAjax'))
     public function submit_resource()
     {
       // If the reCAPTCHA is configured prevent autosubmission
-      if (ChipmunkHelpers::theme_option('recaptcha_site_key'))
+      if (ChipmunkCustomizer::theme_option('recaptcha_site_key'))
       {
         if (empty($_REQUEST['g-recaptcha-response']))
         {
@@ -25,7 +25,7 @@ if (!class_exists('ChipmunkAjax'))
         $tax_input['resource-collection'] = array(wp_filter_kses($_REQUEST['collection']));
         $meta_input[$meta_prefix.'_website'] = esc_url(wp_filter_nohtml_kses($_REQUEST['website']));
 
-        if (!ChipmunkHelpers::theme_option('disable_submitter_info', true))
+        if (!ChipmunkCustomizer::theme_option('disable_submitter_info', true))
         {
           $meta_input[$meta_prefix.'_submitter_name'] = wp_filter_nohtml_kses($_REQUEST['submitter_name']);
           $meta_input[$meta_prefix.'_submitter_email'] = wp_filter_nohtml_kses($_REQUEST['submitter_email']);
@@ -41,19 +41,19 @@ if (!class_exists('ChipmunkAjax'))
 
         if ($post_id = wp_insert_post((object) $post_object))
         {
-          if (ChipmunkHelpers::theme_option('inform_about_submissions'))
+          if (ChipmunkCustomizer::theme_option('inform_about_submissions'))
           {
             $this->inform_admin($post_id);
           }
 
           // Success
-          wp_send_json_success(ChipmunkHelpers::theme_option('submission_thanks'));
+          wp_send_json_success(ChipmunkCustomizer::theme_option('submission_thanks'));
         }
         // Failure during wp_insert_post
-        else wp_send_json_error(ChipmunkHelpers::theme_option('submission_failure'));
+        else wp_send_json_error(ChipmunkCustomizer::theme_option('submission_failure'));
       }
       // Failure due to incorrect nonce verification
-      else wp_send_json_error(ChipmunkHelpers::theme_option('submission_failure'));
+      else wp_send_json_error(ChipmunkCustomizer::theme_option('submission_failure'));
 
       die;
     }

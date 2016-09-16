@@ -13,8 +13,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta name="description" content="<?php bloginfo('description'); ?>">
 
-  <?php if (ChipmunkHelpers::theme_option('primary_font')) : ?>
-    <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=<?php echo ChipmunkHelpers::theme_option('primary_font'); ?>:400,700">
+  <?php if (ChipmunkCustomizer::theme_option('primary_font')) : ?>
+    <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=<?php echo ChipmunkCustomizer::theme_option('primary_font'); ?>:400,700">
   <?php endif; ?>
   <link rel="icon" href="<?php echo has_site_icon() ? get_site_icon_url() : get_template_directory_uri().'/static/dist/images/chipmunk.png'; ?>">
 

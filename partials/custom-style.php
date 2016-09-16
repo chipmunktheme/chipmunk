@@ -1,7 +1,7 @@
 <?php
-  $primary_color  = ChipmunkHelpers::theme_option('primary_color');
-  $primary_font   = ChipmunkHelpers::theme_option('primary_font');
-  $custom_css     = ChipmunkHelpers::theme_option('custom_css');
+  $primary_color  = ChipmunkCustomizer::theme_option('primary_color');
+  $primary_font   = ChipmunkCustomizer::theme_option('primary_font');
+  $custom_css     = ChipmunkCustomizer::theme_option('custom_css');
 ?>
 
 <style type="text/css">

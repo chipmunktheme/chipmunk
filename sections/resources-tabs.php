@@ -1,9 +1,9 @@
 <?php
-  $resources_count =  ChipmunkHelpers::theme_option('resources_count', 9);
+  $resources_count =  ChipmunkCustomizer::theme_option('resources_count', 9);
   $resources = array(
     'latest'    => ChipmunkHelpers::get_latest_resources($resources_count),
-    'featured'  => !ChipmunkHelpers::theme_option('disable_featured') ? ChipmunkHelpers::get_featured_resources($resources_count) : false,
-    'popular'   => !ChipmunkHelpers::theme_option('disable_views') ? ChipmunkHelpers::get_popular_resources($resources_count) : false,
+    'featured'  => !ChipmunkCustomizer::theme_option('disable_featured') ? ChipmunkHelpers::get_featured_resources($resources_count) : false,
+    'popular'   => !ChipmunkCustomizer::theme_option('disable_views') ? ChipmunkHelpers::get_popular_resources($resources_count) : false,
   );
 ?>
 

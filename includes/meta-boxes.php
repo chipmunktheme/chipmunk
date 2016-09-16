@@ -75,7 +75,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
       wp_nonce_field(basename(__FILE__), self::$field_name.'_resource_nonce');
       $website = get_post_meta($post->ID, '_'.self::$field_name.'_resource_website', true);
 
-      if (!ChipmunkHelpers::theme_option('disable_featured'))
+      if (!ChipmunkCustomizer::theme_option('disable_featured'))
       {
         $is_featured = get_post_meta($post->ID, '_'.self::$field_name.'_resource_is_featured', true);
       }
@@ -87,7 +87,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
           <input type="url" name="website" id="website" value="<?php echo $website; ?>" class="widefat" />
         </div>
 
-        <?php if (!ChipmunkHelpers::theme_option('disable_featured')) : ?>
+        <?php if (!ChipmunkCustomizer::theme_option('disable_featured')) : ?>
           <div class="chipmunk-field">
             <p class="chipmunk-label"><?php _e('Featured?', 'chipmunk'); ?></p>
 
@@ -132,7 +132,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
         update_post_meta($post_id, '_'.self::$field_name.'_resource_website', sanitize_text_field($_POST['website']));
       }
 
-      if (!ChipmunkHelpers::theme_option('disable_featured'))
+      if (!ChipmunkCustomizer::theme_option('disable_featured'))
       {
         if (isset($_REQUEST['is_featured']))
         {

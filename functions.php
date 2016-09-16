@@ -102,7 +102,7 @@ class Chipmunk
     if ($query->is_search)
     {
       $query->set('post_type', 'resource');
-      $query->set('posts_per_page', ChipmunkHelpers::theme_option('results_per_page'));
+      $query->set('posts_per_page', ChipmunkCustomizer::theme_option('results_per_page'));
     }
 
     return $query;
@@ -115,7 +115,7 @@ class Chipmunk
   {
     if ($query->is_tax and is_tax())
     {
-      $query->set('posts_per_page', ChipmunkHelpers::theme_option('posts_per_page'));
+      $query->set('posts_per_page', ChipmunkCustomizer::theme_option('posts_per_page'));
     }
 
     return $query;
@@ -146,7 +146,7 @@ class Chipmunk
    */
   public function add_fb_open_graph_tags()
   {
-    $site_image = ($logo = ChipmunkHelpers::theme_option('logo')) ? $logo : get_template_directory_uri().'/static/dist/images/chipmunk.png';
+    $site_image = ($logo = ChipmunkCustomizer::theme_option('logo')) ? $logo : get_template_directory_uri().'/static/dist/images/chipmunk.png';
 
     if (is_single() or is_page())
     {
