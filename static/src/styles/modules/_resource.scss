@@ -29,11 +29,16 @@
 
   a {
     display: block;
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+    background-color: $color-gray;
 
-    &:hover {
-      opacity: 0.75;
+    img {
+      -webkit-backface-visibility: hidden;
+      -webkit-transform: translateZ(0) scale(1.0, 1.0);
+      transition: opacity $transition-speed;
+    }
+
+    &:hover img {
+      opacity: 0.9;
     }
   }
 

@@ -2,6 +2,6 @@
 {% set pageName = 'Collection' %}
 
 {% block content %}
-  {% include 'sections/resources.twig' with { title: 'Resources', rows: 5, showPromo: true } %}
+  {% include 'sections/resources.twig' with { title: 'Resources', rows: 5, showPagination: true, showPromo: true } %}
   {% include 'sections/toolbox.twig' %}
 {% endblock %}

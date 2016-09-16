@@ -6,12 +6,17 @@
   position: relative;
   z-index: $zindex-head;
   margin-bottom: -1px;
-  padding-top: $separator;
-  padding-bottom: $separator;
+  padding-top: $separator * 0.5;
+  padding-bottom: $separator * 0.5;
   background-color: $color-gray-lightest;
   border-bottom: 1px solid $color-gray-light;
 
   @include breakpoint(md) {
+    padding-top: $separator;
+    padding-bottom: $separator;
+  }
+
+  @include breakpoint(lg) {
     padding-top: $separator * 1.5;
     padding-bottom: $separator * 1.5;
   }

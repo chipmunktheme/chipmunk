@@ -89,6 +89,12 @@ if (!class_exists('ChipmunkCustomizer'))
               'default'     => 9,
             ),
             array(
+              'name'        => 'display_resource_cards',
+              'type'        => 'checkbox',
+              'label'       => __('Display resources as cards', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
               'name'        => 'disable_resource_desc',
               'type'        => 'checkbox',
               'label'       => __('Disable resource description', 'chipmunk'),

@@ -8,12 +8,6 @@
   margin-top: $separator;
   overflow: hidden;
 
-  &::before {
-    content: '';
-    display: block;
-    padding-bottom: 70%;
-  }
-
   &:hover {
     .tile__copy .icon {
       transform: translateX(1em);
@@ -29,6 +23,14 @@
       }
     }
   }
+
+  &_card {
+    margin-bottom: $separator;
+
+    &:hover img:first-child {
+      opacity: 0.9;
+    }
+  }
 }
 
 .tile__list {
@@ -36,7 +38,7 @@
   margin: 0 (-$separator / 2);
 }
 
-.tile__wrapper {
+.tile__slider {
   display: none;
   padding: 0 ($separator / 2);
   float: left;
@@ -52,10 +54,16 @@
 }
 
 .tile__image {
-  @include cover;
-  background-color: $color-primary;
+  background-color: $color-gray;
   user-select: none;
   pointer-events: none;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 70%;
+  }
 
   img {
     @include cover;
@@ -65,7 +73,7 @@
     width: 100%;
     object-fit: cover;
     box-shadow: -2px 0 10px 0 rgba($color-black, 0.5);
-    transition: transform $transition-speed ease-in-out 0.05s;
+    transition: transform $transition-speed ease-in-out 0.05s, opacity $transition-speed;
 
     &:nth-child(2) {
       transform: translateX(25%);
@@ -74,6 +82,11 @@
     &:nth-child(3) {
       transform: translateX(50%);
     }
+  }
+
+  .tile_card & {
+    position: relative;
+    margin-bottom: $separator;
   }
 }
 
@@ -84,7 +97,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: $separator;
-  color: $color-white;
+  color: $color-black;
 
   @include breakpoint(md) {
     padding: $separator * 1.5;
@@ -92,7 +105,17 @@
 
   &_dimmed {
     background-color: rgba($color-black, 0.75);
+    color: $color-white;
   }
+
+  .tile_card & {
+    position: relative;
+    padding: 0;
+  }
+}
+
+.tile__info {
+  margin-bottom: 1rem;
 }
 
 .tile__title {
@@ -103,6 +126,7 @@
 }
 
 .tile__copy {
+  margin-bottom: 1rem;
   font-size: 1.4rem;
 
   .icon {

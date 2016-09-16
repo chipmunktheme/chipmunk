@@ -30,7 +30,7 @@
           <div class="tile__list tabs__item active" data-tabs-panel data-resource-slider role="tabpanel">
             <?php while ($resources['featured']->have_posts()) : $resources['featured']->the_post(); ?>
 
-              <div class="tile__wrapper">
+              <div class="tile__slider">
                 <?php get_template_part('sections/resource-tile'); ?>
               </div>
 
@@ -42,7 +42,7 @@
           <div class="tile__list tabs__item<?php echo !$resources['featured'] ? ' active' : ''; ?>" data-tabs-panel data-resource-slider role="tabpanel">
             <?php while ($resources['latest']->have_posts()) : $resources['latest']->the_post(); ?>
 
-              <div class="tile__wrapper">
+              <div class="tile__slider">
                 <?php get_template_part('sections/resource-tile'); ?>
               </div>
 
@@ -54,7 +54,7 @@
           <div class="tile__list tabs__item" data-tabs-panel data-resource-slider role="tabpanel">
             <?php while ($resources['popular']->have_posts()) : $resources['popular']->the_post(); ?>
 
-              <div class="tile__wrapper">
+              <div class="tile__slider">
                 <?php get_template_part('sections/resource-tile'); ?>
               </div>
 
