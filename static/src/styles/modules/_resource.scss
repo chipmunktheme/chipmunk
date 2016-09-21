@@ -50,10 +50,18 @@
 
 .resource__info {
   margin: $separator 0;
+
+  @include breakpoint(lg) {
+    margin: $separator 0;
+  }
 }
 
 .resource__stats {
-  color: $color-black;
+  color: $color-gray;
+
+  a:hover {
+    color: $color-black;
+  }
 }
 
 .resource__title {

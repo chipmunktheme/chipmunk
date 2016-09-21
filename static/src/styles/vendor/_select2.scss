@@ -513,6 +513,7 @@
     display: block;
     height: auto;
     padding: 0;
+    background-color: transparent;
     border: 0;
     border-radius: 0;
 
@@ -553,6 +554,7 @@
   }
 
   .select2-dropdown {
+    background-color: $color-white;
     border-color: $color-black;
     border-radius: 0;
     color: $color-black;
