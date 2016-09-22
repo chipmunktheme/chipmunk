@@ -46,7 +46,7 @@ if (!class_exists('ChipmunkCustomizer'))
               'label'       => __('Primary Font', 'chipmunk'),
               'default'     => 'Poppins',
               'choices'     => array(
-                ''            => __('System font', 'chipmunk'),
+                'System'      => __('System font', 'chipmunk'),
                 'Poppins'     => 'Poppins',
                 'Lato'        => 'Lato',
                 'Open+Sans'   => 'Open Sans',

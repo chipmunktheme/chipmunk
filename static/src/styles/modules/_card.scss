@@ -26,3 +26,9 @@
     font-size: 2.2rem;
   }
 }
+
+.card__handle {
+  &:hover {
+    color: $color-black;
+  }
+}

@@ -6,10 +6,10 @@
 
 <style type="text/css">
   body {
-    <?php if ($primary_font) : ?>
-      font-family: "<?php echo str_replace('+', ' ', $primary_font); ?>", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    <?php if ($primary_font == 'System') : ?>
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     <?php else : ?>
-      font-family: -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+      font-family: "<?php echo str_replace('+', ' ', $primary_font); ?>", "Helvetica Neue", Helvetica, Arial, sans-serif;
     <?php endif; ?>
   }
 

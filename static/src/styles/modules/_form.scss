@@ -20,7 +20,7 @@
     border-radius: 0;
     color: $color-black;
     font-size: 1.8rem;
-    line-height: normal;
+    line-height: 1.6;
 
     @include breakpoint(lg) {
       border-bottom-width: 3px;

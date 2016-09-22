@@ -27,8 +27,8 @@
   &_card {
     margin-bottom: $separator;
 
-    &:hover img:first-child {
-      opacity: 0.9;
+    &:hover .tile__image {
+      opacity: 0.8;
     }
   }
 }
@@ -54,10 +54,10 @@
 }
 
 .tile__image {
-  background-color: $color-gray;
   user-select: none;
   pointer-events: none;
   overflow: hidden;
+  transition: opacity $transition-speed;
 
   &::before {
     content: '';
@@ -73,7 +73,7 @@
     width: 100%;
     object-fit: cover;
     box-shadow: -2px 0 10px 0 rgba($color-black, 0.5);
-    transition: transform $transition-speed ease-in-out 0.05s, opacity $transition-speed;
+    transition: transform $transition-speed ease-in-out 0.05s;
 
     &:nth-child(2) {
       transform: translateX(25%);
