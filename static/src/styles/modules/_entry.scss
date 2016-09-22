@@ -25,6 +25,14 @@
 
   h1, h2 {
     @extend .heading_xl;
+
+    &:not(:first-child) {
+      margin-top: 1em;
+
+      @include breakpoint(lg) {
+        margin-top: 1.85em;
+      }
+    }
   }
 
   h3 {
@@ -116,6 +124,10 @@
     margin-top: 2em;
 
     @include breakpoint(md) {
+      margin-top: 3em;
+    }
+
+    @include breakpoint(lg) {
       margin-top: 4em;
     }
   }
@@ -140,14 +152,18 @@
   .wp-caption {
     width: auto !important;
     margin-top: 2em;
+    margin-bottom: 1em;
 
     @include breakpoint(md) {
-      margin-top: 4em;
+      margin-top: 3em;
+      margin-bottom: 2em;
     }
 
     @include breakpoint(lg) {
       margin-left: -25.85%;
       margin-right: -25.85%;
+      margin-top: 4em;
+      margin-bottom: 3.5em;
     }
 
     .wp-caption-text {
