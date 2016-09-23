@@ -7,6 +7,7 @@ var Popup = function () {
 
   $trigger.on('click', function (ev) {
     ev.preventDefault();
+    $(document.body).removeClass('has-nav-open');
     $(document.body).toggleClass('has-popup-open');
     $('html, body').animate({ scrollTop: 0 }, 500);
   });

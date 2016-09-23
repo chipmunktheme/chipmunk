@@ -194,14 +194,27 @@ if (!class_exists('ChipmunkCustomizer'))
               'default'     => false,
             ),
             array(
-              'name'        => 'ad_image',
-              'type'        => 'image',
-              'label'       => __('Ad image', 'chipmunk'),
-            ),
-            array(
               'name'        => 'ad_link',
               'type'        => 'text',
               'label'       => __('Ad link URL', 'chipmunk'),
+            ),
+            array(
+              'name'        => 'ad_image_lg',
+              'type'        => 'image',
+              'label'       => __('Ad image (Desktop)', 'chipmunk'),
+              'description' => sprintf(__('We recommend using a rectangle horizontal image that is at least %1$d pixels wide.', 'chipmunk'), 940),
+            ),
+            array(
+              'name'        => 'ad_image_md',
+              'type'        => 'image',
+              'label'       => __('Ad image (Tablet)', 'chipmunk'),
+              'description' => sprintf(__('We recommend using a rectangle horizontal image that is at least %1$d pixels wide.', 'chipmunk'), 768),
+            ),
+            array(
+              'name'        => 'ad_image_sm',
+              'type'        => 'image',
+              'label'       => __('Ad image (Mobile)', 'chipmunk'),
+              'description' => sprintf(__('We recommend using a rectangle vertical image that is at least %1$d pixels wide.', 'chipmunk'), 375),
             ),
             array(
               'name'        => 'ad_code',
