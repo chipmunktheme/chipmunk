@@ -238,9 +238,9 @@ if (!class_exists('ChipmunkCustomizer'))
             array(
               'name'        => 'newsletter_action',
               'type'        => 'text',
-              'label'       => __('Newsletter form action URL', 'chipmunk'),
+              'label'       => __('Mailchimp form action URL', 'chipmunk'),
               'default'     => '#',
-              'description' => sprintf(__('Where do I find my newsletter form action URL? <a href="%1$s" target="_blank">Mailchimp</a> | <a href="%2$s" target="_blank">Campaign Monitor</a>', 'chipmunk'), esc_url('http://chipmunktheme.com/help/mailchimp-url'), esc_url('http://chipmunktheme.com/help/campaign-monitor-url')),
+              'description' => sprintf(__('Where do I find my <a href="%1$s" target="_blank">Mailchimp form action URL?</a>', 'chipmunk'), esc_url('http://chipmunktheme.com/help/mailchimp-url')),
             ),
             array(
               'name'        => 'newsletter_tagline',

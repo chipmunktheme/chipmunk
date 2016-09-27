@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-09-23 13:15+0200\n"
-"PO-Revision-Date: 2016-09-23 13:15+0200\n"
+"POT-Creation-Date: 2016-09-27 09:55+0200\n"
+"PO-Revision-Date: 2016-09-27 09:55+0200\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -317,10 +317,14 @@ msgid "Show ads only on homepage"
 msgstr "Pokazuj reklamy tylko na stronie głównej"
 
 #: includes/customizer.php:199
+msgid "Ad link URL"
+msgstr "Dodaj adres URL"
+
+#: includes/customizer.php:204
 msgid "Ad image (Desktop)"
 msgstr "Obrazek reklamy (na komputer)"
 
-#: includes/customizer.php:200 includes/customizer.php:206
+#: includes/customizer.php:205 includes/customizer.php:211
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
@@ -329,15 +333,15 @@ msgstr ""
 "Polecamy użyć prostokątnego obrazka w poziomie o minimalnej szrokości %1$d "
 "pikseli."
 
-#: includes/customizer.php:205
+#: includes/customizer.php:210
 msgid "Ad image (Tablet)"
 msgstr "Obrazek reklamy (na tablet)"
 
-#: includes/customizer.php:211
+#: includes/customizer.php:216
 msgid "Ad image (Mobile)"
 msgstr "Obrazek reklamy (na telefon)"
 
-#: includes/customizer.php:212
+#: includes/customizer.php:217
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
@@ -345,10 +349,6 @@ msgid ""
 msgstr ""
 "Polecamy użyć prostokątnego obrazka w pionie o minimalnej szrokości %1$d "
 "pikseli."
-
-#: includes/customizer.php:217
-msgid "Ad link URL"
-msgstr "Dodaj adres URL"
 
 #: includes/customizer.php:222
 msgid "Ad HTML code"
@@ -371,47 +371,45 @@ msgid "Disable newsletter"
 msgstr "Wyłącz newsletter"
 
 #: includes/customizer.php:241
-msgid "Newsletter form action URL"
-msgstr "Newsletter “form action URL”"
+msgid "Mailchimp form action URL"
+msgstr "Formularz subskrypcji Mailchimp"
 
-#: includes/customizer.php:242
+#: includes/customizer.php:243
 #, php-format
 msgid ""
-"Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
-"\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
-"Monitor</a>"
+"Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
+"URL?</a>"
 msgstr ""
-"Gdzie znajdę “form action URL” dla mojego newslettera? <a href=\"%1$s\" "
-"target=\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank"
-"\">Campaign Monitor</a>"
+"Gdzie mogę znaleźć <a href=\"%1$s\" target=\"_blank\">MailChimp form action "
+"URL?</a>"
 
-#: includes/customizer.php:247
+#: includes/customizer.php:248
 msgid "Newsletter tagline"
 msgstr "Opis newslettera"
 
-#: includes/customizer.php:248
+#: includes/customizer.php:249
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr ""
 "Nigdy nie przegap nowych materiałów! Zapisz się do newslettera i zostań w "
 "kontakcie."
 
-#: includes/customizer.php:254
+#: includes/customizer.php:255
 msgid "Theme Options"
 msgstr "Ustawienia motywu"
 
-#: includes/customizer.php:260
+#: includes/customizer.php:261
 msgid "Disable theme credits"
 msgstr "Wyłącz informację o szablonie"
 
-#: includes/customizer.php:266
+#: includes/customizer.php:267
 msgid "Disable search"
 msgstr "Wyłącz wyszukiwawnie"
 
-#: includes/customizer.php:272
+#: includes/customizer.php:273
 msgid "About copy (footer)"
 msgstr "O Nas (stopka)"
 
-#: includes/customizer.php:274
+#: includes/customizer.php:275
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
@@ -419,11 +417,11 @@ msgstr ""
 "Podaj opis swojej strony wyświetlany w stopce. Możesz używać podstawowych "
 "tagów HTML (<p>, <a>, <strong>, <i>)."
 
-#: includes/customizer.php:279
+#: includes/customizer.php:280
 msgid "Tracking code"
 msgstr "Kod analizujący stronę"
 
-#: includes/customizer.php:280
+#: includes/customizer.php:281
 msgid ""
 "Paste your Google Analytics (or other) tracking code here. It will be "
 "inserted before the closing body tag of your theme."
@@ -621,6 +619,25 @@ msgstr "Obserwuj nas"
 #, php-format
 msgid "%1$s Collection"
 msgstr "Kolekcja %1$s"
+
+#~ msgid ""
+#~ "Where do I find my <a href=%1$s target=\"_blank\">Mailchimp form action "
+#~ "URL?</a>"
+#~ msgstr ""
+#~ "Gdzie mogę znaleźć <a href=%1$s target=\"_blank\">MailChimp form action "
+#~ "URL?</a>"
+
+#~ msgid "Newsletter form action URL"
+#~ msgstr "Newsletter “form action URL”"
+
+#~ msgid ""
+#~ "Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
+#~ "\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
+#~ "Monitor</a>"
+#~ msgstr ""
+#~ "Gdzie znajdę “form action URL” dla mojego newslettera? <a href=\"%1$s\" "
+#~ "target=\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank"
+#~ "\">Campaign Monitor</a>"
 
 #~ msgid ""
 #~ "We recommend using a square horizontal image that is at least %1$d pixels "

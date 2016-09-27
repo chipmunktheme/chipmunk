@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-09-23 13:16+0200\n"
-"PO-Revision-Date: 2016-09-23 13:16+0200\n"
+"POT-Creation-Date: 2016-09-27 09:55+0200\n"
+"PO-Revision-Date: 2016-09-27 09:56+0200\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -316,10 +316,14 @@ msgid "Show ads only on homepage"
 msgstr "Show ads only on homepage"
 
 #: includes/customizer.php:199
+msgid "Ad link URL"
+msgstr "Ad link URL"
+
+#: includes/customizer.php:204
 msgid "Ad image (Desktop)"
 msgstr "Ad image (Desktop)"
 
-#: includes/customizer.php:200 includes/customizer.php:206
+#: includes/customizer.php:205 includes/customizer.php:211
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
@@ -328,15 +332,15 @@ msgstr ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
 "wide."
 
-#: includes/customizer.php:205
+#: includes/customizer.php:210
 msgid "Ad image (Tablet)"
 msgstr "Ad image (Tablet)"
 
-#: includes/customizer.php:211
+#: includes/customizer.php:216
 msgid "Ad image (Mobile)"
 msgstr "Ad image (Mobile)"
 
-#: includes/customizer.php:212
+#: includes/customizer.php:217
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
@@ -344,10 +348,6 @@ msgid ""
 msgstr ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
 "wide."
-
-#: includes/customizer.php:217
-msgid "Ad link URL"
-msgstr "Ad link URL"
 
 #: includes/customizer.php:222
 msgid "Ad HTML code"
@@ -370,45 +370,43 @@ msgid "Disable newsletter"
 msgstr "Disable newsletter"
 
 #: includes/customizer.php:241
-msgid "Newsletter form action URL"
-msgstr "Newsletter form action URL"
+msgid "Mailchimp form action URL"
+msgstr "Mailchimp form action URL"
 
-#: includes/customizer.php:242
+#: includes/customizer.php:243
 #, php-format
 msgid ""
-"Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
-"\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
-"Monitor</a>"
+"Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
+"URL?</a>"
 msgstr ""
-"Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
-"\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
-"Monitor</a>"
+"Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
+"URL?</a>"
 
-#: includes/customizer.php:247
+#: includes/customizer.php:248
 msgid "Newsletter tagline"
 msgstr "Newsletter tagline"
 
-#: includes/customizer.php:248
+#: includes/customizer.php:249
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr "Never miss a thing! Sign up for our newsletter to stay updated."
 
-#: includes/customizer.php:254
+#: includes/customizer.php:255
 msgid "Theme Options"
 msgstr "Theme Options"
 
-#: includes/customizer.php:260
+#: includes/customizer.php:261
 msgid "Disable theme credits"
 msgstr "Disable theme credits"
 
-#: includes/customizer.php:266
+#: includes/customizer.php:267
 msgid "Disable search"
 msgstr "Disable search"
 
-#: includes/customizer.php:272
+#: includes/customizer.php:273
 msgid "About copy (footer)"
 msgstr "About copy (footer)"
 
-#: includes/customizer.php:274
+#: includes/customizer.php:275
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
@@ -416,11 +414,11 @@ msgstr ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
 
-#: includes/customizer.php:279
+#: includes/customizer.php:280
 msgid "Tracking code"
 msgstr "Tracking code"
 
-#: includes/customizer.php:280
+#: includes/customizer.php:281
 msgid ""
 "Paste your Google Analytics (or other) tracking code here. It will be "
 "inserted before the closing body tag of your theme."
@@ -619,6 +617,18 @@ msgstr "Follow us"
 #, php-format
 msgid "%1$s Collection"
 msgstr "%1$s Collection"
+
+#~ msgid "Newsletter form action URL"
+#~ msgstr "Newsletter form action URL"
+
+#~ msgid ""
+#~ "Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
+#~ "\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
+#~ "Monitor</a>"
+#~ msgstr ""
+#~ "Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
+#~ "\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
+#~ "Monitor</a>"
 
 #~ msgid ""
 #~ "We recommend using a square horizontal image that is at least %1$d pixels "
