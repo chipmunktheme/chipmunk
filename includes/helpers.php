@@ -84,10 +84,7 @@ if (!class_exists('ChipmunkHelpers'))
             'key'             => ChipmunkViewCounter::$db_key,
           )
         ),
-        'orderby'         => array(
-          'views'           => 'DESC',
-          'date'            => 'DESC',
-        ),
+        'orderby'         => 'rand',
       ));
 
       return $query->have_posts() ? $query : false;

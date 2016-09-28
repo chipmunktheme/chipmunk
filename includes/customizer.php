@@ -446,7 +446,7 @@ if (!class_exists('ChipmunkCustomizer'))
       foreach (self::$sections as $section)
         if (!empty($section['fields']))
           foreach($section['fields'] as $field)
-            if ($field['name'] === $name and !empty($field['default']))
+            if ($field['name'] === $name and !empty($field['default']) and !is_bool($field['default']))
               return $field['default'];
 
       return false;
