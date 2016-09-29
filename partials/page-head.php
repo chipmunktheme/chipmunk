@@ -14,11 +14,6 @@
 
       <nav class="nav-primary">
         <div class="nav-primary__inner">
-          <button type="button" class="nav-primary__close hidden-lg" data-nav-toggle>
-            <i class="icon icon_close" aria-hidden="true"></i>
-            <span class="sr-only"><?php _e('Close', 'chipmunk'); ?></span>
-          </button>
-
           <ul>
             <?php $menu_items = wp_get_nav_menu_items('Header nav'); ?>
 
@@ -36,6 +31,11 @@
               </li>
             <?php endif; ?>
           </ul>
+          
+          <button type="button" class="nav-primary__close hidden-lg" data-nav-toggle>
+            <i class="icon icon_close" aria-hidden="true"></i>
+            <span class="sr-only"><?php _e('Close', 'chipmunk'); ?></span>
+          </button>
         </div>
         <!-- /.nav-primary__inner -->
       </nav>

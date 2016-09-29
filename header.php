@@ -12,6 +12,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta name="description" content="<?php bloginfo('description'); ?>">
+  <meta name="robots" content="noodp">
 
   <?php if (ChipmunkCustomizer::theme_option('primary_font') != 'System') : ?>
     <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=<?php echo ChipmunkCustomizer::theme_option('primary_font'); ?>:400,700">

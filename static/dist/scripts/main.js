@@ -18807,6 +18807,7 @@ var Popup = function () {
 
   $trigger.on('click', function (ev) {
     ev.preventDefault();
+    $(document.body).removeClass('has-nav-open');
     $(document.body).toggleClass('has-popup-open');
     $('html, body').animate({ scrollTop: 0 }, 500);
   });
@@ -18868,6 +18869,9 @@ var Search = function () {
   $trigger.on('click', function (ev) {
     ev.preventDefault();
     $(document.body).toggleClass('has-search-open');
+
+    // Focus or blur search field depending on current state of search
+    $('input[type="search"]').trigger($(document.body).hasClass('has-search-open') ? 'focus' : 'blur');
   });
 };
 
