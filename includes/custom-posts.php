@@ -52,10 +52,12 @@ if (!class_exists('ChipmunkCustomPosts'))
         ),
         'hierarchical'      => true,
         'rewrite'           => array('with_front' => false, 'slug' => 'collection'),
+        'show_admin_column' => true,
       ));
 
       register_taxonomy('resource-tag', 'resource', array(
         'show_in_menu'      => false,
+        'show_admin_column' => true,
       ));
     }
 
