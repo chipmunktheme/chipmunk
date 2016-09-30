@@ -15,12 +15,17 @@
       <nav class="nav-primary">
         <div class="nav-primary__inner">
           <ul>
-            <?php $menu_items = wp_get_nav_menu_items('Header nav'); ?>
+            <?php $menu_name = 'nav-primary'; ?>
 
-            <?php if (!empty($menu_items)) : ?>
-              <?php foreach ($menu_items as $menu_item) : ?>
-                <li class="nav-primary__item<?php echo (is_page($menu_item->object_id) ? ' nav-primary__item_active' : ''); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
-              <?php endforeach; ?>
+            <?php if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) : ?>
+              <?php $menu = wp_get_nav_menu_object($locations[$menu_name]); ?>
+              <?php $menu_items = wp_get_nav_menu_items($menu->term_id); ?>
+
+              <?php if (!empty($menu_items)) : ?>
+                <?php foreach ($menu_items as $menu_item) : ?>
+                  <li class="nav-primary__item<?php echo (is_page($menu_item->object_id) ? ' nav-primary__item_active' : ''); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
+                <?php endforeach; ?>
+              <?php endif; ?>
             <?php endif; ?>
 
             <?php if (!ChipmunkCustomizer::theme_option('disable_submissions')) : ?>
@@ -31,7 +36,7 @@
               </li>
             <?php endif; ?>
           </ul>
-          
+
           <button type="button" class="nav-primary__close hidden-lg" data-nav-toggle>
             <i class="icon icon_close" aria-hidden="true"></i>
             <span class="sr-only"><?php _e('Close', 'chipmunk'); ?></span>

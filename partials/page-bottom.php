@@ -15,12 +15,17 @@
         <h4 class="heading heading_sm"><?php _e('Navigation', 'chipmunk'); ?></h4>
 
         <ul class="nav-secondary">
-          <?php $menu_items = wp_get_nav_menu_items('Footer nav'); ?>
+          <?php $menu_name = 'nav-secondary'; ?>
 
-          <?php if (!empty($menu_items)) : ?>
-            <?php foreach ($menu_items as $menu_item) : ?>
-              <li class="nav-secondary__item"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
-            <?php endforeach; ?>
+          <?php if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) : ?>
+            <?php $menu = wp_get_nav_menu_object($locations[$menu_name]); ?>
+            <?php $menu_items = wp_get_nav_menu_items($menu->term_id); ?>
+
+            <?php if (!empty($menu_items)) : ?>
+              <?php foreach ($menu_items as $menu_item) : ?>
+                <li class="nav-secondary__item"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
+              <?php endforeach; ?>
+            <?php endif; ?>
           <?php endif; ?>
 
           <?php if (!ChipmunkCustomizer::theme_option('disable_submissions')) : ?>
