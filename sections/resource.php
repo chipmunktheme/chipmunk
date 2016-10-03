@@ -24,8 +24,9 @@
               <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
             <?php endif; ?>
           </h2>
-          <?php if (!empty(get_the_content())) : ?>
-            <p class="resource__description"><?php echo get_the_content(); ?></p>
+          <?php $content = get_the_content(); ?>
+          <?php if (!empty($content)) : ?>
+            <p class="resource__description"><?php echo $content; ?></p>
           <?php endif; ?>
         </div>
 
