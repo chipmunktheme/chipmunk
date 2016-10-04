@@ -10,7 +10,7 @@
 
       <p class="form__message heading heading_thin" style="display: none;" data-remote-message></p>
 
-      <form action="#" method="post" class="form" data-remote-form="submit_resource" data-parsley-validate>
+      <form action="#" method="post" class="form" novalidate data-remote-form="submit_resource" data-parsley-validate>
         <div class="form__field">
           <div class="form__child">
             <input type="text" name="name" placeholder="<?php _e('Resource name', 'chipmunk'); ?>" required>
