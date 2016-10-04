@@ -15,6 +15,7 @@ window.jQuery = $;
   require('./modules/search')();
   require('./modules/popup')();
   require('./modules/extras')();
+  require('./modules/validate')();
   require('./modules/remote-form').init();
 
   var Tabs = require('./modules/tabs');

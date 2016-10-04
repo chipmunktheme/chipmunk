@@ -1357,7 +1357,7 @@ a, button {
 }
 .select2-container .select2-selection .select2-selection__arrow b {
   margin-left: -12px;
-  margin-top: -8px;
+  margin-top: -5px;
   border-color: #333333 transparent transparent;
   border-width: 15px 8px 0;
 }
@@ -1968,8 +1968,19 @@ a, button {
 .form textarea:focus {
   outline: none;
 }
+.form .parsley-errors-list.filled {
+  margin-top: 0.5rem;
+  text-align: left;
+}
+.form .parsley-errors-list.filled li {
+  color: #F74444;
+}
 .form_compact input,
 .form_compact textarea {
+  text-align: center;
+}
+.form_compact .parsley-errors-list.filled {
+  width: 100%;
   text-align: center;
 }
 .form__field {

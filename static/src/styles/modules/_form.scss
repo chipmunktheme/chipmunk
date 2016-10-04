@@ -36,9 +36,23 @@
     }
   }
 
+  .parsley-errors-list.filled {
+    margin-top: 0.5rem;
+    text-align: left;
+
+    li {
+      color: $color-status-error;
+    }
+  }
+
   &_compact {
     input,
     textarea {
+      text-align: center;
+    }
+
+    .parsley-errors-list.filled {
+      width: 100%;
       text-align: center;
     }
   }

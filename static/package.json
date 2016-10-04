@@ -2,6 +2,7 @@
   "dependencies": {
     "flexgridy": "^0.x",
     "jquery": "^3.1.0",
+    "parsleyjs": "^2.4.4",
     "select2": "^4.0.3",
     "slick-carousel": "^1.6.0"
   }

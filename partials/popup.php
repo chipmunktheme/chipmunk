@@ -10,7 +10,7 @@
 
       <p class="form__message heading heading_thin" style="display: none;" data-remote-message></p>
 
-      <form action="#" method="post" class="form" data-remote-form="submit_resource">
+      <form action="#" method="post" class="form" data-remote-form="submit_resource" data-parsley-validate>
         <div class="form__field">
           <div class="form__child">
             <input type="text" name="name" placeholder="<?php _e('Resource name', 'chipmunk'); ?>" required>
@@ -22,7 +22,7 @@
 
         <div class="form__field">
           <div class="form__child">
-            <select name="collection" data-placeholder="<?php _e('Collection', 'chipmunk'); ?>" class="custom-select" required>
+            <select name="collection" data-placeholder="<?php _e('Collection', 'chipmunk'); ?>" data-parsley-errors-container=".collection-errors" class="custom-select" required>
               <option value=""><?php _e('Collection', 'chipmunk'); ?></option>
               <?php
                 $collections = get_terms('resource-collection', array(
@@ -37,6 +37,8 @@
                 <?php endforeach; ?>
               <?php endif; ?>
             </select>
+
+            <div class="collection-errors"></div>
           </div>
           <div class="form__child">
             <input type="url" name="website" placeholder="<?php _e('Website URL', 'chipmunk'); ?>" required>
