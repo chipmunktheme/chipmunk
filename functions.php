@@ -164,12 +164,19 @@ class Chipmunk
       $description = str_replace('"', '\'', $description);
       ?>
 
-      <meta property="og:title" content="<?php the_title(); ?>">
+      <!-- / FB Open Graph -->
       <meta property="og:type" content="article">
-      <meta property="og:image" content="<?php echo isset($image) ? $image : $site_image; ?>">
       <meta property="og:url" content="<?php the_permalink(); ?>">
+      <meta property="og:title" content="<?php the_title(); ?>">
       <meta property="og:description" content="<?php echo $description ?>">
+      <meta property="og:image" content="<?php echo isset($image) ? $image : $site_image; ?>">
       <meta property="og:site_name" content="<?php echo get_bloginfo('name'); ?>">
+
+      <!-- / Twitter Cards -->
+      <meta name="twitter:card" content="<?php echo isset($image) ? 'summary_large_image' : 'summary'; ?>">
+      <meta name="twitter:title" content="<?php the_title(); ?>">
+      <meta name="twitter:description" content="<?php echo $description ?>">
+      <meta name="twitter:image" content="<?php echo isset($image) ? $image : $site_image; ?>">
 
       <?php
     }
@@ -177,11 +184,18 @@ class Chipmunk
     {
       ?>
 
-      <meta property="og:title" content="<?php bloginfo('name'); ?>">
-      <meta property="og:image" content="<?php echo $site_image; ?>">
-      <meta property="og:description" content="<?php bloginfo('description'); ?>">
+      <!-- / FB Open Graph -->
       <meta property="og:type" content="website">
       <meta property="og:url" content="<?php echo get_bloginfo('url'); ?>">
+      <meta property="og:title" content="<?php bloginfo('name'); ?>">
+      <meta property="og:description" content="<?php bloginfo('description'); ?>">
+      <meta property="og:image" content="<?php echo $site_image; ?>">
+
+      <!-- / Twitter Cards -->
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="<?php bloginfo('name'); ?>">
+      <meta name="twitter:description" content="<?php bloginfo('description'); ?>">
+      <meta name="twitter:image" content="<?php echo $site_image; ?>">
 
       <?php
     }
