@@ -2744,6 +2744,9 @@ a, button {
     padding-right: 2rem;
   }
 }
+.resource__description a:hover {
+  color: #333333;
+}
 .resource__actions {
   display: -webkit-box;
   display: -ms-flexbox;

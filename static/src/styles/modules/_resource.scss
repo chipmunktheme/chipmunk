@@ -77,6 +77,10 @@
   @include breakpoint(lg) {
     padding-right: $separator;
   }
+
+  a:hover {
+    color: $color-black;
+  }
 }
 
 .resource__actions {
