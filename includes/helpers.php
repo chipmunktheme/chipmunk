@@ -50,6 +50,8 @@ if (!class_exists('ChipmunkHelpers'))
       {
         $text = implode(' ', $words);
       }
+      
+      $text = str_replace('"', '\'', strip_tags($text));
 
       return apply_filters('wp_trim_excerpt', $text);
     }

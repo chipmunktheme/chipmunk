@@ -2,6 +2,9 @@
 <html <?php language_attributes(); ?>>
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="robots" content="noodp">
+
   <title>
     <?php if (wp_title('', false)) : ?>
       <?php wp_title(' - ', true, 'right'); ?>
@@ -10,9 +13,10 @@
     <?php bloginfo('name'); ?><?php if (is_front_page() and get_bloginfo('description')) : ?>: <?php bloginfo('description'); ?><?php endif; ?>
   </title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <meta name="description" content="<?php bloginfo('description'); ?>">
-  <meta name="robots" content="noodp">
+  <?php if (isset($post) and is_singular('resource')) : ?>
+    <?php $description = ChipmunkHelpers::custom_excerpt($post->post_content, $post->post_excerpt); ?>
+  <?php endif; ?>
+  <meta name="description" content="<?php echo (is_front_page() or !isset($description)) ? get_bloginfo('description') : $description; ?>">
 
   <?php if (ChipmunkCustomizer::theme_option('primary_font') != 'System') : ?>
     <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=<?php echo ChipmunkCustomizer::theme_option('primary_font'); ?>:400,700">
