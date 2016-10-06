@@ -4,6 +4,17 @@
     <div class="container">
       <h3 class="heading heading_md"><?php printf(__('%1$s Collection', 'chipmunk'), single_term_title(null, false)); ?></h3>
 
+      <?php $children_collections = get_term_children(get_queried_object()->term_id, 'resource-collection'); ?>
+
+      <?php if ($children_collections) : ?>
+        <div class="row">
+          <?php foreach ($children_collections as $collection) : ?>
+            <?php $collection = get_term_by('id', $collection, 'resource-collection'); ?>
+            <?php include locate_template('sections/collection-tile.php'); ?>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+
       <div class="row">
         <?php if (have_posts()) : ?>
           <?php while (have_posts()) : the_post(); ?>

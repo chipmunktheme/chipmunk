@@ -39,6 +39,7 @@ class Chipmunk
     add_filter('upload_mimes', array(&$this, 'cc_mime_types'));
     add_filter('pre_get_posts', array(&$this, 'update_search_query'));
     add_filter('pre_get_posts', array(&$this, 'update_main_query'));
+    add_filter('pre_get_posts', array(&$this, 'exclude_tax_children'));
 
     add_action('wp_ajax_submit_resource', array($ajax, 'submit_resource'));
     add_action('wp_ajax_nopriv_submit_resource', array($ajax, 'submit_resource'));
@@ -120,6 +121,22 @@ class Chipmunk
     }
 
     return $query;
+  }
+
+  /**
+   * Exclude children from taxonomy listing
+   */
+  public function exclude_tax_children($query)
+  {
+    if (isset ($query->query_vars['resource-collection']))
+    {
+      $query->set('tax_query', array(array(
+        'taxonomy'          => 'resource-collection',
+        'field'             => 'slug',
+        'terms'             => $query->query_vars['resource-collection'],
+        'include_children'  => false,
+      )));
+    }
   }
 
   /**

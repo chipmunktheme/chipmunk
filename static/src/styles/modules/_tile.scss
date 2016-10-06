@@ -9,7 +9,7 @@
   overflow: hidden;
 
   &:hover {
-    .tile__copy .icon {
+    .tile__copy .icon_arrow {
       transform: translateX(1em);
     }
 
@@ -129,10 +129,20 @@
   margin-bottom: 1rem;
   font-size: 1.4rem;
 
-  .icon {
+  .icon_arrow {
     margin-left: 0.5rem;
     font-size: 1.2rem;
     line-height: inherit;
     transition: transform $transition-speed ease-in-out 0.05s;
+  }
+
+  small {
+    float: right;
+
+    .icon {
+      line-height: inherit;
+      vertical-align: -0.01em;
+    }
+    // font-size: 0.8em;
   }
 }

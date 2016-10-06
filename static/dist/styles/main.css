@@ -719,50 +719,53 @@ a, button {
 .icon_close::before {
   content: '\EA05';
 }
-.icon_facebook::before {
+.icon_collection::before {
   content: '\EA06';
 }
-.icon_flickr::before {
+.icon_facebook::before {
   content: '\EA07';
 }
-.icon_google::before {
+.icon_flickr::before {
   content: '\EA08';
 }
-.icon_instagram::before {
+.icon_google::before {
   content: '\EA09';
 }
-.icon_link::before {
+.icon_instagram::before {
   content: '\EA0A';
 }
-.icon_pinterest::before {
+.icon_link::before {
   content: '\EA0B';
 }
-.icon_pocket::before {
+.icon_pinterest::before {
   content: '\EA0C';
 }
-.icon_producthunt::before {
+.icon_pocket::before {
   content: '\EA0D';
 }
-.icon_reddit::before {
+.icon_producthunt::before {
   content: '\EA0E';
 }
-.icon_search::before {
+.icon_reddit::before {
   content: '\EA0F';
 }
-.icon_tag::before {
+.icon_search::before {
   content: '\EA10';
 }
-.icon_twitter::before {
+.icon_tag::before {
   content: '\EA11';
 }
-.icon_view::before {
+.icon_twitter::before {
   content: '\EA12';
 }
-.icon_vimeo::before {
+.icon_view::before {
   content: '\EA13';
 }
-.icon_youtube::before {
+.icon_vimeo::before {
   content: '\EA14';
+}
+.icon_youtube::before {
+  content: '\EA15';
 }
 /*
 ** Common - Layout
@@ -2999,7 +3002,7 @@ a, button {
   margin-top: 2rem;
   overflow: hidden;
 }
-.tile:hover .tile__copy .icon, .tile:hover .tile__copy .slick-arrow::before {
+.tile:hover .tile__copy .icon_arrow {
   -webkit-transform: translateX(1em);
           transform: translateX(1em);
 }
@@ -3128,7 +3131,7 @@ a, button {
   margin-bottom: 1rem;
   font-size: 1.4rem;
 }
-.tile__copy .icon, .tile__copy .slick-arrow::before {
+.tile__copy .icon_arrow {
   margin-left: 0.5rem;
   font-size: 1.2rem;
   line-height: inherit;
@@ -3136,6 +3139,13 @@ a, button {
   transition: -webkit-transform 0.25s ease-in-out 0.05s;
   transition: transform 0.25s ease-in-out 0.05s;
   transition: transform 0.25s ease-in-out 0.05s, -webkit-transform 0.25s ease-in-out 0.05s;
+}
+.tile__copy small {
+  float: right;
+}
+.tile__copy small .icon, .tile__copy small .slick-arrow::before {
+  line-height: inherit;
+  vertical-align: -0.01em;
 }
 /*
 ** Module - Toolbox
