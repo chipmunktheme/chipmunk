@@ -16,12 +16,6 @@
             <input type="text" name="name" placeholder="<?php _e('Resource name', 'chipmunk'); ?>" required>
           </div>
           <div class="form__child">
-            <input type="text" name="content" placeholder="<?php _e('Description', 'chipmunk'); ?>">
-          </div>
-        </div>
-
-        <div class="form__field">
-          <div class="form__child">
             <select name="collection" data-placeholder="<?php _e('Collection', 'chipmunk'); ?>" data-parsley-errors-container=".collection-errors" class="custom-select" required>
               <option value=""><?php _e('Collection', 'chipmunk'); ?></option>
               <?php
@@ -39,6 +33,12 @@
             </select>
 
             <div class="collection-errors"></div>
+          </div>
+        </div>
+
+        <div class="form__field">
+          <div class="form__child">
+            <input type="text" name="content" placeholder="<?php _e('Description', 'chipmunk'); ?>">
           </div>
           <div class="form__child">
             <input type="url" name="website" placeholder="<?php _e('Website URL', 'chipmunk'); ?>" required>
