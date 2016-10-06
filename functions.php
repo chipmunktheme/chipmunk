@@ -173,7 +173,7 @@ class Chipmunk
 
       <?php
     }
-    elseif (is_home())
+    elseif (is_front_page())
     {
       ?>
 

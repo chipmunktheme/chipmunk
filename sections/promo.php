@@ -4,7 +4,7 @@ $ad_image_md = ChipmunkCustomizer::theme_option('ad_image_md');
 $ad_image_sm = ChipmunkCustomizer::theme_option('ad_image_sm');
 $enabled = !ChipmunkCustomizer::theme_option('disable_ads');
 
-$enabled_home = (is_home() or !ChipmunkCustomizer::theme_option('ads_only_home'));
+$enabled_home = (is_front_page() or !ChipmunkCustomizer::theme_option('ads_only_home'));
 $has_image = ($ad_image_lg or $ad_image_md or $ad_image_sm);
 $has_content = ($has_image or $ad_code = ChipmunkCustomizer::theme_option('ad_code'));
 ?>

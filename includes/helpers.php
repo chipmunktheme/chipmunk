@@ -9,6 +9,8 @@ if (!class_exists('ChipmunkHelpers'))
      */
     public static function truncate_string($str, $chars, $to_space = true, $replacement = '...')
     {
+      $str = strip_tags($str);
+
       if ($chars > strlen($str)) return $str;
 
       $str = substr($str, 0, $chars);

@@ -35,7 +35,7 @@
 
   <?php include locate_template('sections/pagination.php'); ?>
 
-  <?php if (!is_home()) : ?>
+  <?php if (!is_front_page()) : ?>
     <?php get_template_part('sections/promo'); ?>
   <?php endif; ?>
 </div>

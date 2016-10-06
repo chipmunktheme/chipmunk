@@ -7,7 +7,7 @@
       <?php wp_title(' - ', true, 'right'); ?>
     <?php endif; ?>
 
-    <?php bloginfo('name'); ?><?php if (is_home() and get_bloginfo('description')) : ?>: <?php bloginfo('description'); ?><?php endif; ?>
+    <?php bloginfo('name'); ?><?php if (is_front_page() and get_bloginfo('description')) : ?>: <?php bloginfo('description'); ?><?php endif; ?>
   </title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
