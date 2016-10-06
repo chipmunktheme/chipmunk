@@ -44,10 +44,10 @@
           <?php if (!empty($resource_website)) : ?>
             <a href="<?php echo $resource_website; ?>?ref=<?php echo sanitize_title(get_bloginfo('name')); ?>" target="_blank"><?php the_post_thumbnail('lg'); ?></a>
           <?php else : ?>
-            <?php the_post_thumbnail('lg'); ?>
+            <?php the_post_thumbnail('xl'); ?>
           <?php endif; ?>
         <?php else : ?>
-          <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('lg'); ?></a>
+          <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('xl'); ?></a>
         <?php endif; ?>
       </aside>
     </article>

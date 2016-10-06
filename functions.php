@@ -23,6 +23,7 @@ class Chipmunk
     add_theme_support('post-thumbnails');
 
     // Image sizes
+    add_image_size('xl', 1280, 888, true);
     add_image_size('lg', 640, 444, true);
     add_image_size('md', 460, 320, true);
     add_image_size('sm', 300, 210, true);
@@ -152,10 +153,10 @@ class Chipmunk
     {
       global $post;
 
-      if (get_the_post_thumbnail($post->ID, 'lg'))
+      if (get_the_post_thumbnail($post->ID, 'xl'))
       {
         $thumbnail_id     = get_post_thumbnail_id($post->ID);
-        $thumbnail_object = wp_get_attachment_image_src($thumbnail_id, 'lg');
+        $thumbnail_object = wp_get_attachment_image_src($thumbnail_id, 'xl');
         $image            = $thumbnail_object[0];
       }
 
