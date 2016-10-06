@@ -38,10 +38,10 @@
 
         <div class="form__field">
           <div class="form__child">
-            <input type="text" name="content" placeholder="<?php _e('Description', 'chipmunk'); ?>">
+            <input type="url" name="website" placeholder="<?php _e('Website URL', 'chipmunk'); ?>" required>
           </div>
           <div class="form__child">
-            <input type="url" name="website" placeholder="<?php _e('Website URL', 'chipmunk'); ?>" required>
+            <input type="text" name="content" placeholder="<?php _e('Description', 'chipmunk'); ?>">
           </div>
         </div>
 
