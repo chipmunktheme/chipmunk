@@ -12,7 +12,7 @@
       <?php $content = get_the_content(); ?>
 
       <?php if (!ChipmunkCustomizer::theme_option('disable_resource_desc') and !empty($content)) : ?>
-        <p class="tile__copy"><?php echo ChipmunkHelpers::truncate_string($content, 60); ?>&nbsp;<i class="icon icon_arrow"></i></p>
+        <p class="tile__copy"><?php echo ChipmunkHelpers::truncate_string(strip_tags($content), 60); ?>&nbsp;<i class="icon icon_arrow"></i></p>
       <?php endif; ?>
     </div>
 
