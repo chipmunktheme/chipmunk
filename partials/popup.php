@@ -22,6 +22,7 @@
                 $collections = get_terms('resource-collection', array(
                   'orderby'    => 'name',
                   'hide_empty' => 0,
+                  'parent'     => 0,
                 ));
               ?>
 

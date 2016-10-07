@@ -13,6 +13,8 @@
             <?php include locate_template('sections/collection-tile.php'); ?>
           <?php endforeach; ?>
         </div>
+
+        <div class="separator"></div>
       <?php endif; ?>
 
       <div class="row">
