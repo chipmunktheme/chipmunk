@@ -26,9 +26,9 @@
       </div>
     <?php else : ?>
       <?php if (current_user_can('publish_posts')) : ?>
-        <p class="text-empty"><?php printf(__('Ready to publish your first resource? <a href="%1$s">Get started here</a>.', 'chipmunk'), esc_url(admin_url('post-new.php?post_type=resource'))); ?></p>
+        <p class="text_content text_separated"><?php printf(__('Ready to publish your first resource? <a href="%1$s">Get started here</a>.', 'chipmunk'), esc_url(admin_url('post-new.php?post_type=resource'))); ?></p>
       <?php else : ?>
-        <p class="text-empty"><?php _e('Sorry, there are no resources to display yet.', 'chipmunk'); ?></p>
+        <p class="text_content text_separated"><?php _e('Sorry, there are no resources to display yet.', 'chipmunk'); ?></p>
       <?php endif; ?>
     <?php endif; ?>
   </div>

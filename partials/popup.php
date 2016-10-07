@@ -6,7 +6,7 @@
         <span class="sr-only"><?php _e('Close', 'chipmunk'); ?></span>
       </button>
 
-      <h2 class="heading heading_xl text-center"><?php _e('Submit', 'chipmunk'); ?></h2>
+      <h2 class="heading heading_xl text_center"><?php _e('Submit', 'chipmunk'); ?></h2>
 
       <p class="form__message heading heading_thin" style="display: none;" data-remote-message></p>
 

@@ -1511,21 +1511,6 @@ a, button {
   display: table;
   clear: both;
 }
-.text-center {
-  text-align: center;
-}
-.text-left {
-  text-align: left;
-}
-.text-right {
-  text-align: right;
-}
-.text-empty {
-  margin-top: 1em;
-}
-.text-empty a:hover {
-  color: #333333;
-}
 /*
 ** Utils - Responsive
 ** -----------------------------------------------------------------------------*/
@@ -1672,6 +1657,24 @@ a, button {
 }
 .tabs__item.active {
   display: block;
+}
+/*
+** Utils - Text
+** -----------------------------------------------------------------------------*/
+.text_center {
+  text-align: center;
+}
+.text_left {
+  text-align: left;
+}
+.text_right {
+  text-align: right;
+}
+.text_content a:hover {
+  color: #333333;
+}
+.text_separated {
+  margin-top: 1em;
 }
 /*
 ** Module - Button

@@ -1,0 +1,27 @@
+/*
+** Utils - Text
+** -----------------------------------------------------------------------------*/
+
+.text {
+  &_center {
+    text-align: center;
+  }
+
+  &_left {
+    text-align: left;
+  }
+
+  &_right {
+    text-align: right;
+  }
+
+  &_content {
+    a:hover {
+      color: $color-black;
+    }
+  }
+
+  &_separated {
+    margin-top: 1em;
+  }
+}

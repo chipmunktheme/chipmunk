@@ -1,12 +1,19 @@
 <?php get_header(); ?>
+<?php $term = get_queried_object(); ?>
 
   <div class="section section_theme-gray">
     <div class="container">
       <h3 class="heading heading_md"><?php printf(__('%1$s Collection', 'chipmunk'), single_term_title(null, false)); ?></h3>
 
-      <?php $children_collections = get_term_children(get_queried_object()->term_id, 'resource-collection'); ?>
+      <?php if (!empty($term->description)) : ?>
+        <div class="row">
+          <div class="column column_lg-8">
+            <p class="text_content"><?php echo $term->description; ?></p>
+          </div>
+        </div>
+      <?php endif; ?>
 
-      <?php if ($children_collections) : ?>
+      <?php if ($children_collections = get_term_children($term->term_id, 'resource-collection')) : ?>
         <div class="row">
           <?php foreach ($children_collections as $collection) : ?>
             <?php $collection = get_term_by('id', $collection, 'resource-collection'); ?>
@@ -14,7 +21,9 @@
           <?php endforeach; ?>
         </div>
 
-        <div class="separator"></div>
+        <?php if (have_posts()) : ?>
+          <div class="separator"></div>
+        <?php endif; ?>
       <?php endif; ?>
 
       <div class="row">
@@ -24,13 +33,13 @@
               <?php get_template_part('sections/resource-tile'); ?>
 
           <?php endwhile; wp_reset_postdata(); ?>
-        <?php else : ?>
+        <?php elseif (empty($children_collections)) : ?>
 
           <div class="column">
             <?php if (current_user_can('publish_posts')) : ?>
-              <p class="text-empty"><?php printf(__('Ready to publish your first resource? <a href="%1$s">Get started here</a>.', 'chipmunk'), esc_url(admin_url('post-new.php?post_type=resource'))); ?></p>
+              <p class="text_content text_separated"><?php printf(__('Ready to publish your first resource? <a href="%1$s">Get started here</a>.', 'chipmunk'), esc_url(admin_url('post-new.php?post_type=resource'))); ?></p>
             <?php else : ?>
-              <p class="text-empty"><?php _e('Sorry, there are no resources to display yet.', 'chipmunk'); ?></p>
+              <p class="text_content text_separated"><?php _e('Sorry, there are no resources to display yet.', 'chipmunk'); ?></p>
             <?php endif; ?>
           </div>
 

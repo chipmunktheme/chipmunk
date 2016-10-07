@@ -128,7 +128,7 @@ class Chipmunk
    */
   public function exclude_tax_children($query)
   {
-    if (isset ($query->query_vars['resource-collection']))
+    if (isset($query->query_vars['resource-collection']))
     {
       $query->set('tax_query', array(array(
         'taxonomy'          => 'resource-collection',

@@ -31,25 +31,3 @@
 .clearfix {
   @include clearfix;
 }
-
-.text-center {
-  text-align: center;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-empty {
-  margin-top: 1em;
-
-  a {
-    &:hover {
-      color: $color-black;
-    }
-  }
-}

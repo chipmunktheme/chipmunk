@@ -36,8 +36,8 @@
     </div>
 
     <ul class="stats">
-      <?php if ($children_collections = get_term_children($collection->term_id, 'resource-collection')) : ?>
-        <li class="stats__item" title="<?php _e('Sub collections', 'chipmunk'); ?>"><i class="icon icon_collection" aria-hidden="true"></i> <?php echo count($children_collections); ?></li>
+      <?php if ($term_children = get_term_children($collection->term_id, 'resource-collection')) : ?>
+        <li class="stats__item" title="<?php _e('Sub collections', 'chipmunk'); ?>"><i class="icon icon_collection" aria-hidden="true"></i> <?php echo count($term_children); ?></li>
       <?php endif; ?>
       <li class="stats__item" title="<?php _e('Resources', 'chipmunk'); ?>"><i class="icon icon_link" aria-hidden="true"></i> <?php echo $collection->count; ?></li>
     </ul>

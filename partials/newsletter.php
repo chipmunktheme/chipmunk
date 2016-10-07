@@ -1,5 +1,5 @@
 <?php if (!ChipmunkCustomizer::theme_option('disable_newsletter') and $action = ChipmunkCustomizer::theme_option('newsletter_action')) : ?>
-  <div class="section section_theme-primary text-center">
+  <div class="section section_theme-primary text_center">
     <div class="container">
       <h2 class="heading heading_xl"><?php _e('Newsletter', 'chipmunk'); ?></h2>
       <p class="heading heading_thin"><?php echo ChipmunkCustomizer::theme_option('newsletter_tagline'); ?></p>
