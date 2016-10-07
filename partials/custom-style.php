@@ -24,7 +24,9 @@
     .popup__close:hover,
     .popup__close:hover,
     .popup__close:hover,
-    .section_theme-primary .button_secondary:hover {
+    .section_theme-primary .button_secondary:hover,
+    .search-bar__icon:hover,
+    .search-bar__close:hover {
       color: <?php echo $primary_color; ?>;
     }
 
