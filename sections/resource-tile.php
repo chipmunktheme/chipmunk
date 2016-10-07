@@ -12,11 +12,11 @@
       <?php $content = get_the_content(); ?>
 
       <?php if (!ChipmunkCustomizer::theme_option('disable_resource_desc') and !empty($content)) : ?>
-        <p class="tile__copy"><?php echo ChipmunkHelpers::truncate_string($content, 60); ?>&nbsp;<i class="icon icon_arrow"></i></p>
+        <p class="tile__copy"><?php echo ChipmunkHelpers::truncate_string($content, (ChipmunkCustomizer::theme_option('display_resource_cards') ? 80 : 60)); ?>&nbsp;<i class="icon icon_arrow"></i></p>
       <?php endif; ?>
     </div>
 
-    <ul class="stats">
+    <ul class="tile__stats stats">
       <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> <?php echo get_post_time('j. F', true, get_the_ID(), true); ?></li>
 
       <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>

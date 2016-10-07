@@ -10,7 +10,8 @@
 
   &:hover {
     .tile__copy .icon_arrow {
-      transform: translateX(1em);
+      margin-left: 1.5rem;
+      margin-right: -1rem;
     }
 
     .tile__image img {
@@ -26,6 +27,11 @@
 
   &_card {
     margin-bottom: $separator;
+    overflow: visible;
+
+    .tile__copy .icon_arrow {
+      display: none;
+    }
 
     &:hover .tile__image {
       opacity: 0.8;
@@ -123,17 +129,23 @@
   font-size: 2.2rem;
   font-weight: bold;
   line-height: 1.2;
+
+  .tile_card & {
+    margin-bottom: 1rem;
+  }
 }
 
 .tile__copy {
   margin-bottom: 1rem;
   font-size: 1.4rem;
+  opacity: 0.85;
 
   .icon_arrow {
+    display: inline;
     margin-left: 0.5rem;
     font-size: 1.2rem;
     line-height: inherit;
-    transition: transform $transition-speed ease-in-out 0.05s;
+    transition: margin $transition-speed ease-in-out 0.05s;
   }
 
   small {
@@ -143,6 +155,15 @@
       line-height: inherit;
       vertical-align: -0.01em;
     }
-    // font-size: 0.8em;
+  }
+
+  .tile_card & {
+    opacity: 1;
+  }
+}
+
+.tile__stats {
+  .tile_card & {
+    color: $color-gray;
   }
 }

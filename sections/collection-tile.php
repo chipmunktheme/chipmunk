@@ -35,7 +35,7 @@
       <p class="tile__copy"><?php _e('View this collection', 'chipmunk'); ?>&nbsp;<i class="icon icon_arrow" aria-hidden="true"></i></p>
     </div>
 
-    <ul class="stats">
+    <ul class="tile__stats stats">
       <?php if ($term_children = get_term_children($collection->term_id, 'resource-collection')) : ?>
         <li class="stats__item" title="<?php _e('Sub collections', 'chipmunk'); ?>"><i class="icon icon_collection" aria-hidden="true"></i> <?php echo count($term_children); ?></li>
       <?php endif; ?>
