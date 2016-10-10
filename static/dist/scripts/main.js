@@ -21132,8 +21132,11 @@ require('slick-carousel');
 
 var Extras = function () {
   // Custom select
-  $('.custom-select').select2({
-    minimumResultsForSearch: Infinity
+  $('.custom-select').each(function () {
+    var $select2 = $(this).select2({
+      minimumResultsForSearch: Infinity,
+      dropdownParent: $(this).parent()
+    });
   });
 
   // Resources carousel

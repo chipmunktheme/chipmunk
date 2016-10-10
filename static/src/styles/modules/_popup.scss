@@ -53,6 +53,7 @@
   margin-top: $separator * 2;
   background-color: $color-white;
   opacity: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   transform: scale(0.95) translateY(-7.5%);

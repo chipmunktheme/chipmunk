@@ -1,0 +1,51 @@
+/*
+** Utils - Sort
+** -----------------------------------------------------------------------------*/
+
+.sort__select {
+  ~ .select2-container {
+    width: auto !important;
+    min-width: 150px;
+
+    .select2-dropdown {
+      background-color: $color-gray-lighter;
+      border-color: $color-gray;
+    }
+
+    .select2-results__option {
+      padding: 5px $separator;
+      font-size: 1.4rem;
+
+      @include breakpoint(lg) {
+        font-size: 1.6rem;
+      }
+    }
+
+    .select2-selection {
+      .select2-selection__rendered {
+        font-size: 1.4rem;
+
+        @include breakpoint(lg) {
+          border-bottom-width: 2px;
+          font-size: 1.6rem;
+        }
+      }
+
+      .select2-selection__arrow {
+        height: 27px;
+
+        b {
+          margin-left: -5px;
+          margin-top: -2px;
+          border-color: $color-black transparent transparent;
+          border-width: 10px 6px 0;
+        }
+      }
+    }
+  }
+}
+
+.sort__title {
+  display: inline-block;
+  margin-right: $separator;
+}

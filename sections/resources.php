@@ -8,13 +8,31 @@
 
 <div class="section section_theme-gray">
   <div class="container">
-    <h3 class="heading heading_md">
-      <?php if (is_single()) : ?>
-        <?php _e('Related', 'chipmunk'); ?>
-      <?php else : ?>
-        <?php _e('Resources', 'chipmunk'); ?>
-      <?php endif; ?>
-    </h3>
+    <?php if (is_single()) : ?>
+      <h3 class="heading heading_md"><?php _e('Related', 'chipmunk'); ?></h3>
+    <?php else : ?>
+      <div class="row">
+        <div class="column column_sm-3 column_lg-6">
+          <h3 class="heading heading_md"><?php _e('Resources', 'chipmunk'); ?></h3>
+        </div>
+
+        <div class="sort column column_sm-3 column_lg-6 text_right">
+          <h4 class="sort__title">Sort by:</h4>
+
+          <select class="sort__select custom-select" data-custom-class="sort__select">
+            <option value="date-desc"><?php _e('Date', 'chipmunk'); ?> &darr;</option>
+            <option value="date-asc"><?php _e('Date', 'chipmunk'); ?> &uarr;</option>
+            <option value="name-desc"><?php _e('Name', 'chipmunk'); ?> &darr;</option>
+            <option value="name-asc"><?php _e('Name', 'chipmunk'); ?> &uarr;</option>
+
+            <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>
+              <option value="popularity-desc"><?php _e('Popularity', 'chipmunk'); ?> &darr;</option>
+              <option value="popularity-asc"><?php _e('Popularity', 'chipmunk'); ?> &uarr;</option>
+            <?php endif; ?>
+          </select>
+        </div>
+      </div>
+    <?php endif; ?>
 
     <?php if ($custom_query and $custom_query->have_posts()) : ?>
       <div class="row">
