@@ -113,6 +113,12 @@ if (!class_exists('ChipmunkCustomizer'))
               'default'     => false,
             ),
             array(
+              'name'        => 'disable_sorting',
+              'type'        => 'checkbox',
+              'label'       => __('Disable sorting', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
               'name'        => 'disable_collection_thumbs',
               'type'        => 'checkbox',
               'label'       => __('Disable collection thumbs', 'chipmunk'),

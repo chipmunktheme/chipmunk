@@ -21098,6 +21098,7 @@ window.jQuery = $;
   require('./modules/popup')();
   require('./modules/extras')();
   require('./modules/validate')();
+  require('./modules/sort')();
   require('./modules/remote-form').init();
 
   var Tabs = require('./modules/tabs');
@@ -21120,7 +21121,7 @@ document.addEventListener('click', function (ev) {
   }
 });
 
-},{"./modules/extras":6,"./modules/nav":7,"./modules/popup":8,"./modules/remote-form":9,"./modules/search":10,"./modules/tabs":11,"./modules/validate":12,"jquery":1}],6:[function(require,module,exports){
+},{"./modules/extras":6,"./modules/nav":7,"./modules/popup":8,"./modules/remote-form":9,"./modules/search":10,"./modules/sort":11,"./modules/tabs":12,"./modules/validate":13,"jquery":1}],6:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21246,7 +21247,7 @@ var RemoteForm = {
 
 module.exports = RemoteForm;
 
-},{"../utils/helpers":13,"jquery":1}],10:[function(require,module,exports){
+},{"../utils/helpers":14,"jquery":1}],10:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21266,6 +21267,36 @@ var Search = function () {
 module.exports = Search;
 
 },{"jquery":1}],11:[function(require,module,exports){
+'use strict';
+
+var $ = require('jquery');
+
+var Sort = function () {
+  $('[data-sort]').on('change', function () {
+    var URIParams = window.location.search;
+    var sortSlug = 'sort';
+
+    // Update URI params
+    if (URIParams === '') {
+      URIParams = '?' + sortSlug + '=' + $(this).val();
+    } else if (URIParams.indexOf(sortSlug) >= 0) {
+      URIParams = URIParams.replace(new RegExp(sortSlug + '=[a-z,-]+', 'g'), sortSlug + '=' + $(this).val());
+    } else {
+      URIParams = URIParams + '&' + sortSlug + '=' + $(this).val();
+    }
+
+    if (!window.location.origin) {
+      window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
+    }
+
+    window.location = window.location.origin + window.location.pathname + URIParams;
+    return false;
+  });
+};
+
+module.exports = Sort;
+
+},{"jquery":1}],12:[function(require,module,exports){
 'use strict';
 
 var Tabs = function (tabsClass) {
@@ -21299,7 +21330,7 @@ Tabs.prototype.bind = function() {
 
 module.exports = Tabs;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21315,7 +21346,7 @@ var Validate = function () {
 
 module.exports = Validate;
 
-},{"jquery":1,"parsleyjs":2}],13:[function(require,module,exports){
+},{"jquery":1,"parsleyjs":2}],14:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');

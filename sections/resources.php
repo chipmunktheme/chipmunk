@@ -16,21 +16,7 @@
           <h3 class="heading heading_md"><?php _e('Resources', 'chipmunk'); ?></h3>
         </div>
 
-        <div class="sort column column_sm-3 column_lg-6 text_right">
-          <h4 class="sort__title">Sort by:</h4>
-
-          <select class="sort__select custom-select" data-custom-class="sort__select">
-            <option value="date-desc"><?php _e('Date', 'chipmunk'); ?> &darr;</option>
-            <option value="date-asc"><?php _e('Date', 'chipmunk'); ?> &uarr;</option>
-            <option value="name-desc"><?php _e('Name', 'chipmunk'); ?> &darr;</option>
-            <option value="name-asc"><?php _e('Name', 'chipmunk'); ?> &uarr;</option>
-
-            <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>
-              <option value="popularity-desc"><?php _e('Popularity', 'chipmunk'); ?> &darr;</option>
-              <option value="popularity-asc"><?php _e('Popularity', 'chipmunk'); ?> &uarr;</option>
-            <?php endif; ?>
-          </select>
-        </div>
+        <?php get_template_part('partials/sort-resources'); ?>
       </div>
     <?php endif; ?>
 
