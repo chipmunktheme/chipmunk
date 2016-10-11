@@ -3,7 +3,17 @@
 
   <div class="section section_theme-gray">
     <div class="container">
-      <h3 class="heading heading_md"><?php printf(__('%1$s Collection', 'chipmunk'), single_term_title(null, false)); ?></h3>
+      <h3 class="heading heading_md">
+        <?php single_term_title(); ?>
+
+        <?php if (is_tax('resource-tag')) : ?>
+          <?php _e('Tag', 'chipmunk'); ?>
+        <?php endif; ?>
+
+        <?php if (is_tax('resource-collection')) : ?>
+          <?php _e('Collection', 'chipmunk'); ?>
+        <?php endif; ?>
+      </h3>
 
       <?php if (!empty($term->description)) : ?>
         <div class="row">

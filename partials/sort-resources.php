@@ -1,6 +1,6 @@
 <?php if (!ChipmunkCustomizer::theme_option('disable_sorting')) : ?>
   <div class="sort text_right column column_sm-3 column_lg-6">
-    <h4 class="sort__title">Sort by:</h4>
+    <h4 class="sort__title"><?php _e('Sort by', 'chipmunk'); ?>:</h4>
 
     <select class="sort__select custom-select" data-sort>
       <option value="date-desc" <?php if (isset($_GET['sort']) and $_GET['sort'] == 'date-desc') echo 'selected'; ?>><?php _e('Date', 'chipmunk'); ?> &darr;</option>

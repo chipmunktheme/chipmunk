@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-09-27 09:55+0200\n"
-"PO-Revision-Date: 2016-09-27 09:56+0200\n"
+"POT-Creation-Date: 2016-10-11 11:01+0200\n"
+"PO-Revision-Date: 2016-10-11 11:01+0200\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -25,21 +25,31 @@ msgstr "404! The page you are looking for couldn’t be found."
 msgid "Bring me to the frontpage"
 msgstr "Bring me to the frontpage"
 
+#: functions.php:181
+#, php-format
+msgid "Search results for %s"
+msgstr "Search results for %s"
+
+#: functions.php:184 functions.php:201
+#, php-format
+msgid "Page %s"
+msgstr "Page %s"
+
 #: includes/ajax.php:15
 msgid "Please verify that you are not a robot."
 msgstr "Please verify that you are not a robot."
 
-#: includes/ajax.php:66
+#: includes/ajax.php:68
 msgid "New user submission"
 msgstr "New user submission"
 
-#: includes/ajax.php:73
+#: includes/ajax.php:75
 msgid "Review submission"
 msgstr "Review submission"
 
 #: includes/custom-posts.php:17 includes/custom-posts.php:19
-#: includes/customizer.php:69 sections/collections.php:53
-#: sections/resources.php:15
+#: includes/customizer.php:69 sections/collection-tile.php:42
+#: sections/resources.php:16
 msgid "Resources"
 msgstr "Resources"
 
@@ -47,7 +57,7 @@ msgstr "Resources"
 msgid "Resource"
 msgstr "Resource"
 
-#: includes/custom-posts.php:21 includes/custom-posts.php:70
+#: includes/custom-posts.php:21 includes/custom-posts.php:72
 msgid "Add New"
 msgstr "Add New"
 
@@ -92,8 +102,8 @@ msgstr "No resources found in Trash."
 msgid "Collections"
 msgstr "Collections"
 
-#: includes/custom-posts.php:42 partials/popup.php:25 partials/popup.php:26
-#: sections/resource.php:9
+#: includes/custom-posts.php:42 partials/popup.php:19 partials/popup.php:20
+#: sections/resource.php:9 taxonomy.php:14
 msgid "Collection"
 msgstr "Collection"
 
@@ -129,48 +139,48 @@ msgstr "Add New Collection"
 msgid "New Collection Name"
 msgstr "New Collection Name"
 
-#: includes/custom-posts.php:66 includes/custom-posts.php:68
+#: includes/custom-posts.php:68 includes/custom-posts.php:70
 #: sections/curators.php:4
 msgid "Curators"
 msgstr "Curators"
 
-#: includes/custom-posts.php:67 includes/custom-posts.php:69
+#: includes/custom-posts.php:69 includes/custom-posts.php:71
 msgid "Curator"
 msgstr "Curator"
 
-#: includes/custom-posts.php:71
+#: includes/custom-posts.php:73
 msgid "Add New Curator"
 msgstr "Add New Curator"
 
-#: includes/custom-posts.php:72
+#: includes/custom-posts.php:74
 msgid "New Curator"
 msgstr "New Curator"
 
-#: includes/custom-posts.php:73
+#: includes/custom-posts.php:75
 msgid "Edit Curator"
 msgstr "Edit Curator"
 
-#: includes/custom-posts.php:74
+#: includes/custom-posts.php:76
 msgid "View Curator"
 msgstr "View Curator"
 
-#: includes/custom-posts.php:75
+#: includes/custom-posts.php:77
 msgid "All Curators"
 msgstr "All Curators"
 
-#: includes/custom-posts.php:76
+#: includes/custom-posts.php:78
 msgid "Search Curators"
 msgstr "Search Curators"
 
-#: includes/custom-posts.php:77
+#: includes/custom-posts.php:79
 msgid "Parent Curator:"
 msgstr "Parent Curator:"
 
-#: includes/custom-posts.php:78
+#: includes/custom-posts.php:80
 msgid "No curators found."
 msgstr "No curators found."
 
-#: includes/custom-posts.php:79
+#: includes/custom-posts.php:81
 msgid "No curators found in Trash."
 msgstr "No curators found in Trash."
 
@@ -247,34 +257,38 @@ msgid "Disable view count"
 msgstr "Disable view count"
 
 #: includes/customizer.php:118
+msgid "Disable sorting"
+msgstr "Disable sorting"
+
+#: includes/customizer.php:124
 msgid "Disable collection thumbs"
 msgstr "Disable collection thumbs"
 
-#: includes/customizer.php:125
+#: includes/customizer.php:131
 msgid "Submissions"
 msgstr "Submissions"
 
-#: includes/customizer.php:131
+#: includes/customizer.php:137
 msgid "Disable user submissions"
 msgstr "Disable user submissions"
 
-#: includes/customizer.php:137
+#: includes/customizer.php:143
 msgid "Inform me about new submissions"
 msgstr "Inform me about new submissions"
 
-#: includes/customizer.php:150
+#: includes/customizer.php:156
 msgid "Submission tagline"
 msgstr "Submission tagline"
 
-#: includes/customizer.php:151
+#: includes/customizer.php:157
 msgid "Internet is huge! Help us find great content"
 msgstr "Internet is huge! Help us find great content"
 
-#: includes/customizer.php:156
+#: includes/customizer.php:162
 msgid "Submission \"Thank You\" message"
 msgstr "Submission \"Thank You\" message"
 
-#: includes/customizer.php:157
+#: includes/customizer.php:163
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
@@ -282,48 +296,48 @@ msgstr ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
 
-#: includes/customizer.php:162
+#: includes/customizer.php:168
 msgid "Submission \"Failure\" message"
 msgstr "Submission \"Failure\" message"
 
-#: includes/customizer.php:163
+#: includes/customizer.php:169
 msgid "Your submission could not be processed."
 msgstr "Your submission could not be processed."
 
-#: includes/customizer.php:168
+#: includes/customizer.php:174
 msgid "reCAPTCHA Site key"
 msgstr "reCAPTCHA Site key"
 
-#: includes/customizer.php:169
+#: includes/customizer.php:175
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 msgstr "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 
-#: includes/customizer.php:175
+#: includes/customizer.php:181
 msgid "Social Profiles"
 msgstr "Social Profiles"
 
-#: includes/customizer.php:181
+#: includes/customizer.php:187
 msgid "Ads"
 msgstr "Ads"
 
-#: includes/customizer.php:187
+#: includes/customizer.php:193
 msgid "Disable ads"
 msgstr "Disable ads"
 
-#: includes/customizer.php:193
+#: includes/customizer.php:199
 msgid "Show ads only on homepage"
 msgstr "Show ads only on homepage"
 
-#: includes/customizer.php:199
+#: includes/customizer.php:205
 msgid "Ad link URL"
 msgstr "Ad link URL"
 
-#: includes/customizer.php:204
+#: includes/customizer.php:210
 msgid "Ad image (Desktop)"
 msgstr "Ad image (Desktop)"
 
-#: includes/customizer.php:205 includes/customizer.php:211
+#: includes/customizer.php:211 includes/customizer.php:217
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
@@ -332,15 +346,15 @@ msgstr ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
 "wide."
 
-#: includes/customizer.php:210
+#: includes/customizer.php:216
 msgid "Ad image (Tablet)"
 msgstr "Ad image (Tablet)"
 
-#: includes/customizer.php:216
+#: includes/customizer.php:222
 msgid "Ad image (Mobile)"
 msgstr "Ad image (Mobile)"
 
-#: includes/customizer.php:217
+#: includes/customizer.php:223
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
@@ -349,11 +363,11 @@ msgstr ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
 "wide."
 
-#: includes/customizer.php:222
+#: includes/customizer.php:228
 msgid "Ad HTML code"
 msgstr "Ad HTML code"
 
-#: includes/customizer.php:223
+#: includes/customizer.php:229
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
@@ -361,19 +375,19 @@ msgstr ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
 
-#: includes/customizer.php:229 partials/newsletter.php:4
+#: includes/customizer.php:235 partials/newsletter.php:4
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: includes/customizer.php:235
+#: includes/customizer.php:241
 msgid "Disable newsletter"
 msgstr "Disable newsletter"
 
-#: includes/customizer.php:241
+#: includes/customizer.php:247
 msgid "Mailchimp form action URL"
 msgstr "Mailchimp form action URL"
 
-#: includes/customizer.php:243
+#: includes/customizer.php:249
 #, php-format
 msgid ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
@@ -382,31 +396,31 @@ msgstr ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
 "URL?</a>"
 
-#: includes/customizer.php:248
+#: includes/customizer.php:254
 msgid "Newsletter tagline"
 msgstr "Newsletter tagline"
 
-#: includes/customizer.php:249
+#: includes/customizer.php:255
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr "Never miss a thing! Sign up for our newsletter to stay updated."
 
-#: includes/customizer.php:255
+#: includes/customizer.php:261
 msgid "Theme Options"
 msgstr "Theme Options"
 
-#: includes/customizer.php:261
+#: includes/customizer.php:267
 msgid "Disable theme credits"
 msgstr "Disable theme credits"
 
-#: includes/customizer.php:267
+#: includes/customizer.php:273
 msgid "Disable search"
 msgstr "Disable search"
 
-#: includes/customizer.php:273
+#: includes/customizer.php:279
 msgid "About copy (footer)"
 msgstr "About copy (footer)"
 
-#: includes/customizer.php:275
+#: includes/customizer.php:281
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
@@ -414,11 +428,11 @@ msgstr ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
 
-#: includes/customizer.php:280
+#: includes/customizer.php:286
 msgid "Tracking code"
 msgstr "Tracking code"
 
-#: includes/customizer.php:281
+#: includes/customizer.php:287
 msgid ""
 "Paste your Google Analytics (or other) tracking code here. It will be "
 "inserted before the closing body tag of your theme."
@@ -483,13 +497,13 @@ msgstr "About"
 msgid "Navigation"
 msgstr "Navigation"
 
-#: partials/page-bottom.php:27 partials/page-head.php:34
-#: partials/page-head.php:54 partials/popup.php:9 partials/popup.php:63
+#: partials/page-bottom.php:32 partials/page-head.php:34
+#: partials/page-head.php:59 partials/popup.php:9 partials/popup.php:66
 #: sections/toolbox.php:46
 msgid "Submit"
 msgstr "Submit"
 
-#: partials/page-bottom.php:33
+#: partials/page-bottom.php:38
 msgid "Follow"
 msgstr "Follow"
 
@@ -497,15 +511,15 @@ msgstr "Follow"
 msgid "Chipmunk WordPress Theme"
 msgstr "Chipmunk WordPress Theme"
 
-#: partials/page-head.php:19 partials/popup.php:6 partials/search-bar.php:11
+#: partials/page-head.php:42 partials/popup.php:6 partials/search-bar.php:11
 msgid "Close"
 msgstr "Close"
 
-#: partials/page-head.php:48
+#: partials/page-head.php:53
 msgid "Search"
 msgstr "Search"
 
-#: partials/page-head.php:59
+#: partials/page-head.php:64
 msgid "Menu"
 msgstr "Menu"
 
@@ -513,15 +527,15 @@ msgstr "Menu"
 msgid "Resource name"
 msgstr "Resource name"
 
-#: partials/popup.php:19
+#: partials/popup.php:45
 msgid "Description"
 msgstr "Description"
 
-#: partials/popup.php:49
+#: partials/popup.php:52
 msgid "Your name"
 msgstr "Your name"
 
-#: partials/popup.php:52
+#: partials/popup.php:55
 msgid "Your email"
 msgstr "Your email"
 
@@ -537,6 +551,22 @@ msgstr "3 characters minimum"
 msgid "Share"
 msgstr "Share"
 
+#: partials/sort-resources.php:3
+msgid "Sort by"
+msgstr "Sort by"
+
+#: partials/sort-resources.php:6 partials/sort-resources.php:7
+msgid "Date"
+msgstr "Date"
+
+#: partials/sort-resources.php:8 partials/sort-resources.php:9
+msgid "Name"
+msgstr "Name"
+
+#: partials/sort-resources.php:12 partials/sort-resources.php:13
+msgid "Popularity"
+msgstr "Popularity"
+
 #: search.php:12
 msgid "Search results for:"
 msgstr "Search results for:"
@@ -545,11 +575,15 @@ msgstr "Search results for:"
 msgid "Sorry, your search did not match any resources."
 msgstr "Sorry, your search did not match any resources."
 
-#: sections/collections.php:49
+#: sections/collection-tile.php:35
 msgid "View this collection"
 msgstr "View this collection"
 
-#: sections/collections.php:61
+#: sections/collection-tile.php:40
+msgid "Sub collections"
+msgstr "Sub collections"
+
+#: sections/collections.php:27
 #, php-format
 msgid ""
 "Ready to publish your first collection? <a href=\"%1$s\">Get started here</"
@@ -558,7 +592,7 @@ msgstr ""
 "Ready to publish your first collection? <a href=\"%1$s\">Get started here</"
 "a>."
 
-#: sections/collections.php:63
+#: sections/collections.php:29
 msgid "Sorry, there are no collections to display yet."
 msgstr "Sorry, there are no collections to display yet."
 
@@ -570,15 +604,15 @@ msgstr "Previous"
 msgid "Next"
 msgstr "Next"
 
-#: sections/resource-tile.php:18 sections/resource.php:12
+#: sections/resource-tile.php:20 sections/resource.php:12
 msgid "Published"
 msgstr "Published"
 
-#: sections/resource-tile.php:21 sections/resource.php:15
+#: sections/resource-tile.php:23 sections/resource.php:15
 msgid "Views"
 msgstr "Views"
 
-#: sections/resource.php:34
+#: sections/resource.php:35
 msgid "Visit website"
 msgstr "Visit website"
 
@@ -594,18 +628,18 @@ msgstr "Latest"
 msgid "Popular"
 msgstr "Popular"
 
-#: sections/resources.php:13
+#: sections/resources.php:12
 msgid "Related"
 msgstr "Related"
 
-#: sections/resources.php:29 taxonomy.php:18
+#: sections/resources.php:33 taxonomy.php:50
 #, php-format
 msgid ""
 "Ready to publish your first resource? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 "Ready to publish your first resource? <a href=\"%1$s\">Get started here</a>."
 
-#: sections/resources.php:31 taxonomy.php:20
+#: sections/resources.php:35 taxonomy.php:52
 msgid "Sorry, there are no resources to display yet."
 msgstr "Sorry, there are no resources to display yet."
 
@@ -613,10 +647,12 @@ msgstr "Sorry, there are no resources to display yet."
 msgid "Follow us"
 msgstr "Follow us"
 
-#: taxonomy.php:5
-#, php-format
-msgid "%1$s Collection"
-msgstr "%1$s Collection"
+#: taxonomy.php:10
+msgid "Tag"
+msgstr "Tag"
+
+#~ msgid "%1$s Collection"
+#~ msgstr "%1$s Collection"
 
 #~ msgid "Newsletter form action URL"
 #~ msgstr "Newsletter form action URL"
@@ -728,9 +764,6 @@ msgstr "%1$s Collection"
 
 #~ msgid "Tags"
 #~ msgstr "Tags"
-
-#~ msgid "Tag"
-#~ msgstr "Tag"
 
 #~ msgid "Search Tags"
 #~ msgstr "Search Tags"

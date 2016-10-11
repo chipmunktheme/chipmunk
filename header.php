@@ -5,13 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta name="robots" content="noodp">
 
-  <title>
-    <?php if (wp_title('', false)) : ?>
-      <?php wp_title(' - ', true, 'right'); ?>
-    <?php endif; ?>
-
-    <?php bloginfo('name'); ?><?php if (is_front_page() and get_bloginfo('description')) : ?>: <?php bloginfo('description'); ?><?php endif; ?>
-  </title>
+  <title><?php wp_title('-', true, 'right'); ?></title>
 
   <?php if (isset($post) and is_singular('resource')) : ?>
     <?php $description = ChipmunkHelpers::custom_excerpt($post->post_content, $post->post_excerpt); ?>

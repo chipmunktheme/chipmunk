@@ -20,6 +20,7 @@ class Chipmunk
 
     // Theme Support
     add_theme_support('menus');
+    add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
 
     // Image sizes
@@ -29,20 +30,21 @@ class Chipmunk
     add_image_size('sm', 300, 210, true);
 
     // Init functions
-    add_action('init', array($this, 'register_menus'));
-    add_action('init', array($this, 'update_permalinks'));
+    add_action('init', array(&$this, 'register_menus'));
+    add_action('init', array(&$this, 'update_permalinks'));
     add_action('admin_menu', array(&$this, 'remove_admin_pages'));
     add_action('admin_head', array(&$this, 'enqueue_admin_assets'));
     add_action('wp_enqueue_scripts', array(&$this, 'enqueue_assets'));
     add_action('wp_before_admin_bar_render', array(&$this, 'remove_admin_bar_pages'));
-    add_action('wp_head', array($this, 'add_fb_open_graph_tags'));
+    add_action('wp_head', array(&$this, 'add_fb_open_graph_tags'));
+    add_filter('wp_title', array(&$this, 'filter_wp_title'), 10, 2);
     add_filter('upload_mimes', array(&$this, 'cc_mime_types'));
     add_filter('pre_get_posts', array(&$this, 'update_search_query'));
     add_filter('pre_get_posts', array(&$this, 'update_main_query'));
     add_filter('pre_get_posts', array(&$this, 'exclude_tax_children'));
 
-    add_action('wp_ajax_submit_resource', array($ajax, 'submit_resource'));
-    add_action('wp_ajax_nopriv_submit_resource', array($ajax, 'submit_resource'));
+    add_action('wp_ajax_submit_resource', array(&$ajax, 'submit_resource'));
+    add_action('wp_ajax_nopriv_submit_resource', array(&$ajax, 'submit_resource'));
   }
 
   /**
@@ -157,6 +159,49 @@ class Chipmunk
 
     $wp_admin_bar->remove_menu('comments');
     $wp_admin_bar->remove_menu('new-content');
+  }
+
+  /**
+   * Filter wp title
+   */
+  public function filter_wp_title($title, $separator)
+  {
+    // Don't affect wp_title() calls in feeds.
+    if (is_feed())
+        return $title;
+
+    // The $paged global variable contains the page number of a listing of posts.
+    // The $page global variable contains the page number of a single post that is paged.
+    // We'll display whichever one applies, if we're not looking at the first page.
+    global $paged, $page;
+
+    if (is_search())
+    {
+        // If we're a search, let's start over:
+        $title = sprintf(__('Search results for %s', 'chipmunk'), '"' . get_search_query() . '"');
+        // Add a page number if we're on page 2 or more:
+        if ($paged >= 2)
+            $title .= " $separator " . sprintf(__('Page %s', 'chipmunk'), $paged);
+        // Add the site name to the end:
+        $title .= " $separator " . get_bloginfo('name', 'display');
+        // We're done. Let's send the new title back to wp_title():
+        return $title;
+    }
+
+    // Otherwise, let's start by adding the site name to the end:
+    $title .= get_bloginfo('name', 'display');
+    // If we have a site description and we're on the home/front page, add the description:
+    $site_description = get_bloginfo('description', 'display');
+
+    if ($site_description && ( is_home() || is_front_page() ))
+        $title .= " $separator " . $site_description;
+
+    // Add a page number if necessary:
+    if ($paged >= 2 || $page >= 2)
+        $title .= " $separator " . sprintf(__('Page %s', 'chipmunk'), max($paged, $page));
+
+    // Return the new title to wp_title():
+    return $title;
   }
 
   /**
