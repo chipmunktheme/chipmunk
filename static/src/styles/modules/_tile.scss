@@ -63,6 +63,7 @@
   user-select: none;
   pointer-events: none;
   overflow: hidden;
+  background-color: $color-gray;
   transition: opacity $transition-speed;
 
   &::before {

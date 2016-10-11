@@ -1,19 +1,23 @@
 <?php get_header(); ?>
-<?php $term = get_queried_object(); ?>
+  <?php $term = get_queried_object(); ?>
+  <?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
+  <?php $custom_query = ChipmunkHelpers::get_resources(ChipmunkCustomizer::theme_option('posts_per_page'), $paged, $term); ?>
 
   <div class="section section_theme-gray">
     <div class="container">
-      <h3 class="heading heading_md">
-        <?php single_term_title(); ?>
+      <?php $title = single_term_title(null, false).' '.(is_tax('resource-collection') ? __('Collection', 'chipmunk') : __('Tag', 'chipmunk')); ?>
 
-        <?php if (is_tax('resource-tag')) : ?>
-          <?php _e('Tag', 'chipmunk'); ?>
-        <?php endif; ?>
+      <?php if (!ChipmunkCustomizer::theme_option('disable_sorting') and $custom_query->have_posts()) : ?>
+        <div class="row row_center">
+          <div class="column column_sm-3 column_lg-6">
+            <h3 class="heading heading_md"><?php echo $title; ?></h3>
+          </div>
 
-        <?php if (is_tax('resource-collection')) : ?>
-          <?php _e('Collection', 'chipmunk'); ?>
-        <?php endif; ?>
-      </h3>
+          <?php get_template_part('partials/sort-resources'); ?>
+        </div>
+      <?php else : ?>
+        <h3 class="heading heading_md"><?php echo $title; ?></h3>
+      <?php endif; ?>
 
       <?php if (!empty($term->description)) : ?>
         <div class="row">
@@ -31,14 +35,14 @@
           <?php endforeach; ?>
         </div>
 
-        <?php if (have_posts()) : ?>
+        <?php if ($custom_query->have_posts()) : ?>
           <div class="separator"></div>
         <?php endif; ?>
       <?php endif; ?>
 
       <div class="row">
-        <?php if (have_posts()) : ?>
-          <?php while (have_posts()) : the_post(); ?>
+        <?php if ($custom_query->have_posts()) : ?>
+          <?php while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
 
               <?php get_template_part('sections/resource-tile'); ?>
 
@@ -57,10 +61,8 @@
       </div>
     </div>
 
-    <?php if (!is_front_page()) : ?>
-      <?php get_template_part('sections/pagination'); ?>
-      <?php get_template_part('sections/promo'); ?>
-    <?php endif; ?>
+    <?php include locate_template('sections/pagination.php'); ?>
+    <?php get_template_part('sections/promo'); ?>
   </div>
   <!-- /.section -->
 

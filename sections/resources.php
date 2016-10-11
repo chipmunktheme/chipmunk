@@ -3,7 +3,7 @@
 <?php if (is_single()) : ?>
   <?php $custom_query = ChipmunkHelpers::get_related_resources(get_the_ID()); ?>
 <?php else : ?>
-  <?php $custom_query = ChipmunkHelpers::get_latest_resources(ChipmunkCustomizer::theme_option('posts_per_page'), $paged); ?>
+  <?php $custom_query = ChipmunkHelpers::get_resources(ChipmunkCustomizer::theme_option('posts_per_page'), $paged); ?>
 <?php endif; ?>
 
 <div class="section section_theme-gray">
@@ -11,16 +11,20 @@
     <?php if (is_single()) : ?>
       <h3 class="heading heading_md"><?php _e('Related', 'chipmunk'); ?></h3>
     <?php else : ?>
-      <div class="row">
-        <div class="column column_sm-3 column_lg-6">
-          <h3 class="heading heading_md"><?php _e('Resources', 'chipmunk'); ?></h3>
-        </div>
+      <?php if (!ChipmunkCustomizer::theme_option('disable_sorting') and $custom_query->have_posts()) : ?>
+        <div class="row row_center">
+          <div class="column column_sm-3 column_lg-6">
+            <h3 class="heading heading_md"><?php _e('Resources', 'chipmunk'); ?></h3>
+          </div>
 
-        <?php get_template_part('partials/sort-resources'); ?>
-      </div>
+          <?php get_template_part('partials/sort-resources'); ?>
+        </div>
+      <?php else : ?>
+        <h3 class="heading heading_md"><?php _e('Resources', 'chipmunk'); ?></h3>
+      <?php endif; ?>
     <?php endif; ?>
 
-    <?php if ($custom_query and $custom_query->have_posts()) : ?>
+    <?php if ($custom_query->have_posts()) : ?>
       <div class="row">
         <?php while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
 

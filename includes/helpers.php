@@ -59,7 +59,7 @@ if (!class_exists('ChipmunkHelpers'))
     /**
      * Get latest resources
      */
-    public static function get_latest_resources($limit = -1, $paged = false)
+    public static function get_resources($limit = -1, $paged = false, $term = null)
     {
       $args = array(
         'post_type'       => 'resource',
@@ -67,6 +67,10 @@ if (!class_exists('ChipmunkHelpers'))
         'paged'           => $paged,
       );
 
+      $sort_args = array();
+      $tax_args = array();
+
+      // Apply sorting options
       if (isset($_GET['sort']) and !ChipmunkCustomizer::theme_option('disable_sorting'))
       {
         $sort_params = explode('-', $_GET['sort']);
@@ -92,12 +96,23 @@ if (!class_exists('ChipmunkHelpers'))
         }
 
         $sort_args['order'] = $sort_params[1];
-        $args = array_merge($args, $sort_args);
       }
 
-      $query = new WP_Query($args);
+      // Apply taxonomy options
+      if (is_tax() and isset($term))
+      {
+        $tax_args['tax_query'] = array(
+          array(
+            'taxonomy'          => $term->taxonomy,
+            'field'             => 'id',
+            'terms'             => $term->term_id,
+            'include_children'  => false
+          ),
+        );
+      }
 
-      return $query->have_posts() ? $query : false;
+      $query = new WP_Query(array_merge($args, $sort_args, $tax_args));
+      return $query;
     }
 
     /**
@@ -105,7 +120,7 @@ if (!class_exists('ChipmunkHelpers'))
      */
     public static function get_featured_resources($limit = -1, $paged = false)
     {
-      $query = new WP_Query(array(
+      $args = array(
         'post_type'       => 'resource',
         'posts_per_page'  => $limit,
         'paged'           => $paged,
@@ -119,9 +134,10 @@ if (!class_exists('ChipmunkHelpers'))
           )
         ),
         'orderby'         => 'rand',
-      ));
+      );
 
-      return $query->have_posts() ? $query : false;
+      $query = new WP_Query($args);
+      return $query;
     }
 
     /**
@@ -129,16 +145,17 @@ if (!class_exists('ChipmunkHelpers'))
      */
     public static function get_popular_resources($limit = -1, $paged = false)
     {
-      $query = new WP_Query(array(
+      $args = array(
         'post_type'       => 'resource',
         'posts_per_page'  => $limit,
         'paged'           => $paged,
         'meta_key'        => ChipmunkViewCounter::$db_key,
         'orderby'         => 'meta_value_num',
         'order'           => 'DESC',
-      ));
+      );
 
-      return $query->have_posts() ? $query : false;
+      $query = new WP_Query($args);
+      return $query;
     }
 
     /**
@@ -183,8 +200,7 @@ if (!class_exists('ChipmunkHelpers'))
       }
 
       $query = new WP_Query($args);
-
-      return $query->have_posts() ? $query : false;
+      return $query;
     }
 
     /**
@@ -192,13 +208,14 @@ if (!class_exists('ChipmunkHelpers'))
      */
     public static function get_curators($limit = -1)
     {
-      $query = new WP_Query(array(
+      $args = array(
         'post_type'       => 'curator',
         'posts_per_page'  => $limit,
         'order'           => 'ASC',
-      ));
+      );
 
-      return $query->have_posts() ? $query : false;
+      $query = new WP_Query($args);
+      return $query;
     }
   }
 }
