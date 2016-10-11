@@ -13,7 +13,7 @@
     <?php else : ?>
       <?php if (!ChipmunkCustomizer::theme_option('disable_sorting') and $custom_query->have_posts()) : ?>
         <div class="row row_center">
-          <div class="column column_sm-3 column_lg-6">
+          <div class="column column_md-3 column_lg-6">
             <h3 class="heading heading_md"><?php _e('Resources', 'chipmunk'); ?></h3>
           </div>
 
