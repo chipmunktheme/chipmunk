@@ -2,8 +2,8 @@
   $resources_count =  ChipmunkCustomizer::theme_option('resources_count', 9);
   $resources = array(
     'latest'    => ChipmunkHelpers::get_resources($resources_count),
-    'featured'  => !ChipmunkCustomizer::theme_option('disable_featured') ? ChipmunkHelpers::get_featured_resources($resources_count) : false,
-    'popular'   => !ChipmunkCustomizer::theme_option('disable_views') ? ChipmunkHelpers::get_popular_resources($resources_count) : false,
+    'featured'  => !ChipmunkCustomizer::theme_option('disable_featured') ? ChipmunkHelpers::get_featured_resources($resources_count) : new WP_Query,
+    'popular'   => !ChipmunkCustomizer::theme_option('disable_views') ? ChipmunkHelpers::get_popular_resources($resources_count) : new WP_Query,
   );
 ?>
 
@@ -16,11 +16,11 @@
         <?php endif; ?>
 
         <?php if ($resources['latest']->have_posts()) : ?>
-          <span class="heading__link<?php echo !$resources['featured'] ? ' active' : ''; ?>" data-tabs-toggle role="tab"><?php _e('Latest', 'chipmunk'); ?></span>
+          <span class="heading__link<?php echo !$resources['featured']->have_posts() ? ' active' : ''; ?>" data-tabs-toggle role="tab"><?php _e('Latest', 'chipmunk'); ?></span>
         <?php endif; ?>
 
         <?php if ($resources['popular']->have_posts()) : ?>
-          <span class="heading__link<?php echo !$resources['featured'] ? '' : ' visible-sm-inline-block'; ?>" data-tabs-toggle role="tab"><?php _e('Popular', 'chipmunk'); ?></span>
+          <span class="heading__link<?php echo !$resources['featured']->have_posts() ? '' : ' visible-sm-inline-block'; ?>" data-tabs-toggle role="tab"><?php _e('Popular', 'chipmunk'); ?></span>
         <?php endif; ?>
       </h3>
 
@@ -39,7 +39,7 @@
         <?php endif; ?>
 
         <?php if ($resources['latest']->have_posts()) : ?>
-          <div class="tile__list tabs__item<?php echo !$resources['featured'] ? ' active' : ''; ?>" data-tabs-panel data-resource-slider role="tabpanel">
+          <div class="tile__list tabs__item<?php echo !$resources['featured']->have_posts() ? ' active' : ''; ?>" data-tabs-panel data-resource-slider role="tabpanel">
             <?php while ($resources['latest']->have_posts()) : $resources['latest']->the_post(); ?>
 
               <div class="tile__slider">
