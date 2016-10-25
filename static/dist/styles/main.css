@@ -3041,7 +3041,7 @@ a, button {
   position: relative;
   padding: 0;
 }
-.tile__info {
+.tile__info:not(:last-child) {
   margin-bottom: 1rem;
 }
 .tile__title {

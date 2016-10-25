@@ -16,12 +16,16 @@
       <?php endif; ?>
     </div>
 
-    <ul class="tile__stats stats">
-      <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> <?php echo get_post_time('j. F', true, get_the_ID(), true); ?></li>
+    <?php if (!ChipmunkCustomizer::theme_option('disable_resource_date') or !ChipmunkCustomizer::theme_option('disable_views')) : ?>
+      <ul class="tile__stats stats">
+        <?php if (!ChipmunkCustomizer::theme_option('disable_resource_date')) : ?>
+          <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> <?php echo get_post_time('j. F', true, get_the_ID(), true); ?></li>
+        <?php endif; ?>
 
-      <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>
-        <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> <?php echo ChipmunkViewCounter::get_post_views(get_the_ID()); ?></li>
-      <?php endif; ?>
-    </ul>
+        <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>
+          <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> <?php echo ChipmunkViewCounter::get_post_views(get_the_ID()); ?></li>
+        <?php endif; ?>
+      </ul>
+    <?php endif; ?>
   </div>
 </a>
