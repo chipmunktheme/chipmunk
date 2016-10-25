@@ -52,7 +52,7 @@ if (!class_exists('ChipmunkCustomizer'))
                 'Open+Sans'   => 'Open Sans',
                 'PT+Sans'     => 'PT Sans',
                 'Roboto'      => 'Roboto',
-                'Montserrat'  => 'Montserrat',
+                'Droid+Sans'  => 'Droid Sans',
               ),
             ),
             array(
