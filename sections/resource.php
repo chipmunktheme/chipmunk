@@ -28,7 +28,7 @@
           </h2>
           <?php $content = get_the_content(); ?>
           <?php if (!empty($content)) : ?>
-            <p class="resource__description"><?php echo $content; ?></p>
+            <p class="resource__description"><?php echo do_shortcode($content); ?></p>
           <?php endif; ?>
         </div>
 

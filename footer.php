@@ -16,7 +16,10 @@
     <?php echo $tracking_code; ?>
   <?php endif ?>
 
+  <?php if (ChipmunkCustomizer::theme_option('recaptcha_site_key')) : ?>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  <?php endif ?>
+
   <?php wp_footer(); ?>
-  <script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>

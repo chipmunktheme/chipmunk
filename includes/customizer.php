@@ -66,8 +66,8 @@ if (!class_exists('ChipmunkCustomizer'))
         ),
 
         array(
-          'title'         => __('Resources', 'chipmunk'),
-          'slug'          => 'resources_section',
+          'title'         => __('Homepage', 'chipmunk'),
+          'slug'          => 'homepage_section',
           'fields'        => array(
             array(
               'name'        => 'resources_count',
@@ -76,6 +76,31 @@ if (!class_exists('ChipmunkCustomizer'))
               'default'     => 9,
               'description' => __('Enter the max resources number to show on resource sliders.', 'chipmunk'),
             ),
+            array(
+              'name'        => 'disable_homepage_listings',
+              'type'        => 'checkbox',
+              'label'       => __('Disable resource listings', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'disable_homepage_listings_sliders',
+              'type'        => 'checkbox',
+              'label'       => __('Disable resource listings sliders', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
+              'name'        => 'disable_homepage_collections',
+              'type'        => 'checkbox',
+              'label'       => __('Disable collections', 'chipmunk'),
+              'default'     => false,
+            ),
+          ),
+        ),
+
+        array(
+          'title'         => __('Resources', 'chipmunk'),
+          'slug'          => 'resources_section',
+          'fields'        => array(
             array(
               'name'        => 'posts_per_page',
               'type'        => 'number',
@@ -87,12 +112,6 @@ if (!class_exists('ChipmunkCustomizer'))
               'type'        => 'number',
               'label'       => __('Number of search results per page', 'chipmunk'),
               'default'     => 9,
-            ),
-            array(
-              'name'        => 'disable_resource_sliders',
-              'type'        => 'checkbox',
-              'label'       => __('Disable resource sliders on homepage', 'chipmunk'),
-              'default'     => false,
             ),
             array(
               'name'        => 'display_resource_cards',

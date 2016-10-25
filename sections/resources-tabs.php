@@ -1,5 +1,6 @@
 <?php
   $resources_count =  ChipmunkCustomizer::theme_option('resources_count', 9);
+  $disable_sliders =  ChipmunkCustomizer::theme_option('disable_homepage_listings_sliders');
   $resources = array(
     'latest'    => ChipmunkHelpers::get_resources($resources_count),
     'featured'  => !ChipmunkCustomizer::theme_option('disable_featured') ? ChipmunkHelpers::get_featured_resources($resources_count) : new WP_Query,
@@ -27,36 +28,48 @@
 
       <div class="tab-content">
         <?php if ($resources['featured']->have_posts()) : ?>
-          <div class="tile__list tabs__item active" data-tabs-panel data-resource-slider role="tabpanel">
+          <div class="tile__list tabs__item<?php if ($disable_sliders) echo ' row'; ?> active" data-tabs-panel<?php if (!$disable_sliders) echo ' data-resource-slider'; ?> role="tabpanel">
             <?php while ($resources['featured']->have_posts()) : $resources['featured']->the_post(); ?>
 
-              <div class="tile__slider">
+              <?php if ($disable_sliders) : ?>
                 <?php get_template_part('sections/resource-tile'); ?>
-              </div>
+              <?php else : ?>
+                <div class="tile__slider">
+                  <?php get_template_part('sections/resource-tile'); ?>
+                </div>
+              <?php endif; ?>
 
             <?php endwhile; wp_reset_postdata(); ?>
           </div>
         <?php endif; ?>
 
         <?php if ($resources['latest']->have_posts()) : ?>
-          <div class="tile__list tabs__item<?php echo !$resources['featured']->have_posts() ? ' active' : ''; ?>" data-tabs-panel data-resource-slider role="tabpanel">
+          <div class="tile__list tabs__item<?php if ($disable_sliders) echo ' row'; ?><?php echo !$resources['featured']->have_posts() ? ' active' : ''; ?>" data-tabs-panel<?php if (!$disable_sliders) echo ' data-resource-slider'; ?> role="tabpanel">
             <?php while ($resources['latest']->have_posts()) : $resources['latest']->the_post(); ?>
 
-              <div class="tile__slider">
+              <?php if ($disable_sliders) : ?>
                 <?php get_template_part('sections/resource-tile'); ?>
-              </div>
+              <?php else : ?>
+                <div class="tile__slider">
+                  <?php get_template_part('sections/resource-tile'); ?>
+                </div>
+              <?php endif; ?>
 
             <?php endwhile; wp_reset_postdata(); ?>
           </div>
         <?php endif; ?>
 
         <?php if ($resources['popular']->have_posts()) : ?>
-          <div class="tile__list tabs__item" data-tabs-panel data-resource-slider role="tabpanel">
+          <div class="tile__list tabs__item<?php if ($disable_sliders) echo ' row'; ?>" data-tabs-panel<?php if (!$disable_sliders) echo ' data-resource-slider'; ?> role="tabpanel">
             <?php while ($resources['popular']->have_posts()) : $resources['popular']->the_post(); ?>
 
-              <div class="tile__slider">
+              <?php if ($disable_sliders) : ?>
                 <?php get_template_part('sections/resource-tile'); ?>
-              </div>
+              <?php else : ?>
+                <div class="tile__slider">
+                  <?php get_template_part('sections/resource-tile'); ?>
+                </div>
+              <?php endif; ?>
 
             <?php endwhile; wp_reset_postdata(); ?>
           </div>

@@ -33,7 +33,8 @@
     .select2-container .select2-results__option[aria-selected=true],
     .button_primary,
     .button_secondary:hover,
-    .section_theme-primary {
+    .section_theme-primary,
+    .tile__content_primary {
       background-color: <?php echo $primary_color; ?>;
     }
   <?php endif; ?>

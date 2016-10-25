@@ -115,6 +115,11 @@
     color: $color-white;
   }
 
+  &_primary {
+    background-color: rgba($color-black, 0.75);
+    color: $color-white;
+  }
+
   .tile_card & {
     position: relative;
     padding: 0;

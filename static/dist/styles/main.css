@@ -1665,6 +1665,10 @@ a, button {
 .tabs__item.active {
   display: block;
 }
+.tabs__item.active.row {
+  display: -ms-flexbox;
+  display: flex;
+}
 /*
 ** Utils - Text
 ** -----------------------------------------------------------------------------*/
@@ -3034,6 +3038,10 @@ a, button {
   }
 }
 .tile__content_dimmed {
+  background-color: rgba(51, 51, 51, 0.75);
+  color: #FAFAFA;
+}
+.tile__content_primary {
   background-color: rgba(51, 51, 51, 0.75);
   color: #FAFAFA;
 }
