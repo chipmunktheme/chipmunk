@@ -40,6 +40,6 @@
   <?php endif; ?>
 
   <?php if ($custom_css) : ?>
-    <?php echo esc_textarea($custom_css); ?>
+    <?php echo $custom_css; ?>
   <?php endif; ?>
 </style>
