@@ -38,36 +38,13 @@
         <h4 class="heading heading_sm"><?php _e('Follow', 'chipmunk'); ?></h4>
 
         <ul class="nav-secondary">
-          <?php if (ChipmunkCustomizer::theme_option('twitter')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('twitter'); ?>" target="_blank">Twitter</a></li>
-          <?php endif; ?>
-          <?php if (ChipmunkCustomizer::theme_option('facebook')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('facebook'); ?>" target="_blank">Facebook</a></li>
-          <?php endif; ?>
-          <?php if (ChipmunkCustomizer::theme_option('google')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('google'); ?>" target="_blank">Google</a></li>
-          <?php endif; ?>
-          <?php if (ChipmunkCustomizer::theme_option('instagram')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('instagram'); ?>" target="_blank">Instagram</a></li>
-          <?php endif; ?>
-          <?php if (ChipmunkCustomizer::theme_option('pinterest')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('pinterest'); ?>" target="_blank">Pinterest</a></li>
-          <?php endif; ?>
-          <?php if (ChipmunkCustomizer::theme_option('flickr')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('flickr'); ?>" target="_blank">Flickr</a></li>
-          <?php endif; ?>
-          <?php if (ChipmunkCustomizer::theme_option('vimeo')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('vimeo'); ?>" target="_blank">Vimeo</a></li>
-          <?php endif; ?>
-          <?php if (ChipmunkCustomizer::theme_option('youtube')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('youtube'); ?>" target="_blank">YouTube</a></li>
-          <?php endif; ?>
-          <?php if (ChipmunkCustomizer::theme_option('reddit')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('reddit'); ?>" target="_blank">Reddit</a></li>
-          <?php endif; ?>
-          <?php if (ChipmunkCustomizer::theme_option('producthunt')) : ?>
-            <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option('producthunt'); ?>" target="_blank">ProductHunt</a></li>
-          <?php endif; ?>
+          <?php foreach (ChipmunkCustomizer::$socials as $social) : ?>
+            <?php $social_slug = strtolower($social); ?>
+
+            <?php if (ChipmunkCustomizer::theme_option($social_slug)) : ?>
+              <li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option($social_slug); ?>" target="_blank"><?php echo $social; ?></a></li>
+            <?php endif; ?>
+          <?php endforeach; ?>
         </ul>
       </div>
     </div>

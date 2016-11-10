@@ -72,7 +72,7 @@ if (!class_exists('ChipmunkAjax'))
         "From: $name <$from>",
       );
 
-      mail($to, $subject, '<a href="'.admin_url('post.php?post='.$post_id.'&action=edit').'">'.__('Review submission', 'chipmunk').'</a>', implode("\n", $headers));
+      wp_mail($to, $subject, '<a href="'.admin_url('post.php?post='.$post_id.'&action=edit').'">'.__('Review submission', 'chipmunk').'</a>', implode("\n", $headers));
     }
   }
 }

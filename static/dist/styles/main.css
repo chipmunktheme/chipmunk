@@ -676,22 +676,22 @@ a, button {
 .icon_close::before {
   content: '\EA05';
 }
-.icon_collection::before {
+.icon_facebook::before {
   content: '\EA06';
 }
-.icon_facebook::before {
+.icon_flickr::before {
   content: '\EA07';
 }
-.icon_flickr::before {
+.icon_google::before {
   content: '\EA08';
 }
-.icon_google::before {
+.icon_instagram::before {
   content: '\EA09';
 }
-.icon_instagram::before {
+.icon_link::before {
   content: '\EA0A';
 }
-.icon_link::before {
+.icon_linkedin::before {
   content: '\EA0B';
 }
 .icon_pinterest::before {
@@ -2569,8 +2569,6 @@ a, button {
   margin-top: 4rem;
   background-color: #FAFAFA;
   opacity: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   transform: scale(0.95) translateY(-7.5%);
   transition: opacity 0.375s, transform 0.375s;
@@ -2908,6 +2906,8 @@ a, button {
 .stats {
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-align: center;
+      align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   font-size: 1.4rem;
@@ -2928,12 +2928,38 @@ a, button {
   line-height: inherit;
   vertical-align: middle;
 }
+.stats__item_sided {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  margin-right: 0;
+  text-align: right;
+}
+.stats__button {
+  display: inline-block;
+  padding: 8px 10px;
+  border: 1px solid currentColor;
+  border-radius: 1.1em;
+  font-size: 1.4rem;
+  line-height: 1;
+  background-color: transparent;
+  color: #808080;
+}
+.stats__button:hover {
+  color: #333333;
+}
+.stats__button.is-active {
+  background-color: #F38181;
+  color: #FAFAFA;
+}
 /*
 ** Module - Tile
 ** -----------------------------------------------------------------------------*/
 .tile {
   position: relative;
-  display: block;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
   margin-top: 2rem;
   overflow: hidden;
 }
@@ -3029,6 +3055,8 @@ a, button {
       flex-direction: column;
   -ms-flex-pack: justify;
       justify-content: space-between;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
   padding: 2rem;
   color: #333333;
 }

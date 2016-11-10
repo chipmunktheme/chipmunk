@@ -25,6 +25,21 @@ if (!class_exists('ChipmunkHelpers'))
     }
 
     /**
+     * Truncate long strings
+     */
+    public static function external_link($url)
+    {
+      if (!ChipmunkCustomizer::theme_option('disable_ref')) {
+        $title = str_replace('-', '', sanitize_title(get_bloginfo('name')));
+        $prefix = (preg_match('(\&|\?)', $url) === 1) ? '&ref=' : '?ref=';
+
+        return $url . $prefix . $title;
+      }
+
+      return $url;
+    }
+
+    /**
      * Custom excerpt function
      */
     public static function custom_excerpt($text, $excerpt)
@@ -57,7 +72,7 @@ if (!class_exists('ChipmunkHelpers'))
     }
 
     /**
-     * Get latest resources
+     * Get resources
      */
     public static function get_resources($limit = -1, $paged = false, $term = null)
     {
@@ -74,29 +89,36 @@ if (!class_exists('ChipmunkHelpers'))
       if (isset($_GET['sort']) and !ChipmunkCustomizer::theme_option('disable_sorting'))
       {
         $sort_params = explode('-', $_GET['sort']);
-
-        switch ($sort_params[0])
-        {
-          case 'date':
-            $sort_args = array(
-              'orderby'   => 'date',
-            );
-            break;
-          case 'name':
-            $sort_args = array(
-              'orderby'   => 'title',
-            );
-            break;
-          case 'popularity':
-            $sort_args = array(
-              'orderby'   => 'meta_value_num',
-              'meta_key'  => ChipmunkViewCounter::$db_key,
-            );
-            break;
-        }
-
-        $sort_args['order'] = $sort_params[1];
+        $sort_orderby = $sort_params[0];
+        $sort_order = $sort_params[1];
       }
+      else
+      {
+        $sort_orderby = ChipmunkCustomizer::theme_option('default_sort_by');
+        $sort_order = ChipmunkCustomizer::theme_option('default_sort_order');
+      }
+
+      switch ($sort_orderby)
+      {
+        case 'date':
+          $sort_args = array(
+            'orderby'   => 'date',
+          );
+          break;
+        case 'name':
+          $sort_args = array(
+            'orderby'   => 'title',
+          );
+          break;
+        case 'popularity':
+          $sort_args = array(
+            'orderby'   => 'meta_value_num',
+            'meta_key'  => ChipmunkViewCounter::$db_key,
+          );
+          break;
+      }
+
+      $sort_args['order'] = $sort_order;
 
       // Apply taxonomy options
       if (is_tax() and isset($term))
@@ -112,6 +134,23 @@ if (!class_exists('ChipmunkHelpers'))
       }
 
       $query = new WP_Query(array_merge($args, $sort_args, $tax_args));
+      return $query;
+    }
+
+    /**
+     * Get latest resources
+     */
+    public static function get_latest_resources($limit = -1, $paged = false)
+    {
+      $args = array(
+        'post_type'       => 'resource',
+        'posts_per_page'  => $limit,
+        'paged'           => $paged,
+        'orderby'         => 'date',
+        'order'           => 'DESC',
+      );
+
+      $query = new WP_Query($args);
       return $query;
     }
 

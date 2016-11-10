@@ -25,6 +25,8 @@
         <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>
           <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> <?php echo ChipmunkViewCounter::get_post_views(get_the_ID()); ?></li>
         <?php endif; ?>
+
+        <li class="stats__item stats__item_sided" title="<?php _e('Upvotes', 'chipmunk'); ?>"><button class="stats__button">&uarr; 253</button></li>
       </ul>
     <?php endif; ?>
   </div>

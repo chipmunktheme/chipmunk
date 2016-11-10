@@ -5,6 +5,8 @@
     <article class="resource row">
       <div class="resource__content column column_lg-6">
         <ul class="resource__stats stats">
+          <li class="stats__item" title="<?php _e('Upvotes', 'chipmunk'); ?>"><button class="stats__button">&uarr; 253</button></li>
+
           <?php if (get_the_terms(get_the_ID(), 'resource-collection')) : ?>
             <li class="stats__item" title="<?php _e('Collection', 'chipmunk'); ?>"><i class="icon icon_tag"></i> <?php the_terms(get_the_ID(), 'resource-collection'); ?></li>
           <?php endif; ?>
@@ -34,7 +36,7 @@
 
         <div class="resource__actions">
           <?php if (!empty($resource_website)) : ?>
-            <a href="<?php echo $resource_website; ?>?ref=<?php echo sanitize_title(get_bloginfo('name')); ?>" class="button button_secondary" target="_blank"><?php _e('Visit website', 'chipmunk'); ?></a>
+            <a href="<?php echo ChipmunkHelpers::external_link($resource_website); ?>" class="button button_secondary" target="_blank"><?php _e('Visit website', 'chipmunk'); ?></a>
           <?php endif; ?>
 
           <?php get_template_part('partials/share-box'); ?>
@@ -44,7 +46,7 @@
       <aside class="resource__image column column_lg-6">
         <?php if (is_single()) : ?>
           <?php if (!empty($resource_website)) : ?>
-            <a href="<?php echo $resource_website; ?>?ref=<?php echo sanitize_title(get_bloginfo('name')); ?>" target="_blank"><?php the_post_thumbnail('lg'); ?></a>
+            <a href="<?php echo ChipmunkHelpers::external_link($resource_website); ?>" target="_blank"><?php the_post_thumbnail('lg'); ?></a>
           <?php else : ?>
             <?php the_post_thumbnail('xl'); ?>
           <?php endif; ?>

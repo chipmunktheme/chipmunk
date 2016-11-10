@@ -4,7 +4,8 @@
 
 .tile {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   margin-top: $separator;
   overflow: hidden;
 
@@ -103,6 +104,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex-grow: 1;
   padding: $separator;
   color: $color-black;
 

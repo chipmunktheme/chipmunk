@@ -10,7 +10,7 @@ if (!class_exists('ChipmunkCustomPosts'))
       $this->register_type_curator();
     }
 
-    public static function register_type_resource()
+    public function register_type_resource()
     {
       register_post_type('resource', array(
         'labels'             => array(
@@ -61,7 +61,7 @@ if (!class_exists('ChipmunkCustomPosts'))
       ));
     }
 
-    public static function register_type_curator()
+    public function register_type_curator()
     {
       register_post_type('curator', array(
         'labels'             => array(
