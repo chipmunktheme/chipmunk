@@ -15,18 +15,11 @@
       <nav class="nav-primary">
         <div class="nav-primary__inner">
           <ul>
-            <?php $menu_name = 'nav-primary'; ?>
+            <?php $menu_items = ChipmunkHelpers::get_menu_items('nav-primary'); ?>
 
-            <?php if (($locations = get_nav_menu_locations()) && isset($locations[$menu_name])) : ?>
-              <?php $menu = wp_get_nav_menu_object($locations[$menu_name]); ?>
-              <?php $menu_items = wp_get_nav_menu_items($menu->term_id); ?>
-
-              <?php if (!empty($menu_items)) : ?>
-                <?php foreach ($menu_items as $menu_item) : ?>
-                  <li class="nav-primary__item<?php echo (is_page($menu_item->object_id) ? ' nav-primary__item_active' : ''); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
-                <?php endforeach; ?>
-              <?php endif; ?>
-            <?php endif; ?>
+            <?php foreach ($menu_items as $menu_item) : ?>
+              <li class="nav-primary__item<?php echo (is_page($menu_item->object_id) ? ' nav-primary__item_active' : ''); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
+            <?php endforeach; ?>
 
             <?php if (!ChipmunkCustomizer::theme_option('disable_submissions')) : ?>
               <li class="nav-primary__item hidden-lg">

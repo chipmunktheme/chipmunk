@@ -4,6 +4,11 @@ if (!class_exists('ChipmunkHelpers'))
 {
   class ChipmunkHelpers
   {
+    private function map_terms($term)
+    {
+      return $term->term_id;
+    }
+
     /**
      * Truncate long strings
      */
@@ -37,6 +42,24 @@ if (!class_exists('ChipmunkHelpers'))
       }
 
       return $url;
+    }
+
+    /**
+     * Get menu items
+     */
+    public static function get_menu_items($location)
+    {
+      if (($locations = get_nav_menu_locations()) && isset($locations[$location]))
+      {
+        $menu = wp_get_nav_menu_object($locations[$location]);
+
+        if ($menu)
+        {
+          return wp_get_nav_menu_items($menu->term_id);
+        }
+      }
+
+      return false;
     }
 
     /**
@@ -218,7 +241,7 @@ if (!class_exists('ChipmunkHelpers'))
           array(
             'taxonomy'    => 'resource-tag',
             'field'       => 'term_id',
-            'terms'       => array_map(function ($result) { return $result->term_id; }, $tags),
+            'terms'       => array_map(array(&$this, 'map_terms'), $tags),
             'operator'    => 'IN',
           ),
         );
@@ -231,7 +254,7 @@ if (!class_exists('ChipmunkHelpers'))
             array(
               'taxonomy'    => 'resource-collection',
               'field'       => 'term_id',
-              'terms'       => array_map(function ($result) { return $result->term_id; }, $collections),
+              'terms'       => array_map(array(&$this, 'map_terms'), $collections),
               'operator'    => 'IN',
             ),
           );

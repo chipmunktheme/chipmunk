@@ -1,12 +1,12 @@
 <?php
 load_theme_textdomain('chipmunk', get_template_directory().'/languages');
 
-require __DIR__.'/includes/helpers.php';
-require __DIR__.'/includes/ajax.php';
-require __DIR__.'/includes/customizer.php';
-require __DIR__.'/includes/custom-posts.php';
-require __DIR__.'/includes/meta-boxes.php';
-require __DIR__.'/includes/view-counter.php';
+include_once 'includes/Helpers.class.php';
+include_once 'includes/Ajax.class.php';
+include_once 'includes/Customizer.class.php';
+include_once 'includes/CustomPosts.class.php';
+include_once 'includes/MetaBoxes.class.php';
+include_once 'includes/ViewCounter.class.php';
 
 class Chipmunk
 {
