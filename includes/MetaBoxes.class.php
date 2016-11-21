@@ -9,16 +9,16 @@ if (!class_exists('ChipmunkMetaBoxes'))
     public function __construct()
     {
       // Fire meta box setup function on the post editor screen.
-      add_action('load-post.php', array(&$this, 'post_meta_boxes_setup'));
-      add_action('load-post-new.php', array(&$this, 'post_meta_boxes_setup'));
+      add_action('load-post.php', array($this, 'post_meta_boxes_setup'));
+      add_action('load-post-new.php', array($this, 'post_meta_boxes_setup'));
     }
 
     public function post_meta_boxes_setup()
     {
-      add_action('add_meta_boxes', array(&$this, 'add_post_meta_boxes'));
-      add_action('save_post_resource', array(&$this, 'resource_save_meta_boxes_data'));
-      add_action('save_post_curator', array(&$this, 'curator_save_meta_boxes_data'));
-      add_action('save_post_page', array(&$this, 'about_save_meta_boxes_data'));
+      add_action('add_meta_boxes', array($this, 'add_post_meta_boxes'));
+      add_action('save_post_resource', array($this, 'resource_save_meta_boxes_data'));
+      add_action('save_post_curator', array($this, 'curator_save_meta_boxes_data'));
+      add_action('save_post_page', array($this, 'about_save_meta_boxes_data'));
     }
 
     public function add_post_meta_boxes()
@@ -28,7 +28,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
       add_meta_box(
         self::$field_name.'_resource',
         __('Custom fields', 'chipmunk'),
-        array(&$this, 'resource_build_meta_boxes'),
+        array($this, 'resource_build_meta_boxes'),
         'resource',
         'normal',
         'high'
@@ -37,7 +37,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
       add_meta_box(
         self::$field_name.'_curator',
         __('Custom fields', 'chipmunk'),
-        array(&$this, 'curator_build_meta_boxes'),
+        array($this, 'curator_build_meta_boxes'),
         'curator',
         'normal',
         'high'
@@ -52,7 +52,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
           add_meta_box(
             self::$field_name.'_about',
             __('Custom fields', 'chipmunk'),
-            array(&$this, 'about_build_meta_boxes'),
+            array($this, 'about_build_meta_boxes'),
             'page',
             'normal',
             'high'

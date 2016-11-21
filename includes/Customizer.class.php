@@ -362,7 +362,7 @@ if (!class_exists('ChipmunkCustomizer'))
         'ProductHunt'
       );
 
-      add_action('customize_register', array(&$this, 'customize_register'));
+      add_action('customize_register', array($this, 'customize_register'));
     }
 
     /**
@@ -430,7 +430,7 @@ if (!class_exists('ChipmunkCustomizer'))
       foreach(self::$sections as $index => $section)
       {
         if (!empty($section['callback']))
-          call_user_func(array(&$this, $section['callback']));
+          call_user_func(array($this, $section['callback']));
 
         if (!empty($section['fields']))
           foreach($section['fields'] as $field)

@@ -241,7 +241,7 @@ if (!class_exists('ChipmunkHelpers'))
           array(
             'taxonomy'    => 'resource-tag',
             'field'       => 'term_id',
-            'terms'       => array_map(array(&$this, 'map_terms'), $tags),
+            'terms'       => array_map(array($this, 'map_terms'), $tags),
             'operator'    => 'IN',
           ),
         );
@@ -254,7 +254,7 @@ if (!class_exists('ChipmunkHelpers'))
             array(
               'taxonomy'    => 'resource-collection',
               'field'       => 'term_id',
-              'terms'       => array_map(array(&$this, 'map_terms'), $collections),
+              'terms'       => array_map(array($this, 'map_terms'), $collections),
               'operator'    => 'IN',
             ),
           );

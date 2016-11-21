@@ -1,4 +1,13 @@
 <?php
+// *DEBUG MODE*
+// Add ?debug=true to your URL to enable
+if ($_REQUEST['debug']) {
+  echo 'PHP Version: '.phpversion();
+
+  ini_set('display_errors', 1);
+  ini_set('error_reporting', E_ALL);
+}
+
 load_theme_textdomain('chipmunk', get_template_directory().'/languages');
 
 include_once 'includes/Helpers.class.php';
@@ -30,21 +39,21 @@ class Chipmunk
     add_image_size('sm', 300, 210, true);
 
     // Init functions
-    add_action('init', array(&$this, 'register_menus'));
-    add_action('init', array(&$this, 'update_permalinks'));
-    add_action('admin_menu', array(&$this, 'remove_admin_pages'));
-    add_action('admin_head', array(&$this, 'enqueue_admin_assets'));
-    add_action('wp_enqueue_scripts', array(&$this, 'enqueue_assets'));
-    add_action('wp_before_admin_bar_render', array(&$this, 'remove_admin_bar_pages'));
-    add_action('wp_head', array(&$this, 'add_fb_open_graph_tags'));
-    add_filter('wp_title', array(&$this, 'filter_wp_title'), 10, 2);
-    add_filter('upload_mimes', array(&$this, 'cc_mime_types'));
-    add_filter('pre_get_posts', array(&$this, 'update_search_query'));
-    add_filter('pre_get_posts', array(&$this, 'update_main_query'));
-    add_filter('pre_get_posts', array(&$this, 'exclude_tax_children'));
+    add_action('init', array($this, 'register_menus'));
+    add_action('init', array($this, 'update_permalinks'));
+    add_action('admin_menu', array($this, 'remove_admin_pages'));
+    add_action('admin_head', array($this, 'enqueue_admin_assets'));
+    add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
+    add_action('wp_before_admin_bar_render', array($this, 'remove_admin_bar_pages'));
+    add_action('wp_head', array($this, 'add_fb_open_graph_tags'));
+    add_filter('wp_title', array($this, 'filter_wp_title'), 10, 2);
+    add_filter('upload_mimes', array($this, 'cc_mime_types'));
+    add_filter('pre_get_posts', array($this, 'update_search_query'));
+    add_filter('pre_get_posts', array($this, 'update_main_query'));
+    add_filter('pre_get_posts', array($this, 'exclude_tax_children'));
 
-    add_action('wp_ajax_submit_resource', array(&$ajax, 'submit_resource'));
-    add_action('wp_ajax_nopriv_submit_resource', array(&$ajax, 'submit_resource'));
+    add_action('wp_ajax_submit_resource', array($ajax, 'submit_resource'));
+    add_action('wp_ajax_nopriv_submit_resource', array($ajax, 'submit_resource'));
   }
 
   /**
