@@ -5,7 +5,7 @@
 
   <div class="section section_theme-gray">
     <div class="container">
-      <?php $title = single_term_title(null, false).' '.(is_tax('resource-collection') ? __('Collection', 'chipmunk') : __('Tag', 'chipmunk')); ?>
+      <?php $title = sprintf((is_tax('resource-collection') ? __('%s Collection', 'chipmunk') :  __('%s Tag', 'chipmunk')), single_term_title(null, false)); ?>
 
       <?php if (!ChipmunkCustomizer::theme_option('disable_sorting') and $custom_query->have_posts()) : ?>
         <div class="row row_center">

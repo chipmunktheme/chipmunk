@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-10-11 11:02+0200\n"
-"PO-Revision-Date: 2016-10-11 11:03+0200\n"
+"POT-Creation-Date: 2016-11-22 20:27+0100\n"
+"PO-Revision-Date: 2016-11-22 20:44+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -26,174 +26,174 @@ msgstr "Strona, której szukasz nie została znaleziona."
 msgid "Bring me to the frontpage"
 msgstr "Zabierz mnie do strony głównej"
 
-#: functions.php:181
+#: functions.php:187
 #, php-format
 msgid "Search results for %s"
 msgstr "Wyniki wyszukiwania dla %s"
 
-#: functions.php:184 functions.php:201
+#: functions.php:191 functions.php:210
 #, php-format
 msgid "Page %s"
 msgstr "Strona %s"
 
-#: includes/ajax.php:15
+#: includes/Ajax.class.php:15
 msgid "Please verify that you are not a robot."
 msgstr "Zweryfikuj, że nie jesteś robotem."
 
-#: includes/ajax.php:68
+#: includes/Ajax.class.php:68
 msgid "New user submission"
 msgstr "Nowe zgłoszenie od użytkownika"
 
-#: includes/ajax.php:75
+#: includes/Ajax.class.php:75
 msgid "Review submission"
 msgstr "Sprawdź zgłoszenie"
 
-#: includes/custom-posts.php:17 includes/custom-posts.php:19
-#: includes/customizer.php:69 sections/collection-tile.php:42
-#: sections/resources.php:16
+#: includes/CustomPosts.class.php:17 includes/CustomPosts.class.php:19
+#: includes/Customizer.class.php:101 sections/collection-tile.php:42
+#: sections/resources.php:17 sections/resources.php:23
 msgid "Resources"
 msgstr "Materiały"
 
-#: includes/custom-posts.php:18 includes/custom-posts.php:20
+#: includes/CustomPosts.class.php:18 includes/CustomPosts.class.php:20
 msgid "Resource"
 msgstr "Materiał"
 
-#: includes/custom-posts.php:21 includes/custom-posts.php:72
+#: includes/CustomPosts.class.php:21 includes/CustomPosts.class.php:72
 msgid "Add New"
 msgstr "Dodaj Nowy"
 
-#: includes/custom-posts.php:22
+#: includes/CustomPosts.class.php:22
 msgid "Add New Resource"
 msgstr "Dodaj Nowy Materiał"
 
-#: includes/custom-posts.php:23
+#: includes/CustomPosts.class.php:23
 msgid "New Resource"
 msgstr "Nowy Materiał"
 
-#: includes/custom-posts.php:24
+#: includes/CustomPosts.class.php:24
 msgid "Edit Resource"
 msgstr "Edytuj Materiał"
 
-#: includes/custom-posts.php:25
+#: includes/CustomPosts.class.php:25
 msgid "View Resource"
 msgstr "Zobacz Materiał"
 
-#: includes/custom-posts.php:26
+#: includes/CustomPosts.class.php:26
 msgid "All Resources"
 msgstr "Wszystkie Materiały"
 
-#: includes/custom-posts.php:27
+#: includes/CustomPosts.class.php:27
 msgid "Search Resources"
 msgstr "Szukaj Materiałów"
 
-#: includes/custom-posts.php:28
+#: includes/CustomPosts.class.php:28
 msgid "Parent Resource:"
 msgstr "Materiał Rodzica"
 
-#: includes/custom-posts.php:29
+#: includes/CustomPosts.class.php:29
 msgid "No resources found."
 msgstr "Nie znaleziono materiałów."
 
-#: includes/custom-posts.php:30
+#: includes/CustomPosts.class.php:30
 msgid "No resources found in Trash."
 msgstr "Nie znaleziono materiałów w koszu."
 
-#: includes/custom-posts.php:41 includes/custom-posts.php:51
+#: includes/CustomPosts.class.php:41 includes/CustomPosts.class.php:51
 #: sections/collections.php:3
 msgid "Collections"
 msgstr "Kolekcje"
 
-#: includes/custom-posts.php:42 partials/popup.php:19 partials/popup.php:20
-#: sections/resource.php:9 taxonomy.php:14
+#: includes/CustomPosts.class.php:42 partials/popup.php:19
+#: partials/popup.php:20 sections/resource.php:11
 msgid "Collection"
 msgstr "Kolekcja"
 
-#: includes/custom-posts.php:43
+#: includes/CustomPosts.class.php:43
 msgid "Search Collections"
 msgstr "Szukaj Kolekcji"
 
-#: includes/custom-posts.php:44
+#: includes/CustomPosts.class.php:44
 msgid "All Collections"
 msgstr "Wszystkie Kolekcje"
 
-#: includes/custom-posts.php:45
+#: includes/CustomPosts.class.php:45
 msgid "Parent Collection"
 msgstr "Kolekcja Rodzica"
 
-#: includes/custom-posts.php:46
+#: includes/CustomPosts.class.php:46
 msgid "Parent Collection:"
 msgstr "Kolekcja Rodzica:"
 
-#: includes/custom-posts.php:47
+#: includes/CustomPosts.class.php:47
 msgid "Edit Collection"
 msgstr "Edytuj Kolekcję"
 
-#: includes/custom-posts.php:48
+#: includes/CustomPosts.class.php:48
 msgid "Update Collection"
 msgstr "Zaktualizuj Kolekcję"
 
-#: includes/custom-posts.php:49
+#: includes/CustomPosts.class.php:49
 msgid "Add New Collection"
 msgstr "Dodaj Nową Kolekcję"
 
-#: includes/custom-posts.php:50
+#: includes/CustomPosts.class.php:50
 msgid "New Collection Name"
 msgstr "Nazwa Nowej Kolekcji"
 
-#: includes/custom-posts.php:68 includes/custom-posts.php:70
+#: includes/CustomPosts.class.php:68 includes/CustomPosts.class.php:70
 #: sections/curators.php:4
 msgid "Curators"
 msgstr "Redaktorzy"
 
-#: includes/custom-posts.php:69 includes/custom-posts.php:71
+#: includes/CustomPosts.class.php:69 includes/CustomPosts.class.php:71
 msgid "Curator"
 msgstr "Redaktor"
 
-#: includes/custom-posts.php:73
+#: includes/CustomPosts.class.php:73
 msgid "Add New Curator"
 msgstr "Dodaj Nowego Redaktora"
 
-#: includes/custom-posts.php:74
+#: includes/CustomPosts.class.php:74
 msgid "New Curator"
 msgstr "Nowy Redaktor"
 
-#: includes/custom-posts.php:75
+#: includes/CustomPosts.class.php:75
 msgid "Edit Curator"
 msgstr "Edytuj Redaktora"
 
-#: includes/custom-posts.php:76
+#: includes/CustomPosts.class.php:76
 msgid "View Curator"
 msgstr "Zobacz Redaktora"
 
-#: includes/custom-posts.php:77
+#: includes/CustomPosts.class.php:77
 msgid "All Curators"
 msgstr "Wszyscy Redaktorzy"
 
-#: includes/custom-posts.php:78
+#: includes/CustomPosts.class.php:78
 msgid "Search Curators"
 msgstr "Szukaj Redaktorów"
 
-#: includes/custom-posts.php:79
+#: includes/CustomPosts.class.php:79
 msgid "Parent Curator:"
 msgstr "Redaktor Rodzica"
 
-#: includes/custom-posts.php:80
+#: includes/CustomPosts.class.php:80
 msgid "No curators found."
 msgstr "Nie znaleziono redaktorów."
 
-#: includes/custom-posts.php:81
+#: includes/CustomPosts.class.php:81
 msgid "No curators found in Trash."
 msgstr "Nie znaleziono redaktorów w koszu."
 
-#: includes/customizer.php:21
+#: includes/Customizer.class.php:21
 msgid "Site Identity"
 msgstr "Tożsamość witryny"
 
-#: includes/customizer.php:27
+#: includes/Customizer.class.php:27
 msgid "Site Logo"
 msgstr "Logo"
 
-#: includes/customizer.php:28
+#: includes/Customizer.class.php:28
 msgid ""
 "Upload a logo for your theme. You can leave it empty to use your site name "
 "as a plain text logo."
@@ -201,95 +201,146 @@ msgstr ""
 "Wrzuć plik z logo Twojej strony. Możesz zostawić to pole pustym, aby "
 "wyświetlić tylko nazwę strony w postaci tekstu."
 
-#: includes/customizer.php:34
+#: includes/Customizer.class.php:34
 msgid "Visuals"
 msgstr "Elementy graficzne"
 
-#: includes/customizer.php:40
+#: includes/Customizer.class.php:40
 msgid "Primary Color"
 msgstr "Kolor podstawowy"
 
-#: includes/customizer.php:46
+#: includes/Customizer.class.php:46
 msgid "Primary Font"
 msgstr "Czcionka podstawowa"
 
-#: includes/customizer.php:49
+#: includes/Customizer.class.php:49
 msgid "System font"
 msgstr "Czcionka systemowa"
 
-#: includes/customizer.php:61
+#: includes/Customizer.class.php:61
 msgid "Custom CSS"
 msgstr "Dodatkowy kod CSS"
 
-#: includes/customizer.php:63
+#: includes/Customizer.class.php:63
 msgid "Quickly add some CSS to your theme by adding it to this block."
 msgstr "Dodaj w łatwy sposób swój kod CSS wpisując go w polu poniżej."
 
-#: includes/customizer.php:75
+#: includes/Customizer.class.php:69
+msgid "Homepage"
+msgstr "Strona główna"
+
+#: includes/Customizer.class.php:75
 msgid "Latest resources count"
 msgstr "Liczba materiałów do wyświetlenia"
 
-#: includes/customizer.php:77
+#: includes/Customizer.class.php:77
 msgid "Enter the max resources number to show on resource sliders."
 msgstr "Podaj maksymalną liczbę materiałów do wyświetlenia na sliderze."
 
-#: includes/customizer.php:82
+#: includes/Customizer.class.php:82
+msgid "Disable resource listings"
+msgstr "Wyłącz listy materiałów"
+
+#: includes/Customizer.class.php:88
+msgid "Disable resource listings sliders"
+msgstr "Wyłącz slidery z materiałami"
+
+#: includes/Customizer.class.php:94
+msgid "Disable collections"
+msgstr "Wyłącz kolekcje"
+
+#: includes/Customizer.class.php:107
 msgid "Number of resources per page"
 msgstr "Liczba materiałów na stronę"
 
-#: includes/customizer.php:88
+#: includes/Customizer.class.php:113
 msgid "Number of search results per page"
 msgstr "Liczba materiałów na stronę wyszukiwania"
 
-#: includes/customizer.php:94
+#: includes/Customizer.class.php:119
 msgid "Display resources as cards"
 msgstr "Wyświetlaj materiały w formie kart"
 
-#: includes/customizer.php:100
+#: includes/Customizer.class.php:125
 msgid "Disable resource description"
 msgstr "Wyłącz opisy materiałów"
 
-#: includes/customizer.php:106
+#: includes/Customizer.class.php:131
+msgid "Disable resource date"
+msgstr "Wyłącz datowanie materiałów"
+
+#: includes/Customizer.class.php:137
 msgid "Disable featured panel"
 msgstr "Wyłącz promowane materiały"
 
-#: includes/customizer.php:112
+#: includes/Customizer.class.php:143
 msgid "Disable view count"
 msgstr "Wyłącz popularne materiały"
 
-#: includes/customizer.php:118
-msgid "Disable sorting"
-msgstr "Wyłącz sortowanie"
-
-#: includes/customizer.php:124
+#: includes/Customizer.class.php:149
 msgid "Disable collection thumbs"
 msgstr "Wyłącz miniaturki dla kolekcji"
 
-#: includes/customizer.php:131
+#: includes/Customizer.class.php:155
+msgid "Disable sorting"
+msgstr "Wyłącz sortowanie"
+
+#: includes/Customizer.class.php:161 partials/sort-resources.php:2
+msgid "Sort by"
+msgstr "Sortuj po"
+
+#: includes/Customizer.class.php:164 partials/sort-resources.php:9
+#: partials/sort-resources.php:10
+msgid "Date"
+msgstr "Dacie"
+
+#: includes/Customizer.class.php:165 partials/sort-resources.php:11
+#: partials/sort-resources.php:12
+msgid "Name"
+msgstr "Nazwie"
+
+#: includes/Customizer.class.php:166 partials/sort-resources.php:15
+#: partials/sort-resources.php:16
+msgid "Popularity"
+msgstr "Popularności"
+
+#: includes/Customizer.class.php:172
+msgid "Sort order"
+msgstr "Sortuj po"
+
+#: includes/Customizer.class.php:175
+msgid "Ascending"
+msgstr "Rosnąco"
+
+#: includes/Customizer.class.php:176
+msgid "Descending"
+msgstr "Malejąco"
+
+#: includes/Customizer.class.php:183
 msgid "Submissions"
 msgstr "Zgłoszenia"
 
-#: includes/customizer.php:137
+#: includes/Customizer.class.php:189
 msgid "Disable user submissions"
 msgstr "Wyłącz możliwość zgłaszania materiałów"
 
-#: includes/customizer.php:143
+#: includes/Customizer.class.php:195
 msgid "Inform me about new submissions"
 msgstr "Informuj mnie o nowych zgłoszeniach"
 
-#: includes/customizer.php:156
+#: includes/Customizer.class.php:208
 msgid "Submission tagline"
 msgstr "Opis dla zgłaszających"
 
-#: includes/customizer.php:157
+#: includes/Customizer.class.php:209
 msgid "Internet is huge! Help us find great content"
 msgstr "Pomoż nam znaleźć wartościowe treści"
 
-#: includes/customizer.php:162
+#: includes/Customizer.class.php:214
 msgid "Submission \"Thank You\" message"
 msgstr "Tekst podziękowania za zgłoszenie"
 
-#: includes/customizer.php:163
+#: includes/Customizer.class.php:215
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
@@ -297,48 +348,48 @@ msgstr ""
 "Dziękujemy za Twoje zgłoszenie. Informacje zostały przekazane do właścicieli "
 "strony to przeglądu."
 
-#: includes/customizer.php:168
+#: includes/Customizer.class.php:220
 msgid "Submission \"Failure\" message"
 msgstr "Tekst błędu podczas zgłoszenia"
 
-#: includes/customizer.php:169
+#: includes/Customizer.class.php:221
 msgid "Your submission could not be processed."
 msgstr "Twoje zgłoszenie nie zostało wysłane. Prosimy spróbować ponownie."
 
-#: includes/customizer.php:174
+#: includes/Customizer.class.php:226
 msgid "reCAPTCHA Site key"
 msgstr "reCAPTCHA Site key"
 
-#: includes/customizer.php:175
+#: includes/Customizer.class.php:227
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 msgstr "Zarejestruj się na <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 
-#: includes/customizer.php:181
+#: includes/Customizer.class.php:233
 msgid "Social Profiles"
 msgstr "Profile Social Media"
 
-#: includes/customizer.php:187
+#: includes/Customizer.class.php:239
 msgid "Ads"
 msgstr "Reklamy"
 
-#: includes/customizer.php:193
+#: includes/Customizer.class.php:245
 msgid "Disable ads"
 msgstr "Wyłącz reklamy"
 
-#: includes/customizer.php:199
+#: includes/Customizer.class.php:251
 msgid "Show ads only on homepage"
 msgstr "Pokazuj reklamy tylko na stronie głównej"
 
-#: includes/customizer.php:205
+#: includes/Customizer.class.php:257
 msgid "Ad link URL"
 msgstr "Dodaj adres URL"
 
-#: includes/customizer.php:210
+#: includes/Customizer.class.php:262
 msgid "Ad image (Desktop)"
 msgstr "Obrazek reklamy (na komputer)"
 
-#: includes/customizer.php:211 includes/customizer.php:217
+#: includes/Customizer.class.php:263 includes/Customizer.class.php:269
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
@@ -347,15 +398,15 @@ msgstr ""
 "Polecamy użyć prostokątnego obrazka w poziomie o minimalnej szrokości %1$d "
 "pikseli."
 
-#: includes/customizer.php:216
+#: includes/Customizer.class.php:268
 msgid "Ad image (Tablet)"
 msgstr "Obrazek reklamy (na tablet)"
 
-#: includes/customizer.php:222
+#: includes/Customizer.class.php:274
 msgid "Ad image (Mobile)"
 msgstr "Obrazek reklamy (na telefon)"
 
-#: includes/customizer.php:223
+#: includes/Customizer.class.php:275
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
@@ -364,11 +415,11 @@ msgstr ""
 "Polecamy użyć prostokątnego obrazka w pionie o minimalnej szrokości %1$d "
 "pikseli."
 
-#: includes/customizer.php:228
+#: includes/Customizer.class.php:280
 msgid "Ad HTML code"
 msgstr "Dodaj kod HTML"
 
-#: includes/customizer.php:229
+#: includes/Customizer.class.php:281
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
@@ -376,19 +427,19 @@ msgstr ""
 "Wklej tutaj swój wygenerowany kod HTML z Google AdSense (lub podobnych) aby "
 "wyświetlić dynamiczne reklamy w wyznaczonych miejscach."
 
-#: includes/customizer.php:235 partials/newsletter.php:4
+#: includes/Customizer.class.php:287 partials/newsletter.php:4
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: includes/customizer.php:241
+#: includes/Customizer.class.php:293
 msgid "Disable newsletter"
 msgstr "Wyłącz newsletter"
 
-#: includes/customizer.php:247
+#: includes/Customizer.class.php:299
 msgid "Mailchimp form action URL"
 msgstr "Formularz subskrypcji Mailchimp"
 
-#: includes/customizer.php:249
+#: includes/Customizer.class.php:301
 #, php-format
 msgid ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
@@ -397,33 +448,37 @@ msgstr ""
 "Gdzie mogę znaleźć <a href=\"%1$s\" target=\"_blank\">MailChimp form action "
 "URL?</a>"
 
-#: includes/customizer.php:254
+#: includes/Customizer.class.php:306
 msgid "Newsletter tagline"
 msgstr "Opis newslettera"
 
-#: includes/customizer.php:255
+#: includes/Customizer.class.php:307
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr ""
 "Nigdy nie przegap nowych materiałów! Zapisz się do newslettera i zostań w "
 "kontakcie."
 
-#: includes/customizer.php:261
+#: includes/Customizer.class.php:313
 msgid "Theme Options"
 msgstr "Ustawienia motywu"
 
-#: includes/customizer.php:267
+#: includes/Customizer.class.php:319
 msgid "Disable theme credits"
 msgstr "Wyłącz informację o szablonie"
 
-#: includes/customizer.php:273
+#: includes/Customizer.class.php:325
 msgid "Disable search"
 msgstr "Wyłącz wyszukiwawnie"
 
-#: includes/customizer.php:279
+#: includes/Customizer.class.php:331
+msgid "Disable \"ref\" attribute"
+msgstr "Wyłącz atrybut “ref”"
+
+#: includes/Customizer.class.php:337
 msgid "About copy (footer)"
 msgstr "O Nas (stopka)"
 
-#: includes/customizer.php:281
+#: includes/Customizer.class.php:339
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
@@ -431,11 +486,11 @@ msgstr ""
 "Podaj opis swojej strony wyświetlany w stopce. Możesz używać podstawowych "
 "tagów HTML (<p>, <a>, <strong>, <i>)."
 
-#: includes/customizer.php:286
+#: includes/Customizer.class.php:344
 msgid "Tracking code"
 msgstr "Kod analizujący stronę"
 
-#: includes/customizer.php:287
+#: includes/Customizer.class.php:345
 msgid ""
 "Paste your Google Analytics (or other) tracking code here. It will be "
 "inserted before the closing body tag of your theme."
@@ -443,32 +498,32 @@ msgstr ""
 "Podaj swój kod Google Analytics (lub inny). Zostanie on dodany w kodzie HTML "
 "zaraz przed zamknięciem tagu body."
 
-#: includes/meta-boxes.php:30 includes/meta-boxes.php:39
-#: includes/meta-boxes.php:54
+#: includes/MetaBoxes.class.php:30 includes/MetaBoxes.class.php:39
+#: includes/MetaBoxes.class.php:54
 msgid "Custom fields"
 msgstr "Dodatkowe pola"
 
-#: includes/meta-boxes.php:86 partials/popup.php:42
+#: includes/MetaBoxes.class.php:86 partials/popup.php:42
 msgid "Website URL"
 msgstr "Adres strony WWW"
 
-#: includes/meta-boxes.php:92
+#: includes/MetaBoxes.class.php:92
 msgid "Featured?"
 msgstr "Promowany?"
 
-#: includes/meta-boxes.php:96
+#: includes/MetaBoxes.class.php:96
 msgid "Featured on homepage"
 msgstr "Promowany na stronie głównej"
 
-#: includes/meta-boxes.php:161
+#: includes/MetaBoxes.class.php:161
 msgid "Twitter Handle"
 msgstr "Twitter"
 
-#: includes/meta-boxes.php:215
+#: includes/MetaBoxes.class.php:215
 msgid "Wide content"
 msgstr "Szeroka kolumna treści"
 
-#: includes/meta-boxes.php:219
+#: includes/MetaBoxes.class.php:219
 msgid ""
 "Enable wide content for this page (it will make first heading of this page a "
 "left-floated title)"
@@ -476,11 +531,11 @@ msgstr ""
 "Włącz wyświetlanie treści w postaci szerszej kolumny tekstu (pierwszy z "
 "nagłówków treści zostanie przeniesiony do lewej kolumny)"
 
-#: includes/meta-boxes.php:224
+#: includes/MetaBoxes.class.php:224
 msgid "Enable curators"
 msgstr "Włącz redaktorów"
 
-#: includes/meta-boxes.php:228
+#: includes/MetaBoxes.class.php:228
 msgid "Enable curators listing on this page"
 msgstr "Włącz wyświetlanie redaktorów na tej stronie"
 
@@ -500,13 +555,13 @@ msgstr "O Nas"
 msgid "Navigation"
 msgstr "Nawigacja"
 
-#: partials/page-bottom.php:32 partials/page-head.php:34
-#: partials/page-head.php:59 partials/popup.php:9 partials/popup.php:66
-#: sections/toolbox.php:46
+#: partials/page-bottom.php:25 partials/page-head.php:27
+#: partials/page-head.php:52 partials/popup.php:9 partials/popup.php:66
+#: sections/toolbox.php:23
 msgid "Submit"
 msgstr "Zgłoś materiał"
 
-#: partials/page-bottom.php:38
+#: partials/page-bottom.php:31
 msgid "Follow"
 msgstr "Obserwuj"
 
@@ -514,15 +569,15 @@ msgstr "Obserwuj"
 msgid "Chipmunk WordPress Theme"
 msgstr "Motyw WordPressa: Chipmunk"
 
-#: partials/page-head.php:42 partials/popup.php:6 partials/search-bar.php:11
+#: partials/page-head.php:35 partials/popup.php:6 partials/search-bar.php:11
 msgid "Close"
 msgstr "Zamknij"
 
-#: partials/page-head.php:53
+#: partials/page-head.php:46
 msgid "Search"
 msgstr "Szukaj"
 
-#: partials/page-head.php:64
+#: partials/page-head.php:57
 msgid "Menu"
 msgstr "Menu"
 
@@ -553,22 +608,6 @@ msgstr "Minimum 3 znaki"
 #: partials/share-box.php:15
 msgid "Share"
 msgstr "Podziel się"
-
-#: partials/sort-resources.php:3
-msgid "Sort by"
-msgstr "Sortuj po"
-
-#: partials/sort-resources.php:6 partials/sort-resources.php:7
-msgid "Date"
-msgstr "Dacie"
-
-#: partials/sort-resources.php:8 partials/sort-resources.php:9
-msgid "Name"
-msgstr "Nazwie"
-
-#: partials/sort-resources.php:12 partials/sort-resources.php:13
-msgid "Popularity"
-msgstr "Popularności"
 
 #: search.php:12
 msgid "Search results for:"
@@ -606,27 +645,31 @@ msgstr "Poprzednie"
 msgid "Next"
 msgstr "Następne"
 
-#: sections/resource-tile.php:20 sections/resource.php:12
+#: sections/resource-tile.php:22 sections/resource.php:15
 msgid "Published"
 msgstr "Opublikowany"
 
-#: sections/resource-tile.php:23 sections/resource.php:15
+#: sections/resource-tile.php:26 sections/resource.php:19
 msgid "Views"
 msgstr "Wizyty"
 
-#: sections/resource.php:35
-msgid "Visit website"
-msgstr "Zobacz stronę WWW"
+#: sections/resource-tile.php:29 sections/resource.php:8
+msgid "Upvotes"
+msgstr "Głosy za"
 
-#: sections/resources-tabs.php:15
+#: sections/resource.php:39
+msgid "Visit website"
+msgstr "Odwiedź stronę"
+
+#: sections/resources-tabs.php:16
 msgid "Featured"
 msgstr "Promowane"
 
-#: sections/resources-tabs.php:19
+#: sections/resources-tabs.php:20
 msgid "Latest"
 msgstr "Najnowsze"
 
-#: sections/resources-tabs.php:23
+#: sections/resources-tabs.php:24
 msgid "Popular"
 msgstr "Popularne"
 
@@ -634,14 +677,14 @@ msgstr "Popularne"
 msgid "Related"
 msgstr "Powiązane"
 
-#: sections/resources.php:33 taxonomy.php:50
+#: sections/resources.php:37 taxonomy.php:54
 #, php-format
 msgid ""
 "Ready to publish your first resource? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 "Gotowy na dodanie pierwszego materiału? <a href=\"%1$s\">Zacznij tutaj</a>."
 
-#: sections/resources.php:35 taxonomy.php:52
+#: sections/resources.php:39 taxonomy.php:56
 msgid "Sorry, there are no resources to display yet."
 msgstr "Brak materiałów do wyświetlenia."
 
@@ -649,9 +692,18 @@ msgstr "Brak materiałów do wyświetlenia."
 msgid "Follow us"
 msgstr "Obserwuj nas"
 
-#: taxonomy.php:10
-msgid "Tag"
-msgstr "Tag"
+#: taxonomy.php:8
+#, php-format
+msgid "%s Collection"
+msgstr "%s"
+
+#: taxonomy.php:8
+#, php-format
+msgid "%s Tag"
+msgstr "%s"
+
+#~ msgid "Tag"
+#~ msgstr "Tag"
 
 #~ msgid "%1$s Collection"
 #~ msgstr "Kolekcja %1$s"

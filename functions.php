@@ -46,7 +46,6 @@ class Chipmunk
     add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
     add_action('wp_before_admin_bar_render', array($this, 'remove_admin_bar_pages'));
     add_action('wp_head', array($this, 'add_fb_open_graph_tags'));
-    add_filter('wp_title', array($this, 'filter_wp_title'), 10, 2);
     add_filter('upload_mimes', array($this, 'cc_mime_types'));
     add_filter('pre_get_posts', array($this, 'update_search_query'));
     add_filter('pre_get_posts', array($this, 'update_main_query'));
@@ -168,49 +167,6 @@ class Chipmunk
 
     $wp_admin_bar->remove_menu('comments');
     $wp_admin_bar->remove_menu('new-content');
-  }
-
-  /**
-   * Filter wp title
-   */
-  public function filter_wp_title($title, $separator)
-  {
-    if (is_feed())
-    {
-      return $title;
-    }
-
-    global $paged, $page;
-
-    if (is_search())
-    {
-      $title = sprintf(__('Search results for %s', 'chipmunk'), '"'.get_search_query().'"');
-
-      if ($paged >= 2)
-      {
-        $title.= " $separator ".sprintf(__('Page %s', 'chipmunk'), $paged);
-      }
-
-      $title.= " $separator ".get_bloginfo('name', 'display');
-
-      return $title;
-    }
-
-    // Otherwise, let's start by adding the site name to the end:
-    $title.= get_bloginfo('name', 'display');
-    $site_description = get_bloginfo('description', 'display');
-
-    if ($site_description && (is_home() || is_front_page()))
-    {
-      $title.= " $separator ".$site_description;
-    }
-
-    if ($paged >= 2 || $page >= 2)
-    {
-      $title.= " $separator ".sprintf(__('Page %s', 'chipmunk'), max($paged, $page));
-    }
-
-    return $title;
   }
 
   /**

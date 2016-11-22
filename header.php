@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta name="robots" content="noodp">
 
-  <title><?php wp_title('-', true, 'right'); ?></title>
-
   <?php if (isset($post) and is_singular('resource')) : ?>
     <?php $description = ChipmunkHelpers::custom_excerpt($post->post_content, $post->post_excerpt); ?>
   <?php endif; ?>
