@@ -1,18 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-11-25 09:24+0100\n"
-"PO-Revision-Date: 2016-11-25 09:24+0100\n"
+"POT-Creation-Date: 2016-11-25 09:44+0100\n"
+"PO-Revision-Date: 2016-11-25 09:47+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
-"Language: pl\n"
+"Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.2\n"
 "X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _e;__;_x\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -20,369 +19,369 @@ msgstr ""
 
 #: 404.php:7
 msgid "404! The page you are looking for couldn't be found."
-msgstr "Strona, której szukasz nie została znaleziona."
+msgstr "404! Siden du leter etter kan ikke bli funnet."
 
 #: 404.php:8
 msgid "Bring me to the frontpage"
-msgstr "Zabierz mnie do strony głównej"
+msgstr "Ta meg til forsiden"
 
 #: includes/ajax.class.php:15
 msgid "Please verify that you are not a robot."
-msgstr "Zweryfikuj, że nie jesteś robotem."
+msgstr "Venligst verifiser at du ikke er en robot."
 
 #: includes/ajax.class.php:68
 msgid "New user submission"
-msgstr "Nowe zgłoszenie od użytkownika"
+msgstr "Ny bruker innsendelse"
 
 #: includes/ajax.class.php:75
 msgid "Review submission"
-msgstr "Sprawdź zgłoszenie"
+msgstr "Se over innsendelse"
 
 #: includes/custom-posts.class.php:17 includes/custom-posts.class.php:19
 #: includes/customizer/customizer.class.php:101
 #: sections/collection-tile.php:42 sections/resources.php:17
 #: sections/resources.php:23
 msgid "Resources"
-msgstr "Materiały"
+msgstr "Ressurser"
 
 #: includes/custom-posts.class.php:18 includes/custom-posts.class.php:20
 msgid "Resource"
-msgstr "Materiał"
+msgstr "Ressurs"
 
 #: includes/custom-posts.class.php:21 includes/custom-posts.class.php:72
 msgid "Add New"
-msgstr "Dodaj Nowy"
+msgstr "Legg til ny"
 
 #: includes/custom-posts.class.php:22
 msgid "Add New Resource"
-msgstr "Dodaj Nowy Materiał"
+msgstr "Legg til ny ressurs"
 
 #: includes/custom-posts.class.php:23
 msgid "New Resource"
-msgstr "Nowy Materiał"
+msgstr "Ny ressurs"
 
 #: includes/custom-posts.class.php:24
 msgid "Edit Resource"
-msgstr "Edytuj Materiał"
+msgstr "Rediger ressurs"
 
 #: includes/custom-posts.class.php:25
 msgid "View Resource"
-msgstr "Zobacz Materiał"
+msgstr "Se ressurs"
 
 #: includes/custom-posts.class.php:26
 msgid "All Resources"
-msgstr "Wszystkie Materiały"
+msgstr "Alle ressurser"
 
 #: includes/custom-posts.class.php:27
 msgid "Search Resources"
-msgstr "Szukaj Materiałów"
+msgstr "Søk ressurser"
 
 #: includes/custom-posts.class.php:28
 msgid "Parent Resource:"
-msgstr "Materiał Rodzica"
+msgstr "Foreldre ressurs"
 
 #: includes/custom-posts.class.php:29
 msgid "No resources found."
-msgstr "Nie znaleziono materiałów."
+msgstr "Ingen ressurser funnet"
 
 #: includes/custom-posts.class.php:30
 msgid "No resources found in Trash."
-msgstr "Nie znaleziono materiałów w koszu."
+msgstr "Ingen ressurser funnet i søppelkurven."
 
 #: includes/custom-posts.class.php:41 includes/custom-posts.class.php:51
 #: sections/collections.php:3
 msgid "Collections"
-msgstr "Kolekcje"
+msgstr "Samlinger"
 
 #: includes/custom-posts.class.php:42 partials/popup.php:19
 #: partials/popup.php:20 sections/resource.php:13
 msgid "Collection"
-msgstr "Kolekcja"
+msgstr "Samling"
 
 #: includes/custom-posts.class.php:43
 msgid "Search Collections"
-msgstr "Szukaj Kolekcji"
+msgstr "Søk samlinger"
 
 #: includes/custom-posts.class.php:44
 msgid "All Collections"
-msgstr "Wszystkie Kolekcje"
+msgstr "Alle samlinger"
 
 #: includes/custom-posts.class.php:45
 msgid "Parent Collection"
-msgstr "Kolekcja Rodzica"
+msgstr "Foreldre samling"
 
 #: includes/custom-posts.class.php:46
 msgid "Parent Collection:"
-msgstr "Kolekcja Rodzica:"
+msgstr "Foreldre samling:"
 
 #: includes/custom-posts.class.php:47
 msgid "Edit Collection"
-msgstr "Edytuj Kolekcję"
+msgstr "Rediger samling"
 
 #: includes/custom-posts.class.php:48
 msgid "Update Collection"
-msgstr "Zaktualizuj Kolekcję"
+msgstr "Oppdater samling"
 
 #: includes/custom-posts.class.php:49
 msgid "Add New Collection"
-msgstr "Dodaj Nową Kolekcję"
+msgstr "Legg til ny samling"
 
 #: includes/custom-posts.class.php:50
 msgid "New Collection Name"
-msgstr "Nazwa Nowej Kolekcji"
+msgstr "Nytt navn for samling"
 
 #: includes/custom-posts.class.php:68 includes/custom-posts.class.php:70
 #: sections/curators.php:4
 msgid "Curators"
-msgstr "Redaktorzy"
+msgstr "Kuratorer"
 
 #: includes/custom-posts.class.php:69 includes/custom-posts.class.php:71
 msgid "Curator"
-msgstr "Redaktor"
+msgstr "Kurator"
 
 #: includes/custom-posts.class.php:73
 msgid "Add New Curator"
-msgstr "Dodaj Nowego Redaktora"
+msgstr "Legg til ny kurator"
 
 #: includes/custom-posts.class.php:74
 msgid "New Curator"
-msgstr "Nowy Redaktor"
+msgstr "Ny kurator"
 
 #: includes/custom-posts.class.php:75
 msgid "Edit Curator"
-msgstr "Edytuj Redaktora"
+msgstr "Rediger kurator"
 
 #: includes/custom-posts.class.php:76
 msgid "View Curator"
-msgstr "Zobacz Redaktora"
+msgstr "Se kurator"
 
 #: includes/custom-posts.class.php:77
 msgid "All Curators"
-msgstr "Wszyscy Redaktorzy"
+msgstr "Alle kuratorer"
 
 #: includes/custom-posts.class.php:78
 msgid "Search Curators"
-msgstr "Szukaj Redaktorów"
+msgstr "Søk kuratorer"
 
 #: includes/custom-posts.class.php:79
 msgid "Parent Curator:"
-msgstr "Redaktor Rodzica"
+msgstr "Foreldre kuratorer"
 
 #: includes/custom-posts.class.php:80
 msgid "No curators found."
-msgstr "Nie znaleziono redaktorów."
+msgstr "Ingen kuratorer funnet"
 
 #: includes/custom-posts.class.php:81
 msgid "No curators found in Trash."
-msgstr "Nie znaleziono redaktorów w koszu."
+msgstr "Ingen kuratorer funnet i søppelkurven."
 
 #: includes/customizer/customizer.class.php:21
 msgid "Site Identity"
-msgstr "Tożsamość witryny"
+msgstr "Webside identitet"
 
 #: includes/customizer/customizer.class.php:27
 msgid "Site Logo"
-msgstr "Logo"
+msgstr "Webside logo"
 
 #: includes/customizer/customizer.class.php:28
 msgid ""
 "Upload a logo for your theme. You can leave it empty to use your site name "
 "as a plain text logo."
 msgstr ""
-"Wrzuć plik z logo Twojej strony. Możesz zostawić to pole pustym, aby "
-"wyświetlić tylko nazwę strony w postaci tekstu."
+"Last opp logo for ditt tema. Du kan la det stå blank for å bruke webside "
+"navnet som text logo."
 
 #: includes/customizer/customizer.class.php:34
 msgid "Visuals"
-msgstr "Elementy graficzne"
+msgstr "Visuelle"
 
 #: includes/customizer/customizer.class.php:40
 msgid "Primary Color"
-msgstr "Kolor podstawowy"
+msgstr "Primær farge"
 
 #: includes/customizer/customizer.class.php:46
 msgid "Primary Font"
-msgstr "Czcionka podstawowa"
+msgstr "Primær font"
 
 #: includes/customizer/customizer.class.php:49
 msgid "System font"
-msgstr "Czcionka systemowa"
+msgstr "System font"
 
 #: includes/customizer/customizer.class.php:61
 msgid "Custom CSS"
-msgstr "Dodatkowy kod CSS"
+msgstr "Tilpasset CSS"
 
 #: includes/customizer/customizer.class.php:63
 msgid "Quickly add some CSS to your theme by adding it to this block."
-msgstr "Dodaj w łatwy sposób swój kod CSS wpisując go w polu poniżej."
+msgstr "Raskt legg til CSS til ditt tema ved å legge det til denne blokken"
 
 #: includes/customizer/customizer.class.php:69
 msgid "Homepage"
-msgstr "Strona główna"
+msgstr "Hjemmeside"
 
 #: includes/customizer/customizer.class.php:75
 msgid "Latest resources count"
-msgstr "Liczba materiałów do wyświetlenia"
+msgstr "Siste antall ressurser"
 
 #: includes/customizer/customizer.class.php:77
 msgid "Enter the max resources number to show on resource sliders."
-msgstr "Podaj maksymalną liczbę materiałów do wyświetlenia na sliderze."
+msgstr "Skriv inn max antall ressurser for å vise i ressurs karusellene"
 
 #: includes/customizer/customizer.class.php:82
 msgid "Disable resource listings"
-msgstr "Wyłącz listy materiałów"
+msgstr "Deaktiver ressurs utlisting"
 
 #: includes/customizer/customizer.class.php:88
 msgid "Disable resource listings sliders"
-msgstr "Wyłącz slidery z materiałami"
+msgstr "Deaktiver ressurs utlisting karusellene"
 
 #: includes/customizer/customizer.class.php:94
 msgid "Disable collections"
-msgstr "Wyłącz kolekcje"
+msgstr "Deaktiver samlingene"
 
 #: includes/customizer/customizer.class.php:107
 msgid "Number of resources per page"
-msgstr "Liczba materiałów na stronę"
+msgstr "Antall ressurser pr side"
 
 #: includes/customizer/customizer.class.php:113
 msgid "Number of search results per page"
-msgstr "Liczba materiałów na stronę wyszukiwania"
+msgstr "Anntal søkeresultat pr side"
 
 #: includes/customizer/customizer.class.php:119
 msgid "Display resources as cards"
-msgstr "Wyświetlaj materiały w formie kart"
+msgstr "Vis ressurser som kort"
 
 #: includes/customizer/customizer.class.php:125
 msgid "Disable resource description"
-msgstr "Wyłącz opisy materiałów"
+msgstr "Deaktiver ressursbeskrivelse "
 
 #: includes/customizer/customizer.class.php:131
 msgid "Disable resource date"
-msgstr "Wyłącz datowanie materiałów"
+msgstr "Deaktiver ressurs dato"
 
 #: includes/customizer/customizer.class.php:137
 msgid "Disable featured panel"
-msgstr "Wyłącz promowane materiały"
+msgstr "Deaktiver hoved panel"
 
 #: includes/customizer/customizer.class.php:143
 msgid "Disable collection thumbs"
-msgstr "Wyłącz miniaturki dla kolekcji"
+msgstr "Deaktiver samling miniatyr bilde"
 
 #: includes/customizer/customizer.class.php:149
 msgid "Disable view count"
-msgstr "Wyłącz popularne materiały"
+msgstr "Deaktiver visningsteller"
 
 #: includes/customizer/customizer.class.php:156
 msgid "Disable upvoting"
-msgstr "Wyłącz głosowanie na materiały"
+msgstr "Deaktiver avstemming"
 
 #: includes/customizer/customizer.class.php:162
 msgid "Disable sorting"
-msgstr "Wyłącz sortowanie"
+msgstr "Deaktiver filtrering"
 
 #: includes/customizer/customizer.class.php:168 partials/sort-resources.php:2
 msgid "Sort by"
-msgstr "Sortuj po"
+msgstr "Sorter ved"
 
 #: includes/customizer/customizer.class.php:171 partials/sort-resources.php:9
 #: partials/sort-resources.php:10
 msgid "Date"
-msgstr "Dacie"
+msgstr "Dato"
 
 #: includes/customizer/customizer.class.php:172 partials/sort-resources.php:11
 #: partials/sort-resources.php:12
 msgid "Name"
-msgstr "Nazwie"
+msgstr "Navn"
 
 #: includes/customizer/customizer.class.php:173 partials/sort-resources.php:15
 #: partials/sort-resources.php:16
 msgid "Popularity"
-msgstr "Popularności"
+msgstr "Popularitet"
 
 #: includes/customizer/customizer.class.php:179
 msgid "Sort order"
-msgstr "Sortuj po"
+msgstr "Sorteringsrekkefølge"
 
 #: includes/customizer/customizer.class.php:182
 msgid "Ascending"
-msgstr "Rosnąco"
+msgstr "Stigende"
 
 #: includes/customizer/customizer.class.php:183
 msgid "Descending"
-msgstr "Malejąco"
+msgstr "Synkende"
 
 #: includes/customizer/customizer.class.php:190
 msgid "Submissions"
-msgstr "Zgłoszenia"
+msgstr "Innsendinger"
 
 #: includes/customizer/customizer.class.php:196
 msgid "Disable user submissions"
-msgstr "Wyłącz możliwość zgłaszania materiałów"
+msgstr "Deaktiver bruker innsendelser"
 
 #: includes/customizer/customizer.class.php:202
 msgid "Inform me about new submissions"
-msgstr "Informuj mnie o nowych zgłoszeniach"
+msgstr "Informer meg om nye innsendelser"
 
 #: includes/customizer/customizer.class.php:215
 msgid "Submission tagline"
-msgstr "Opis dla zgłaszających"
+msgstr "Innsendelse beskrivelse"
 
 #: includes/customizer/customizer.class.php:216
 msgid "Internet is huge! Help us find great content"
-msgstr "Pomoż nam znaleźć wartościowe treści"
+msgstr "Internet er enormt. Hjelp oss med å finne bra innhold."
 
 #: includes/customizer/customizer.class.php:221
 msgid "Submission \"Thank You\" message"
-msgstr "Tekst podziękowania za zgłoszenie"
+msgstr "Innsendelse \"Takke\" melding"
 
 #: includes/customizer/customizer.class.php:222
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
 msgstr ""
-"Dziękujemy za Twoje zgłoszenie. Informacje zostały przekazane do właścicieli "
-"strony to przeglądu."
+"Takk for ditt bidrag. Innsendelsen er sendt til eier av websiden for "
+"gjennomgang."
 
 #: includes/customizer/customizer.class.php:227
 msgid "Submission \"Failure\" message"
-msgstr "Tekst błędu podczas zgłoszenia"
+msgstr "Innsendelse \"Feil\" melding"
 
 #: includes/customizer/customizer.class.php:228
 msgid "Your submission could not be processed."
-msgstr "Twoje zgłoszenie nie zostało wysłane. Prosimy spróbować ponownie."
+msgstr "Din innsendelse kunne ikke prosesseres."
 
 #: includes/customizer/customizer.class.php:233
 msgid "reCAPTCHA Site key"
-msgstr "reCAPTCHA Site key"
+msgstr "reCAPTCHA nøkkel"
 
 #: includes/customizer/customizer.class.php:234
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
-msgstr "Zarejestruj się na <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
+msgstr "Registrer ved <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 
 #: includes/customizer/customizer.class.php:240
 msgid "Social Profiles"
-msgstr "Profile Social Media"
+msgstr "Sosiale profiler"
 
 #: includes/customizer/customizer.class.php:246
 msgid "Ads"
-msgstr "Reklamy"
+msgstr "Annonser"
 
 #: includes/customizer/customizer.class.php:252
 msgid "Disable ads"
-msgstr "Wyłącz reklamy"
+msgstr "Deaktiver annonser"
 
 #: includes/customizer/customizer.class.php:258
 msgid "Show ads only on homepage"
-msgstr "Pokazuj reklamy tylko na stronie głównej"
+msgstr "Vis annonser kun ved hovedside"
 
 #: includes/customizer/customizer.class.php:264
 msgid "Ad link URL"
-msgstr "Dodaj adres URL"
+msgstr "Legg til link URL"
 
 #: includes/customizer/customizer.class.php:269
 msgid "Ad image (Desktop)"
-msgstr "Obrazek reklamy (na komputer)"
+msgstr "Legg til bilde (Desktop)"
 
 #: includes/customizer/customizer.class.php:270
 #: includes/customizer/customizer.class.php:276
@@ -391,16 +390,16 @@ msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
 "wide."
 msgstr ""
-"Polecamy użyć prostokątnego obrazka w poziomie o minimalnej szrokości %1$d "
-"pikseli."
+"Vi anbefaler å bruke rektanulært horisontalt bilde som er minst %1$d piksler "
+"bred."
 
 #: includes/customizer/customizer.class.php:275
 msgid "Ad image (Tablet)"
-msgstr "Obrazek reklamy (na tablet)"
+msgstr "Legg til bilde (Tablet)"
 
 #: includes/customizer/customizer.class.php:281
 msgid "Ad image (Mobile)"
-msgstr "Obrazek reklamy (na telefon)"
+msgstr "Legg til bilde (Mobil)"
 
 #: includes/customizer/customizer.class.php:282
 #, php-format
@@ -408,32 +407,32 @@ msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
 "wide."
 msgstr ""
-"Polecamy użyć prostokątnego obrazka w pionie o minimalnej szrokości %1$d "
-"pikseli."
+"Vi anbefaler å bruke rektanulært vertikalt bilde som er minst %1$d piksler "
+"bred."
 
 #: includes/customizer/customizer.class.php:287
 msgid "Ad HTML code"
-msgstr "Dodaj kod HTML"
+msgstr "Legg til HTML kode"
 
 #: includes/customizer/customizer.class.php:288
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
 msgstr ""
-"Wklej tutaj swój wygenerowany kod HTML z Google AdSense (lub podobnych) aby "
-"wyświetlić dynamiczne reklamy w wyznaczonych miejscach."
+"Legg inn din Google AdSense (eller annet) gerererte HTML kode for å vise "
+"annonser på anviste plasser"
 
 #: includes/customizer/customizer.class.php:294 partials/newsletter.php:4
 msgid "Newsletter"
-msgstr "Newsletter"
+msgstr "Nyhetsbrev"
 
 #: includes/customizer/customizer.class.php:300
 msgid "Disable newsletter"
-msgstr "Wyłącz newsletter"
+msgstr "Deaktiver nyhetsbrev"
 
 #: includes/customizer/customizer.class.php:306
 msgid "Mailchimp form action URL"
-msgstr "Formularz subskrypcji Mailchimp"
+msgstr "Mailchimp form action URL"
 
 #: includes/customizer/customizer.class.php:308
 #, php-format
@@ -441,185 +440,184 @@ msgid ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
 "URL?</a>"
 msgstr ""
-"Gdzie mogę znaleźć <a href=\"%1$s\" target=\"_blank\">MailChimp form action "
+"Hvor finner jeg min <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
 "URL?</a>"
 
 #: includes/customizer/customizer.class.php:313
 msgid "Newsletter tagline"
-msgstr "Opis newslettera"
+msgstr "Nyhetsbrev undertittel"
 
 #: includes/customizer/customizer.class.php:314
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr ""
-"Nigdy nie przegap nowych materiałów! Zapisz się do newslettera i zostań w "
-"kontakcie."
+"Ikke gå glipp av noe! Meld deg på nyhetsbrevet for å holde deg oppdatert."
 
 #: includes/customizer/customizer.class.php:320
 msgid "Theme Options"
-msgstr "Ustawienia motywu"
+msgstr "Tema alternativer"
 
 #: includes/customizer/customizer.class.php:326
 msgid "Disable theme credits"
-msgstr "Wyłącz informację o szablonie"
+msgstr "Deaktiver tema promotering"
 
 #: includes/customizer/customizer.class.php:332
 msgid "Disable search"
-msgstr "Wyłącz wyszukiwawnie"
+msgstr "Deaktiver søk"
 
 #: includes/customizer/customizer.class.php:338
 msgid "Disable \"ref\" attribute"
-msgstr "Wyłącz atrybut “ref”"
+msgstr "Deaktiver \"ref\" funksjon"
 
 #: includes/customizer/customizer.class.php:344
 msgid "About copy (footer)"
-msgstr "O Nas (stopka)"
+msgstr "Om tekst (bunnlinjen)"
 
 #: includes/customizer/customizer.class.php:346
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
 msgstr ""
-"Podaj opis swojej strony wyświetlany w stopce. Możesz używać podstawowych "
-"tagów HTML (<p>, <a>, <strong>, <i>)."
+"Skriv inn webside beskrivelse som vises i bunnlinjen. Du kan bruke normale "
+"HTML tagger her (<p>, <a>, <strong>, <i>)."
 
 #: includes/customizer/customizer.class.php:351
 msgid "Tracking code"
-msgstr "Kod analizujący stronę"
+msgstr "Sporingskode"
 
 #: includes/customizer/customizer.class.php:352
 msgid ""
 "Paste your Google Analytics (or other) tracking code here. It will be "
 "inserted before the closing body tag of your theme."
 msgstr ""
-"Podaj swój kod Google Analytics (lub inny). Zostanie on dodany w kodzie HTML "
-"zaraz przed zamknięciem tagu body."
+"Lim inn din Google Analytics (eller annet) sporingskode her. Den vil bli "
+"lagt inn"
 
 #: includes/meta-boxes.class.php:30 includes/meta-boxes.class.php:39
 #: includes/meta-boxes.class.php:54
 msgid "Custom fields"
-msgstr "Dodatkowe pola"
+msgstr "Tilpasset felter"
 
 #: includes/meta-boxes.class.php:86 partials/popup.php:42
 msgid "Website URL"
-msgstr "Adres strony WWW"
+msgstr "Webside URL"
 
 #: includes/meta-boxes.class.php:92
 msgid "Featured?"
-msgstr "Promowany?"
+msgstr "Utvalgte"
 
 #: includes/meta-boxes.class.php:96
 msgid "Featured on homepage"
-msgstr "Promowany na stronie głównej"
+msgstr "Utvalgte på hjemmesiden"
 
 #: includes/meta-boxes.class.php:161
 msgid "Twitter Handle"
-msgstr "Twitter"
+msgstr "Twitter Handle"
 
 #: includes/meta-boxes.class.php:215
 msgid "Wide content"
-msgstr "Szeroka kolumna treści"
+msgstr "Vidt innhold"
 
 #: includes/meta-boxes.class.php:219
 msgid ""
 "Enable wide content for this page (it will make first heading of this page a "
 "left-floated title)"
 msgstr ""
-"Włącz wyświetlanie treści w postaci szerszej kolumny tekstu (pierwszy z "
-"nagłówków treści zostanie przeniesiony do lewej kolumny)"
+"Aktiver vidt innhold for denne siden (det vill gjøre første headinger av "
+"denne siden venstre-flytende)"
 
 #: includes/meta-boxes.class.php:224
 msgid "Enable curators"
-msgstr "Włącz redaktorów"
+msgstr "Aktiver kuratorere"
 
 #: includes/meta-boxes.class.php:228
 msgid "Enable curators listing on this page"
-msgstr "Włącz wyświetlanie redaktorów na tej stronie"
+msgstr "Aktiver kuratorers utlistinger på denne siden"
 
 #: partials/newsletter.php:10
 msgid "Email address"
-msgstr "Adres e-mail"
+msgstr "E-post adresse"
 
 #: partials/newsletter.php:13
 msgid "Join now"
-msgstr "Zapisz się"
+msgstr "Bli med"
 
 #: partials/page-bottom.php:5
 msgid "About"
-msgstr "O Nas"
+msgstr "Om"
 
 #: partials/page-bottom.php:15
 msgid "Navigation"
-msgstr "Nawigacja"
+msgstr "Navigasjon"
 
 #: partials/page-bottom.php:25 partials/page-head.php:27
 #: partials/page-head.php:52 partials/popup.php:9 partials/popup.php:66
 #: sections/toolbox.php:23
 msgid "Submit"
-msgstr "Zgłoś materiał"
+msgstr "Send inn"
 
 #: partials/page-bottom.php:31
 msgid "Follow"
-msgstr "Obserwuj"
+msgstr "Følg"
 
 #: partials/page-foot.php:8 partials/page-foot.php:9
 msgid "Chipmunk WordPress Theme"
-msgstr "Motyw WordPressa: Chipmunk"
+msgstr "Chipmunk WordPress Tema"
 
 #: partials/page-head.php:35 partials/popup.php:6 partials/search-bar.php:11
 msgid "Close"
-msgstr "Zamknij"
+msgstr "Lukk"
 
 #: partials/page-head.php:46
 msgid "Search"
-msgstr "Szukaj"
+msgstr "Søk"
 
 #: partials/page-head.php:57
 msgid "Menu"
-msgstr "Menu"
+msgstr "Meny"
 
 #: partials/popup.php:16
 msgid "Resource name"
-msgstr "Nazwa materiału"
+msgstr "Ressurs navn"
 
 #: partials/popup.php:45
 msgid "Description"
-msgstr "Opis"
+msgstr "Beskrivelse"
 
 #: partials/popup.php:52
 msgid "Your name"
-msgstr "Twoje imię"
+msgstr "Ditt navn"
 
 #: partials/popup.php:55
 msgid "Your email"
-msgstr "Twój e-mail"
+msgstr "Din e-post"
 
 #: partials/search-bar.php:6
 msgid "Search query..."
-msgstr "Wyszukiwana fraza…"
+msgstr "Søkeord..."
 
 #: partials/search-bar.php:6
 msgid "3 characters minimum"
-msgstr "Minimum 3 znaki"
+msgstr "Minimum 3 karakterer"
 
 #: partials/share-box.php:15
 msgid "Share"
-msgstr "Podziel się"
+msgstr "Del"
 
 #: search.php:12
 msgid "Search results for:"
-msgstr "Wyniki wyszukiwania dla:"
+msgstr "Søkeresultat for:"
 
 #: search.php:15
 msgid "Sorry, your search did not match any resources."
-msgstr "Przepraszamy, nie udało nam się znaleźć żadnych pasujących materiałów."
+msgstr "Beklager, ditt søk ga ingen resultater"
 
 #: sections/collection-tile.php:35
 msgid "View this collection"
-msgstr "Zobacz kolekcję"
+msgstr "Vis denne samlingen"
 
 #: sections/collection-tile.php:40
 msgid "Sub collections"
-msgstr "Podkolekcje"
+msgstr "Undersamling"
 
 #: sections/collections.php:27
 #, php-format
@@ -627,127 +625,136 @@ msgid ""
 "Ready to publish your first collection? <a href=\"%1$s\">Get started here</"
 "a>."
 msgstr ""
-"Gotowy na dodanie pierwszej kolekcji? <a href=\"%1$s\">Zacznij tutaj</a>."
+"Klar for å publisere din første samling? <a href=\"%1$s\">Start her</a>."
 
 #: sections/collections.php:29
 msgid "Sorry, there are no collections to display yet."
-msgstr "Brak kolekcji do wyświetlenia."
+msgstr "Beklager, det er ingen samlinger å vise enda."
 
 #: sections/pagination.php:15
 msgid "Previous"
-msgstr "Poprzednie"
+msgstr "Forrige"
 
 #: sections/pagination.php:25
 msgid "Next"
-msgstr "Następne"
+msgstr "Neste"
 
 #: sections/resource-tile.php:22 sections/resource.php:17
 msgid "Published"
-msgstr "Opublikowany"
+msgstr "Publisert"
 
 #: sections/resource-tile.php:26 sections/resource.php:21
 msgid "Views"
-msgstr "Wizyty"
+msgstr "Visninger"
 
 #: sections/resource-tile.php:30 sections/resource.php:9
 msgid "Upvote"
-msgstr "Zagłosuj"
+msgstr "Avstemninger"
 
 #: sections/resource.php:41
 msgid "Visit website"
-msgstr "Odwiedź stronę"
+msgstr "Besøk webside"
 
 #: sections/resources-tabs.php:16
 msgid "Featured"
-msgstr "Promowane"
+msgstr "Utvalgte"
 
 #: sections/resources-tabs.php:20
 msgid "Latest"
-msgstr "Najnowsze"
+msgstr "Siste"
 
 #: sections/resources-tabs.php:24
 msgid "Popular"
-msgstr "Popularne"
+msgstr "Populær"
 
 #: sections/resources.php:12
 msgid "Related"
-msgstr "Powiązane"
+msgstr "Relatert"
 
 #: sections/resources.php:37 taxonomy.php:54
 #, php-format
 msgid ""
 "Ready to publish your first resource? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
-"Gotowy na dodanie pierwszego materiału? <a href=\"%1$s\">Zacznij tutaj</a>."
+"Klar for å publisere din første ressurs? <a href=\"%1$s\">Start her</a>."
 
 #: sections/resources.php:39 taxonomy.php:56
 msgid "Sorry, there are no resources to display yet."
-msgstr "Brak materiałów do wyświetlenia."
+msgstr "Beklager, det er ingen ressurser å vise enda."
 
 #: sections/toolbox.php:6
 msgid "Follow us"
-msgstr "Obserwuj nas"
+msgstr "Følg oss"
 
 #: taxonomy.php:8
 #, php-format
 msgid "%s Collection"
-msgstr "%s"
+msgstr "%s Samling"
 
 #: taxonomy.php:8
 #, php-format
 msgid "%s Tag"
-msgstr "%s"
+msgstr "%s Knagg"
 
 #~ msgid "Search results for %s"
-#~ msgstr "Wyniki wyszukiwania dla %s"
+#~ msgstr "Search results for %s"
 
 #~ msgid "Page %s"
-#~ msgstr "Strona %s"
+#~ msgstr "Page %s"
 
 #~ msgid "Upvotes"
-#~ msgstr "Głosy za"
+#~ msgstr "Upvotes"
 
 #~ msgid "Tag"
 #~ msgstr "Tag"
 
 #~ msgid "%1$s Collection"
-#~ msgstr "Kolekcja %1$s"
-
-#~ msgid ""
-#~ "Where do I find my <a href=%1$s target=\"_blank\">Mailchimp form action "
-#~ "URL?</a>"
-#~ msgstr ""
-#~ "Gdzie mogę znaleźć <a href=%1$s target=\"_blank\">MailChimp form action "
-#~ "URL?</a>"
+#~ msgstr "%1$s Collection"
 
 #~ msgid "Newsletter form action URL"
-#~ msgstr "Newsletter “form action URL”"
+#~ msgstr "Newsletter form action URL"
 
 #~ msgid ""
 #~ "Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
 #~ "\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
 #~ "Monitor</a>"
 #~ msgstr ""
-#~ "Gdzie znajdę “form action URL” dla mojego newslettera? <a href=\"%1$s\" "
-#~ "target=\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank"
-#~ "\">Campaign Monitor</a>"
+#~ "Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
+#~ "\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
+#~ "Monitor</a>"
 
 #~ msgid ""
 #~ "We recommend using a square horizontal image that is at least %1$d pixels "
 #~ "wide."
-#~ msgstr "Polecamy uży %1$d pixels wide."
+#~ msgstr ""
+#~ "We recommend using a square horizontal image that is at least %1$d pixels "
+#~ "wide."
+
+#~ msgid ""
+#~ "We recommend using a square vertical image that is at least %1$d pixels "
+#~ "wide."
+#~ msgstr ""
+#~ "We recommend using a square vertical image that is at least %1$d pixels "
+#~ "wide."
 
 #~ msgid "Disable asking for submitter info"
-#~ msgstr "Nie pytaj zgłaszającego o imię/email"
+#~ msgstr "Disable asking for submitter info"
 
 #~ msgid "Ad image"
-#~ msgstr "Dodaj obrazek"
+#~ msgstr "Ad image"
 
 #~ msgid "<a href=\"%1$s\">Review submission</a>"
-#~ msgstr "<a href=\"%1$s\">Sprawdź zgłoszenie</a>"
+#~ msgstr "<a href=“%1$s”>Review submission</a>"
 
 #~ msgid "Category"
-#~ msgstr "Kategoria"
+#~ msgstr "Category"
+
+#~ msgid ""
+#~ "Upload a logo for your theme. You can leave it empty to use your site "
+#~ "name as a plain text logo., "
+#~ msgstr ""
+#~ "Upload a logo for your theme. You can leave it empty to use your site "
+#~ "name as a plain text logo., "
 
 #~ msgid "resource"
 #~ msgstr "resource"
