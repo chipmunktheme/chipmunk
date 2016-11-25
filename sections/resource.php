@@ -5,7 +5,9 @@
     <article class="resource row">
       <div class="resource__content column column_lg-6">
         <ul class="resource__stats stats">
-          <li class="stats__item" title="<?php _e('Upvotes', 'chipmunk'); ?>"><button class="stats__button">&uarr; 253</button></li>
+          <?php if (false) : // TODO: implement Upvote functionality ?>
+            <li class="stats__item" title="<?php _e('Upvote', 'chipmunk'); ?>"><button class="stats__button">&uarr; 253</button></li>
+          <?php endif; ?>
 
           <?php if (get_the_terms(get_the_ID(), 'resource-collection')) : ?>
             <li class="stats__item" title="<?php _e('Collection', 'chipmunk'); ?>"><i class="icon icon_tag"></i> <?php the_terms(get_the_ID(), 'resource-collection'); ?></li>

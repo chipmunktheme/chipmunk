@@ -10,12 +10,12 @@ if ($_REQUEST['debug']) {
 
 load_theme_textdomain('chipmunk', get_template_directory().'/languages');
 
-include_once 'includes/Helpers.class.php';
-include_once 'includes/Ajax.class.php';
-include_once 'includes/Customizer.class.php';
-include_once 'includes/CustomPosts.class.php';
-include_once 'includes/MetaBoxes.class.php';
-include_once 'includes/ViewCounter.class.php';
+include_once get_template_directory().'/includes/helpers.class.php';
+include_once get_template_directory().'/includes/ajax.class.php';
+include_once get_template_directory().'/includes/custom-posts.class.php';
+include_once get_template_directory().'/includes/meta-boxes.class.php';
+include_once get_template_directory().'/includes/view-counter.class.php';
+include_once get_template_directory().'/includes/customizer/customizer.class.php';
 
 class Chipmunk
 {

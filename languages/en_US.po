@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-11-22 20:26+0100\n"
-"PO-Revision-Date: 2016-11-22 20:27+0100\n"
+"POT-Creation-Date: 2016-11-22 22:17+0100\n"
+"PO-Revision-Date: 2016-11-22 22:17+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -24,16 +24,6 @@ msgstr "404! The page you are looking for couldn’t be found."
 #: 404.php:8
 msgid "Bring me to the frontpage"
 msgstr "Bring me to the frontpage"
-
-#: functions.php:187
-#, php-format
-msgid "Search results for %s"
-msgstr "Search results for %s"
-
-#: functions.php:191 functions.php:210
-#, php-format
-msgid "Page %s"
-msgstr "Page %s"
 
 #: includes/Ajax.class.php:15
 msgid "Please verify that you are not a robot."
@@ -652,8 +642,8 @@ msgid "Views"
 msgstr "Views"
 
 #: sections/resource-tile.php:29 sections/resource.php:8
-msgid "Upvotes"
-msgstr "Upvotes"
+msgid "Upvote"
+msgstr "Upvote"
 
 #: sections/resource.php:39
 msgid "Visit website"
@@ -699,6 +689,15 @@ msgstr "%s Collection"
 #, php-format
 msgid "%s Tag"
 msgstr "%s Tag"
+
+#~ msgid "Search results for %s"
+#~ msgstr "Search results for %s"
+
+#~ msgid "Page %s"
+#~ msgstr "Page %s"
+
+#~ msgid "Upvotes"
+#~ msgstr "Upvotes"
 
 #~ msgid "Tag"
 #~ msgstr "Tag"
