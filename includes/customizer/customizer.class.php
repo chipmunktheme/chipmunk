@@ -138,17 +138,24 @@ if (!class_exists('ChipmunkCustomizer'))
               'default'     => false,
             ),
             array(
-              'name'        => 'disable_views',
-              'type'        => 'checkbox',
-              'label'       => __('Disable view count', 'chipmunk'),
-              'default'     => false,
-            ),
-            array(
               'name'        => 'disable_collection_thumbs',
               'type'        => 'checkbox',
               'label'       => __('Disable collection thumbs', 'chipmunk'),
               'default'     => false,
             ),
+            array(
+              'name'        => 'disable_views',
+              'type'        => 'checkbox',
+              'label'       => __('Disable view count', 'chipmunk'),
+              'default'     => false,
+            ),
+            // TODO: Implement Upvote functionality
+            // array(
+            //   'name'        => 'disable_upvotes',
+            //   'type'        => 'checkbox',
+            //   'label'       => __('Disable upvoting', 'chipmunk'),
+            //   'default'     => false,
+            // ),
             array(
               'name'        => 'disable_sorting',
               'type'        => 'checkbox',
@@ -195,7 +202,7 @@ if (!class_exists('ChipmunkCustomizer'))
               'label'       => __('Inform me about new submissions', 'chipmunk'),
               'default'     => true,
             ),
-            // TODO: Will be released in future versions
+            // TODO: Allow to store the submitter's info
             // array(
             //   'name'        => 'disable_submitter_info',
             //   'type'        => 'checkbox',

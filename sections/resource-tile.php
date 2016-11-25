@@ -26,7 +26,7 @@
           <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> <?php echo ChipmunkViewCounter::get_post_views(get_the_ID()); ?></li>
         <?php endif; ?>
 
-        <?php if (false) : // TODO: implement Upvote functionality ?>
+        <?php if (false and !ChipmunkCustomizer::theme_option('disable_upvotes')) : // TODO: Implement Upvote functionality ?>
           <li class="stats__item stats__item_sided" title="<?php _e('Upvote', 'chipmunk'); ?>"><button class="stats__button">&uarr; 253</button></li>
         <?php endif; ?>
       </ul>
