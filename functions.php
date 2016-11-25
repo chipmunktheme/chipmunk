@@ -1,7 +1,7 @@
 <?php
 // *DEBUG MODE*
 // Add ?debug=true to your URL to enable
-if ($_REQUEST['debug']) {
+if (isset($_REQUEST['debug'])) {
   echo 'PHP Version: '.phpversion();
 
   ini_set('display_errors', 1);

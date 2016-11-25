@@ -1376,7 +1376,6 @@ a, button {
 }
 .slick-slide {
   float: left;
-  height: 100%;
   min-height: 1px;
   display: none;
 }
@@ -2205,6 +2204,7 @@ a, button {
 @media (min-width: 980px) {
   .nav-primary__inner {
     display: block;
+    height: auto;
   }
 }
 .nav-primary__inner ul {

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
 "POT-Creation-Date: 2016-11-25 09:44+0100\n"
-"PO-Revision-Date: 2016-11-25 09:47+0100\n"
+"PO-Revision-Date: 2016-11-25 10:28+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -91,44 +91,44 @@ msgstr "Ingen ressurser funnet i søppelkurven."
 #: includes/custom-posts.class.php:41 includes/custom-posts.class.php:51
 #: sections/collections.php:3
 msgid "Collections"
-msgstr "Samlinger"
+msgstr "Kolleksjoner"
 
 #: includes/custom-posts.class.php:42 partials/popup.php:19
 #: partials/popup.php:20 sections/resource.php:13
 msgid "Collection"
-msgstr "Samling"
+msgstr "Kolleksjon"
 
 #: includes/custom-posts.class.php:43
 msgid "Search Collections"
-msgstr "Søk samlinger"
+msgstr "Søk kolleksjoner"
 
 #: includes/custom-posts.class.php:44
 msgid "All Collections"
-msgstr "Alle samlinger"
+msgstr "Alle kolleksjoner"
 
 #: includes/custom-posts.class.php:45
 msgid "Parent Collection"
-msgstr "Foreldre samling"
+msgstr "Foreldre kolleksjon"
 
 #: includes/custom-posts.class.php:46
 msgid "Parent Collection:"
-msgstr "Foreldre samling:"
+msgstr "Foreldre kolleksjon:"
 
 #: includes/custom-posts.class.php:47
 msgid "Edit Collection"
-msgstr "Rediger samling"
+msgstr "Rediger kolleksjon"
 
 #: includes/custom-posts.class.php:48
 msgid "Update Collection"
-msgstr "Oppdater samling"
+msgstr "Oppdater kolleksjon"
 
 #: includes/custom-posts.class.php:49
 msgid "Add New Collection"
-msgstr "Legg til ny samling"
+msgstr "Legg til ny kolleksjon"
 
 #: includes/custom-posts.class.php:50
 msgid "New Collection Name"
-msgstr "Nytt navn for samling"
+msgstr "Nytt navn for kolleksjon"
 
 #: includes/custom-posts.class.php:68 includes/custom-posts.class.php:70
 #: sections/curators.php:4
@@ -237,7 +237,7 @@ msgstr "Deaktiver ressurs utlisting karusellene"
 
 #: includes/customizer/customizer.class.php:94
 msgid "Disable collections"
-msgstr "Deaktiver samlingene"
+msgstr "Deaktiver kolleksjoner"
 
 #: includes/customizer/customizer.class.php:107
 msgid "Number of resources per page"
@@ -265,7 +265,7 @@ msgstr "Deaktiver hoved panel"
 
 #: includes/customizer/customizer.class.php:143
 msgid "Disable collection thumbs"
-msgstr "Deaktiver samling miniatyr bilde"
+msgstr "Deaktiver kolleksjon miniatyr bilde"
 
 #: includes/customizer/customizer.class.php:149
 msgid "Disable view count"
@@ -613,11 +613,11 @@ msgstr "Beklager, ditt søk ga ingen resultater"
 
 #: sections/collection-tile.php:35
 msgid "View this collection"
-msgstr "Vis denne samlingen"
+msgstr "Vis denne kolleksjonen"
 
 #: sections/collection-tile.php:40
 msgid "Sub collections"
-msgstr "Undersamling"
+msgstr "Underkolleksjon"
 
 #: sections/collections.php:27
 #, php-format
@@ -625,11 +625,11 @@ msgid ""
 "Ready to publish your first collection? <a href=\"%1$s\">Get started here</"
 "a>."
 msgstr ""
-"Klar for å publisere din første samling? <a href=\"%1$s\">Start her</a>."
+"Klar for å publisere din første kolleksjon? <a href=\"%1$s\">Start her</a>."
 
 #: sections/collections.php:29
 msgid "Sorry, there are no collections to display yet."
-msgstr "Beklager, det er ingen samlinger å vise enda."
+msgstr "Beklager, det er ingen kolleksjoner å vise enda."
 
 #: sections/pagination.php:15
 msgid "Previous"
@@ -689,7 +689,7 @@ msgstr "Følg oss"
 #: taxonomy.php:8
 #, php-format
 msgid "%s Collection"
-msgstr "%s Samling"
+msgstr "%s Kolleksjon"
 
 #: taxonomy.php:8
 #, php-format
