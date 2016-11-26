@@ -61,10 +61,10 @@ class Chipmunk
   public function enqueue_assets()
   {
     // Load our main stylesheet
-    wp_enqueue_style('chipmunk-styles', get_template_directory_uri().'/static/dist/styles/main.min.css', array(), '1.3.1');
+    wp_enqueue_style('chipmunk-styles', get_template_directory_uri().'/static/dist/styles/main.min.css', array(), '1.3.2');
 
     // Load our main script.
-    wp_enqueue_script('chipmunk-scripts', get_template_directory_uri().'/static/dist/scripts/main.min.js', array(), '1.3.1', true);
+    wp_enqueue_script('chipmunk-scripts', get_template_directory_uri().'/static/dist/scripts/main.min.js', array(), '1.3.2', true);
   }
 
   /**
@@ -73,7 +73,7 @@ class Chipmunk
   public function enqueue_admin_assets()
   {
     // Load our main stylesheet
-    wp_enqueue_style('chipmunk-admin-styles', get_template_directory_uri().'/admin.css', array(), '1.3.1');
+    wp_enqueue_style('chipmunk-admin-styles', get_template_directory_uri().'/admin.css', array(), '1.3.2');
   }
 
   /**
