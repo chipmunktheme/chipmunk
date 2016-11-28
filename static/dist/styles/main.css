@@ -2632,11 +2632,6 @@ a, button {
   -ms-flex-pack: justify;
       justify-content: space-between;
 }
-@media (min-width: 980px) {
-  .resource__content {
-    padding: 1rem 0;
-  }
-}
 .resource__image {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
@@ -2706,8 +2701,16 @@ a, button {
   display: flex;
   -ms-flex-align: center;
       align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+@media (min-width: 980px) {
+  .resource__actions {
+    -ms-flex-pack: start;
+        justify-content: flex-start;
+  }
 }
 .resource__actions .button {
   margin-right: 2rem;
@@ -2919,7 +2922,7 @@ a, button {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   font-size: 1.4rem;
-  line-height: 1;
+  line-height: 1.2;
   margin-top: -1rem;
 }
 .stats__item {

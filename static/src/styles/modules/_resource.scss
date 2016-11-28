@@ -9,10 +9,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  @include breakpoint(lg) {
-    padding: ($separator / 2) 0;
-  }
 }
 
 .resource__image {
@@ -86,7 +82,12 @@
 .resource__actions {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
+
+  @include breakpoint(lg) {
+    justify-content: flex-start;
+  }
 
   .button {
     margin-right: $separator;
