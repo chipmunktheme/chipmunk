@@ -21145,22 +21145,19 @@ var Extras = function () {
     infinite: false,
     slidesToShow: 3,
     slidesToScroll: 3,
-    responsive: [
-      {
-        breakpoint: 980,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 680,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
+    responsive: [{
+      breakpoint: 980,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
       }
-    ]
+    }, {
+      breakpoint: 680,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }]
   });
 
   $(document).on('shown.tab', function () {
@@ -21229,18 +21226,17 @@ var RemoteForm = {
       var formData = $form.serializeArray();
       var formObject = helpers.convertToObject(formData);
 
-      helpers.request(formAction, formObject)
-        .always(function (response) {
-          console.log(response);
-          
-          if (this.$message.length) {
-            if (response.success) {
-              $form.hide();
-            }
+      helpers.request(formAction, formObject).always(function (response) {
+        console.log(response);
 
-            this.$message.text(response.data).show();
+        if (this.$message.length) {
+          if (response.success) {
+            $form.hide();
           }
-        }.bind(this));
+
+          this.$message.text(response.data).show();
+        }
+      }.bind(this));
     }
   }
 };
@@ -21286,7 +21282,7 @@ var Sort = function () {
     }
 
     if (!window.location.origin) {
-      window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
+      window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
     }
 
     window.location = window.location.origin + window.location.pathname + URIParams;
@@ -21307,7 +21303,7 @@ var Tabs = function (tabsClass) {
   this.bind();
 };
 
-Tabs.prototype.show = function(index) {
+Tabs.prototype.show = function (index) {
   var activePanel, activeTab;
 
   this.tabs.removeClass('active');
@@ -21321,9 +21317,9 @@ Tabs.prototype.show = function(index) {
   $(document).trigger('shown.tab');
 };
 
-Tabs.prototype.bind = function() {
+Tabs.prototype.bind = function () {
   var _this = this;
-  return this.tabs.on('click', function(e) {
+  return this.tabs.on('click', function (e) {
     return _this.show($(e.currentTarget).index());
   });
 };
@@ -21334,12 +21330,13 @@ module.exports = Tabs;
 'use strict';
 
 var $ = require('jquery');
+// require('parsleyjs/src/i18n/pl.js')
 require('parsleyjs');
 
 var Validate = function () {
   $('[data-parsley-validate]').parsley();
 
-  $('[data-parsley-validate] .custom-select').on('change', function() {
+  $('[data-parsley-validate] .custom-select').on('change', function () {
     $(this).parsley().validate();
   });
 };

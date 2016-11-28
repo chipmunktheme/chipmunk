@@ -30,12 +30,20 @@
     margin-bottom: $separator;
     overflow: visible;
 
+    @include breakpoint(md) {
+      margin-bottom: $separator * 2;
+    }
+
     .tile__copy .icon_arrow {
       display: none;
     }
 
     &:hover .tile__image {
       opacity: 0.8;
+    }
+
+    .slick-slide & {
+      margin-bottom: 0;
     }
   }
 }

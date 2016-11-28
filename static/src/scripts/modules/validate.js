@@ -1,6 +1,7 @@
 'use strict';
 
 var $ = require('jquery');
+// require('parsleyjs/src/i18n/pl.js')
 require('parsleyjs');
 
 var Validate = function () {

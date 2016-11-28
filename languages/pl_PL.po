@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
 "POT-Creation-Date: 2016-11-28 21:43+0100\n"
-"PO-Revision-Date: 2016-11-28 21:43+0100\n"
+"PO-Revision-Date: 2016-11-28 23:46+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -296,7 +296,7 @@ msgstr "Popularności"
 
 #: includes/customizer/customizer.php:179
 msgid "Sort order"
-msgstr "Sortuj po"
+msgstr "Kierunek sortowania"
 
 #: includes/customizer/customizer.php:182
 msgid "Ascending"

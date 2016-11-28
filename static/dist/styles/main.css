@@ -2903,6 +2903,11 @@ a, button {
   background-color: #FAFAFA;
   color: #F38181;
 }
+@media (min-width: 680px) {
+  .section__title {
+    margin-bottom: 2rem;
+  }
+}
 /*
 ** Module - Stats
 ** -----------------------------------------------------------------------------*/
@@ -2980,11 +2985,19 @@ a, button {
   margin-bottom: 2rem;
   overflow: visible;
 }
+@media (min-width: 680px) {
+  .tile_card {
+    margin-bottom: 4rem;
+  }
+}
 .tile_card .tile__copy .icon_arrow {
   display: none;
 }
 .tile_card:hover .tile__image {
   opacity: 0.8;
+}
+.slick-slide .tile_card {
+  margin-bottom: 0;
 }
 .tile__list {
   margin: 0 -1rem;
