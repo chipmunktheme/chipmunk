@@ -8,7 +8,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
   <nav class="pagination">
     <div class="container">
       <div class="pagination__inner">
-        <span class="pagination__title">Page <?php echo $paged; ?> of <?php echo $query->max_num_pages; ?></span>
+        <span class="pagination__title"><?php printf(__('Page %d of %d', 'chipmunk'), $paged, $query->max_num_pages); ?></span>
 
         <ul class="pagination__nav">
           <li class="pagination__item<?php echo get_previous_posts_link(null, $query->max_num_pages) ? '' : ' pagination__item_disabled'; ?>">
