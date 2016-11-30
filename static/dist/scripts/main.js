@@ -21088,10 +21088,6 @@ S2.define('jquery.select2',[
 
 'use strict';
 
-var $ = require('jquery');
-window.$ = $;
-window.jQuery = $;
-
 (function () {
   require('./modules/nav')();
   require('./modules/search')();
@@ -21106,7 +21102,7 @@ window.jQuery = $;
 })();
 
 var closePanels = function () {
-  $(document.body).removeClass('has-search-open has-popup-open has-nav-open');
+  document.body.classList.remove('has-search-open', 'has-popup-open', 'has-nav-open');
 };
 
 document.addEventListener('keyup', function (ev) {
@@ -21121,12 +21117,10 @@ document.addEventListener('click', function (ev) {
   }
 });
 
-},{"./modules/extras":6,"./modules/nav":7,"./modules/popup":8,"./modules/remote-form":9,"./modules/search":10,"./modules/sort":11,"./modules/tabs":12,"./modules/validate":13,"jquery":1}],6:[function(require,module,exports){
+},{"./modules/extras":6,"./modules/nav":7,"./modules/popup":8,"./modules/remote-form":9,"./modules/search":10,"./modules/sort":11,"./modules/tabs":12,"./modules/validate":13}],6:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
-window.$ = $;
-window.jQuery = $;
 
 require('select2');
 require('slick-carousel');
@@ -21145,19 +21139,22 @@ var Extras = function () {
     infinite: false,
     slidesToShow: 3,
     slidesToScroll: 3,
-    responsive: [{
-      breakpoint: 980,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2
+    responsive: [
+      {
+        breakpoint: 980,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 680,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
       }
-    }, {
-      breakpoint: 680,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }]
+    ]
   });
 
   $(document).on('shown.tab', function () {
@@ -21226,17 +21223,18 @@ var RemoteForm = {
       var formData = $form.serializeArray();
       var formObject = helpers.convertToObject(formData);
 
-      helpers.request(formAction, formObject).always(function (response) {
-        console.log(response);
+      helpers.request(formAction, formObject)
+        .always(function (response) {
+          console.log(response);
+          
+          if (this.$message.length) {
+            if (response.success) {
+              $form.hide();
+            }
 
-        if (this.$message.length) {
-          if (response.success) {
-            $form.hide();
+            this.$message.text(response.data).show();
           }
-
-          this.$message.text(response.data).show();
-        }
-      }.bind(this));
+        }.bind(this));
     }
   }
 };
@@ -21282,7 +21280,7 @@ var Sort = function () {
     }
 
     if (!window.location.origin) {
-      window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
+      window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
     }
 
     window.location = window.location.origin + window.location.pathname + URIParams;
@@ -21295,6 +21293,8 @@ module.exports = Sort;
 },{"jquery":1}],12:[function(require,module,exports){
 'use strict';
 
+var $ = require('jquery');
+
 var Tabs = function (tabsClass) {
   this.el = $(tabsClass);
   this.tabs = this.el.find('[data-tabs-toggle]');
@@ -21303,7 +21303,7 @@ var Tabs = function (tabsClass) {
   this.bind();
 };
 
-Tabs.prototype.show = function (index) {
+Tabs.prototype.show = function(index) {
   var activePanel, activeTab;
 
   this.tabs.removeClass('active');
@@ -21317,16 +21317,16 @@ Tabs.prototype.show = function (index) {
   $(document).trigger('shown.tab');
 };
 
-Tabs.prototype.bind = function () {
+Tabs.prototype.bind = function() {
   var _this = this;
-  return this.tabs.on('click', function (e) {
+  return this.tabs.on('click', function(e) {
     return _this.show($(e.currentTarget).index());
   });
 };
 
 module.exports = Tabs;
 
-},{}],13:[function(require,module,exports){
+},{"jquery":1}],13:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21336,7 +21336,7 @@ require('parsleyjs');
 var Validate = function () {
   $('[data-parsley-validate]').parsley();
 
-  $('[data-parsley-validate] .custom-select').on('change', function () {
+  $('[data-parsley-validate] .custom-select').on('change', function() {
     $(this).parsley().validate();
   });
 };

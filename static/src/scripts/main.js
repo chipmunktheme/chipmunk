@@ -6,10 +6,6 @@
 
 'use strict';
 
-var $ = require('jquery');
-window.$ = $;
-window.jQuery = $;
-
 (function () {
   require('./modules/nav')();
   require('./modules/search')();
@@ -24,7 +20,7 @@ window.jQuery = $;
 })();
 
 var closePanels = function () {
-  $(document.body).removeClass('has-search-open has-popup-open has-nav-open');
+  document.body.classList.remove('has-search-open', 'has-popup-open', 'has-nav-open');
 };
 
 document.addEventListener('keyup', function (ev) {

@@ -5,7 +5,7 @@
     <article class="resource row">
       <div class="resource__content column column_lg-6">
         <ul class="resource__stats stats">
-          <?php if (false and !ChipmunkCustomizer::theme_option('disable_upvotes')) : // TODO: Implement Upvote functionality ?>
+          <?php if (!ChipmunkCustomizer::theme_option('disable_upvotes')) : // TODO: Implement Upvote functionality ?>
             <li class="stats__item" title="<?php _e('Upvote', 'chipmunk'); ?>"><button class="stats__button">&uarr; 253</button></li>
           <?php endif; ?>
 

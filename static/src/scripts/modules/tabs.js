@@ -1,5 +1,7 @@
 'use strict';
 
+var $ = require('jquery');
+
 var Tabs = function (tabsClass) {
   this.el = $(tabsClass);
   this.tabs = this.el.find('[data-tabs-toggle]');

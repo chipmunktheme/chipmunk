@@ -1,8 +1,6 @@
 'use strict';
 
 var $ = require('jquery');
-window.$ = $;
-window.jQuery = $;
 
 require('select2');
 require('slick-carousel');

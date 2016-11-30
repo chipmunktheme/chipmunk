@@ -11,7 +11,7 @@
 <?php if ($resources['latest']->have_posts()) : ?>
   <div class="section section_theme-gray">
     <div class="container" data-tabs role="tablist">
-      <h3 class="heading heading_md">
+      <h3 class="section__title heading heading_md">
         <?php if ($resources['featured']->have_posts()) : ?>
           <span class="heading__link active" data-tabs-toggle role="tab"><?php _e('Featured', 'chipmunk'); ?></span>
         <?php endif; ?>

@@ -2906,11 +2906,6 @@ a, button {
   background-color: #FAFAFA;
   color: #F38181;
 }
-@media (min-width: 680px) {
-  .section__title {
-    margin-bottom: 2rem;
-  }
-}
 /*
 ** Module - Stats
 ** -----------------------------------------------------------------------------*/

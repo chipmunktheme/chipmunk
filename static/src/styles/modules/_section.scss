@@ -66,9 +66,3 @@
     }
   }
 }
-
-.section__title {
-  @include breakpoint(md) {
-    margin-bottom: $separator;
-  }
-}
