@@ -33,6 +33,9 @@ if (!class_exists('ChipmunkCustomPosts'))
         'rewrite'               => array('with_front' => false, 'slug' => 'resource'),
         'public'                => true,
         'menu_icon'             => 'dashicons-screenoptions',
+        'show_in_rest'          => true,
+        'rest_base'             => 'resources',
+        'rest_controller_class' => 'WP_REST_Posts_Controller',
         'supports'              => array('title', 'editor', 'author', 'thumbnail'),
       ));
 
@@ -50,9 +53,12 @@ if (!class_exists('ChipmunkCustomPosts'))
           'new_item_name'     => __('New Collection Name', 'chipmunk'),
           'menu_name'         => __('Collections', 'chipmunk'),
         ),
-        'hierarchical'      => true,
-        'rewrite'           => array('with_front' => false, 'slug' => 'collection'),
-        'show_admin_column' => true,
+        'hierarchical'          => true,
+        'show_admin_column'     => true,
+        'rewrite'               => array('with_front' => false, 'slug' => 'collection'),
+        'show_in_rest'          => true,
+        'rest_base'             => 'collections',
+        'rest_controller_class' => 'WP_REST_Terms_Controller',
       ));
 
       register_taxonomy('resource-tag', 'resource', array(
