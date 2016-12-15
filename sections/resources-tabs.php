@@ -11,19 +11,28 @@
 <?php if ($resources['latest']->have_posts()) : ?>
   <div class="section section_theme-gray">
     <div class="container" data-tabs role="tablist">
-      <h3 class="section__title heading heading_md">
+      <div class="section__title heading heading_md">
         <?php if ($resources['featured']->have_posts()) : ?>
-          <span class="heading__link active" data-tabs-toggle role="tab"><?php _e('Featured', 'chipmunk'); ?></span>
+          <h2 class="heading__link active" data-tabs-toggle role="tab">
+            <?php _e('Featured', 'chipmunk'); ?>
+            <span class="sr-only"> <?php _e('Resources', 'chipmunk'); ?></span>
+          </h2>
         <?php endif; ?>
 
         <?php if ($resources['latest']->have_posts()) : ?>
-          <span class="heading__link<?php echo !$resources['featured']->have_posts() ? ' active' : ''; ?>" data-tabs-toggle role="tab"><?php _e('Latest', 'chipmunk'); ?></span>
+          <h2 class="heading__link<?php echo !$resources['featured']->have_posts() ? ' active' : ''; ?>" data-tabs-toggle role="tab">
+            <?php _e('Latest', 'chipmunk'); ?>
+            <span class="sr-only"> <?php _e('Resources', 'chipmunk'); ?></span>
+          </h2>
         <?php endif; ?>
 
         <?php if ($resources['popular']->have_posts()) : ?>
-          <span class="heading__link<?php echo !$resources['featured']->have_posts() ? '' : ' visible-sm-inline-block'; ?>" data-tabs-toggle role="tab"><?php _e('Popular', 'chipmunk'); ?></span>
+          <h2 class="heading__link<?php echo !$resources['featured']->have_posts() ? '' : ' visible-sm-inline-block'; ?>" data-tabs-toggle role="tab">
+            <?php _e('Popular', 'chipmunk'); ?>
+            <span class="sr-only"> <?php _e('Resources', 'chipmunk'); ?></span>
+          </h2>
         <?php endif; ?>
-      </h3>
+      </div>
 
 
       <div class="tab-content">

@@ -23,14 +23,10 @@
         </ul>
 
         <div class="resource__info">
-          <h2 class="resource__title heading heading_xl">
-            <?php if (is_single()) : ?>
-              <?php the_title(); ?>
-            <?php else : ?>
-              <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-            <?php endif; ?>
-          </h2>
+          <?php echo ChipmunkHelpers::conditional_markup(is_single(), 'h1', 'h2', 'resource__title heading heading_xl', is_single() ? get_the_title() : '<a href="'.get_the_permalink().'">'.get_the_title().'</a>'); ?>
+
           <?php $content = get_the_content(); ?>
+
           <?php if (!empty($content)) : ?>
             <p class="resource__description"><?php echo do_shortcode($content); ?></p>
           <?php endif; ?>

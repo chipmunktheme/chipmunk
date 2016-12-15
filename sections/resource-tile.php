@@ -7,7 +7,7 @@
 
   <div class="tile__content<?php echo (!ChipmunkCustomizer::theme_option('display_resource_cards') ? ' tile__content_dimmed' : ''); ?>">
     <div class="tile__info">
-      <h3 class="tile__title"><?php the_title(); ?></h3>
+      <?php echo ChipmunkHelpers::conditional_markup(is_front_page() || is_single(), 'h3', 'h2', 'tile__title', get_the_title()); ?>
 
       <?php $content = get_the_content(); ?>
 

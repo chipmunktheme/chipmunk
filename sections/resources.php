@@ -9,18 +9,18 @@
 <div class="section section_theme-gray">
   <div class="container">
     <?php if (is_single()) : ?>
-      <h3 class="section__title heading heading_md"><?php _e('Related', 'chipmunk'); ?></h3>
+      <h2 class="section__title heading heading_md"><?php _e('Related', 'chipmunk'); ?></h2>
     <?php else : ?>
       <?php if (!ChipmunkCustomizer::theme_option('disable_sorting') and $custom_query->have_posts()) : ?>
         <div class="row row_center">
           <div class="column column_md-3 column_lg-6">
-            <h3 class="section__title heading heading_md"><?php _e('Resources', 'chipmunk'); ?></h3>
+            <h1 class="section__title heading heading_md"><?php _e('Resources', 'chipmunk'); ?></h1>
           </div>
 
           <?php get_template_part('partials/sort-resources'); ?>
         </div>
       <?php else : ?>
-        <h3 class="section__title heading heading_md"><?php _e('Resources', 'chipmunk'); ?></h3>
+        <h1 class="section__title heading heading_md"><?php _e('Resources', 'chipmunk'); ?></h1>
       <?php endif; ?>
     <?php endif; ?>
 

@@ -1,16 +1,20 @@
 <header class="page-head">
   <div class="container">
     <div class="page-head__inner">
-      <h1 class="page-head__logo">
-        <a href="<?php echo home_url(); ?>" rel="index">
-          <?php if ($logo = ChipmunkCustomizer::theme_option('logo')) : ?>
-            <span class="sr-only"><?php bloginfo('name'); ?></span>
-            <img src="<?php echo $logo; ?>" alt="" />
-          <?php else : ?>
-            <?php bloginfo('name'); ?>
-          <?php endif; ?>
-        </a>
-      </h1>
+      <?php $logo = ChipmunkCustomizer::theme_option('logo'); ?>
+
+      <?php ob_start(); ?>
+      <a href="<?php echo home_url(); ?>" rel="index">
+        <?php if ($logo) : ?>
+          <span class="sr-only"><?php bloginfo('name'); ?></span>
+          <img src="<?php echo $logo; ?>" alt="" />
+        <?php else : ?>
+          <?php bloginfo('name'); ?>
+        <?php endif; ?>
+      </a>
+      <?php $content = ob_get_clean(); ?>
+
+      <?php echo ChipmunkHelpers::conditional_markup(is_front_page(), 'h1', 'div', 'page-head__logo', $content); ?>
 
       <nav class="nav-primary">
         <div class="nav-primary__inner">

@@ -279,5 +279,20 @@ if (!class_exists('ChipmunkHelpers'))
       $query = new WP_Query($args);
       return $query;
     }
+
+    /**
+     * Conditional Markup
+     */
+    public static function conditional_markup($condition, $tagTrue, $tagFalse, $class, $content)
+    {
+      if ($condition)
+      {
+        return "<$tagTrue class='$class'>$content</$tagTrue>";
+      }
+      else
+      {
+        return "<$tagFalse class='$class'>$content</$tagFalse>";
+      }
+    }
   }
 }

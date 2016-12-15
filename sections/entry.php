@@ -17,7 +17,7 @@
     $content = preg_replace('/\<[\/]{0,1}div[^\>]*\>/i', '', $dom->saveHTML());
   ?>
 
-  <h3 class="entry__title heading heading_md"><?php the_title(); ?></h3>
+  <h1 class="entry__title heading heading_md"><?php the_title(); ?></h1>
 
   <div class="entry row">
     <div class="entry__column column column_lg-5">
