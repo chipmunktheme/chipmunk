@@ -14,7 +14,8 @@ include_once get_template_directory().'/includes/helpers.php';
 include_once get_template_directory().'/includes/ajax.php';
 include_once get_template_directory().'/includes/custom-posts.php';
 include_once get_template_directory().'/includes/meta-boxes.php';
-include_once get_template_directory().'/includes/view-counter.php';
+include_once get_template_directory().'/includes/views.php';
+include_once get_template_directory().'/includes/upvotes.php';
 include_once get_template_directory().'/includes/customizer/customizer.php';
 
 class Chipmunk
@@ -25,6 +26,7 @@ class Chipmunk
     new ChipmunkCustomPosts();
     new ChipmunkMetaBoxes();
     new ChipmunkViewCounter();
+    new ChipmunkUpvotes();
     $ajax = new ChipmunkAjax();
 
     // Theme Support
@@ -53,6 +55,8 @@ class Chipmunk
 
     add_action('wp_ajax_submit_resource', array($ajax, 'submit_resource'));
     add_action('wp_ajax_nopriv_submit_resource', array($ajax, 'submit_resource'));
+    add_action('wp_ajax_process_upvote', array($ajax, 'process_upvote'));
+    add_action('wp_ajax_nopriv_process_upvote', array($ajax, 'process_upvote'));
   }
 
   /**

@@ -7,6 +7,7 @@
         <ul class="resource__stats stats">
           <?php if (!ChipmunkCustomizer::theme_option('disable_upvotes')) : // TODO: Implement Upvote functionality ?>
             <li class="stats__item" title="<?php _e('Upvote', 'chipmunk'); ?>"><button class="stats__button">&uarr; 253</button></li>
+            <li class="stats__item" title="<?php _e('Upvote', 'chipmunk'); ?>"><?php echo ChipmunkUpvotes::get_button(get_the_ID()); ?></li>
           <?php endif; ?>
 
           <?php if (get_the_terms(get_the_ID(), 'resource-collection')) : ?>

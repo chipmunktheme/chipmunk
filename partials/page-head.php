@@ -21,9 +21,11 @@
           <ul>
             <?php $menu_items = ChipmunkHelpers::get_menu_items('nav-primary'); ?>
 
-            <?php foreach ($menu_items as $menu_item) : ?>
-              <li class="nav-primary__item<?php echo (is_page($menu_item->object_id) ? ' nav-primary__item_active' : ''); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
-            <?php endforeach; ?>
+            <?php if (!empty($menu_items)) : ?>
+              <?php foreach ($menu_items as $menu_item) : ?>
+                <li class="nav-primary__item<?php echo (is_page($menu_item->object_id) ? ' nav-primary__item_active' : ''); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
+              <?php endforeach; ?>
+            <?php endif; ?>
 
             <?php if (!ChipmunkCustomizer::theme_option('disable_submissions')) : ?>
               <li class="nav-primary__item hidden-lg">

@@ -36,7 +36,7 @@ if (!class_exists('ChipmunkCustomPosts'))
         'show_in_rest'          => true,
         'rest_base'             => 'resources',
         'rest_controller_class' => 'WP_REST_Posts_Controller',
-        'supports'              => array('title', 'editor', 'author', 'thumbnail'),
+        'supports'              => array('title', 'editor', 'author', 'thumbnail', 'publicize'),
       ));
 
       register_taxonomy('resource-collection', 'resource', array(
@@ -89,7 +89,7 @@ if (!class_exists('ChipmunkCustomPosts'))
         'show_ui'            => true,
         'public'             => false,
         'menu_icon'          => 'dashicons-businessman',
-        'supports'           => array('title', 'thumbnail'),
+        'supports'           => array('title', 'thumbnail', 'publicize'),
       ));
     }
   }
