@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-12 22:19+0100\n"
-"PO-Revision-Date: 2016-12-12 22:22+0100\n"
+"POT-Creation-Date: 2016-12-15 14:46+0100\n"
+"PO-Revision-Date: 2016-12-15 14:46+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -26,21 +26,17 @@ msgstr "¡404! No encuentro la página que buscas."
 msgid "Bring me to the frontpage"
 msgstr "Llévame al inicio!"
 
-#: includes/ajax.php:17
+#: includes/ajax.php:15
 msgid "Please verify that you are not a robot."
 msgstr "Verifica que no eres un robot."
 
-#: includes/ajax.php:75
+#: includes/ajax.php:68
 msgid "New user submission"
 msgstr "Nuevo Recurso Enviado"
 
-#: includes/ajax.php:82
+#: includes/ajax.php:75
 msgid "Review submission"
 msgstr "Revisar Recurso Enviado"
-
-#: includes/ajax.php:91
-msgid "Not permitted."
-msgstr ""
 
 #: includes/custom-posts.php:17 includes/custom-posts.php:19
 #: includes/customizer/customizer.php:101 sections/collection-tile.php:42
@@ -50,9 +46,9 @@ msgstr "Recursos"
 
 #: includes/custom-posts.php:18 includes/custom-posts.php:20
 msgid "Resource"
-msgstr "Recursos"
+msgstr "Recurso"
 
-#: includes/custom-posts.php:21 includes/custom-posts.php:72
+#: includes/custom-posts.php:21 includes/custom-posts.php:78
 msgid "Add New"
 msgstr "Agregrar"
 
@@ -92,90 +88,98 @@ msgstr "Lo Siento. No encontré recursos"
 msgid "No resources found in Trash."
 msgstr "No hay recursos en la basura."
 
-#: includes/custom-posts.php:41 includes/custom-posts.php:51
+#: includes/custom-posts.php:33
+msgid "resource"
+msgstr "recurso"
+
+#: includes/custom-posts.php:44 includes/custom-posts.php:54
 #: sections/collections.php:3
 msgid "Collections"
 msgstr "Colecciones"
 
-#: includes/custom-posts.php:42 partials/popup.php:19 partials/popup.php:20
-#: sections/resource.php:14
+#: includes/custom-posts.php:45 partials/popup.php:19 partials/popup.php:20
+#: sections/resource.php:13
 msgid "Collection"
 msgstr "Colección"
 
-#: includes/custom-posts.php:43
+#: includes/custom-posts.php:46
 msgid "Search Collections"
 msgstr "Buscar Colecciones"
 
-#: includes/custom-posts.php:44
+#: includes/custom-posts.php:47
 msgid "All Collections"
 msgstr "Todas las Colecciones"
 
-#: includes/custom-posts.php:45
+#: includes/custom-posts.php:48
 msgid "Parent Collection"
 msgstr "Colección Madre"
 
-#: includes/custom-posts.php:46
+#: includes/custom-posts.php:49
 msgid "Parent Collection:"
 msgstr "Colección Madre:"
 
-#: includes/custom-posts.php:47
+#: includes/custom-posts.php:50
 msgid "Edit Collection"
 msgstr "Editar Colleción"
 
-#: includes/custom-posts.php:48
+#: includes/custom-posts.php:51
 msgid "Update Collection"
 msgstr "Actualizar Colección"
 
-#: includes/custom-posts.php:49
+#: includes/custom-posts.php:52
 msgid "Add New Collection"
 msgstr "Agregar Nueva Colección"
 
-#: includes/custom-posts.php:50
+#: includes/custom-posts.php:53
 msgid "New Collection Name"
 msgstr "Nombre de la Colección"
 
-#: includes/custom-posts.php:68 includes/custom-posts.php:70
+#: includes/custom-posts.php:58
+msgid "collection"
+msgstr "coleccion"
+
+#: includes/custom-posts.php:74 includes/custom-posts.php:76
 #: sections/curators.php:4
 msgid "Curators"
 msgstr "Curadores"
 
-#: includes/custom-posts.php:69 includes/custom-posts.php:71
+#: includes/custom-posts.php:75 includes/custom-posts.php:77
 msgid "Curator"
 msgstr "Curador"
 
-#: includes/custom-posts.php:73
+#: includes/custom-posts.php:79
 msgid "Add New Curator"
 msgstr "Agregar Curador"
 
-#: includes/custom-posts.php:74
+#: includes/custom-posts.php:80
 msgid "New Curator"
 msgstr "Nuevo Curador"
 
-#: includes/custom-posts.php:75
+#: includes/custom-posts.php:81
 msgid "Edit Curator"
 msgstr "Editar Curador"
 
-#: includes/custom-posts.php:76
+#: includes/custom-posts.php:82
 msgid "View Curator"
 msgstr "Ver Curador"
 
-#: includes/custom-posts.php:77
+#: includes/custom-posts.php:83
 msgid "All Curators"
 msgstr "Todos los Curadores"
 
-#: includes/custom-posts.php:78
+#: includes/custom-posts.php:84
 msgid "Search Curators"
 msgstr "Buscar Curadores"
 
-#: includes/custom-posts.php:79
+#: includes/custom-posts.php:85
 msgid "Parent Curator:"
 msgstr "Curador Madre:"
 
-#: includes/custom-posts.php:80
+#: includes/custom-posts.php:86
 msgid "No curators found."
 msgstr "No hay curadores"
 
-#: includes/custom-posts.php:81
+#: includes/custom-posts.php:87
 msgid "No curators found in Trash."
 msgstr "No hay curadores en la basura."
 
@@ -528,16 +532,6 @@ msgstr "Habilitar curadores"
 msgid "Enable curators listing on this page"
 msgstr "Habilitar curadores en está página."
 
-#: includes/upvotes.php:174
-msgid "Remove Upvote"
-msgstr ""
-
-#: includes/upvotes.php:179 includes/upvotes.php:298
-#: sections/resource-tile.php:30 sections/resource.php:9
-#: sections/resource.php:10
-msgid "Upvote"
-msgstr "Votar"
-
 #: partials/newsletter.php:10
 msgid "Email address"
 msgstr "Dirección de Correo"
@@ -554,13 +548,13 @@ msgstr "Acerca"
 msgid "Navigation"
 msgstr "Navegación"
 
-#: partials/page-bottom.php:27 partials/page-head.php:29
-#: partials/page-head.php:54 partials/popup.php:9 partials/popup.php:66
+#: partials/page-bottom.php:25 partials/page-head.php:27
+#: partials/page-head.php:52 partials/popup.php:9 partials/popup.php:66
 #: sections/toolbox.php:23
 msgid "Submit"
 msgstr "Enviar"
 
-#: partials/page-bottom.php:33
+#: partials/page-bottom.php:31
 msgid "Follow"
 msgstr "Seguir"
 
@@ -568,15 +562,15 @@ msgstr "Seguir"
 msgid "Chipmunk WordPress Theme"
 msgstr "Tema Chipmunk"
 
-#: partials/page-head.php:37 partials/popup.php:6 partials/search-bar.php:11
+#: partials/page-head.php:35 partials/popup.php:6 partials/search-bar.php:11
 msgid "Close"
 msgstr "Cerrar"
 
-#: partials/page-head.php:48
+#: partials/page-head.php:46
 msgid "Search"
 msgstr "Buscar"
 
-#: partials/page-head.php:59
+#: partials/page-head.php:57
 msgid "Menu"
 msgstr "Menu"
 
@@ -649,15 +643,19 @@ msgstr "Anterior"
 msgid "Next"
 msgstr "Siguiente"
 
-#: sections/resource-tile.php:22 sections/resource.php:18
+#: sections/resource-tile.php:22 sections/resource.php:17
 msgid "Published"
 msgstr "Publicado"
 
-#: sections/resource-tile.php:26 sections/resource.php:22
+#: sections/resource-tile.php:26 sections/resource.php:21
 msgid "Views"
 msgstr "Vistas"
 
-#: sections/resource.php:42
+#: sections/resource-tile.php:30 sections/resource.php:9
+msgid "Upvote"
+msgstr "Votar"
+
+#: sections/resource.php:41
 msgid "Visit website"
 msgstr "Visitar Sitio"
 

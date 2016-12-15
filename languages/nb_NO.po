@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-11-28 21:43+0100\n"
-"PO-Revision-Date: 2016-11-28 22:11+0100\n"
+"POT-Creation-Date: 2016-12-15 14:49+0100\n"
+"PO-Revision-Date: 2016-12-15 14:49+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -47,7 +47,7 @@ msgstr "Ressurser"
 msgid "Resource"
 msgstr "Ressurs"
 
-#: includes/custom-posts.php:21 includes/custom-posts.php:72
+#: includes/custom-posts.php:21 includes/custom-posts.php:78
 msgid "Add New"
 msgstr "Legg til ny"
 
@@ -87,90 +87,98 @@ msgstr "Ingen ressurser funnet"
 msgid "No resources found in Trash."
 msgstr "Ingen ressurser funnet i søppelkurven."
 
-#: includes/custom-posts.php:41 includes/custom-posts.php:51
+#: includes/custom-posts.php:33
+msgid "resource"
+msgstr "ressurs"
+
+#: includes/custom-posts.php:44 includes/custom-posts.php:54
 #: sections/collections.php:3
 msgid "Collections"
 msgstr "Kolleksjoner"
 
-#: includes/custom-posts.php:42 partials/popup.php:19 partials/popup.php:20
+#: includes/custom-posts.php:45 partials/popup.php:19 partials/popup.php:20
 #: sections/resource.php:13
 msgid "Collection"
 msgstr "Kolleksjon"
 
-#: includes/custom-posts.php:43
+#: includes/custom-posts.php:46
 msgid "Search Collections"
 msgstr "Søk kolleksjoner"
 
-#: includes/custom-posts.php:44
+#: includes/custom-posts.php:47
 msgid "All Collections"
 msgstr "Alle kolleksjoner"
 
-#: includes/custom-posts.php:45
+#: includes/custom-posts.php:48
 msgid "Parent Collection"
 msgstr "Foreldre kolleksjon"
 
-#: includes/custom-posts.php:46
+#: includes/custom-posts.php:49
 msgid "Parent Collection:"
 msgstr "Foreldre kolleksjon:"
 
-#: includes/custom-posts.php:47
+#: includes/custom-posts.php:50
 msgid "Edit Collection"
 msgstr "Rediger kolleksjon"
 
-#: includes/custom-posts.php:48
+#: includes/custom-posts.php:51
 msgid "Update Collection"
 msgstr "Oppdater kolleksjon"
 
-#: includes/custom-posts.php:49
+#: includes/custom-posts.php:52
 msgid "Add New Collection"
 msgstr "Legg til ny kolleksjon"
 
-#: includes/custom-posts.php:50
+#: includes/custom-posts.php:53
 msgid "New Collection Name"
 msgstr "Nytt navn for kolleksjon"
 
-#: includes/custom-posts.php:68 includes/custom-posts.php:70
+#: includes/custom-posts.php:58
+msgid "collection"
+msgstr "kolleksjon"
+
+#: includes/custom-posts.php:74 includes/custom-posts.php:76
 #: sections/curators.php:4
 msgid "Curators"
 msgstr "Kuratorer"
 
-#: includes/custom-posts.php:69 includes/custom-posts.php:71
+#: includes/custom-posts.php:75 includes/custom-posts.php:77
 msgid "Curator"
 msgstr "Kurator"
 
-#: includes/custom-posts.php:73
+#: includes/custom-posts.php:79
 msgid "Add New Curator"
 msgstr "Legg til ny kurator"
 
-#: includes/custom-posts.php:74
+#: includes/custom-posts.php:80
 msgid "New Curator"
 msgstr "Ny kurator"
 
-#: includes/custom-posts.php:75
+#: includes/custom-posts.php:81
 msgid "Edit Curator"
 msgstr "Rediger kurator"
 
-#: includes/custom-posts.php:76
+#: includes/custom-posts.php:82
 msgid "View Curator"
 msgstr "Se kurator"
 
-#: includes/custom-posts.php:77
+#: includes/custom-posts.php:83
 msgid "All Curators"
 msgstr "Alle kuratorer"
 
-#: includes/custom-posts.php:78
+#: includes/custom-posts.php:84
 msgid "Search Curators"
 msgstr "Søk kuratorer"
 
-#: includes/custom-posts.php:79
+#: includes/custom-posts.php:85
 msgid "Parent Curator:"
 msgstr "Foreldre kuratorer"
 
-#: includes/custom-posts.php:80
+#: includes/custom-posts.php:86
 msgid "No curators found."
 msgstr "Ingen kuratorer funnet"
 
-#: includes/custom-posts.php:81
+#: includes/custom-posts.php:87
 msgid "No curators found in Trash."
 msgstr "Ingen kuratorer funnet i søppelkurven."
 
@@ -594,7 +602,7 @@ msgstr "Søkeord..."
 msgid "3 characters minimum"
 msgstr "Minimum 3 karakterer"
 
-#: partials/share-box.php:15
+#: partials/share-box.php:20
 msgid "Share"
 msgstr "Del"
 
@@ -758,12 +766,6 @@ msgstr "%s Knagg"
 #~ msgstr ""
 #~ "Upload a logo for your theme. You can leave it empty to use your site "
 #~ "name as a plain text logo., "
-
-#~ msgid "resource"
-#~ msgstr "resource"
-
-#~ msgid "collection"
-#~ msgstr "collection"
 
 #~ msgid "Not enough arguments following: %s"
 #~ msgstr "Not enough arguments following: %s"

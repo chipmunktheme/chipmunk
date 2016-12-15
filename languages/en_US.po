@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-11-28 21:42+0100\n"
-"PO-Revision-Date: 2016-11-28 21:42+0100\n"
+"POT-Creation-Date: 2016-12-15 14:45+0100\n"
+"PO-Revision-Date: 2016-12-15 14:45+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -47,7 +47,7 @@ msgstr "Resources"
 msgid "Resource"
 msgstr "Resource"
 
-#: includes/custom-posts.php:21 includes/custom-posts.php:72
+#: includes/custom-posts.php:21 includes/custom-posts.php:78
 msgid "Add New"
 msgstr "Add New"
 
@@ -87,90 +87,98 @@ msgstr "No resources found."
 msgid "No resources found in Trash."
 msgstr "No resources found in Trash."
 
-#: includes/custom-posts.php:41 includes/custom-posts.php:51
+#: includes/custom-posts.php:33
+msgid "resource"
+msgstr "resource"
+
+#: includes/custom-posts.php:44 includes/custom-posts.php:54
 #: sections/collections.php:3
 msgid "Collections"
 msgstr "Collections"
 
-#: includes/custom-posts.php:42 partials/popup.php:19 partials/popup.php:20
+#: includes/custom-posts.php:45 partials/popup.php:19 partials/popup.php:20
 #: sections/resource.php:13
 msgid "Collection"
 msgstr "Collection"
 
-#: includes/custom-posts.php:43
+#: includes/custom-posts.php:46
 msgid "Search Collections"
 msgstr "Search Collections"
 
-#: includes/custom-posts.php:44
+#: includes/custom-posts.php:47
 msgid "All Collections"
 msgstr "All Collections"
 
-#: includes/custom-posts.php:45
+#: includes/custom-posts.php:48
 msgid "Parent Collection"
 msgstr "Parent Collection"
 
-#: includes/custom-posts.php:46
+#: includes/custom-posts.php:49
 msgid "Parent Collection:"
 msgstr "Parent Collection:"
 
-#: includes/custom-posts.php:47
+#: includes/custom-posts.php:50
 msgid "Edit Collection"
 msgstr "Edit Collection"
 
-#: includes/custom-posts.php:48
+#: includes/custom-posts.php:51
 msgid "Update Collection"
 msgstr "Update Collection"
 
-#: includes/custom-posts.php:49
+#: includes/custom-posts.php:52
 msgid "Add New Collection"
 msgstr "Add New Collection"
 
-#: includes/custom-posts.php:50
+#: includes/custom-posts.php:53
 msgid "New Collection Name"
 msgstr "New Collection Name"
 
-#: includes/custom-posts.php:68 includes/custom-posts.php:70
+#: includes/custom-posts.php:58
+msgid "collection"
+msgstr "collection"
+
+#: includes/custom-posts.php:74 includes/custom-posts.php:76
 #: sections/curators.php:4
 msgid "Curators"
 msgstr "Curators"
 
-#: includes/custom-posts.php:69 includes/custom-posts.php:71
+#: includes/custom-posts.php:75 includes/custom-posts.php:77
 msgid "Curator"
 msgstr "Curator"
 
-#: includes/custom-posts.php:73
+#: includes/custom-posts.php:79
 msgid "Add New Curator"
 msgstr "Add New Curator"
 
-#: includes/custom-posts.php:74
+#: includes/custom-posts.php:80
 msgid "New Curator"
 msgstr "New Curator"
 
-#: includes/custom-posts.php:75
+#: includes/custom-posts.php:81
 msgid "Edit Curator"
 msgstr "Edit Curator"
 
-#: includes/custom-posts.php:76
+#: includes/custom-posts.php:82
 msgid "View Curator"
 msgstr "View Curator"
 
-#: includes/custom-posts.php:77
+#: includes/custom-posts.php:83
 msgid "All Curators"
 msgstr "All Curators"
 
-#: includes/custom-posts.php:78
+#: includes/custom-posts.php:84
 msgid "Search Curators"
 msgstr "Search Curators"
 
-#: includes/custom-posts.php:79
+#: includes/custom-posts.php:85
 msgid "Parent Curator:"
 msgstr "Parent Curator:"
 
-#: includes/custom-posts.php:80
+#: includes/custom-posts.php:86
 msgid "No curators found."
 msgstr "No curators found."
 
-#: includes/custom-posts.php:81
+#: includes/custom-posts.php:87
 msgid "No curators found in Trash."
 msgstr "No curators found in Trash."
 
@@ -593,7 +601,7 @@ msgstr "Search query..."
 msgid "3 characters minimum"
 msgstr "3 characters minimum"
 
-#: partials/share-box.php:15
+#: partials/share-box.php:20
 msgid "Share"
 msgstr "Share"
 
@@ -758,12 +766,6 @@ msgstr "%s Tag"
 #~ msgstr ""
 #~ "Upload a logo for your theme. You can leave it empty to use your site "
 #~ "name as a plain text logo., "
-
-#~ msgid "resource"
-#~ msgstr "resource"
-
-#~ msgid "collection"
-#~ msgstr "collection"
 
 #~ msgid "Not enough arguments following: %s"
 #~ msgstr "Not enough arguments following: %s"
