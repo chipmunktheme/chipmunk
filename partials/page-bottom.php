@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="column column_md-3 column_lg-5">
-        <h4 class="heading heading_sm"><?php _e('About', 'chipmunk'); ?></h4>
+        <h5 class="heading heading_sm"><?php _e('About', 'chipmunk'); ?></h5>
 
         <?php if ($about_copy = ChipmunkCustomizer::theme_option('about_copy')) : ?>
           <div class="page-foot__description">
@@ -12,7 +12,7 @@
       </div>
 
       <div class="column column_md-2 column_md-offset-1 column_lg-2 column_lg-offset-3">
-        <h4 class="heading heading_sm"><?php _e('Navigation', 'chipmunk'); ?></h4>
+        <h5 class="heading heading_sm"><?php _e('Navigation', 'chipmunk'); ?></h5>
 
         <ul class="nav-secondary">
           <?php $menu_items = ChipmunkHelpers::get_menu_items('nav-secondary'); ?>
@@ -28,7 +28,7 @@
       </div>
 
       <div class="column column_lg-2 visible-lg-block">
-        <h4 class="heading heading_sm"><?php _e('Follow', 'chipmunk'); ?></h4>
+        <h5 class="heading heading_sm"><?php _e('Follow', 'chipmunk'); ?></h5>
 
         <ul class="nav-secondary">
           <?php foreach (ChipmunkCustomizer::$socials as $social) : ?>
