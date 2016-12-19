@@ -12,8 +12,11 @@
 }
 
 .stats__item {
-  margin-right: $separator;
   margin-top: 1rem;
+
+  &:not(:last-child) {
+    margin-right: $separator;
+  }
 
   a:hover {
     color: $color-black;
@@ -25,6 +28,10 @@
     font-size: 1.6rem;
     line-height: inherit;
     vertical-align: middle;
+
+    &.icon_arrow-up {
+      font-size: 1.2rem;
+    }
   }
 
   &_sided {
@@ -42,7 +49,6 @@
   font-size: 1.4rem;
   line-height: 1;
   background-color: transparent;
-  color: $color-gray;
 
   &:hover {
     color: $color-black;
@@ -50,6 +56,7 @@
 
   &.is-active {
     background-color: $color-primary;
+    border-color: transparent;
     color: $color-white;
   }
 }

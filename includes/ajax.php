@@ -65,6 +65,14 @@ if (!class_exists('ChipmunkAjax'))
     public function process_upvote()
     {
       $this->verify_nonce();
+
+      // Get post ID
+      $post_id = (isset($_REQUEST['postId']) && is_numeric($_REQUEST['postId'])) ? $_REQUEST['postId'] : null;
+
+      if ($post_id) {
+        // Process the user upvote
+        ChipmunkUpvotes::process_upvote($post_id);
+      }
     }
 
     private function inform_admin($post_id)
@@ -84,12 +92,13 @@ if (!class_exists('ChipmunkAjax'))
 
     private function verify_nonce()
     {
-    	$nonce = isset($_REQUEST['chipmunk_nonce']) ? sanitize_text_field($_REQUEST['chipmunk_nonce']) : 0;
+      $nonce = isset($_REQUEST['nonce']) ? sanitize_text_field($_REQUEST['nonce']) : null;
 
-    	if (!wp_verify_nonce($nonce, $_REQUEST['action']))
+      if (!$nonce || !wp_verify_nonce($nonce, $_REQUEST['action']))
       {
         wp_send_json_error(__('Not permitted.', 'chipmunk'));
-    	}
+        die;
+      }
     }
   }
 }

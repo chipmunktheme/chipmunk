@@ -12,8 +12,13 @@
     <option value="name-asc" <?php if ((isset($_GET['sort']) and $_GET['sort'] == 'name-asc') || (!isset($_GET['sort']) && $default_orderby == 'name' && $default_order == 'asc')) echo 'selected'; ?>><?php _e('Name', 'chipmunk'); ?> &uarr;</option>
 
     <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>
-      <option value="popularity-desc" <?php if ((isset($_GET['sort']) and $_GET['sort'] == 'popularity-desc') || (!isset($_GET['sort']) && $default_orderby == 'popularity' && $default_order == 'desc')) echo 'selected'; ?>><?php _e('Popularity', 'chipmunk'); ?> &darr;</option>
-      <option value="popularity-asc" <?php if ((isset($_GET['sort']) and $_GET['sort'] == 'popularity-asc') || (!isset($_GET['sort']) && $default_orderby == 'popularity' && $default_order == 'asc')) echo 'selected'; ?>><?php _e('Popularity', 'chipmunk'); ?> &uarr;</option>
+      <option value="views-desc" <?php if ((isset($_GET['sort']) and $_GET['sort'] == 'views-desc') || (!isset($_GET['sort']) && $default_orderby == 'views' && $default_order == 'desc')) echo 'selected'; ?>><?php _e('Views', 'chipmunk', 'sort dropdown value'); ?> &darr;</option>
+      <option value="views-asc" <?php if ((isset($_GET['sort']) and $_GET['sort'] == 'views-asc') || (!isset($_GET['sort']) && $default_orderby == 'views' && $default_order == 'asc')) echo 'selected'; ?>><?php _e('Views', 'chipmunk', 'sort dropdown value'); ?> &uarr;</option>
+    <?php endif; ?>
+
+    <?php if (!ChipmunkCustomizer::theme_option('disable_upvotes')) : ?>
+      <option value="upvotes-desc" <?php if ((isset($_GET['sort']) and $_GET['sort'] == 'upvotes-desc') || (!isset($_GET['sort']) && $default_orderby == 'upvotes' && $default_order == 'desc')) echo 'selected'; ?>><?php _e('Upvotes', 'chipmunk', 'sort dropdown value'); ?> &darr;</option>
+      <option value="upvotes-asc" <?php if ((isset($_GET['sort']) and $_GET['sort'] == 'upvotes-asc') || (!isset($_GET['sort']) && $default_orderby == 'upvotes' && $default_order == 'asc')) echo 'selected'; ?>><?php _e('Upvotes', 'chipmunk', 'sort dropdown value'); ?> &uarr;</option>
     <?php endif; ?>
   </select>
 </div>

@@ -62,7 +62,7 @@
             <div class="g-recaptcha" data-sitekey="<?php echo ChipmunkCustomizer::theme_option('recaptcha_site_key'); ?>"></div>
           <?php endif; ?>
 
-          <?php wp_nonce_field('submit_resource', 'chipmunk_nonce'); ?>
+          <?php wp_nonce_field('submit_resource', 'nonce'); ?>
           <button type="submit" class="button button_secondary"><?php _e('Submit', 'chipmunk'); ?></button>
         </div>
       </form>

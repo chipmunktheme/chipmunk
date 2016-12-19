@@ -64,7 +64,11 @@
   }
 
   &.slick-slide {
-    display: block;
+    display: flex;
+
+    .tile {
+      flex-grow: 1;
+    }
   }
 }
 

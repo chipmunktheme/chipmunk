@@ -24,8 +24,8 @@ var RemoteForm = {
 
       helpers.request(formAction, formObject)
         .always(function (response) {
-          console.log(response);
-          
+          console.log('Remote form: ', response);
+
           if (this.$message.length) {
             if (response.success) {
               $form.hide();

@@ -23,11 +23,15 @@
         <?php endif; ?>
 
         <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>
-          <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> <?php echo ChipmunkViewCounter::get_post_views(get_the_ID()); ?></li>
+          <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> <?php echo ChipmunkHelpers::format_number(ChipmunkViewCounter::get_post_views(get_the_ID())); ?></li>
         <?php endif; ?>
 
-        <?php if (false and !ChipmunkCustomizer::theme_option('disable_upvotes')) : // TODO: Implement Upvote functionality ?>
-          <li class="stats__item stats__item_sided" title="<?php _e('Upvote', 'chipmunk'); ?>"><button class="stats__button">&uarr; 253</button></li>
+        <?php if (!ChipmunkCustomizer::theme_option('disable_upvotes')) : ?>
+          <?php if (ChipmunkCustomizer::theme_option('display_resource_cards')) : ?>
+           <li class="stats__item stats__item_sided"><?php echo ChipmunkUpvotes::get_button(get_the_ID(), 'stats__button'); ?></li>
+         <?php else : ?>
+          <li class="stats__item" title="<?php _e('Upvotes', 'chipmunk'); ?>"><?php echo ChipmunkUpvotes::get_counter(get_the_ID()); ?></li>
+         <?php endif; ?>
         <?php endif; ?>
       </ul>
     <?php endif; ?>

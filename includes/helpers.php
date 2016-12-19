@@ -133,10 +133,16 @@ if (!class_exists('ChipmunkHelpers'))
             'orderby'   => 'title',
           );
           break;
-        case 'popularity':
+        case 'views':
           $sort_args = array(
-            'orderby'   => 'meta_value_num',
+            'orderby'   => 'meta_value_num date',
             'meta_key'  => ChipmunkViewCounter::$db_key,
+          );
+          break;
+        case 'upvotes':
+          $sort_args = array(
+            'orderby'   => 'meta_value_num date',
+            'meta_key'  => ChipmunkUpvotes::$db_post_key,
           );
           break;
       }
@@ -293,6 +299,37 @@ if (!class_exists('ChipmunkHelpers'))
       {
         return "<$tagFalse class='$class'>$content</$tagFalse>";
       }
+    }
+
+    /**
+    * Utility function to format the numbers,
+    * appending "K" if one thousand or greater,
+    * "M" if one million or greater,
+    * and "B" if one billion or greater (unlikely).
+    *
+    * $precision = how many decimal points to display (1.25K)
+    */
+    public function format_number($number, $precision = 1)
+    {
+      if ($number >= 1000 && $number < 1000000)
+      {
+        $formatted = number_format($number/1000, $precision).'K';
+      }
+      else if ($number >= 1000000 && $number < 1000000000)
+      {
+        $formatted = number_format($number/1000000, $precision).'M';
+      }
+      else if ($number >= 1000000000)
+      {
+        $formatted = number_format($number/1000000000, $precision).'B';
+      }
+      else
+      {
+        $formatted = $number; // Number is less than 1000
+      }
+
+      $formatted = preg_replace('/\.[0]+([KMB]?)$/i', '$1', $formatted);
+      return $formatted;
     }
   }
 }

@@ -149,13 +149,12 @@ if (!class_exists('ChipmunkCustomizer'))
               'label'       => __('Disable view count', 'chipmunk'),
               'default'     => false,
             ),
-            // TODO: Implement Upvote functionality
-            // array(
-            //   'name'        => 'disable_upvotes',
-            //   'type'        => 'checkbox',
-            //   'label'       => __('Disable upvoting', 'chipmunk'),
-            //   'default'     => false,
-            // ),
+            array(
+              'name'        => 'disable_upvotes',
+              'type'        => 'checkbox',
+              'label'       => __('Disable upvoting', 'chipmunk'),
+              'default'     => false,
+            ),
             array(
               'name'        => 'disable_sorting',
               'type'        => 'checkbox',
@@ -170,7 +169,8 @@ if (!class_exists('ChipmunkCustomizer'))
               'choices'     => array(
                 'date'        => __('Date', 'chipmunk'),
                 'name'        => __('Name', 'chipmunk'),
-                'popularity'  => __('Popularity', 'chipmunk'),
+                'views'       => __('Views', 'chipmunk'),
+                'upvotes'     => __('Upvotes', 'chipmunk'),
               ),
             ),
             array(

@@ -34,6 +34,7 @@
     .button_primary,
     .button_secondary:hover,
     .section_theme-primary,
+    .stats__button.is-active,
     .tile__content_primary {
       background-color: <?php echo $primary_color; ?>;
     }
