@@ -3,7 +3,7 @@
     <div class="toolbox">
       <div class="toolbox__share">
         <nav class="nav-socials">
-          <h4 class="nav-socials__title"><?php _e('Follow us', 'chipmunk'); ?></h4>
+          <h5 class="nav-socials__title"><?php _e('Follow us', 'chipmunk'); ?></h5>
           <ul>
             <?php foreach (ChipmunkCustomizer::$socials as $social) : ?>
               <?php $social_slug = strtolower($social); ?>

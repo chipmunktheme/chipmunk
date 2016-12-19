@@ -14,7 +14,7 @@
           </div>
         <?php endif; ?>
 
-        <h4 class="card__title"><?php the_title(); ?></h4>
+        <h3 class="card__title"><?php the_title(); ?></h3>
 
         <?php if (!empty($twitter)) : ?>
           <a href="<?php echo esc_url('https://twitter.com/'.$twitter); ?>" target="_blank" class="card__handle"><?php echo $twitter; ?></a>
