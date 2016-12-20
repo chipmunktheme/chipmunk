@@ -5,21 +5,7 @@
     <article class="resource row">
       <div class="resource__content column column_lg-6">
         <ul class="resource__stats stats">
-          <?php if (!ChipmunkCustomizer::theme_option('disable_upvotes')) : ?>
-            <li class="stats__item"><?php echo ChipmunkUpvotes::get_button(get_the_ID(), 'stats__button'); ?></li>
-          <?php endif; ?>
-
-          <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>
-            <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> <?php echo ChipmunkViewCounter::get_post_views(get_the_ID()); ?></li>
-          <?php endif; ?>
-
-          <?php if (!ChipmunkCustomizer::theme_option('disable_resource_date')) : ?>
-            <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> <?php echo get_post_time('j. F', true, get_the_ID(), true); ?></li>
-          <?php endif; ?>
-
-          <?php if (get_the_terms(get_the_ID(), 'resource-collection')) : ?>
-            <li class="stats__item" title="<?php _e('Collection', 'chipmunk'); ?>"><i class="icon icon_tag"></i> <?php the_terms(get_the_ID(), 'resource-collection'); ?></li>
-          <?php endif; ?>
+          <?php get_template_part('partials/resource-stats'); ?>
         </ul>
 
         <div class="resource__info">

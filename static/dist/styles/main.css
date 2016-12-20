@@ -2966,6 +2966,11 @@ a, button {
   border-color: transparent;
   color: #FAFAFA;
 }
+.stats__note {
+  display: inline-block;
+  margin-left: -4px;
+  color: #b3b3b3;
+}
 /*
 ** Module - Tile
 ** -----------------------------------------------------------------------------*/

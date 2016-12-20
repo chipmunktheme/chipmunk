@@ -60,3 +60,9 @@
     color: $color-white;
   }
 }
+
+.stats__note {
+  display: inline-block;
+  margin-left: -4px;
+  color: lighten($color-gray, 20%);
+}

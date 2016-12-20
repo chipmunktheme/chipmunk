@@ -18,21 +18,7 @@
 
     <?php if (!ChipmunkCustomizer::theme_option('disable_resource_date') or !ChipmunkCustomizer::theme_option('disable_views')) : ?>
       <ul class="tile__stats stats">
-        <?php if (!ChipmunkCustomizer::theme_option('disable_resource_date')) : ?>
-          <li class="stats__item" title="<?php _e('Published', 'chipmunk'); ?>"><i class="icon icon_clock"></i> <?php echo get_post_time('j. F', true, get_the_ID(), true); ?></li>
-        <?php endif; ?>
-
-        <?php if (!ChipmunkCustomizer::theme_option('disable_views')) : ?>
-          <li class="stats__item" title="<?php _e('Views', 'chipmunk'); ?>"><i class="icon icon_view"></i> <?php echo ChipmunkHelpers::format_number(ChipmunkViewCounter::get_post_views(get_the_ID())); ?></li>
-        <?php endif; ?>
-
-        <?php if (!ChipmunkCustomizer::theme_option('disable_upvotes')) : ?>
-          <?php if (ChipmunkCustomizer::theme_option('display_resource_cards')) : ?>
-           <li class="stats__item stats__item_sided"><?php echo ChipmunkUpvotes::get_button(get_the_ID(), 'stats__button'); ?></li>
-         <?php else : ?>
-          <li class="stats__item" title="<?php _e('Upvotes', 'chipmunk'); ?>"><?php echo ChipmunkUpvotes::get_counter(get_the_ID()); ?></li>
-         <?php endif; ?>
-        <?php endif; ?>
+        <?php get_template_part('partials/resource-stats'); ?>
       </ul>
     <?php endif; ?>
   </div>
