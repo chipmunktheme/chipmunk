@@ -32,20 +32,6 @@ var Actions = {
 
           $target.html(response.counter);
           $target.toggleClass('is-active', response.status === 'liked');
-          // var icon = response.icon;
-          // var count = response.count;
-          //
-          // allbuttons.html(icon+count);
-          // if(response.status === 'unliked') {
-          //   var like_text = simpleLikes.like;
-          //   allbuttons.prop('title', like_text);
-          //   allbuttons.removeClass('liked');
-          // } else {
-          //   var unlike_text = simpleLikes.unlike;
-          //   allbuttons.prop('title', unlike_text);
-          //   allbuttons.addClass('liked');
-          // }
-          // loader.empty();
         }.bind(this));
     }
   }
