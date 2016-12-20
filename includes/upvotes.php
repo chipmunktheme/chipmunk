@@ -49,7 +49,7 @@ if (!class_exists('ChipmunkUpvotes'))
     /**
     * Processes upvotes
     */
-    public function process_upvote($post_id)
+    public static function process_upvote($post_id)
     {
       $count = ChipmunkUpvotes::get_post_upvote_count($post_id);
 
@@ -142,7 +142,7 @@ if (!class_exists('ChipmunkUpvotes'))
     /**
     * Utility to test if the post is already liked
     */
-    private function already_liked($post_id)
+    private static function already_liked($post_id)
     {
       $post_users = NULL;
       $user_id = NULL;
@@ -179,7 +179,7 @@ if (!class_exists('ChipmunkUpvotes'))
     * Utility retrieves post meta user likes (user id array),
     * then adds new user id to retrieved array
     */
-    private function post_user_upvotes($user_id, $post_id)
+    private static function post_user_upvotes($user_id, $post_id)
     {
       $post_users = '';
       $post_meta_users = get_post_meta($post_id, ChipmunkUpvotes::$db_user_upvoted_key);
@@ -202,7 +202,7 @@ if (!class_exists('ChipmunkUpvotes'))
     * Utility retrieves post meta ip likes (ip array),
     * then adds new ip to retrieved array
     */
-    private function post_ip_upvotes($user_ip, $post_id)
+    private static function post_ip_upvotes($user_ip, $post_id)
     {
       $post_users = '';
       $post_meta_users = get_post_meta($post_id, ChipmunkUpvotes::$db_user_ip_key);
@@ -225,7 +225,7 @@ if (!class_exists('ChipmunkUpvotes'))
     /**
     * Utility to retrieve IP address
     */
-    private function get_ip()
+    private static function get_ip()
     {
       if (isset($_SERVER['HTTP_CLIENT_IP']) && ! empty($_SERVER['HTTP_CLIENT_IP']))
       {
@@ -249,7 +249,7 @@ if (!class_exists('ChipmunkUpvotes'))
     * Utility retrieves upvote count for post,
     * returns appropriate number
     */
-    private function get_post_upvote_count($post_id)
+    private static function get_post_upvote_count($post_id)
     {
       $count = get_post_meta($post_id, ChipmunkUpvotes::$db_post_key, true);
       $count = (isset($count) && is_numeric($count)) ? $count : 0;
@@ -261,7 +261,7 @@ if (!class_exists('ChipmunkUpvotes'))
     * Utility retrieves upvote count for user,
     * returns appropriate number
     */
-    private function get_user_upvote_count($user_id)
+    private static function get_user_upvote_count($user_id)
     {
       $count = get_user_option(ChipmunkUpvotes::$db_user_key, $user_id);
       $count = (isset($count) && is_numeric($count)) ? $count : 0;
@@ -273,7 +273,7 @@ if (!class_exists('ChipmunkUpvotes'))
     * Utility retrieves count plus count options,
     * returns appropriate format based on options
     */
-    private function get_upvote_counter($count)
+    private static function get_upvote_counter($count)
     {
       $counter = (is_numeric($count) && $count > 0) ? ChipmunkHelpers::format_number($count) : 0;
       $counter = "<i class='icon icon_arrow-up'></i> $counter";

@@ -309,7 +309,7 @@ if (!class_exists('ChipmunkHelpers'))
     *
     * $precision = how many decimal points to display (1.25K)
     */
-    public function format_number($number, $precision = 1)
+    public static function format_number($number, $precision = 1)
     {
       if ($number >= 1000 && $number < 1000000)
       {

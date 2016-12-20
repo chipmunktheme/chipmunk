@@ -21095,7 +21095,6 @@ S2.define('jquery.select2',[
   require('./modules/extras')();
   require('./modules/validate')();
   require('./modules/sort')();
-  require('./modules/actions').init();
   require('./modules/remote-form').init();
 
   var Tabs = require('./modules/tabs');
@@ -21118,63 +21117,7 @@ document.addEventListener('click', function (ev) {
   }
 });
 
-},{"./modules/actions":6,"./modules/extras":7,"./modules/nav":8,"./modules/popup":9,"./modules/remote-form":10,"./modules/search":11,"./modules/sort":12,"./modules/tabs":13,"./modules/validate":14}],6:[function(require,module,exports){
-'use strict';
-
-var $ = require('jquery');
-var helpers = require('../utils/helpers');
-
-var Actions = {
-  $trigger: $('[data-action]'),
-
-  init: function () {
-    if (this.$trigger.length) {
-      this.$trigger.on('click', function (ev) {
-        ev.preventDefault();
-        ev.stopPropagation();
-
-        this.events[$(ev.currentTarget).data('action')].call(this, $(ev.currentTarget))
-      }.bind(this));
-    }
-  },
-
-  events: {
-    process_upvote: function($target) {
-      var data = $target.data();
-
-      helpers.request(data.action, data)
-        .fail(function (xhr, ajaxOptions, thrownError) {
-           console.log(xhr.status);
-           console.log(xhr.responseText);
-           console.log(thrownError);
-         })
-        .done(function (response) {
-          console.log('Upvote: ', response);
-
-          $target.html(response.counter);
-          $target.toggleClass('is-active', response.status === 'liked');
-          // var icon = response.icon;
-          // var count = response.count;
-          //
-          // allbuttons.html(icon+count);
-          // if(response.status === 'unliked') {
-          //   var like_text = simpleLikes.like;
-          //   allbuttons.prop('title', like_text);
-          //   allbuttons.removeClass('liked');
-          // } else {
-          //   var unlike_text = simpleLikes.unlike;
-          //   allbuttons.prop('title', unlike_text);
-          //   allbuttons.addClass('liked');
-          // }
-          // loader.empty();
-        }.bind(this));
-    }
-  }
-};
-
-module.exports = Actions;
-
-},{"../utils/helpers":15,"jquery":1}],7:[function(require,module,exports){
+},{"./modules/extras":6,"./modules/nav":7,"./modules/popup":8,"./modules/remote-form":9,"./modules/search":10,"./modules/sort":11,"./modules/tabs":12,"./modules/validate":13}],6:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21221,7 +21164,7 @@ var Extras = function () {
 
 module.exports = Extras;
 
-},{"jquery":1,"select2":3,"slick-carousel":4}],8:[function(require,module,exports){
+},{"jquery":1,"select2":3,"slick-carousel":4}],7:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21237,7 +21180,7 @@ var Nav = function () {
 
 module.exports = Nav;
 
-},{"jquery":1}],9:[function(require,module,exports){
+},{"jquery":1}],8:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21255,7 +21198,7 @@ var Popup = function () {
 
 module.exports = Popup;
 
-},{"jquery":1}],10:[function(require,module,exports){
+},{"jquery":1}],9:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21282,8 +21225,8 @@ var RemoteForm = {
 
       helpers.request(formAction, formObject)
         .always(function (response) {
-          console.log('Remote form: ', response);
-
+          console.log(response);
+          
           if (this.$message.length) {
             if (response.success) {
               $form.hide();
@@ -21298,7 +21241,7 @@ var RemoteForm = {
 
 module.exports = RemoteForm;
 
-},{"../utils/helpers":15,"jquery":1}],11:[function(require,module,exports){
+},{"../utils/helpers":14,"jquery":1}],10:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21317,7 +21260,7 @@ var Search = function () {
 
 module.exports = Search;
 
-},{"jquery":1}],12:[function(require,module,exports){
+},{"jquery":1}],11:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21347,7 +21290,7 @@ var Sort = function () {
 
 module.exports = Sort;
 
-},{"jquery":1}],13:[function(require,module,exports){
+},{"jquery":1}],12:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21383,7 +21326,7 @@ Tabs.prototype.bind = function() {
 
 module.exports = Tabs;
 
-},{"jquery":1}],14:[function(require,module,exports){
+},{"jquery":1}],13:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21400,7 +21343,7 @@ var Validate = function () {
 
 module.exports = Validate;
 
-},{"jquery":1,"parsleyjs":2}],15:[function(require,module,exports){
+},{"jquery":1,"parsleyjs":2}],14:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
