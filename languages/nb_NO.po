@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-12-15 14:49+0100\n"
-"PO-Revision-Date: 2016-12-15 14:49+0100\n"
+"POT-Creation-Date: 2016-12-20 12:31+0100\n"
+"PO-Revision-Date: 2016-12-20 12:33+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -25,21 +25,27 @@ msgstr "404! Siden du leter etter kan ikke bli funnet."
 msgid "Bring me to the frontpage"
 msgstr "Ta meg til forsiden"
 
-#: includes/ajax.php:15
+#: includes/ajax.php:17
 msgid "Please verify that you are not a robot."
 msgstr "Venligst verifiser at du ikke er en robot."
 
-#: includes/ajax.php:68
+#: includes/ajax.php:83
 msgid "New user submission"
 msgstr "Ny bruker innsendelse"
 
-#: includes/ajax.php:75
+#: includes/ajax.php:90
 msgid "Review submission"
 msgstr "Se over innsendelse"
 
+#: includes/ajax.php:99
+msgid "Not permitted."
+msgstr "Ikke tillatt."
+
 #: includes/custom-posts.php:17 includes/custom-posts.php:19
 #: includes/customizer/customizer.php:101 sections/collection-tile.php:42
-#: sections/resources.php:17 sections/resources.php:23
+#: sections/resources-tabs.php:18 sections/resources-tabs.php:25
+#: sections/resources-tabs.php:32 sections/resources.php:17
+#: sections/resources.php:23
 msgid "Resources"
 msgstr "Ressurser"
 
@@ -92,12 +98,11 @@ msgid "resource"
 msgstr "ressurs"
 
 #: includes/custom-posts.php:44 includes/custom-posts.php:54
-#: sections/collections.php:3
+#: partials/resource-stats.php:6 sections/collections.php:3
 msgid "Collections"
 msgstr "Kolleksjoner"
 
 #: includes/custom-posts.php:45 partials/popup.php:19 partials/popup.php:20
-#: sections/resource.php:13
 msgid "Collection"
 msgstr "Kolleksjon"
 
@@ -278,28 +283,37 @@ msgstr "Deaktiver kolleksjon miniatyr bilde"
 msgid "Disable view count"
 msgstr "Deaktiver visningsteller"
 
-#: includes/customizer/customizer.php:162
+#: includes/customizer/customizer.php:155
+msgid "Disable upvoting"
+msgstr "Deaktiver avstemming"
+
+#: includes/customizer/customizer.php:161
 msgid "Disable sorting"
 msgstr "Deaktiver filtrering"
 
-#: includes/customizer/customizer.php:168 partials/sort-resources.php:2
+#: includes/customizer/customizer.php:167 partials/sort-resources.php:2
 msgid "Sort by"
 msgstr "Sorter ved"
 
-#: includes/customizer/customizer.php:171 partials/sort-resources.php:9
+#: includes/customizer/customizer.php:170 partials/sort-resources.php:9
 #: partials/sort-resources.php:10
 msgid "Date"
 msgstr "Dato"
 
-#: includes/customizer/customizer.php:172 partials/sort-resources.php:11
+#: includes/customizer/customizer.php:171 partials/sort-resources.php:11
 #: partials/sort-resources.php:12
 msgid "Name"
 msgstr "Navn"
 
-#: includes/customizer/customizer.php:173 partials/sort-resources.php:15
-#: partials/sort-resources.php:16
-msgid "Popularity"
-msgstr "Popularitet"
+#: includes/customizer/customizer.php:172 partials/resource-stats.php:26
+#: partials/sort-resources.php:15 partials/sort-resources.php:16
+msgid "Views"
+msgstr "Visninger"
+
+#: includes/customizer/customizer.php:173 partials/resource-stats.php:43
+#: partials/sort-resources.php:20 partials/sort-resources.php:21
+msgid "Upvotes"
+msgstr "Stemmer"
 
 #: includes/customizer/customizer.php:179
 msgid "Sort order"
@@ -536,6 +550,14 @@ msgstr "Aktiver kuratorere"
 msgid "Enable curators listing on this page"
 msgstr "Aktiver kuratorers utlistinger på denne siden"
 
+#: includes/upvotes.php:26
+msgid "Remove Upvote"
+msgstr "Fjerne stemme"
+
+#: includes/upvotes.php:30
+msgid "Upvote"
+msgstr "Avstemninger"
+
 #: partials/newsletter.php:10
 msgid "Email address"
 msgstr "E-post adresse"
@@ -552,13 +574,13 @@ msgstr "Om"
 msgid "Navigation"
 msgstr "Navigasjon"
 
-#: partials/page-bottom.php:25 partials/page-head.php:27
-#: partials/page-head.php:52 partials/popup.php:9 partials/popup.php:66
+#: partials/page-bottom.php:27 partials/page-head.php:33
+#: partials/page-head.php:58 partials/popup.php:9 partials/popup.php:66
 #: sections/toolbox.php:23
 msgid "Submit"
 msgstr "Send inn"
 
-#: partials/page-bottom.php:31
+#: partials/page-bottom.php:33
 msgid "Follow"
 msgstr "Følg"
 
@@ -566,15 +588,15 @@ msgstr "Følg"
 msgid "Chipmunk WordPress Theme"
 msgstr "Chipmunk WordPress Tema"
 
-#: partials/page-head.php:35 partials/popup.php:6 partials/search-bar.php:11
+#: partials/page-head.php:41 partials/popup.php:6 partials/search-bar.php:11
 msgid "Close"
 msgstr "Lukk"
 
-#: partials/page-head.php:46
+#: partials/page-head.php:52
 msgid "Search"
 msgstr "Søk"
 
-#: partials/page-head.php:57
+#: partials/page-head.php:63
 msgid "Menu"
 msgstr "Meny"
 
@@ -593,6 +615,15 @@ msgstr "Ditt navn"
 #: partials/popup.php:55
 msgid "Your email"
 msgstr "Din e-post"
+
+#: partials/resource-stats.php:12
+#, php-format
+msgid "+%d more"
+msgstr "+%d mer"
+
+#: partials/resource-stats.php:18
+msgid "Published"
+msgstr "Publisert"
 
 #: partials/search-bar.php:6
 msgid "Search query..."
@@ -647,31 +678,19 @@ msgstr "Forrige"
 msgid "Next"
 msgstr "Neste"
 
-#: sections/resource-tile.php:22 sections/resource.php:17
-msgid "Published"
-msgstr "Publisert"
-
-#: sections/resource-tile.php:26 sections/resource.php:21
-msgid "Views"
-msgstr "Visninger"
-
-#: sections/resource-tile.php:30 sections/resource.php:9
-msgid "Upvote"
-msgstr "Avstemninger"
-
-#: sections/resource.php:41
+#: sections/resource.php:23
 msgid "Visit website"
 msgstr "Besøk webside"
 
-#: sections/resources-tabs.php:16
+#: sections/resources-tabs.php:17
 msgid "Featured"
 msgstr "Utvalgte"
 
-#: sections/resources-tabs.php:20
+#: sections/resources-tabs.php:24
 msgid "Latest"
 msgstr "Siste"
 
-#: sections/resources-tabs.php:24
+#: sections/resources-tabs.php:31
 msgid "Popular"
 msgstr "Populær"
 
@@ -704,17 +723,14 @@ msgstr "%s Kolleksjon"
 msgid "%s Tag"
 msgstr "%s Knagg"
 
-#~ msgid "Disable upvoting"
-#~ msgstr "Deaktiver avstemming"
+#~ msgid "Popularity"
+#~ msgstr "Popularitet"
 
 #~ msgid "Search results for %s"
 #~ msgstr "Search results for %s"
 
 #~ msgid "Page %s"
 #~ msgstr "Page %s"
-
-#~ msgid "Upvotes"
-#~ msgstr "Upvotes"
 
 #~ msgid "Tag"
 #~ msgstr "Tag"

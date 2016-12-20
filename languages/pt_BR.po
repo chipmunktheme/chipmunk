@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-15 14:50+0100\n"
-"PO-Revision-Date: 2016-12-15 14:56+0100\n"
+"POT-Creation-Date: 2016-12-20 12:33+0100\n"
+"PO-Revision-Date: 2016-12-20 12:35+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: Portuguese (Brazil)\n"
 "Language: pt_BR\n"
@@ -26,21 +26,27 @@ msgstr "404! A página que você está tentando acessar não foi encontrada."
 msgid "Bring me to the frontpage"
 msgstr "Ir para a página inicial"
 
-#: includes/ajax.php:15
+#: includes/ajax.php:17
 msgid "Please verify that you are not a robot."
 msgstr "Por favor, confirme que você não é um robô."
 
-#: includes/ajax.php:68
+#: includes/ajax.php:83
 msgid "New user submission"
 msgstr "Novo envio de usuário"
 
-#: includes/ajax.php:75
+#: includes/ajax.php:90
 msgid "Review submission"
 msgstr "Revisar envio"
 
+#: includes/ajax.php:99
+msgid "Not permitted."
+msgstr "Não é permitido."
+
 #: includes/custom-posts.php:17 includes/custom-posts.php:19
 #: includes/customizer/customizer.php:101 sections/collection-tile.php:42
-#: sections/resources.php:17 sections/resources.php:23
+#: sections/resources-tabs.php:18 sections/resources-tabs.php:25
+#: sections/resources-tabs.php:32 sections/resources.php:17
+#: sections/resources.php:23
 msgid "Resources"
 msgstr "Itens"
 
@@ -93,12 +99,11 @@ msgid "resource"
 msgstr "item\t"
 
 #: includes/custom-posts.php:44 includes/custom-posts.php:54
-#: sections/collections.php:3
+#: partials/resource-stats.php:6 sections/collections.php:3
 msgid "Collections"
 msgstr "Coleções"
 
 #: includes/custom-posts.php:45 partials/popup.php:19 partials/popup.php:20
-#: sections/resource.php:13
 msgid "Collection"
 msgstr "Coleção"
 
@@ -279,28 +284,37 @@ msgstr "Desabilitar miniaturas das coleções"
 msgid "Disable view count"
 msgstr "Desabilitar número de visualizações"
 
-#: includes/customizer/customizer.php:162
+#: includes/customizer/customizer.php:155
+msgid "Disable upvoting"
+msgstr "Desabilitar voto"
+
+#: includes/customizer/customizer.php:161
 msgid "Disable sorting"
 msgstr "Desabilitar ordenação"
 
-#: includes/customizer/customizer.php:168 partials/sort-resources.php:2
+#: includes/customizer/customizer.php:167 partials/sort-resources.php:2
 msgid "Sort by"
 msgstr "Ordenar por"
 
-#: includes/customizer/customizer.php:171 partials/sort-resources.php:9
+#: includes/customizer/customizer.php:170 partials/sort-resources.php:9
 #: partials/sort-resources.php:10
 msgid "Date"
 msgstr "Data"
 
-#: includes/customizer/customizer.php:172 partials/sort-resources.php:11
+#: includes/customizer/customizer.php:171 partials/sort-resources.php:11
 #: partials/sort-resources.php:12
 msgid "Name"
 msgstr "Nome"
 
-#: includes/customizer/customizer.php:173 partials/sort-resources.php:15
-#: partials/sort-resources.php:16
-msgid "Popularity"
-msgstr "Popularidade"
+#: includes/customizer/customizer.php:172 partials/resource-stats.php:26
+#: partials/sort-resources.php:15 partials/sort-resources.php:16
+msgid "Views"
+msgstr "Visualizações"
+
+#: includes/customizer/customizer.php:173 partials/resource-stats.php:43
+#: partials/sort-resources.php:20 partials/sort-resources.php:21
+msgid "Upvotes"
+msgstr "Votos"
 
 #: includes/customizer/customizer.php:179
 msgid "Sort order"
@@ -537,6 +551,14 @@ msgstr "Habilitar curadores"
 msgid "Enable curators listing on this page"
 msgstr "Habilitar lista de curadores nesta página"
 
+#: includes/upvotes.php:26
+msgid "Remove Upvote"
+msgstr "Remover o voto"
+
+#: includes/upvotes.php:30
+msgid "Upvote"
+msgstr "Votar"
+
 #: partials/newsletter.php:10
 msgid "Email address"
 msgstr "Email"
@@ -553,13 +575,13 @@ msgstr "Sobre"
 msgid "Navigation"
 msgstr "Navegação"
 
-#: partials/page-bottom.php:25 partials/page-head.php:27
-#: partials/page-head.php:52 partials/popup.php:9 partials/popup.php:66
+#: partials/page-bottom.php:27 partials/page-head.php:33
+#: partials/page-head.php:58 partials/popup.php:9 partials/popup.php:66
 #: sections/toolbox.php:23
 msgid "Submit"
 msgstr "Sugerir um item"
 
-#: partials/page-bottom.php:31
+#: partials/page-bottom.php:33
 msgid "Follow"
 msgstr "Seguir"
 
@@ -567,15 +589,15 @@ msgstr "Seguir"
 msgid "Chipmunk WordPress Theme"
 msgstr "Chipmunk WordPress Theme"
 
-#: partials/page-head.php:35 partials/popup.php:6 partials/search-bar.php:11
+#: partials/page-head.php:41 partials/popup.php:6 partials/search-bar.php:11
 msgid "Close"
 msgstr "Fechar"
 
-#: partials/page-head.php:46
+#: partials/page-head.php:52
 msgid "Search"
 msgstr "Buscar"
 
-#: partials/page-head.php:57
+#: partials/page-head.php:63
 msgid "Menu"
 msgstr "Menu"
 
@@ -594,6 +616,15 @@ msgstr "Seu nome"
 #: partials/popup.php:55
 msgid "Your email"
 msgstr "Seu email"
+
+#: partials/resource-stats.php:12
+#, php-format
+msgid "+%d more"
+msgstr "+%d mais"
+
+#: partials/resource-stats.php:18
+msgid "Published"
+msgstr "Publicado"
 
 #: partials/search-bar.php:6
 msgid "Search query..."
@@ -649,31 +680,19 @@ msgstr "Anterior"
 msgid "Next"
 msgstr "Próximo"
 
-#: sections/resource-tile.php:22 sections/resource.php:17
-msgid "Published"
-msgstr "Publicado"
-
-#: sections/resource-tile.php:26 sections/resource.php:21
-msgid "Views"
-msgstr "Visualizações"
-
-#: sections/resource-tile.php:30 sections/resource.php:9
-msgid "Upvote"
-msgstr "Votar"
-
-#: sections/resource.php:41
+#: sections/resource.php:23
 msgid "Visit website"
 msgstr "Visitar website"
 
-#: sections/resources-tabs.php:16
+#: sections/resources-tabs.php:17
 msgid "Featured"
 msgstr "Destaque"
 
-#: sections/resources-tabs.php:20
+#: sections/resources-tabs.php:24
 msgid "Latest"
 msgstr "Mais recente"
 
-#: sections/resources-tabs.php:24
+#: sections/resources-tabs.php:31
 msgid "Popular"
 msgstr "Popular"
 
@@ -705,6 +724,9 @@ msgstr "Coleção de %s"
 #, php-format
 msgid "%s Tag"
 msgstr "Tag %s"
+
+#~ msgid "Popularity"
+#~ msgstr "Popularidade"
 
 #~ msgid "Chipmunk"
 #~ msgstr "Chipmunk"

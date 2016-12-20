@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2016-12-15 14:50+0100\n"
-"PO-Revision-Date: 2016-12-15 14:50+0100\n"
+"POT-Creation-Date: 2016-12-20 12:33+0100\n"
+"PO-Revision-Date: 2016-12-20 12:39+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -26,21 +26,27 @@ msgstr "Strona, której szukasz nie została znaleziona."
 msgid "Bring me to the frontpage"
 msgstr "Zabierz mnie do strony głównej"
 
-#: includes/ajax.php:15
+#: includes/ajax.php:17
 msgid "Please verify that you are not a robot."
 msgstr "Zweryfikuj, że nie jesteś robotem."
 
-#: includes/ajax.php:68
+#: includes/ajax.php:83
 msgid "New user submission"
 msgstr "Nowe zgłoszenie od użytkownika"
 
-#: includes/ajax.php:75
+#: includes/ajax.php:90
 msgid "Review submission"
 msgstr "Sprawdź zgłoszenie"
 
+#: includes/ajax.php:99
+msgid "Not permitted."
+msgstr "Brak dostępu."
+
 #: includes/custom-posts.php:17 includes/custom-posts.php:19
 #: includes/customizer/customizer.php:101 sections/collection-tile.php:42
-#: sections/resources.php:17 sections/resources.php:23
+#: sections/resources-tabs.php:18 sections/resources-tabs.php:25
+#: sections/resources-tabs.php:32 sections/resources.php:17
+#: sections/resources.php:23
 msgid "Resources"
 msgstr "Materiały"
 
@@ -93,12 +99,11 @@ msgid "resource"
 msgstr "material"
 
 #: includes/custom-posts.php:44 includes/custom-posts.php:54
-#: sections/collections.php:3
+#: partials/resource-stats.php:6 sections/collections.php:3
 msgid "Collections"
 msgstr "Kolekcje"
 
 #: includes/custom-posts.php:45 partials/popup.php:19 partials/popup.php:20
-#: sections/resource.php:13
 msgid "Collection"
 msgstr "Kolekcja"
 
@@ -279,28 +284,37 @@ msgstr "Wyłącz miniaturki dla kolekcji"
 msgid "Disable view count"
 msgstr "Wyłącz popularne materiały"
 
-#: includes/customizer/customizer.php:162
+#: includes/customizer/customizer.php:155
+msgid "Disable upvoting"
+msgstr "Wyłącz głosowanie na materiały"
+
+#: includes/customizer/customizer.php:161
 msgid "Disable sorting"
 msgstr "Wyłącz sortowanie"
 
-#: includes/customizer/customizer.php:168 partials/sort-resources.php:2
+#: includes/customizer/customizer.php:167 partials/sort-resources.php:2
 msgid "Sort by"
-msgstr "Sortuj po"
+msgstr "Sortuj"
 
-#: includes/customizer/customizer.php:171 partials/sort-resources.php:9
+#: includes/customizer/customizer.php:170 partials/sort-resources.php:9
 #: partials/sort-resources.php:10
 msgid "Date"
-msgstr "Dacie"
+msgstr "Data"
 
-#: includes/customizer/customizer.php:172 partials/sort-resources.php:11
+#: includes/customizer/customizer.php:171 partials/sort-resources.php:11
 #: partials/sort-resources.php:12
 msgid "Name"
-msgstr "Nazwie"
+msgstr "Nazwa"
 
-#: includes/customizer/customizer.php:173 partials/sort-resources.php:15
-#: partials/sort-resources.php:16
-msgid "Popularity"
-msgstr "Popularności"
+#: includes/customizer/customizer.php:172 partials/resource-stats.php:26
+#: partials/sort-resources.php:15 partials/sort-resources.php:16
+msgid "Views"
+msgstr "Wizyty"
+
+#: includes/customizer/customizer.php:173 partials/resource-stats.php:43
+#: partials/sort-resources.php:20 partials/sort-resources.php:21
+msgid "Upvotes"
+msgstr "Głosy"
 
 #: includes/customizer/customizer.php:179
 msgid "Sort order"
@@ -538,6 +552,14 @@ msgstr "Włącz redaktorów"
 msgid "Enable curators listing on this page"
 msgstr "Włącz wyświetlanie redaktorów na tej stronie"
 
+#: includes/upvotes.php:26
+msgid "Remove Upvote"
+msgstr "Usuń głos"
+
+#: includes/upvotes.php:30
+msgid "Upvote"
+msgstr "Zagłosuj"
+
 #: partials/newsletter.php:10
 msgid "Email address"
 msgstr "Adres e-mail"
@@ -554,13 +576,13 @@ msgstr "O Nas"
 msgid "Navigation"
 msgstr "Nawigacja"
 
-#: partials/page-bottom.php:25 partials/page-head.php:27
-#: partials/page-head.php:52 partials/popup.php:9 partials/popup.php:66
+#: partials/page-bottom.php:27 partials/page-head.php:33
+#: partials/page-head.php:58 partials/popup.php:9 partials/popup.php:66
 #: sections/toolbox.php:23
 msgid "Submit"
 msgstr "Zgłoś materiał"
 
-#: partials/page-bottom.php:31
+#: partials/page-bottom.php:33
 msgid "Follow"
 msgstr "Obserwuj"
 
@@ -568,15 +590,15 @@ msgstr "Obserwuj"
 msgid "Chipmunk WordPress Theme"
 msgstr "Motyw WordPressa: Chipmunk"
 
-#: partials/page-head.php:35 partials/popup.php:6 partials/search-bar.php:11
+#: partials/page-head.php:41 partials/popup.php:6 partials/search-bar.php:11
 msgid "Close"
 msgstr "Zamknij"
 
-#: partials/page-head.php:46
+#: partials/page-head.php:52
 msgid "Search"
 msgstr "Szukaj"
 
-#: partials/page-head.php:57
+#: partials/page-head.php:63
 msgid "Menu"
 msgstr "Menu"
 
@@ -595,6 +617,15 @@ msgstr "Twoje imię"
 #: partials/popup.php:55
 msgid "Your email"
 msgstr "Twój e-mail"
+
+#: partials/resource-stats.php:12
+#, php-format
+msgid "+%d more"
+msgstr "+%d więcej"
+
+#: partials/resource-stats.php:18
+msgid "Published"
+msgstr "Opublikowany"
 
 #: partials/search-bar.php:6
 msgid "Search query..."
@@ -649,31 +680,19 @@ msgstr "Poprzednie"
 msgid "Next"
 msgstr "Następne"
 
-#: sections/resource-tile.php:22 sections/resource.php:17
-msgid "Published"
-msgstr "Opublikowany"
-
-#: sections/resource-tile.php:26 sections/resource.php:21
-msgid "Views"
-msgstr "Wizyty"
-
-#: sections/resource-tile.php:30 sections/resource.php:9
-msgid "Upvote"
-msgstr "Zagłosuj"
-
-#: sections/resource.php:41
+#: sections/resource.php:23
 msgid "Visit website"
 msgstr "Odwiedź stronę"
 
-#: sections/resources-tabs.php:16
+#: sections/resources-tabs.php:17
 msgid "Featured"
 msgstr "Promowane"
 
-#: sections/resources-tabs.php:20
+#: sections/resources-tabs.php:24
 msgid "Latest"
 msgstr "Najnowsze"
 
-#: sections/resources-tabs.php:24
+#: sections/resources-tabs.php:31
 msgid "Popular"
 msgstr "Popularne"
 
@@ -706,17 +725,14 @@ msgstr "%s"
 msgid "%s Tag"
 msgstr "%s"
 
-#~ msgid "Disable upvoting"
-#~ msgstr "Wyłącz głosowanie na materiały"
+#~ msgid "Popularity"
+#~ msgstr "Popularności"
 
 #~ msgid "Search results for %s"
 #~ msgstr "Wyniki wyszukiwania dla %s"
 
 #~ msgid "Page %s"
 #~ msgstr "Strona %s"
-
-#~ msgid "Upvotes"
-#~ msgstr "Głosy za"
 
 #~ msgid "Tag"
 #~ msgstr "Tag"
