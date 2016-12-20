@@ -23,7 +23,12 @@ var RemoteForm = {
       var formObject = helpers.convertToObject(formData);
 
       helpers.request(formAction, formObject)
-        .always(function (response) {
+        .fail(function (xhr, ajaxOptions, thrownError) {
+           console.log(xhr.status);
+           console.log(xhr.responseText);
+           console.log(thrownError);
+         })
+        .done(function (response) {
           console.log('Remote form: ', response);
 
           if (this.$message.length) {
