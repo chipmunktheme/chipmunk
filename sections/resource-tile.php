@@ -5,7 +5,7 @@
     <?php endif; ?>
   </div>
 
-  <div class="tile__content<?php echo (!ChipmunkCustomizer::theme_option('display_resource_cards') ? ' tile__content_dimmed' : ''); ?>">
+  <div class="tile__content<?php echo (!ChipmunkCustomizer::theme_option('display_resource_cards') ? (ChipmunkCustomizer::theme_option('disable_resource_thumbs') ? ' tile__content_primary' : ' tile__content_dimmed') : ''); ?>">
     <div class="tile__info">
       <?php echo ChipmunkHelpers::conditional_markup(is_front_page() || is_single(), 'h3', 'h2', 'tile__title', get_the_title()); ?>
 
@@ -16,7 +16,7 @@
       <?php endif; ?>
     </div>
 
-    <?php if (!ChipmunkCustomizer::theme_option('disable_resource_date') or !ChipmunkCustomizer::theme_option('disable_views')) : ?>
+    <?php if (!ChipmunkCustomizer::theme_option('disable_resource_date') or !ChipmunkCustomizer::theme_option('disable_views') or !ChipmunkCustomizer::theme_option('disable_upvotes')) : ?>
       <ul class="tile__stats stats">
         <?php get_template_part('partials/resource-stats'); ?>
       </ul>

@@ -138,6 +138,12 @@ if (!class_exists('ChipmunkCustomizer'))
               'default'     => false,
             ),
             array(
+              'name'        => 'disable_resource_thumbs',
+              'type'        => 'checkbox',
+              'label'       => __('Disable resource thumbs', 'chipmunk'),
+              'default'     => false,
+            ),
+            array(
               'name'        => 'disable_collection_thumbs',
               'type'        => 'checkbox',
               'label'       => __('Disable collection thumbs', 'chipmunk'),
