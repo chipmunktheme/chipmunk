@@ -9,7 +9,7 @@
         </ul>
 
         <div class="resource__info">
-          <?php echo ChipmunkHelpers::conditional_markup(is_single(), 'h1', 'h2', 'resource__title heading heading_xl', is_single() ? get_the_title() : '<a href="'.get_the_permalink().'">'.get_the_title().'</a>'); ?>
+          <?php echo ChipmunkHelpers::conditional_markup(is_single(), 'h1', 'h2', 'resource__title heading heading_lg', is_single() ? get_the_title() : '<a href="'.get_the_permalink().'">'.get_the_title().'</a>'); ?>
 
           <?php $content = get_the_content(); ?>
 

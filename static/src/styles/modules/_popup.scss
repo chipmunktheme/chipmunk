@@ -21,6 +21,7 @@
   position: absolute;
   top: $separator;
   right: $separator;
+  z-index: $zindex-utils;
   color: $color-black;
   font-size: 2.2rem;
   line-height: 1;
@@ -70,6 +71,18 @@
   .has-popup-open & {
     opacity: 1;
     transform: scale(1) translateY(0);
+  }
+
+  &.is-loading {
+    &::before {
+      @include cover;
+      content: '';
+      z-index: $zindex-base;
+      background-color: rgba($color-white, 0.75);
+      background-image: image('loader-dark.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+    }
   }
 
   > img {

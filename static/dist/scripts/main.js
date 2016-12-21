@@ -21275,6 +21275,9 @@ var RemoteForm = {
       var formData = $form.serializeArray();
       var formObject = helpers.convertToObject(formData);
 
+      // Enable loading indicator
+      $form.parent().addClass('is-loading');
+
       helpers.request(formAction, formObject)
         .fail(function (xhr, ajaxOptions, thrownError) {
            console.log(xhr.status);
@@ -21291,7 +21294,11 @@ var RemoteForm = {
 
             this.$message.text(response.data).show();
           }
-        }.bind(this));
+        }.bind(this))
+        .always(function () {
+          // Disable loading indicator
+          $form.parent().removeClass('is-loading');
+        });
     }
   }
 };
