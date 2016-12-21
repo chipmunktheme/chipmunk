@@ -5,6 +5,7 @@ var $ = require('jquery');
 var Sort = function () {
   $('[data-sort]').on('change', function () {
     var URIParams = window.location.search;
+    var URIPath = window.location.pathname;
     var sortSlug = 'sort';
 
     // Update URI params
@@ -20,7 +21,8 @@ var Sort = function () {
       window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
     }
 
-    window.location = window.location.origin + window.location.pathname + URIParams;
+    URIPath = URIPath.replace(new RegExp('\/page\/[0-9]+', 'g'), '');
+    window.location = window.location.origin + URIPath + URIParams;
     return false;
   });
 };
