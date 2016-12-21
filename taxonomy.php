@@ -9,22 +9,22 @@
 
       <?php if (!ChipmunkCustomizer::theme_option('disable_sorting') and $custom_query->have_posts()) : ?>
         <div class="row row_center">
-          <div class="column column_md-3 column_lg-6">
+          <div class="column column_md-4 column_lg-8">
             <h3 class="section__title heading heading_md"><?php echo $title; ?></h3>
+
+            <?php if (!empty($term->description)) : ?>
+              <p class="text_content text_subtitle"><?php echo $term->description; ?></p>
+            <?php endif; ?>
           </div>
 
           <?php get_template_part('partials/sort-resources'); ?>
         </div>
       <?php else : ?>
         <h3 class="section__title heading heading_md"><?php echo $title; ?></h3>
-      <?php endif; ?>
 
-      <?php if (!empty($term->description)) : ?>
-        <div class="row">
-          <div class="column column_lg-8">
-            <p class="text_content"><?php echo $term->description; ?></p>
-          </div>
-        </div>
+        <?php if (!empty($term->description)) : ?>
+          <p class="text_content text_subtitle"><?php echo $term->description; ?></p>
+        <?php endif; ?>
       <?php endif; ?>
 
       <?php if (($children_collections = get_term_children($term->term_id, 'resource-collection')) && $paged == 1) : ?>

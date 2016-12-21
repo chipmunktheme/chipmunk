@@ -1,5 +1,5 @@
-<div class="sort column column_md-3 column_lg-6">
-  <h4 class="sort__title visible-md-inline-block"><?php _e('Sort by', 'chipmunk'); ?>:</h4>
+<div class="sort column column_md-2 column_lg-4">
+  <h4 class="sort__title visible-lg-inline-block"><?php _e('Sort by', 'chipmunk'); ?>:</h4>
 
   <select class="sort__select custom-select" data-sort>
     <?php

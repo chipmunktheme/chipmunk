@@ -24,4 +24,12 @@
   &_separated {
     margin-top: 1em;
   }
+
+  &_subtitle {
+    margin-bottom: $separator;
+
+    @include breakpoint(lg) {
+      margin-bottom: $separator * 1.5;
+    }
+  }
 }

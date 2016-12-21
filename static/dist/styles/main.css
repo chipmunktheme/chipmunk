@@ -578,7 +578,7 @@ sub {
 body {
   min-height: 100%;
   position: relative;
-  background-color: #E6E6E6;
+  background-color: #E8E8E8;
   color: #808080;
   font-family: "Poppins", "Arial", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 1.6em;
@@ -1621,7 +1621,7 @@ a, button {
   }
 }
 .sort__select ~ .select2-container .select2-dropdown {
-  background-color: #E6E6E6;
+  background-color: #E8E8E8;
   border-color: #808080;
 }
 .sort__select ~ .select2-container .select2-results__option {
@@ -1692,6 +1692,14 @@ a, button {
 }
 .text_separated {
   margin-top: 1em;
+}
+.text_subtitle {
+  margin-bottom: 2rem;
+}
+@media (min-width: 980px) {
+  .text_subtitle {
+    margin-bottom: 3rem;
+  }
 }
 /*
 ** Module - Button
@@ -2344,7 +2352,7 @@ a, button {
 ** Module - Page foot
 ** -----------------------------------------------------------------------------*/
 .page-foot {
-  background-color: #E6E6E6;
+  background-color: #E8E8E8;
 }
 .page-foot a:hover, .page-foot button:hover {
   color: #333333;
@@ -2876,7 +2884,7 @@ a, button {
   background-color: #FAFAFA;
 }
 .section_theme-gray {
-  background-color: #E6E6E6;
+  background-color: #E8E8E8;
 }
 .section_theme-primary {
   background-color: #F38181;
