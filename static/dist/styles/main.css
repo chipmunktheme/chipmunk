@@ -1768,39 +1768,35 @@ a, button {
 }
 @media (min-width: 680px) {
   .entry {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
   }
 }
 .entry h1:not(:first-child), .entry h2:not(:first-child), .entry h3:not(:first-child), .entry h4:not(:first-child), .entry h5:not(:first-child), .entry h6:not(:first-child) {
-  margin-top: 1em;
+  margin-top: 2rem;
 }
 @media (min-width: 680px) {
   .entry h1:not(:first-child), .entry h2:not(:first-child), .entry h3:not(:first-child), .entry h4:not(:first-child), .entry h5:not(:first-child), .entry h6:not(:first-child) {
-    margin-top: 1.85em;
+    margin-top: 4rem;
   }
 }
 .entry h1:not(:first-child), .entry h2:not(:first-child) {
-  margin-top: 1em;
+  margin-top: 4rem;
 }
 @media (min-width: 980px) {
   .entry h1:not(:first-child), .entry h2:not(:first-child) {
-    margin-top: 1.85em;
+    margin-top: 6rem;
   }
 }
-.entry h3:not(:first-child) {
-  margin-top: 0.5em;
+.entry h4 {
+  text-transform: none !important;
 }
-@media (min-width: 680px) {
-  .entry h3:not(:first-child) {
-    margin-top: 1.5em;
-  }
-}
-.entry h4 + p:not(:first-child), .entry h4 blockquote:not(:first-child) {
-  margin-top: 0.5em;
+.entry h5, .entry h6 {
+  font-size: 1.6rem;
+  line-height: 1.6;
 }
 @media (min-width: 680px) {
   .entry h5, .entry h6 {
-    margin-bottom: 0 !important;
+    font-size: 2.1rem;
   }
 }
 .entry p, .entry blockquote {
@@ -2094,13 +2090,13 @@ a, button {
   color: #333333;
   font-weight: bold;
 }
-.heading_sm, .entry h5, .entry h6 {
+.heading_sm {
   margin-bottom: 1rem;
   font-size: 1.6rem;
   line-height: 1.6;
 }
 @media (min-width: 680px) {
-  .heading_sm, .entry h5, .entry h6 {
+  .heading_sm {
     margin-bottom: 2rem;
   }
 }
@@ -2112,7 +2108,7 @@ a, button {
 }
 @media (min-width: 680px) {
   .heading_md, .entry h4 {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
 }
 .heading_md small, .entry h4 small {
@@ -2124,7 +2120,7 @@ a, button {
 }
 @media (min-width: 680px) {
   .heading_lg, .entry h3 {
-    font-size: 3.2rem;
+    font-size: 3.6rem;
   }
 }
 .heading_xl, .entry h1, .entry h2 {
@@ -2133,7 +2129,7 @@ a, button {
 }
 @media (min-width: 680px) {
   .heading_xl, .entry h1, .entry h2 {
-    font-size: 4.2rem;
+    font-size: 4.8rem;
   }
 }
 .heading_thin {
