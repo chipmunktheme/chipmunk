@@ -44,7 +44,7 @@
 .stats__button {
   display: inline-block;
   padding: 8px 10px;
-  border: 1px solid currentColor;
+  border: 1px solid $color-gray;
   border-radius: 1.1em;
   font-size: 1.4rem;
   line-height: 1;
@@ -58,6 +58,29 @@
     background-color: $color-primary;
     border-color: transparent;
     color: $color-white;
+  }
+
+  &.is-loading {
+    position: relative;
+
+    &::before {
+      @include cover(-1px);
+      content: '';
+      z-index: $zindex-base;
+      background-color: $color-gray;
+      background-image: image('loader.svg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      border-radius: 1.1em;
+      transition: background-color $transition-speed;
+    }
+
+    &.is-active {
+      &::before {
+        background-color: $color-primary;
+      }
+    }
   }
 }
 

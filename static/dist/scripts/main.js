@@ -21142,6 +21142,9 @@ var Actions = {
     process_upvote: function($target) {
       var data = $target.data();
 
+      // Enable loading indicator
+      $target.addClass('is-loading');
+
       helpers.request(data.action, data)
         .fail(function (xhr, ajaxOptions, thrownError) {
            console.log(xhr.status);
@@ -21153,7 +21156,13 @@ var Actions = {
 
           $target.html(response.counter);
           $target.toggleClass('is-active', response.status === 'liked');
-        }.bind(this));
+        })
+        .always(function () {
+          // Disable loading indicator
+          setTimeout(function () {
+            $target.removeClass('is-loading');
+          }, 250);
+        });
     }
   }
 };
