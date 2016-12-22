@@ -2271,6 +2271,9 @@ a, button {
 .nav-primary__item a:hover {
   color: #333333;
 }
+.nav-primary__item strong {
+  font-weight: bold;
+}
 .nav-primary__item_active {
   color: #333333;
 }

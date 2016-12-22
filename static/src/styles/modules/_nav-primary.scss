@@ -102,6 +102,10 @@
     }
   }
 
+  strong {
+    font-weight: bold;
+  }
+
   &_active {
     color: $color-black;
   }
