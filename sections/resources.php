@@ -1,4 +1,4 @@
-<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
+<?php $paged = ChipmunkHelpers::get_current_page(); ?>
 
 <?php if (is_single()) : ?>
   <?php $custom_query = ChipmunkHelpers::get_related_resources(get_the_ID()); ?>
@@ -43,7 +43,7 @@
 
   <?php include locate_template('sections/pagination.php'); ?>
 
-  <?php if (!is_front_page()) : ?>
+  <?php if (!is_home()) : ?>
     <?php get_template_part('sections/promo'); ?>
   <?php endif; ?>
 </div>

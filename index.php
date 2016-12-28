@@ -1,16 +1,16 @@
 <?php get_header(); ?>
 
-  <div class="section section_theme-gray">
-    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-      <div class="container">
-        <?php get_template_part('sections/entry'); ?>
-      </div>
-    <?php endwhile; endif; ?>
+  <?php if (!ChipmunkCustomizer::theme_option('disable_homepage_listings')) : ?>
+    <?php get_template_part('sections/resources-tabs'); ?>
+    <?php get_template_part('sections/toolbox'); ?>
+  <?php endif; ?>
 
-    <?php get_template_part('sections/promo'); ?>
-  </div>
-  <!-- /.section -->
+  <?php if (!ChipmunkCustomizer::theme_option('disable_homepage_collections')) : ?>
+    <?php get_template_part('sections/collections'); ?>
+  <?php endif; ?>
 
-  <?php get_template_part('sections/toolbox'); ?>
+  <?php if (ChipmunkCustomizer::theme_option('disable_homepage_listings')) : ?>
+    <?php get_template_part('sections/toolbox'); ?>
+  <?php endif; ?>
 
 <?php get_footer(); ?>

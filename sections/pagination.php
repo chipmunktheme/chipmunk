@@ -1,7 +1,7 @@
 <?php
 global $wp_query;
 $query = isset($custom_query) ? $custom_query : $wp_query;
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$paged = ChipmunkHelpers::get_current_page();
 ?>
 
 <?php if ($query and $query->max_num_pages > 1 and (!isset($query->query['orderby']) or $query->query['orderby'] != 'rand')) : ?>
@@ -37,3 +37,8 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
   </nav>
   <!-- /.pagination -->
 <?php endif; ?>
+
+<?php
+  wp_reset_postdata();
+  wp_reset_query();
+?>

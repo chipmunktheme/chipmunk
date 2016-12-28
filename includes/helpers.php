@@ -331,5 +331,19 @@ if (!class_exists('ChipmunkHelpers'))
       $formatted = preg_replace('/\.[0]+([KMB]?)$/i', '$1', $formatted);
       return $formatted;
     }
+
+    /**
+     * Get current page attribute
+     */
+    public static function get_current_page()
+    {
+      if (get_query_var('paged')) {
+        return get_query_var('paged');
+      } elseif (get_query_var('page')) {
+        return get_query_var('page');
+      } else {
+        return 1;
+      }
+    }
   }
 }
