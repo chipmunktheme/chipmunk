@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Chipmunk: 404 page
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
+
+get_header(); ?>
 
   <div class="section section_double section_theme-gray">
     <div class="container">

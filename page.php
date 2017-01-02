@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Chipmunk: Page
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
+
+get_header(); ?>
 
   <div class="section section_theme-gray">
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>

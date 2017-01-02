@@ -1,7 +1,15 @@
-<?php ChipmunkViewCounter::set_post_views(get_the_ID()); ?>
-<?php get_header(); ?>
+<?php
+/**
+ * Chipmunk: Single Post
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
 
-	<?php while ( have_posts() ) : the_post(); ?>
+ChipmunkViewCounter::set_post_views(get_the_ID());
+get_header(); ?>
+
+  <?php while ( have_posts() ) : the_post(); ?>
     <?php get_template_part('sections/resource'); ?>
   <?php endwhile; ?>
 

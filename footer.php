@@ -1,3 +1,14 @@
+<?php
+/**
+ * Chipmunk: Footer
+ *
+ * Remember to always include the wp_footer() call before the </body> tag
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
+?>
+
     <?php get_template_part('partials/newsletter'); ?>
     <?php get_template_part('partials/page-bottom'); ?>
     <?php get_template_part('partials/page-foot'); ?>

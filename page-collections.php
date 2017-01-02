@@ -1,6 +1,13 @@
-<?php /* Template Name: Collections */ ?>
+<?php
+/**
+ * Template Name: Collections
+ * Chipmunk: Page Collections
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
 
-<?php get_header(); ?>
+get_header(); ?>
 
   <?php get_template_part('sections/collections'); ?>
   <?php get_template_part('sections/toolbox'); ?>

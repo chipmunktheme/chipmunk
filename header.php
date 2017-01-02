@@ -1,4 +1,16 @@
-<!doctype html>
+<?php
+/**
+ * Chipmunk: Header
+ *
+ * Remember to always include the wp_head() call before the ending </head> tag
+ *
+ * Make sure that you include the <!DOCTYPE html> in the same line as ?> closing tag
+ * otherwise ajax might not work properly
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
+?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">

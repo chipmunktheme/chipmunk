@@ -1,6 +1,13 @@
-<?php /* Template Name: Resources */ ?>
+<?php
+/**
+ * Template Name: Resources
+ * Chipmunk: Page Resources
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
 
-<?php get_header(); ?>
+get_header(); ?>
 
   <?php get_template_part('sections/resources'); ?>
   <?php get_template_part('sections/toolbox'); ?>

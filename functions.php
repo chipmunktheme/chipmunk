@@ -1,4 +1,17 @@
 <?php
+/**
+ * Chipmunk: Theme specific functionalities
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
+
+define('CHIPMUNK_VERSION', '1.4.0');
+define('CHIPMUNK_TEMPLATE_URI', get_template_directory_uri());
+define('CHIPMUNK_TEMPLATE_DIR', get_template_directory());
+define('CHIPMUNK_THEME_TITLE', 'Chipmunk');
+define('CHIPMUNK_THEME_SLUG', 'chipmunk');
+
 // *DEBUG MODE*
 // Add ?debug=true to your URL to enable
 if (isset($_REQUEST['debug'])) {
@@ -65,10 +78,10 @@ class Chipmunk
   public function enqueue_assets()
   {
     // Load our main stylesheet
-    wp_enqueue_style('chipmunk-styles', get_template_directory_uri().'/static/dist/styles/main.min.css', array(), '1.4.0');
+    wp_enqueue_style('chipmunk-styles', CHIPMUNK_TEMPLATE_URI.'/static/dist/styles/main.min.css', array(), CHIPMUNK_VERSION);
 
     // Load our main script.
-    wp_enqueue_script('chipmunk-scripts', get_template_directory_uri().'/static/dist/scripts/main.min.js', array(), '1.4.0', true);
+    wp_enqueue_script('chipmunk-scripts', CHIPMUNK_TEMPLATE_URI.'/static/dist/scripts/main.min.js', array(), CHIPMUNK_VERSION, true);
   }
 
   /**
@@ -77,7 +90,7 @@ class Chipmunk
   public function enqueue_admin_assets()
   {
     // Load our main stylesheet
-    wp_enqueue_style('chipmunk-admin-styles', get_template_directory_uri().'/admin.css', array(), '1.4.0');
+    wp_enqueue_style('chipmunk-admin-styles', CHIPMUNK_TEMPLATE_URI.'/admin.css', array(), CHIPMUNK_VERSION);
   }
 
   /**
@@ -178,7 +191,7 @@ class Chipmunk
    */
   public function add_fb_open_graph_tags()
   {
-    $site_image = ($logo = ChipmunkCustomizer::theme_option('logo')) ? $logo : get_template_directory_uri().'/static/dist/images/chipmunk.png';
+    $site_image = ($logo = ChipmunkCustomizer::theme_option('logo')) ? $logo : CHIPMUNK_TEMPLATE_URI.'/static/dist/images/chipmunk.png';
 
     if (is_single() or is_page())
     {

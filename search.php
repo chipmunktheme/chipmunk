@@ -1,11 +1,18 @@
 <?php
-// If the search query is shorter than 3 letters redirect to homepage
-if (strlen(get_search_query()) < 3 or ChipmunkCustomizer::theme_option('disable_search')) :
-  wp_redirect(home_url()); exit;
-endif;
-?>
+/**
+ * Chipmunk: Search
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
 
-<?php get_header(); ?>
+// If the search query is shorter than 3 letters redirect to homepage
+if (strlen(get_search_query()) < 3 or ChipmunkCustomizer::theme_option('disable_search'))
+{
+  wp_redirect(home_url()); exit;
+}
+
+get_header(); ?>
 
   <div class="section section_compact-bottom section_theme-gray">
     <div class="container">

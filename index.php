@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Chipmunk: Index
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
+
+get_header(); ?>
 
   <?php if (!ChipmunkCustomizer::theme_option('disable_homepage_listings')) : ?>
     <?php get_template_part('sections/resources-tabs'); ?>

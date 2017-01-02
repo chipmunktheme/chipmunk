@@ -1,4 +1,13 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Chipmunk: Taxonomy
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
+
+get_header(); ?>
+
   <?php $term = get_queried_object(); ?>
   <?php $paged = ChipmunkHelpers::get_current_page(); ?>
   <?php $custom_query = ChipmunkHelpers::get_resources(ChipmunkCustomizer::theme_option('posts_per_page'), $paged, $term); ?>
