@@ -21,11 +21,10 @@ if (isset($_REQUEST['debug'])) {
   ini_set('error_reporting', E_ALL);
 }
 
-load_theme_textdomain('chipmunk', get_template_directory().'/languages');
+load_theme_textdomain(CHIPMUNK_THEME_SLUG, get_template_directory().'/languages');
 
 include_once get_template_directory().'/includes/helpers.php';
 include_once get_template_directory().'/includes/ajax.php';
-include_once get_template_directory().'/includes/custom-posts.php';
 include_once get_template_directory().'/includes/meta-boxes.php';
 include_once get_template_directory().'/includes/views.php';
 include_once get_template_directory().'/includes/upvotes.php';
@@ -36,7 +35,6 @@ class Chipmunk
   public function __construct()
   {
     new ChipmunkCustomizer();
-    new ChipmunkCustomPosts();
     new ChipmunkMetaBoxes();
     new ChipmunkViewCounter();
     new ChipmunkUpvotes();
@@ -45,15 +43,72 @@ class Chipmunk
     // Theme Support
     add_theme_support('menus');
     add_theme_support('title-tag');
-    add_theme_support('post-thumbnails');
 
-    // Image sizes
-    add_image_size('xl', 1280, 888, true);
-    add_image_size('lg', 640, 444, true);
-    add_image_size('md', 460, 320, true);
-    add_image_size('sm', 300, 210, true);
+    add_theme_support('custom-post', array(
+      'resource' => array(
+        'singular'              => __('Resource', CHIPMUNK_THEME_SLUG),
+        'plural'                => __('Resources', CHIPMUNK_THEME_SLUG),
+        'rewrite'               => array('slug' => __('resource', CHIPMUNK_THEME_SLUG), 'with_front' => false),
+        'supports'              => array('title', 'editor', 'author', 'thumbnail', 'publicize'),
+        'menu_icon'             => 'dashicons-screenoptions',
+        'show_in_rest'          => true,
+        'rest_base'             => 'resources',
+        'rest_controller_class' => 'WP_REST_Posts_Controller',
+      ),
+
+      'curator' => array(
+        'singular'              => __('Curator', CHIPMUNK_THEME_SLUG),
+        'plural'                => __('Curators', CHIPMUNK_THEME_SLUG),
+        'supports'              => array('title', 'thumbnail', 'publicize'),
+        'menu_icon'             => 'dashicons-businessman',
+        'publicly_queryable'    => false,
+      ),
+    ));
+
+    add_theme_support('custom-taxonomy', array(
+      'resource-collection' => array(
+        'singular'              => __('Collection', CHIPMUNK_THEME_SLUG),
+        'plural'                => __('Collections', CHIPMUNK_THEME_SLUG),
+        'rewrite'               => array('slug' => __('collection', CHIPMUNK_THEME_SLUG), 'with_front' => false),
+        'rest_base'             => 'collections',
+        'rest_controller_class' => 'WP_REST_Terms_Controller',
+        'posts'                 => array('resource'),
+      ),
+
+      'resource-tag' => array(
+        'singular'              => __('Tag', CHIPMUNK_THEME_SLUG),
+        'plural'                => __('Tags', CHIPMUNK_THEME_SLUG),
+        'hierarchical'          => false,
+        'show_in_menu'          => false,
+        'posts'                 => array('resource'),
+      ),
+    ));
+
+    add_theme_support('images', array(
+      'xl' => array(
+        'width'   => 1280,
+        'height'  => 888,
+        'crop'    => true
+      ),
+      'lg' => array(
+        'width'   => 640,
+        'height'  => 444,
+        'crop'    => true
+      ),
+      'md' => array(
+        'width'   => 460,
+        'height'  => 320,
+        'crop'    => true
+      ),
+      'sm' => array(
+        'width'   => 300,
+        'height'  => 210,
+        'crop'    => true
+      ),
+    ));
 
     // Init functions
+    add_action('init', array($this, 'load_features'));
     add_action('init', array($this, 'register_menus'));
     add_action('init', array($this, 'update_permalinks'));
     add_action('admin_menu', array($this, 'remove_admin_pages'));
@@ -243,6 +298,19 @@ class Chipmunk
       <meta name="twitter:image" content="<?php echo $site_image; ?>">
 
       <?php
+    }
+  }
+
+  public function load_features()
+  {
+    $features = scandir(dirname(__FILE__).'/features/');
+
+    foreach ($features as $feature)
+    {
+      if (current_theme_supports($feature))
+      {
+        require_once dirname(__FILE__).'/features/'.$feature.'/'.$feature.'.php';
+      }
     }
   }
 }

@@ -32,14 +32,14 @@
   <div class="tile__content <?php echo (ChipmunkCustomizer::theme_option('disable_collection_thumbs') ? 'tile__content_primary' : 'tile__content_dimmed'); ?>">
     <div>
       <?php echo ChipmunkHelpers::conditional_markup(is_front_page(), 'h3', 'h2', 'tile__title', $collection->name); ?>
-      <p class="tile__copy"><?php _e('View this collection', 'chipmunk'); ?>&nbsp;<i class="icon icon_arrow" aria-hidden="true"></i></p>
+      <p class="tile__copy"><?php _e('View this collection', CHIPMUNK_THEME_SLUG); ?>&nbsp;<i class="icon icon_arrow" aria-hidden="true"></i></p>
     </div>
 
     <ul class="tile__stats stats">
       <?php if ($term_children = get_term_children($collection->term_id, 'resource-collection')) : ?>
-        <li class="stats__item" title="<?php _e('Sub collections', 'chipmunk'); ?>"><i class="icon icon_collection" aria-hidden="true"></i> <?php echo count($term_children); ?></li>
+        <li class="stats__item" title="<?php _e('Sub collections', CHIPMUNK_THEME_SLUG); ?>"><i class="icon icon_collection" aria-hidden="true"></i> <?php echo count($term_children); ?></li>
       <?php endif; ?>
-      <li class="stats__item" title="<?php _e('Resources', 'chipmunk'); ?>"><i class="icon icon_link" aria-hidden="true"></i> <?php echo $collection->count; ?></li>
+      <li class="stats__item" title="<?php _e('Resources', CHIPMUNK_THEME_SLUG); ?>"><i class="icon icon_link" aria-hidden="true"></i> <?php echo $collection->count; ?></li>
     </ul>
   </div>
 </a>

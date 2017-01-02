@@ -4,7 +4,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
 {
   class ChipmunkMetaBoxes
   {
-    public static $field_name = 'chipmunk';
+    public static $field_name = CHIPMUNK_THEME_SLUG;
 
     public function __construct()
     {
@@ -27,7 +27,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
 
       add_meta_box(
         self::$field_name.'_resource',
-        __('Custom fields', 'chipmunk'),
+        __('Custom fields', CHIPMUNK_THEME_SLUG),
         array($this, 'resource_build_meta_boxes'),
         'resource',
         'normal',
@@ -36,7 +36,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
 
       add_meta_box(
         self::$field_name.'_curator',
-        __('Custom fields', 'chipmunk'),
+        __('Custom fields', CHIPMUNK_THEME_SLUG),
         array($this, 'curator_build_meta_boxes'),
         'curator',
         'normal',
@@ -51,7 +51,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
         {
           add_meta_box(
             self::$field_name.'_about',
-            __('Custom fields', 'chipmunk'),
+            __('Custom fields', CHIPMUNK_THEME_SLUG),
             array($this, 'about_build_meta_boxes'),
             'page',
             'normal',
@@ -83,17 +83,17 @@ if (!class_exists('ChipmunkMetaBoxes'))
       ?>
       <div class="chipmunk-fields">
         <div class="chipmunk-field">
-          <label class="chipmunk-label" for="website"><?php _e('Website URL', 'chipmunk'); ?></label>
+          <label class="chipmunk-label" for="website"><?php _e('Website URL', CHIPMUNK_THEME_SLUG); ?></label>
           <input type="url" name="website" id="website" value="<?php echo $website; ?>" class="widefat" />
         </div>
 
         <?php if (!ChipmunkCustomizer::theme_option('disable_featured')) : ?>
           <div class="chipmunk-field">
-            <p class="chipmunk-label"><?php _e('Featured?', 'chipmunk'); ?></p>
+            <p class="chipmunk-label"><?php _e('Featured?', CHIPMUNK_THEME_SLUG); ?></p>
 
             <label for="is_featured">
               <input type="checkbox" name="is_featured" id="is_featured" <?php echo $is_featured ? ' checked' : ''; ?> />
-              <?php _e('Featured on homepage', 'chipmunk'); ?>
+              <?php _e('Featured on homepage', CHIPMUNK_THEME_SLUG); ?>
             </label>
           </div>
         <?php endif; ?>
@@ -158,7 +158,7 @@ if (!class_exists('ChipmunkMetaBoxes'))
       ?>
       <div class="chipmunk-fields">
         <div class="chipmunk-field">
-          <label class="chipmunk-label" for="twitter"><?php _e('Twitter Handle', 'chipmunk'); ?></label>
+          <label class="chipmunk-label" for="twitter"><?php _e('Twitter Handle', CHIPMUNK_THEME_SLUG); ?></label>
           <p>Add twitter username here (in the @username format).</p>
           <input type="text" name="twitter" id="twitter" value="<?php echo $twitter; ?>" class="widefat" />
         </div>
@@ -212,20 +212,20 @@ if (!class_exists('ChipmunkMetaBoxes'))
       ?>
       <div class="chipmunk-fields">
         <div class="chipmunk-field">
-          <p class="chipmunk-label"><?php _e('Wide content', 'chipmunk'); ?></p>
+          <p class="chipmunk-label"><?php _e('Wide content', CHIPMUNK_THEME_SLUG); ?></p>
 
           <label for="wide_content">
             <input type="checkbox" name="wide_content" id="wide_content" <?php echo $wide_content ? ' checked' : ''; ?> />
-            <?php _e('Enable wide content for this page (it will make first heading of this page a left-floated title)', 'chipmunk'); ?>
+            <?php _e('Enable wide content for this page (it will make first heading of this page a left-floated title)', CHIPMUNK_THEME_SLUG); ?>
           </label>
         </div>
 
         <div class="chipmunk-field">
-          <p class="chipmunk-label"><?php _e('Enable curators', 'chipmunk'); ?></p>
+          <p class="chipmunk-label"><?php _e('Enable curators', CHIPMUNK_THEME_SLUG); ?></p>
 
           <label for="curators_enabled">
             <input type="checkbox" name="curators_enabled" id="curators_enabled" <?php echo $curators_enabled ? ' checked' : ''; ?> />
-            <?php _e('Enable curators listing on this page', 'chipmunk'); ?>
+            <?php _e('Enable curators listing on this page', CHIPMUNK_THEME_SLUG); ?>
           </label>
         </div>
       </div>

@@ -20,7 +20,7 @@
 
         <div class="resource__actions">
           <?php if (!empty($resource_website)) : ?>
-            <a href="<?php echo ChipmunkHelpers::external_link($resource_website); ?>" class="button button_secondary" target="_blank"><?php _e('Visit website', 'chipmunk'); ?></a>
+            <a href="<?php echo ChipmunkHelpers::external_link($resource_website); ?>" class="button button_secondary" target="_blank"><?php _e('Visit website', CHIPMUNK_THEME_SLUG); ?></a>
           <?php endif; ?>
 
           <?php get_template_part('partials/share-box'); ?>

@@ -1,7 +1,7 @@
 <?php $query = ChipmunkHelpers::get_curators(); ?>
 
 <?php if ($query->have_posts()) : ?>
-  <h2 class="section__title heading heading_md"><?php _e('Curators', 'chipmunk'); ?></h2>
+  <h2 class="section__title heading heading_md"><?php _e('Curators', CHIPMUNK_THEME_SLUG); ?></h2>
 
   <div class="row">
     <?php while ($query->have_posts()) : $query->the_post(); ?>

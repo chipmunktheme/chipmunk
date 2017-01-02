@@ -14,22 +14,22 @@
       <div class="section__title heading heading_md">
         <?php if ($resources['featured']->have_posts()) : ?>
           <h2 class="heading__link active" data-tabs-toggle role="tab">
-            <?php _e('Featured', 'chipmunk'); ?>
-            <span class="sr-only"> <?php _e('Resources', 'chipmunk'); ?></span>
+            <?php _e('Featured', CHIPMUNK_THEME_SLUG); ?>
+            <span class="sr-only"> <?php _e('Resources', CHIPMUNK_THEME_SLUG); ?></span>
           </h2>
         <?php endif; ?>
 
         <?php if ($resources['latest']->have_posts()) : ?>
           <h2 class="heading__link<?php echo !$resources['featured']->have_posts() ? ' active' : ''; ?>" data-tabs-toggle role="tab">
-            <?php _e('Latest', 'chipmunk'); ?>
-            <span class="sr-only"> <?php _e('Resources', 'chipmunk'); ?></span>
+            <?php _e('Latest', CHIPMUNK_THEME_SLUG); ?>
+            <span class="sr-only"> <?php _e('Resources', CHIPMUNK_THEME_SLUG); ?></span>
           </h2>
         <?php endif; ?>
 
         <?php if ($resources['popular']->have_posts()) : ?>
           <h2 class="heading__link<?php echo !$resources['featured']->have_posts() ? '' : ' visible-sm-inline-block'; ?>" data-tabs-toggle role="tab">
-            <?php _e('Popular', 'chipmunk'); ?>
-            <span class="sr-only"> <?php _e('Resources', 'chipmunk'); ?></span>
+            <?php _e('Popular', CHIPMUNK_THEME_SLUG); ?>
+            <span class="sr-only"> <?php _e('Resources', CHIPMUNK_THEME_SLUG); ?></span>
           </h2>
         <?php endif; ?>
       </div>
