@@ -30,8 +30,7 @@ function chipmunk_setup() {
 	* Translations can be filed in the /languages/ directory.
 	*/
 	load_theme_textdomain( CHIPMUNK_THEME_SLUG, CHIPMUNK_TEMPLATE_DIR . '/languages' );
-	
-	new ChipmunkViewCounter();
+
 	new ChipmunkUpvotes();
 
 	// Theme Support
@@ -184,6 +183,9 @@ require_once CHIPMUNK_TEMPLATE_DIR . '/inc/meta-boxes.php';
  */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/customizer.php';
 
-
+/**
+ * View count functionality
+ */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/views.php';
+
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/upvotes.php';

@@ -136,7 +136,7 @@ function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
 		case 'views':
 			$sort_args = array(
 				'orderby'   => 'meta_value_num date',
-				'meta_key'  => ChipmunkViewCounter::$db_key,
+				'meta_key'  => '_' . CHIPMUNK_THEME_SLUG . '_post_view_count',
 			);
 			break;
 		case 'upvotes':
@@ -201,7 +201,7 @@ function chipmunk_get_featured_resources( $limit = -1, $paged = false ) {
 				'value'           => 'on',
 			),
 			'views'           => array(
-				'key'             => ChipmunkViewCounter::$db_key,
+				'key'             => '_' . CHIPMUNK_THEME_SLUG . '_post_view_count',
 			),
 		),
 		'orderby'         => 'rand',
@@ -222,7 +222,7 @@ function chipmunk_get_popular_resources( $limit = -1, $paged = false ) {
 		'post_type'       => 'resource',
 		'posts_per_page'  => $limit,
 		'paged'           => $paged,
-		'meta_key'        => ChipmunkViewCounter::$db_key,
+		'meta_key'        => '_' . CHIPMUNK_THEME_SLUG . '_post_view_count',
 		'orderby'         => 'meta_value_num',
 		'order'           => 'DESC',
 	);

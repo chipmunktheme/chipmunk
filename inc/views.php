@@ -1,47 +1,49 @@
 <?php
+/**
+ * View count functionality
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
 
-if ( ! class_exists( 'ChipmunkViewCounter' ) ) {
-	class ChipmunkViewCounter {
-		public static $db_key = '_chipmunk_post_view_count';
+if ( ! function_exists( 'chipmunk_get_views' ) ) :
+/**
+ * Retrieve current view counter
+ */
+function chipmunk_get_views( $id ) {
+	$db_key = '_chipmunk_post_view_count';
+	$count = get_post_meta( $id, $db_key, true );
 
-		public function __construct() {
-			// Remove issues with prefetching adding extra views
-			remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
-		}
+	if ( $count == '' ) {
+		delete_post_meta( $id, $db_key );
+		add_post_meta( $id, $db_key, '0' );
+		return 0;
+	}
 
-		/**
-		 * Retrieve current view counter
-		 */
-		public static function get_post_views( $id ) {
-			$count = get_post_meta( $id, self::$db_key, true );
+	return $count;
+}
+endif;
 
-			if ( $count == '' ) {
-				delete_post_meta( $id, self::$db_key );
-				add_post_meta( $id, self::$db_key, '0' );
-				return 0;
-			}
 
-			return $count;
-		}
+if ( ! function_exists( 'chipmunk_set_views' ) ) :
+/**
+ * Increase the view counter
+ */
+function chipmunk_set_views( $id ) {
+	$db_key = '_chipmunk_post_view_count';
+	$count = get_post_meta( $id, $db_key, true );
 
-		/**
-		 * Set new view counter
-		 */
-		public static function set_post_views( $id ) {
-			$count = get_post_meta( $id, self::$db_key, true );
-
-			if ( $count == '' ) {
-				$count = 0;
-				delete_post_meta( $id, self::$db_key );
-				add_post_meta( $id, self::$db_key, 0 );
-			}
-			else {
-				if ( !isset( $_COOKIE[self::$db_key.'-'.$id] ) ) {
-					$count++;
-					update_post_meta( $id, self::$db_key, $count );
-					setcookie( self::$db_key.'-'.$id, true );
-				}
-			}
+	if ( $count == '' ) {
+		$count = 0;
+		delete_post_meta( $id, $db_key );
+		add_post_meta( $id, $db_key, 0 );
+	}
+	else {
+		if ( ! isset( $_COOKIE[$db_key . '-' . $id] ) ) {
+			$count++;
+			update_post_meta( $id, $db_key, $count );
+			setcookie( $db_key . '-' . $id, true );
 		}
 	}
 }
+endif;

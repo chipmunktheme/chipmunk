@@ -6,7 +6,7 @@
  * @subpackage Chipmunk
  */
 
-ChipmunkViewCounter::set_post_views( get_the_ID() );
+chipmunk_set_views( get_the_ID() );
 get_header(); ?>
 
   <?php while ( have_posts() ) : the_post(); ?>
