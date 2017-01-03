@@ -17,7 +17,7 @@ function chipmunk_submit_resource() {
 	if ( ChipmunkCustomizer::theme_option( 'recaptcha_site_key' ) ) {
 		if ( isset($_REQUEST['g-recaptcha-response'] ) and empty( $_REQUEST['g-recaptcha-response']) ) {
 			// Failure due to incorrect captcha validation
-			wp_send_json_error( __( 'Please verify that you are not a robot.', CHIPMUNK_THEME_SLUG ) );
+			wp_send_json_error( __( 'Please verify that you are not a robot.', 'chipmunk' ) );
 		}
 	}
 
@@ -93,8 +93,8 @@ function chipmunk_inform_admin( $post_id ) {
 	$to       = get_bloginfo( 'admin_email' );
 	$from     = 'admin@'.$_SERVER['SERVER_NAME'];
 	$name     = get_bloginfo( 'name' );
-	$subject  = get_bloginfo( 'name' ) . ': ' . __( 'New user submission', CHIPMUNK_THEME_SLUG );
-	$post_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' ) . '">' . __( 'Review submission', CHIPMUNK_THEME_SLUG );
+	$subject  = get_bloginfo( 'name' ) . ': ' . __( 'New user submission', 'chipmunk' );
+	$post_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' ) . '">' . __( 'Review submission', 'chipmunk' );
 
 	$headers  = array(
 		"Content-Type: text/html; charset=UTF-8;",
@@ -114,7 +114,7 @@ function chipmunk_verify_nonce() {
 	$nonce = isset( $_REQUEST['nonce'] ) ? sanitize_text_field( $_REQUEST['nonce'] ) : null;
 
 	if ( !$nonce || !wp_verify_nonce( $nonce, $_REQUEST['action'] ) ) {
-		wp_send_json_error( __( 'Not permitted.', CHIPMUNK_THEME_SLUG ) );
+		wp_send_json_error( __( 'Not permitted.', 'chipmunk' ) );
 		die;
 	}
 }

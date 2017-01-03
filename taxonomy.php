@@ -14,7 +14,7 @@ get_header(); ?>
 
   <div class="section section_theme-gray">
     <div class="container">
-      <?php $title = sprintf( ( is_tax( 'resource-collection' ) ? __( '%s Collection', CHIPMUNK_THEME_SLUG ) : __( '%s Tag', CHIPMUNK_THEME_SLUG ) ), single_term_title( null, false ) ); ?>
+      <?php $title = sprintf( ( is_tax( 'resource-collection' ) ? __( '%s Collection', 'chipmunk' ) : __( '%s Tag', 'chipmunk' ) ), single_term_title( null, false ) ); ?>
 
       <?php if ( !ChipmunkCustomizer::theme_option( 'disable_sorting' ) and $custom_query->have_posts() ) : ?>
         <div class="row row_center">
@@ -60,9 +60,9 @@ get_header(); ?>
 
           <div class="column">
             <?php if ( current_user_can( 'publish_posts' ) ) : ?>
-              <p class="text_content text_separated"><?php printf( __( 'Ready to publish your first resource? <a href="%1$s">Get started here</a>.', CHIPMUNK_THEME_SLUG ), esc_url( admin_url( 'post-new.php?post_type=resource' ) ) ); ?></p>
+              <p class="text_content text_separated"><?php printf( __( 'Ready to publish your first resource? <a href="%1$s">Get started here</a>.', 'chipmunk' ), esc_url( admin_url( 'post-new.php?post_type=resource' ) ) ); ?></p>
             <?php else : ?>
-              <p class="text_content text_separated"><?php _e( 'Sorry, there are no resources to display yet.', CHIPMUNK_THEME_SLUG ); ?></p>
+              <p class="text_content text_separated"><?php _e( 'Sorry, there are no resources to display yet.', 'chipmunk' ); ?></p>
             <?php endif; ?>
           </div>
 

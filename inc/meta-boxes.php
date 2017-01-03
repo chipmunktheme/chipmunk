@@ -130,17 +130,17 @@ function chipmunk_build_meta_boxes_resource( $post ) {
 	?>
 	<div class="chipmunk-fields">
 		<div class="chipmunk-field">
-			<label class="chipmunk-label" for="website"><?php _e( 'Website URL', CHIPMUNK_THEME_SLUG ); ?></label>
+			<label class="chipmunk-label" for="website"><?php _e( 'Website URL', 'chipmunk' ); ?></label>
 			<input type="url" name="website" id="website" value="<?php echo $website; ?>" class="widefat" />
 		</div>
 
 		<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_featured' ) ) : ?>
 			<div class="chipmunk-field">
-				<p class="chipmunk-label"><?php _e( 'Featured?', CHIPMUNK_THEME_SLUG ); ?></p>
+				<p class="chipmunk-label"><?php _e( 'Featured?', 'chipmunk' ); ?></p>
 
 				<label for="is_featured">
 					<input type="checkbox" name="is_featured" id="is_featured" <?php echo $is_featured ? ' checked' : ''; ?> />
-					<?php _e( 'Featured on homepage', CHIPMUNK_THEME_SLUG ); ?>
+					<?php _e( 'Featured on homepage', 'chipmunk' ); ?>
 				</label>
 			</div>
 		<?php endif; ?>
@@ -163,7 +163,7 @@ function chipmunk_build_meta_boxes_curator( $post ) {
 	?>
 	<div class="chipmunk-fields">
 		<div class="chipmunk-field">
-			<label class="chipmunk-label" for="twitter"><?php _e( 'Twitter Handle', CHIPMUNK_THEME_SLUG ); ?></label>
+			<label class="chipmunk-label" for="twitter"><?php _e( 'Twitter Handle', 'chipmunk' ); ?></label>
 			<p>Add twitter username here (in the @username format).</p>
 			<input type="text" name="twitter" id="twitter" value="<?php echo $twitter; ?>" class="widefat" />
 		</div>
@@ -187,20 +187,20 @@ function chipmunk_build_meta_boxes_about( $post ) {
 	?>
 	<div class="chipmunk-fields">
 		<div class="chipmunk-field">
-			<p class="chipmunk-label"><?php _e( 'Wide content', CHIPMUNK_THEME_SLUG ); ?></p>
+			<p class="chipmunk-label"><?php _e( 'Wide content', 'chipmunk' ); ?></p>
 
 			<label for="wide_content">
 				<input type="checkbox" name="wide_content" id="wide_content" <?php echo $wide_content ? ' checked' : ''; ?> />
-				<?php _e( 'Enable wide content for this page (it will make first heading of this page a left-floated title)', CHIPMUNK_THEME_SLUG ); ?>
+				<?php _e( 'Enable wide content for this page (it will make first heading of this page a left-floated title)', 'chipmunk' ); ?>
 			</label>
 		</div>
 
 		<div class="chipmunk-field">
-			<p class="chipmunk-label"><?php _e( 'Enable curators', CHIPMUNK_THEME_SLUG ); ?></p>
+			<p class="chipmunk-label"><?php _e( 'Enable curators', 'chipmunk' ); ?></p>
 
 			<label for="curators_enabled">
 				<input type="checkbox" name="curators_enabled" id="curators_enabled" <?php echo $curators_enabled ? ' checked' : ''; ?> />
-				<?php _e( 'Enable curators listing on this page', CHIPMUNK_THEME_SLUG ); ?>
+				<?php _e( 'Enable curators listing on this page', 'chipmunk' ); ?>
 			</label>
 		</div>
 	</div>
@@ -218,7 +218,7 @@ function chipmunk_add_meta_box( $name, $post_type ) {
 		// ID
 		CHIPMUNK_THEME_SLUG . '_' . $name,
 		// Title
-		__( 'Custom fields', CHIPMUNK_THEME_SLUG ),
+		__( 'Custom fields', 'chipmunk' ),
 		// Callback
 		'chipmunk_build_meta_boxes_' . $name,
 		// Screen

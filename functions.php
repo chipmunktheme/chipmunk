@@ -37,12 +37,13 @@ function chipmunk_setup() {
 
 	// Theme Support
 	add_theme_support( 'title-tag' );
+	add_theme_support( 'automatic-feed-links' );
 
 	add_theme_support( 'custom-post', array(
 		'resource' => array(
-			'singular'              => __( 'Resource', CHIPMUNK_THEME_SLUG ),
-			'plural'                => __( 'Resources', CHIPMUNK_THEME_SLUG ),
-			'rewrite'               => array( 'slug' => __( 'resource', CHIPMUNK_THEME_SLUG ), 'with_front' => false ),
+			'singular'              => __( 'Resource', 'chipmunk' ),
+			'plural'                => __( 'Resources', 'chipmunk' ),
+			'rewrite'               => array( 'slug' => __( 'resource', 'chipmunk' ), 'with_front' => false ),
 			'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'publicize' ),
 			'menu_icon'             => 'dashicons-screenoptions',
 			'show_in_rest'          => true,
@@ -51,8 +52,8 @@ function chipmunk_setup() {
 		),
 
 		'curator' => array(
-			'singular'              => __( 'Curator', CHIPMUNK_THEME_SLUG  ),
-			'plural'                => __( 'Curators', CHIPMUNK_THEME_SLUG  ),
+			'singular'              => __( 'Curator', 'chipmunk' ),
+			'plural'                => __( 'Curators', 'chipmunk' ),
 			'supports'              => array( 'title', 'thumbnail', 'publicize' ),
 			'menu_icon'             => 'dashicons-businessman',
 			'publicly_queryable'    => false,
@@ -61,17 +62,17 @@ function chipmunk_setup() {
 
 	add_theme_support( 'custom-taxonomy', array(
 		'resource-collection' => array(
-			'singular'              => __( 'Collection', CHIPMUNK_THEME_SLUG  ),
-			'plural'                => __( 'Collections', CHIPMUNK_THEME_SLUG  ),
+			'singular'              => __( 'Collection', 'chipmunk' ),
+			'plural'                => __( 'Collections', 'chipmunk' ),
 			'posts'                 => array( 'resource' ),
-			'rewrite'               => array( 'slug' => __( 'collection', CHIPMUNK_THEME_SLUG  ), 'with_front' => false ),
+			'rewrite'               => array( 'slug' => __( 'collection', 'chipmunk' ), 'with_front' => false ),
 			'rest_base'             => 'collections',
 			'rest_controller_class' => 'WP_REST_Terms_Controller',
 		),
 
 		'resource-tag' => array(
-			'singular'              => __( 'Tag', CHIPMUNK_THEME_SLUG  ),
-			'plural'                => __( 'Tags', CHIPMUNK_THEME_SLUG  ),
+			'singular'              => __( 'Tag', 'chipmunk' ),
+			'plural'                => __( 'Tags', 'chipmunk' ),
 			'posts'                 => array( 'resource' ),
 			'hierarchical'          => false,
 			'show_in_menu'          => false,

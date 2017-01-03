@@ -17,7 +17,7 @@
 ); ?>
 
 <nav class="nav-socials">
-  <h5 class="nav-socials__title visible-sm-block"><?php _e( 'Share', CHIPMUNK_THEME_SLUG ); ?></h5>
+  <h5 class="nav-socials__title visible-sm-block"><?php _e( 'Share', 'chipmunk' ); ?></h5>
   <ul>
     <?php foreach ( $providers as $provider ) : ?>
       <li class="nav-socials__item">

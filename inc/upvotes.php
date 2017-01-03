@@ -23,11 +23,11 @@ if ( !class_exists( 'ChipmunkUpvotes' ) )
 			if ( ChipmunkUpvotes::already_liked( $post_id ) )
 			{
 				$class = $class . ' is-active';
-				$title = __( 'Remove Upvote', CHIPMUNK_THEME_SLUG );
+				$title = __( 'Remove Upvote', 'chipmunk' );
 			}
 			else
 			{
-				$title = __( 'Upvote', CHIPMUNK_THEME_SLUG );
+				$title = __( 'Upvote', 'chipmunk' );
 			}
 
 			$output = "<button class='$class' title='$title' data-action='$action' data-nonce='$nonce' data-post-id='$post_id'>$counter</button>";
