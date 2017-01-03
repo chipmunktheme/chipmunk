@@ -1,36 +1,36 @@
 <header class="page-head">
   <div class="container">
     <div class="page-head__inner">
-      <?php $logo = ChipmunkCustomizer::theme_option('logo'); ?>
+      <?php $logo = ChipmunkCustomizer::theme_option( 'logo' ); ?>
 
       <?php ob_start(); ?>
       <a href="<?php echo home_url(); ?>" rel="index">
-        <?php if ($logo) : ?>
-          <span class="sr-only"><?php bloginfo('name'); ?></span>
+        <?php if ( $logo ) : ?>
+          <span class="sr-only"><?php bloginfo( 'name' ); ?></span>
           <img src="<?php echo $logo; ?>" alt="" />
         <?php else : ?>
-          <?php bloginfo('name'); ?>
+          <?php bloginfo( 'name' ); ?>
         <?php endif; ?>
       </a>
       <?php $content = ob_get_clean(); ?>
 
-      <?php echo ChipmunkHelpers::conditional_markup(is_front_page(), 'h1', 'div', 'page-head__logo', $content); ?>
+      <?php echo ChipmunkHelpers::conditional_markup( is_front_page(), 'h1', 'div', 'page-head__logo', $content ); ?>
 
       <nav class="nav-primary">
         <div class="nav-primary__inner">
           <ul>
-            <?php $menu_items = ChipmunkHelpers::get_menu_items('nav-primary'); ?>
+            <?php $menu_items = ChipmunkHelpers::get_menu_items( 'nav-primary' ); ?>
 
-            <?php if (!empty($menu_items)) : ?>
-              <?php foreach ($menu_items as $menu_item) : ?>
-                <li class="nav-primary__item<?php echo (is_page($menu_item->object_id) ? ' nav-primary__item_active' : ''); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
+            <?php if ( ! empty( $menu_items ) ) : ?>
+              <?php foreach ( $menu_items as $menu_item ) : ?>
+                <li class="nav-primary__item<?php echo ( is_page( $menu_item->object_id ) ? ' nav-primary__item_active' : '' ); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
               <?php endforeach; ?>
             <?php endif; ?>
 
-            <?php if (!ChipmunkCustomizer::theme_option('disable_submissions')) : ?>
+            <?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
               <li class="nav-primary__item hidden-lg">
                 <button type="button" class="button button_secondary" data-popup-toggle>
-                  <?php _e('Submit', CHIPMUNK_THEME_SLUG); ?>
+                  <?php _e( 'Submit', CHIPMUNK_THEME_SLUG ); ?>
                 </button>
               </li>
             <?php endif; ?>
@@ -38,7 +38,7 @@
 
           <button type="button" class="nav-primary__close hidden-lg" data-nav-toggle>
             <i class="icon icon_close" aria-hidden="true"></i>
-            <span class="sr-only"><?php _e('Close', CHIPMUNK_THEME_SLUG); ?></span>
+            <span class="sr-only"><?php _e( 'Close', CHIPMUNK_THEME_SLUG ); ?></span>
           </button>
         </div>
         <!-- /.nav-primary__inner -->
@@ -46,21 +46,21 @@
       <!-- /.nav-primary -->
 
       <div class="page-head__cta">
-        <?php if (!ChipmunkCustomizer::theme_option('disable_search')) : ?>
+        <?php if ( ! ChipmunkCustomizer::theme_option( 'disable_search' ) ) : ?>
           <button type="button" class="page-head__search" data-search-toggle>
             <i class="icon icon_search" aria-hidden="true"></i>
-            <span class="sr-only"><?php _e('Search', CHIPMUNK_THEME_SLUG); ?></span>
+            <span class="sr-only"><?php _e( 'Search', CHIPMUNK_THEME_SLUG ); ?></span>
           </button>
         <?php endif; ?>
 
-        <?php if (!ChipmunkCustomizer::theme_option('disable_submissions')) : ?>
+        <?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
           <button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>
-            <?php _e('Submit', CHIPMUNK_THEME_SLUG); ?>
+            <?php _e( 'Submit', CHIPMUNK_THEME_SLUG ); ?>
           </button>
         <?php endif; ?>
 
         <button type="button" class="page-head__trigger button button_secondary hidden-lg" data-nav-toggle>
-          <?php _e('Menu', CHIPMUNK_THEME_SLUG); ?>
+          <?php _e( 'Menu', CHIPMUNK_THEME_SLUG ); ?>
         </button>
       </div>
       <!-- /.page-head__cta -->

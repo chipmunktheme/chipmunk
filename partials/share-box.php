@@ -17,16 +17,16 @@
 ); ?>
 
 <nav class="nav-socials">
-  <h5 class="nav-socials__title visible-sm-block"><?php _e('Share', CHIPMUNK_THEME_SLUG); ?></h5>
+  <h5 class="nav-socials__title visible-sm-block"><?php _e( 'Share', CHIPMUNK_THEME_SLUG ); ?></h5>
   <ul>
-    <?php foreach ($providers as $provider) : ?>
+    <?php foreach ( $providers as $provider ) : ?>
       <li class="nav-socials__item">
         <?php
-        $link = strtr($provider['href'], array(
-          '%url%'   => esc_url(get_permalink()),
-          '%image%' => esc_url(get_the_post_thumbnail_url()),
-          '%title%' => urlencode(get_the_title()),
-        ));
+        $link = strtr( $provider['href'], array(
+          '%url%'   => esc_url( get_permalink() ),
+          '%image%' => esc_url( get_the_post_thumbnail_url() ),
+          '%title%' => urlencode( get_the_title() ),
+        ) );
         ?>
 
         <a href="<?php echo $link; ?>" title="<?php echo $provider['name']; ?>" target="_blank">
