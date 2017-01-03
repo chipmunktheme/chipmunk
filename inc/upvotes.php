@@ -277,7 +277,7 @@ if ( !class_exists( 'ChipmunkUpvotes' ) )
 		*/
 		private static function get_upvote_counter( $count )
 		{
-			$counter = ( is_numeric( $count ) && $count > 0 ) ? ChipmunkHelpers::format_number( $count ) : 0;
+			$counter = ( is_numeric( $count ) && $count > 0 ) ? chipmunk_format_number( $count ) : 0;
 			$counter = "<i class='icon icon_arrow-up'></i> $counter";
 
 			return $counter;

@@ -1,318 +1,356 @@
 <?php
+/***
+ * Theme specific helpers.
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
 
-if ( !class_exists( 'ChipmunkHelpers' ) ) :
+if ( ! function_exists( 'chipmunk_truncate_string' ) ) :
+/**
+ * Truncate long strings
+ */
+function chipmunk_truncate_string( $str, $chars, $to_space = true, $replacement = '...' ) {
+	$str = strip_tags( $str );
 
-	class ChipmunkHelpers {
-		private static function map_terms( $term ) {
-			return $term->term_id;
-		}
+	if ( $chars > strlen( $str ) ) {
+		return $str;
+	}
 
-		/**
-		 * Truncate long strings
-		 */
-		public static function truncate_string( $str, $chars, $to_space = true, $replacement = '...' ) {
-			$str = strip_tags( $str );
+	$str = substr( $str, 0, $chars );
+	$space_pos = strrpos( $str, ' ' );
 
-			if ( $chars > strlen( $str ) ) return $str;
+	if ( $to_space && $space_pos >= 0 ) {
+		$str = substr( $str, 0, strrpos( $str, ' ' ) );
+	}
 
-			$str = substr( $str, 0, $chars );
-			$space_pos = strrpos( $str, ' ');
+	return( $str . $replacement );
+}
+endif;
 
-			if ( $to_space && $space_pos >= 0 ) {
-				$str = substr( $str, 0, strrpos( $str, ' ' ) );
-			}
 
-			return( $str . $replacement );
-		}
+if ( ! function_exists( 'chipmunk_external_link' ) ) :
+/**
+ * Create external links
+ */
+function chipmunk_external_link( $url ) {
+	if ( !ChipmunkCustomizer::theme_option( 'disable_ref' ) ) {
+		$title = str_replace( '-', '', sanitize_title( get_bloginfo( 'name' ) ) );
+		$prefix = ( preg_match('(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
 
-		/**
-		 * Truncate long strings
-		 */
-		public static function external_link( $url ) {
-			if ( !ChipmunkCustomizer::theme_option( 'disable_ref' ) ) {
-				$title = str_replace( '-', '', sanitize_title( get_bloginfo( 'name' ) ) );
-				$prefix = ( preg_match('(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
+		return $url . $prefix . $title;
+	}
 
-				return $url . $prefix . $title;
-			}
+	return $url;
+}
+endif;
 
-			return $url;
-		}
 
-		/**
-		 * Get menu items
-		 */
-		public static function get_menu_items( $location ) {
-			if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[$location] ) ) {
-				$menu = wp_get_nav_menu_object( $locations[$location] );
+if ( ! function_exists( 'chipmunk_get_menu_items' ) ) :
+/**
+ * Get menu items
+ */
+function chipmunk_get_menu_items( $location ) {
+	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[$location] ) ) {
+		$menu = wp_get_nav_menu_object( $locations[$location] );
 
-				if ( $menu ) {
-					return wp_get_nav_menu_items( $menu->term_id );
-				}
-			}
-
-			return false;
-		}
-
-		/**
-		 * Custom excerpt function
-		 */
-		public static function custom_excerpt( $text, $excerpt ) {
-			if ( $excerpt ) return $excerpt;
-
-			$text = strip_shortcodes( $text );
-			$text = apply_filters( 'the_content', $text );
-			$text = str_replace( ']]>', ']]&gt;', $text );
-			$text = strip_tags( $text );
-
-			$excerpt_length = apply_filters( 'excerpt_length', 55 );
-			$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[...]' );
-			$words = preg_split( "/[\n
-				 ]+/", $text, $excerpt_length + 1, PREG_SPLIT_NO_EMPTY );
-
-			if ( count( $words ) > $excerpt_length ) {
-				array_pop( $words );
-				$text = implode( ' ', $words );
-				$text = $text . $excerpt_more;
-			}
-			else {
-				$text = implode( ' ', $words );
-			}
-
-			$text = str_replace( '"', '\'', strip_tags( $text ) );
-
-			return apply_filters( 'wp_trim_excerpt', $text );
-		}
-
-		/**
-		 * Get resources
-		 */
-		public static function get_resources( $limit = -1, $paged = false, $term = null ) {
-			$args = array(
-				'post_type'       => 'resource',
-				'posts_per_page'  => $limit,
-				'paged'           => $paged,
-			);
-
-			$sort_args = array();
-			$tax_args = array();
-
-			// Apply sorting options
-			if ( isset( $_GET['sort'] ) and !ChipmunkCustomizer::theme_option( 'disable_sorting' ) ) {
-				$sort_params = explode( '-', $_GET['sort'] );
-				$sort_orderby = $sort_params[0];
-				$sort_order = $sort_params[1];
-			}
-			else {
-				$sort_orderby = ChipmunkCustomizer::theme_option( 'default_sort_by' );
-				$sort_order = ChipmunkCustomizer::theme_option( 'default_sort_order' );
-			}
-
-			switch ( $sort_orderby ) {
-				case 'date':
-					$sort_args = array(
-						'orderby'   => 'date',
-					);
-					break;
-				case 'name':
-					$sort_args = array(
-						'orderby'   => 'title',
-					);
-					break;
-				case 'views':
-					$sort_args = array(
-						'orderby'   => 'meta_value_num date',
-						'meta_key'  => ChipmunkViewCounter::$db_key,
-					);
-					break;
-				case 'upvotes':
-					$sort_args = array(
-						'orderby'   => 'meta_value_num date',
-						'meta_key'  => ChipmunkUpvotes::$db_post_key,
-					);
-					break;
-			}
-
-			$sort_args['order'] = $sort_order;
-
-			// Apply taxonomy options
-			if ( is_tax() and isset( $term ) ) {
-				$tax_args['tax_query'] = array(
-					array(
-						'taxonomy'          => $term->taxonomy,
-						'field'             => 'id',
-						'terms'             => $term->term_id,
-						'include_children'  => false
-					),
-				);
-			}
-
-			$query = new WP_Query( array_merge( $args, $sort_args, $tax_args ) );
-			return $query;
-		}
-
-		/**
-		 * Get latest resources
-		 */
-		public static function get_latest_resources( $limit = -1, $paged = false ) {
-			$args = array(
-				'post_type'       => 'resource',
-				'posts_per_page'  => $limit,
-				'paged'           => $paged,
-				'orderby'         => 'date',
-				'order'           => 'DESC',
-			);
-
-			$query = new WP_Query( $args );
-			return $query;
-		}
-
-		/**
-		 * Get featured resources
-		 */
-		public static function get_featured_resources( $limit = -1, $paged = false ) {
-			$args = array(
-				'post_type'       => 'resource',
-				'posts_per_page'  => $limit,
-				'paged'           => $paged,
-				'meta_query'      => array(
-					'featured'        => array(
-						'key'             => '_' . CHIPMUNK_THEME_SLUG . '_resource_is_featured',
-						'value'           => 'on',
-					),
-					'views'           => array(
-						'key'             => ChipmunkViewCounter::$db_key,
-					),
-				),
-				'orderby'         => 'rand',
-			);
-
-			$query = new WP_Query( $args );
-			return $query;
-		}
-
-		/**
-		 * Get popular resources
-		 */
-		public static function get_popular_resources( $limit = -1, $paged = false ) {
-			$args = array(
-				'post_type'       => 'resource',
-				'posts_per_page'  => $limit,
-				'paged'           => $paged,
-				'meta_key'        => ChipmunkViewCounter::$db_key,
-				'orderby'         => 'meta_value_num',
-				'order'           => 'DESC',
-			);
-
-			$query = new WP_Query( $args );
-			return $query;
-		}
-
-		/**
-		 * Get related resources
-		 */
-		public static function get_related_resources( $post_id ) {
-			$args = array(
-				'posts_per_page'  => 3,
-				'post_type'       => 'resource',
-				'post__not_in'    => array( $post_id ),
-				'orderby'         => 'rand',
-			);
-
-			$tags = get_the_terms( $post_id, 'resource-tag' );
-			$collections = get_the_terms( $post_id, 'resource-collection' );
-
-			if ( !empty( $tags ) ) {
-				$args['tax_query'] = array(
-					array(
-						'taxonomy'    => 'resource-tag',
-						'field'       => 'term_id',
-						'terms'       => array_map( 'ChipmunkHelpers::map_terms', $tags ),
-						'operator'    => 'IN',
-					),
-				);
-			}
-			else {
-				if ( !empty( $collections ) ) {
-					$args['tax_query'] = array(
-						array(
-							'taxonomy'    => 'resource-collection',
-							'field'       => 'term_id',
-							'terms'       => array_map( 'ChipmunkHelpers::map_terms', $collections ),
-							'operator'    => 'IN',
-						),
-					);
-				}
-			}
-
-			$query = new WP_Query( $args );
-			return $query;
-		}
-
-		/**
-		 * Get curators
-		 */
-		public static function get_curators( $limit = -1 ) {
-			$args = array(
-				'post_type'       => 'curator',
-				'posts_per_page'  => $limit,
-				'order'           => 'ASC',
-			);
-
-			$query = new WP_Query( $args );
-			return $query;
-		}
-
-		/**
-		 * Conditional Markup
-		 */
-		public static function conditional_markup( $condition, $tagTrue, $tagFalse, $class, $content ) {
-			if ( $condition ) {
-				return "<$tagTrue class='$class'>$content</$tagTrue>";
-			}
-			else {
-				return "<$tagFalse class='$class'>$content</$tagFalse>";
-			}
-		}
-
-		/**
-		* Utility function to format the numbers,
-		* appending "K" if one thousand or greater,
-		* "M" if one million or greater,
-		* and "B" if one billion or greater (unlikely).
-		*
-		* $precision = how many decimal points to display (1.25K)
-		*/
-		public static function format_number( $number, $precision = 1 ) {
-			if ( $number >= 1000 && $number < 1000000 ) {
-				$formatted = number_format( $number/1000, $precision ) . 'K';
-			}
-elseif ( $number >= 1000000 && $number < 1000000000 ) {
-				$formatted = number_format( $number/1000000, $precision ) . 'M';
-			}
-elseif ( $number >= 1000000000 ) {
-				$formatted = number_format( $number/1000000000, $precision ) . 'B';
-			}
-			else {
-				$formatted = $number; // Number is less than 1000
-			}
-
-			$formatted = preg_replace( '/\.[0]+([KMB]?)$/i', '$1', $formatted );
-			return $formatted;
-		}
-
-		/**
-		 * Get current page attribute
-		 */
-		public static function get_current_page() {
-			if ( get_query_var( 'paged' ) ) {
-				return get_query_var( 'paged' );
-			} elseif ( get_query_var( 'page' ) ) {
-				return get_query_var( 'page' );
-			}
-			else {
-				return 1;
-			}
+		if ( $menu ) {
+			return wp_get_nav_menu_items( $menu->term_id );
 		}
 	}
+
+	return false;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_custom_excerpt' ) ) :
+/**
+ * Custom excerpt function
+ */
+function chipmunk_custom_excerpt( $text, $excerpt ) {
+	if ( $excerpt ) return $excerpt;
+
+	$text = strip_shortcodes( $text );
+	$text = apply_filters( 'the_content', $text );
+	$text = str_replace( ']]>', ']]&gt;', $text );
+	$text = strip_tags( $text );
+
+	$excerpt_length = apply_filters( 'excerpt_length', 55 );
+	$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[...]' );
+	$words = preg_split( "/[\n
+		 ]+/", $text, $excerpt_length + 1, PREG_SPLIT_NO_EMPTY );
+
+	if ( count( $words ) > $excerpt_length ) {
+		array_pop( $words );
+		$text = implode( ' ', $words );
+		$text = $text . $excerpt_more;
+	}
+	else {
+		$text = implode( ' ', $words );
+	}
+
+	$text = str_replace( '"', '\'', strip_tags( $text ) );
+
+	return apply_filters( 'wp_trim_excerpt', $text );
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_resources' ) ) :
+/**
+ * Get resources
+ */
+function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
+	$args = array(
+		'post_type'       => 'resource',
+		'posts_per_page'  => $limit,
+		'paged'           => $paged,
+	);
+
+	$sort_args = array();
+	$tax_args = array();
+
+	// Apply sorting options
+	if ( isset( $_GET['sort'] ) and !ChipmunkCustomizer::theme_option( 'disable_sorting' ) ) {
+		$sort_params = explode( '-', $_GET['sort'] );
+		$sort_orderby = $sort_params[0];
+		$sort_order = $sort_params[1];
+	}
+	else {
+		$sort_orderby = ChipmunkCustomizer::theme_option( 'default_sort_by' );
+		$sort_order = ChipmunkCustomizer::theme_option( 'default_sort_order' );
+	}
+
+	switch ( $sort_orderby ) {
+		case 'date':
+			$sort_args = array(
+				'orderby'   => 'date',
+			);
+			break;
+		case 'name':
+			$sort_args = array(
+				'orderby'   => 'title',
+			);
+			break;
+		case 'views':
+			$sort_args = array(
+				'orderby'   => 'meta_value_num date',
+				'meta_key'  => ChipmunkViewCounter::$db_key,
+			);
+			break;
+		case 'upvotes':
+			$sort_args = array(
+				'orderby'   => 'meta_value_num date',
+				'meta_key'  => ChipmunkUpvotes::$db_post_key,
+			);
+			break;
+	}
+
+	$sort_args['order'] = $sort_order;
+
+	// Apply taxonomy options
+	if ( is_tax() and isset( $term ) ) {
+		$tax_args['tax_query'] = array(
+			array(
+				'taxonomy'          => $term->taxonomy,
+				'field'             => 'id',
+				'terms'             => $term->term_id,
+				'include_children'  => false
+			),
+		);
+	}
+
+	$query = new WP_Query( array_merge( $args, $sort_args, $tax_args ) );
+	return $query;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_latest_resources' ) ) :
+/**
+ * Get latest resources
+ */
+function chipmunk_get_latest_resources( $limit = -1, $paged = false ) {
+	$args = array(
+		'post_type'       => 'resource',
+		'posts_per_page'  => $limit,
+		'paged'           => $paged,
+		'orderby'         => 'date',
+		'order'           => 'DESC',
+	);
+
+	$query = new WP_Query( $args );
+	return $query;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_featured_resources' ) ) :
+/**
+ * Get featured resources
+ */
+function chipmunk_get_featured_resources( $limit = -1, $paged = false ) {
+	$args = array(
+		'post_type'       => 'resource',
+		'posts_per_page'  => $limit,
+		'paged'           => $paged,
+		'meta_query'      => array(
+			'featured'        => array(
+				'key'             => '_' . CHIPMUNK_THEME_SLUG . '_resource_is_featured',
+				'value'           => 'on',
+			),
+			'views'           => array(
+				'key'             => ChipmunkViewCounter::$db_key,
+			),
+		),
+		'orderby'         => 'rand',
+	);
+
+	$query = new WP_Query( $args );
+	return $query;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_popular_resources' ) ) :
+/**
+ * Get popular resources
+ */
+function chipmunk_get_popular_resources( $limit = -1, $paged = false ) {
+	$args = array(
+		'post_type'       => 'resource',
+		'posts_per_page'  => $limit,
+		'paged'           => $paged,
+		'meta_key'        => ChipmunkViewCounter::$db_key,
+		'orderby'         => 'meta_value_num',
+		'order'           => 'DESC',
+	);
+
+	$query = new WP_Query( $args );
+	return $query;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_related_resources' ) ) :
+/**
+ * Get related resources
+ */
+function chipmunk_get_related_resources( $post_id ) {
+	$args = array(
+		'posts_per_page'  => 3,
+		'post_type'       => 'resource',
+		'post__not_in'    => array( $post_id ),
+		'orderby'         => 'rand',
+	);
+
+	$tags = get_the_terms( $post_id, 'resource-tag' );
+	$collections = get_the_terms( $post_id, 'resource-collection' );
+
+	if ( !empty( $tags ) ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy'    => 'resource-tag',
+				'field'       => 'term_id',
+				'terms'       => array_map( function( $term ) { return $term->term_id; }, $tags ),
+				'operator'    => 'IN',
+			),
+		);
+	}
+	else {
+		if ( !empty( $collections ) ) {
+			$args['tax_query'] = array(
+				array(
+					'taxonomy'    => 'resource-collection',
+					'field'       => 'term_id',
+					'terms'       => array_map( function( $term ) { return $term->term_id; }, $collections ),
+					'operator'    => 'IN',
+				),
+			);
+		}
+	}
+
+	$query = new WP_Query( $args );
+	return $query;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_curators' ) ) :
+/**
+ * Get curators
+ */
+function chipmunk_get_curators( $limit = -1 ) {
+	$args = array(
+		'post_type'       => 'curator',
+		'posts_per_page'  => $limit,
+		'order'           => 'ASC',
+	);
+
+	$query = new WP_Query( $args );
+	return $query;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_conditional_markup' ) ) :
+/**
+ * Conditional Markup
+ */
+function chipmunk_conditional_markup( $condition, $tagTrue, $tagFalse, $class, $content ) {
+	if ( $condition ) {
+		return "<$tagTrue class='$class'>$content</$tagTrue>";
+	}
+	else {
+		return "<$tagFalse class='$class'>$content</$tagFalse>";
+	}
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_format_number' ) ) :
+/**
+ * Utility function to format the numbers,
+ * appending "K" if one thousand or greater,
+ * "M" if one million or greater,
+ * and "B" if one billion or greater (unlikely).
+ *
+ * @param Number $precision - how many decimal points to display (1.25K)
+ */
+function chipmunk_format_number( $number, $precision = 1 ) {
+	if ( $number >= 1000 && $number < 1000000 ) {
+		$formatted = number_format( $number / 1000, $precision ) . 'K';
+	}
+	elseif ( $number >= 1000000 && $number < 1000000000 ) {
+		$formatted = number_format( $number / 1000000, $precision ) . 'M';
+	}
+	elseif ( $number >= 1000000000 ) {
+		$formatted = number_format( $number / 1000000000, $precision ) . 'B';
+	}
+	else {
+		$formatted = $number; // Number is less than 1000
+	}
+
+	$formatted = preg_replace( '/\.[0]+([KMB]?)$/i', '$1', $formatted );
+	return $formatted;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_current_page' ) ) :
+/**
+ * Get current page attribute
+ */
+function chipmunk_get_current_page() {
+	if ( get_query_var( 'paged' ) ) {
+		return get_query_var( 'paged' );
+	}
+	elseif ( get_query_var( 'page' ) ) {
+		return get_query_var( 'page' );
+	}
+	else {
+		return 1;
+	}
+}
 endif;

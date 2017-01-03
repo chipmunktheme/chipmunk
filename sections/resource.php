@@ -9,7 +9,7 @@
         </ul>
 
         <div class="resource__info">
-          <?php echo ChipmunkHelpers::conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading_lg', is_single() ? get_the_title() : '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>' ); ?>
+          <?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading_lg', is_single() ? get_the_title() : '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>' ); ?>
 
           <?php $content = get_the_content(); ?>
 
@@ -20,7 +20,7 @@
 
         <div class="resource__actions">
           <?php if ( ! empty( $resource_website ) ) : ?>
-            <a href="<?php echo ChipmunkHelpers::external_link( $resource_website ); ?>" class="button button_secondary" target="_blank"><?php _e( 'Visit website', 'chipmunk' ); ?></a>
+            <a href="<?php echo chipmunk_external_link( $resource_website ); ?>" class="button button_secondary" target="_blank"><?php _e( 'Visit website', 'chipmunk' ); ?></a>
           <?php endif; ?>
 
           <?php get_template_part( 'partials/share-box' ); ?>
@@ -30,7 +30,7 @@
       <aside class="resource__image column column_lg-6">
         <?php if ( is_single() ) : ?>
           <?php if ( ! empty( $resource_website ) ) : ?>
-            <a href="<?php echo ChipmunkHelpers::external_link( $resource_website ); ?>" target="_blank"><?php the_post_thumbnail( 'lg' ); ?></a>
+            <a href="<?php echo chipmunk_external_link( $resource_website ); ?>" target="_blank"><?php the_post_thumbnail( 'lg' ); ?></a>
           <?php else : ?>
             <?php the_post_thumbnail( 'xl' ); ?>
           <?php endif; ?>

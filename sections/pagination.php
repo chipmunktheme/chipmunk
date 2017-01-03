@@ -3,7 +3,7 @@ global $wp_query, $paged;
 
 $main_query = $wp_query;
 $wp_query   = isset( $custom_query ) ? $custom_query : $wp_query;
-$paged      = ChipmunkHelpers::get_current_page();
+$paged      = chipmunk_get_current_page();
 ?>
 
 <?php if ($wp_query and $wp_query->max_num_pages > 1 and ( ! isset($wp_query->query['orderby'] ) or $wp_query->query['orderby'] != 'rand')) : ?>

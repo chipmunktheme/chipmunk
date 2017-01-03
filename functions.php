@@ -154,6 +154,12 @@ function chipmunk_admin_scripts() {
 endif;
 add_action( 'admin_enqueue_scripts', 'chipmunk_admin_scripts' );
 
+
+/**
+ * Theme specific helpers.
+ */
+require_once CHIPMUNK_TEMPLATE_DIR . '/inc/helpers.php';
+
 /**
  * Custom config actions
  */
@@ -163,11 +169,6 @@ require_once CHIPMUNK_TEMPLATE_DIR . '/inc/config.php';
  * Clean up WordPress defaults
  */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/cleanup.php';
-
-/**
- * Theme specific helpers.
- */
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/helpers.php';
 
 /**
  * Custom AJAX callbacks.

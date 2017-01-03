@@ -15,7 +15,7 @@
         <h5 class="heading heading_sm"><?php _e( 'Navigation', 'chipmunk' ); ?></h5>
 
         <ul class="nav-secondary">
-          <?php $menu_items = ChipmunkHelpers::get_menu_items( 'nav-secondary' ); ?>
+          <?php $menu_items = chipmunk_get_menu_items( 'nav-secondary' ); ?>
 
           <?php if ( !empty( $menu_items ) ) : ?>
             <?php foreach ( $menu_items as $menu_item ) : ?>

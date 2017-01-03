@@ -9,8 +9,8 @@
 get_header(); ?>
 
   <?php $term = get_queried_object(); ?>
-  <?php $paged = ChipmunkHelpers::get_current_page(); ?>
-  <?php $custom_query = ChipmunkHelpers::get_resources( ChipmunkCustomizer::theme_option( 'posts_per_page' ), $paged, $term ); ?>
+  <?php $paged = chipmunk_get_current_page(); ?>
+  <?php $custom_query = chipmunk_get_resources( ChipmunkCustomizer::theme_option( 'posts_per_page' ), $paged, $term ); ?>
 
   <div class="section section_theme-gray">
     <div class="container">

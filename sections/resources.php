@@ -1,9 +1,9 @@
-<?php $paged = ChipmunkHelpers::get_current_page(); ?>
+<?php $paged = chipmunk_get_current_page(); ?>
 
 <?php if ( is_single() ) : ?>
-  <?php $custom_query = ChipmunkHelpers::get_related_resources( get_the_ID() ); ?>
+  <?php $custom_query = chipmunk_get_related_resources( get_the_ID() ); ?>
 <?php else : ?>
-  <?php $custom_query = ChipmunkHelpers::get_resources( ChipmunkCustomizer::theme_option('posts_per_page' ), $paged); ?>
+  <?php $custom_query = chipmunk_get_resources( ChipmunkCustomizer::theme_option('posts_per_page' ), $paged); ?>
 <?php endif; ?>
 
 <div class="section section_theme-gray">

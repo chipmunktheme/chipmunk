@@ -18,7 +18,7 @@
   <meta name="robots" content="noodp">
 
   <?php if ( isset($post ) and is_singular( 'resource') ) : ?>
-    <?php $description = ChipmunkHelpers::custom_excerpt( $post->post_content, $post->post_excerpt ); ?>
+    <?php $description = chipmunk_custom_excerpt( $post->post_content, $post->post_excerpt ); ?>
   <?php endif; ?>
   <meta name="description" content="<?php echo ( is_front_page() or !isset( $description ) ) ? get_bloginfo( 'description' ) : $description; ?>">
 

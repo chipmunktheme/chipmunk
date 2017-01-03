@@ -14,12 +14,12 @@
       </a>
       <?php $content = ob_get_clean(); ?>
 
-      <?php echo ChipmunkHelpers::conditional_markup( is_front_page(), 'h1', 'div', 'page-head__logo', $content ); ?>
+      <?php echo chipmunk_conditional_markup( is_front_page(), 'h1', 'div', 'page-head__logo', $content ); ?>
 
       <nav class="nav-primary">
         <div class="nav-primary__inner">
           <ul>
-            <?php $menu_items = ChipmunkHelpers::get_menu_items( 'nav-primary' ); ?>
+            <?php $menu_items = chipmunk_get_menu_items( 'nav-primary' ); ?>
 
             <?php if ( ! empty( $menu_items ) ) : ?>
               <?php foreach ( $menu_items as $menu_item ) : ?>

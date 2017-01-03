@@ -96,7 +96,7 @@ function chipmunk_add_og_tags() {
 			$image            = $thumbnail_object[0];
 		}
 
-		$description = ChipmunkHelpers::custom_excerpt( $post->post_content, $post->post_excerpt );
+		$description = chipmunk_custom_excerpt( $post->post_content, $post->post_excerpt );
 		$description = strip_tags( $description );
 		$description = str_replace( '"', '\'', $description );
 		?>
