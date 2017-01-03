@@ -7,7 +7,7 @@
  */
 
 if ( ! function_exists( 'chipmunk_cleanup_head' ) ) :
-/*
+/**
  * Clean the WP head junk
  */
 function chipmunk_cleanup_head() {

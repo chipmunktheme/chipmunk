@@ -7,7 +7,7 @@
  */
 
 if ( ! function_exists( 'chipmunk_submit_resource' ) ) :
-/*
+/**
  * Submit resource callback
  */
 function chipmunk_submit_resource() {
@@ -65,15 +65,15 @@ add_action( 'wp_ajax_submit_resource', 'chipmunk_submit_resource' );
 add_action( 'wp_ajax_nopriv_submit_resource', 'chipmunk_submit_resource' );
 
 
-if ( ! function_exists( 'chipmunk_submit_resource' ) ) :
-/*
+if ( ! function_exists( 'chipmunk_process_upvote' ) ) :
+/**
  * Process upvote callback
  */
 function chipmunk_process_upvote() {
 	chipmunk_verify_nonce();
 
 	// Get post ID
-	$post_id = ( isset($_REQUEST['postId'] ) && is_numeric( $_REQUEST['postId']) ) ? $_REQUEST['postId'] : null;
+	$post_id = ( isset( $_REQUEST['postId'] ) && is_numeric( $_REQUEST['postId'] ) ) ? $_REQUEST['postId'] : null;
 
 	if ( $post_id ) {
 		// Process the user upvote
@@ -86,7 +86,7 @@ add_action( 'wp_ajax_nopriv_process_upvote', 'chipmunk_process_upvote' );
 
 
 if ( ! function_exists( 'chipmunk_inform_admin' ) ) :
-/*
+/**
  * Send email to website owner after resource is submitted
  */
 function chipmunk_inform_admin( $post_id ) {
@@ -107,7 +107,7 @@ endif;
 
 
 if ( ! function_exists( 'chipmunk_verify_nonce' ) ) :
-/*
+/**
  * Secure callbacks by verifying WP Nonce
  */
 function chipmunk_verify_nonce() {

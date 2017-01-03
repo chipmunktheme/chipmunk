@@ -21,7 +21,7 @@ var Sort = function () {
       window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
     }
 
-    URIPath = URIPath.replace(new RegExp('\/page\/[0-9]+', 'g'), '');
+    URIPath = URIPath.replace(new RegExp('/page/[0-9]+', 'g'), '');
     window.location = window.location.origin + URIPath + URIParams;
     return false;
   });

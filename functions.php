@@ -30,8 +30,7 @@ function chipmunk_setup() {
 	* Translations can be filed in the /languages/ directory.
 	*/
 	load_theme_textdomain( CHIPMUNK_THEME_SLUG, CHIPMUNK_TEMPLATE_DIR . '/languages' );
-
-	new ChipmunkCustomizer();
+	
 	new ChipmunkViewCounter();
 	new ChipmunkUpvotes();
 

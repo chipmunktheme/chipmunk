@@ -27,10 +27,10 @@ var RemoteForm = {
 
       helpers.request(formAction, formObject)
         .fail(function (xhr, ajaxOptions, thrownError) {
-           console.log(xhr.status);
-           console.log(xhr.responseText);
-           console.log(thrownError);
-         })
+          console.log(xhr.status);
+          console.log(xhr.responseText);
+          console.log(thrownError);
+        })
         .done(function (response) {
           console.log('Remote form: ', response);
 

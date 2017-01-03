@@ -1,5 +1,5 @@
 <?php
-/***
+/**
  * Theme specific helpers.
  *
  * @package WordPress

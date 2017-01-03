@@ -21139,7 +21139,7 @@ var Actions = {
   },
 
   events: {
-    process_upvote: function($target) {
+    process_upvote: function ($target) {
       var data = $target.data();
 
       // Enable loading indicator
@@ -21147,10 +21147,10 @@ var Actions = {
 
       helpers.request(data.action, data)
         .fail(function (xhr, ajaxOptions, thrownError) {
-           console.log(xhr.status);
-           console.log(xhr.responseText);
-           console.log(thrownError);
-         })
+          console.log(xhr.status);
+          console.log(xhr.responseText);
+          console.log(thrownError);
+        })
         .done(function (response) {
           console.log('Upvote: ', response);
 
@@ -21280,10 +21280,10 @@ var RemoteForm = {
 
       helpers.request(formAction, formObject)
         .fail(function (xhr, ajaxOptions, thrownError) {
-           console.log(xhr.status);
-           console.log(xhr.responseText);
-           console.log(thrownError);
-         })
+          console.log(xhr.status);
+          console.log(xhr.responseText);
+          console.log(thrownError);
+        })
         .done(function (response) {
           console.log('Remote form: ', response);
 
@@ -21348,7 +21348,7 @@ var Sort = function () {
       window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
     }
 
-    URIPath = URIPath.replace(new RegExp('\/page\/[0-9]+', 'g'), '');
+    URIPath = URIPath.replace(new RegExp('/page/[0-9]+', 'g'), '');
     window.location = window.location.origin + URIPath + URIParams;
     return false;
   });
@@ -21369,7 +21369,7 @@ var Tabs = function (tabsClass) {
   this.bind();
 };
 
-Tabs.prototype.show = function(index) {
+Tabs.prototype.show = function (index) {
   var activePanel, activeTab;
 
   this.tabs.removeClass('active');
@@ -21383,9 +21383,9 @@ Tabs.prototype.show = function(index) {
   $(document).trigger('shown.tab');
 };
 
-Tabs.prototype.bind = function() {
+Tabs.prototype.bind = function () {
   var _this = this;
-  return this.tabs.on('click', function(e) {
+  return this.tabs.on('click', function (e) {
     return _this.show($(e.currentTarget).index());
   });
 };
@@ -21402,7 +21402,7 @@ require('parsleyjs');
 var Validate = function () {
   $('[data-parsley-validate]').parsley();
 
-  $('[data-parsley-validate] .custom-select').on('change', function() {
+  $('[data-parsley-validate] .custom-select').on('change', function () {
     $(this).parsley().validate();
   });
 };

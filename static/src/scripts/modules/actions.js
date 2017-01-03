@@ -18,7 +18,7 @@ var Actions = {
   },
 
   events: {
-    process_upvote: function($target) {
+    process_upvote: function ($target) {
       var data = $target.data();
 
       // Enable loading indicator
@@ -26,10 +26,10 @@ var Actions = {
 
       helpers.request(data.action, data)
         .fail(function (xhr, ajaxOptions, thrownError) {
-           console.log(xhr.status);
-           console.log(xhr.responseText);
-           console.log(thrownError);
-         })
+          console.log(xhr.status);
+          console.log(xhr.responseText);
+          console.log(thrownError);
+        })
         .done(function (response) {
           console.log('Upvote: ', response);
 

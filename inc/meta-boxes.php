@@ -7,7 +7,7 @@
  */
 
 if ( ! function_exists( 'chipmunk_add_meta_boxes' ) ) :
-/*
+/**
  * Adds a meta box to theme screens.
  */
 function chipmunk_add_meta_boxes() {
@@ -210,7 +210,7 @@ endif;
 
 
 if ( ! function_exists( 'chipmunk_add_meta_box' ) ) :
-/*
+/**
  * Custom wrapper for add_meta_box function.
  */
 function chipmunk_add_meta_box( $name, $post_type ) {
@@ -233,7 +233,7 @@ endif;
 
 
 if ( ! function_exists( 'chipmunk_verify_permissions' ) ) :
-/*
+/**
  * Custom wrapper for add_meta_box function.
  */
 function chipmunk_verify_permissions( $post_id ) {

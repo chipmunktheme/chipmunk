@@ -10,7 +10,7 @@ var Tabs = function (tabsClass) {
   this.bind();
 };
 
-Tabs.prototype.show = function(index) {
+Tabs.prototype.show = function (index) {
   var activePanel, activeTab;
 
   this.tabs.removeClass('active');
@@ -24,9 +24,9 @@ Tabs.prototype.show = function(index) {
   $(document).trigger('shown.tab');
 };
 
-Tabs.prototype.bind = function() {
+Tabs.prototype.bind = function () {
   var _this = this;
-  return this.tabs.on('click', function(e) {
+  return this.tabs.on('click', function (e) {
     return _this.show($(e.currentTarget).index());
   });
 };
