@@ -21133,13 +21133,13 @@ var Actions = {
         ev.preventDefault();
         ev.stopPropagation();
 
-        this.events[$(ev.currentTarget).data('action')].call(this, $(ev.currentTarget))
+        this.events[$(ev.currentTarget).data('action')].call(this, $(ev.currentTarget));
       }.bind(this));
     }
   },
 
   events: {
-    process_upvote: function ($target) {
+    submit_upvote: function ($target) {
       var data = $target.data();
 
       // Enable loading indicator
@@ -21155,7 +21155,7 @@ var Actions = {
           console.log('Upvote: ', response);
 
           $target.html(response.counter);
-          $target.toggleClass('is-active', response.status === 'liked');
+          $target.toggleClass('is-active', response.status === 'upvoted');
         })
         .always(function () {
           // Disable loading indicator

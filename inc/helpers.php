@@ -142,7 +142,7 @@ function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
 		case 'upvotes':
 			$sort_args = array(
 				'orderby'   => 'meta_value_num date',
-				'meta_key'  => ChipmunkUpvotes::$db_post_key,
+				'meta_key'  => '_' . CHIPMUNK_THEME_SLUG . '_post_upvote_count',
 			);
 			break;
 	}
@@ -334,6 +334,28 @@ function chipmunk_format_number( $number, $precision = 1 ) {
 
 	$formatted = preg_replace( '/\.[0]+([KMB]?)$/i', '$1', $formatted );
 	return $formatted;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_ip' ) ) :
+/**
+ * Utility to retrieve IP address
+ */
+function chipmunk_get_ip() {
+	if ( isset( $_SERVER['HTTP_CLIENT_IP'] ) && ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+		$ip = $_SERVER['HTTP_CLIENT_IP'];
+	}
+	elseif ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	}
+	else {
+		$ip = ( isset( $_SERVER['REMOTE_ADDR'] ) ) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0';
+	}
+
+	$ip = filter_var( $ip, FILTER_VALIDATE_IP );
+	$ip = ( $ip === false ) ? '0.0.0.0' : $ip;
+	return $ip;
 }
 endif;
 

@@ -65,11 +65,11 @@ add_action( 'wp_ajax_submit_resource', 'chipmunk_submit_resource' );
 add_action( 'wp_ajax_nopriv_submit_resource', 'chipmunk_submit_resource' );
 
 
-if ( ! function_exists( 'chipmunk_process_upvote' ) ) :
+if ( ! function_exists( 'chipmunk_submit_upvote' ) ) :
 /**
  * Process upvote callback
  */
-function chipmunk_process_upvote() {
+function chipmunk_submit_upvote() {
 	chipmunk_verify_nonce();
 
 	// Get post ID
@@ -77,12 +77,12 @@ function chipmunk_process_upvote() {
 
 	if ( $post_id ) {
 		// Process the user upvote
-		ChipmunkUpvotes::process_upvote( $post_id );
+		chipmunk_process_upvote( $post_id );
 	}
 }
 endif;
-add_action( 'wp_ajax_process_upvote', 'chipmunk_process_upvote' );
-add_action( 'wp_ajax_nopriv_process_upvote', 'chipmunk_process_upvote' );
+add_action( 'wp_ajax_submit_upvote', 'chipmunk_submit_upvote' );
+add_action( 'wp_ajax_nopriv_submit_upvote', 'chipmunk_submit_upvote' );
 
 
 if ( ! function_exists( 'chipmunk_inform_admin' ) ) :

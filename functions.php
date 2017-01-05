@@ -31,8 +31,6 @@ function chipmunk_setup() {
 	*/
 	load_theme_textdomain( CHIPMUNK_THEME_SLUG, CHIPMUNK_TEMPLATE_DIR . '/languages' );
 
-	new ChipmunkUpvotes();
-
 	// Theme Support
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'automatic-feed-links' );
@@ -169,11 +167,6 @@ require_once CHIPMUNK_TEMPLATE_DIR . '/inc/config.php';
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/cleanup.php';
 
 /**
- * Custom AJAX callbacks.
- */
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/ajax.php';
-
-/**
  * Custom meta boxes.
  */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/meta-boxes.php';
@@ -188,4 +181,12 @@ require_once CHIPMUNK_TEMPLATE_DIR . '/inc/customizer.php';
  */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/views.php';
 
+/**
+ * Upvotes functionality
+ */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/upvotes.php';
+
+/**
+ * Custom AJAX callbacks.
+ */
+require_once CHIPMUNK_TEMPLATE_DIR . '/inc/ajax.php';

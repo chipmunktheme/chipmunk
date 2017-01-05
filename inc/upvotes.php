@@ -1,246 +1,180 @@
 <?php
+/**
+ * Upvote functionality
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
+$db_post_key 	= '_chipmunk_post_upvote_count';
+$db_user_ip_key = '_chipmunk_user_ip';
 
-if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
-	class ChipmunkUpvotes {
-		public static $db_post_key          = '_chipmunk_post_upvote_count';
-		public static $db_user_key          = '_chipmunk_user_upvote_count';
-		public static $db_user_upvoted_key  = '_chipmunk_user_liked';
-		public static $db_user_ip_key       = '_chipmunk_user_ip';
+if ( ! function_exists( 'chipmunk_upvote_button' ) ) :
+/**
+ * Output the upvote button
+ */
+function chipmunk_upvote_button( $post_id, $class = '' ) {
+	$action = 'submit_upvote';
+	$nonce = wp_create_nonce( $action );
 
-		/**
-		* Output the upvote button
-		*/
-		public static function get_button( $post_id, $class = '' ) {
-			$action = 'process_upvote';
-			$nonce = wp_create_nonce( $action );
+	$count = chipmunk_get_upvote_count( $post_id );
+	$counter = chipmunk_get_upvote_counter( $count );
 
-			$count = ChipmunkUpvotes::get_post_upvote_count( $post_id );
-			$counter = ChipmunkUpvotes::get_upvote_counter( $count );
-
-			if ( ChipmunkUpvotes::already_liked( $post_id ) ) {
-				$class = $class . ' is-active';
-				$title = __( 'Remove Upvote', 'chipmunk' );
-			}
-			else {
-				$title = __( 'Upvote', 'chipmunk' );
-			}
-
-			$output = "<button class='$class' title='$title' data-action='$action' data-nonce='$nonce' data-post-id='$post_id'>$counter</button>";
-			return $output;
-		}
-
-		/**
-		* Output the upvote counter
-		*/
-		public static function get_counter( $post_id ) {
-			$count = ChipmunkUpvotes::get_post_upvote_count( $post_id );
-			$counter = ChipmunkUpvotes::get_upvote_counter( $count );
-
-			$output = "$counter";
-			return $output;
-		}
-
-		/**
-		* Processes upvotes
-		*/
-		public static function process_upvote( $post_id ) {
-			$count = ChipmunkUpvotes::get_post_upvote_count( $post_id );
-
-			// Like the post
-			if ( ! ChipmunkUpvotes::already_liked( $post_id ) ) {
-				// user is logged in
-				if ( is_user_logged_in() ) {
-					$user_id = get_current_user_id();
-					$post_users = ChipmunkUpvotes::post_user_upvotes( $user_id, $post_id );
-
-					// Update User & Post
-					$user_count = ChipmunkUpvotes::get_user_upvote_count( $user_id );
-					update_user_option( $user_id, ChipmunkUpvotes::$db_user_key, ++$user_count );
-
-					if ( $post_users ) {
-						update_post_meta( $post_id, ChipmunkUpvotes::$db_user_upvoted_key, $post_users );
-					}
-				}
-
-				// user is anonymous
-				else {
-					$user_ip = ChipmunkUpvotes::get_ip();
-					$post_users = ChipmunkUpvotes::post_ip_upvotes( $user_ip, $post_id );
-
-					// Update Post
-					if ( $post_users ) {
-						update_post_meta( $post_id, ChipmunkUpvotes::$db_user_ip_key, $post_users );
-					}
-				}
-
-				$count += 1;
-				$response['status'] = 'liked';
-			}
-
-		 	// Unlike the post
-			else {
-				// user is logged in
-				if ( is_user_logged_in() ) {
-					$user_id = get_current_user_id();
-					$post_users = ChipmunkUpvotes::post_user_upvotes( $user_id, $post_id );
-
-					// Update User
-					$user_count = ChipmunkUpvotes::get_user_upvote_count( $user_id );
-
-					if ($user_count > 0) {
-						update_user_option( $user_id, ChipmunkUpvotes::$db_user_key, --$user_count );
-					}
-
-					// Update Post
-					if ( $post_users ) {
-						$uid_key = array_search( $user_id, $post_users );
-						unset( $post_users[$uid_key] );
-						update_post_meta( $post_id, ChipmunkUpvotes::$db_user_upvoted_key, $post_users );
-					}
-				}
-
-				// user is anonymous
-				else {
-					$user_ip = ChipmunkUpvotes::get_ip();
-					$post_users = ChipmunkUpvotes::post_ip_upvotes( $user_ip, $post_id );
-
-					// Update Post
-					if ( $post_users ) {
-						$uip_key = array_search( $user_ip, $post_users );
-						unset( $post_users[$uip_key] );
-						update_post_meta( $post_id, ChipmunkUpvotes::$db_user_ip_key, $post_users );
-					}
-				}
-
-				$count = ( $count > 0 ) ? --$count : 0; // Prevent negative number
-				$response['status'] = 'unliked';
-			}
-
-			update_post_meta( $post_id, ChipmunkUpvotes::$db_post_key, $count );
-			$response['counter'] = ChipmunkUpvotes::get_upvote_counter( $count );
-
-			wp_send_json( $response );
-		}
-
-		/**
-		* Utility to test if the post is already liked
-		*/
-		private static function already_liked( $post_id ) {
-			$post_users = NULL;
-			$user_id = NULL;
-
-			if ( is_user_logged_in() ) { // user is logged in
-				$user_id = get_current_user_id();
-				$post_meta_users = get_post_meta( $post_id, ChipmunkUpvotes::$db_user_upvoted_key );
-				if ( count( $post_meta_users ) != 0 ) {
-					$post_users = $post_meta_users[0];
-				}
-			}
-			else { // user is anonymous
-				$user_id = ChipmunkUpvotes::get_ip();
-				$post_meta_users = get_post_meta( $post_id, ChipmunkUpvotes::$db_user_ip_key );
-				if ( count( $post_meta_users ) != 0 ) { // meta exists, set up values
-					$post_users = $post_meta_users[0];
-				}
-			}
-			if ( is_array( $post_users ) && in_array( $user_id, $post_users ) ) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-
-		/**
-		* Utility retrieves post meta user likes (user id array),
-		* then adds new user id to retrieved array
-		*/
-		private static function post_user_upvotes( $user_id, $post_id ) {
-			$post_users = '';
-			$post_meta_users = get_post_meta( $post_id, ChipmunkUpvotes::$db_user_upvoted_key );
-			if ( count( $post_meta_users ) != 0 ) {
-				$post_users = $post_meta_users[0];
-			}
-			if ( !is_array( $post_users ) ) {
-				$post_users = array();
-			}
-			if ( !in_array( $user_id, $post_users ) ) {
-				$post_users['user-' . $user_id] = $user_id;
-			}
-			return $post_users;
-		}
-
-		/**
-		* Utility retrieves post meta ip likes (ip array),
-		* then adds new ip to retrieved array
-		*/
-		private static function post_ip_upvotes( $user_ip, $post_id ) {
-			$post_users = '';
-			$post_meta_users = get_post_meta( $post_id, ChipmunkUpvotes::$db_user_ip_key );
-
-			// Retrieve post information
-			if ( count( $post_meta_users ) != 0 ) {
-				$post_users = $post_meta_users[0];
-			}
-			if ( !is_array( $post_users ) ) {
-				$post_users = array();
-			}
-			if ( !in_array( $user_ip, $post_users ) ) {
-				$post_users['ip-' . $user_ip] = $user_ip;
-			}
-			return $post_users;
-		}
-
-		/**
-		* Utility to retrieve IP address
-		*/
-		private static function get_ip() {
-			if ( isset( $_SERVER['HTTP_CLIENT_IP'] ) && ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-				$ip = $_SERVER['HTTP_CLIENT_IP'];
-			}
-			elseif ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-				$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			}
-			else {
-				$ip = ( isset( $_SERVER['REMOTE_ADDR'] ) ) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0';
-			}
-
-			$ip = filter_var( $ip, FILTER_VALIDATE_IP );
-			$ip = ( $ip === false ) ? '0.0.0.0' : $ip;
-			return $ip;
-		}
-
-		/**
-		* Utility retrieves upvote count for post,
-		* returns appropriate number
-		*/
-		private static function get_post_upvote_count( $post_id ) {
-			$count = get_post_meta( $post_id, ChipmunkUpvotes::$db_post_key, true );
-			$count = ( isset( $count ) && is_numeric( $count ) ) ? $count : 0;
-
-			return $count;
-		}
-
-		/**
-		* Utility retrieves upvote count for user,
-		* returns appropriate number
-		*/
-		private static function get_user_upvote_count( $user_id ) {
-			$count = get_user_option( ChipmunkUpvotes::$db_user_key, $user_id );
-			$count = ( isset( $count ) && is_numeric( $count ) ) ? $count : 0;
-
-			return $count;
-		}
-
-		/**
-		* Utility retrieves count plus count options,
-		* returns appropriate format based on options
-		*/
-		private static function get_upvote_counter( $count ) {
-			$counter = ( is_numeric( $count ) && $count > 0 ) ? chipmunk_format_number( $count ) : 0;
-			$counter = "<i class='icon icon_arrow-up'></i> $counter";
-
-			return $counter;
-		}
+	if ( chipmunk_already_upvoted( $post_id ) ) {
+		$class = $class . ' is-active';
+		$title = __( 'Remove Upvote', 'chipmunk' );
 	}
+	else {
+		$title = __( 'Upvote', 'chipmunk' );
+	}
+
+	$counter = "<button class='$class' title='$title' data-action='$action' data-nonce='$nonce' data-post-id='$post_id'>$counter</button>";
+	return $counter;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_upvote_counter' ) ) :
+/**
+ * Output the upvote counter
+ */
+function chipmunk_upvote_counter( $post_id ) {
+	$count = chipmunk_get_upvote_count( $post_id );
+	$counter = chipmunk_get_upvote_counter( $count );
+
+	return $counter;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_process_upvote' ) ) :
+/**
+ * Processes upvotes
+ */
+function chipmunk_process_upvote( $post_id ) {
+	global $db_post_key, $db_user_ip_key;
+
+	$count = chipmunk_get_upvote_count( $post_id );
+	$user_ip = chipmunk_get_ip();
+	$post_users = chipmunk_get_upvote_ips( $user_ip, $post_id );
+
+	// Upvote the post
+	if ( ! chipmunk_already_upvoted( $post_id ) ) {
+		if ( $post_users ) {
+			// Update Post
+			update_post_meta( $post_id, $db_user_ip_key, $post_users );
+		}
+
+		$count += 1;
+		$response['status'] = 'upvoted';
+	}
+
+	// Remove upvote from the post
+	else {
+		if ( $post_users ) {
+			$uip_key = array_search( $user_ip, $post_users );
+			unset( $post_users[$uip_key] );
+
+			// Update Post
+			update_post_meta( $post_id, $db_user_ip_key, $post_users );
+		}
+
+		$count = ( $count > 0 ) ? --$count : 0; // Prevent negative number
+		$response['status'] = 'removed';
+	}
+
+
+	update_post_meta( $post_id, $db_post_key, $count );
+
+	$response['post'] = $post_id;
+	$response['counter'] = chipmunk_get_upvote_counter( $count );
+
+	wp_send_json( $response );
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_already_upvoted' ) ) :
+/**
+ * Utility to test if the post is already unvoted
+ */
+function chipmunk_already_upvoted( $post_id ) {
+	global $db_user_ip_key;
+
+	$post_users = NULL;
+	$user_ip = NULL;
+
+	$user_ip = chipmunk_get_ip();
+	$post_meta_users = get_post_meta( $post_id, $db_user_ip_key );
+
+	// meta exists, set up values
+	if ( count( $post_meta_users ) != 0 ) {
+		$post_users = $post_meta_users[0];
+	}
+
+	if ( is_array( $post_users ) && in_array( $user_ip, $post_users ) ) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_upvote_ips' ) ) :
+/**
+ * Utility retrieves post meta ip upvotes (ip array),
+ * then adds new ip to retrieved array
+ */
+function chipmunk_get_upvote_ips( $user_ip, $post_id ) {
+	global $db_user_ip_key;
+
+	$post_users = '';
+	$post_meta_users = get_post_meta( $post_id, $db_user_ip_key );
+
+	// Retrieve post information
+	if ( count( $post_meta_users ) != 0 ) {
+		$post_users = $post_meta_users[0];
+	}
+
+	if ( ! is_array( $post_users ) ) {
+		$post_users = array();
+	}
+
+	if ( ! in_array( $user_ip, $post_users ) ) {
+		$post_users['ip-' . $user_ip] = $user_ip;
+	}
+
+	return $post_users;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_upvote_count' ) ) :
+/**
+ * Utility retrieves upvote count for post,
+ * returns appropriate number
+ */
+function chipmunk_get_upvote_count( $post_id ) {
+	global $db_post_key;
+
+	$count = get_post_meta( $post_id, $db_post_key, true );
+	$count = ( isset( $count ) && is_numeric( $count ) ) ? $count : 0;
+
+	return $count;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_upvote_counter' ) ) :
+/**
+ * Utility retrieves count plus count options,
+ * returns appropriate format based on options
+ */
+function chipmunk_get_upvote_counter( $count ) {
+	$counter = ( is_numeric( $count ) && $count > 0 ) ? chipmunk_format_number( $count ) : 0;
+	$counter = "<i class='icon icon_arrow-up'></i> $counter";
+
+	return $counter;
+}
 endif;

@@ -31,8 +31,8 @@
 <?php endif; ?>
 
 <?php if ( ! ChipmunkCustomizer::theme_option( 'disable_upvotes' ) ) : ?>
-  <?php $upvote_button = ChipmunkUpvotes::get_button( get_the_ID(), 'stats__button' ); ?>
-  <?php $upvote_counter = ChipmunkUpvotes::get_counter( get_the_ID() ); ?>
+  <?php $upvote_button = chipmunk_upvote_button( get_the_ID(), 'stats__button' ); ?>
+  <?php $upvote_counter = chipmunk_upvote_counter( get_the_ID() ); ?>
 
   <?php if ( $show_collections ) : ?>
     <li class="stats__item"><?php echo $upvote_button; ?></li>
