@@ -21,7 +21,7 @@
 
 	<h1 class="entry__subtitle heading heading_md"><?php the_title(); ?></h1>
 
-	<div class="entry row">
+	<div class="entry__content row">
 		<div class="entry__column column column_lg-5">
 			<<?php echo $heading->nodeName;?>><?php echo $heading->nodeValue; ?></<?php echo $heading->nodeName;?>>
 		</div>
@@ -38,7 +38,7 @@
 		<div class="column column_lg-8 column_lg-offset-2">
 			<h1 class="entry__subtitle heading heading_md"><?php the_title(); ?></h1>
 
-			<div class="entry">
+			<div class="entry__content">
 				<?php the_content(); ?>
 			</div>
 			<!-- /.entry -->

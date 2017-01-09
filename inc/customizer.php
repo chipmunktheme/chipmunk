@@ -257,6 +257,30 @@ class ChipmunkCustomizer {
 			),
 
 			array(
+				'title'         => __( 'Blog', 'chipmunk' ),
+				'slug'          => 'blog_section',
+				'fields'        => array(
+					array(
+						'name'        => 'blog_layout',
+						'type'        => 'select',
+						'label'       => __( 'Blog list layout', 'chipmunk' ),
+						'default'     => 'mixed',
+						'choices'     => array(
+							'tiles'     => __( 'Tiles', 'chipmunk' ),
+							'excerpts'  => __( 'Excerpts', 'chipmunk' ),
+							'mixed'     => __( 'Mixed', 'chipmunk' ),
+						),
+					),
+					array(
+						'name'        => 'blog_posts_per_page',
+						'type'        => 'number',
+						'label'       => __( 'Number of blog posts per page', 'chipmunk' ),
+						'default'     => 12,
+					),
+				),
+			),
+
+			array(
 				'title'         => __( 'Social Profiles', 'chipmunk' ),
 				'slug'          => 'socials_section',
 				'callback'      => 'register_socials',

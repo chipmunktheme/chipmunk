@@ -20,7 +20,7 @@
 		</div>
 		<!-- /.entry__head -->
 
-		<div class="entry">
+		<div class="entry__content">
 			<?php the_content(); ?>
 		</div>
 		<!-- /.entry -->

@@ -17,6 +17,7 @@ $custom_css     = ChipmunkCustomizer::theme_option( 'custom_css' );
 		.button_primary:hover,
 		.button_secondary,
 		.entry a:hover,
+		.entry__title a:hover,
 		.nav-primary__close:hover,
 		.nav-socials__item a:hover,
 		.page-head__logo,
