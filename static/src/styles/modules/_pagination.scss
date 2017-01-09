@@ -19,30 +19,52 @@
   }
 }
 
-.pagination__inner {
+.pagination__nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.pagination__nav {
-  display: flex;
+.pagination__title {
+  color: $color-gray;
 }
 
 .pagination__item {
-  margin-left: $separator;
-  font-size: 2.5rem;
-  line-height: 1;
+  width: 25%;
+
+  &:first-child {
+    margin-right: $separator;
+
+    .icon {
+      margin-right: 0.5em;
+    }
+  }
+
+  &:last-child {
+    margin-left: $separator;
+    text-align: right;
+
+    .icon {
+      margin-left: 0.5em;
+    }
+  }
 
   a {
     display: block;
+    vertical-align: middle;
 
     &:hover {
       color: $color-primary;
     }
   }
 
+  .icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    vertical-align: middle;
+  }
+
   &_disabled {
-    color: $color-gray;
+    visibility: hidden;
   }
 }

@@ -2502,7 +2502,7 @@ a, button {
     margin-top: 3rem;
   }
 }
-.pagination__inner {
+.pagination__nav {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -2510,23 +2510,39 @@ a, button {
   -ms-flex-pack: justify;
       justify-content: space-between;
 }
-.pagination__nav {
-  display: -ms-flexbox;
-  display: flex;
+.pagination__title {
+  color: #808080;
 }
 .pagination__item {
+  width: 25%;
+}
+.pagination__item:first-child {
+  margin-right: 2rem;
+}
+.pagination__item:first-child .icon, .pagination__item:first-child .slick-arrow::before {
+  margin-right: 0.5em;
+}
+.pagination__item:last-child {
   margin-left: 2rem;
-  font-size: 2.5rem;
-  line-height: 1;
+  text-align: right;
+}
+.pagination__item:last-child .icon, .pagination__item:last-child .slick-arrow::before {
+  margin-left: 0.5em;
 }
 .pagination__item a {
   display: block;
+  vertical-align: middle;
 }
 .pagination__item a:hover {
   color: #F38181;
 }
+.pagination__item .icon, .pagination__item .slick-arrow::before {
+  font-size: 2.5rem;
+  line-height: 1;
+  vertical-align: middle;
+}
 .pagination__item_disabled {
-  color: #808080;
+  visibility: hidden;
 }
 /*
 ** Module - Popup
