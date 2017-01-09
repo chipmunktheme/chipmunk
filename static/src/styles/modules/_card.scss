@@ -8,10 +8,14 @@
 
 .card__image {
   display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
-  img {
-    width: 100%;
-    height: auto !important;
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 70%;
   }
 }
 
@@ -25,6 +29,12 @@
   @include breakpoint(md) {
     font-size: 2.2rem;
   }
+}
+
+.card__copy {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  opacity: 0.85;
 }
 
 .card__handle {

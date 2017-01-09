@@ -46,14 +46,6 @@ function chipmunk_setup() {
 			'rest_base'             => 'resources',
 			'rest_controller_class' => 'WP_REST_Posts_Controller',
 		),
-
-		'curator' => array(
-			'singular'              => __( 'Curator', 'chipmunk' ),
-			'plural'                => __( 'Curators', 'chipmunk' ),
-			'supports'              => array( 'title', 'thumbnail', 'publicize' ),
-			'menu_icon'             => 'dashicons-businessman',
-			'publicly_queryable'    => false,
-		),
 	) );
 
 	add_theme_support( 'custom-taxonomy', array(

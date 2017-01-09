@@ -277,18 +277,19 @@ function chipmunk_get_related_resources( $post_id ) {
 endif;
 
 
-if ( ! function_exists( 'chipmunk_get_curators' ) ) :
+if ( ! function_exists( 'chipmunk_get_users' ) ) :
 /**
- * Get curators
+ * Get users
  */
-function chipmunk_get_curators( $limit = -1 ) {
+function chipmunk_get_users( $limit = -1 ) {
 	$args = array(
-		'post_type'       => 'curator',
-		'posts_per_page'  => $limit,
-		'order'           => 'ASC',
+		'role__in' => array( 'Administrator', 'Editor', 'Author' ),
+		'number'   => $limit,
+		'orderby'  => 'ID',
+		'order'    => 'ASC',
 	);
 
-	$query = new WP_Query( $args );
+	$query = new WP_User_Query( $args );
 	return $query;
 }
 endif;

@@ -1738,10 +1738,14 @@ a, button {
 }
 .card__image {
   display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
-.card__image img {
-  width: 100%;
-  height: auto !important;
+.card__image::before {
+  content: '';
+  display: block;
+  padding-bottom: 70%;
 }
 .card__title {
   margin-top: 2rem;
@@ -1754,6 +1758,11 @@ a, button {
   .card__title {
     font-size: 2.2rem;
   }
+}
+.card__copy {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  opacity: 0.85;
 }
 .card__handle:hover {
   color: #333333;

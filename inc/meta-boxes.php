@@ -14,7 +14,6 @@ function chipmunk_add_meta_boxes() {
 	global $post;
 
 	chipmunk_add_meta_box( 'resource', 'resource' );
-	chipmunk_add_meta_box( 'curator', 'curator' );
 
 	if ( ! empty( $post ) ) {
 		$template = get_post_meta( $post->ID, '_wp_page_template', true );
@@ -59,27 +58,6 @@ function chipmunk_save_meta_boxes_resource( $post_id ) {
 }
 endif;
 add_action( 'save_post_resource', 'chipmunk_save_meta_boxes_resource' );
-
-
-if ( ! function_exists( 'chipmunk_save_meta_boxes_curator' ) ) :
-/**
- * Store custom field meta box data
- *
- * @param int $post_id The post ID.
- */
-function chipmunk_save_meta_boxes_curator( $post_id ) {
-	// Verify permissions
-	if ( ! chipmunk_verify_permissions( $post_id ) ) {
-		return false;
-	}
-
-	// store custom fields values
-	if ( isset( $_REQUEST['twitter'] ) ) {
-		update_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_curator_twitter', sanitize_text_field( $_POST['twitter'] ) );
-	}
-}
-endif;
-add_action( 'save_post_curator', 'chipmunk_save_meta_boxes_curator' );
 
 
 if ( ! function_exists( 'chipmunk_save_meta_boxes_about' ) ) :
@@ -144,29 +122,6 @@ function chipmunk_build_meta_boxes_resource( $post ) {
 				</label>
 			</div>
 		<?php endif; ?>
-	</div>
-	<?php
-}
-endif;
-
-
-if ( ! function_exists( 'chipmunk_build_meta_boxes_curator' ) ) :
-/**
- * Build custom field meta box
- *
- * @param post $post The post object
- */
-function chipmunk_build_meta_boxes_curator( $post ) {
-	wp_nonce_field( basename( __FILE__ ), CHIPMUNK_THEME_SLUG . '_nonce' );
-	$twitter = get_post_meta($post->ID, '_' . CHIPMUNK_THEME_SLUG . '_curator_twitter', true);
-
-	?>
-	<div class="chipmunk-fields">
-		<div class="chipmunk-field">
-			<label class="chipmunk-label" for="twitter"><?php _e( 'Twitter Handle', 'chipmunk' ); ?></label>
-			<p>Add twitter username here (in the @username format).</p>
-			<input type="text" name="twitter" id="twitter" value="<?php echo $twitter; ?>" class="widefat" />
-		</div>
 	</div>
 	<?php
 }
