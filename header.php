@@ -13,27 +13,27 @@
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-  <meta charset="<?php bloginfo( 'charset' ); ?>">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <meta name="robots" content="noodp">
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="robots" content="noodp">
 
-  <?php if ( isset($post ) and is_singular( 'resource') ) : ?>
-    <?php $description = chipmunk_custom_excerpt( $post->post_content, $post->post_excerpt ); ?>
-  <?php endif; ?>
-  <meta name="description" content="<?php echo ( is_front_page() or !isset( $description ) ) ? get_bloginfo( 'description' ) : $description; ?>">
+	<?php if ( isset($post ) and is_singular( 'resource') ) : ?>
+		<?php $description = chipmunk_custom_excerpt( $post->post_content, $post->post_excerpt ); ?>
+	<?php endif; ?>
+	<meta name="description" content="<?php echo ( is_front_page() or !isset( $description ) ) ? get_bloginfo( 'description' ) : $description; ?>">
 
-  <?php if ( ChipmunkCustomizer::theme_option( 'primary_font' ) != 'System' ) : ?>
-    <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=<?php echo ChipmunkCustomizer::theme_option( 'primary_font' ); ?>:400,700">
-  <?php endif; ?>
+	<?php if ( ChipmunkCustomizer::theme_option( 'primary_font' ) != 'System' ) : ?>
+		<link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=<?php echo ChipmunkCustomizer::theme_option( 'primary_font' ); ?>:400,700">
+	<?php endif; ?>
 
-  <?php wp_head(); ?>
+	<?php wp_head(); ?>
 
-  <?php get_template_part( 'partials/custom-style' ); ?>
+	<?php get_template_part( 'partials/custom-style' ); ?>
 </head>
 
 <body <?php body_class(); ?>
-  data-assets-path="<?php echo get_template_directory_uri(); ?>/static"
-  data-ajax-source="<?php echo site_url(); ?>/wp-admin/admin-ajax.php">
+	data-assets-path="<?php echo get_template_directory_uri(); ?>/static"
+	data-ajax-source="<?php echo site_url(); ?>/wp-admin/admin-ajax.php">
 
-  <div class="body-bag">
-    <?php get_template_part( 'partials/page-head' ); ?>
+	<div class="body-bag">
+		<?php get_template_part( 'partials/page-head' ); ?>
