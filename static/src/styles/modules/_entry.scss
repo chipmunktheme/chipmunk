@@ -181,7 +181,41 @@
   }
 }
 
+.entry__image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 56.25%;
+  }
+}
+
+.entry__head,
 .entry__title {
+  margin-top: $separator;
+  margin-bottom: $separator;
+
+  @include breakpoint(md) {
+    margin-top: ($separator * 2);
+    margin-bottom: ($separator * 2);
+  }
+}
+
+.entry__head {
+  @include breakpoint(md) {
+    margin-top: ($separator * 3);
+  }
+}
+
+.entry__title {
+  @extend .heading;
+  @extend .heading_xl;
+}
+
+.entry__subtitle {
   margin-bottom: $separator;
 }
 
@@ -192,5 +226,28 @@
     @include breakpoint(lg) {
       margin-top: 0;
     }
+  }
+}
+
+.entry__author {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  font-size: 1.6rem;
+  font-weight: bold;
+
+  @include breakpoint(md) {
+    font-size: 1.8rem;
+  }
+
+  img {
+    margin-right: $separator;
+    border-radius: 50%;
+  }
+
+  strong {
+    display: inline-block;
+    margin-left: 0.25em;
+    color: $color-black;
   }
 }

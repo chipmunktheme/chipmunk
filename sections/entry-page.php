@@ -19,7 +19,7 @@
 	$content = preg_replace( '/\<[\/]{0,1}div[^\>]*\>/i', '', $dom->saveHTML() );
 	?>
 
-	<h1 class="entry__title heading heading_md"><?php the_title(); ?></h1>
+	<h1 class="entry__subtitle heading heading_md"><?php the_title(); ?></h1>
 
 	<div class="entry row">
 		<div class="entry__column column column_lg-5">
@@ -36,7 +36,7 @@
 
 	<div class="row">
 		<div class="column column_lg-8 column_lg-offset-2">
-			<h1 class="entry__title heading heading_md"><?php the_title(); ?></h1>
+			<h1 class="entry__subtitle heading heading_md"><?php the_title(); ?></h1>
 
 			<div class="entry">
 				<?php the_content(); ?>

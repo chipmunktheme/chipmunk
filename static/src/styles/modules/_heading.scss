@@ -33,7 +33,7 @@
 
   &_lg {
     font-size: 2.6rem;
-    line-height: 1.45;
+    line-height: 1.4;
 
     @include breakpoint(md) {
       font-size: 3.6rem;
@@ -42,7 +42,7 @@
 
   &_xl {
     font-size: 3.6rem;
-    line-height: 1.45;
+    line-height: 1.4;
 
     @include breakpoint(md) {
       font-size: 4.8rem;

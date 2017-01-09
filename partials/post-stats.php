@@ -8,12 +8,18 @@
 		<i class="icon icon_tag"></i>
 
 		<?php if ( is_single() ) : ?>
-			<a href="<?php echo get_term_link( $collections[0]->term_id ); ?>"><?php echo $collections[0]->name; ?></a>
+			<?php foreach ( $collections as $collection ) : ?>
+				<a href="<?php echo get_term_link( $collection->term_id ); ?>"><?php echo $collection->name; ?></a>
+
+				<?php if ( is_singular( 'resource' ) ) : ?>
+					<?php break; ?>
+				<?php endif; ?>
+			<?php endforeach; ?>
 		<?php else : ?>
 			<?php echo $collections[0]->name; ?>
 		<?php endif; ?>
 
-		<?php if ( $collections_count > 1 && is_single() ) : ?>
+		<?php if ( $collections_count > 1 && is_singular( 'resource' ) ) : ?>
 			<span class="stats__note">, <?php printf( __( '+%d more', 'chipmunk' ), $collections_count - 1 ); ?></span>
 		<?php endif; ?>
 	</li>

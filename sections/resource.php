@@ -27,17 +27,19 @@
 				</div>
 			</div>
 
-			<aside class="resource__image column column_lg-6">
-				<?php if ( is_single() ) : ?>
-					<?php if ( ! empty( $resource_website ) ) : ?>
-						<a href="<?php echo chipmunk_external_link( $resource_website ); ?>" target="_blank"><?php the_post_thumbnail( 'lg' ); ?></a>
+			<?php if ( has_post_thumbnail() ) : ?>
+				<aside class="resource__image column column_lg-6">
+					<?php if ( is_single() ) : ?>
+						<?php if ( ! empty( $resource_website ) ) : ?>
+							<a href="<?php echo chipmunk_external_link( $resource_website ); ?>" target="_blank"><?php the_post_thumbnail( 'xl' ); ?></a>
+						<?php else : ?>
+							<?php the_post_thumbnail( 'xl' ); ?>
+						<?php endif; ?>
 					<?php else : ?>
-						<?php the_post_thumbnail( 'xl' ); ?>
+						<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'xl' ); ?></a>
 					<?php endif; ?>
-				<?php else : ?>
-					<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'xl' ); ?></a>
-				<?php endif; ?>
-			</aside>
+				</aside>
+			<?php endif; ?>
 		</article>
 		<!-- /.resource -->
 	</div>

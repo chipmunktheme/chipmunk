@@ -1914,7 +1914,34 @@ a, button {
 .entry .wp-caption a:hover img {
   opacity: 0.9;
 }
+.entry__image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.entry__image::before {
+  content: '';
+  display: block;
+  padding-bottom: 56.25%;
+}
+.entry__head,
 .entry__title {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 680px) {
+  .entry__head,
+  .entry__title {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+}
+@media (min-width: 680px) {
+  .entry__head {
+    margin-top: 6rem;
+  }
+}
+.entry__subtitle {
   margin-bottom: 2rem;
 }
 .entry__column:not(:first-child) {
@@ -1924,6 +1951,30 @@ a, button {
   .entry__column:not(:first-child) {
     margin-top: 0;
   }
+}
+.entry__author {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+@media (min-width: 680px) {
+  .entry__author {
+    font-size: 1.8rem;
+  }
+}
+.entry__author img {
+  margin-right: 2rem;
+  border-radius: 50%;
+}
+.entry__author strong {
+  display: inline-block;
+  margin-left: 0.25em;
+  color: #333333;
 }
 /*
 ** Module - Error 404
@@ -2095,7 +2146,7 @@ a, button {
 /*
 ** Module - Heading
 ** -----------------------------------------------------------------------------*/
-.heading, .entry h1, .entry h2, .entry h3, .entry h4, .entry h5, .entry h6 {
+.heading, .entry h1, .entry h2, .entry h3, .entry h4, .entry h5, .entry h6, .entry__title {
   color: #333333;
   font-weight: bold;
 }
@@ -2125,19 +2176,19 @@ a, button {
 }
 .heading_lg, .entry h3 {
   font-size: 2.6rem;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 @media (min-width: 680px) {
   .heading_lg, .entry h3 {
     font-size: 3.6rem;
   }
 }
-.heading_xl, .entry h1, .entry h2 {
+.heading_xl, .entry h1, .entry h2, .entry__title {
   font-size: 3.6rem;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 @media (min-width: 680px) {
-  .heading_xl, .entry h1, .entry h2 {
+  .heading_xl, .entry h1, .entry h2, .entry__title {
     font-size: 4.8rem;
   }
 }
@@ -2928,25 +2979,25 @@ a, button {
   background-color: #F38181;
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .entry h1, .entry .section_theme-primary h1, .section_theme-primary .entry h2, .entry .section_theme-primary h2, .section_theme-primary .entry h3, .entry .section_theme-primary h3, .section_theme-primary .entry h4, .entry .section_theme-primary h4, .section_theme-primary .entry h5, .entry .section_theme-primary h5, .section_theme-primary .entry h6, .entry .section_theme-primary h6,
+.section_theme-primary .heading, .section_theme-primary .entry h1, .entry .section_theme-primary h1, .section_theme-primary .entry h2, .entry .section_theme-primary h2, .section_theme-primary .entry h3, .entry .section_theme-primary h3, .section_theme-primary .entry h4, .entry .section_theme-primary h4, .section_theme-primary .entry h5, .entry .section_theme-primary h5, .section_theme-primary .entry h6, .entry .section_theme-primary h6, .section_theme-primary .entry__title,
 .section_theme-primary .button_secondary,
 .section_theme-primary input,
 .section_theme-primary input::-webkit-input-placeholder {
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .entry h1, .entry .section_theme-primary h1, .section_theme-primary .entry h2, .entry .section_theme-primary h2, .section_theme-primary .entry h3, .entry .section_theme-primary h3, .section_theme-primary .entry h4, .entry .section_theme-primary h4, .section_theme-primary .entry h5, .entry .section_theme-primary h5, .section_theme-primary .entry h6, .entry .section_theme-primary h6,
+.section_theme-primary .heading, .section_theme-primary .entry h1, .entry .section_theme-primary h1, .section_theme-primary .entry h2, .entry .section_theme-primary h2, .section_theme-primary .entry h3, .entry .section_theme-primary h3, .section_theme-primary .entry h4, .entry .section_theme-primary h4, .section_theme-primary .entry h5, .entry .section_theme-primary h5, .section_theme-primary .entry h6, .entry .section_theme-primary h6, .section_theme-primary .entry__title,
 .section_theme-primary .button_secondary,
 .section_theme-primary input,
 .section_theme-primary input::-moz-placeholder {
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .entry h1, .entry .section_theme-primary h1, .section_theme-primary .entry h2, .entry .section_theme-primary h2, .section_theme-primary .entry h3, .entry .section_theme-primary h3, .section_theme-primary .entry h4, .entry .section_theme-primary h4, .section_theme-primary .entry h5, .entry .section_theme-primary h5, .section_theme-primary .entry h6, .entry .section_theme-primary h6,
+.section_theme-primary .heading, .section_theme-primary .entry h1, .entry .section_theme-primary h1, .section_theme-primary .entry h2, .entry .section_theme-primary h2, .section_theme-primary .entry h3, .entry .section_theme-primary h3, .section_theme-primary .entry h4, .entry .section_theme-primary h4, .section_theme-primary .entry h5, .entry .section_theme-primary h5, .section_theme-primary .entry h6, .entry .section_theme-primary h6, .section_theme-primary .entry__title,
 .section_theme-primary .button_secondary,
 .section_theme-primary input,
 .section_theme-primary input:-ms-input-placeholder {
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .entry h1, .entry .section_theme-primary h1, .section_theme-primary .entry h2, .entry .section_theme-primary h2, .section_theme-primary .entry h3, .entry .section_theme-primary h3, .section_theme-primary .entry h4, .entry .section_theme-primary h4, .section_theme-primary .entry h5, .entry .section_theme-primary h5, .section_theme-primary .entry h6, .entry .section_theme-primary h6,
+.section_theme-primary .heading, .section_theme-primary .entry h1, .entry .section_theme-primary h1, .section_theme-primary .entry h2, .entry .section_theme-primary h2, .section_theme-primary .entry h3, .entry .section_theme-primary h3, .section_theme-primary .entry h4, .entry .section_theme-primary h4, .section_theme-primary .entry h5, .entry .section_theme-primary h5, .section_theme-primary .entry h6, .entry .section_theme-primary h6, .section_theme-primary .entry__title,
 .section_theme-primary .button_secondary,
 .section_theme-primary input,
 .section_theme-primary input::placeholder {
@@ -2978,6 +3029,11 @@ a, button {
 }
 .stats__item a:hover {
   color: #333333;
+}
+.stats__item a + a::before {
+  content: ', ';
+  margin-left: -4px;
+  color: #808080;
 }
 .stats__item .icon, .stats__item .slick-arrow::before {
   margin-right: 0.5rem;

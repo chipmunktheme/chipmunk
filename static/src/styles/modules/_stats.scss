@@ -22,6 +22,12 @@
     color: $color-black;
   }
 
+  a + a::before {
+    content: ', ';
+    margin-left: -4px;
+    color: $color-gray;
+  }
+
   .icon {
     margin-right: 0.5rem;
     margin-top: -2px;
