@@ -1,14 +1,19 @@
-<?php $show_collections = $wp_query->current_post == 0 || is_search(); ?>
-<?php $collections = get_the_terms( get_the_ID(), 'resource-collection' ); ?>
+<?php $show_collections = $wp_query->current_post == 0 || is_search() || get_post_type() == 'post'; ?>
+<?php $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'category' : 'resource-collection' ) ); ?>
 <?php $collections_count = count( $collections ); ?>
+<?php shuffle( $collections ); ?>
 
 <?php if ( $show_collections and $collections ) : ?>
 	<li class="stats__item" title="<?php _e( 'Collections', 'chipmunk' ); ?>">
 		<i class="icon icon_tag"></i>
 
-		<a href="<?php echo get_term_link( $collections[0]->term_id ); ?>"><?php echo $collections[0]->name; ?></a>
+		<?php if ( is_single() ) : ?>
+			<a href="<?php echo get_term_link( $collections[0]->term_id ); ?>"><?php echo $collections[0]->name; ?></a>
+		<?php else : ?>
+			<?php echo $collections[0]->name; ?>
+		<?php endif; ?>
 
-		<?php if ( $collections_count > 1 ) : ?>
+		<?php if ( $collections_count > 1 && is_single() ) : ?>
 			<span class="stats__note">, <?php printf( __( '+%d more', 'chipmunk' ), $collections_count - 1 ); ?></span>
 		<?php endif; ?>
 	</li>
@@ -30,7 +35,7 @@
 	</li>
 <?php endif; ?>
 
-<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_upvotes' ) ) : ?>
+<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_upvotes' ) and get_post_type() == 'resource' ) : ?>
 	<?php $upvote_button = chipmunk_upvote_button( get_the_ID(), 'stats__button' ); ?>
 	<?php $upvote_counter = chipmunk_upvote_counter( get_the_ID() ); ?>
 

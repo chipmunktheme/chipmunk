@@ -97,6 +97,36 @@ function chipmunk_custom_excerpt( $text, $excerpt ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_posts' ) ) :
+/**
+ * Get posts
+ */
+function chipmunk_get_posts( $limit = -1, $paged = false, $term = null ) {
+	$args = array(
+		'post_type'       => 'post',
+		'posts_per_page'  => $limit,
+		'paged'           => $paged,
+	);
+	$tax_args = array();
+
+	// Apply taxonomy options
+	if ( is_tax() and isset( $term ) ) {
+		$tax_args['tax_query'] = array(
+			array(
+				'taxonomy'          => $term->taxonomy,
+				'field'             => 'id',
+				'terms'             => $term->term_id,
+				'include_children'  => false
+			),
+		);
+	}
+
+	$query = new WP_Query( array_merge( $args, $tax_args ) );
+	return $query;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_resources' ) ) :
 /**
  * Get resources

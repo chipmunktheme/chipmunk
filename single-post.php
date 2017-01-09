@@ -9,11 +9,17 @@
 chipmunk_set_views( get_the_ID() );
 get_header(); ?>
 
-	<?php while ( have_posts() ) : the_post(); ?>
-		<?php get_template_part( 'sections/resource' ); ?>
-	<?php endwhile; ?>
+	<div class="section section_theme-gray">
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+			<div class="container">
+				<?php get_template_part( 'sections/entry' ); ?>
+			</div>
+		<?php endwhile; endif; ?>
 
-	<?php get_template_part( 'sections/resources' ); ?>
+		<?php get_template_part( 'sections/promo' ); ?>
+	</div>
+	<!-- /.section -->
+
 	<?php get_template_part( 'sections/toolbox' ); ?>
 
 <?php get_footer(); ?>

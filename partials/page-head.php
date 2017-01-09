@@ -23,7 +23,33 @@
 
 						<?php if ( ! empty( $menu_items ) ) : ?>
 							<?php foreach ( $menu_items as $menu_item ) : ?>
-								<li class="nav-primary__item<?php echo ( is_page( $menu_item->object_id ) ? ' nav-primary__item_active' : '' ); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
+								<?php
+									// Current Page
+									if ( is_page( $menu_item->object_id ) ) {
+										$is_active = true;
+									}
+
+									// Blog template
+									elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-blog.php' && ( is_home() || is_singular( 'post' ) ) ) {
+										$is_active = true;
+									}
+
+									// Resources template
+									elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-resources.php' && ( is_singular( 'resource' ) ) ) {
+										$is_active = true;
+									}
+
+									// Collections template
+									elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-collections.php' && ( is_tax( 'resource-collection' ) ) ) {
+										$is_active = true;
+									}
+
+									// Inactive link
+									else {
+										$is_active = false;
+									}
+								?>
+								<li class="nav-primary__item<?php echo ( $is_active ? ' nav-primary__item_active' : '' ); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
 							<?php endforeach; ?>
 						<?php endif; ?>
 

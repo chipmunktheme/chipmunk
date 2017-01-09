@@ -3112,7 +3112,7 @@ a, button {
           user-select: none;
   pointer-events: none;
   overflow: hidden;
-  background-color: #808080;
+  background-color: #CDCDCD;
   transition: opacity 0.25s;
 }
 .tile__image::before {
@@ -3179,6 +3179,10 @@ a, button {
   position: relative;
   padding: 0;
 }
+.tile__info {
+  -ms-flex: 1;
+      flex: 1;
+}
 .tile__info:not(:last-child) {
   margin-bottom: 1rem;
 }
@@ -3215,6 +3219,16 @@ a, button {
 }
 .tile_card .tile__stats {
   color: #808080;
+}
+.tile__button {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: 2rem;
+}
+.tile:hover .tile__button {
+  background-color: #F38181;
+  border-color: transparent;
+  color: #FAFAFA;
 }
 /*
 ** Module - Toolbox

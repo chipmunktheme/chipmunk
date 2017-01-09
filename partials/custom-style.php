@@ -36,7 +36,8 @@ $custom_css     = ChipmunkCustomizer::theme_option( 'custom_css' );
 		.section_theme-primary,
 		.stats__button.is-active,
 		.stats__button.is-loading.is-active::before,
-		.tile__content_primary {
+		.tile__content_primary,
+		.tile:hover .tile__button {
 			background-color: <?php echo $primary_color; ?>;
 		}
 	<?php endif; ?>

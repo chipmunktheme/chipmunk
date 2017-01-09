@@ -5,13 +5,13 @@
 		<article class="resource row">
 			<div class="resource__content column column_lg-6">
 				<ul class="resource__stats stats">
-					<?php get_template_part( 'partials/resource-stats' ); ?>
+					<?php get_template_part( 'partials/post-stats' ); ?>
 				</ul>
 
 				<div class="resource__info">
 					<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading_lg', is_single() ? get_the_title() : '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>' ); ?>
 
-					<?php $content = get_the_content(); ?>
+					<?php $content = is_search() ? chipmunk_truncate_string( get_the_excerpt(), 120 ) : get_the_content(); ?>
 
 					<?php if ( ! empty( $content ) ) : ?>
 						<p class="resource__description"><?php echo do_shortcode( $content ); ?></p>

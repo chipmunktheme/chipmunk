@@ -37,7 +37,7 @@ if ( ! function_exists( 'chipmunk_update_search_query' ) ) :
 */
 function chipmunk_update_search_query( $query ) {
 	if ( $query->is_search ) {
-		$query->set( 'post_type', 'resource' );
+		$query->set( 'post_type', array( 'post', 'resource' ) );
 		$query->set( 'posts_per_page', ChipmunkCustomizer::theme_option( 'results_per_page' ) );
 	}
 
