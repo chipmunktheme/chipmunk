@@ -14,7 +14,7 @@
 						'type'     => 'link',
 						'quantity' => -1,
 					);
-					
+
 					include locate_template( 'partials/post-stats.php' );
 				?>
 			</ul>

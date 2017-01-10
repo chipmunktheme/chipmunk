@@ -34,13 +34,15 @@ function chipmunk_setup() {
 	// Theme Support
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'automatic-feed-links' );
+	add_theme_support( 'comments' );
+	add_theme_support( 'threaded-comments' );
 
 	add_theme_support( 'custom-post', array(
 		'resource' => array(
 			'singular'              => __( 'Resource', 'chipmunk' ),
 			'plural'                => __( 'Resources', 'chipmunk' ),
 			'rewrite'               => array( 'slug' => __( 'resource', 'chipmunk' ), 'with_front' => false ),
-			'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'publicize' ),
+			'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'comments', 'publicize' ),
 			'menu_icon'             => 'dashicons-screenoptions',
 			'show_in_rest'          => true,
 			'rest_base'             => 'resources',

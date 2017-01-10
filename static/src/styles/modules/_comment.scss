@@ -1,0 +1,71 @@
+/*
+** Module - Comment
+** -----------------------------------------------------------------------------*/
+
+.comment {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: $separator;
+
+  @include breakpoint(md) {
+    margin-top: ($separator * 2);
+  }
+}
+
+.comment__image {
+  margin-right: $separator;
+  margin-top: 0.25em;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+.comment__info {
+  flex: 1;
+}
+
+.comment__title {
+  color: $color-black;
+  font-weight: bold;
+  line-height: 1.65;
+
+  @include breakpoint(md) {
+    font-size: 2.2rem;
+  }
+}
+
+.comment__date {
+  display: none;
+}
+
+.comment__content {
+  // color: $color-black;
+  line-height: 1.65;
+
+  @include breakpoint(md) {
+    font-size: 2.2rem;
+  }
+}
+
+.comment__reply a {
+  display: inline-block;
+  font-size: 1.4rem;
+
+  &::before {
+    @extend .icon;
+    @extend .icon_reply;
+    margin-right: 1em;
+    font-size: 1.2rem;
+    vertical-align: middle;
+  }
+
+  &:hover {
+    color: $color-black;
+  }
+}
+
+.comment__note {
+  margin-top: 1em;
+  font-style: italic;
+}

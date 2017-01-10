@@ -1,0 +1,60 @@
+<?php
+/**
+ * Comments
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
+
+if ( current_theme_supports( 'comments' ) ) {
+	/**
+	 * Alter comments form default fields via filter function
+	 */
+	function chipmunk_comment_fields($fields) {
+		$fields['author'] = '<li><label for="name-txt">Name *</label><input type="text" id="name-txt" name="author" value="" /></li>';
+		$fields['email'] = '<li><label for="email-txt">Email *</label><input type="text" id="email-txt" name="email" value="" /></li>';
+		return $fields;
+	}
+
+	add_filter( 'comment_form_default_fields', 'chipmunk_comment_fields' );
+
+	if ( ! function_exists( 'chipmunk_comment' ) ) :
+		/**
+		 * Template for comments, without pingbacks or trackbacks
+		 * Based on Twenty Eleven Theme
+		 */
+		function chipmunk_comment( $comment, $args, $depth ) {
+			if ( $comment->comment_type == 'pingback' || $comment->comment_type == 'trackback' ) {
+				return;
+			}
+			?>
+
+			<article <?php comment_class( 'comment' ); ?> id="comment-<?php comment_ID(); ?>" >
+				<?php if ( $args['avatar_size'] != 0 ) : ?>
+					<figure class="comment__image">
+						<?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
+					</figure>
+					<!-- /.comment__image -->
+				<?php endif; ?>
+
+				<div class="comment__info">
+					<h4 class="comment__title"><?php echo get_comment_author_link(); ?></h4>
+					<time class="comment__date"><a href="<?php echo get_comment_link(); ?>"><?php echo get_comment_date(); ?></a> at <?php echo get_comment_time(); ?></time>
+
+					<div class="comment__content">
+						<?php comment_text(); ?>
+					</div>
+
+					<div class="comment__reply">
+						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+					</div>
+
+					<?php if ( ! $comment->comment_approved ) : ?>
+						<p class="comment__note"><?php _e( 'Your comment is awaiting moderation.', 'chipmunk' ); ?></p>
+					<?php endif; ?>
+				</div>
+			</article>
+			<?php
+		}
+	endif;
+}

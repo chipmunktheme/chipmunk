@@ -16,6 +16,10 @@ get_header(); ?>
 			</div>
 		<?php endwhile; endif; ?>
 
+		<?php if ( comments_open() || get_comments_number() ) : ?>
+			<?php comments_template(); ?>
+		<?php endif; ?>
+
 		<?php get_template_part( 'sections/promo' ); ?>
 	</div>
 	<!-- /.section -->

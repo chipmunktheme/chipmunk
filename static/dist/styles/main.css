@@ -647,7 +647,7 @@ a, button {
   font-weight: normal;
   font-style: normal;
 }
-.icon, .slick-arrow::before {
+.icon, .slick-arrow::before, .comment__reply a::before {
   display: inline-block;
   font-family: 'iconfont';
   speak: none;
@@ -712,23 +712,26 @@ a, button {
 .icon_reddit::before {
   content: '\EA11';
 }
-.icon_search::before {
+.icon_reply::before, .comment__reply a::before {
   content: '\EA12';
 }
-.icon_tag::before {
+.icon_search::before {
   content: '\EA13';
 }
-.icon_twitter::before {
+.icon_tag::before {
   content: '\EA14';
 }
-.icon_view::before {
+.icon_twitter::before {
   content: '\EA15';
 }
-.icon_vimeo::before {
+.icon_view::before {
   content: '\EA16';
 }
-.icon_youtube::before {
+.icon_vimeo::before {
   content: '\EA17';
+}
+.icon_youtube::before {
+  content: '\EA18';
 }
 /*
 ** Common - Layout
@@ -1768,6 +1771,69 @@ a, button {
   color: #333333;
 }
 /*
+** Module - Comment
+** -----------------------------------------------------------------------------*/
+.comment {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  margin-top: 2rem;
+}
+@media (min-width: 680px) {
+  .comment {
+    margin-top: 4rem;
+  }
+}
+.comment__image {
+  margin-right: 2rem;
+  margin-top: 0.25em;
+}
+.comment__image img {
+  border-radius: 50%;
+}
+.comment__info {
+  -ms-flex: 1;
+      flex: 1;
+}
+.comment__title {
+  color: #333333;
+  font-weight: bold;
+  line-height: 1.65;
+}
+@media (min-width: 680px) {
+  .comment__title {
+    font-size: 2.2rem;
+  }
+}
+.comment__date {
+  display: none;
+}
+.comment__content {
+  line-height: 1.65;
+}
+@media (min-width: 680px) {
+  .comment__content {
+    font-size: 2.2rem;
+  }
+}
+.comment__reply a {
+  display: inline-block;
+  font-size: 1.4rem;
+}
+.comment__reply a::before {
+  margin-right: 1em;
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
+.comment__reply a:hover {
+  color: #333333;
+}
+.comment__note {
+  margin-top: 1em;
+  font-style: italic;
+}
+/*
 ** Module - Entry
 ** -----------------------------------------------------------------------------*/
 @media (min-width: 680px) {
@@ -2635,14 +2701,14 @@ a, button {
 .pagination__item:first-child {
   margin-right: 2rem;
 }
-.pagination__item:first-child .icon, .pagination__item:first-child .slick-arrow::before {
+.pagination__item:first-child .icon, .pagination__item:first-child .slick-arrow::before, .pagination__item:first-child .comment__reply a::before, .comment__reply .pagination__item:first-child a::before {
   margin-right: 0.75em;
 }
 .pagination__item:last-child {
   margin-left: 2rem;
   text-align: right;
 }
-.pagination__item:last-child .icon, .pagination__item:last-child .slick-arrow::before {
+.pagination__item:last-child .icon, .pagination__item:last-child .slick-arrow::before, .pagination__item:last-child .comment__reply a::before, .comment__reply .pagination__item:last-child a::before {
   margin-left: 0.75em;
 }
 .pagination__item a {
@@ -2652,7 +2718,7 @@ a, button {
 .pagination__item a:hover {
   color: #F38181;
 }
-.pagination__item .icon, .pagination__item .slick-arrow::before {
+.pagination__item .icon, .pagination__item .slick-arrow::before, .pagination__item .comment__reply a::before, .comment__reply .pagination__item a::before {
   font-size: 2.5rem;
   line-height: 1;
   vertical-align: middle;
@@ -3086,14 +3152,14 @@ a, button {
 .stats__item a:hover {
   color: #333333;
 }
-.stats__item .icon, .stats__item .slick-arrow::before {
+.stats__item .icon, .stats__item .slick-arrow::before, .stats__item .comment__reply a::before, .comment__reply .stats__item a::before {
   margin-right: 0.5rem;
   margin-top: -2px;
   font-size: 1.6rem;
   line-height: inherit;
   vertical-align: middle;
 }
-.stats__item .icon.icon_arrow-up, .stats__item .icon_arrow-up.slick-arrow::before {
+.stats__item .icon.icon_arrow-up, .stats__item .icon_arrow-up.slick-arrow::before, .stats__item .comment__reply a.icon_arrow-up::before, .comment__reply .stats__item a.icon_arrow-up::before {
   font-size: 1.2rem;
 }
 .stats__item_sided {
@@ -3322,7 +3388,7 @@ a, button {
 .tile__copy small {
   float: right;
 }
-.tile__copy small .icon, .tile__copy small .slick-arrow::before {
+.tile__copy small .icon, .tile__copy small .slick-arrow::before, .tile__copy small .comment__reply a::before, .comment__reply .tile__copy small a::before {
   line-height: inherit;
   vertical-align: -0.01em;
 }
