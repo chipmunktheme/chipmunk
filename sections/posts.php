@@ -1,10 +1,11 @@
+<?php $term = get_queried_object(); ?>
 <?php $paged = chipmunk_get_current_page(); ?>
-<?php $custom_query = chipmunk_get_posts( ChipmunkCustomizer::theme_option( 'blog_posts_per_page' ), $paged ); ?>
+<?php $custom_query = chipmunk_get_posts( ChipmunkCustomizer::theme_option( 'blog_posts_per_page' ), $paged, isset( $term->term_id ) ? $term : null ); ?>
 
 <div class="section section_theme-gray">
 	<div class="container">
 		<?php if ( 'tiles' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
-			<h1 class="section__title heading heading_md"><?php _e( 'Blog', 'chipmunk' ); ?></h1>
+			<h1 class="section__title heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( __( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : __( 'Blog', 'chipmunk' ); ?></h1>
 		<?php endif; ?>
 
 		<?php if ( $custom_query->have_posts() ) : ?>

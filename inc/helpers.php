@@ -110,7 +110,7 @@ function chipmunk_get_posts( $limit = -1, $paged = false, $term = null ) {
 	$tax_args = array();
 
 	// Apply taxonomy options
-	if ( is_tax() and isset( $term ) ) {
+	if ( isset( $term ) ) {
 		$tax_args['tax_query'] = array(
 			array(
 				'taxonomy'          => $term->taxonomy,

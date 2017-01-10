@@ -264,7 +264,7 @@ class ChipmunkCustomizer {
 						'name'        => 'blog_layout',
 						'type'        => 'select',
 						'label'       => __( 'Blog list layout', 'chipmunk' ),
-						'default'     => 'mixed',
+						'default'     => 'tiles',
 						'choices'     => array(
 							'tiles'     => __( 'Tiles', 'chipmunk' ),
 							'excerpts'  => __( 'Excerpts', 'chipmunk' ),

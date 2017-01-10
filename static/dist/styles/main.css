@@ -2636,14 +2636,14 @@ a, button {
   margin-right: 2rem;
 }
 .pagination__item:first-child .icon, .pagination__item:first-child .slick-arrow::before {
-  margin-right: 0.5em;
+  margin-right: 0.75em;
 }
 .pagination__item:last-child {
   margin-left: 2rem;
   text-align: right;
 }
 .pagination__item:last-child .icon, .pagination__item:last-child .slick-arrow::before {
-  margin-left: 0.5em;
+  margin-left: 0.75em;
 }
 .pagination__item a {
   display: block;
