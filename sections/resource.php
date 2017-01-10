@@ -5,7 +5,15 @@
 		<article class="resource row">
 			<div class="resource__content column column_lg-6">
 				<ul class="resource__stats stats">
-					<?php get_template_part( 'partials/post-stats' ); ?>
+					<?php
+						$collections_args = array(
+							'display'  => true,
+							'type'     => 'link',
+							'quantity' => 1,
+						);
+
+						include locate_template( 'partials/post-stats.php' );
+					?>
 				</ul>
 
 				<div class="resource__info">

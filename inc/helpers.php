@@ -340,6 +340,44 @@ function chipmunk_conditional_markup( $condition, $tagTrue, $tagFalse, $class, $
 endif;
 
 
+if ( ! function_exists( 'chipmunk_display_collections' ) ) :
+/**
+ * Conditionally display post collections
+ */
+function chipmunk_display_collections( $collections, $args ) {
+	$args = array_merge( array(
+		'type'     => 'link',
+		'quantity' => -1,
+	), $args );
+
+	$output = '';
+	$count = count( $collections );
+
+	if ( $args['quantity'] > 0 && $args['quantity'] < $count ) {
+		shuffle( $collections );
+	}
+
+	foreach ( $collections as $key => $collection ) {
+		if ( $args['quantity'] < 0 || $args['quantity'] > $key ) {
+			if ( $args['type'] == 'link' ) {
+				$output .= '<a href="' . get_term_link( $collection->term_id ) . '" class="stats__tag">' . $collection->name . '</a>';
+			}
+
+			if ( $args['type'] == 'text' ) {
+				$output .= '<span class="stats__tag">' . $collection->name . '</span>';
+			}
+		}
+	}
+
+	if ( $args['quantity'] > 0 && $args['quantity'] < $count && $args['type'] == 'link' ) {
+		$output .= '<span class="stats__tag stats__tag_dimmed">' . sprintf( __( '+%d more', 'chipmunk' ), $count - 1 ) . '</span>';
+	}
+
+	return $output;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_format_number' ) ) :
 /**
  * Utility function to format the numbers,

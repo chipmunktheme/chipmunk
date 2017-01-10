@@ -22,12 +22,6 @@
     color: $color-black;
   }
 
-  a + a::before {
-    content: ', ';
-    margin-left: -4px;
-    color: $color-gray;
-  }
-
   .icon {
     margin-right: 0.5rem;
     margin-top: -2px;
@@ -90,8 +84,18 @@
   }
 }
 
-.stats__note {
-  display: inline-block;
-  margin-left: -4px;
-  color: lighten($color-gray, 20%);
+.stats__tag {
+  & + &::before {
+    content: ', ';
+    // margin-left: -4px;
+    color: $color-gray;
+  }
+
+  &_dimmed {
+    color: lighten($color-gray, 20%);
+
+    &::before {
+      color: lighten($color-gray, 20%);
+    }
+  }
 }

@@ -13,7 +13,7 @@
 				<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
 
 					<?php if ( 'mixed' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
-						<?php if ( $i % 4 == 0 ) : ?>
+						<?php if ( $i % 4 == 0 && $paged == 1 ) : ?>
 							<?php get_template_part( 'sections/post-excerpt' ); ?>
 						<?php else : ?>
 							<?php get_template_part( 'sections/post-tile' ); ?>

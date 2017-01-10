@@ -8,7 +8,15 @@
 	<div class="column column_lg-8 column_lg-offset-2">
 		<div class="entry__head">
 			<ul class="entry__stats stats">
-				<?php get_template_part( 'partials/post-stats' ); ?>
+				<?php
+					$collections_args = array(
+						'display'  => true,
+						'type'     => 'link',
+						'quantity' => -1,
+					);
+					
+					include locate_template( 'partials/post-stats.php' );
+				?>
 			</ul>
 
 			<h1 class="entry__title"><?php the_title(); ?></h1>

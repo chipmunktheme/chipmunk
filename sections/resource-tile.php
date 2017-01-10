@@ -18,7 +18,13 @@
 
 		<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_resource_date' ) or ! ChipmunkCustomizer::theme_option( 'disable_views' ) or ! ChipmunkCustomizer::theme_option( 'disable_upvotes' ) ) : ?>
 			<ul class="tile__stats stats">
-				<?php get_template_part( 'partials/post-stats' ); ?>
+				<?php
+					$collections_args = array(
+						'display'  => false,
+					);
+
+					include locate_template( 'partials/post-stats.php' );
+				?>
 			</ul>
 		<?php endif; ?>
 	</div>

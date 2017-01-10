@@ -1770,12 +1770,35 @@ a, button {
 /*
 ** Module - Entry
 ** -----------------------------------------------------------------------------*/
+@media (min-width: 680px) {
+  .entry {
+    margin-bottom: 2rem;
+  }
+}
+.entry:not(:first-child) {
+  margin-top: 2rem;
+}
+@media (min-width: 680px) {
+  .entry:not(:first-child) {
+    margin-top: 4rem;
+  }
+}
+@media (min-width: 980px) {
+  .entry .entry__head {
+    margin-left: 17%;
+    margin-right: 17%;
+  }
+}
+.entry[href]:hover .entry__image {
+  opacity: 0.8;
+}
 .entry__image {
   display: block;
   margin-bottom: 2rem;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  transition: opacity 0.25s;
 }
 @media (min-width: 680px) {
   .entry__image {
@@ -1800,16 +1823,6 @@ a, button {
     margin-bottom: 4rem;
   }
 }
-.entry__head:last-child,
-.entry__title:last-child {
-  margin-bottom: 4rem;
-}
-@media (min-width: 680px) {
-  .entry__head:last-child,
-  .entry__title:last-child {
-    margin-bottom: 8rem;
-  }
-}
 .entry__title {
   margin-top: 2rem;
 }
@@ -1817,6 +1830,10 @@ a, button {
   .entry__title {
     margin-top: 4rem;
   }
+}
+.entry__title a {
+  display: inline-block;
+  line-height: 1.4;
 }
 .entry__title a:hover {
   color: #F38181;
@@ -1864,6 +1881,11 @@ a, button {
   .entry__button {
     margin-top: 4rem;
   }
+}
+.entry[href]:hover .entry__button {
+  background-color: #F38181;
+  border-color: transparent;
+  color: #FAFAFA;
 }
 .entry__content {
   color: #333333;
@@ -3064,11 +3086,6 @@ a, button {
 .stats__item a:hover {
   color: #333333;
 }
-.stats__item a + a::before {
-  content: ', ';
-  margin-left: -4px;
-  color: #808080;
-}
 .stats__item .icon, .stats__item .slick-arrow::before {
   margin-right: 0.5rem;
   margin-top: -2px;
@@ -3124,9 +3141,14 @@ a, button {
 .stats__button.is-loading.is-active::before {
   background-color: #F38181;
 }
-.stats__note {
-  display: inline-block;
-  margin-left: -4px;
+.stats__tag + .stats__tag::before {
+  content: ', ';
+  color: #808080;
+}
+.stats__tag_dimmed {
+  color: #b3b3b3;
+}
+.stats__tag_dimmed::before {
   color: #b3b3b3;
 }
 /*

@@ -2,12 +2,38 @@
 ** Module - Entry
 ** -----------------------------------------------------------------------------*/
 
+.entry {
+  @include breakpoint(md) {
+    margin-bottom: $separator;
+  }
+
+  &:not(:first-child) {
+    margin-top: $separator;
+
+    @include breakpoint(md) {
+      margin-top: ($separator * 2);
+    }
+  }
+
+  .entry__head {
+    @include breakpoint(lg) {
+      margin-left: 17%;
+      margin-right: 17%;
+    }
+  }
+
+  &[href]:hover .entry__image {
+    opacity: 0.8;
+  }
+}
+
 .entry__image {
   display: block;
   margin-bottom: $separator;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  transition: opacity $transition-speed;
 
   @include breakpoint(md) {
     margin-bottom: ($separator * 3);
@@ -31,14 +57,6 @@
   @include breakpoint(md) {
     margin-bottom: ($separator * 2);
   }
-
-  &:last-child {
-    margin-bottom: ($separator * 2);
-
-    @include breakpoint(md) {
-      margin-bottom: ($separator * 4);
-    }
-  }
 }
 
 .entry__title {
@@ -50,8 +68,13 @@
     margin-top: ($separator * 2);
   }
 
-  a:hover {
-    color: $color-primary;
+  a {
+    display: inline-block;
+    line-height: 1.4;
+
+    &:hover {
+      color: $color-primary;
+    }
   }
 }
 
@@ -98,6 +121,12 @@
 
   @include breakpoint(md) {
     margin-top: ($separator * 2);
+  }
+
+  .entry[href]:hover & {
+    background-color: $color-primary;
+    border-color: transparent;
+    color: $color-white;
   }
 }
 
