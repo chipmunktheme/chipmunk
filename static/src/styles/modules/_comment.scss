@@ -93,10 +93,22 @@
   font-style: italic;
 }
 
-.comment-respond:not(:first-child) {
-  margin-top: ($separator * 2);
+.comment-respond {
+  &:not(:first-child) {
+    margin-top: ($separator * 2);
 
-  @include breakpoint(md) {
-    margin-top: ($separator * 4);
+    @include breakpoint(md) {
+      margin-top: ($separator * 4);
+    }
+  }
+
+  p {
+    text-align: left;
+
+    a {
+      &:hover {
+        color: $color-black;
+      }
+    }
   }
 }

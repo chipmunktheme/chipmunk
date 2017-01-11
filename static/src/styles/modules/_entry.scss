@@ -149,6 +149,11 @@
         margin-top: $separator * 2;
       }
     }
+
+    + ul:not(:first-child),
+    + ol:not(:first-child) {
+      margin-top: 0;
+    }
   }
 
   h1, h2 {
@@ -181,7 +186,7 @@
     }
   }
 
-  p, blockquote {
+  p, blockquote, table, ul, ol, hr {
     overflow: hidden;
     clear: both;
 
@@ -193,10 +198,6 @@
       margin-top: 1em;
       margin-bottom: 1em;
     }
-  }
-
-  ul, ol {
-    clear: both;
   }
 
   ol {
@@ -236,6 +237,55 @@
     height: auto;
   }
 
+  blockquote {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    border-left: 2px solid $color-gray-light;
+
+    @include breakpoint(md) {
+      padding-left: 2em;
+      border-left-width: 3px;
+      font-size: 1.2em;
+    }
+  }
+
+  table {
+    table-layout: fixed;
+    border: 2px solid $color-gray-light;
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-size: 0.8em;
+
+    @include breakpoint(md) {
+      border-width: 3px;
+    }
+
+    thead {
+      background-color: $color-white;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    td, th {
+      padding: 0.5em 1em;
+      border: 2px solid $color-gray-light;
+      vertical-align: top;
+
+      @include breakpoint(md) {
+        border-width: 3px;
+      }
+    }
+  }
+
+  hr {
+    border-bottom: 2px solid $color-gray-light;
+
+    @include breakpoint(md) {
+      border-bottom-width: 3px;
+    }
+  }
+
   .alignnone, .aligncenter {
     clear: both;
     margin-top: 2em;
@@ -266,8 +316,18 @@
     margin-right: auto;
   }
 
+  table,
+  blockquote,
   .wp-caption {
     width: auto !important;
+
+    @include breakpoint(lg) {
+      margin-left: -25.85%;
+      margin-right: -25.85%;
+    }
+  }
+
+  .wp-caption {
     margin-top: 2em;
     margin-bottom: 1em;
 
@@ -277,8 +337,6 @@
     }
 
     @include breakpoint(lg) {
-      margin-left: -25.85%;
-      margin-right: -25.85%;
       margin-top: 4em;
       margin-bottom: 3.5em;
     }
@@ -295,7 +353,6 @@
 
     a {
       display: block;
-      background-color: $color-gray;
 
       img {
         -webkit-backface-visibility: hidden;

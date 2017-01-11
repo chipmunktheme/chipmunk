@@ -16,7 +16,7 @@ $custom_css     = ChipmunkCustomizer::theme_option( 'custom_css' );
 	<?php if ( $primary_color and $primary_color != '#F38181' ) : ?>
 		.button_primary:hover,
 		.button_secondary,
-		.entry a:hover,
+		.entry__content a:hover,
 		.nav-primary__close:hover,
 		.nav-socials__item a:hover,
 		.page-head__logo,
