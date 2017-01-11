@@ -37,19 +37,11 @@ if ( current_theme_supports( 'custom-post' ) ) {
 				'singular_name'       => $post['singular'],
 				'menu_name'           => $post['plural'],
 				'name_admin_bar'      => $post['singular'],
-				'add_new'             => sprintf( __( 'Add %s', 'chipmunk' ), $post['singular'] ),
-				'add_new_item'        => sprintf( __( 'Add %s', 'chipmunk' ), $post['singular'] ),
-				'edit_item'           => sprintf( __( 'Edit %s', 'chipmunk' ), $post['singular'] ),
-				'new_item'            => sprintf( __( 'New %s', 'chipmunk' ), $post['singular'] ),
-				'view_item'           => sprintf( __( 'View %s', 'chipmunk' ), $post['singular'] ),
-				'all_items'           => sprintf( __( 'All %s', 'chipmunk' ), $post['plural'] ),
-				'search_items'        => sprintf( __( 'Search %s', 'chipmunk' ), $post['plural'] ),
-				'not_found'           => sprintf( __( 'No %s found.', 'chipmunk' ), $post['plural'] ),
-				'not_found_in_trash'  => sprintf( __( 'No %s found in trash.', 'chipmunk' ), $post['plural'] ),
 			);
 
 			$args = wp_parse_args( $post, $defaults );
-			$args['labels'] = $labels;
+			$args['labels'] = wp_parse_args( $args['labels'], $labels );
+			
 			register_post_type( $key, $args );
 		}
 	}

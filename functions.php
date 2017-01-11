@@ -47,6 +47,16 @@ function chipmunk_setup() {
 			'show_in_rest'          => true,
 			'rest_base'             => 'resources',
 			'rest_controller_class' => 'WP_REST_Posts_Controller',
+			'labels'                => array(
+				'add_new_item'        => __( 'Add New Resource', 'chipmunk' ),
+				'edit_item'           => __( 'Edit Resource', 'chipmunk' ),
+				'new_item'            => __( 'New Resource', 'chipmunk' ),
+				'view_item'           => __( 'View Resource', 'chipmunk' ),
+				'all_items'           => __( 'All Resources', 'chipmunk' ),
+				'search_items'        => __( 'Search Resources', 'chipmunk' ),
+				'not_found'           => __( 'No Resources found.', 'chipmunk' ),
+				'not_found_in_trash'  => __( 'No Resources found in trash.', 'chipmunk' ),
+			),
 		),
 	) );
 
@@ -58,6 +68,16 @@ function chipmunk_setup() {
 			'rewrite'               => array( 'slug' => __( 'collection', 'chipmunk' ), 'with_front' => false ),
 			'rest_base'             => 'collections',
 			'rest_controller_class' => 'WP_REST_Terms_Controller',
+			'labels'                => array(
+				'add_new_item'        => __( 'Add Collection', 'chipmunk' ),
+				'new_item_name'       => __( 'New Collection Name', 'chipmunk' ),
+				'edit_item'           => __( 'Edit Collection', 'chipmunk' ),
+				'update_item'         => __( 'Update Collection', 'chipmunk' ),
+				'parent_item'         => __( 'Parent Collection', 'chipmunk' ),
+				'parent_item_colon'   => __( 'Parent Collection:', 'chipmunk' ),
+				'all_items'           => __( 'All Collections', 'chipmunk' ),
+				'search_items'        => __( 'Search Collections', 'chipmunk' ),
+			),
 		),
 
 		'resource-tag' => array(
@@ -66,6 +86,16 @@ function chipmunk_setup() {
 			'posts'                 => array( 'resource' ),
 			'hierarchical'          => false,
 			'show_in_menu'          => false,
+			'labels'                => array(
+				'add_new_item'        => __( 'Add Tag', 'chipmunk' ),
+				'new_item_name'       => __( 'New Tag Name', 'chipmunk' ),
+				'edit_item'           => __( 'Edit Tag', 'chipmunk' ),
+				'update_item'         => __( 'Update Tag', 'chipmunk' ),
+				'parent_item'         => __( 'Parent Tag', 'chipmunk' ),
+				'parent_item_colon'   => __( 'Parent Tag:', 'chipmunk' ),
+				'all_items'           => __( 'All Tags', 'chipmunk' ),
+				'search_items'        => __( 'Search Tags', 'chipmunk' ),
+			),
 		),
 	) );
 

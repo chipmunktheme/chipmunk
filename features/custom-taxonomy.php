@@ -28,18 +28,10 @@ if ( current_theme_supports( 'custom-taxonomy' ) ) {
 				'name'                => $taxonomy['plural'],
 				'singular_name'       => $taxonomy['singular'],
 				'menu_name'           => $taxonomy['plural'],
-				'add_new_item'        => sprintf( __( 'Add %s', 'chipmunk' ), $taxonomy['singular'] ),
-				'new_item_name'       => sprintf( __( 'New %s Name', 'chipmunk' ), $taxonomy['singular'] ),
-				'edit_item'           => sprintf( __( 'Edit %s', 'chipmunk' ), $taxonomy['singular'] ),
-				'update_item'         => sprintf( __( 'Update %s', 'chipmunk' ), $taxonomy['singular'] ),
-				'parent_item'         => sprintf( __( 'Parent %s', 'chipmunk' ), $taxonomy['singular'] ),
-				'parent_item_colon'   => sprintf( __( 'Parent %s:', 'chipmunk' ), $taxonomy['singular'] ),
-				'all_items'           => sprintf( __( 'All %s', 'chipmunk' ), $taxonomy['plural'] ),
-				'search_items'        => sprintf( __( 'Search %s', 'chipmunk' ), $taxonomy['plural'] ),
 			);
 
 			$args = wp_parse_args( $taxonomy, $defaults );
-			$args['labels'] = $labels;
+			$args['labels'] = wp_parse_args( $args['labels'], $labels );
 
 			register_taxonomy( $key, $taxonomy['posts'], $args );
 		}
