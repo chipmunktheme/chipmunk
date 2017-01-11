@@ -631,9 +631,13 @@ body.has-popup-open::after {
 body > #wpadminbar {
   position: fixed;
 }
-a, button {
+a, button, input[type="submit"] {
+  cursor: pointer;
   transition-duration: 0.25s;
   transition-property: color, background-color, border, opacity;
+}
+a:focus, button:focus, input[type="submit"]:focus {
+  outline: none;
 }
 /*
 ** Common - Fonts
@@ -1779,15 +1783,23 @@ a, button {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   margin-top: 2rem;
+  line-height: 1.65;
 }
 @media (min-width: 680px) {
   .comment {
     margin-top: 4rem;
   }
 }
+.comment + .children {
+  margin-left: 2rem;
+}
+@media (min-width: 680px) {
+  .comment + .children {
+    margin-left: 6rem;
+  }
+}
 .comment__image {
   margin-right: 2rem;
-  margin-top: 0.25em;
 }
 .comment__image img {
   border-radius: 50%;
@@ -1797,9 +1809,11 @@ a, button {
       flex: 1;
 }
 .comment__title {
+  display: inline-block;
+  margin-right: 0.5em;
   color: #333333;
   font-weight: bold;
-  line-height: 1.65;
+  vertical-align: middle;
 }
 @media (min-width: 680px) {
   .comment__title {
@@ -1809,13 +1823,25 @@ a, button {
 .comment__date {
   display: none;
 }
-.comment__content {
-  line-height: 1.65;
+@media (min-width: 490px) {
+  .comment__date {
+    display: inline-block;
+    color: #CDCDCD;
+    opacity: 0;
+    transition: opacity 0.25s;
+    vertical-align: middle;
+  }
+  .comment:hover .comment__date {
+    opacity: 1;
+  }
 }
 @media (min-width: 680px) {
   .comment__content {
     font-size: 2.2rem;
   }
+}
+.comment__reply {
+  margin-top: 0.5em;
 }
 .comment__reply a {
   display: inline-block;
@@ -1832,6 +1858,17 @@ a, button {
 .comment__note {
   margin-top: 1em;
   font-style: italic;
+}
+.comment-respond {
+  margin-top: 4rem;
+}
+@media (min-width: 680px) {
+  .comment-respond {
+    margin-top: 8rem;
+  }
+}
+.comment-form-note {
+  margin-top: 2rem;
 }
 /*
 ** Module - Entry
@@ -2136,9 +2173,11 @@ a, button {
     margin-top: 4rem;
   }
 }
-.form input,
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="url"],
 .form textarea {
-  display: block;
+  display: inline-block;
   width: 100%;
   padding: 5px 0;
   background-color: transparent;
@@ -2147,31 +2186,45 @@ a, button {
   color: #333333;
   font-size: 1.8rem;
   line-height: 1.6;
+  resize: none;
+  vertical-align: middle;
 }
 @media (min-width: 980px) {
-  .form input,
+  .form input[type="text"],
+  .form input[type="email"],
+  .form input[type="url"],
   .form textarea {
     border-bottom-width: 3px;
     font-size: 2.2rem;
   }
 }
-.form input::-webkit-input-placeholder,
+.form input[type="text"]::-webkit-input-placeholder,
+.form input[type="email"]::-webkit-input-placeholder,
+.form input[type="url"]::-webkit-input-placeholder,
 .form textarea::-webkit-input-placeholder {
   color: #333333;
 }
-.form input::-moz-placeholder,
+.form input[type="text"]::-moz-placeholder,
+.form input[type="email"]::-moz-placeholder,
+.form input[type="url"]::-moz-placeholder,
 .form textarea::-moz-placeholder {
   color: #333333;
 }
-.form input:-ms-input-placeholder,
+.form input[type="text"]:-ms-input-placeholder,
+.form input[type="email"]:-ms-input-placeholder,
+.form input[type="url"]:-ms-input-placeholder,
 .form textarea:-ms-input-placeholder {
   color: #333333;
 }
-.form input::placeholder,
+.form input[type="text"]::placeholder,
+.form input[type="email"]::placeholder,
+.form input[type="url"]::placeholder,
 .form textarea::placeholder {
   color: #333333;
 }
-.form input:focus,
+.form input[type="text"]:focus,
+.form input[type="email"]:focus,
+.form input[type="url"]:focus,
 .form textarea:focus {
   outline: none;
 }
@@ -2208,18 +2261,6 @@ a, button {
 .form_compact .form__field:first-child {
   margin-top: 0;
 }
-.form__field .button {
-  margin-left: auto;
-  margin-right: auto;
-}
-@media (min-width: 680px) {
-  .form__field .button {
-    margin-top: 3rem;
-  }
-  .form_compact .form__field .button {
-    margin-top: 0;
-  }
-}
 @media (min-width: 680px) {
   .form__field_separated {
     margin-top: 6rem;
@@ -2238,6 +2279,14 @@ a, button {
   .form__field_center .g-recaptcha {
     margin-top: 2rem;
     margin-bottom: -1rem;
+  }
+}
+@media (min-width: 680px) {
+  .form__field_center .button {
+    margin-top: 3rem;
+  }
+  .form_compact .form__field_center .button {
+    margin-top: 0;
   }
 }
 .form__child {
@@ -3101,28 +3150,56 @@ a, button {
   background-color: #F38181;
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .entry__title, .section_theme-primary .entry__content h1, .entry__content .section_theme-primary h1, .section_theme-primary .entry__content h2, .entry__content .section_theme-primary h2, .section_theme-primary .entry__content h3, .entry__content .section_theme-primary h3, .section_theme-primary .entry__content h4, .entry__content .section_theme-primary h4, .section_theme-primary .entry__content h5, .entry__content .section_theme-primary h5, .section_theme-primary .entry__content h6, .entry__content .section_theme-primary h6,
+.section_theme-primary .heading, .section_theme-primary .entry__title, .section_theme-primary .entry__content h1, .entry__content .section_theme-primary h1, .section_theme-primary .entry__content h2, .entry__content .section_theme-primary h2, .section_theme-primary .entry__content h3, .entry__content .section_theme-primary h3, .section_theme-primary .entry__content h4, .entry__content .section_theme-primary h4, .section_theme-primary .entry__content h5, .entry__content .section_theme-primary h5, .section_theme-primary .entry__content h6, .entry__content .section_theme-primary h6, .section_theme-primary .heading::-webkit-input-placeholder, .section_theme-primary .entry__title::-webkit-input-placeholder, .section_theme-primary .entry__content h1::-webkit-input-placeholder, .entry__content .section_theme-primary h1::-webkit-input-placeholder, .section_theme-primary .entry__content h2::-webkit-input-placeholder, .entry__content .section_theme-primary h2::-webkit-input-placeholder, .section_theme-primary .entry__content h3::-webkit-input-placeholder, .entry__content .section_theme-primary h3::-webkit-input-placeholder, .section_theme-primary .entry__content h4::-webkit-input-placeholder, .entry__content .section_theme-primary h4::-webkit-input-placeholder, .section_theme-primary .entry__content h5::-webkit-input-placeholder, .entry__content .section_theme-primary h5::-webkit-input-placeholder, .section_theme-primary .entry__content h6::-webkit-input-placeholder, .entry__content .section_theme-primary h6::-webkit-input-placeholder,
 .section_theme-primary .button_secondary,
-.section_theme-primary input,
-.section_theme-primary input::-webkit-input-placeholder {
+.section_theme-primary .button_secondary::-webkit-input-placeholder,
+.section_theme-primary input[type="text"],
+.section_theme-primary input[type="text"]::-webkit-input-placeholder,
+.section_theme-primary input[type="email"],
+.section_theme-primary input[type="email"]::-webkit-input-placeholder,
+.section_theme-primary input[type="url"],
+.section_theme-primary input[type="url"]::-webkit-input-placeholder,
+.section_theme-primary textarea,
+.section_theme-primary textarea::-webkit-input-placeholder {
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .entry__title, .section_theme-primary .entry__content h1, .entry__content .section_theme-primary h1, .section_theme-primary .entry__content h2, .entry__content .section_theme-primary h2, .section_theme-primary .entry__content h3, .entry__content .section_theme-primary h3, .section_theme-primary .entry__content h4, .entry__content .section_theme-primary h4, .section_theme-primary .entry__content h5, .entry__content .section_theme-primary h5, .section_theme-primary .entry__content h6, .entry__content .section_theme-primary h6,
+.section_theme-primary .heading, .section_theme-primary .entry__title, .section_theme-primary .entry__content h1, .entry__content .section_theme-primary h1, .section_theme-primary .entry__content h2, .entry__content .section_theme-primary h2, .section_theme-primary .entry__content h3, .entry__content .section_theme-primary h3, .section_theme-primary .entry__content h4, .entry__content .section_theme-primary h4, .section_theme-primary .entry__content h5, .entry__content .section_theme-primary h5, .section_theme-primary .entry__content h6, .entry__content .section_theme-primary h6, .section_theme-primary .heading::-moz-placeholder, .section_theme-primary .entry__title::-moz-placeholder, .section_theme-primary .entry__content h1::-moz-placeholder, .entry__content .section_theme-primary h1::-moz-placeholder, .section_theme-primary .entry__content h2::-moz-placeholder, .entry__content .section_theme-primary h2::-moz-placeholder, .section_theme-primary .entry__content h3::-moz-placeholder, .entry__content .section_theme-primary h3::-moz-placeholder, .section_theme-primary .entry__content h4::-moz-placeholder, .entry__content .section_theme-primary h4::-moz-placeholder, .section_theme-primary .entry__content h5::-moz-placeholder, .entry__content .section_theme-primary h5::-moz-placeholder, .section_theme-primary .entry__content h6::-moz-placeholder, .entry__content .section_theme-primary h6::-moz-placeholder,
 .section_theme-primary .button_secondary,
-.section_theme-primary input,
-.section_theme-primary input::-moz-placeholder {
+.section_theme-primary .button_secondary::-moz-placeholder,
+.section_theme-primary input[type="text"],
+.section_theme-primary input[type="text"]::-moz-placeholder,
+.section_theme-primary input[type="email"],
+.section_theme-primary input[type="email"]::-moz-placeholder,
+.section_theme-primary input[type="url"],
+.section_theme-primary input[type="url"]::-moz-placeholder,
+.section_theme-primary textarea,
+.section_theme-primary textarea::-moz-placeholder {
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .entry__title, .section_theme-primary .entry__content h1, .entry__content .section_theme-primary h1, .section_theme-primary .entry__content h2, .entry__content .section_theme-primary h2, .section_theme-primary .entry__content h3, .entry__content .section_theme-primary h3, .section_theme-primary .entry__content h4, .entry__content .section_theme-primary h4, .section_theme-primary .entry__content h5, .entry__content .section_theme-primary h5, .section_theme-primary .entry__content h6, .entry__content .section_theme-primary h6,
+.section_theme-primary .heading, .section_theme-primary .entry__title, .section_theme-primary .entry__content h1, .entry__content .section_theme-primary h1, .section_theme-primary .entry__content h2, .entry__content .section_theme-primary h2, .section_theme-primary .entry__content h3, .entry__content .section_theme-primary h3, .section_theme-primary .entry__content h4, .entry__content .section_theme-primary h4, .section_theme-primary .entry__content h5, .entry__content .section_theme-primary h5, .section_theme-primary .entry__content h6, .entry__content .section_theme-primary h6, .section_theme-primary .heading:-ms-input-placeholder, .section_theme-primary .entry__title:-ms-input-placeholder, .section_theme-primary .entry__content h1:-ms-input-placeholder, .entry__content .section_theme-primary h1:-ms-input-placeholder, .section_theme-primary .entry__content h2:-ms-input-placeholder, .entry__content .section_theme-primary h2:-ms-input-placeholder, .section_theme-primary .entry__content h3:-ms-input-placeholder, .entry__content .section_theme-primary h3:-ms-input-placeholder, .section_theme-primary .entry__content h4:-ms-input-placeholder, .entry__content .section_theme-primary h4:-ms-input-placeholder, .section_theme-primary .entry__content h5:-ms-input-placeholder, .entry__content .section_theme-primary h5:-ms-input-placeholder, .section_theme-primary .entry__content h6:-ms-input-placeholder, .entry__content .section_theme-primary h6:-ms-input-placeholder,
 .section_theme-primary .button_secondary,
-.section_theme-primary input,
-.section_theme-primary input:-ms-input-placeholder {
+.section_theme-primary .button_secondary:-ms-input-placeholder,
+.section_theme-primary input[type="text"],
+.section_theme-primary input[type="text"]:-ms-input-placeholder,
+.section_theme-primary input[type="email"],
+.section_theme-primary input[type="email"]:-ms-input-placeholder,
+.section_theme-primary input[type="url"],
+.section_theme-primary input[type="url"]:-ms-input-placeholder,
+.section_theme-primary textarea,
+.section_theme-primary textarea:-ms-input-placeholder {
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .entry__title, .section_theme-primary .entry__content h1, .entry__content .section_theme-primary h1, .section_theme-primary .entry__content h2, .entry__content .section_theme-primary h2, .section_theme-primary .entry__content h3, .entry__content .section_theme-primary h3, .section_theme-primary .entry__content h4, .entry__content .section_theme-primary h4, .section_theme-primary .entry__content h5, .entry__content .section_theme-primary h5, .section_theme-primary .entry__content h6, .entry__content .section_theme-primary h6,
+.section_theme-primary .heading, .section_theme-primary .entry__title, .section_theme-primary .entry__content h1, .entry__content .section_theme-primary h1, .section_theme-primary .entry__content h2, .entry__content .section_theme-primary h2, .section_theme-primary .entry__content h3, .entry__content .section_theme-primary h3, .section_theme-primary .entry__content h4, .entry__content .section_theme-primary h4, .section_theme-primary .entry__content h5, .entry__content .section_theme-primary h5, .section_theme-primary .entry__content h6, .entry__content .section_theme-primary h6, .section_theme-primary .heading::placeholder, .section_theme-primary .entry__title::placeholder, .section_theme-primary .entry__content h1::placeholder, .entry__content .section_theme-primary h1::placeholder, .section_theme-primary .entry__content h2::placeholder, .entry__content .section_theme-primary h2::placeholder, .section_theme-primary .entry__content h3::placeholder, .entry__content .section_theme-primary h3::placeholder, .section_theme-primary .entry__content h4::placeholder, .entry__content .section_theme-primary h4::placeholder, .section_theme-primary .entry__content h5::placeholder, .entry__content .section_theme-primary h5::placeholder, .section_theme-primary .entry__content h6::placeholder, .entry__content .section_theme-primary h6::placeholder,
 .section_theme-primary .button_secondary,
-.section_theme-primary input,
-.section_theme-primary input::placeholder {
+.section_theme-primary .button_secondary::placeholder,
+.section_theme-primary input[type="text"],
+.section_theme-primary input[type="text"]::placeholder,
+.section_theme-primary input[type="email"],
+.section_theme-primary input[type="email"]::placeholder,
+.section_theme-primary input[type="url"],
+.section_theme-primary input[type="url"]::placeholder,
+.section_theme-primary textarea,
+.section_theme-primary textarea::placeholder {
   color: #FAFAFA;
 }
 .section_theme-primary .button_secondary:hover {

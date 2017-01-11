@@ -21,7 +21,7 @@
 				<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
 					<?php if ( has_post_thumbnail() ) : ?>
-						<?php the_post_thumbnail( 'sm' ); ?>
+						<?php the_post_thumbnail( 'chipmunk-sm' ); ?>
 					<?php endif; ?>
 
 				<?php endwhile; wp_reset_postdata(); ?>

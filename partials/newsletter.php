@@ -9,7 +9,7 @@
 					<div class="form__field">
 						<input type="email" name="<?php echo strpos( $action, 'list-manage.com' ) != false ? 'MERGE0' : 'email'; ?>" placeholder="<?php _e( 'Email address', 'chipmunk' ); ?>" required>
 					</div>
-					<div class="form__field">
+					<div class="form__field form__field_center">
 						<button type="submit" class="button button_secondary"><?php _e( 'Join now', 'chipmunk' ); ?></button>
 					</div>
 				</form>

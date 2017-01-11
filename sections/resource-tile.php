@@ -1,7 +1,7 @@
 <a href="<?php the_permalink(); ?>" class="tile<?php echo ( ChipmunkCustomizer::theme_option( 'display_resource_cards' ) ? ' tile_card' : '' ); ?><?php echo ( ( is_home() and !ChipmunkCustomizer::theme_option( 'disable_homepage_listings_sliders' ) ) ? '' : ' column column_md-3 column_lg-4' ); ?>">
 	<div class="tile__image">
 		<?php if ( has_post_thumbnail() ) : ?>
-			<?php the_post_thumbnail( 'sm' ); ?>
+			<?php the_post_thumbnail( 'chipmunk-sm' ); ?>
 		<?php endif; ?>
 	</div>
 

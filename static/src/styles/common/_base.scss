@@ -50,7 +50,12 @@ body {
   }
 }
 
-a, button {
+a, button, input[type="submit"] {
+  cursor: pointer;
   transition-duration: $transition-speed;
   transition-property: color, background-color, border, opacity;
+
+  &:focus {
+    outline: none;
+  }
 }

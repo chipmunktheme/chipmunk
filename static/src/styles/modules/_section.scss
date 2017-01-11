@@ -55,9 +55,13 @@
 
     .heading,
     .button_secondary,
-    input,
-    input::placeholder {
-      color: $color-white;
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    textarea {
+      &, &::placeholder {
+        color: $color-white;
+      }
     }
 
     .button_secondary:hover {

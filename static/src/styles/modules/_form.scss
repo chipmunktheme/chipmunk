@@ -10,9 +10,11 @@
     margin-top: $separator * 2;
   }
 
-  input,
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
   textarea {
-    display: block;
+    display: inline-block;
     width: 100%;
     padding: 5px 0;
     background-color: transparent;
@@ -21,6 +23,8 @@
     color: $color-black;
     font-size: 1.8rem;
     line-height: 1.6;
+    resize: none;
+    vertical-align: middle;
 
     @include breakpoint(lg) {
       border-bottom-width: 3px;
@@ -76,19 +80,6 @@
     }
   }
 
-  .button {
-    margin-left: auto;
-    margin-right: auto;
-
-    @include breakpoint(md) {
-      margin-top: $separator * 1.5;
-
-      .form_compact & {
-        margin-top: 0;
-      }
-    }
-  }
-
   &_separated {
     @include breakpoint(md) {
       margin-top: $separator * 3;
@@ -105,6 +96,16 @@
       @include breakpoint(md) {
         margin-top: 2rem;
         margin-bottom: -1rem;
+      }
+    }
+
+    .button {
+      @include breakpoint(md) {
+        margin-top: $separator * 1.5;
+
+        .form_compact & {
+          margin-top: 0;
+        }
       }
     }
   }

@@ -9,10 +9,10 @@
 <?php endif; ?>
 
 <?php if ( ! ChipmunkCustomizer::theme_option( 'disable_resource_date' ) ) : ?>
-	<li class="stats__item" title="<?php _e( 'Published', 'chipmunk' ); ?>: <?php echo get_post_time( 'j. F Y', true, get_the_ID(), true ); ?>">
+	<li class="stats__item" title="<?php _e( 'Published', 'chipmunk' ); ?>: <?php echo get_post_time( 'j. F Y', false, get_the_ID(), true ); ?>">
 		<i class="icon icon_clock"></i>
 
-		<?php echo get_post_time( 'j. M', true, get_the_ID(), true ); ?>
+		<?php echo get_post_time( 'j. M', false, get_the_ID(), true ); ?>
 	</li>
 <?php endif; ?>
 

@@ -38,8 +38,11 @@ endif;
 		 * List comments acording to custom_comment function specified
 		 * in commentstemplate.php file
 		 */
-		?>
-		<?php wp_list_comments( array( 'callback' => 'chipmunk_comment' ) ); ?>
+		wp_list_comments( array(
+			'avatar_size' => 40,
+			'callback'    => 'chipmunk_comment'
+		 ) );
+		 ?>
 	<?php endif; ?>
 
 	<?php if ( comments_open() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
@@ -49,19 +52,34 @@ endif;
 		 * Name, Author and URL are edited in functions.php via
 		 * comment_form_default_fields filter hook
 		 */
+		$commenter = wp_get_current_commenter();
+		$req = get_option( 'require_name_email' );
+		$aria_req = ( $req ? " required aria-required='true'" : '' );
+
+		$fields = array(
+			'author' => '<div class="form__field"><div class="form__child">' .
+				'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
+				'" size="30" placeholder="' . __( 'Name', 'chipmunk' ) . ( $req ? ' *' : '' ) . '"' . $aria_req . ' /></div>',
+
+			'email' => '<div class="form__child">' .
+				'<input id="email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+				'" size="30" placeholder="' . __( 'Email', 'chipmunk' ) . ( $req ? ' *' : '' ) . '"' . $aria_req . ' /></div></div>',
+
+			'url' => '',
+		);
+
 		comment_form( array(
-			'comment_field'        => '<li><label for="message-txt">' . __( 'Message', 'chipmunk' ) . '</label><textarea cols="87" rows="7" id="comment" name="comment"></textarea></li>',
-			'must_log_in'          => '<p class="must-log-in">' . __( 'You must log in to post a comment.', 'chipmunk' ) . '</p>',
-			'logged_in_as'         => '<p class="logged-in-as">' . __( 'Logged in.', 'chipmunk' ) . '</p>',
+			'class_form'           => 'form',
+			'class_submit'         => 'button button_secondary',
 			'comment_notes_before' => '',
 			'comment_notes_after'  => '',
-			'id_form'              => 'commentform',
-			'id_submit'            => 'button-add-comment',
-			'title_reply'          => __( 'Leave a reply', 'chipmunk' ),
-			'title_reply_to'       => __( 'Leave a Reply to %s', 'chipmunk' ),
-			'cancel_reply_link'    => __( 'Cancel comment', 'chipmunk' ),
-			'label_submit'         => __( 'Comment', 'chipmunk' ),
+			'title_reply_before'   => '<h3 class="heading heading_md">',
+			'title_reply_after'    => '</h3>',
+			'submit_button'        => '<div class="form__field"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></div>',
+			'fields'               => apply_filters( 'comment_form_fields', $fields ),
+			'comment_field'        => '<div class="form__field"><textarea id="comment" name="comment" cols="45" rows="4" placeholder="' . __( 'Comment', 'chipmunk' ) . ( $req ? ' *' : '' ) . '"' . $aria_req . '></textarea></div>',
 		) );
+
 		?>
 	<?php endif; ?>
 <?php endif;

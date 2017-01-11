@@ -29,7 +29,7 @@ if ( current_theme_supports( 'comments' ) ) {
 			}
 			?>
 
-			<article <?php comment_class( 'comment' ); ?> id="comment-<?php comment_ID(); ?>" >
+			<article <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>" >
 				<?php if ( $args['avatar_size'] != 0 ) : ?>
 					<figure class="comment__image">
 						<?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
@@ -39,7 +39,7 @@ if ( current_theme_supports( 'comments' ) ) {
 
 				<div class="comment__info">
 					<h4 class="comment__title"><?php echo get_comment_author_link(); ?></h4>
-					<time class="comment__date"><a href="<?php echo get_comment_link(); ?>"><?php echo get_comment_date(); ?></a> at <?php echo get_comment_time(); ?></time>
+					<time class="comment__date"><a href="<?php echo get_comment_link(); ?>"><?php echo get_comment_time( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), false, true ); ?></a></time>
 
 					<div class="comment__content">
 						<?php comment_text(); ?>

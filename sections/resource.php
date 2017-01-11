@@ -39,12 +39,12 @@
 				<aside class="resource__image column column_lg-6">
 					<?php if ( is_single() ) : ?>
 						<?php if ( ! empty( $resource_website ) ) : ?>
-							<a href="<?php echo chipmunk_external_link( $resource_website ); ?>" target="_blank"><?php the_post_thumbnail( 'xl' ); ?></a>
+							<a href="<?php echo chipmunk_external_link( $resource_website ); ?>" target="_blank"><?php the_post_thumbnail( 'chipmunk-xl' ); ?></a>
 						<?php else : ?>
-							<?php the_post_thumbnail( 'xl' ); ?>
+							<?php the_post_thumbnail( 'chipmunk-xl' ); ?>
 						<?php endif; ?>
 					<?php else : ?>
-						<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'xl' ); ?></a>
+						<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'chipmunk-xl' ); ?></a>
 					<?php endif; ?>
 				</aside>
 			<?php endif; ?>
