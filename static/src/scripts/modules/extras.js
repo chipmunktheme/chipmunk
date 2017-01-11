@@ -40,6 +40,19 @@ var Extras = function () {
   $(document).on('shown.tab', function () {
     $('[data-resource-slider]').slick('setPosition');
   });
+
+  // Update the textarea height based on the content
+  $('[data-update-rows]').on('keyup', function () {
+    var lineHeight = parseInt($(this).css('lineHeight'));
+    var padding = parseInt($(this).css('paddingTop')) + parseInt($(this).css('paddingBottom'));
+    var lines = parseInt(($(this)[0].scrollHeight - padding) / lineHeight);
+
+    if (lines > 10) {
+      lines = 10;
+    }
+
+    $(this).attr('rows', lines);
+  });
 };
 
 module.exports = Extras;

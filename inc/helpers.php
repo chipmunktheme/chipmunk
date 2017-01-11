@@ -127,6 +127,48 @@ function chipmunk_get_posts( $limit = -1, $paged = false, $term = null ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_related_posts' ) ) :
+/**
+ * Get posts
+ */
+function chipmunk_get_related_posts( $post_id ) {
+	$args = array(
+		'posts_per_page'  => 3,
+		'post_type'       => 'post',
+		'post__not_in'    => array( $post_id ),
+		'orderby'         => 'rand',
+	);
+
+	$tags = get_the_terms( $post_id, 'post_tag' );
+	$collections = get_the_terms( $post_id, 'category' );
+
+	if ( ! empty( $tags ) ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy'    => 'post_tag',
+				'field'       => 'term_id',
+				'terms'       => array_map( function( $term ) { return $term->term_id; }, $tags ),
+				'operator'    => 'IN',
+			),
+		);
+	}
+	elseif ( ! empty( $collections ) ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy'    => 'category',
+				'field'       => 'term_id',
+				'terms'       => array_map( function( $term ) { return $term->term_id; }, $collections ),
+				'operator'    => 'IN',
+			),
+		);
+	}
+
+	$query = new WP_Query( $args );
+	return $query;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_resources' ) ) :
 /**
  * Get resources
@@ -278,7 +320,7 @@ function chipmunk_get_related_resources( $post_id ) {
 	$tags = get_the_terms( $post_id, 'resource-tag' );
 	$collections = get_the_terms( $post_id, 'resource-collection' );
 
-	if ( !empty( $tags ) ) {
+	if ( ! empty( $tags ) ) {
 		$args['tax_query'] = array(
 			array(
 				'taxonomy'    => 'resource-tag',
@@ -288,17 +330,15 @@ function chipmunk_get_related_resources( $post_id ) {
 			),
 		);
 	}
-	else {
-		if ( !empty( $collections ) ) {
-			$args['tax_query'] = array(
-				array(
-					'taxonomy'    => 'resource-collection',
-					'field'       => 'term_id',
-					'terms'       => array_map( function( $term ) { return $term->term_id; }, $collections ),
-					'operator'    => 'IN',
-				),
-			);
-		}
+	elseif ( ! empty( $collections ) ) {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy'    => 'resource-collection',
+				'field'       => 'term_id',
+				'terms'       => array_map( function( $term ) { return $term->term_id; }, $collections ),
+				'operator'    => 'IN',
+			),
+		);
 	}
 
 	$query = new WP_Query( $args );

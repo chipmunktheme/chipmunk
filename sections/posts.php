@@ -1,11 +1,20 @@
 <?php $term = get_queried_object(); ?>
 <?php $paged = chipmunk_get_current_page(); ?>
-<?php $custom_query = chipmunk_get_posts( ChipmunkCustomizer::theme_option( 'blog_posts_per_page' ), $paged, isset( $term->term_id ) ? $term : null ); ?>
+
+<?php if ( is_single() ) : ?>
+	<?php $custom_query = chipmunk_get_related_posts( get_the_ID() ); ?>
+<?php else : ?>
+	<?php $custom_query = chipmunk_get_posts( ChipmunkCustomizer::theme_option( 'blog_posts_per_page' ), $paged, isset( $term->term_id ) ? $term : null ); ?>
+<?php endif; ?>
 
 <div class="section section_theme-gray">
 	<div class="container">
-		<?php if ( 'tiles' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
-			<h1 class="section__title heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( __( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : __( 'Blog', 'chipmunk' ); ?></h1>
+		<?php if ( is_single() ) : ?>
+			<h2 class="section__title heading heading_md"><?php _e( 'Related', 'chipmunk' ); ?></h2>
+		<?php else : ?>
+			<?php if ( 'tiles' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
+				<h1 class="section__title heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( __( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : __( 'Blog', 'chipmunk' ); ?></h1>
+			<?php endif; ?>
 		<?php endif; ?>
 
 		<?php if ( $custom_query->have_posts() ) : ?>
@@ -19,17 +28,17 @@
 						<?php else : ?>
 							<?php get_template_part( 'sections/post-tile' ); ?>
 						<?php endif; ?>
+
+						<?php $i++; ?>
 					<?php endif; ?>
 
-					<?php if ( 'tiles' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
+					<?php if ( 'tiles' == ChipmunkCustomizer::theme_option( 'blog_layout' ) || is_single() ) : ?>
 						<?php get_template_part( 'sections/post-tile' ); ?>
 					<?php endif; ?>
 
 					<?php if ( 'excerpts' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
 						<?php get_template_part( 'sections/post-excerpt' ); ?>
 					<?php endif; ?>
-
-					<?php $i++; ?>
 				<?php endwhile; ?>
 			</div>
 		<?php else : ?>

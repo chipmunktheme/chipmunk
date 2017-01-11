@@ -1859,16 +1859,13 @@ a:focus, button:focus, input[type="submit"]:focus {
   margin-top: 1em;
   font-style: italic;
 }
-.comment-respond {
+.comment-respond:not(:first-child) {
   margin-top: 4rem;
 }
 @media (min-width: 680px) {
-  .comment-respond {
+  .comment-respond:not(:first-child) {
     margin-top: 8rem;
   }
-}
-.comment-form-note {
-  margin-top: 2rem;
 }
 /*
 ** Module - Entry

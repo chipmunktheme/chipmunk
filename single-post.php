@@ -15,15 +15,19 @@ get_header(); ?>
 				<?php get_template_part( 'sections/entry', 'post' ); ?>
 			</div>
 		<?php endwhile; endif; ?>
-
-		<?php if ( comments_open() || get_comments_number() ) : ?>
-			<?php comments_template(); ?>
-		<?php endif; ?>
-
-		<?php get_template_part( 'sections/promo' ); ?>
 	</div>
 	<!-- /.section -->
 
+	<?php if ( comments_open() || get_comments_number() ) : ?>
+		<div class="section section_theme-white section_separated">
+			<div class="container">
+				<?php comments_template(); ?>
+			</div>
+		</div>
+		<!-- /.section -->
+	<?php endif; ?>
+
+	<?php get_template_part( 'sections/posts' ); ?>
 	<?php get_template_part( 'sections/toolbox' ); ?>
 
 <?php get_footer(); ?>
