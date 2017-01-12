@@ -12,7 +12,7 @@
 		<?php if ( is_single() ) : ?>
 			<h2 class="section__title heading heading_md"><?php _e( 'Related', 'chipmunk' ); ?></h2>
 		<?php else : ?>
-			<?php if ( 'tiles' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
+			<?php if ( $term && 'tiles' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
 				<h1 class="section__title heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( __( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : __( 'Blog', 'chipmunk' ); ?></h1>
 			<?php endif; ?>
 		<?php endif; ?>

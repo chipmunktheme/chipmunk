@@ -30,7 +30,7 @@
 									}
 
 									// Blog template
-									elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-blog.php' && ( is_home() || is_singular( 'post' ) || ( get_queried_object() && get_queried_object()->taxonomy == 'category' ) ) ) {
+									elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-blog.php' && ( is_singular( 'post' ) || ( is_home() && $menu_item->url == get_permalink( get_option( 'page_for_posts' ) ) ) || ( get_queried_object() && get_queried_object()->taxonomy == 'category' ) ) ) {
 										$is_active = true;
 									}
 
