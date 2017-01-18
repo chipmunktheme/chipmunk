@@ -65,6 +65,10 @@
   @include breakpoint(md) {
     font-size: 2.2rem;
   }
+
+  p:not(:first-child) {
+    margin-top: 0.8em;
+  }
 }
 
 .comment__reply {

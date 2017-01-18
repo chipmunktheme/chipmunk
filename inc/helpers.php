@@ -6,46 +6,6 @@
  * @subpackage Chipmunk
  */
 
-if ( ! function_exists( 'chipmunk_truncate_string' ) ) :
-/**
- * Truncate long strings
- */
-function chipmunk_truncate_string( $str, $chars, $to_space = true, $replacement = '...' ) {
-	$str = strip_tags( $str );
-
-	if ( $chars > strlen( $str ) ) {
-		return $str;
-	}
-
-	$str = substr( $str, 0, $chars );
-	$space_pos = strrpos( $str, ' ' );
-
-	if ( $to_space && $space_pos >= 0 ) {
-		$str = substr( $str, 0, strrpos( $str, ' ' ) );
-	}
-
-	return( $str . $replacement );
-}
-endif;
-
-
-if ( ! function_exists( 'chipmunk_external_link' ) ) :
-/**
- * Create external links
- */
-function chipmunk_external_link( $url ) {
-	if ( !ChipmunkCustomizer::theme_option( 'disable_ref' ) ) {
-		$title = str_replace( '-', '', sanitize_title( get_bloginfo( 'name' ) ) );
-		$prefix = ( preg_match('(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
-
-		return $url . $prefix . $title;
-	}
-
-	return $url;
-}
-endif;
-
-
 if ( ! function_exists( 'chipmunk_get_menu_items' ) ) :
 /**
  * Get menu items
@@ -414,6 +374,46 @@ function chipmunk_display_collections( $collections, $args ) {
 	}
 
 	return $output;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_external_link' ) ) :
+/**
+ * Create external links
+ */
+function chipmunk_external_link( $url ) {
+	if ( !ChipmunkCustomizer::theme_option( 'disable_ref' ) ) {
+		$title = str_replace( '-', '', sanitize_title( get_bloginfo( 'name' ) ) );
+		$prefix = ( preg_match('(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
+
+		return $url . $prefix . $title;
+	}
+
+	return $url;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_truncate_string' ) ) :
+/**
+ * Truncate long strings
+ */
+function chipmunk_truncate_string( $str, $chars, $to_space = true, $replacement = '...' ) {
+	$str = strip_tags( $str );
+
+	if ( $chars > strlen( $str ) ) {
+		return $str;
+	}
+
+	$str = substr( $str, 0, $chars );
+	$space_pos = strrpos( $str, ' ' );
+
+	if ( $to_space && $space_pos >= 0 ) {
+		$str = substr( $str, 0, strrpos( $str, ' ' ) );
+	}
+
+	return( $str . $replacement );
 }
 endif;
 

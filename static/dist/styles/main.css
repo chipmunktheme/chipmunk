@@ -578,7 +578,7 @@ sub {
 body {
   min-height: 100%;
   position: relative;
-  background-color: #EAEAEA;
+  background-color: #E8E8E8;
   color: #808080;
   font-family: "Poppins", "Arial", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 1.6em;
@@ -1628,7 +1628,7 @@ a:focus, button:focus, input[type="submit"]:focus {
   }
 }
 .sort__select ~ .select2-container .select2-dropdown {
-  background-color: #EAEAEA;
+  background-color: #E8E8E8;
   border-color: #808080;
 }
 .sort__select ~ .select2-container .select2-results__option {
@@ -1839,6 +1839,9 @@ a:focus, button:focus, input[type="submit"]:focus {
   .comment__content {
     font-size: 2.2rem;
   }
+}
+.comment__content p:not(:first-child) {
+  margin-top: 0.8em;
 }
 .comment__reply {
   margin-top: 0.5em;
@@ -2052,11 +2055,15 @@ a:focus, button:focus, input[type="submit"]:focus {
   margin-bottom: 1em;
 }
 .entry__content ol {
-  padding-left: 1em;
   list-style: decimal;
+  list-style-position: inside;
 }
 .entry__content ol li {
   padding-left: 0.15em;
+}
+.entry__content ul {
+  list-style: disc;
+  list-style-position: inside;
 }
 .entry__content ul li::before {
   content: '\2022';
@@ -2648,7 +2655,7 @@ a:focus, button:focus, input[type="submit"]:focus {
 ** Module - Page foot
 ** -----------------------------------------------------------------------------*/
 .page-foot {
-  background-color: #EAEAEA;
+  background-color: #E8E8E8;
 }
 .page-foot a:hover, .page-foot button:hover {
   color: #333333;
@@ -3210,7 +3217,7 @@ a:focus, button:focus, input[type="submit"]:focus {
   background-color: #FAFAFA;
 }
 .section_theme-gray {
-  background-color: #EAEAEA;
+  background-color: #E8E8E8;
 }
 .section_theme-primary {
   background-color: #F38181;

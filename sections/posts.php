@@ -1,5 +1,6 @@
 <?php $term = get_queried_object(); ?>
 <?php $paged = chipmunk_get_current_page(); ?>
+<?php $layout = is_single() ? 'tiles' : ChipmunkCustomizer::theme_option( 'blog_layout' ); ?>
 
 <?php if ( is_single() ) : ?>
 	<?php $custom_query = chipmunk_get_related_posts( get_the_ID() ); ?>
@@ -12,7 +13,7 @@
 		<?php if ( is_single() ) : ?>
 			<h2 class="section__title heading heading_md"><?php _e( 'Related', 'chipmunk' ); ?></h2>
 		<?php else : ?>
-			<?php if ( $term && 'tiles' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
+			<?php if ( $term && $layout == 'tiles' ) : ?>
 				<h1 class="section__title heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( __( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : __( 'Blog', 'chipmunk' ); ?></h1>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -22,7 +23,7 @@
 				<?php $i = 0; ?>
 				<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
 
-					<?php if ( 'mixed' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
+					<?php if ( $layout == 'mixed' ) : ?>
 						<?php if ( $i % 4 == 0 && $paged == 1 ) : ?>
 							<?php get_template_part( 'sections/post-excerpt' ); ?>
 						<?php else : ?>
@@ -32,11 +33,11 @@
 						<?php $i++; ?>
 					<?php endif; ?>
 
-					<?php if ( 'tiles' == ChipmunkCustomizer::theme_option( 'blog_layout' ) || is_single() ) : ?>
+					<?php if ( $layout == 'tiles' ) : ?>
 						<?php get_template_part( 'sections/post-tile' ); ?>
 					<?php endif; ?>
 
-					<?php if ( 'excerpts' == ChipmunkCustomizer::theme_option( 'blog_layout' ) ) : ?>
+					<?php if ( $layout == 'excerpts' ) : ?>
 						<?php get_template_part( 'sections/post-excerpt' ); ?>
 					<?php endif; ?>
 				<?php endwhile; ?>
