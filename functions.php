@@ -9,7 +9,7 @@
  * @subpackage Chipmunk
  */
 
-define( 'CHIPMUNK_VERSION', '1.4.0' );
+define( 'CHIPMUNK_VERSION', '1.5.0' );
 define( 'CHIPMUNK_TEMPLATE_URI', get_template_directory_uri() );
 define( 'CHIPMUNK_TEMPLATE_DIR', get_template_directory() );
 define( 'CHIPMUNK_THEME_TITLE', 'Chipmunk' );
