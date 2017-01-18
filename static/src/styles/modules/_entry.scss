@@ -201,8 +201,7 @@
   }
 
   ol {
-    list-style: decimal;
-    list-style-position: inside;
+    list-style: decimal inside;
 
     li {
       padding-left: 0.15em;
@@ -210,9 +209,6 @@
   }
 
   ul {
-    list-style: disc;
-    list-style-position: inside;
-
     li {
       &::before {
         content: '\2022';

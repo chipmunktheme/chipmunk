@@ -19,18 +19,6 @@ endif;
 add_action( 'init', 'chipmunk_update_permalinks' );
 
 
-if ( ! function_exists( 'chipmunk_upload_mimes' ) ) :
-/**
-* Allow SVG upload
-*/
-function chipmunk_upload_mimes( $mimes ) {
-	$mimes['svg'] = 'image/svg+xml';
-	return $mimes;
-}
-endif;
-add_filter( 'upload_mimes', 'chipmunk_upload_mimes' );
-
-
 if ( ! function_exists( 'chipmunk_update_search_query' ) ) :
 /**
 * Update search query

@@ -2055,15 +2055,10 @@ a:focus, button:focus, input[type="submit"]:focus {
   margin-bottom: 1em;
 }
 .entry__content ol {
-  list-style: decimal;
-  list-style-position: inside;
+  list-style: decimal inside;
 }
 .entry__content ol li {
   padding-left: 0.15em;
-}
-.entry__content ul {
-  list-style: disc;
-  list-style-position: inside;
 }
 .entry__content ul li::before {
   content: '\2022';
