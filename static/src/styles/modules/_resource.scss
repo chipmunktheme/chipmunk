@@ -77,6 +77,12 @@
   a:hover {
     color: $color-black;
   }
+
+  img,
+  .wp-caption {
+    max-width: 100%;
+    height: auto !important;
+  }
 }
 
 .resource__actions {

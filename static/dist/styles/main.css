@@ -578,7 +578,7 @@ sub {
 body {
   min-height: 100%;
   position: relative;
-  background-color: #E8E8E8;
+  background-color: #E6E6E6;
   color: #808080;
   font-family: "Poppins", "Arial", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 1.6em;
@@ -1628,7 +1628,7 @@ a:focus, button:focus, input[type="submit"]:focus {
   }
 }
 .sort__select ~ .select2-container .select2-dropdown {
-  background-color: #E8E8E8;
+  background-color: #E6E6E6;
   border-color: #808080;
 }
 .sort__select ~ .select2-container .select2-results__option {
@@ -2076,6 +2076,9 @@ a:focus, button:focus, input[type="submit"]:focus {
 .entry__content img {
   width: auto;
   height: auto;
+}
+.entry__content strong {
+  font-weight: bold;
 }
 .entry__content blockquote {
   padding-top: 0.5em;
@@ -2650,7 +2653,7 @@ a:focus, button:focus, input[type="submit"]:focus {
 ** Module - Page foot
 ** -----------------------------------------------------------------------------*/
 .page-foot {
-  background-color: #E8E8E8;
+  background-color: #E6E6E6;
 }
 .page-foot a:hover, .page-foot button:hover {
   color: #333333;
@@ -3036,6 +3039,11 @@ a:focus, button:focus, input[type="submit"]:focus {
 .resource__description a:hover {
   color: #333333;
 }
+.resource__description img,
+.resource__description .wp-caption {
+  max-width: 100%;
+  height: auto !important;
+}
 .resource__actions {
   display: -ms-flexbox;
   display: flex;
@@ -3212,7 +3220,7 @@ a:focus, button:focus, input[type="submit"]:focus {
   background-color: #FAFAFA;
 }
 .section_theme-gray {
-  background-color: #E8E8E8;
+  background-color: #E6E6E6;
 }
 .section_theme-primary {
   background-color: #F38181;

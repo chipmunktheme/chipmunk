@@ -5,7 +5,7 @@
 		<?php endif; ?>
 	</div>
 
-	<div class="tile__content<?php echo ( !ChipmunkCustomizer::theme_option( 'display_resource_cards' ) ? ( ChipmunkCustomizer::theme_option( 'disable_resource_thumbs' ) ? ' tile__content_primary' : ' tile__content_dimmed' ) : '' ); ?>">
+	<div class="tile__content<?php echo ( ! ChipmunkCustomizer::theme_option( 'display_resource_cards' ) ? ( ChipmunkCustomizer::theme_option( 'disable_resource_thumbs' ) ? ' tile__content_primary' : ' tile__content_dimmed' ) : '' ); ?>">
 		<div class="tile__info">
 			<?php echo chipmunk_conditional_markup( is_front_page() || is_single(), 'h3', 'h2', 'tile__title', get_the_title() ); ?>
 

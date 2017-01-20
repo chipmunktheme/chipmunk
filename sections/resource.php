@@ -1,4 +1,5 @@
 <?php $resource_website = get_post_meta( get_the_ID(), '_' . CHIPMUNK_THEME_SLUG . '_resource_website', true ); ?>
+<?php $content = is_search() ? chipmunk_truncate_string( get_the_excerpt(), 120 ) : get_the_content(); ?>
 
 <div class="section<?php echo ( ! $wp_query->current_post or $wp_query->current_post % 2 == 0 ) ? ' section_theme-white section_separated' : ' section_theme-gray'; ?>">
 	<div class="container">
@@ -19,10 +20,8 @@
 				<div class="resource__info">
 					<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading_lg', is_single() ? get_the_title() : '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>' ); ?>
 
-					<?php $content = is_search() ? chipmunk_truncate_string( get_the_excerpt(), 120 ) : get_the_content(); ?>
-
-					<?php if ( ! empty( $content ) ) : ?>
-						<p class="resource__description"><?php echo do_shortcode( $content ); ?></p>
+					<?php if ( ! empty( $content ) && ( is_search() || ! ChipmunkCustomizer::theme_option( 'display_resource_content_separated' ) ) ) : ?>
+						<div class="resource__description"><?php echo do_shortcode( $content ); ?></div>
 					<?php endif; ?>
 				</div>
 
@@ -53,3 +52,19 @@
 	</div>
 </div>
 <!-- /.section -->
+
+<?php if ( ! empty( $resource_website ) && ! is_search() && ChipmunkCustomizer::theme_option( 'display_resource_content_separated' ) ) : ?>
+	<div class="section section_theme-gray section_separated">
+		<div class="container">
+			<div class="row">
+				<div class="column column_lg-8 column_lg-offset-2">
+					<div class="entry__content">
+						<?php the_content(); ?>
+					</div>
+					<!-- /.entry -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.section -->
+<?php endif; ?>

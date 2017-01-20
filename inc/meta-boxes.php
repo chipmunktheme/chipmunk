@@ -44,7 +44,7 @@ function chipmunk_save_meta_boxes_resource( $post_id ) {
 
 	// store custom fields values
 	if ( isset( $_REQUEST['website'] ) ) {
-		update_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_website', sanitize_text_field( $_POST['website'] ) );
+		update_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_resource_website', sanitize_text_field( $_POST['website'] ) );
 	}
 
 	if ( ! ChipmunkCustomizer::theme_option( 'disable_featured' ) ) {

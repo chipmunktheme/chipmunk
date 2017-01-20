@@ -128,6 +128,12 @@ class ChipmunkCustomizer {
 						'default'     => 9,
 					),
 					array(
+						'name'        => 'display_resource_content_separated',
+						'type'        => 'checkbox',
+						'label'       => __( 'Display resource content in a separate section', 'chipmunk' ),
+						'default'     => false,
+					),
+					array(
 						'name'        => 'display_resource_cards',
 						'type'        => 'checkbox',
 						'label'       => __( 'Display resources as cards', 'chipmunk' ),
