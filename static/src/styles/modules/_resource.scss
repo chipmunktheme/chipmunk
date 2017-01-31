@@ -2,9 +2,6 @@
 ** Module - Resource
 ** -----------------------------------------------------------------------------*/
 
-.resource {
-}
-
 .resource__content {
   display: flex;
   flex-direction: column;
@@ -74,14 +71,24 @@
     padding-right: $separator;
   }
 
-  a:hover {
-    color: $color-black;
+  a {
+    color: $color-primary;
+
+    &:hover {
+      color: $color-black;
+    }
   }
 
   img,
   .wp-caption {
     max-width: 100%;
     height: auto !important;
+  }
+
+  p {
+    &:not(:first-child) {
+      margin-top: 0.84em;
+    }
   }
 }
 

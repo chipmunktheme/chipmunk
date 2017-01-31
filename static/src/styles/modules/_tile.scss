@@ -11,8 +11,7 @@
 
   &:hover {
     .tile__copy .icon_arrow {
-      margin-left: 1.5rem;
-      margin-right: -1rem;
+      transform: translateX(1rem);
     }
 
     .tile__image img {
@@ -143,7 +142,7 @@
 
 .tile__info {
   flex: 1;
-  
+
   &:not(:last-child) {
     margin-bottom: 1rem;
   }
@@ -165,12 +164,15 @@
   font-size: 1.4rem;
   opacity: 0.85;
 
+  span {
+    white-space: nowrap;
+  }
+
   .icon_arrow {
-    display: inline;
     margin-left: 0.5rem;
     font-size: 1.2rem;
     line-height: inherit;
-    transition: margin $transition-speed ease-in-out 0.05s;
+    transition: transform $transition-speed ease-in-out 0.05s;
   }
 
   small {

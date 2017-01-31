@@ -24,6 +24,7 @@ $custom_css     = ChipmunkCustomizer::theme_option( 'custom_css' );
 		.popup__close:hover,
 		.popup__close:hover,
 		.popup__close:hover,
+		.resource__description a,
 		.section_theme-primary .button_secondary:hover,
 		.search-bar__icon:hover,
 		.search-bar__close:hover {

@@ -57,8 +57,6 @@ function chipmunk_submit_resource() {
 	}
 	// Failure due to incorrect nonce verification
 	else wp_send_json_error( ChipmunkCustomizer::theme_option( 'submission_failure' ) );
-
-	die;
 }
 endif;
 add_action( 'wp_ajax_submit_resource', 'chipmunk_submit_resource' );
@@ -115,7 +113,6 @@ function chipmunk_verify_nonce() {
 
 	if ( !$nonce || !wp_verify_nonce( $nonce, $_REQUEST['action'] ) ) {
 		wp_send_json_error( __( 'Not permitted.', 'chipmunk' ) );
-		die;
 	}
 }
 endif;

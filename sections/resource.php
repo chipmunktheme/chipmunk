@@ -21,7 +21,7 @@
 					<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading_lg', is_single() ? get_the_title() : '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>' ); ?>
 
 					<?php if ( ! empty( $content ) && ( is_search() || ! ChipmunkCustomizer::theme_option( 'display_resource_content_separated' ) ) ) : ?>
-						<div class="resource__description"><?php echo do_shortcode( $content ); ?></div>
+						<div class="resource__description"><?php echo wpautop( do_shortcode( $content ) ); ?></div>
 					<?php endif; ?>
 				</div>
 

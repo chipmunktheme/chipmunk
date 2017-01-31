@@ -3036,6 +3036,9 @@ a:focus, button:focus, input[type="submit"]:focus {
     padding-right: 2rem;
   }
 }
+.resource__description a {
+  color: #F38181;
+}
 .resource__description a:hover {
   color: #333333;
 }
@@ -3043,6 +3046,9 @@ a:focus, button:focus, input[type="submit"]:focus {
 .resource__description .wp-caption {
   max-width: 100%;
   height: auto !important;
+}
+.resource__description p:not(:first-child) {
+  margin-top: 0.84em;
 }
 .resource__actions {
   display: -ms-flexbox;
@@ -3383,8 +3389,7 @@ a:focus, button:focus, input[type="submit"]:focus {
   overflow: hidden;
 }
 .tile:hover .tile__copy .icon_arrow {
-  margin-left: 1.5rem;
-  margin-right: -1rem;
+  transform: translateX(1rem);
 }
 .tile:hover .tile__image img:nth-child(2) {
   transform: translateX(33.3%);
@@ -3531,12 +3536,14 @@ a:focus, button:focus, input[type="submit"]:focus {
   font-size: 1.4rem;
   opacity: 0.85;
 }
+.tile__copy span {
+  white-space: nowrap;
+}
 .tile__copy .icon_arrow {
-  display: inline;
   margin-left: 0.5rem;
   font-size: 1.2rem;
   line-height: inherit;
-  transition: margin 0.25s ease-in-out 0.05s;
+  transition: transform 0.25s ease-in-out 0.05s;
 }
 .tile__copy small {
   float: right;
