@@ -21,8 +21,8 @@ add_action( 'init', 'chipmunk_update_permalinks' );
 
 if ( ! function_exists( 'chipmunk_update_search_query' ) ) :
 /**
-* Update search query
-*/
+ * Update search query
+ */
 function chipmunk_update_search_query( $query ) {
 	if ( $query->is_search ) {
 		$query->set( 'post_type', array( 'post', 'resource' ) );
@@ -37,8 +37,8 @@ add_filter( 'pre_get_posts', 'chipmunk_update_search_query' );
 
 if ( ! function_exists( 'chipmunk_update_main_query' ) ) :
 /**
-* Update main query
-*/
+ * Update main query
+ */
 function chipmunk_update_main_query( $query ) {
 	if ( $query->is_tax and is_tax() ) {
 		$query->set( 'posts_per_page', ChipmunkCustomizer::theme_option( 'posts_per_page' ) );
@@ -52,8 +52,8 @@ add_filter( 'pre_get_posts', 'chipmunk_update_main_query' );
 
 if ( ! function_exists( 'chipmunk_exclude_tax_children' ) ) :
 /**
-* Exclude children from taxonomy listing
-*/
+ * Exclude children from taxonomy listing
+ */
 function chipmunk_exclude_tax_children( $query ) {
 	if ( isset( $query->query_vars['resource-collection'] ) ) {
 		$query->set( 'tax_query', array( array(
@@ -68,10 +68,35 @@ endif;
 add_filter( 'pre_get_posts', 'chipmunk_exclude_tax_children' );
 
 
+if ( ! function_exists( 'chipmunk_set_default_meta' ) ) :
+/**
+ * Set default meta values for likes and upvotes
+ */
+function chipmunk_set_default_meta( $post_ID ) {
+	$defaut_values = array(
+		'_' . CHIPMUNK_THEME_SLUG . '_post_view_count' 	 => 0,
+		'_' . CHIPMUNK_THEME_SLUG . '_post_upvote_count' => 0,
+	);
+
+	foreach ( $defaut_values as $meta => $value ) {
+		$current_value = get_post_meta( $post_ID, $meta );
+		var_dump($current_value);
+
+		if ( empty( $current_value ) && ! wp_is_post_revision( $post_ID ) ) {
+		    add_post_meta( $post_ID, $meta, $value );
+		}
+	}
+
+	return $post_ID;
+}
+endif;
+add_action( 'wp_insert_post', 'chipmunk_set_default_meta' );
+
+
 if ( ! function_exists( 'chipmunk_add_og_tags' ) ) :
 /**
-* Add facebook's Open Graph tags
-*/
+ * Add facebook's Open Graph tags
+ */
 function chipmunk_add_og_tags() {
 	$site_image = ( $logo = ChipmunkCustomizer::theme_option( 'logo' ) ) ? $logo : CHIPMUNK_TEMPLATE_URI . '/static/dist/images/chipmunk.png';
 

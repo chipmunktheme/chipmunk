@@ -698,44 +698,47 @@ a:focus, button:focus, input[type="submit"]:focus {
 .icon_instagram::before {
   content: '\EA0B';
 }
-.icon_link::before {
+.icon_like::before {
   content: '\EA0C';
 }
-.icon_linkedin::before {
+.icon_link::before {
   content: '\EA0D';
 }
-.icon_pinterest::before {
+.icon_linkedin::before {
   content: '\EA0E';
 }
-.icon_pocket::before {
+.icon_pinterest::before {
   content: '\EA0F';
 }
-.icon_producthunt::before {
+.icon_pocket::before {
   content: '\EA10';
 }
-.icon_reddit::before {
+.icon_producthunt::before {
   content: '\EA11';
 }
-.icon_reply::before, .comment__reply a::before {
+.icon_reddit::before {
   content: '\EA12';
 }
-.icon_search::before {
+.icon_reply::before, .comment__reply a::before {
   content: '\EA13';
 }
-.icon_tag::before {
+.icon_search::before {
   content: '\EA14';
 }
-.icon_twitter::before {
+.icon_tag::before {
   content: '\EA15';
 }
-.icon_view::before {
+.icon_twitter::before {
   content: '\EA16';
 }
-.icon_vimeo::before {
+.icon_view::before {
   content: '\EA17';
 }
-.icon_youtube::before {
+.icon_vimeo::before {
   content: '\EA18';
+}
+.icon_youtube::before {
+  content: '\EA19';
 }
 /*
 ** Common - Layout
