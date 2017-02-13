@@ -80,7 +80,6 @@ function chipmunk_set_default_meta( $post_ID ) {
 
 	foreach ( $defaut_values as $meta => $value ) {
 		$current_value = get_post_meta( $post_ID, $meta );
-		var_dump($current_value);
 
 		if ( empty( $current_value ) && ! wp_is_post_revision( $post_ID ) ) {
 		    add_post_meta( $post_ID, $meta, $value );

@@ -53,7 +53,7 @@
 </div>
 <!-- /.section -->
 
-<?php if ( ! empty( $resource_website ) && ! is_search() && ChipmunkCustomizer::theme_option( 'display_resource_content_separated' ) ) : ?>
+<?php if ( ! is_search() && ChipmunkCustomizer::theme_option( 'display_resource_content_separated' ) ) : ?>
 	<div class="section section_theme-gray section_separated">
 		<div class="container">
 			<div class="row">

@@ -15,13 +15,13 @@ function chipmunk_submit_resource() {
 
 	// If the reCAPTCHA is configured prevent autosubmission
 	if ( ChipmunkCustomizer::theme_option( 'recaptcha_site_key' ) ) {
-		if ( isset($_REQUEST['g-recaptcha-response'] ) and empty( $_REQUEST['g-recaptcha-response']) ) {
+		if ( isset( $_REQUEST['g-recaptcha-response'] ) and empty( $_REQUEST['g-recaptcha-response'] ) ) {
 			// Failure due to incorrect captcha validation
 			wp_send_json_error( __( 'Please verify that you are not a robot.', 'chipmunk' ) );
 		}
 	}
 
-	if ( !empty( $_REQUEST['name'] ) ) {
+	if ( ! empty( $_REQUEST['name'] ) ) {
 		$meta_prefix = '_' . CHIPMUNK_THEME_SLUG.'_resource';
 		$meta_input = array();
 
@@ -35,6 +35,7 @@ function chipmunk_submit_resource() {
 
 		$post_object = array(
 			'post_type'     => 'resource',
+			'post_status'   => 'pending',
 			'post_title'    => wp_filter_nohtml_kses( $_REQUEST['name'] ),
 			'post_content'  => wp_filter_kses( $_REQUEST['content'] ),
 			'meta_input'    => $meta_input,
@@ -52,9 +53,11 @@ function chipmunk_submit_resource() {
 			// Success
 			wp_send_json_success( ChipmunkCustomizer::theme_option( 'submission_thanks' ) );
 		}
+
 		// Failure during wp_insert_post
 		else wp_send_json_error( ChipmunkCustomizer::theme_option( 'submission_failure' ) );
 	}
+	
 	// Failure due to incorrect nonce verification
 	else wp_send_json_error( ChipmunkCustomizer::theme_option( 'submission_failure' ) );
 }
