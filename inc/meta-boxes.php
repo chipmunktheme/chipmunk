@@ -16,12 +16,13 @@ function chipmunk_add_meta_boxes() {
 	chipmunk_add_meta_box( 'resource', 'resource' );
 
 	if ( ! empty( $post ) ) {
-		$template = get_post_meta( $post->ID, '_wp_page_template', true );
+		$template = get_page_template_slug( $post->ID );
+		$template = str_replace( array( 'page-', '.php' ),  array( '', '' ),  $template );
 
-		if ( ! $template or in_array( $template, array( 'default' ) ) ) {
+		if ( empty( $template ) or in_array( $template, array( 'default' ) ) ) {
 			chipmunk_add_meta_box( 'about', 'page' );
 		}
-		else {
+		elseif ( in_array( $template, array( 'blog', 'collections', 'resources' ) ) ) {
 			remove_post_type_support( 'page', 'editor' );
 		}
 	}

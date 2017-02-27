@@ -41,7 +41,6 @@ function chipmunk_setup() {
 		'resource' => array(
 			'singular'              => __( 'Resource', 'chipmunk' ),
 			'plural'                => __( 'Resources', 'chipmunk' ),
-			'rewrite'               => array( 'slug' => __( 'resource', 'chipmunk' ), 'with_front' => false ),
 			'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'comments', 'publicize' ),
 			'menu_icon'             => 'dashicons-screenoptions',
 			'show_in_rest'          => true,
