@@ -27,7 +27,7 @@
 
 				<div class="resource__actions">
 					<?php if ( ! empty( $resource_website ) ) : ?>
-						<a href="<?php echo chipmunk_external_link( $resource_website ); ?>" class="button button_secondary" target="_blank"><?php _e( 'Visit website', 'chipmunk' ); ?></a>
+						<a href="<?php echo chipmunk_external_link( $resource_website ); ?>" class="button button_secondary" target="_blank" rel="nofollow"><?php _e( 'Visit website', 'chipmunk' ); ?></a>
 					<?php endif; ?>
 
 					<?php get_template_part( 'partials/share-box' ); ?>
@@ -38,7 +38,7 @@
 				<aside class="resource__image column column_lg-6">
 					<?php if ( is_single() ) : ?>
 						<?php if ( ! empty( $resource_website ) ) : ?>
-							<a href="<?php echo chipmunk_external_link( $resource_website ); ?>" target="_blank"><?php the_post_thumbnail( 'chipmunk-xl' ); ?></a>
+							<a href="<?php echo chipmunk_external_link( $resource_website ); ?>" target="_blank" rel="nofollow"><?php the_post_thumbnail( 'chipmunk-xl' ); ?></a>
 						<?php else : ?>
 							<?php the_post_thumbnail( 'chipmunk-xl' ); ?>
 						<?php endif; ?>
