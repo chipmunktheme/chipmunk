@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2017-03-06 14:06+0100\n"
-"PO-Revision-Date: 2017-03-06 14:29+0100\n"
+"POT-Creation-Date: 2017-03-06 14:39+0100\n"
+"PO-Revision-Date: 2017-03-06 14:39+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "This post is password protected. Enter the password to view any comments."
 
-#: comments.php:62 inc/customizer.php:197 partials/sort-resources.php:11
+#: comments.php:62 inc/customizer.php:203 partials/sort-resources.php:11
 #: partials/sort-resources.php:12
 msgid "Name"
 msgstr "Name"
@@ -56,7 +56,7 @@ msgstr "Your comment is awaiting moderation."
 msgid "Resource"
 msgstr "Resource"
 
-#: functions.php:43 inc/customizer.php:115 sections/collection-tile.php:43
+#: functions.php:43 inc/customizer.php:121 sections/collection-tile.php:43
 #: sections/resources-tabs.php:18 sections/resources-tabs.php:25
 #: sections/resources-tabs.php:32 sections/resources.php:17
 #: sections/resources.php:23
@@ -216,158 +216,166 @@ msgstr ""
 "Upload a logo for your theme. You can leave it empty to use your site name "
 "as a plain text logo."
 
+#: inc/customizer.php:39
+msgid "Open Graph Image"
+msgstr "Open Graph Image"
+
 #: inc/customizer.php:40
+msgid "1200x630 pixels"
+msgstr "1200x630 pixels"
+
+#: inc/customizer.php:46
 msgid "Visuals"
 msgstr "Visuals"
 
-#: inc/customizer.php:46
+#: inc/customizer.php:52
 msgid "Primary Color"
 msgstr "Primary Color"
 
-#: inc/customizer.php:52
+#: inc/customizer.php:58
 msgid "Primary Font"
 msgstr "Primary Font"
 
-#: inc/customizer.php:55
+#: inc/customizer.php:61
 msgid "System font"
 msgstr "System font"
 
-#: inc/customizer.php:75
+#: inc/customizer.php:81
 msgid "Custom CSS"
 msgstr "Custom CSS"
 
-#: inc/customizer.php:77
+#: inc/customizer.php:83
 msgid "Quickly add some CSS to your theme by adding it to this block."
 msgstr "Quickly add some CSS to your theme by adding it to this block."
 
-#: inc/customizer.php:83
+#: inc/customizer.php:89
 msgid "Homepage"
 msgstr "Homepage"
 
-#: inc/customizer.php:89
+#: inc/customizer.php:95
 msgid "Latest resources count"
 msgstr "Latest resources count"
 
-#: inc/customizer.php:91
+#: inc/customizer.php:97
 msgid "Enter the max resources number to show on resource sliders."
 msgstr "Enter the max resources number to show on resource sliders."
 
-#: inc/customizer.php:96
+#: inc/customizer.php:102
 msgid "Disable resource listings"
 msgstr "Disable resource listings"
 
-#: inc/customizer.php:102
+#: inc/customizer.php:108
 msgid "Disable resource listings sliders"
 msgstr "Disable resource listings sliders"
 
-#: inc/customizer.php:108
+#: inc/customizer.php:114
 msgid "Disable collections"
 msgstr "Disable collections"
 
-#: inc/customizer.php:121
+#: inc/customizer.php:127
 msgid "Number of resources per page"
 msgstr "Number of resources per page"
 
-#: inc/customizer.php:127
+#: inc/customizer.php:133
 msgid "Number of search results per page"
 msgstr "Number of search results per page"
 
-#: inc/customizer.php:133
+#: inc/customizer.php:139
 msgid "Display resource content in a separate section"
 msgstr "Display resource content in a separate section"
 
-#: inc/customizer.php:139
+#: inc/customizer.php:145
 msgid "Display resources as cards"
 msgstr "Display resources as cards"
 
-#: inc/customizer.php:145
+#: inc/customizer.php:151
 msgid "Disable resource description"
 msgstr "Disable resource description"
 
-#: inc/customizer.php:151
+#: inc/customizer.php:157
 msgid "Disable resource date"
 msgstr "Disable resource date"
 
-#: inc/customizer.php:157
+#: inc/customizer.php:163
 msgid "Disable featured panel"
 msgstr "Disable featured panel"
 
-#: inc/customizer.php:163
+#: inc/customizer.php:169
 msgid "Disable resource thumbs"
 msgstr "Disable resource thumbs"
 
-#: inc/customizer.php:169
+#: inc/customizer.php:175
 msgid "Disable collection thumbs"
 msgstr "Disable collection thumbs"
 
-#: inc/customizer.php:175
+#: inc/customizer.php:181
 msgid "Disable view count"
 msgstr "Disable view count"
 
-#: inc/customizer.php:181
+#: inc/customizer.php:187
 msgid "Disable upvoting"
 msgstr "Disable upvoting"
 
-#: inc/customizer.php:187
+#: inc/customizer.php:193
 msgid "Disable sorting"
 msgstr "Disable sorting"
 
-#: inc/customizer.php:193 partials/sort-resources.php:2
+#: inc/customizer.php:199 partials/sort-resources.php:2
 msgid "Sort by"
 msgstr "Sort by"
 
-#: inc/customizer.php:196 partials/sort-resources.php:9
+#: inc/customizer.php:202 partials/sort-resources.php:9
 #: partials/sort-resources.php:10
 msgid "Date"
 msgstr "Date"
 
-#: inc/customizer.php:198 partials/post-stats.php:20
+#: inc/customizer.php:204 partials/post-stats.php:20
 #: partials/sort-resources.php:15 partials/sort-resources.php:16
 msgid "Views"
 msgstr "Views"
 
-#: inc/customizer.php:199 partials/post-stats.php:37
+#: inc/customizer.php:205 partials/post-stats.php:37
 #: partials/sort-resources.php:20 partials/sort-resources.php:21
 msgid "Upvotes"
 msgstr "Upvotes"
 
-#: inc/customizer.php:205
+#: inc/customizer.php:211
 msgid "Sort order"
 msgstr "Sort order"
 
-#: inc/customizer.php:208
+#: inc/customizer.php:214
 msgid "Ascending"
 msgstr "Ascending"
 
-#: inc/customizer.php:209
+#: inc/customizer.php:215
 msgid "Descending"
 msgstr "Descending"
 
-#: inc/customizer.php:216
+#: inc/customizer.php:222
 msgid "Submissions"
 msgstr "Submissions"
 
-#: inc/customizer.php:222
+#: inc/customizer.php:228
 msgid "Disable user submissions"
 msgstr "Disable user submissions"
 
-#: inc/customizer.php:228
+#: inc/customizer.php:234
 msgid "Inform me about new submissions"
 msgstr "Inform me about new submissions"
 
-#: inc/customizer.php:241
+#: inc/customizer.php:247
 msgid "Submission tagline"
 msgstr "Submission tagline"
 
-#: inc/customizer.php:242
+#: inc/customizer.php:248
 msgid "Internet is huge! Help us find great content"
 msgstr "Internet is huge! Help us find great content"
 
-#: inc/customizer.php:247
+#: inc/customizer.php:253
 msgid "Submission \"Thank You\" message"
 msgstr "Submission \"Thank You\" message"
 
-#: inc/customizer.php:248
+#: inc/customizer.php:254
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
@@ -375,72 +383,72 @@ msgstr ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
 
-#: inc/customizer.php:253
+#: inc/customizer.php:259
 msgid "Submission \"Failure\" message"
 msgstr "Submission \"Failure\" message"
 
-#: inc/customizer.php:254
+#: inc/customizer.php:260
 msgid "Your submission could not be processed."
 msgstr "Your submission could not be processed."
 
-#: inc/customizer.php:259
+#: inc/customizer.php:265
 msgid "reCAPTCHA Site key"
 msgstr "reCAPTCHA Site key"
 
-#: inc/customizer.php:260
+#: inc/customizer.php:266
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 msgstr "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 
-#: inc/customizer.php:266 sections/posts.php:17
+#: inc/customizer.php:272 sections/posts.php:17
 msgid "Blog"
 msgstr "Blog"
 
-#: inc/customizer.php:272
+#: inc/customizer.php:278
 msgid "Blog list layout"
 msgstr "Blog list layout"
 
-#: inc/customizer.php:275
+#: inc/customizer.php:281
 msgid "Tiles"
 msgstr "Tiles"
 
-#: inc/customizer.php:276
+#: inc/customizer.php:282
 msgid "Excerpts"
 msgstr "Excerpts"
 
-#: inc/customizer.php:277
+#: inc/customizer.php:283
 msgid "Mixed"
 msgstr "Mixed"
 
-#: inc/customizer.php:283
+#: inc/customizer.php:289
 msgid "Number of blog posts per page"
 msgstr "Number of blog posts per page"
 
-#: inc/customizer.php:290
+#: inc/customizer.php:296
 msgid "Social Profiles"
 msgstr "Social Profiles"
 
-#: inc/customizer.php:296
+#: inc/customizer.php:302
 msgid "Ads"
 msgstr "Ads"
 
-#: inc/customizer.php:302
+#: inc/customizer.php:308
 msgid "Disable ads"
 msgstr "Disable ads"
 
-#: inc/customizer.php:308
+#: inc/customizer.php:314
 msgid "Show ads only on homepage"
 msgstr "Show ads only on homepage"
 
-#: inc/customizer.php:314
+#: inc/customizer.php:320
 msgid "Ad link URL"
 msgstr "Ad link URL"
 
-#: inc/customizer.php:319
+#: inc/customizer.php:325
 msgid "Ad image (Desktop)"
 msgstr "Ad image (Desktop)"
 
-#: inc/customizer.php:320 inc/customizer.php:326
+#: inc/customizer.php:326 inc/customizer.php:332
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
@@ -449,15 +457,15 @@ msgstr ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
 "wide."
 
-#: inc/customizer.php:325
+#: inc/customizer.php:331
 msgid "Ad image (Tablet)"
 msgstr "Ad image (Tablet)"
 
-#: inc/customizer.php:331
+#: inc/customizer.php:337
 msgid "Ad image (Mobile)"
 msgstr "Ad image (Mobile)"
 
-#: inc/customizer.php:332
+#: inc/customizer.php:338
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
@@ -466,11 +474,11 @@ msgstr ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
 "wide."
 
-#: inc/customizer.php:337
+#: inc/customizer.php:343
 msgid "Ad HTML code"
 msgstr "Ad HTML code"
 
-#: inc/customizer.php:338
+#: inc/customizer.php:344
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
@@ -478,19 +486,19 @@ msgstr ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
 
-#: inc/customizer.php:344 partials/newsletter.php:4
+#: inc/customizer.php:350 partials/newsletter.php:4
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: inc/customizer.php:350
+#: inc/customizer.php:356
 msgid "Disable newsletter"
 msgstr "Disable newsletter"
 
-#: inc/customizer.php:356
+#: inc/customizer.php:362
 msgid "Mailchimp form action URL"
 msgstr "Mailchimp form action URL"
 
-#: inc/customizer.php:358
+#: inc/customizer.php:364
 #, php-format
 msgid ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
@@ -499,35 +507,35 @@ msgstr ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
 "URL?</a>"
 
-#: inc/customizer.php:363
+#: inc/customizer.php:369
 msgid "Newsletter tagline"
 msgstr "Newsletter tagline"
 
-#: inc/customizer.php:364
+#: inc/customizer.php:370
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr "Never miss a thing! Sign up for our newsletter to stay updated."
 
-#: inc/customizer.php:370
+#: inc/customizer.php:376
 msgid "Theme Options"
 msgstr "Theme Options"
 
-#: inc/customizer.php:376
+#: inc/customizer.php:382
 msgid "Disable theme credits"
 msgstr "Disable theme credits"
 
-#: inc/customizer.php:382
+#: inc/customizer.php:388
 msgid "Disable search"
 msgstr "Disable search"
 
-#: inc/customizer.php:388
+#: inc/customizer.php:394
 msgid "Disable \"ref\" attribute"
 msgstr "Disable \"ref\" attribute"
 
-#: inc/customizer.php:394
+#: inc/customizer.php:400
 msgid "About copy (footer)"
 msgstr "About copy (footer)"
 
-#: inc/customizer.php:396
+#: inc/customizer.php:402
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
@@ -535,11 +543,11 @@ msgstr ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
 
-#: inc/customizer.php:401
+#: inc/customizer.php:407
 msgid "Tracking code"
 msgstr "Tracking code"
 
-#: inc/customizer.php:402
+#: inc/customizer.php:408
 msgid ""
 "Paste your Google Analytics (or other) tracking code here. It will be "
 "inserted before the closing body tag of your theme."

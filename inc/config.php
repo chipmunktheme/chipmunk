@@ -97,7 +97,7 @@ if ( ! function_exists( 'chipmunk_add_og_tags' ) ) :
  * Add facebook's Open Graph tags
  */
 function chipmunk_add_og_tags() {
-	$site_image = ( $logo = ChipmunkCustomizer::theme_option( 'logo' ) ) ? $logo : CHIPMUNK_TEMPLATE_URI . '/static/dist/images/chipmunk.png';
+	$site_image = ( $logo = ChipmunkCustomizer::theme_option( 'og_image' ) ) ? $logo : CHIPMUNK_TEMPLATE_URI . '/static/dist/images/chipmunk-og.png';
 
 	if ( is_single() or is_page() ) {
 		global $post;

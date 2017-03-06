@@ -33,6 +33,12 @@ class ChipmunkCustomizer {
 						'label'       => __( 'Site Logo', 'chipmunk' ),
 						'description' => __( 'Upload a logo for your theme. You can leave it empty to use your site name as a plain text logo.', 'chipmunk' ),
 					),
+					array(
+						'name'        => 'og_image',
+						'type'        => 'image',
+						'label'       => __( 'Open Graph Image', 'chipmunk' ),
+						'description' => __( '1200x630 pixels', 'chipmunk' ),
+					),
 				),
 			),
 
