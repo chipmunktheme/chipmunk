@@ -3,5 +3,6 @@
 
 {% block content %}
   {% include 'sections/resource.twig' %}
-  {% include 'sections/resources.twig' with { title: 'Related', showPromo: true } %}
+  {% include 'sections/comments.twig' %}
+  {% include 'sections/resources.twig' with { title: 'Related' } %}
 {% endblock %}

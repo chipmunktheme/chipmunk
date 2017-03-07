@@ -1,4 +1,4 @@
-{% include '../partials/head.twig' with {'pageName': pageName } %}
+{% include '../partials/head.twig' with { 'pageName': pageName } %}
 
 <body class="{{ bodyClass }}">
   <div class="body-bag">
@@ -9,7 +9,11 @@
     {% endblock %}
 
     {% include '../partials/promo.twig' %}
-    {% include '../partials/toolbox.twig' %}
+
+    {% if pageName != 'Index' %}
+      {% include '../partials/toolbox.twig' %}
+    {% endif %}
+
     {% include '../partials/newsletter.twig' %}
     {% include '../partials/page-bottom.twig' %}
     {% include '../partials/page-foot.twig' %}

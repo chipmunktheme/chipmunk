@@ -1,0 +1,26 @@
+<a href="#" class="entry column">
+	<div class="entry__image" style="background-image: url(http://placehold.it/888x540?text=Blog+post)"></div>
+
+	<div class="entry__head">
+		<ul class="entry__stats stats">
+      <li class="stats__item" title="Collections">
+        <i class="icon icon_tag"></i>
+        {% for category in post.categories %}
+          <span class="stats__tag">{{ category }}</span>
+        {% endfor %}
+      </li>
+      <li class="stats__item" title="Published: {{ post.date }}"><i class="icon icon_clock"></i> {{ post.date }}</li>
+      <li class="stats__item" title="Views"><i class="icon icon_view"></i> {{ random(500) }}</li>
+		</ul>
+
+		<h1 class="entry__title">{{ post.title }}</h1>
+
+		<div class="entry__content">
+      {{ post.content }}
+		</div>
+		<!-- /.entry -->
+
+		<button type="button" class="entry__button button button_secondary">Read more</button>
+	</div>
+	<!-- /.entry__head -->
+</a>
