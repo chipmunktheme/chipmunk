@@ -1,6 +1,6 @@
 <?php $term = get_queried_object(); ?>
 <?php $paged = chipmunk_get_current_page(); ?>
-<?php $layout = is_single() ? 'tiles' : ChipmunkCustomizer::theme_option( 'blog_layout' ); ?>
+<?php $layout = is_single() || is_front_page() ? 'tiles' : ChipmunkCustomizer::theme_option( 'blog_layout' ); ?>
 
 <?php if ( is_single() ) : ?>
 	<?php $custom_query = chipmunk_get_related_posts( get_the_ID() ); ?>
