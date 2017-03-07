@@ -117,7 +117,7 @@ class ChipmunkCustomizer {
 					array(
 						'name'        => 'disable_homepage_posts',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable posts', 'chipmunk' ),
+						'label'       => __( 'Disable latest posts', 'chipmunk' ),
 						'default'     => false,
 					),
 				),
