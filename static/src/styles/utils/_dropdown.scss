@@ -3,14 +3,17 @@
 ** -----------------------------------------------------------------------------*/
 
 .dropdown {
-  display: none;
   @include breakpoint(lg) {
     position: absolute;
     top: 100%;
     left: 50%;
     z-index: $zindex-dropdown;
+    padding: 0.25em 1em;
+    background-color: $color-white;
+    border: 1px solid $color-gray-light;
     opacity: 0;
     pointer-events: none;
+    text-align: center;
     transform: translate3d(-50%, 20px, 0);
     transition: opacity $transition-speed, transform $transition-speed;
 
@@ -23,7 +26,26 @@
 }
 
 .dropdown__trigger {
-  position: relative;
+  @include breakpoint(lg) {
+    position: relative;
+    margin-bottom: -0.75rem;
+
+    > a {
+      padding-bottom: 0.75rem;
+
+      &::after {
+        content: '';
+        display: inline-block;
+        margin-left: 0.5em;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid currentColor;
+        vertical-align: middle;
+      }
+    }
+  }
 }
 
 .dropdown__item {

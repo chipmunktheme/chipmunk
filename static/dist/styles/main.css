@@ -1451,17 +1451,18 @@ a:focus, button:focus, input[type="submit"]:focus {
 /*
 ** Utils - Dropdown
 ** -----------------------------------------------------------------------------*/
-.dropdown {
-  display: none;
-}
 @media (min-width: 980px) {
   .dropdown {
     position: absolute;
     top: 100%;
     left: 50%;
     z-index: 20;
+    padding: 0.25em 1em;
+    background-color: #FAFAFA;
+    border: 1px solid #CDCDCD;
     opacity: 0;
     pointer-events: none;
+    text-align: center;
     transform: translate3d(-50%, 20px, 0);
     transition: opacity 0.25s, transform 0.25s;
   }
@@ -1471,8 +1472,25 @@ a:focus, button:focus, input[type="submit"]:focus {
     transform: translate3d(-50%, 0, 0);
   }
 }
-.dropdown__trigger {
-  position: relative;
+@media (min-width: 980px) {
+  .dropdown__trigger {
+    position: relative;
+    margin-bottom: -0.75rem;
+  }
+  .dropdown__trigger > a {
+    padding-bottom: 0.75rem;
+  }
+  .dropdown__trigger > a::after {
+    content: '';
+    display: inline-block;
+    margin-left: 0.5em;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid currentColor;
+    vertical-align: middle;
+  }
 }
 @media (min-width: 980px) {
   .dropdown__item {
@@ -2439,7 +2457,7 @@ a:focus, button:focus, input[type="submit"]:focus {
   }
 }
 .heading_md, .entry__content h4 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   line-height: 1.6;
   letter-spacing: 0.025em;
 }
@@ -2569,8 +2587,8 @@ a:focus, button:focus, input[type="submit"]:focus {
       align-items: center;
   -ms-flex-pack: justify;
       justify-content: space-between;
-  -ms-flex-flow: wrap column;
-      flex-flow: wrap column;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
 @media (min-width: 980px) {
   .nav-primary__list {
@@ -2580,8 +2598,35 @@ a:focus, button:focus, input[type="submit"]:focus {
         justify-content: flex-start;
   }
 }
+.nav-primary__list ul {
+  font-size: 0.8em;
+}
+@media (min-height: 300px) {
+  .nav-primary__list ul {
+    margin-top: 1rem;
+  }
+}
+@media (min-height: 400px) {
+  .nav-primary__list ul {
+    margin-top: 2rem;
+  }
+}
+@media (min-height: 600px) {
+  .nav-primary__list ul {
+    margin-top: 3rem;
+  }
+}
+@media (min-width: 980px) {
+  .nav-primary__list ul {
+    margin-top: 0;
+    font-size: 0.9em;
+  }
+}
+.nav-primary__list ul li {
+  padding: 0.25em 0;
+}
 .nav-primary__item {
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 @media (min-width: 980px) {
   .nav-primary__item {
@@ -2599,7 +2644,7 @@ a:focus, button:focus, input[type="submit"]:focus {
     margin-top: 2rem;
   }
 }
-@media (min-height: 500px) {
+@media (min-height: 600px) {
   .nav-primary__item:not(:first-child) {
     margin-top: 3rem;
   }
@@ -3578,9 +3623,14 @@ a:focus, button:focus, input[type="submit"]:focus {
 }
 .tile__title {
   margin-bottom: 0.5rem;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: bold;
   line-height: 1.2;
+}
+@media (min-width: 680px) {
+  .tile__title {
+    font-size: 2.2rem;
+  }
 }
 .tile_card .tile__title {
   margin-bottom: 1rem;

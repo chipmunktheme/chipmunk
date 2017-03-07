@@ -62,16 +62,41 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-flow: wrap column;
+  flex-direction: column;
 
   @include breakpoint(lg) {
     flex-direction: row;
     justify-content: flex-start;
   }
+
+  ul {
+    font-size: 0.8em;
+
+    @media (min-height: 300px) {
+      margin-top: 1rem;
+    }
+
+    @media (min-height: 400px) {
+      margin-top: 2rem;
+    }
+
+    @media (min-height: 600px) {
+      margin-top: 3rem;
+    }
+
+    @include breakpoint(lg) {
+      margin-top: 0;
+      font-size: 0.9em;
+    }
+
+    li {
+      padding: 0.25em 0;
+    }
+  }
 }
 
 .nav-primary__item {
-  font-size: 2.2rem;
+  font-size: 2rem;
 
   @include breakpoint(lg) {
     margin-left: 4rem;
@@ -87,7 +112,7 @@
       margin-top: 2rem;
     }
 
-    @media (min-height: 500px) {
+    @media (min-height: 600px) {
       margin-top: 3rem;
     }
 
