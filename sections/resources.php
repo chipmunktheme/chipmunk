@@ -42,9 +42,5 @@
 	</div>
 
 	<?php include locate_template( 'sections/pagination.php' ); ?>
-
-	<?php if ( ! is_home() ) : ?>
-		<?php get_template_part( 'sections/promo' ); ?>
-	<?php endif; ?>
 </div>
 <!-- /.section -->

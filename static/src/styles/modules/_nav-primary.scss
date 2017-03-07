@@ -49,22 +49,24 @@
   justify-content: center;
   flex-direction: column;
   height: 100%;
+  text-align: center;
 
   @include breakpoint(lg) {
     display: block;
     height: auto;
+    text-align: left;
   }
+}
 
-  ul {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-flow: wrap column;
+.nav-primary__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: wrap column;
 
-    @include breakpoint(lg) {
-      flex-direction: row;
-      justify-content: flex-start;
-    }
+  @include breakpoint(lg) {
+    flex-direction: row;
+    justify-content: flex-start;
   }
 }
 

@@ -14,11 +14,7 @@ get_header(); ?>
 				<?php get_template_part( 'sections/entry', 'page' ); ?>
 			</div>
 		<?php endwhile; endif; ?>
-
-		<?php get_template_part( 'sections/promo' ); ?>
 	</div>
 	<!-- /.section -->
-
-	<?php get_template_part( 'sections/toolbox' ); ?>
 
 <?php get_footer(); ?>

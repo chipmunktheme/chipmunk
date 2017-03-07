@@ -71,10 +71,7 @@ get_header(); ?>
 		</div>
 
 		<?php include locate_template( 'sections/pagination.php' ); ?>
-		<?php get_template_part( 'sections/promo' ); ?>
 	</div>
 	<!-- /.section -->
-
-	<?php get_template_part( 'sections/toolbox' ); ?>
 
 <?php get_footer(); ?>

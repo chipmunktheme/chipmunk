@@ -37,10 +37,7 @@ get_header(); ?>
 
 	<div class="section section_theme-gray">
 		<?php get_template_part( 'sections/pagination' ); ?>
-		<?php get_template_part( 'sections/promo' ); ?>
 	</div>
 	<!-- /.section -->
-
-	<?php get_template_part( 'sections/toolbox' ); ?>
 
 <?php get_footer(); ?>

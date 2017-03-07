@@ -114,6 +114,12 @@ class ChipmunkCustomizer {
 						'label'       => __( 'Disable collections', 'chipmunk' ),
 						'default'     => false,
 					),
+					array(
+						'name'        => 'disable_homepage_posts',
+						'type'        => 'checkbox',
+						'label'       => __( 'Disable posts', 'chipmunk' ),
+						'default'     => false,
+					),
 				),
 			),
 

@@ -28,6 +28,5 @@ get_header(); ?>
 	<?php endif; ?>
 
 	<?php get_template_part( 'sections/posts' ); ?>
-	<?php get_template_part( 'sections/toolbox' ); ?>
 
 <?php get_footer(); ?>

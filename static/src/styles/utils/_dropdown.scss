@@ -1,0 +1,33 @@
+/*
+** Utils - Dropdown
+** -----------------------------------------------------------------------------*/
+
+.dropdown {
+  display: none;
+  @include breakpoint(lg) {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: $zindex-dropdown;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(-50%, 20px, 0);
+    transition: opacity $transition-speed, transform $transition-speed;
+
+    .dropdown__trigger:hover > & {
+      opacity: 1;
+      pointer-events: all;
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+}
+
+.dropdown__trigger {
+  position: relative;
+}
+
+.dropdown__item {
+  @include breakpoint(lg) {
+    white-space: nowrap;
+  }
+}

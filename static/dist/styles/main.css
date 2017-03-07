@@ -615,7 +615,7 @@ body::after {
   left: 0;
   right: 0;
   content: '';
-  z-index: 19;
+  z-index: 24;
   background-color: rgba(51, 51, 51, 0.8);
   opacity: 0;
   pointer-events: none;
@@ -1449,6 +1449,37 @@ a:focus, button:focus, input[type="submit"]:focus {
   right: 1rem;
 }
 /*
+** Utils - Dropdown
+** -----------------------------------------------------------------------------*/
+.dropdown {
+  display: none;
+}
+@media (min-width: 980px) {
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate3d(-50%, 20px, 0);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .dropdown__trigger:hover > .dropdown {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.dropdown__trigger {
+  position: relative;
+}
+@media (min-width: 980px) {
+  .dropdown__item {
+    white-space: nowrap;
+  }
+}
+/*
 ** Utils - Helpers
 ** -----------------------------------------------------------------------------*/
 .hide {
@@ -2226,6 +2257,8 @@ a:focus, button:focus, input[type="submit"]:focus {
       -ms-user-select: none;
           user-select: none;
   pointer-events: none;
+  opacity: 0.9;
+  filter: saturate(75%);
 }
 @media (min-width: 980px) {
   .error-404__image {
@@ -2409,7 +2442,6 @@ a:focus, button:focus, input[type="submit"]:focus {
   font-size: 1.8rem;
   line-height: 1.6;
   letter-spacing: 0.025em;
-  text-transform: uppercase;
 }
 @media (min-width: 680px) {
   .heading_md, .entry__content h4 {
@@ -2452,6 +2484,11 @@ a:focus, button:focus, input[type="submit"]:focus {
   color: #808080;
   cursor: pointer;
   transition: color 0.25s;
+}
+@media (min-width: 680px) {
+  .heading__link {
+    margin-left: 3rem;
+  }
 }
 .heading__link:first-child {
   margin-left: 0;
@@ -2516,14 +2553,16 @@ a:focus, button:focus, input[type="submit"]:focus {
   -ms-flex-direction: column;
       flex-direction: column;
   height: 100%;
+  text-align: center;
 }
 @media (min-width: 980px) {
   .nav-primary__inner {
     display: block;
     height: auto;
+    text-align: left;
   }
 }
-.nav-primary__inner ul {
+.nav-primary__list {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -2534,7 +2573,7 @@ a:focus, button:focus, input[type="submit"]:focus {
       flex-flow: wrap column;
 }
 @media (min-width: 980px) {
-  .nav-primary__inner ul {
+  .nav-primary__list {
     -ms-flex-direction: row;
         flex-direction: row;
     -ms-flex-pack: start;
@@ -2799,6 +2838,14 @@ a:focus, button:focus, input[type="submit"]:focus {
     margin-top: -5rem;
   }
 }
+.pagination:first-child:last-child {
+  margin-top: 0;
+}
+@media (min-width: 680px) {
+  .pagination:first-child:last-child {
+    margin-top: 0;
+  }
+}
 .pagination:not(:first-child) {
   margin-top: 2rem;
 }
@@ -2858,7 +2905,7 @@ a:focus, button:focus, input[type="submit"]:focus {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 20;
+  z-index: 25;
   overflow: hidden;
   pointer-events: none;
   transform: translateX(-300%);
@@ -3222,7 +3269,8 @@ a:focus, button:focus, input[type="submit"]:focus {
   border-top: 1px solid #CDCDCD;
   border-bottom: 1px solid #CDCDCD;
 }
-.section_separated + .section_separated {
+.section_separated + .section_separated,
+.section_separated + .section_theme-primary {
   margin-top: -1px;
 }
 .section_theme-white {
@@ -3230,6 +3278,9 @@ a:focus, button:focus, input[type="submit"]:focus {
 }
 .section_theme-gray {
   background-color: #E6E6E6;
+}
+.section_theme-gray + .section_theme-gray {
+  border-top: 1px solid #CDCDCD;
 }
 .section_theme-primary {
   background-color: #F38181;

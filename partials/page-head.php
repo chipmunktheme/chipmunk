@@ -18,49 +18,7 @@
 
 			<nav class="nav-primary">
 				<div class="nav-primary__inner">
-					<ul>
-						<?php $menu_items = chipmunk_get_menu_items( 'nav-primary' ); ?>
-
-						<?php if ( ! empty( $menu_items ) ) : ?>
-							<?php foreach ( $menu_items as $menu_item ) : ?>
-								<?php
-									// Current Page
-									if ( is_page( $menu_item->object_id ) ) {
-										$is_active = true;
-									}
-
-									// Blog template
-									elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-blog.php' && ( is_singular( 'post' ) || ( is_home() && $menu_item->url == get_permalink( get_option( 'page_for_posts' ) ) ) || ( get_queried_object() && get_queried_object()->taxonomy == 'category' ) ) ) {
-										$is_active = true;
-									}
-
-									// Resources template
-									elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-resources.php' && ( is_singular( 'resource' ) ) ) {
-										$is_active = true;
-									}
-
-									// Collections template
-									elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-collections.php' && ( is_tax( 'resource-collection' ) ) ) {
-										$is_active = true;
-									}
-
-									// Inactive link
-									else {
-										$is_active = false;
-									}
-								?>
-								<li class="nav-primary__item<?php echo ( $is_active ? ' nav-primary__item_active' : '' ); ?>"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
-							<?php endforeach; ?>
-						<?php endif; ?>
-
-						<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
-							<li class="nav-primary__item hidden-lg">
-								<button type="button" class="button button_secondary" data-popup-toggle>
-									<?php _e( 'Submit', 'chipmunk' ); ?>
-								</button>
-							</li>
-						<?php endif; ?>
-					</ul>
+					<?php get_template_part( 'partials/nav' ); ?>
 
 					<button type="button" class="nav-primary__close hidden-lg" data-nav-toggle>
 						<i class="icon icon_close" aria-hidden="true"></i>

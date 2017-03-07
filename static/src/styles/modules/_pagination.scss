@@ -10,6 +10,14 @@
     margin-top: -($separator * 2.5);
   }
 
+  &:first-child:last-child {
+    margin-top: 0;
+
+    @include breakpoint(md) {
+      margin-top: 0;
+    }
+  }
+
   &:not(:first-child) {
     margin-top: $separator;
 

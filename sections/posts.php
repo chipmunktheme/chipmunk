@@ -4,6 +4,8 @@
 
 <?php if ( is_single() ) : ?>
 	<?php $custom_query = chipmunk_get_related_posts( get_the_ID() ); ?>
+<?php elseif ( is_front_page() ) : ?>
+	<?php $custom_query = chipmunk_get_posts( 3 ); ?>
 <?php else : ?>
 	<?php $custom_query = chipmunk_get_posts( ChipmunkCustomizer::theme_option( 'blog_posts_per_page' ), $paged, isset( $term->term_id ) ? $term : null ); ?>
 <?php endif; ?>
@@ -12,6 +14,8 @@
 	<div class="container">
 		<?php if ( is_single() ) : ?>
 			<h2 class="section__title heading heading_md"><?php _e( 'Related', 'chipmunk' ); ?></h2>
+		<?php elseif ( is_front_page() ) : ?>
+			<h2 class="section__title heading heading_md"><?php _e( 'Latest blog posts', 'chipmunk' ); ?></h2>
 		<?php else : ?>
 			<?php if ( $term && $layout == 'tiles' ) : ?>
 				<h1 class="section__title heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( __( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : __( 'Blog', 'chipmunk' ); ?></h1>
@@ -51,7 +55,8 @@
 		<?php endif; ?>
 	</div>
 
-	<?php include locate_template( 'sections/pagination.php' ); ?>
-	<?php get_template_part( 'sections/promo' ); ?>
+	<?php if ( ! is_single() && ! is_front_page() ) : ?>
+		<?php include locate_template( 'sections/pagination.php' ); ?>
+	<?php endif; ?>
 </div>
 <!-- /.section -->

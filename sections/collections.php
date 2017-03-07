@@ -32,7 +32,5 @@
 			<?php endif; ?>
 		</div>
 	</div>
-
-	<?php get_template_part( 'sections/promo' ); ?>
 </div>
 <!-- /.section -->

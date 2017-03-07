@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
 "POT-Creation-Date: 2017-03-06 14:38+0100\n"
-"PO-Revision-Date: 2017-03-06 14:39+0100\n"
+"PO-Revision-Date: 2017-03-06 15:06+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -282,7 +282,7 @@ msgstr "Anntal søkeresultat pr side"
 
 #: inc/customizer.php:139
 msgid "Display resource content in a separate section"
-msgstr "Visning beskrivelse av materialene i et eget avsnitt"
+msgstr "Vis ressurs innhold i en separat seksjon"
 
 #: inc/customizer.php:145
 msgid "Display resources as cards"

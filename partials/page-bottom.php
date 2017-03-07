@@ -19,12 +19,16 @@
 
 					<?php if ( ! empty( $menu_items ) ) : ?>
 						<?php foreach ( $menu_items as $menu_item ) : ?>
-							<li class="nav-secondary__item"><a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a></li>
+							<li class="nav-secondary__item">
+								<a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a>
+							</li>
 						<?php endforeach; ?>
 					<?php endif; ?>
 
 					<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
-						<li class="nav-secondary__item"><button type="button" data-popup-toggle><?php _e( 'Submit', 'chipmunk' ); ?></button></li>
+						<li class="nav-secondary__item">
+							<button type="button" data-popup-toggle><?php _e( 'Submit', 'chipmunk' ); ?></button>
+						</li>
 					<?php endif; ?>
 				</ul>
 			</div>
@@ -37,7 +41,9 @@
 						<?php $social_slug = strtolower( $social ); ?>
 
 						<?php if ( ChipmunkCustomizer::theme_option( $social_slug ) ) : ?>
-							<li class="nav-secondary__item"><a href="<?php echo ChipmunkCustomizer::theme_option( $social_slug ); ?>" target="_blank"><?php echo $social; ?></a></li>
+							<li class="nav-secondary__item">
+								<a href="<?php echo ChipmunkCustomizer::theme_option( $social_slug ); ?>" target="_blank"><?php echo $social; ?></a>
+							</li>
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</ul>
