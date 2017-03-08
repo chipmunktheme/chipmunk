@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2017-03-07 16:29+0100\n"
-"PO-Revision-Date: 2017-03-07 16:38+0100\n"
+"POT-Creation-Date: 2017-03-08 11:55+0100\n"
+"PO-Revision-Date: 2017-03-08 11:56+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Dette post er passordbeskyttet. Skriv inn passord for å se kommentarer."
 
-#: comments.php:62 inc/customizer.php:209 partials/sort-resources.php:11
+#: comments.php:62 inc/customizer.php:214 partials/sort-resources.php:11
 #: partials/sort-resources.php:12
 msgid "Name"
 msgstr "Navn"
@@ -285,101 +285,113 @@ msgid "Number of search results per page"
 msgstr "Anntal søkeresultat pr side"
 
 #: inc/customizer.php:145
+msgid "Display resources as"
+msgstr "Vis ressurser som"
+
+#: inc/customizer.php:148
+msgid "Tile"
+msgstr "Flis"
+
+#: inc/customizer.php:149
+msgid "Card"
+msgstr "Kort"
+
+#: inc/customizer.php:150
+msgid "Card (blank)"
+msgstr "Kort (renslig)"
+
+#: inc/customizer.php:156
 msgid "Display resource content in a separate section"
 msgstr "Vis ressurs innhold i en separat seksjon"
 
-#: inc/customizer.php:151
-msgid "Display resources as cards"
-msgstr "Vis ressurser som kort"
-
-#: inc/customizer.php:157
+#: inc/customizer.php:162
 msgid "Disable resource description"
 msgstr "Deaktiver ressursbeskrivelse "
 
-#: inc/customizer.php:163
+#: inc/customizer.php:168
 msgid "Disable resource date"
 msgstr "Deaktiver ressurs dato"
 
-#: inc/customizer.php:169
+#: inc/customizer.php:174
 msgid "Disable featured panel"
 msgstr "Deaktiver hoved panel"
 
-#: inc/customizer.php:175
+#: inc/customizer.php:180
 msgid "Disable resource thumbs"
 msgstr "Deaktiver ressurs miniatyr bilde"
 
-#: inc/customizer.php:181
+#: inc/customizer.php:186
 msgid "Disable collection thumbs"
 msgstr "Deaktiver kolleksjon miniatyr bilde"
 
-#: inc/customizer.php:187
+#: inc/customizer.php:192
 msgid "Disable view count"
 msgstr "Deaktiver visningsteller"
 
-#: inc/customizer.php:193
+#: inc/customizer.php:198
 msgid "Disable upvoting"
 msgstr "Deaktiver avstemming"
 
-#: inc/customizer.php:199
+#: inc/customizer.php:204
 msgid "Disable sorting"
 msgstr "Deaktiver filtrering"
 
-#: inc/customizer.php:205 partials/sort-resources.php:2
+#: inc/customizer.php:210 partials/sort-resources.php:2
 msgid "Sort by"
 msgstr "Sorter ved"
 
-#: inc/customizer.php:208 partials/sort-resources.php:9
+#: inc/customizer.php:213 partials/sort-resources.php:9
 #: partials/sort-resources.php:10
 msgid "Date"
 msgstr "Dato"
 
-#: inc/customizer.php:210 partials/post-stats.php:20
+#: inc/customizer.php:215 partials/post-stats.php:20
 #: partials/sort-resources.php:15 partials/sort-resources.php:16
 msgid "Views"
 msgstr "Visninger"
 
-#: inc/customizer.php:211 partials/post-stats.php:37
+#: inc/customizer.php:216 partials/post-stats.php:37
 #: partials/sort-resources.php:20 partials/sort-resources.php:21
 msgid "Upvotes"
 msgstr "Stemmer"
 
-#: inc/customizer.php:217
+#: inc/customizer.php:222
 msgid "Sort order"
 msgstr "Sorteringsrekkefølge"
 
-#: inc/customizer.php:220
+#: inc/customizer.php:225
 msgid "Ascending"
 msgstr "Stigende"
 
-#: inc/customizer.php:221
+#: inc/customizer.php:226
 msgid "Descending"
 msgstr "Synkende"
 
-#: inc/customizer.php:228
+#: inc/customizer.php:233
 msgid "Submissions"
 msgstr "Innsendinger"
 
-#: inc/customizer.php:234
+#: inc/customizer.php:239
 msgid "Disable user submissions"
 msgstr "Deaktiver bruker innsendelser"
 
-#: inc/customizer.php:240
+#: inc/customizer.php:245
 msgid "Inform me about new submissions"
 msgstr "Informer meg om nye innsendelser"
 
-#: inc/customizer.php:253
+#: inc/customizer.php:258
 msgid "Submission tagline"
 msgstr "Innsendelse beskrivelse"
 
-#: inc/customizer.php:254
+#: inc/customizer.php:259
 msgid "Internet is huge! Help us find great content"
 msgstr "Internet er enormt. Hjelp oss med å finne bra innhold."
 
-#: inc/customizer.php:259
+#: inc/customizer.php:264
 msgid "Submission \"Thank You\" message"
 msgstr "Innsendelse \"Takke\" melding"
 
-#: inc/customizer.php:260
+#: inc/customizer.php:265
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
@@ -387,72 +399,72 @@ msgstr ""
 "Takk for ditt bidrag. Innsendelsen er sendt til eier av websiden for "
 "gjennomgang."
 
-#: inc/customizer.php:265
+#: inc/customizer.php:270
 msgid "Submission \"Failure\" message"
 msgstr "Innsendelse \"Feil\" melding"
 
-#: inc/customizer.php:266
+#: inc/customizer.php:271
 msgid "Your submission could not be processed."
 msgstr "Din innsendelse kunne ikke prosesseres."
 
-#: inc/customizer.php:271
+#: inc/customizer.php:276
 msgid "reCAPTCHA Site key"
 msgstr "reCAPTCHA nøkkel"
 
-#: inc/customizer.php:272
+#: inc/customizer.php:277
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 msgstr "Registrer ved <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 
-#: inc/customizer.php:278 sections/posts.php:22
+#: inc/customizer.php:283 sections/posts.php:22
 msgid "Blog"
 msgstr "Blogg"
 
-#: inc/customizer.php:284
+#: inc/customizer.php:289
 msgid "Blog list layout"
 msgstr "Blogg layout"
 
-#: inc/customizer.php:287
+#: inc/customizer.php:292
 msgid "Tiles"
 msgstr "Blokker"
 
-#: inc/customizer.php:288
+#: inc/customizer.php:293
 msgid "Excerpts"
 msgstr "Utdrag"
 
-#: inc/customizer.php:289
+#: inc/customizer.php:294
 msgid "Mixed"
 msgstr "Blandet"
 
-#: inc/customizer.php:295
+#: inc/customizer.php:300
 msgid "Number of blog posts per page"
 msgstr "Antall poster pr side"
 
-#: inc/customizer.php:302
+#: inc/customizer.php:307
 msgid "Social Profiles"
 msgstr "Sosiale profiler"
 
-#: inc/customizer.php:308
+#: inc/customizer.php:313
 msgid "Ads"
 msgstr "Annonser"
 
-#: inc/customizer.php:314
+#: inc/customizer.php:319
 msgid "Disable ads"
 msgstr "Deaktiver annonser"
 
-#: inc/customizer.php:320
+#: inc/customizer.php:325
 msgid "Show ads only on homepage"
 msgstr "Vis annonser kun ved hovedside"
 
-#: inc/customizer.php:326
+#: inc/customizer.php:331
 msgid "Ad link URL"
 msgstr "Legg til link URL"
 
-#: inc/customizer.php:331
+#: inc/customizer.php:336
 msgid "Ad image (Desktop)"
 msgstr "Legg til bilde (Desktop)"
 
-#: inc/customizer.php:332 inc/customizer.php:338
+#: inc/customizer.php:337 inc/customizer.php:343
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
@@ -461,15 +473,15 @@ msgstr ""
 "Vi anbefaler å bruke rektanulært horisontalt bilde som er minst %1$d piksler "
 "bred."
 
-#: inc/customizer.php:337
+#: inc/customizer.php:342
 msgid "Ad image (Tablet)"
 msgstr "Legg til bilde (Tablet)"
 
-#: inc/customizer.php:343
+#: inc/customizer.php:348
 msgid "Ad image (Mobile)"
 msgstr "Legg til bilde (Mobil)"
 
-#: inc/customizer.php:344
+#: inc/customizer.php:349
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
@@ -478,11 +490,11 @@ msgstr ""
 "Vi anbefaler å bruke rektanulært vertikalt bilde som er minst %1$d piksler "
 "bred."
 
-#: inc/customizer.php:349
+#: inc/customizer.php:354
 msgid "Ad HTML code"
 msgstr "Legg til HTML kode"
 
-#: inc/customizer.php:350
+#: inc/customizer.php:355
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
@@ -490,19 +502,19 @@ msgstr ""
 "Legg inn din Google AdSense (eller annet) gerererte HTML kode for å vise "
 "annonser på anviste plasser"
 
-#: inc/customizer.php:356 partials/newsletter.php:4
+#: inc/customizer.php:361 partials/newsletter.php:4
 msgid "Newsletter"
 msgstr "Nyhetsbrev"
 
-#: inc/customizer.php:362
+#: inc/customizer.php:367
 msgid "Disable newsletter"
 msgstr "Deaktiver nyhetsbrev"
 
-#: inc/customizer.php:368
+#: inc/customizer.php:373
 msgid "Mailchimp form action URL"
 msgstr "Mailchimp form action URL"
 
-#: inc/customizer.php:370
+#: inc/customizer.php:375
 #, php-format
 msgid ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
@@ -511,36 +523,36 @@ msgstr ""
 "Hvor finner jeg min <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
 "URL?</a>"
 
-#: inc/customizer.php:375
+#: inc/customizer.php:380
 msgid "Newsletter tagline"
 msgstr "Nyhetsbrev undertittel"
 
-#: inc/customizer.php:376
+#: inc/customizer.php:381
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr ""
 "Ikke gå glipp av noe! Meld deg på nyhetsbrevet for å holde deg oppdatert."
 
-#: inc/customizer.php:382
+#: inc/customizer.php:387
 msgid "Theme Options"
 msgstr "Tema alternativer"
 
-#: inc/customizer.php:388
+#: inc/customizer.php:393
 msgid "Disable theme credits"
 msgstr "Deaktiver tema promotering"
 
-#: inc/customizer.php:394
+#: inc/customizer.php:399
 msgid "Disable search"
 msgstr "Deaktiver søk"
 
-#: inc/customizer.php:400
+#: inc/customizer.php:405
 msgid "Disable \"ref\" attribute"
 msgstr "Deaktiver \"ref\" funksjon"
 
-#: inc/customizer.php:406
+#: inc/customizer.php:411
 msgid "About copy (footer)"
 msgstr "Om tekst (bunnlinjen)"
 
-#: inc/customizer.php:408
+#: inc/customizer.php:413
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
@@ -548,11 +560,11 @@ msgstr ""
 "Skriv inn webside beskrivelse som vises i bunnlinjen. Du kan bruke normale "
 "HTML tagger her (<p>, <a>, <strong>, <i>)."
 
-#: inc/customizer.php:413
+#: inc/customizer.php:418
 msgid "Tracking code"
 msgstr "Sporingskode"
 
-#: inc/customizer.php:414
+#: inc/customizer.php:419
 msgid ""
 "Paste your Google Analytics (or other) tracking code here. It will be "
 "inserted before the closing body tag of your theme."
@@ -798,6 +810,9 @@ msgstr "%s Kolleksjon"
 #, php-format
 msgid "%s Tag"
 msgstr "%s Knagg"
+
+#~ msgid "Display resources as cards"
+#~ msgstr "Vis ressurser som kort"
 
 #~ msgid "resource"
 #~ msgstr "ressurs"

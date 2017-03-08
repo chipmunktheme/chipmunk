@@ -140,15 +140,20 @@ class ChipmunkCustomizer {
 						'default'     => 9,
 					),
 					array(
+						'name'        => 'display_resource_as',
+						'type'        => 'select',
+						'label'       => __( 'Display resources as', 'chipmunk' ),
+						'default'     => 'tile',
+						'choices'     => array(
+							'tile'        => __( 'Tile', 'chipmunk' ),
+							'card'        => __( 'Card', 'chipmunk' ),
+							'card_blank'  => __( 'Card (blank)', 'chipmunk' ),
+						),
+					),
+					array(
 						'name'        => 'display_resource_content_separated',
 						'type'        => 'checkbox',
 						'label'       => __( 'Display resource content in a separate section', 'chipmunk' ),
-						'default'     => false,
-					),
-					array(
-						'name'        => 'display_resource_cards',
-						'type'        => 'checkbox',
-						'label'       => __( 'Display resources as cards', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(

@@ -33,8 +33,12 @@ var Actions = {
         .done(function (response) {
           console.log('Upvote: ', response);
 
-          $target.html(response.counter);
-          $target.toggleClass('is-active', response.status === 'upvoted');
+          var $targets = $('[data-post-id="' + response.post + '"]');
+
+          if ($target.length > 0) {
+            $targets.html(response.counter);
+            $targets.toggleClass('is-active', response.status === 'upvoted');
+          }
         })
         .always(function () {
           // Disable loading indicator

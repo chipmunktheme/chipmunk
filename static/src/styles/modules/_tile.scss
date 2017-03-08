@@ -27,22 +27,37 @@
 
   &_card {
     margin-bottom: $separator;
+    background-color: $color-white;
+    box-shadow: 0 1px 2px 1px rgba($color-black, 0.1);
     overflow: visible;
-
-    @include breakpoint(md) {
-      margin-bottom: $separator * 2;
-    }
 
     .tile__copy .icon_arrow {
       display: none;
     }
 
-    &:hover .tile__image {
-      opacity: 0.8;
+    &:hover {
+      background-color: rgba($color-white, 0.75);
     }
 
     .slick-slide & {
-      margin-bottom: 0;
+      margin-bottom: 5px;
+    }
+  }
+
+  &_blank {
+    background-color: transparent;
+    box-shadow: none;
+
+    @include breakpoint(md) {
+      margin-bottom: $separator * 2;
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    &:hover .tile__image {
+      opacity: 0.8;
     }
   }
 }
@@ -136,6 +151,10 @@
 
   .tile_card & {
     position: relative;
+    padding: 0 $separator $separator;
+  }
+
+  .tile_blank & {
     padding: 0;
   }
 }

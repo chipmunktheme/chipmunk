@@ -31,7 +31,7 @@
 	<?php if ( $wp_query->current_post == 0 || is_search() ) : ?>
 		<li class="stats__item"><?php echo $upvote_button; ?></li>
 	<?php else : ?>
-		<?php if ( ChipmunkCustomizer::theme_option( 'display_resource_cards' ) ) : ?>
+		<?php if ( ChipmunkCustomizer::theme_option( 'display_resource_as' ) != 'tile' ) : ?>
 			<li class="stats__item stats__item_sided"><?php echo $upvote_button; ?></li>
 		<?php else : ?>
 			<li class="stats__item" title="<?php _e( 'Upvotes', 'chipmunk' ); ?>"><?php echo $upvote_counter; ?></li>
