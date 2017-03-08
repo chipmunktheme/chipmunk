@@ -14,12 +14,12 @@
 	<div class="section section_theme-gray">
 		<div class="container">
 			<?php if ( is_single() ) : ?>
-				<h2 class="section__title heading heading_md"><?php _e( 'Related', 'chipmunk' ); ?></h2>
+				<h2 class="heading heading_md"><?php _e( 'Related', 'chipmunk' ); ?></h2>
 			<?php elseif ( is_front_page() ) : ?>
-				<h2 class="section__title heading heading_md"><?php _e( 'Latest Posts', 'chipmunk' ); ?></h2>
+				<h2 class="heading heading_md"><?php _e( 'Latest Posts', 'chipmunk' ); ?></h2>
 			<?php else : ?>
 				<?php if ( $term && $layout == 'tiles' ) : ?>
-					<h1 class="section__title heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( __( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : __( 'Blog', 'chipmunk' ); ?></h1>
+					<h1 class="heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( __( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : __( 'Blog', 'chipmunk' ); ?></h1>
 				<?php endif; ?>
 			<?php endif; ?>
 

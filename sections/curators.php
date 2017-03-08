@@ -1,7 +1,7 @@
 <?php $query = chipmunk_get_users(); ?>
 
 <?php if ( ! empty( $query->results ) ) : ?>
-	<h2 class="section__title heading heading_md"><?php _e( 'Curators', 'chipmunk' ); ?></h2>
+	<h2 class="heading heading_md"><?php _e( 'Curators', 'chipmunk' ); ?></h2>
 
 	<div class="row">
 		<?php foreach ( $query->results as $user ) : ?>

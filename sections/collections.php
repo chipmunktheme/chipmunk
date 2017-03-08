@@ -1,6 +1,6 @@
 <div class="section section_theme-gray">
 	<div class="container">
-		<?php echo chipmunk_conditional_markup( is_front_page(), 'h2', 'h1', 'section__title heading heading_md', __( 'Collections', 'chipmunk' ) ); ?>
+		<?php echo chipmunk_conditional_markup( is_front_page(), 'h2', 'h1', 'heading heading_md', __( 'Collections', 'chipmunk' ) ); ?>
 
 		<div class="row">
 			<?php

@@ -3388,6 +3388,9 @@ a:focus, button:focus, input[type="submit"]:focus {
   background-color: #FAFAFA;
   color: #F38181;
 }
+.section:empty {
+  display: none;
+}
 /*
 ** Module - Stats
 ** -----------------------------------------------------------------------------*/
