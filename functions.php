@@ -174,42 +174,10 @@ endif;
 add_action( 'admin_enqueue_scripts', 'chipmunk_admin_scripts' );
 
 
-/**
- * Theme specific helpers.
- */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/helpers.php';
-
-/**
- * Custom config actions
- */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/config.php';
-
-/**
- * Clean up WordPress defaults
- */
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/cleanup.php';
-
-/**
- * Custom meta boxes.
- */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/meta-boxes.php';
-
-/**
- * WP Customizer settings.
- */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/customizer.php';
-
-/**
- * View count functionality
- */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/views.php';
-
-/**
- * Upvotes functionality
- */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/upvotes.php';
-
-/**
- * Custom AJAX callbacks.
- */
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/ajax.php';

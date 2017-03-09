@@ -14,8 +14,8 @@
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noodp">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<?php if ( isset($post ) and is_singular( 'resource') ) : ?>
 		<?php $description = chipmunk_custom_excerpt( $post->post_content, $post->post_excerpt ); ?>
@@ -26,9 +26,9 @@
 		<link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=<?php echo ChipmunkCustomizer::theme_option( 'primary_font' ); ?>:400,700">
 	<?php endif; ?>
 
-	<?php wp_head(); ?>
-
 	<?php get_template_part( 'partials/custom-style' ); ?>
+
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>
