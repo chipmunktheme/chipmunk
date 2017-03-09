@@ -2422,8 +2422,10 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
 }
 @media (min-width: 680px) {
   .form__child {
-    margin-top: 0;
     width: 47.5%;
+  }
+  .form__child:nth-child(-n+2) {
+    margin-top: 0;
   }
 }
 .form__message {
@@ -3433,6 +3435,7 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
   font-size: 1.4rem;
   line-height: 1;
   background-color: transparent;
+  cursor: pointer;
   transition-duration: 0.25s;
   transition-property: color, background-color, border, opacity;
 }

@@ -147,33 +147,6 @@ endif;
 add_action( 'init', 'chipmunk_load_features' );
 
 
-if ( ! function_exists( 'chipmunk_scripts' ) ) :
-/**
- * Enqueue front end styles and scripts
- */
-function chipmunk_scripts() {
-	// Load Chipmunk main stylesheet
-	wp_enqueue_style( CHIPMUNK_THEME_SLUG . '-styles', CHIPMUNK_TEMPLATE_URI . '/static/dist/styles/main.min.css', array(), CHIPMUNK_VERSION );
-
-	// Load Chipmunk main script.
-	wp_enqueue_script( CHIPMUNK_THEME_SLUG . '-scripts', CHIPMUNK_TEMPLATE_URI . '/static/dist/scripts/main.min.js', array(), CHIPMUNK_VERSION, true );
-}
-endif;
-add_action( 'wp_enqueue_scripts', 'chipmunk_scripts' );
-
-
-if ( ! function_exists( 'chipmunk_admin_scripts' ) ) :
-/**
- * Enqueue admin end styles and scripts
- */
-function chipmunk_admin_scripts() {
-	// Load Chipmunk admin stylesheet
-	wp_enqueue_style( CHIPMUNK_THEME_SLUG . '-admin-styles', CHIPMUNK_TEMPLATE_URI . '/admin.css', array(), CHIPMUNK_VERSION );
-}
-endif;
-add_action( 'admin_enqueue_scripts', 'chipmunk_admin_scripts' );
-
-
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/helpers.php';
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/config.php';
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/meta-boxes.php';

@@ -447,6 +447,25 @@ function chipmunk_format_number( $number, $precision = 1 ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_fonts_url' ) ) :
+/**
+ * Parse Google Fonts url
+ */
+function chipmunk_get_fonts_url( $font_name = '' ) {
+	$font_families = array();
+
+	$font_families[] = $font_name . ':400,700';
+
+	$query_args = array(
+		'family' => urlencode( implode( '|', $font_families ) ),
+		'subset' => urlencode( 'latin,latin-ext' ),
+	);
+
+	return esc_url_raw( add_query_arg( $query_args, '//fonts.googleapis.com/css' ) );
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_ip' ) ) :
 /**
  * Utility to retrieve IP address

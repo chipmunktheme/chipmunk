@@ -3,12 +3,14 @@
 var $ = require('jquery');
 
 var Helpers = {
-  pageData: document.body.dataset,
-
   request: function (action, data) {
     var requestData = $.extend(data, { 'action': action });
+    
+    if (!ajaxurl) {
+      return false;
+    }
 
-    return $.get(this.pageData.ajaxSource, requestData);
+    return $.get(ajaxurl, requestData);
   },
 
   convertToObject: function (params) {

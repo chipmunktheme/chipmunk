@@ -6,6 +6,105 @@
  * @subpackage Chipmunk
  */
 
+if ( ! function_exists( 'chipmunk_scripts' ) ) :
+/**
+ * Enqueue front end styles and scripts
+ */
+function chipmunk_scripts() {
+	// Load Chipmunk main stylesheet
+	wp_enqueue_style( 'chipmunk-styles', CHIPMUNK_TEMPLATE_URI . '/static/dist/styles/main.min.css', array(), CHIPMUNK_VERSION );
+
+	// Load Chipmunk main script.
+	wp_enqueue_script( 'chipmunk-scripts', CHIPMUNK_TEMPLATE_URI . '/static/dist/scripts/main.min.js', array(), CHIPMUNK_VERSION, true );
+}
+endif;
+add_action( 'wp_enqueue_scripts', 'chipmunk_scripts' );
+
+
+if ( ! function_exists( 'chipmunk_admin_scripts' ) ) :
+/**
+ * Enqueue admin end styles and scripts
+ */
+function chipmunk_admin_scripts() {
+	// Load Chipmunk admin stylesheet
+	wp_enqueue_style( 'chipmunk-admin-styles', CHIPMUNK_TEMPLATE_URI . '/admin.css', array(), CHIPMUNK_VERSION );
+}
+endif;
+add_action( 'admin_enqueue_scripts', 'chipmunk_admin_scripts' );
+
+
+if ( ! function_exists( 'chipmunk_google_fonts' ) ) :
+/**
+ * Enqueue Google Fonts styles
+ */
+function chipmunk_google_fonts() {
+	$primary_font = ChipmunkCustomizer::theme_option( 'primary_font' );
+
+	if ( $primary_font != 'System' ) {
+		wp_enqueue_style( 'chipmunk-fonts', chipmunk_get_fonts_url( $primary_font ), array(), CHIPMUNK_VERSION );
+	}
+}
+endif;
+add_action( 'wp_enqueue_scripts', 'chipmunk_google_fonts' );
+
+
+if ( ! function_exists( 'chipmunk_custom_style' ) ) :
+/**
+ * Enqueue custom CSS styles
+ */
+function chipmunk_custom_style() {
+	$primary_color  = ChipmunkCustomizer::theme_option( 'primary_color' );
+	$primary_font   = ChipmunkCustomizer::theme_option( 'primary_font' );
+	$custom_css     = ChipmunkCustomizer::theme_option( 'custom_css' );
+
+	$custom_style   = ! empty( $custom_css ) ? $custom_css : '';
+	$primary_font   = $primary_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $primary_font ) . '"';
+
+	$custom_style .= "
+		body {
+			font-family: $primary_font;
+		}
+	";
+
+	if ( $primary_color and $primary_color != '#F38181' ) {
+		$custom_style .= "
+			.button_primary:hover,
+			.button_secondary,
+			.entry__content a:hover,
+			.nav-primary__close:hover,
+			.nav-socials__item a:hover,
+			.page-head__logo,
+			.pagination__item a:hover,
+			.popup__close:hover,
+			.popup__close:hover,
+			.popup__close:hover,
+			.resource__description a,
+			.section_theme-primary .button_secondary:hover,
+			.search-bar__icon:hover,
+			.search-bar__close:hover {
+				color: $primary_color;
+			}
+
+			.select2-container .select2-results__option[aria-selected=true],
+			.button_primary,
+			.button_secondary:hover,
+			.entry[href]:hover .entry__button,
+			.section_theme-primary,
+			.stats__button.is-active,
+			.stats__button.is-loading.is-active::before,
+			.tile__content_primary,
+			.tile:hover .tile__button {
+				background-color: $primary_color;
+			}
+		";
+	}
+
+	wp_add_inline_style( 'chipmunk-styles', $custom_style );
+}
+endif;
+add_action( 'wp_enqueue_scripts', 'chipmunk_custom_style' );
+
+
 if ( ! function_exists( 'chipmunk_update_permalinks' ) ) :
 /**
  * Force using postname in WP permalinks
@@ -99,7 +198,25 @@ if ( ! function_exists( 'chipmunk_add_og_tags' ) ) :
 function chipmunk_add_og_tags() {
 	$site_image = ( $logo = ChipmunkCustomizer::theme_option( 'og_image' ) ) ? $logo : CHIPMUNK_TEMPLATE_URI . '/static/dist/images/chipmunk-og.png';
 
-	if ( is_single() or is_page() ) {
+	if ( is_front_page() ) {
+		?>
+
+		<!-- / FB Open Graph -->
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="<?php echo esc_url( home_url() ); ?>">
+		<meta property="og:title" content="<?php bloginfo( 'name' ); ?>">
+		<meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
+		<meta property="og:image" content="<?php echo $site_image; ?>">
+
+		<!-- / Twitter Cards -->
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="<?php bloginfo( 'name' ); ?>">
+		<meta name="twitter:description" content="<?php bloginfo( 'description' ); ?>">
+		<meta name="twitter:image" content="<?php echo $site_image; ?>">
+
+		<?php
+	}
+	elseif ( is_single() or is_page() ) {
 		global $post;
 
 		if ( get_the_post_thumbnail( $post->ID, 'xl' ) ) {
@@ -126,23 +243,6 @@ function chipmunk_add_og_tags() {
 		<meta name="twitter:title" content="<?php printf( __( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) ); ?>">
 		<meta name="twitter:description" content="<?php echo $description ?>">
 		<meta name="twitter:image" content="<?php echo isset( $image ) ? $image : $site_image; ?>">
-
-		<?php
-	} elseif ( is_front_page() ) {
-		?>
-
-		<!-- / FB Open Graph -->
-		<meta property="og:type" content="website">
-		<meta property="og:url" content="<?php echo esc_url( home_url() ); ?>">
-		<meta property="og:title" content="<?php bloginfo( 'name' ); ?>">
-		<meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
-		<meta property="og:image" content="<?php echo $site_image; ?>">
-
-		<!-- / Twitter Cards -->
-		<meta name="twitter:card" content="summary">
-		<meta name="twitter:title" content="<?php bloginfo( 'name' ); ?>">
-		<meta name="twitter:description" content="<?php bloginfo( 'description' ); ?>">
-		<meta name="twitter:image" content="<?php echo $site_image; ?>">
 
 		<?php
 	}
