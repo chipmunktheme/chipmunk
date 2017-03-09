@@ -135,11 +135,11 @@ if ( ! function_exists( 'chipmunk_load_features' ) ) :
  * Require custom features depending on theme support
  */
 function chipmunk_load_features() {
-	$features = scandir( dirname( __FILE__ ) . '/features/' );
+	$features = scandir( CHIPMUNK_TEMPLATE_DIR . '/features/' );
 
 	foreach ( $features as $feature ) {
 		if ( current_theme_supports( str_replace( '.php', '', $feature ) ) ) {
-			require_once dirname( __FILE__ ) . '/features/' . $feature;
+			require_once CHIPMUNK_TEMPLATE_DIR . '/features/' . $feature;
 		}
 	}
 }
