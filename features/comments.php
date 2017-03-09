@@ -29,7 +29,7 @@ if ( current_theme_supports( 'comments' ) ) {
 			}
 			?>
 
-			<article <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>" >
+			<div <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>" >
 				<?php if ( $args['avatar_size'] != 0 ) : ?>
 					<figure class="comment__image">
 						<?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
@@ -39,7 +39,7 @@ if ( current_theme_supports( 'comments' ) ) {
 
 				<div class="comment__info">
 					<h4 class="comment__title"><?php echo get_comment_author_link(); ?></h4>
-					<time class="comment__date"><a href="<?php echo get_comment_link(); ?>"><?php echo get_comment_time( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), false, true ); ?></a></time>
+					<a href="<?php echo get_comment_link(); ?>"><time class="comment__date"><?php echo get_comment_time( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), false, true ); ?></time></a>
 
 					<div class="comment__content">
 						<?php comment_text(); ?>
@@ -53,7 +53,7 @@ if ( current_theme_supports( 'comments' ) ) {
 						<p class="comment__note"><?php _e( 'Your comment is awaiting moderation.', 'chipmunk' ); ?></p>
 					<?php endif; ?>
 				</div>
-			</article>
+			</div>
 			<?php
 		}
 	endif;

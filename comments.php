@@ -53,17 +53,16 @@ endif;
 		 * comment_form_default_fields filter hook
 		 */
 		$commenter = wp_get_current_commenter();
-		$req = get_option( 'require_name_email' );
-		$aria_req = ( $req ? " required aria-required='true'" : '' );
+		$req = get_option( 'require_name_email' ) ? " required" : '';
 
 		$fields = array(
 			'author' => '<div class="form__field"><div class="form__child">' .
 				'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
-				'" size="30" placeholder="' . __( 'Name', 'chipmunk' ) . ( $req ? ' *' : '' ) . '"' . $aria_req . ' /></div>',
+				'" size="30" placeholder="' . __( 'Name', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' /></div>',
 
 			'email' => '<div class="form__child">' .
 				'<input id="email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
-				'" size="30" placeholder="' . __( 'Email', 'chipmunk' ) . ( $req ? ' *' : '' ) . '"' . $aria_req . ' /></div></div>',
+				'" size="30" placeholder="' . __( 'Email', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' /></div></div>',
 
 			'url' => '',
 		);
@@ -77,7 +76,7 @@ endif;
 			'title_reply_after'    => '</h3>',
 			'submit_button'        => '<div class="form__field"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></div>',
 			'fields'               => apply_filters( 'comment_form_fields', $fields ),
-			'comment_field'        => '<div class="form__field"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . __( 'Comment', 'chipmunk' ) . ( $req ? ' *' : '' ) . '"' . $aria_req . ' data-update-rows></textarea></div>',
+			'comment_field'        => '<div class="form__field"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . __( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' data-update-rows></textarea></div>',
 		) );
 
 		?>

@@ -49,9 +49,12 @@
   font-size: 1.4rem;
   line-height: 1;
   background-color: transparent;
+  transition-duration: $transition-speed;
+  transition-property: color, background-color, border, opacity;
 
   &:hover {
     color: $color-black;
+    border-color: $color-black;
   }
 
   &.is-active {

@@ -30,8 +30,8 @@
 			</ul>
 		<?php endif; ?>
 
-		<button type="button" class="tile__button button button_secondary visible-lg-block">
+		<span class="tile__button button button_secondary visible-lg-block">
 			<?php _e( 'Read more', 'chipmunk' ); ?>
-		</button>
+		</span>
 	</div>
 </a>

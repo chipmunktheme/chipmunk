@@ -1,50 +1,17 @@
 <?php $wide_content = get_post_meta( get_the_ID(), '_' . CHIPMUNK_THEME_SLUG . '_about_wide_content', true ); ?>
 <?php $curators_enabled = get_post_meta( get_the_ID(), '_' . CHIPMUNK_THEME_SLUG . '_about_curators_enabled', true ); ?>
+<?php $columns = $wide_content ? 10 : 8; ?>
 
-<?php if ( $wide_content ) : ?>
-	<?php
-	$dom = new DOMDocument( '1.0', 'UTF-8' );
-	$content = mb_convert_encoding( '<div>' . wpautop( get_the_content() ) . '</div>', 'HTML-ENTITIES', 'UTF-8' );
+<div class="row">
+	<div class="column column_lg-<?php echo $columns; ?> column_lg-offset-<?php echo (12 - $columns) / 2; ?>">
+		<h1 class="entry__subtitle heading heading_md"><?php the_title(); ?></h1>
 
-	if ( defined( 'LIBXML_HTML_NOIMPLIED' ) ) {
-		$dom->loadHTML( $content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-	}
-	else {
-		$dom->loadHTML( $content );
-	}
-
-	$content = $dom->getElementsByTagName( 'div' )->item( 0 );
-	$heading = $content->childNodes->item( 0 );
-	$content->removeChild( $heading );
-	$content = preg_replace( '/\<[\/]{0,1}div[^\>]*\>/i', '', $dom->saveHTML() );
-	?>
-
-	<h1 class="entry__subtitle heading heading_md"><?php the_title(); ?></h1>
-
-	<div class="entry__content row">
-		<div class="entry__column column column_lg-5">
-			<<?php echo $heading->nodeName;?>><?php echo $heading->nodeValue; ?></<?php echo $heading->nodeName;?>>
+		<div class="entry__content">
+			<?php the_content(); ?>
 		</div>
-
-		<div class="entry__column column column_lg-6 column_lg-offset-1">
-			<?php echo $content; ?>
-		</div>
+		<!-- /.entry -->
 	</div>
-	<!-- /.entry -->
-
-<?php else : ?>
-
-	<div class="row">
-		<div class="column column_lg-8 column_lg-offset-2">
-			<h1 class="entry__subtitle heading heading_md"><?php the_title(); ?></h1>
-
-			<div class="entry__content">
-				<?php the_content(); ?>
-			</div>
-			<!-- /.entry -->
-		</div>
-	</div>
-<?php endif; ?>
+</div>
 
 <?php if ( $curators_enabled ) : ?>
 	<div class="separator"></div>

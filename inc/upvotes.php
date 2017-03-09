@@ -27,7 +27,7 @@ function chipmunk_upvote_button( $post_id, $class = '' ) {
 		$title = __( 'Upvote', 'chipmunk' );
 	}
 
-	$counter = "<button class='$class' title='$title' data-action='$action' data-nonce='$nonce' data-post-id='$post_id'>$counter</button>";
+	$counter = "<span class='$class' title='$title' data-action='$action' data-nonce='$nonce' data-post-id='$post_id'>$counter</span>";
 	return $counter;
 }
 endif;
