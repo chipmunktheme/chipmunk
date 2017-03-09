@@ -30,19 +30,21 @@ endif;
 	 */
 	?>
 	<?php if ( have_comments() ) : ?>
-		<?php $comments_number = get_comments_number(); ?>
-		<h3 class="heading heading_md"><?php printf( _n( '%s Comment', '%s Comments', $comments_number ), number_format_i18n( $comments_number ) ); ?></h3>
+		<h3 class="heading heading_md"><?php printf( _n( '%s Comment', '%s Comments', get_comments_number() ), number_format_i18n( get_comments_number() ) ); ?></h3>
 
-		<?php
-		/**
-		 * List comments acording to custom_comment function specified
-		 * in commentstemplate.php file
-		 */
-		wp_list_comments( array(
-			'avatar_size' => 40,
-			'callback'    => 'chipmunk_comment'
-		 ) );
-		 ?>
+		<ul>
+			<?php
+			/**
+			 * List comments acording to custom_comment function specified
+			 * in commentstemplate.php file
+			 */
+			wp_list_comments( array(
+				'avatar_size' => 40,
+				'type'        => 'comment',
+				'callback'    => 'chipmunk_comment'
+			 ) );
+			 ?>
+		 </ul>
 	<?php endif; ?>
 
 	<?php if ( comments_open() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
@@ -74,7 +76,7 @@ endif;
 			'comment_notes_after'  => '',
 			'title_reply_before'   => '<h3 class="heading heading_md">',
 			'title_reply_after'    => '</h3>',
-			'submit_button'        => '<div class="form__field"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></div>',
+			'submit_button'        => '<span class="form__field"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></span>',
 			'fields'               => apply_filters( 'comment_form_fields', $fields ),
 			'comment_field'        => '<div class="form__field"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . __( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' data-update-rows></textarea></div>',
 		) );

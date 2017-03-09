@@ -29,31 +29,32 @@ if ( current_theme_supports( 'comments' ) ) {
 			}
 			?>
 
-			<div <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>" >
-				<?php if ( $args['avatar_size'] != 0 ) : ?>
-					<figure class="comment__image">
-						<?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
-					</figure>
-					<!-- /.comment__image -->
-				<?php endif; ?>
-
-				<div class="comment__info">
-					<h4 class="comment__title"><?php echo get_comment_author_link(); ?></h4>
-					<a href="<?php echo get_comment_link(); ?>"><time class="comment__date"><?php echo get_comment_time( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), false, true ); ?></time></a>
-
-					<div class="comment__content">
-						<?php comment_text(); ?>
-					</div>
-
-					<div class="comment__reply">
-						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-					</div>
-
-					<?php if ( ! $comment->comment_approved ) : ?>
-						<p class="comment__note"><?php _e( 'Your comment is awaiting moderation.', 'chipmunk' ); ?></p>
+			<li>
+				<article <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+					<?php if ( $args['avatar_size'] != 0 ) : ?>
+						<figure class="comment__image">
+							<?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
+						</figure>
+						<!-- /.comment__image -->
 					<?php endif; ?>
-				</div>
-			</div>
+
+					<div class="comment__info">
+						<h4 class="comment__title"><?php echo get_comment_author_link(); ?></h4>
+						<a href="<?php echo get_comment_link(); ?>"><time class="comment__date" datetime="<?php comment_time( 'Y-m-d H:i' ); ?>"><?php echo get_comment_time( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), false, true ); ?></time></a>
+
+						<div class="comment__content">
+							<?php comment_text(); ?>
+						</div>
+
+						<div class="comment__reply">
+							<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+						</div>
+
+						<?php if ( ! $comment->comment_approved ) : ?>
+							<p class="comment__note"><?php _e( 'Your comment is awaiting moderation.', 'chipmunk' ); ?></p>
+						<?php endif; ?>
+					</div>
+				</article>
 			<?php
 		}
 	endif;

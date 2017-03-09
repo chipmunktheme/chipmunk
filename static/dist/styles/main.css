@@ -1929,6 +1929,9 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
 .comment-respond p a:hover {
   color: #333333;
 }
+.comment-respond .form-submit .form__field {
+  margin-top: 4rem;
+}
 /*
 ** Module - Entry
 ** -----------------------------------------------------------------------------*/
@@ -2376,16 +2379,12 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
       flex-wrap: wrap;
   -ms-flex-pack: justify;
       justify-content: space-between;
+}
+.form__field:not(:first-child) {
   margin-top: 3rem;
 }
-.form__field:first-child {
-  margin-top: 0;
-}
-.form_compact .form__field {
+.form_compact .form__field:not(:first-child) {
   margin-top: 2rem;
-}
-.form_compact .form__field:first-child {
-  margin-top: 0;
 }
 @media (min-width: 680px) {
   .form__field_separated {
@@ -2417,10 +2416,9 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
 }
 .form__child {
   width: 100%;
-  margin-top: 3rem;
 }
-.form__child:first-child {
-  margin-top: 0;
+.form__child:not(:first-child) {
+  margin-top: 3rem;
 }
 @media (min-width: 680px) {
   .form__child {

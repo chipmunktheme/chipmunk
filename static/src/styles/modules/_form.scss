@@ -66,18 +66,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: $separator * 1.5;
 
-  &:first-child {
-    margin-top: 0;
+  &:not(:first-child) {
+    margin-top: $separator * 1.5;
   }
 
-  .form_compact & {
+  .form_compact &:not(:first-child) {
     margin-top: $separator;
-
-    &:first-child {
-      margin-top: 0;
-    }
   }
 
   &_separated {
@@ -113,10 +108,9 @@
 
 .form__child {
   width: 100%;
-  margin-top: $separator * 1.5;
 
-  &:first-child {
-    margin-top: 0;
+  &:not(:first-child) {
+    margin-top: $separator * 1.5;
   }
 
   @include breakpoint(md) {

@@ -11,7 +11,7 @@
 					'type'     => 'text',
 					'quantity' => -1,
 				);
-				
+
 				include locate_template( 'partials/post-stats.php' );
 			?>
 		</ul>
@@ -23,9 +23,9 @@
 		</div>
 		<!-- /.entry -->
 
-		<button type="button" class="entry__button button button_secondary">
+		<span class="entry__button button button_secondary">
 			<?php _e( 'Read more', 'chipmunk' ); ?>
-		</button>
+		</span>
 	</div>
 	<!-- /.entry__head -->
 </a>
