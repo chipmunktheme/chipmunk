@@ -21,7 +21,9 @@ get_header(); ?>
 			</h1>
 
 			<?php if ( ! have_posts() ) : ?>
-				<p class="text_content text_separated"><?php esc_html_e( 'Sorry, your search did not match any resources.', 'chipmunk' ); ?></p>
+				<p class="text_content text_separated">
+					<?php esc_html_e( 'Sorry, your search did not match any resources.', 'chipmunk' ); ?>
+				</p>
 			<?php endif; ?>
 		</div>
 	</div>

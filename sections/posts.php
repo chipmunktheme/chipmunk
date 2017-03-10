@@ -48,11 +48,15 @@
 					<?php endwhile; ?>
 				</div>
 			<?php else : ?>
-				<?php if ( current_user_can( 'publish_posts' ) ) : ?>
-					<p class="text_content text_separated"><?php printf( wp_kses( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'chipmunk' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( admin_url( 'post-new.php?post_type=post' ) ) ); ?></p>
-				<?php else : ?>
-					<p class="text_content text_separated"><?php esc_html_e( 'Sorry, there are no posts to display yet.', 'chipmunk' ); ?></p>
-				<?php endif; ?>
+				<p class="text_content text_separated">
+					<?php if ( current_user_can( 'publish_posts' ) ) : ?>
+						<?php esc_html_e( 'Ready to publish your first post?', 'chipmunk' ); ?>
+
+						<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=post' ) ); ?>"><?php esc_html_e( 'Get started here', 'chipmunk' ); ?></a>.
+					<?php else : ?>
+						<?php esc_html_e( 'Sorry, there are no posts to display yet.', 'chipmunk' ); ?>
+					<?php endif; ?>
+				</p>
 			<?php endif; ?>
 		</div>
 

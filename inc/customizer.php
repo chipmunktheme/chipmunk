@@ -22,6 +22,67 @@ class ChipmunkCustomizer {
 	public static $socials = array();
 
 	public function __construct() {
+		self::$socials = array(
+			'Twitter',
+			'Facebook',
+			'Google',
+			'Instagram',
+			'LinkedIn',
+			'Pinterest',
+			'Flickr',
+			'Vimeo',
+			'YouTube',
+			'Reddit',
+			'ProductHunt'
+		);
+
+		add_action( 'customize_register', array( $this, 'customize_register' ) );
+	}
+
+	/**
+	 * Get Chipmunk theme option
+	 */
+	public static function theme_option( $name, $default = false ) {
+		$options = ( get_option( self::$settings_name ) ) ? get_option( self::$settings_name ) : null;
+
+		// return the option if it exists
+		if ( isset( $options[$name] ) && ! empty( $options[$name] ) ) {
+			return apply_filters( self::$settings_name . '_$name', $options[$name] );
+		}
+
+		// return default if it exists
+		if ( $default ) {
+			return apply_filters( self::$settings_name . '_$name', $default );
+		}
+
+		// return field default if it exists
+		return apply_filters( self::$settings_name . '_$name', self::find_default_by_name( $name ) );
+	}
+
+	/**
+	 * Init customization options
+	 */
+	public function customize_register( $wp_customize ) {
+		// Store global customize object
+		$this->customize = $wp_customize;
+
+		// Manipulate setting sections
+		$this->remove_sections();
+		$this->add_sections();
+	}
+
+	/**
+	 * Remove unnecessary sections from Customize panel
+	 */
+	private function remove_sections() {
+		$this->customize->remove_section( 'themes' );
+		$this->customize->remove_section( 'static_front_page' );
+	}
+
+	/**
+	 * Add custom sections to Customize panel
+	 */
+	private function add_sections() {
 		self::$sections = array(
 			array(
 				'title'         => esc_html__( 'Site Identity', 'chipmunk' ),
@@ -421,82 +482,13 @@ class ChipmunkCustomizer {
 			)
 		);
 
-		self::$socials = array(
-			'Twitter',
-			'Facebook',
-			'Google',
-			'Instagram',
-			'LinkedIn',
-			'Pinterest',
-			'Flickr',
-			'Vimeo',
-			'YouTube',
-			'Reddit',
-			'ProductHunt'
-		);
-
-		add_action( 'customize_register', array( $this, 'customize_register' ) );
-	}
-
-	/**
-	 * Get Chipmunk theme option
-	 */
-	public static function theme_option( $name, $default = false ) {
-		$options = ( get_option( self::$settings_name ) ) ? get_option( self::$settings_name ) : null;
-
-		// return the option if it exists
-		if ( isset( $options[$name] ) && ! empty( $options[$name] ) ) {
-			return apply_filters( self::$settings_name . '_$name', $options[$name] );
-		}
-
-		// return default if it exists
-		if ( $default ) {
-			return apply_filters( self::$settings_name . '_$name', $default );
-		}
-
-		// return field default if it exists
-		return apply_filters( self::$settings_name . '_$name', self::find_default_by_name( $name ) );
-	}
-
-	/**
-	 * Init customization options
-	 */
-	public function customize_register( $wp_customize ) {
-		// Store global customize object
-		$this->customize = $wp_customize;
-
-		// Manipulate setting sections
-		$this->remove_sections();
-		$this->add_sections();
-		$this->populate_sections();
-	}
-
-	/**
-	 * Remove unnecessary sections from Customize panel
-	 */
-	private function remove_sections() {
-		$this->customize->remove_section( 'themes' );
-		$this->customize->remove_section( 'static_front_page' );
-	}
-
-	/**
-	 * Add custom sections to Customize panel
-	 */
-	private function add_sections() {
-		foreach(self::$sections as $index => $section) {
+		foreach ( self::$sections as $index => $section ) {
 			$this->customize->add_section( $section['slug'], array(
 				'capability'  => self::$capability,
 				'title'       => $section['title'],
 				'priority'    => $index + 100
 			) );
-		}
-	}
 
-	/**
-	 * Populate custom sections with customization options
-	 */
-	private function populate_sections() {
-		foreach( self::$sections as $index => $section ) {
 			if ( ! empty( $section['callback'] ) ) {
 				call_user_func( array( $this, $section['callback'] ) );
 			}

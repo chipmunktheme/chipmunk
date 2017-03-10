@@ -33,11 +33,15 @@
 				<?php endwhile; ?>
 			</div>
 		<?php else : ?>
-			<?php if ( current_user_can( 'publish_posts' ) ) : ?>
-				<p class="text_content text_separated"><?php printf( wp_kses( __( 'Ready to publish your first resource? <a href="%1$s">Get started here</a>.', 'chipmunk' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( admin_url( 'post-new.php?post_type=resource' ) ) ); ?></p>
-			<?php else : ?>
-				<p class="text_content text_separated"><?php esc_html_e( 'Sorry, there are no resources to display yet.', 'chipmunk' ); ?></p>
-			<?php endif; ?>
+			<p class="text_content text_separated">
+				<?php if ( current_user_can( 'publish_posts' ) ) : ?>
+					<?php esc_html_e( 'Ready to publish your first resource?', 'chipmunk' ); ?>
+
+					<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=resource' ) ); ?>"><?php esc_html_e( 'Get started here', 'chipmunk' ); ?></a>.
+				<?php else : ?>
+					<?php esc_html_e( 'Sorry, there are no resources to display yet.', 'chipmunk' ); ?>
+				<?php endif; ?>
+			</p>
 		<?php endif; ?>
 	</div>
 

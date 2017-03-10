@@ -1,7 +1,8 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2017-03-08 11:53+0100\n"
+"POT-Creation-Date: 2017-03-10 14:39+0100\n"
 "PO-Revision-Date: 2017-03-08 11:53+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
@@ -13,804 +14,787 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _e;__;_x;_ex\n"
+"X-Poedit-KeywordsList: _e;__;_x;_ex;_n:1,2;esc_html_e;esc_html__;esc_html_x;"
+"esc_attr_e;esc_attr__;esc_attr_x\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: static\n"
 
 #: 404.php:15
 msgid "404! The page you are looking for couldn't be found."
-msgstr "404! The page you are looking for couldn’t be found."
+msgstr ""
 
 #: 404.php:16
 msgid "Bring me to the frontpage"
-msgstr "Bring me to the frontpage"
+msgstr ""
 
 #: comments.php:14
 msgid ""
 "This post is password protected. Enter the password to view any comments."
 msgstr ""
-"This post is password protected. Enter the password to view any comments."
 
-#: comments.php:62 inc/customizer.php:214 partials/sort-resources.php:11
+#: comments.php:33
+#, php-format
+msgid "%s Comment"
+msgid_plural "%s Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:63 inc/customizer.php:213 partials/sort-resources.php:11
 #: partials/sort-resources.php:12
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
-#: comments.php:66
+#: comments.php:67
 msgid "Email"
-msgstr "Email"
+msgstr ""
 
-#: comments.php:80
+#: comments.php:81
 msgid "Comment"
-msgstr "Comment"
+msgstr ""
 
-#: features/comments.php:49
+#: features/comments.php:50
 msgid "Reply"
-msgstr "Reply"
+msgstr ""
 
-#: features/comments.php:53
+#: features/comments.php:54
 msgid "Your comment is awaiting moderation."
-msgstr "Your comment is awaiting moderation."
+msgstr ""
 
 #: functions.php:42
 msgid "Resource"
-msgstr "Resource"
+msgstr ""
 
-#: functions.php:43 inc/customizer.php:127 sections/collection-tile.php:43
+#: functions.php:43 inc/customizer.php:126 sections/collection-tile.php:43
 #: sections/resources-tabs.php:18 sections/resources-tabs.php:25
 #: sections/resources-tabs.php:32 sections/resources.php:17
 #: sections/resources.php:23
 msgid "Resources"
-msgstr "Resources"
+msgstr ""
 
 #: functions.php:50
 msgid "Add New Resource"
-msgstr "Add New Resource"
+msgstr ""
 
 #: functions.php:51
 msgid "Edit Resource"
-msgstr "Edit Resource"
+msgstr ""
 
 #: functions.php:52
 msgid "New Resource"
-msgstr "New Resource"
+msgstr ""
 
 #: functions.php:53
 msgid "View Resource"
-msgstr "View Resource"
+msgstr ""
 
 #: functions.php:54
 msgid "All Resources"
-msgstr "All Resources"
+msgstr ""
 
 #: functions.php:55
 msgid "Search Resources"
-msgstr "Search Resources"
+msgstr ""
 
 #: functions.php:56
 msgid "No Resources found."
-msgstr "No Resources found."
+msgstr ""
 
 #: functions.php:57
 msgid "No Resources found in trash."
-msgstr "No Resources found in trash."
+msgstr ""
 
-#: functions.php:64 partials/popup.php:19 partials/popup.php:20
+#: functions.php:64 partials/popup.php:20 partials/popup.php:21
 msgid "Collection"
-msgstr "Collection"
+msgstr ""
 
 #: functions.php:65 partials/post-stats.php:4 sections/collections.php:3
 msgid "Collections"
-msgstr "Collections"
+msgstr ""
 
 #: functions.php:67
 msgid "collection"
-msgstr "collection"
+msgstr ""
 
 #: functions.php:71
 msgid "Add Collection"
-msgstr "Add Collection"
+msgstr ""
 
 #: functions.php:72
 msgid "New Collection Name"
-msgstr "New Collection Name"
+msgstr ""
 
 #: functions.php:73
 msgid "Edit Collection"
-msgstr "Edit Collection"
+msgstr ""
 
 #: functions.php:74
 msgid "Update Collection"
-msgstr "Update Collection"
+msgstr ""
 
 #: functions.php:75
 msgid "Parent Collection"
-msgstr "Parent Collection"
+msgstr ""
 
 #: functions.php:76
 msgid "Parent Collection:"
-msgstr "Parent Collection:"
+msgstr ""
 
 #: functions.php:77
 msgid "All Collections"
-msgstr "All Collections"
+msgstr ""
 
 #: functions.php:78
 msgid "Search Collections"
-msgstr "Search Collections"
+msgstr ""
 
 #: functions.php:83
 msgid "Tag"
-msgstr "Tag"
+msgstr ""
 
 #: functions.php:84
 msgid "Tags"
-msgstr "Tags"
+msgstr ""
 
 #: functions.php:89
 msgid "Add Tag"
-msgstr "Add Tag"
+msgstr ""
 
 #: functions.php:90
 msgid "New Tag Name"
-msgstr "New Tag Name"
+msgstr ""
 
 #: functions.php:91
 msgid "Edit Tag"
-msgstr "Edit Tag"
+msgstr ""
 
 #: functions.php:92
 msgid "Update Tag"
-msgstr "Update Tag"
+msgstr ""
 
 #: functions.php:93
 msgid "Parent Tag"
-msgstr "Parent Tag"
+msgstr ""
 
 #: functions.php:94
 msgid "Parent Tag:"
-msgstr "Parent Tag:"
+msgstr ""
 
 #: functions.php:95
 msgid "All Tags"
-msgstr "All Tags"
+msgstr ""
 
 #: functions.php:96
 msgid "Search Tags"
-msgstr "Search Tags"
+msgstr ""
 
 #: inc/ajax.php:20
 msgid "Please verify that you are not a robot."
-msgstr "Please verify that you are not a robot."
+msgstr ""
 
 #: inc/ajax.php:97
 msgid "New user submission"
-msgstr "New user submission"
+msgstr ""
 
-#: inc/ajax.php:98
+#: inc/ajax.php:99
 msgid "Review submission"
-msgstr "Review submission"
+msgstr ""
 
-#: inc/ajax.php:118
+#: inc/ajax.php:119
 msgid "Not permitted."
-msgstr "Not permitted."
+msgstr ""
 
-#: inc/config.php:119 inc/config.php:126
+#: inc/config.php:137 inc/config.php:144
 #, php-format
 msgid "%s on %s"
-msgstr "%s on %s"
+msgstr ""
 
 #: inc/customizer.php:27
 msgid "Site Identity"
-msgstr "Site Identity"
+msgstr ""
 
 #: inc/customizer.php:33
 msgid "Site Logo"
-msgstr "Site Logo"
+msgstr ""
 
 #: inc/customizer.php:34
 msgid ""
 "Upload a logo for your theme. You can leave it empty to use your site name "
 "as a plain text logo."
 msgstr ""
-"Upload a logo for your theme. You can leave it empty to use your site name "
-"as a plain text logo."
 
 #: inc/customizer.php:39
 msgid "Open Graph Image"
-msgstr "Open Graph Image"
+msgstr ""
 
 #: inc/customizer.php:40
 msgid "1200x630 pixels"
-msgstr "1200x630 pixels"
+msgstr ""
 
 #: inc/customizer.php:46
 msgid "Visuals"
-msgstr "Visuals"
+msgstr ""
 
 #: inc/customizer.php:52
 msgid "Primary Color"
-msgstr "Primary Color"
+msgstr ""
 
 #: inc/customizer.php:58
 msgid "Primary Font"
-msgstr "Primary Font"
+msgstr ""
 
 #: inc/customizer.php:61
 msgid "System font"
-msgstr "System font"
+msgstr ""
 
-#: inc/customizer.php:81
+#: inc/customizer.php:80
 msgid "Custom CSS"
-msgstr "Custom CSS"
+msgstr ""
 
-#: inc/customizer.php:83
+#: inc/customizer.php:82
 msgid "Quickly add some CSS to your theme by adding it to this block."
-msgstr "Quickly add some CSS to your theme by adding it to this block."
+msgstr ""
 
-#: inc/customizer.php:89
+#: inc/customizer.php:88
 msgid "Homepage"
-msgstr "Homepage"
+msgstr ""
 
-#: inc/customizer.php:95
+#: inc/customizer.php:94
 msgid "Latest resources count"
-msgstr "Latest resources count"
+msgstr ""
 
-#: inc/customizer.php:97
+#: inc/customizer.php:96
 msgid "Enter the max resources number to show on resource sliders."
-msgstr "Enter the max resources number to show on resource sliders."
+msgstr ""
 
-#: inc/customizer.php:102
+#: inc/customizer.php:101
 msgid "Disable resource listings"
-msgstr "Disable resource listings"
+msgstr ""
 
-#: inc/customizer.php:108
+#: inc/customizer.php:107
 msgid "Disable resource listings sliders"
-msgstr "Disable resource listings sliders"
+msgstr ""
 
-#: inc/customizer.php:114
+#: inc/customizer.php:113
 msgid "Disable collections"
-msgstr "Disable collections"
+msgstr ""
 
-#: inc/customizer.php:120
+#: inc/customizer.php:119
 msgid "Disable latest posts"
-msgstr "Disable latest posts"
+msgstr ""
 
-#: inc/customizer.php:133
+#: inc/customizer.php:132
 msgid "Number of resources per page"
-msgstr "Number of resources per page"
+msgstr ""
 
-#: inc/customizer.php:139
+#: inc/customizer.php:138
 msgid "Number of search results per page"
-msgstr "Number of search results per page"
+msgstr ""
 
-#: inc/customizer.php:145
+#: inc/customizer.php:144
 msgid "Display resources as"
-msgstr "Display resources as"
+msgstr ""
+
+#: inc/customizer.php:147
+msgid "Tile"
+msgstr ""
 
 #: inc/customizer.php:148
-msgid "Tile"
-msgstr "Tile"
+msgid "Card"
+msgstr ""
 
 #: inc/customizer.php:149
-msgid "Card"
-msgstr "Card"
-
-#: inc/customizer.php:150
 msgid "Card (blank)"
-msgstr "Card (blank)"
+msgstr ""
 
-#: inc/customizer.php:156
+#: inc/customizer.php:155
 msgid "Display resource content in a separate section"
-msgstr "Display resource content in a separate section"
+msgstr ""
 
-#: inc/customizer.php:162
+#: inc/customizer.php:161
 msgid "Disable resource description"
-msgstr "Disable resource description"
+msgstr ""
 
-#: inc/customizer.php:168
+#: inc/customizer.php:167
 msgid "Disable resource date"
-msgstr "Disable resource date"
+msgstr ""
 
-#: inc/customizer.php:174
+#: inc/customizer.php:173
 msgid "Disable featured panel"
-msgstr "Disable featured panel"
+msgstr ""
 
-#: inc/customizer.php:180
+#: inc/customizer.php:179
 msgid "Disable resource thumbs"
-msgstr "Disable resource thumbs"
+msgstr ""
 
-#: inc/customizer.php:186
+#: inc/customizer.php:185
 msgid "Disable collection thumbs"
-msgstr "Disable collection thumbs"
+msgstr ""
 
-#: inc/customizer.php:192
+#: inc/customizer.php:191
 msgid "Disable view count"
-msgstr "Disable view count"
+msgstr ""
 
-#: inc/customizer.php:198
+#: inc/customizer.php:197
 msgid "Disable upvoting"
-msgstr "Disable upvoting"
+msgstr ""
 
-#: inc/customizer.php:204
+#: inc/customizer.php:203
 msgid "Disable sorting"
-msgstr "Disable sorting"
+msgstr ""
 
-#: inc/customizer.php:210 partials/sort-resources.php:2
+#: inc/customizer.php:209 partials/sort-resources.php:2
 msgid "Sort by"
-msgstr "Sort by"
+msgstr ""
 
-#: inc/customizer.php:213 partials/sort-resources.php:9
+#: inc/customizer.php:212 partials/sort-resources.php:9
 #: partials/sort-resources.php:10
 msgid "Date"
-msgstr "Date"
+msgstr ""
 
-#: inc/customizer.php:215 partials/post-stats.php:20
+#: inc/customizer.php:214 partials/post-stats.php:20
 #: partials/sort-resources.php:15 partials/sort-resources.php:16
 msgid "Views"
-msgstr "Views"
+msgstr ""
 
-#: inc/customizer.php:216 partials/post-stats.php:37
+#: inc/customizer.php:215 partials/post-stats.php:37
 #: partials/sort-resources.php:20 partials/sort-resources.php:21
 msgid "Upvotes"
-msgstr "Upvotes"
+msgstr ""
 
-#: inc/customizer.php:222
+#: inc/customizer.php:221
 msgid "Sort order"
-msgstr "Sort order"
+msgstr ""
+
+#: inc/customizer.php:224
+msgid "Ascending"
+msgstr ""
 
 #: inc/customizer.php:225
-msgid "Ascending"
-msgstr "Ascending"
-
-#: inc/customizer.php:226
 msgid "Descending"
-msgstr "Descending"
+msgstr ""
 
-#: inc/customizer.php:233
+#: inc/customizer.php:232
 msgid "Submissions"
-msgstr "Submissions"
+msgstr ""
 
-#: inc/customizer.php:239
+#: inc/customizer.php:238
 msgid "Disable user submissions"
-msgstr "Disable user submissions"
+msgstr ""
 
-#: inc/customizer.php:245
+#: inc/customizer.php:244
 msgid "Inform me about new submissions"
-msgstr "Inform me about new submissions"
+msgstr ""
+
+#: inc/customizer.php:257
+msgid "Submission tagline"
+msgstr ""
 
 #: inc/customizer.php:258
-msgid "Submission tagline"
-msgstr "Submission tagline"
-
-#: inc/customizer.php:259
 msgid "Internet is huge! Help us find great content"
-msgstr "Internet is huge! Help us find great content"
+msgstr ""
+
+#: inc/customizer.php:263
+msgid "Submission \"Thank You\" message"
+msgstr ""
 
 #: inc/customizer.php:264
-msgid "Submission \"Thank You\" message"
-msgstr "Submission \"Thank You\" message"
-
-#: inc/customizer.php:265
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
 msgstr ""
-"Thank you for your contribution. The submission was sent to the website "
-"owners for review."
+
+#: inc/customizer.php:269
+msgid "Submission \"Failure\" message"
+msgstr ""
 
 #: inc/customizer.php:270
-msgid "Submission \"Failure\" message"
-msgstr "Submission \"Failure\" message"
-
-#: inc/customizer.php:271
 msgid "Your submission could not be processed."
-msgstr "Your submission could not be processed."
+msgstr ""
+
+#: inc/customizer.php:275
+msgid "reCAPTCHA Site key"
+msgstr ""
 
 #: inc/customizer.php:276
-msgid "reCAPTCHA Site key"
-msgstr "reCAPTCHA Site key"
-
-#: inc/customizer.php:277
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
-msgstr "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
+msgstr ""
 
-#: inc/customizer.php:283 sections/posts.php:22
+#: inc/customizer.php:282 sections/posts.php:22
 msgid "Blog"
-msgstr "Blog"
+msgstr ""
 
-#: inc/customizer.php:289
+#: inc/customizer.php:288
 msgid "Blog list layout"
-msgstr "Blog list layout"
+msgstr ""
+
+#: inc/customizer.php:291
+msgid "Tiles"
+msgstr ""
 
 #: inc/customizer.php:292
-msgid "Tiles"
-msgstr "Tiles"
+msgid "Excerpts"
+msgstr ""
 
 #: inc/customizer.php:293
-msgid "Excerpts"
-msgstr "Excerpts"
-
-#: inc/customizer.php:294
 msgid "Mixed"
-msgstr "Mixed"
+msgstr ""
 
-#: inc/customizer.php:300
+#: inc/customizer.php:299
 msgid "Number of blog posts per page"
-msgstr "Number of blog posts per page"
+msgstr ""
 
-#: inc/customizer.php:307
+#: inc/customizer.php:306
 msgid "Social Profiles"
-msgstr "Social Profiles"
+msgstr ""
 
-#: inc/customizer.php:313
+#: inc/customizer.php:312
 msgid "Ads"
-msgstr "Ads"
+msgstr ""
 
-#: inc/customizer.php:319
+#: inc/customizer.php:318
 msgid "Disable ads"
-msgstr "Disable ads"
+msgstr ""
 
-#: inc/customizer.php:325
+#: inc/customizer.php:324
 msgid "Show ads only on homepage"
-msgstr "Show ads only on homepage"
+msgstr ""
 
-#: inc/customizer.php:331
+#: inc/customizer.php:330
 msgid "Ad link URL"
-msgstr "Ad link URL"
+msgstr ""
 
-#: inc/customizer.php:336
+#: inc/customizer.php:335
 msgid "Ad image (Desktop)"
-msgstr "Ad image (Desktop)"
+msgstr ""
 
-#: inc/customizer.php:337 inc/customizer.php:343
+#: inc/customizer.php:336 inc/customizer.php:342
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
 "wide."
 msgstr ""
-"We recommend using a rectangle horizontal image that is at least %1$d pixels "
-"wide."
 
-#: inc/customizer.php:342
+#: inc/customizer.php:341
 msgid "Ad image (Tablet)"
-msgstr "Ad image (Tablet)"
+msgstr ""
+
+#: inc/customizer.php:347
+msgid "Ad image (Mobile)"
+msgstr ""
 
 #: inc/customizer.php:348
-msgid "Ad image (Mobile)"
-msgstr "Ad image (Mobile)"
-
-#: inc/customizer.php:349
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
 "wide."
 msgstr ""
-"We recommend using a rectangle vertical image that is at least %1$d pixels "
-"wide."
+
+#: inc/customizer.php:353
+msgid "Ad HTML code"
+msgstr ""
 
 #: inc/customizer.php:354
-msgid "Ad HTML code"
-msgstr "Ad HTML code"
-
-#: inc/customizer.php:355
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
 msgstr ""
-"Insert your Google AdSense (or other) generated HTML code to display ads in "
-"designated areas."
 
-#: inc/customizer.php:361 partials/newsletter.php:4
+#: inc/customizer.php:360 partials/newsletter.php:4
 msgid "Newsletter"
-msgstr "Newsletter"
+msgstr ""
 
-#: inc/customizer.php:367
+#: inc/customizer.php:366
 msgid "Disable newsletter"
-msgstr "Disable newsletter"
+msgstr ""
 
-#: inc/customizer.php:373
+#: inc/customizer.php:372
 msgid "Mailchimp form action URL"
-msgstr "Mailchimp form action URL"
+msgstr ""
 
-#: inc/customizer.php:375
+#: inc/customizer.php:374
 #, php-format
 msgid ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
 "URL?</a>"
 msgstr ""
-"Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
-"URL?</a>"
+
+#: inc/customizer.php:379
+msgid "Newsletter tagline"
+msgstr ""
 
 #: inc/customizer.php:380
-msgid "Newsletter tagline"
-msgstr "Newsletter tagline"
-
-#: inc/customizer.php:381
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
-msgstr "Never miss a thing! Sign up for our newsletter to stay updated."
+msgstr ""
 
-#: inc/customizer.php:387
+#: inc/customizer.php:386
 msgid "Theme Options"
-msgstr "Theme Options"
+msgstr ""
 
-#: inc/customizer.php:393
+#: inc/customizer.php:392
 msgid "Disable theme credits"
-msgstr "Disable theme credits"
+msgstr ""
 
-#: inc/customizer.php:399
+#: inc/customizer.php:398
 msgid "Disable search"
-msgstr "Disable search"
+msgstr ""
 
-#: inc/customizer.php:405
+#: inc/customizer.php:404
 msgid "Disable \"ref\" attribute"
-msgstr "Disable \"ref\" attribute"
+msgstr ""
 
-#: inc/customizer.php:411
+#: inc/customizer.php:410
 msgid "About copy (footer)"
-msgstr "About copy (footer)"
+msgstr ""
 
-#: inc/customizer.php:413
+#: inc/customizer.php:412
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
 msgstr ""
-"Enter your site's description displayed in the footer section. You can use "
-"basic HTML tags here (<p>, <a>, <strong>, <i>)."
+
+#: inc/customizer.php:417
+msgid "Tracking code"
+msgstr ""
 
 #: inc/customizer.php:418
-msgid "Tracking code"
-msgstr "Tracking code"
-
-#: inc/customizer.php:419
 msgid ""
 "Paste your Google Analytics (or other) tracking code here. It will be "
 "inserted before the closing body tag of your theme."
 msgstr ""
-"Paste your Google Analytics (or other) tracking code here. It will be "
-"inserted before the closing body tag of your theme."
 
 #: inc/helpers.php:373
 #, php-format
 msgid "+%d more"
-msgstr "+%d more"
+msgstr ""
 
-#: inc/meta-boxes.php:112 partials/popup.php:42
+#: inc/meta-boxes.php:112 partials/popup.php:43
 msgid "Website URL"
-msgstr "Website URL"
+msgstr ""
 
 #: inc/meta-boxes.php:118
 msgid "Featured?"
-msgstr "Featured?"
+msgstr ""
 
 #: inc/meta-boxes.php:122
 msgid "Featured on homepage"
-msgstr "Featured on homepage"
+msgstr ""
 
 #: inc/meta-boxes.php:146
 msgid "Wide content"
-msgstr "Wide content"
+msgstr ""
 
 #: inc/meta-boxes.php:150
 msgid ""
 "Enable wide content for this page (it will make first heading of this page a "
 "left-floated title)"
 msgstr ""
-"Enable wide content for this page (it will make first heading of this page a "
-"left-floated title)"
 
 #: inc/meta-boxes.php:155
 msgid "Enable curators"
-msgstr "Enable curators"
+msgstr ""
 
 #: inc/meta-boxes.php:159
 msgid "Enable curators listing on this page"
-msgstr "Enable curators listing on this page"
+msgstr ""
 
 #: inc/meta-boxes.php:177
 msgid "Custom fields"
-msgstr "Custom fields"
+msgstr ""
 
 #: inc/upvotes.php:24
 msgid "Remove Upvote"
-msgstr "Remove Upvote"
+msgstr ""
 
 #: inc/upvotes.php:27
 msgid "Upvote"
-msgstr "Upvote"
+msgstr ""
 
 #: partials/nav.php:62 partials/page-bottom.php:30 partials/page-head.php:42
-#: partials/popup.php:9 partials/popup.php:66 partials/toolbox.php:23
+#: partials/popup.php:9 partials/popup.php:69 partials/toolbox.php:23
 msgid "Submit"
-msgstr "Submit"
+msgstr ""
 
 #: partials/newsletter.php:10
 msgid "Email address"
-msgstr "Email address"
+msgstr ""
 
 #: partials/newsletter.php:13
 msgid "Join now"
-msgstr "Join now"
+msgstr ""
 
 #: partials/page-bottom.php:5
 msgid "About"
-msgstr "About"
+msgstr ""
 
 #: partials/page-bottom.php:15
 msgid "Navigation"
-msgstr "Navigation"
+msgstr ""
 
 #: partials/page-bottom.php:37
 msgid "Follow"
-msgstr "Follow"
+msgstr ""
 
 #: partials/page-foot.php:8 partials/page-foot.php:9
 msgid "Chipmunk WordPress Theme"
-msgstr "Chipmunk WordPress Theme"
+msgstr ""
 
 #: partials/page-head.php:25 partials/popup.php:6 partials/search-bar.php:11
 msgid "Close"
-msgstr "Close"
+msgstr ""
 
 #: partials/page-head.php:36
 msgid "Search"
-msgstr "Search"
+msgstr ""
 
 #: partials/page-head.php:47
 msgid "Menu"
-msgstr "Menu"
+msgstr ""
 
 #: partials/popup.php:16
 msgid "Resource name"
-msgstr "Resource name"
+msgstr ""
 
-#: partials/popup.php:45
+#: partials/popup.php:47
 msgid "Description"
-msgstr "Description"
+msgstr ""
 
-#: partials/popup.php:52
+#: partials/popup.php:54
 msgid "Your name"
-msgstr "Your name"
+msgstr ""
 
-#: partials/popup.php:55
+#: partials/popup.php:58
 msgid "Your email"
-msgstr "Your email"
+msgstr ""
 
 #: partials/post-stats.php:12
 msgid "Published"
-msgstr "Published"
+msgstr ""
 
 #: partials/search-bar.php:6
 msgid "Search query..."
-msgstr "Search query..."
+msgstr ""
 
 #: partials/search-bar.php:6
 msgid "3 characters minimum"
-msgstr "3 characters minimum"
+msgstr ""
 
 #: partials/share-box.php:20
 msgid "Share"
-msgstr "Share"
+msgstr ""
 
 #: partials/toolbox.php:6
 msgid "Follow us"
-msgstr "Follow us"
+msgstr ""
 
 #: search.php:19
 msgid "Search results for:"
-msgstr "Search results for:"
+msgstr ""
 
-#: search.php:24
+#: search.php:25
 msgid "Sorry, your search did not match any resources."
-msgstr "Sorry, your search did not match any resources."
+msgstr ""
 
 #: sections/collection-tile.php:35
 msgid "View this collection"
-msgstr "View this collection"
+msgstr ""
 
 #: sections/collection-tile.php:40
 msgid "Sub collections"
-msgstr "Sub collections"
-
-#: sections/collections.php:27
-#, php-format
-msgid ""
-"Ready to publish your first collection? <a href=\"%1$s\">Get started here</"
-"a>."
 msgstr ""
-"Ready to publish your first collection? <a href=\"%1$s\">Get started here</"
-"a>."
 
-#: sections/collections.php:29
+#: sections/collections.php:26
+msgid "Ready to publish your first collection?"
+msgstr ""
+
+#: sections/collections.php:28 sections/posts.php:55 sections/resources.php:40
+#: taxonomy.php:66
+msgid "Get started here"
+msgstr ""
+
+#: sections/collections.php:30
 msgid "Sorry, there are no collections to display yet."
-msgstr "Sorry, there are no collections to display yet."
+msgstr ""
 
 #: sections/curators.php:4
 msgid "Curators"
-msgstr "Curators"
+msgstr ""
 
 #: sections/entry-post.php:26
 msgid "Posted by"
-msgstr "Posted by"
+msgstr ""
 
 #: sections/pagination.php:14
 msgid "Previous"
-msgstr "Previous"
+msgstr ""
 
 #: sections/pagination.php:23
 #, php-format
 msgid "Page %d of %d"
-msgstr "Page %d of %d"
+msgstr ""
 
 #: sections/pagination.php:26
 msgid "Next"
-msgstr "Next"
+msgstr ""
 
 #: sections/post-excerpt.php:27 sections/post-tile.php:34
 msgid "Read more"
-msgstr "Read more"
+msgstr ""
 
 #: sections/posts.php:17 sections/resources.php:12
 msgid "Related"
-msgstr "Related"
+msgstr ""
 
 #: sections/posts.php:19
 msgid "Latest Posts"
-msgstr "Latest Posts"
+msgstr ""
 
 #: sections/posts.php:22
 #, php-format
 msgid "%s Category"
-msgstr "%s Category"
-
-#: sections/posts.php:52
-#, php-format
-msgid ""
-"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
-"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 
-#: sections/posts.php:54
+#: sections/posts.php:53
+msgid "Ready to publish your first post?"
+msgstr ""
+
+#: sections/posts.php:57
 msgid "Sorry, there are no posts to display yet."
-msgstr "Sorry, there are no posts to display yet."
+msgstr ""
 
 #: sections/resource.php:30
 msgid "Visit website"
-msgstr "Visit website"
+msgstr ""
 
 #: sections/resources-tabs.php:17
 msgid "Featured"
-msgstr "Featured"
+msgstr ""
 
 #: sections/resources-tabs.php:24
 msgid "Latest"
-msgstr "Latest"
+msgstr ""
 
 #: sections/resources-tabs.php:31
 msgid "Popular"
-msgstr "Popular"
-
-#: sections/resources.php:37 taxonomy.php:63
-#, php-format
-msgid ""
-"Ready to publish your first resource? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
-"Ready to publish your first resource? <a href=\"%1$s\">Get started here</a>."
 
-#: sections/resources.php:39 taxonomy.php:65
+#: sections/resources.php:38 taxonomy.php:64
+msgid "Ready to publish your first resource?"
+msgstr ""
+
+#: sections/resources.php:42 taxonomy.php:68
 msgid "Sorry, there are no resources to display yet."
-msgstr "Sorry, there are no resources to display yet."
+msgstr ""
 
 #: taxonomy.php:17
 #, php-format
 msgid "%s Collection"
-msgstr "%s Collection"
+msgstr ""
 
 #: taxonomy.php:17
 #, php-format
 msgid "%s Tag"
-msgstr "%s Tag"
+msgstr ""
 
 #~ msgid "Display resources as cards"
 #~ msgstr "Display resources as cards"

@@ -107,22 +107,22 @@ function chipmunk_setup() {
 		'chipmunk-xl' => array(
 			'width'   => 1280,
 			'height'  => 888,
-			'crop'    => true
+			'crop'    => true,
 		),
 		'chipmunk-lg' => array(
 			'width'   => 640,
 			'height'  => 444,
-			'crop'    => true
+			'crop'    => true,
 		),
 		'chipmunk-md' => array(
 			'width'   => 460,
 			'height'  => 320,
-			'crop'    => true
+			'crop'    => true,
 		),
 		'chipmunk-sm' => array(
 			'width'   => 300,
 			'height'  => 210,
-			'crop'    => true
+			'crop'    => true,
 		),
 	) );
 }

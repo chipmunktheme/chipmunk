@@ -22,7 +22,7 @@ function chipmunk_submit_resource() {
 	}
 
 	if ( ! empty( $_REQUEST['name'] ) ) {
-		$meta_prefix = '_' . CHIPMUNK_THEME_SLUG.'_resource';
+		$meta_prefix = '_' . CHIPMUNK_THEME_SLUG . '_resource';
 		$meta_input = array();
 
 		$meta_input[$meta_prefix . '_website'] = esc_url( wp_filter_nohtml_kses( $_REQUEST['website'] ) );
