@@ -29,8 +29,8 @@
 		<?php get_template_part( 'partials/popup' ); ?>
 	<?php endif; ?>
 
-	<?php if ($tracking_code = ChipmunkCustomizer::theme_option( 'tracking_code') ) : ?>
-		<?php echo $tracking_code; ?>
+	<?php if ( $tracking_code = ChipmunkCustomizer::theme_option( 'tracking_code' ) ) : ?>
+		<?php echo stripslashes( $tracking_code ); ?>
 	<?php endif ?>
 
 	<?php wp_footer(); ?>

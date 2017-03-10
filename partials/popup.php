@@ -15,6 +15,7 @@
 					<div class="form__child">
 						<input type="text" name="name" placeholder="<?php _e( 'Resource name', 'chipmunk' ); ?>" required>
 					</div>
+
 					<div class="form__child">
 						<select name="collection" data-placeholder="<?php _e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors" class="custom-select" required>
 							<option value=""><?php _e( 'Collection', 'chipmunk' ); ?></option>
@@ -41,6 +42,7 @@
 					<div class="form__child">
 						<input type="url" name="website" placeholder="<?php _e( 'Website URL', 'chipmunk' ); ?>" required>
 					</div>
+
 					<div class="form__child">
 						<input type="text" name="content" placeholder="<?php _e( 'Description', 'chipmunk' ); ?>">
 					</div>
@@ -51,6 +53,7 @@
 						<div class="form__child">
 							<input type="text" name="submitter_name" placeholder="<?php _e( 'Your name', 'chipmunk' ); ?>" required>
 						</div>
+
 						<div class="form__child">
 							<input type="email" name="submitter_email" placeholder="<?php _e( 'Your email', 'chipmunk' ); ?>" required>
 						</div>
@@ -58,8 +61,8 @@
 				<?php endif; ?>
 
 				<div class="form__field form__field_center">
-					<?php if ( ChipmunkCustomizer::theme_option( 'recaptcha_site_key' ) ) : ?>
-						<div class="g-recaptcha" data-sitekey="<?php echo ChipmunkCustomizer::theme_option( 'recaptcha_site_key' ); ?>"></div>
+					<?php if ( $recaptcha = ChipmunkCustomizer::theme_option( 'recaptcha_site_key' ) ) : ?>
+						<div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $recaptcha ); ?>"></div>
 					<?php endif; ?>
 
 					<?php wp_nonce_field( 'submit_resource', 'nonce', false ); ?>

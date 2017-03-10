@@ -28,7 +28,7 @@ function chipmunk_submit_resource() {
 		$meta_input[$meta_prefix . '_website'] = esc_url( wp_filter_nohtml_kses( $_REQUEST['website'] ) );
 		$collection = intval( wp_filter_kses( $_REQUEST['collection'] ) );
 
-		if ( !ChipmunkCustomizer::theme_option( 'disable_submitter_info', true ) ) {
+		if ( ! ChipmunkCustomizer::theme_option( 'disable_submitter_info', true ) ) {
 			$meta_input[$meta_prefix . '_submitter_name'] = wp_filter_nohtml_kses( $_REQUEST['submitter_name'] );
 			$meta_input[$meta_prefix . '_submitter_email'] = wp_filter_nohtml_kses( $_REQUEST['submitter_email'] );
 		}
@@ -57,7 +57,7 @@ function chipmunk_submit_resource() {
 		// Failure during wp_insert_post
 		else wp_send_json_error( ChipmunkCustomizer::theme_option( 'submission_failure' ) );
 	}
-	
+
 	// Failure due to incorrect nonce verification
 	else wp_send_json_error( ChipmunkCustomizer::theme_option( 'submission_failure' ) );
 }
@@ -95,14 +95,15 @@ function chipmunk_inform_admin( $post_id ) {
 	$from     = 'admin@'.$_SERVER['SERVER_NAME'];
 	$name     = get_bloginfo( 'name' );
 	$subject  = get_bloginfo( 'name' ) . ': ' . __( 'New user submission', 'chipmunk' );
-	$post_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' ) . '">' . __( 'Review submission', 'chipmunk' );
+	$post_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
+	$template = '<a href="' . $post_url . '">' . __( 'Review submission', 'chipmunk' ) . '</a>';
 
 	$headers  = array(
 		"Content-Type: text/html; charset=UTF-8;",
 		"From: $name <$from>",
 	);
 
-	wp_mail( $to, $subject, '<a href="' . $post_url . '</a>', implode( "\n", $headers ) );
+	wp_mail( $to, $subject, $template, implode( "\n", $headers ) );
 }
 endif;
 
@@ -114,7 +115,7 @@ if ( ! function_exists( 'chipmunk_verify_nonce' ) ) :
 function chipmunk_verify_nonce() {
 	$nonce = isset( $_REQUEST['nonce'] ) ? sanitize_text_field( $_REQUEST['nonce'] ) : null;
 
-	if ( !$nonce || !wp_verify_nonce( $nonce, $_REQUEST['action'] ) ) {
+	if ( ! $nonce || ! wp_verify_nonce( $nonce, $_REQUEST['action'] ) ) {
 		wp_send_json_error( __( 'Not permitted.', 'chipmunk' ) );
 	}
 }

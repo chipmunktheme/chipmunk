@@ -4,10 +4,10 @@
 			<?php $logo = ChipmunkCustomizer::theme_option( 'logo' ); ?>
 
 			<?php ob_start(); ?>
-			<a href="<?php echo home_url(); ?>" rel="index">
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="index">
 				<?php if ( $logo ) : ?>
 					<span class="sr-only"><?php bloginfo( 'name' ); ?></span>
-					<img src="<?php echo $logo; ?>" alt="" />
+					<img src="<?php echo esc_url( $logo ); ?>" alt="" />
 				<?php else : ?>
 					<?php bloginfo( 'name' ); ?>
 				<?php endif; ?>

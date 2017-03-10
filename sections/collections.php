@@ -17,9 +17,7 @@
 
 			<?php if ( ! empty( $collections ) ) : ?>
 				<?php foreach ( $collections as $collection ) : ?>
-
 					<?php include locate_template( 'sections/collection-tile.php' ); ?>
-
 				<?php endforeach; ?>
 			<?php else : ?>
 				<div class="column">

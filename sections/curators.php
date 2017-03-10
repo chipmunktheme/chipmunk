@@ -10,17 +10,17 @@
 
 			<div class="card column column_md-3 column_lg-4">
 				<?php if ( get_avatar( $user->ID ) ) : ?>
-					<div class="card__image" style="background-image: url(<?php echo get_avatar_url( $user->ID, array( 'size' => 300 ) ); ?>)"></div>
+					<div class="card__image" style="background-image: url(<?php echo esc_url( get_avatar_url( $user->ID, array( 'size' => 300 ) ) ); ?>)"></div>
 				<?php endif; ?>
 
-				<h3 class="card__title"><?php echo $user->display_name; ?></h3>
+				<h3 class="card__title"><?php echo esc_html( $user->display_name ); ?></h3>
 
 				<?php if ( ! empty( $description ) ) : ?>
-					<p class="card__copy"><?php echo chipmunk_truncate_string( $description, 120 ); ?></p>
+					<p class="card__copy"><?php echo esc_html( chipmunk_truncate_string( $description, 120 ) ); ?></p>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $twitter ) ) : ?>
-					<a href="<?php echo esc_url( 'https://twitter.com/' . $twitter ); ?>" target="_blank" class="card__handle">@<?php echo $twitter; ?></a>
+					<a href="<?php echo esc_url( 'https://twitter.com/' . $twitter ); ?>" target="_blank" rel="nofollow" class="card__handle">@<?php echo esc_html( $twitter ); ?></a>
 				<?php endif; ?>
 			</div>
 		<?php endforeach; ?>

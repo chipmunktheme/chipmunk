@@ -1,6 +1,6 @@
 <a href="<?php echo esc_url( get_term_link( $collection ) ); ?>" class="tile column column_md-3 column_lg-4">
 	<div class="tile__image">
-		<?php if ( !ChipmunkCustomizer::theme_option( 'disable_collection_thumbs' ) ) : ?>
+		<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_collection_thumbs' ) ) : ?>
 			<?php
 			$query = new WP_Query( array(
 				'posts_per_archive_page' => 3,
@@ -31,7 +31,7 @@
 
 	<div class="tile__content <?php echo ( ChipmunkCustomizer::theme_option( 'disable_collection_thumbs' ) ? 'tile__content_primary' : 'tile__content_dimmed' ); ?>">
 		<div>
-			<?php echo chipmunk_conditional_markup( is_front_page(), 'h3', 'h2', 'tile__title', chipmunk_truncate_string( $collection->name, 60) ); ?>
+			<?php echo chipmunk_conditional_markup( is_front_page(), 'h3', 'h2', 'tile__title', esc_html( chipmunk_truncate_string( $collection->name, 60 ) ) ); ?>
 			<p class="tile__copy"><?php _e( 'View this collection', 'chipmunk' ); ?><span>&nbsp;<i class="icon icon_arrow" aria-hidden="true"></i></span></p>
 		</div>
 

@@ -19,20 +19,20 @@ get_header(); ?>
 			<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_sorting' ) and $custom_query->have_posts() ) : ?>
 				<div class="row row_center">
 					<div class="column column_md-4 column_lg-8">
-						<h3 class="heading heading_md"><?php echo $title; ?></h3>
+						<h3 class="heading heading_md"><?php echo esc_html( $title ); ?></h3>
 
-						<?php if ( !empty( $term->description ) ) : ?>
-							<p class="text_content text_subtitle"><?php echo $term->description; ?></p>
+						<?php if ( ! empty( $term->description ) ) : ?>
+							<p class="text_content text_subtitle"><?php echo esc_html( $term->description ); ?></p>
 						<?php endif; ?>
 					</div>
 
 					<?php get_template_part( 'partials/sort-resources' ); ?>
 				</div>
 			<?php else : ?>
-				<h3 class="heading heading_md"><?php echo $title; ?></h3>
+				<h3 class="heading heading_md"><?php echo esc_html( $title ); ?></h3>
 
 				<?php if ( ! empty( $term->description ) ) : ?>
-					<p class="text_content text_subtitle"><?php echo $term->description; ?></p>
+					<p class="text_content text_subtitle"><?php echo esc_html( $term->description ); ?></p>
 				<?php endif; ?>
 			<?php endif; ?>
 

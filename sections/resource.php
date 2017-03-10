@@ -18,16 +18,16 @@
 				</ul>
 
 				<div class="resource__info">
-					<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading_lg', is_single() ? get_the_title() : '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>' ); ?>
+					<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading_lg', is_single() ? get_the_title() : '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_title() . '</a>' ); ?>
 
 					<?php if ( ! empty( $content ) && ( is_search() || ! ChipmunkCustomizer::theme_option( 'display_resource_content_separated' ) ) ) : ?>
-						<div class="resource__description"><?php echo wpautop( do_shortcode( $content ) ); ?></div>
+						<div class="resource__description"><?php echo wp_kses_post( wpautop( do_shortcode( $content ) ) ); ?></div>
 					<?php endif; ?>
 				</div>
 
 				<div class="resource__actions">
 					<?php if ( ! empty( $resource_website ) ) : ?>
-						<a href="<?php echo chipmunk_external_link( $resource_website ); ?>" class="button button_secondary" target="_blank" rel="nofollow"><?php _e( 'Visit website', 'chipmunk' ); ?></a>
+						<a href="<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>" class="button button_secondary" target="_blank" rel="nofollow"><?php _e( 'Visit website', 'chipmunk' ); ?></a>
 					<?php endif; ?>
 
 					<?php get_template_part( 'partials/share-box' ); ?>
@@ -38,7 +38,7 @@
 				<aside class="resource__image column column_lg-6">
 					<?php if ( is_single() ) : ?>
 						<?php if ( ! empty( $resource_website ) ) : ?>
-							<a href="<?php echo chipmunk_external_link( $resource_website ); ?>" target="_blank" rel="nofollow"><?php the_post_thumbnail( 'chipmunk-xl' ); ?></a>
+							<a href="<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>" target="_blank" rel="nofollow"><?php the_post_thumbnail( 'chipmunk-xl' ); ?></a>
 						<?php else : ?>
 							<?php the_post_thumbnail( 'chipmunk-xl' ); ?>
 						<?php endif; ?>

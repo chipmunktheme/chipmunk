@@ -113,7 +113,7 @@ function chipmunk_external_scripts() {
 	$recaptcha = ChipmunkCustomizer::theme_option( 'recaptcha_site_key' );
 
 	if ( $recaptcha ) {
-		wp_enqueue_script( 'chipmunk-external-recaptcha', '//google.com/recaptcha/api.js', array(), null, true );
+		wp_enqueue_script( 'chipmunk-external-recaptcha', '//google.com/recaptcha/api.js' );
 	}
 }
 endif;

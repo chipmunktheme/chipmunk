@@ -6,7 +6,7 @@
 
 				<?php if ( $about_copy = ChipmunkCustomizer::theme_option( 'about_copy' ) ) : ?>
 					<div class="page-foot__description">
-						<?php echo strip_tags( wpautop( $about_copy ), '<p><a><strong><i>' ); ?>
+						<?php echo wp_kses_post( wpautop( $about_copy ) ); ?>
 					</div>
 				<?php endif; ?>
 			</div>
@@ -42,7 +42,7 @@
 
 						<?php if ( ChipmunkCustomizer::theme_option( $social_slug ) ) : ?>
 							<li class="nav-secondary__item">
-								<a href="<?php echo ChipmunkCustomizer::theme_option( $social_slug ); ?>" target="_blank"><?php echo $social; ?></a>
+								<a href="<?php echo esc_url( ChipmunkCustomizer::theme_option( $social_slug ) ); ?>" target="_blank" rel="nofollow"><?php echo $social; ?></a>
 							</li>
 						<?php endif; ?>
 					<?php endforeach; ?>

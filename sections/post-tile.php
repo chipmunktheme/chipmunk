@@ -12,7 +12,7 @@
 			<?php $content = get_the_content(); ?>
 
 			<?php if ( ! empty( $content ) ) : ?>
-				<p class="tile__copy"><?php echo chipmunk_truncate_string( $content, 120 ); ?></p>
+				<p class="tile__copy"><?php echo esc_html( chipmunk_truncate_string( $content, 120 ) ); ?></p>
 			<?php endif; ?>
 		</div>
 

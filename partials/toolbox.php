@@ -9,7 +9,7 @@
 							<?php $social_slug = strtolower( $social ); ?>
 
 							<?php if ( ChipmunkCustomizer::theme_option( $social_slug ) ) : ?>
-								<li class="nav-socials__item"><a href="<?php echo ChipmunkCustomizer::theme_option( $social_slug ); ?>" title="<?php echo $social; ?>" target="_blank"><i class="icon icon_<?php echo $social_slug; ?>" aria-hidden="true"></i><span class="sr-only"><?php echo $social; ?></span></a></li>
+								<li class="nav-socials__item"><a href="<?php echo esc_url( ChipmunkCustomizer::theme_option( $social_slug ) ); ?>" title="<?php echo $social; ?>" target="_blank"><i class="icon icon_<?php echo $social_slug; ?>" aria-hidden="true"></i><span class="sr-only"><?php echo $social; ?></span></a></li>
 							<?php endif; ?>
 						<?php endforeach; ?>
 					</ul>
@@ -17,9 +17,9 @@
 				<!-- /.nav-socials -->
 			</div>
 
-			<?php if ( !ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
+			<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
 				<div class="toolbox__cta visible-md-flex">
-					<p class="visible-lg-block"><?php echo ChipmunkCustomizer::theme_option( 'submit_tagline' ); ?></p>
+					<p class="visible-lg-block"><?php echo esc_html( ChipmunkCustomizer::theme_option( 'submit_tagline' ) ); ?></p>
 					<button type="button" class="toolbox__button button button_primary" data-popup-toggle><?php _e( 'Submit', 'chipmunk' ); ?></button>
 				</div>
 			<?php endif; ?>
