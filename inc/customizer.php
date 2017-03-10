@@ -472,12 +472,6 @@ class ChipmunkCustomizer {
 						'default'     => get_bloginfo( 'description' ),
 						'description' => esc_html__( 'Enter your site\'s description displayed in the footer section. You can use basic HTML tags here (<p>, <a>, <strong>, <i>).', 'chipmunk' ),
 					),
-					array(
-						'name'        => 'tracking_code',
-						'type'        => 'textarea',
-						'label'       => esc_html__( 'Tracking code', 'chipmunk' ),
-						'description' => esc_html__( 'Paste your Google Analytics (or other) tracking code here. It will be inserted before the closing body tag of your theme.', 'chipmunk' ),
-					),
 				),
 			)
 		);

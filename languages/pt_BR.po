@@ -1,19 +1,17 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Chipmunk\n"
+"Project-Id-Version: Chipmunk Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-10 14:38+0100\n"
-"PO-Revision-Date: 2017-03-10 14:39+0100\n"
+"POT-Creation-Date: 2017-03-10 15:26+0100\n"
+"PO-Revision-Date: 2017-03-10 15:26+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: Portuguese (Brazil)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.8.2\n"
-"X-Poedit-KeywordsList: _e;__;_x;_ex\n"
-"X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: 404.php:15
@@ -35,10 +33,10 @@ msgstr ""
 #, php-format
 msgid "%s Comment"
 msgid_plural "%s Comments"
-msgstr[0] "%s Comente"
+msgstr[0] "%s Comentario"
 msgstr[1] "%s Comentários"
 
-#: comments.php:63 inc/customizer.php:213 partials/sort-resources.php:11
+#: comments.php:63 inc/customizer.php:274 partials/sort-resources.php:11
 #: partials/sort-resources.php:12
 msgid "Name"
 msgstr "Nome"
@@ -63,7 +61,7 @@ msgstr "Seu comentário aguarda moderação."
 msgid "Resource"
 msgstr "Item"
 
-#: functions.php:43 inc/customizer.php:126 sections/collection-tile.php:43
+#: functions.php:43 inc/customizer.php:187 sections/collection-tile.php:43
 #: sections/resources-tabs.php:18 sections/resources-tabs.php:25
 #: sections/resources-tabs.php:32 sections/resources.php:17
 #: sections/resources.php:23
@@ -207,15 +205,15 @@ msgstr "Não é permitido."
 msgid "%s on %s"
 msgstr "%s no %s"
 
-#: inc/customizer.php:27
+#: inc/customizer.php:88
 msgid "Site Identity"
 msgstr "Identidade do site"
 
-#: inc/customizer.php:33
+#: inc/customizer.php:94
 msgid "Site Logo"
 msgstr "Logo do site"
 
-#: inc/customizer.php:34
+#: inc/customizer.php:95
 msgid ""
 "Upload a logo for your theme. You can leave it empty to use your site name "
 "as a plain text logo."
@@ -223,182 +221,182 @@ msgstr ""
 "Faça upload de um logo para seu tema. Você pode deixar vazio caso queira "
 "usar o nome do site como um logo em texto simples."
 
-#: inc/customizer.php:39
+#: inc/customizer.php:100
 msgid "Open Graph Image"
 msgstr "Open Graph Image"
 
-#: inc/customizer.php:40
+#: inc/customizer.php:101
 msgid "1200x630 pixels"
 msgstr "1200x630 px"
 
-#: inc/customizer.php:46
+#: inc/customizer.php:107
 msgid "Visuals"
 msgstr "Visual"
 
-#: inc/customizer.php:52
+#: inc/customizer.php:113
 msgid "Primary Color"
 msgstr "Cor principal"
 
-#: inc/customizer.php:58
+#: inc/customizer.php:119
 msgid "Primary Font"
 msgstr "Fonte principal"
 
-#: inc/customizer.php:61
+#: inc/customizer.php:122
 msgid "System font"
 msgstr "Fonte do sistema"
 
-#: inc/customizer.php:80
+#: inc/customizer.php:141
 msgid "Custom CSS"
 msgstr "CSS customizado"
 
-#: inc/customizer.php:82
+#: inc/customizer.php:143
 msgid "Quickly add some CSS to your theme by adding it to this block."
 msgstr "Adicione neste campo um CSS customizado para seu tema."
 
-#: inc/customizer.php:88
+#: inc/customizer.php:149
 msgid "Homepage"
 msgstr "Página inicial"
 
-#: inc/customizer.php:94
+#: inc/customizer.php:155
 msgid "Latest resources count"
 msgstr "Última contagem de itens"
 
-#: inc/customizer.php:96
+#: inc/customizer.php:157
 msgid "Enter the max resources number to show on resource sliders."
 msgstr "Insira o número máximo de itens que serão exibidos no slider."
 
-#: inc/customizer.php:101
+#: inc/customizer.php:162
 msgid "Disable resource listings"
 msgstr "Desabilitar listagens de itens"
 
-#: inc/customizer.php:107
+#: inc/customizer.php:168
 msgid "Disable resource listings sliders"
 msgstr "Desabilitar os sliders de itens"
 
-#: inc/customizer.php:113
+#: inc/customizer.php:174
 msgid "Disable collections"
 msgstr "Desabilitar coleções"
 
-#: inc/customizer.php:119
+#: inc/customizer.php:180
 msgid "Disable latest posts"
 msgstr "Desabilitar últimos posts"
 
-#: inc/customizer.php:132
+#: inc/customizer.php:193
 msgid "Number of resources per page"
 msgstr "Quantidade de itens por página"
 
-#: inc/customizer.php:138
+#: inc/customizer.php:199
 msgid "Number of search results per page"
 msgstr "Quantidade de resultados de busca por página"
 
-#: inc/customizer.php:144
+#: inc/customizer.php:205
 msgid "Display resources as"
 msgstr "Exibir itens como:"
 
-#: inc/customizer.php:147
+#: inc/customizer.php:208
 msgid "Tile"
 msgstr "Azulejos"
 
-#: inc/customizer.php:148
+#: inc/customizer.php:209
 msgid "Card"
 msgstr "Cartões"
 
-#: inc/customizer.php:149
+#: inc/customizer.php:210
 msgid "Card (blank)"
 msgstr "Cartões (em branco)"
 
-#: inc/customizer.php:155
+#: inc/customizer.php:216
 msgid "Display resource content in a separate section"
 msgstr "Exibe a descrição dos materiais em uma seção separada"
 
-#: inc/customizer.php:161
+#: inc/customizer.php:222
 msgid "Disable resource description"
 msgstr "Desabilitar descrição do item"
 
-#: inc/customizer.php:167
+#: inc/customizer.php:228
 msgid "Disable resource date"
 msgstr "Desabilitar data do item"
 
-#: inc/customizer.php:173
+#: inc/customizer.php:234
 msgid "Disable featured panel"
 msgstr "Desabilitar painel de destaques"
 
-#: inc/customizer.php:179
+#: inc/customizer.php:240
 msgid "Disable resource thumbs"
 msgstr "Desabilitar miniaturas das itens"
 
-#: inc/customizer.php:185
+#: inc/customizer.php:246
 msgid "Disable collection thumbs"
 msgstr "Desabilitar miniaturas das coleções"
 
-#: inc/customizer.php:191
+#: inc/customizer.php:252
 msgid "Disable view count"
 msgstr "Desabilitar número de visualizações"
 
-#: inc/customizer.php:197
+#: inc/customizer.php:258
 msgid "Disable upvoting"
 msgstr "Desabilitar voto"
 
-#: inc/customizer.php:203
+#: inc/customizer.php:264
 msgid "Disable sorting"
 msgstr "Desabilitar ordenação"
 
-#: inc/customizer.php:209 partials/sort-resources.php:2
+#: inc/customizer.php:270 partials/sort-resources.php:2
 msgid "Sort by"
 msgstr "Ordenar por"
 
-#: inc/customizer.php:212 partials/sort-resources.php:9
+#: inc/customizer.php:273 partials/sort-resources.php:9
 #: partials/sort-resources.php:10
 msgid "Date"
 msgstr "Data"
 
-#: inc/customizer.php:214 partials/post-stats.php:20
+#: inc/customizer.php:275 partials/post-stats.php:20
 #: partials/sort-resources.php:15 partials/sort-resources.php:16
 msgid "Views"
 msgstr "Visualizações"
 
-#: inc/customizer.php:215 partials/post-stats.php:37
+#: inc/customizer.php:276 partials/post-stats.php:37
 #: partials/sort-resources.php:20 partials/sort-resources.php:21
 msgid "Upvotes"
 msgstr "Votos"
 
-#: inc/customizer.php:221
+#: inc/customizer.php:282
 msgid "Sort order"
 msgstr "Ordem"
 
-#: inc/customizer.php:224
+#: inc/customizer.php:285
 msgid "Ascending"
 msgstr "Crescente"
 
-#: inc/customizer.php:225
+#: inc/customizer.php:286
 msgid "Descending"
 msgstr "Decrescente"
 
-#: inc/customizer.php:232
+#: inc/customizer.php:293
 msgid "Submissions"
 msgstr "Envios"
 
-#: inc/customizer.php:238
+#: inc/customizer.php:299
 msgid "Disable user submissions"
 msgstr "Desabilitar envios de usuários"
 
-#: inc/customizer.php:244
+#: inc/customizer.php:305
 msgid "Inform me about new submissions"
 msgstr "Informar-me sobre novos envios"
 
-#: inc/customizer.php:257
+#: inc/customizer.php:318
 msgid "Submission tagline"
 msgstr "Chamada do envio"
 
-#: inc/customizer.php:258
+#: inc/customizer.php:319
 msgid "Internet is huge! Help us find great content"
 msgstr "A internet é enorme! Ajude-nos a encontrar ótimos conteúdos"
 
-#: inc/customizer.php:263
+#: inc/customizer.php:324
 msgid "Submission \"Thank You\" message"
 msgstr "Mensagem de \"obrigado\" do envio"
 
-#: inc/customizer.php:264
+#: inc/customizer.php:325
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
@@ -406,72 +404,72 @@ msgstr ""
 "Obrigado por sua contribuição. Sua sugestão foi enviada aos donos do site "
 "para revisão."
 
-#: inc/customizer.php:269
+#: inc/customizer.php:330
 msgid "Submission \"Failure\" message"
 msgstr "Mensagem de \"falha\" do envio"
 
-#: inc/customizer.php:270
+#: inc/customizer.php:331
 msgid "Your submission could not be processed."
 msgstr "Seu envio não pôde ser processado."
 
-#: inc/customizer.php:275
+#: inc/customizer.php:336
 msgid "reCAPTCHA Site key"
 msgstr "Site key do reCAPTCHA"
 
-#: inc/customizer.php:276
+#: inc/customizer.php:337
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 msgstr "Registre-se no <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 
-#: inc/customizer.php:282 sections/posts.php:22
+#: inc/customizer.php:343 sections/posts.php:22
 msgid "Blog"
 msgstr "Blog"
 
-#: inc/customizer.php:288
+#: inc/customizer.php:349
 msgid "Blog list layout"
 msgstr "Layout do blog"
 
-#: inc/customizer.php:291
+#: inc/customizer.php:352
 msgid "Tiles"
 msgstr "Azulejos"
 
-#: inc/customizer.php:292
+#: inc/customizer.php:353
 msgid "Excerpts"
 msgstr "Excertos"
 
-#: inc/customizer.php:293
+#: inc/customizer.php:354
 msgid "Mixed"
 msgstr "Misturado"
 
-#: inc/customizer.php:299
+#: inc/customizer.php:360
 msgid "Number of blog posts per page"
 msgstr "Quantidade de postagens por página"
 
-#: inc/customizer.php:306
+#: inc/customizer.php:367
 msgid "Social Profiles"
 msgstr "Perfis sociais"
 
-#: inc/customizer.php:312
+#: inc/customizer.php:373
 msgid "Ads"
 msgstr "Anúncios"
 
-#: inc/customizer.php:318
+#: inc/customizer.php:379
 msgid "Disable ads"
 msgstr "Desabilitar anúncios"
 
-#: inc/customizer.php:324
+#: inc/customizer.php:385
 msgid "Show ads only on homepage"
 msgstr "Exibir anúncios apenas na página inicial"
 
-#: inc/customizer.php:330
+#: inc/customizer.php:391
 msgid "Ad link URL"
 msgstr "Link do anúncio"
 
-#: inc/customizer.php:335
+#: inc/customizer.php:396
 msgid "Ad image (Desktop)"
 msgstr "Imagem do anúncio (Desktop)"
 
-#: inc/customizer.php:336 inc/customizer.php:342
+#: inc/customizer.php:397 inc/customizer.php:403
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
@@ -480,15 +478,15 @@ msgstr ""
 "Recomendamos utilizar uma imagem horizontal e retangular com pelo menos %1$d "
 "pixels de largura."
 
-#: inc/customizer.php:341
+#: inc/customizer.php:402
 msgid "Ad image (Tablet)"
 msgstr "Imagem do anúncio (Tablet)"
 
-#: inc/customizer.php:347
+#: inc/customizer.php:408
 msgid "Ad image (Mobile)"
 msgstr "Imagem do anúncio (Celulares)"
 
-#: inc/customizer.php:348
+#: inc/customizer.php:409
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
@@ -497,11 +495,11 @@ msgstr ""
 "Recomendamos utilizar uma imagem vertical e retangular com pelo menos %1$d "
 "pixels de largura."
 
-#: inc/customizer.php:353
+#: inc/customizer.php:414
 msgid "Ad HTML code"
 msgstr "Código HTML do anúncio"
 
-#: inc/customizer.php:354
+#: inc/customizer.php:415
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
@@ -509,19 +507,19 @@ msgstr ""
 "Insira seu código HTML do Google AdSense (ou algum outro) para exibir "
 "anúncios nas áreas designadas."
 
-#: inc/customizer.php:360 partials/newsletter.php:4
+#: inc/customizer.php:421 partials/newsletter.php:4
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: inc/customizer.php:366
+#: inc/customizer.php:427
 msgid "Disable newsletter"
 msgstr "Desabilitar newsletter"
 
-#: inc/customizer.php:372
+#: inc/customizer.php:433
 msgid "Mailchimp form action URL"
 msgstr "Mailchimp form action URL"
 
-#: inc/customizer.php:374
+#: inc/customizer.php:435
 #, php-format
 msgid ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
@@ -530,54 +528,42 @@ msgstr ""
 "Onde encontro minha <a href=\"%1$s\" target=\"_blank\">URL de form action do "
 "Mailchimp?</a>"
 
-#: inc/customizer.php:379
+#: inc/customizer.php:440
 msgid "Newsletter tagline"
 msgstr "Chamada da newsletter"
 
-#: inc/customizer.php:380
+#: inc/customizer.php:441
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr ""
 "Não perca nada! Inscreva-se em nossa newsletter para manter-se atualizado."
 
-#: inc/customizer.php:386
+#: inc/customizer.php:447
 msgid "Theme Options"
 msgstr "Opções do tema"
 
-#: inc/customizer.php:392
+#: inc/customizer.php:453
 msgid "Disable theme credits"
 msgstr "Desabilitar créditos do tema"
 
-#: inc/customizer.php:398
+#: inc/customizer.php:459
 msgid "Disable search"
 msgstr "Desabilitar busca"
 
-#: inc/customizer.php:404
+#: inc/customizer.php:465
 msgid "Disable \"ref\" attribute"
 msgstr "Desabilitar o atributo \"ref\""
 
-#: inc/customizer.php:410
+#: inc/customizer.php:471
 msgid "About copy (footer)"
 msgstr "Texto \"sobre\" (rodapé)"
 
-#: inc/customizer.php:412
+#: inc/customizer.php:473
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
 msgstr ""
 "Insira uma descrição do seu site para ser exibida no rodapé. Você pode usar "
 "tags HTML (<p>, <a>, <strong>, <i>)."
-
-#: inc/customizer.php:417
-msgid "Tracking code"
-msgstr "Código de acompanhamento"
-
-#: inc/customizer.php:418
-msgid ""
-"Paste your Google Analytics (or other) tracking code here. It will be "
-"inserted before the closing body tag of your theme."
-msgstr ""
-"Cole aqui seu código do Google Analytics (ou outro serviço). Ele será "
-"inserido antes do fechamento da tag body no HTML."
 
 #: inc/helpers.php:373
 #, php-format
@@ -814,159 +800,47 @@ msgstr "Coleção de %s"
 msgid "%s Tag"
 msgstr "Tag %s"
 
-msgid "Add %s"
-msgstr "Add %s"
-
-msgid "Edit %s"
-msgstr "Edit %s"
-
-msgid "New %s"
-msgstr "New %s"
-
-msgid "View %s"
-msgstr "View %s"
-
-msgid "All %s"
-msgstr "All %s"
-
-msgid "Search %s"
-msgstr "Search %s"
-
-msgid "No %s found."
-msgstr "No %s found."
-
-msgid "No %s found in trash."
-msgstr "No %s found in trash."
-
-msgid "New %s Name"
-msgstr "New %s Name"
-
-msgid "Update %s"
-msgstr "Update %s"
-
-msgid "Parent %s"
-msgstr "Parent %s"
-
-msgid "Parent %s:"
-msgstr "Parent %s:"
-
-msgid "Search results for %s"
-msgstr "Search results for %s"
-
-msgid "Page %s"
-msgstr "Page %s"
-
-msgid "%1$s Collection"
-msgstr "%1$s Collection"
-
-msgid "Newsletter form action URL"
-msgstr "Newsletter form action URL"
-
-msgid ""
-"Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
-"\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
-"Monitor</a>"
-msgstr ""
-"Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
-"\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
-"Monitor</a>"
-
-msgid ""
-"We recommend using a square horizontal image that is at least %1$d pixels "
-"wide."
-msgstr ""
-"We recommend using a square horizontal image that is at least %1$d pixels "
-"wide."
-
-msgid ""
-"We recommend using a square vertical image that is at least %1$d pixels wide."
-msgstr ""
-"We recommend using a square vertical image that is at least %1$d pixels wide."
-
-msgid "Disable asking for submitter info"
-msgstr "Disable asking for submitter info"
-
-msgid "Ad image"
-msgstr "Ad image"
-
-msgid "<a href=\"%1$s\">Review submission</a>"
-msgstr "<a href=“%1$s”>Review submission</a>"
-
-msgid "Category"
-msgstr "Category"
-
-msgid ""
-"Upload a logo for your theme. You can leave it empty to use your site name "
-"as a plain text logo., "
-msgstr ""
-"Upload a logo for your theme. You can leave it empty to use your site name "
-"as a plain text logo., "
-
-msgid "Not enough arguments following: %s"
-msgstr "Not enough arguments following: %s"
-
-msgid "Invalid JSON config file: %s"
-msgstr "Invalid JSON config file: %s"
-
-msgid "Commands:"
-msgstr "Commands:"
-
-msgid "boolean"
-msgstr "boolean"
-
-msgid "count"
-msgstr "count"
-
-msgid "string"
-msgstr "string"
-
-msgid "array"
-msgstr "array"
-
-msgid "number"
-msgstr "number"
-
-msgid "required"
-msgstr "required"
-
-msgid "choices:"
-msgstr "choices:"
-
-msgid "Examples:"
-msgstr "Examples:"
-
-msgid "generated-value"
-msgstr "generated-value"
-
-msgid "default:"
-msgstr "default:"
-
-msgid "Not enough non-option arguments: got %s, need at least %s"
-msgstr "Not enough non-option arguments: got %s, need at least %s"
-
-msgid "Too many non-option arguments: got %s, maximum of %s"
-msgstr "Too many non-option arguments: got %s, maximum of %s"
-
-msgid "Invalid values:"
-msgstr "Invalid values:"
-
-msgid "Argument: %s, Given: %s, Choices: %s"
-msgstr "Argument: %s, Given: %s, Choices: %s"
-
-msgid "Argument check failed: %s"
-msgstr "Argument check failed: %s"
-
-msgid "Implications failed:"
-msgstr "Implications failed:"
-
-msgid "Add New Tag"
-msgstr "Add New Tag"
-
 #~ msgid "Display resources as cards"
 #~ msgstr "Exibir itens como cartões"
 
 #~ msgid "resource"
 #~ msgstr "item\t"
+
+#~ msgid "Add %s"
+#~ msgstr "Add %s"
+
+#~ msgid "Edit %s"
+#~ msgstr "Edit %s"
+
+#~ msgid "New %s"
+#~ msgstr "New %s"
+
+#~ msgid "View %s"
+#~ msgstr "View %s"
+
+#~ msgid "All %s"
+#~ msgstr "All %s"
+
+#~ msgid "Search %s"
+#~ msgstr "Search %s"
+
+#~ msgid "No %s found."
+#~ msgstr "No %s found."
+
+#~ msgid "No %s found in trash."
+#~ msgstr "No %s found in trash."
+
+#~ msgid "New %s Name"
+#~ msgstr "New %s Name"
+
+#~ msgid "Update %s"
+#~ msgstr "Update %s"
+
+#~ msgid "Parent %s"
+#~ msgstr "Parent %s"
+
+#~ msgid "Parent %s:"
+#~ msgstr "Parent %s:"
 
 #~ msgid "Add New"
 #~ msgstr "Adicionar novo"
@@ -1018,6 +892,130 @@ msgstr "Add New Tag"
 
 #~ msgid "Popularity"
 #~ msgstr "Popularidade"
+
+#~ msgid "Search results for %s"
+#~ msgstr "Search results for %s"
+
+#~ msgid "Page %s"
+#~ msgstr "Page %s"
+
+#~ msgid "%1$s Collection"
+#~ msgstr "%1$s Collection"
+
+#~ msgid "Newsletter form action URL"
+#~ msgstr "Newsletter form action URL"
+
+#~ msgid ""
+#~ "Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
+#~ "\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
+#~ "Monitor</a>"
+#~ msgstr ""
+#~ "Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
+#~ "\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
+#~ "Monitor</a>"
+
+#~ msgid ""
+#~ "We recommend using a square horizontal image that is at least %1$d pixels "
+#~ "wide."
+#~ msgstr ""
+#~ "We recommend using a square horizontal image that is at least %1$d pixels "
+#~ "wide."
+
+#~ msgid ""
+#~ "We recommend using a square vertical image that is at least %1$d pixels "
+#~ "wide."
+#~ msgstr ""
+#~ "We recommend using a square vertical image that is at least %1$d pixels "
+#~ "wide."
+
+#~ msgid "Disable asking for submitter info"
+#~ msgstr "Disable asking for submitter info"
+
+#~ msgid "Ad image"
+#~ msgstr "Ad image"
+
+#~ msgid "<a href=\"%1$s\">Review submission</a>"
+#~ msgstr "<a href=“%1$s”>Review submission</a>"
+
+#~ msgid "Category"
+#~ msgstr "Category"
+
+#~ msgid ""
+#~ "Upload a logo for your theme. You can leave it empty to use your site "
+#~ "name as a plain text logo., "
+#~ msgstr ""
+#~ "Upload a logo for your theme. You can leave it empty to use your site "
+#~ "name as a plain text logo., "
+
+#~ msgid "Not enough arguments following: %s"
+#~ msgstr "Not enough arguments following: %s"
+
+#~ msgid "Invalid JSON config file: %s"
+#~ msgstr "Invalid JSON config file: %s"
+
+#~ msgid "Commands:"
+#~ msgstr "Commands:"
+
+#~ msgid "boolean"
+#~ msgstr "boolean"
+
+#~ msgid "count"
+#~ msgstr "count"
+
+#~ msgid "string"
+#~ msgstr "string"
+
+#~ msgid "array"
+#~ msgstr "array"
+
+#~ msgid "number"
+#~ msgstr "number"
+
+#~ msgid "required"
+#~ msgstr "required"
+
+#~ msgid "choices:"
+#~ msgstr "choices:"
+
+#~ msgid "Examples:"
+#~ msgstr "Examples:"
+
+#~ msgid "generated-value"
+#~ msgstr "generated-value"
+
+#~ msgid "default:"
+#~ msgstr "default:"
+
+#~ msgid "Not enough non-option arguments: got %s, need at least %s"
+#~ msgstr "Not enough non-option arguments: got %s, need at least %s"
+
+#~ msgid "Too many non-option arguments: got %s, maximum of %s"
+#~ msgstr "Too many non-option arguments: got %s, maximum of %s"
+
+#~ msgid "Invalid values:"
+#~ msgstr "Invalid values:"
+
+#~ msgid "Argument: %s, Given: %s, Choices: %s"
+#~ msgstr "Argument: %s, Given: %s, Choices: %s"
+
+#~ msgid "Argument check failed: %s"
+#~ msgstr "Argument check failed: %s"
+
+#~ msgid "Implications failed:"
+#~ msgstr "Implications failed:"
+
+#~ msgid "Add New Tag"
+#~ msgstr "Add New Tag"
+
+#~ msgid "Tracking code"
+#~ msgstr "Código de acompanhamento"
+
+#~ msgid ""
+#~ "Paste your Google Analytics (or other) tracking code here. It will be "
+#~ "inserted before the closing body tag of your theme."
+#~ msgstr ""
+#~ "Cole aqui seu código do Google Analytics (ou outro serviço). Ele será "
+#~ "inserido antes do fechamento da tag body no HTML."
 
 #~ msgid ""
 #~ "Ready to publish your first collection? <a href=\"%1$s\">Get started "
