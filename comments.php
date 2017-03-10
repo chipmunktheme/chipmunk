@@ -11,7 +11,7 @@
 ?>
 
 <?php if ( post_password_required() ) : ?>
-	<?php _e( 'This post is password protected. Enter the password to view any comments.', 'chipmunk' ); ?>
+	<?php esc_html_e( 'This post is password protected. Enter the password to view any comments.', 'chipmunk' ); ?>
 	<?php
 	/**
 	 * Stop the rest of comments.php from being processed,
@@ -30,7 +30,7 @@ endif;
 	 */
 	?>
 	<?php if ( have_comments() ) : ?>
-		<h3 class="heading heading_md"><?php printf( _n( '%s Comment', '%s Comments', get_comments_number() ), number_format_i18n( get_comments_number() ) ); ?></h3>
+		<h3 class="heading heading_md"><?php esc_html( printf( _n( '%s Comment', '%s Comments', get_comments_number() ), number_format_i18n( get_comments_number() ) ) ); ?></h3>
 
 		<ul>
 			<?php
@@ -60,11 +60,11 @@ endif;
 		$fields = array(
 			'author' => '<div class="form__field"><div class="form__child">' .
 				'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
-				'" size="30" placeholder="' . __( 'Name', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' /></div>',
+				'" size="30" placeholder="' . esc_attr__( 'Name', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' /></div>',
 
 			'email' => '<div class="form__child">' .
 				'<input id="email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
-				'" size="30" placeholder="' . __( 'Email', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' /></div></div>',
+				'" size="30" placeholder="' . esc_attr__( 'Email', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' /></div></div>',
 
 			'url' => '',
 		);
@@ -78,7 +78,7 @@ endif;
 			'title_reply_after'    => '</h3>',
 			'submit_button'        => '<span class="form__field"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></span>',
 			'fields'               => apply_filters( 'comment_form_fields', $fields ),
-			'comment_field'        => '<div class="form__field"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . __( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' data-update-rows></textarea></div>',
+			'comment_field'        => '<div class="form__field"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . esc_attr__( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' data-update-rows></textarea></div>',
 		) );
 
 		?>

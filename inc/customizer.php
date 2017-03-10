@@ -24,41 +24,41 @@ class ChipmunkCustomizer {
 	public function __construct() {
 		self::$sections = array(
 			array(
-				'title'         => __( 'Site Identity', 'chipmunk' ),
+				'title'         => esc_html__( 'Site Identity', 'chipmunk' ),
 				'slug'          => 'title_tagline',
 				'fields'        => array(
 					array(
 						'name'        => 'logo',
 						'type'        => 'image',
-						'label'       => __( 'Site Logo', 'chipmunk' ),
-						'description' => __( 'Upload a logo for your theme. You can leave it empty to use your site name as a plain text logo.', 'chipmunk' ),
+						'label'       => esc_html__( 'Site Logo', 'chipmunk' ),
+						'description' => esc_html__( 'Upload a logo for your theme. You can leave it empty to use your site name as a plain text logo.', 'chipmunk' ),
 					),
 					array(
 						'name'        => 'og_image',
 						'type'        => 'image',
-						'label'       => __( 'Open Graph Image', 'chipmunk' ),
-						'description' => __( '1200x630 pixels', 'chipmunk' ),
+						'label'       => esc_html__( 'Open Graph Image', 'chipmunk' ),
+						'description' => esc_html__( '1200x630 pixels', 'chipmunk' ),
 					),
 				),
 			),
 
 			array(
-				'title'         => __( 'Visuals', 'chipmunk' ),
+				'title'         => esc_html__( 'Visuals', 'chipmunk' ),
 				'slug'          => 'visuals_section',
 				'fields'        => array(
 					array(
 						'name'        => 'primary_color',
 						'type'        => 'color',
-						'label'       => __( 'Primary Color', 'chipmunk' ),
+						'label'       => esc_html__( 'Primary Color', 'chipmunk' ),
 						'default'     => '#F38181',
 					),
 					array(
 						'name'        => 'primary_font',
 						'type'        => 'select',
-						'label'       => __( 'Primary Font', 'chipmunk' ),
+						'label'       => esc_html__( 'Primary Font', 'chipmunk' ),
 						'default'     => 'Poppins',
 						'choices'     => array(
-							'System'          => __( 'System font', 'chipmunk' ),
+							'System'          => esc_html__( 'System font', 'chipmunk' ),
 							'Poppins'         => 'Poppins',
 							'Roboto'          => 'Roboto',
 							'Open Sans'       => 'Open Sans',
@@ -77,345 +77,345 @@ class ChipmunkCustomizer {
 					array(
 						'name'        => 'custom_css',
 						'type'        => 'textarea',
-						'label'       => __( 'Custom CSS', 'chipmunk' ),
+						'label'       => esc_html__( 'Custom CSS', 'chipmunk' ),
 						'default'     => '',
-						'description' => __( 'Quickly add some CSS to your theme by adding it to this block.', 'chipmunk' ),
+						'description' => esc_html__( 'Quickly add some CSS to your theme by adding it to this block.', 'chipmunk' ),
 					),
 				),
 			),
 
 			array(
-				'title'         => __( 'Homepage', 'chipmunk' ),
+				'title'         => esc_html__( 'Homepage', 'chipmunk' ),
 				'slug'          => 'homepage_section',
 				'fields'        => array(
 					array(
 						'name'        => 'resources_count',
 						'type'        => 'number',
-						'label'       => __( 'Latest resources count', 'chipmunk' ),
+						'label'       => esc_html__( 'Latest resources count', 'chipmunk' ),
 						'default'     => 9,
-						'description' => __( 'Enter the max resources number to show on resource sliders.', 'chipmunk' ),
+						'description' => esc_html__( 'Enter the max resources number to show on resource sliders.', 'chipmunk' ),
 					),
 					array(
 						'name'        => 'disable_homepage_listings',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable resource listings', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable resource listings', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_homepage_listings_sliders',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable resource listings sliders', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable resource listings sliders', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_homepage_collections',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable collections', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable collections', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_homepage_posts',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable latest posts', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable latest posts', 'chipmunk' ),
 						'default'     => false,
 					),
 				),
 			),
 
 			array(
-				'title'         => __( 'Resources', 'chipmunk' ),
+				'title'         => esc_html__( 'Resources', 'chipmunk' ),
 				'slug'          => 'resources_section',
 				'fields'        => array(
 					array(
 						'name'        => 'posts_per_page',
 						'type'        => 'number',
-						'label'       => __( 'Number of resources per page', 'chipmunk' ),
+						'label'       => esc_html__( 'Number of resources per page', 'chipmunk' ),
 						'default'     => 18,
 					),
 					array(
 						'name'        => 'results_per_page',
 						'type'        => 'number',
-						'label'       => __( 'Number of search results per page', 'chipmunk' ),
+						'label'       => esc_html__( 'Number of search results per page', 'chipmunk' ),
 						'default'     => 9,
 					),
 					array(
 						'name'        => 'display_resource_as',
 						'type'        => 'select',
-						'label'       => __( 'Display resources as', 'chipmunk' ),
+						'label'       => esc_html__( 'Display resources as', 'chipmunk' ),
 						'default'     => 'tile',
 						'choices'     => array(
-							'tile'        => __( 'Tile', 'chipmunk' ),
-							'card'        => __( 'Card', 'chipmunk' ),
-							'card_blank'  => __( 'Card (blank)', 'chipmunk' ),
+							'tile'        => esc_html__( 'Tile', 'chipmunk' ),
+							'card'        => esc_html__( 'Card', 'chipmunk' ),
+							'card_blank'  => esc_html__( 'Card (blank)', 'chipmunk' ),
 						),
 					),
 					array(
 						'name'        => 'display_resource_content_separated',
 						'type'        => 'checkbox',
-						'label'       => __( 'Display resource content in a separate section', 'chipmunk' ),
+						'label'       => esc_html__( 'Display resource content in a separate section', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_resource_desc',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable resource description', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable resource description', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_resource_date',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable resource date', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable resource date', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_featured',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable featured panel', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable featured panel', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_resource_thumbs',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable resource thumbs', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable resource thumbs', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_collection_thumbs',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable collection thumbs', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable collection thumbs', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_views',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable view count', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable view count', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_upvotes',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable upvoting', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable upvoting', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_sorting',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable sorting', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable sorting', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'default_sort_by',
 						'type'        => 'select',
-						'label'       => __( 'Sort by', 'chipmunk' ),
+						'label'       => esc_html__( 'Sort by', 'chipmunk' ),
 						'default'     => 'date',
 						'choices'     => array(
-							'date'        => __( 'Date', 'chipmunk' ),
-							'name'        => __( 'Name', 'chipmunk' ),
-							'views'       => __( 'Views', 'chipmunk' ),
-							'upvotes'     => __( 'Upvotes', 'chipmunk' ),
+							'date'        => esc_html__( 'Date', 'chipmunk' ),
+							'name'        => esc_html__( 'Name', 'chipmunk' ),
+							'views'       => esc_html__( 'Views', 'chipmunk' ),
+							'upvotes'     => esc_html__( 'Upvotes', 'chipmunk' ),
 						),
 					),
 					array(
 						'name'        => 'default_sort_order',
 						'type'        => 'select',
-						'label'       => __( 'Sort order', 'chipmunk' ),
+						'label'       => esc_html__( 'Sort order', 'chipmunk' ),
 						'default'     => 'desc',
 						'choices'     => array(
-							'asc'         => __( 'Ascending', 'chipmunk' ),
-							'desc'        => __( 'Descending', 'chipmunk' ),
+							'asc'         => esc_html__( 'Ascending', 'chipmunk' ),
+							'desc'        => esc_html__( 'Descending', 'chipmunk' ),
 						),
 					),
 				),
 			),
 
 			array(
-				'title'         => __( 'Submissions', 'chipmunk' ),
+				'title'         => esc_html__( 'Submissions', 'chipmunk' ),
 				'slug'          => 'submissions_section',
 				'fields'        => array(
 					array(
 						'name'        => 'disable_submissions',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable user submissions', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable user submissions', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'inform_about_submissions',
 						'type'        => 'checkbox',
-						'label'       => __( 'Inform me about new submissions', 'chipmunk' ),
+						'label'       => esc_html__( 'Inform me about new submissions', 'chipmunk' ),
 						'default'     => true,
 					),
 					// TODO: Allow to store the submitter's info
 					// array(
 					//   'name'        => 'disable_submitter_info',
 					//   'type'        => 'checkbox',
-					//   'label'       => __( 'Disable asking for submitter info', 'chipmunk' ),
+					//   'label'       => esc_html__( 'Disable asking for submitter info', 'chipmunk' ),
 					//   'default'     => false,
 					// ),
 					array(
 						'name'        => 'submit_tagline',
 						'type'        => 'textarea',
-						'label'       => __( 'Submission tagline', 'chipmunk' ),
-						'default'     => __( 'Internet is huge! Help us find great content', 'chipmunk' ),
+						'label'       => esc_html__( 'Submission tagline', 'chipmunk' ),
+						'default'     => esc_html__( 'Internet is huge! Help us find great content', 'chipmunk' ),
 					),
 					array(
 						'name'        => 'submission_thanks',
 						'type'        => 'textarea',
-						'label'       => __( 'Submission "Thank You" message', 'chipmunk' ),
-						'default'     => __( 'Thank you for your contribution. The submission was sent to the website owners for review.', 'chipmunk' ),
+						'label'       => esc_html__( 'Submission "Thank You" message', 'chipmunk' ),
+						'default'     => esc_html__( 'Thank you for your contribution. The submission was sent to the website owners for review.', 'chipmunk' ),
 					),
 					array(
 						'name'        => 'submission_failure',
 						'type'        => 'textarea',
-						'label'       => __( 'Submission "Failure" message', 'chipmunk' ),
-						'default'     => __( 'Your submission could not be processed.', 'chipmunk' ),
+						'label'       => esc_html__( 'Submission "Failure" message', 'chipmunk' ),
+						'default'     => esc_html__( 'Your submission could not be processed.', 'chipmunk' ),
 					),
 					array(
 						'name'        => 'recaptcha_site_key',
 						'type'        => 'text',
-						'label'       => __( 'reCAPTCHA Site key', 'chipmunk' ),
-						'description' => sprintf(__( 'Register at <a href="%1$s" target="_blank">reCAPTCHA</a>.', 'chipmunk' ), esc_url( 'https://www.google.com/recaptcha/admin') ),
+						'label'       => esc_html__( 'reCAPTCHA Site key', 'chipmunk' ),
+						'description' => sprintf( wp_kses( __( 'Register at <a href="%1$s" target="_blank">reCAPTCHA</a>.', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://www.google.com/recaptcha/admin' ) ),
 					),
 				),
 			),
 
 			array(
-				'title'         => __( 'Blog', 'chipmunk' ),
+				'title'         => esc_html__( 'Blog', 'chipmunk' ),
 				'slug'          => 'blog_section',
 				'fields'        => array(
 					array(
 						'name'        => 'blog_layout',
 						'type'        => 'select',
-						'label'       => __( 'Blog list layout', 'chipmunk' ),
+						'label'       => esc_html__( 'Blog list layout', 'chipmunk' ),
 						'default'     => 'tiles',
 						'choices'     => array(
-							'tiles'     => __( 'Tiles', 'chipmunk' ),
-							'excerpts'  => __( 'Excerpts', 'chipmunk' ),
-							'mixed'     => __( 'Mixed', 'chipmunk' ),
+							'tiles'     => esc_html__( 'Tiles', 'chipmunk' ),
+							'excerpts'  => esc_html__( 'Excerpts', 'chipmunk' ),
+							'mixed'     => esc_html__( 'Mixed', 'chipmunk' ),
 						),
 					),
 					array(
 						'name'        => 'blog_posts_per_page',
 						'type'        => 'number',
-						'label'       => __( 'Number of blog posts per page', 'chipmunk' ),
+						'label'       => esc_html__( 'Number of blog posts per page', 'chipmunk' ),
 						'default'     => 12,
 					),
 				),
 			),
 
 			array(
-				'title'         => __( 'Social Profiles', 'chipmunk' ),
+				'title'         => esc_html__( 'Social Profiles', 'chipmunk' ),
 				'slug'          => 'socials_section',
 				'callback'      => 'register_socials',
 			),
 
 			array(
-				'title'         => __( 'Ads', 'chipmunk' ),
+				'title'         => esc_html__( 'Ads', 'chipmunk' ),
 				'slug'          => 'ads_section',
 				'fields'        => array(
 					array(
 						'name'        => 'disable_ads',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable ads', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable ads', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'ads_only_home',
 						'type'        => 'checkbox',
-						'label'       => __( 'Show ads only on homepage', 'chipmunk' ),
+						'label'       => esc_html__( 'Show ads only on homepage', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'ad_link',
 						'type'        => 'text',
-						'label'       => __( 'Ad link URL', 'chipmunk' ),
+						'label'       => esc_html__( 'Ad link URL', 'chipmunk' ),
 					),
 					array(
 						'name'        => 'ad_image_lg',
 						'type'        => 'image',
-						'label'       => __( 'Ad image (Desktop)', 'chipmunk' ),
-						'description' => sprintf(__( 'We recommend using a rectangle horizontal image that is at least %1$d pixels wide.', 'chipmunk' ), 940),
+						'label'       => esc_html__( 'Ad image (Desktop)', 'chipmunk' ),
+						'description' => sprintf( esc_html__( 'We recommend using a rectangle horizontal image that is at least %1$d pixels wide.', 'chipmunk' ), 940 ),
 					),
 					array(
 						'name'        => 'ad_image_md',
 						'type'        => 'image',
-						'label'       => __( 'Ad image (Tablet)', 'chipmunk' ),
-						'description' => sprintf(__( 'We recommend using a rectangle horizontal image that is at least %1$d pixels wide.', 'chipmunk' ), 768),
+						'label'       => esc_html__( 'Ad image (Tablet)', 'chipmunk' ),
+						'description' => sprintf( esc_html__( 'We recommend using a rectangle horizontal image that is at least %1$d pixels wide.', 'chipmunk' ), 768 ),
 					),
 					array(
 						'name'        => 'ad_image_sm',
 						'type'        => 'image',
-						'label'       => __( 'Ad image (Mobile)', 'chipmunk' ),
-						'description' => sprintf(__( 'We recommend using a rectangle vertical image that is at least %1$d pixels wide.', 'chipmunk' ), 375),
+						'label'       => esc_html__( 'Ad image (Mobile)', 'chipmunk' ),
+						'description' => sprintf( esc_html__( 'We recommend using a rectangle vertical image that is at least %1$d pixels wide.', 'chipmunk' ), 375 ),
 					),
 					array(
 						'name'        => 'ad_code',
 						'type'        => 'textarea',
-						'label'       => __( 'Ad HTML code', 'chipmunk' ),
-						'description' => __( 'Insert your Google AdSense (or other) generated HTML code to display ads in designated areas.', 'chipmunk' ),
+						'label'       => esc_html__( 'Ad HTML code', 'chipmunk' ),
+						'description' => esc_html__( 'Insert your Google AdSense (or other) generated HTML code to display ads in designated areas.', 'chipmunk' ),
 					),
 				),
 			),
 
 			array(
-				'title'         => __( 'Newsletter', 'chipmunk' ),
+				'title'         => esc_html__( 'Newsletter', 'chipmunk' ),
 				'slug'          => 'newsletter_section',
 				'fields'        => array(
 					array(
 						'name'        => 'disable_newsletter',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable newsletter', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable newsletter', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'newsletter_action',
 						'type'        => 'text',
-						'label'       => __( 'Mailchimp form action URL', 'chipmunk' ),
+						'label'       => esc_html__( 'Mailchimp form action URL', 'chipmunk' ),
 						'default'     => '#',
-						'description' => sprintf(__( 'Where do I find my <a href="%1$s" target="_blank">Mailchimp form action URL?</a>', 'chipmunk' ), esc_url( 'http://chipmunktheme.com/help/mailchimp-url') ),
+						'description' => sprintf( wp_kses( __( 'Where do I find my <a href="%1$s" target="_blank">Mailchimp form action URL?</a>', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'http://chipmunktheme.com/help/mailchimp-url' ) ),
 					),
 					array(
 						'name'        => 'newsletter_tagline',
 						'type'        => 'text',
-						'label'       => __( 'Newsletter tagline', 'chipmunk' ),
-						'default'     => __( 'Never miss a thing! Sign up for our newsletter to stay updated.', 'chipmunk' ),
+						'label'       => esc_html__( 'Newsletter tagline', 'chipmunk' ),
+						'default'     => esc_html__( 'Never miss a thing! Sign up for our newsletter to stay updated.', 'chipmunk' ),
 					),
 				),
 			),
 
 			array(
-				'title'         => __( 'Theme Options', 'chipmunk' ),
+				'title'         => esc_html__( 'Theme Options', 'chipmunk' ),
 				'slug'          => 'theme_section',
 				'fields'        => array(
 					array(
 						'name'        => 'disable_credits',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable theme credits', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable theme credits', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_search',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable search', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable search', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_ref',
 						'type'        => 'checkbox',
-						'label'       => __( 'Disable "ref" attribute', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable "ref" attribute', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(
 						'name'        => 'about_copy',
 						'type'        => 'textarea',
-						'label'       => __( 'About copy (footer)', 'chipmunk' ),
+						'label'       => esc_html__( 'About copy (footer)', 'chipmunk' ),
 						'default'     => get_bloginfo( 'description' ),
-						'description' => esc_html(__( 'Enter your site\'s description displayed in the footer section. You can use basic HTML tags here (<p>, <a>, <strong>, <i>).', 'chipmunk' )),
+						'description' => esc_html__( 'Enter your site\'s description displayed in the footer section. You can use basic HTML tags here (<p>, <a>, <strong>, <i>).', 'chipmunk' ),
 					),
 					array(
 						'name'        => 'tracking_code',
 						'type'        => 'textarea',
-						'label'       => __( 'Tracking code', 'chipmunk' ),
-						'description' => __( 'Paste your Google Analytics (or other) tracking code here. It will be inserted before the closing body tag of your theme.', 'chipmunk' ),
+						'label'       => esc_html__( 'Tracking code', 'chipmunk' ),
+						'description' => esc_html__( 'Paste your Google Analytics (or other) tracking code here. It will be inserted before the closing body tag of your theme.', 'chipmunk' ),
 					),
 				),
 			)
@@ -445,7 +445,7 @@ class ChipmunkCustomizer {
 		$options = ( get_option( self::$settings_name ) ) ? get_option( self::$settings_name ) : null;
 
 		// return the option if it exists
-		if ( isset( $options[$name] ) && !empty( $options[$name] ) ) {
+		if ( isset( $options[$name] ) && ! empty( $options[$name] ) ) {
 			return apply_filters( self::$settings_name . '_$name', $options[$name] );
 		}
 
@@ -497,11 +497,11 @@ class ChipmunkCustomizer {
 	 */
 	private function populate_sections() {
 		foreach( self::$sections as $index => $section ) {
-			if ( !empty( $section['callback'] ) ) {
+			if ( ! empty( $section['callback'] ) ) {
 				call_user_func( array( $this, $section['callback'] ) );
 			}
 
-			if ( !empty( $section['fields'] ) ) {
+			if ( ! empty( $section['fields'] ) ) {
 				foreach( $section['fields'] as $field ) {
 					$this->register_field( $section, $field );
 				}
@@ -576,7 +576,7 @@ class ChipmunkCustomizer {
 	 */
 	private static function find_default_by_name( $name ) {
 		foreach ( self::$sections as $section ) {
-			if ( !empty( $section['fields'] ) ) {
+			if ( ! empty( $section['fields'] ) ) {
 				foreach( $section['fields'] as $field ) {
 					if ( $field['name'] === $name and ! empty( $field['default'] ) and ! is_bool( $field['default'] ) ) {
 						return $field['default'];

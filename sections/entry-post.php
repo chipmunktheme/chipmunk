@@ -23,7 +23,7 @@
 
 			<div class="entry__author">
 				<?php echo get_avatar( get_the_author_meta( 'ID' ), 50 ); ?>
-				<?php _e( 'Posted by', 'chipmunk') ?> <strong><?php the_author(); ?></strong>
+				<?php esc_html_e( 'Posted by', 'chipmunk') ?> <strong><?php the_author(); ?></strong>
 			</div>
 		</div>
 		<!-- /.entry__head -->

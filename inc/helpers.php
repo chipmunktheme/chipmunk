@@ -360,17 +360,17 @@ function chipmunk_display_collections( $collections, $args ) {
 	foreach ( $collections as $key => $collection ) {
 		if ( $args['quantity'] < 0 || $args['quantity'] > $key ) {
 			if ( $args['type'] == 'link' ) {
-				$output .= '<a href="' . get_term_link( $collection->term_id ) . '" class="stats__tag">' . $collection->name . '</a>';
+				$output .= '<a href="' . esc_url( get_term_link( $collection->term_id ) ) . '" class="stats__tag">' . esc_html( $collection->name ) . '</a>';
 			}
 
 			if ( $args['type'] == 'text' ) {
-				$output .= '<span class="stats__tag">' . $collection->name . '</span>';
+				$output .= '<span class="stats__tag">' . esc_html( $collection->name ) . '</span>';
 			}
 		}
 	}
 
 	if ( $args['quantity'] > 0 && $args['quantity'] < $count && $args['type'] == 'link' ) {
-		$output .= '<span class="stats__tag stats__tag_dimmed">' . sprintf( __( '+%d more', 'chipmunk' ), $count - 1 ) . '</span>';
+		$output .= '<span class="stats__tag stats__tag_dimmed">' . sprintf( esc_html__( '+%d more', 'chipmunk' ), $count - 1 ) . '</span>';
 	}
 
 	return $output;
@@ -383,9 +383,9 @@ if ( ! function_exists( 'chipmunk_external_link' ) ) :
  * Create external links
  */
 function chipmunk_external_link( $url ) {
-	if ( !ChipmunkCustomizer::theme_option( 'disable_ref' ) ) {
+	if ( ! ChipmunkCustomizer::theme_option( 'disable_ref' ) ) {
 		$title = str_replace( '-', '', sanitize_title( get_bloginfo( 'name' ) ) );
-		$prefix = ( preg_match('(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
+		$prefix = ( preg_match( '(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
 
 		return $url . $prefix . $title;
 	}

@@ -8,7 +8,7 @@
 
 // If the search query is shorter than 3 letters redirect to homepage
 if ( strlen( get_search_query() ) < 3 or ChipmunkCustomizer::theme_option( 'disable_search' ) ) {
-	wp_redirect( home_url() ); exit;
+	wp_redirect( home_url( '/' ) ); exit;
 }
 
 get_header(); ?>
@@ -16,12 +16,12 @@ get_header(); ?>
 	<div class="section section_theme-gray<?php echo ( have_posts() ? ' section_compact-bottom' : '' ); ?>">
 		<div class="container">
 			<h1 class="heading heading_md">
-				<small><?php _e( 'Search results for:', 'chipmunk' ); ?></small>
+				<small><?php esc_html_e( 'Search results for:', 'chipmunk' ); ?></small>
 				<?php echo get_search_query(); ?>
 			</h1>
 
 			<?php if ( ! have_posts() ) : ?>
-				<p class="text_content text_separated"><?php _e( 'Sorry, your search did not match any resources.', 'chipmunk' ); ?></p>
+				<p class="text_content text_separated"><?php esc_html_e( 'Sorry, your search did not match any resources.', 'chipmunk' ); ?></p>
 			<?php endif; ?>
 		</div>
 	</div>

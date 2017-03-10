@@ -24,7 +24,7 @@
 		<!-- /.entry -->
 
 		<span class="entry__button button button_secondary">
-			<?php _e( 'Read more', 'chipmunk' ); ?>
+			<?php esc_html_e( 'Read more', 'chipmunk' ); ?>
 		</span>
 	</div>
 	<!-- /.entry__head -->

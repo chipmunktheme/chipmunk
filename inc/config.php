@@ -134,14 +134,14 @@ function chipmunk_add_og_tags() {
 		<!-- / FB Open Graph -->
 		<meta property="og:type" content="article">
 		<meta property="og:url" content="<?php the_permalink(); ?>">
-		<meta property="og:title" content="<?php printf( __( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) ); ?>">
+		<meta property="og:title" content="<?php printf( esc_html__( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) ); ?>">
 		<meta property="og:description" content="<?php echo $description ?>">
 		<meta property="og:image" content="<?php echo isset( $image ) ? $image : $site_image; ?>">
 		<meta property="og:site_name" content="<?php echo get_bloginfo( 'name' ); ?>">
 
 		<!-- / Twitter Cards -->
 		<meta name="twitter:card" content="<?php echo isset( $image ) ? 'summary_large_image' : 'summary'; ?>">
-		<meta name="twitter:title" content="<?php printf( __( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) ); ?>">
+		<meta name="twitter:title" content="<?php printf( esc_html__( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) ); ?>">
 		<meta name="twitter:description" content="<?php echo $description ?>">
 		<meta name="twitter:image" content="<?php echo isset( $image ) ? $image : $site_image; ?>">
 

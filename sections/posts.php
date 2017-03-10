@@ -14,12 +14,12 @@
 	<div class="section section_theme-gray">
 		<div class="container">
 			<?php if ( is_single() ) : ?>
-				<h2 class="heading heading_md"><?php _e( 'Related', 'chipmunk' ); ?></h2>
+				<h2 class="heading heading_md"><?php esc_html_e( 'Related', 'chipmunk' ); ?></h2>
 			<?php elseif ( is_front_page() ) : ?>
-				<h2 class="heading heading_md"><?php _e( 'Latest Posts', 'chipmunk' ); ?></h2>
+				<h2 class="heading heading_md"><?php esc_html_e( 'Latest Posts', 'chipmunk' ); ?></h2>
 			<?php else : ?>
 				<?php if ( $term && $layout == 'tiles' ) : ?>
-					<h1 class="heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( __( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : __( 'Blog', 'chipmunk' ); ?></h1>
+					<h1 class="heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( esc_html__( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : esc_html__( 'Blog', 'chipmunk' ); ?></h1>
 				<?php endif; ?>
 			<?php endif; ?>
 
@@ -49,9 +49,9 @@
 				</div>
 			<?php else : ?>
 				<?php if ( current_user_can( 'publish_posts' ) ) : ?>
-					<p class="text_content text_separated"><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'chipmunk' ), esc_url( admin_url( 'post-new.php?post_type=post' ) ) ); ?></p>
+					<p class="text_content text_separated"><?php printf( wp_kses( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'chipmunk' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( admin_url( 'post-new.php?post_type=post' ) ) ); ?></p>
 				<?php else : ?>
-					<p class="text_content text_separated"><?php _e( 'Sorry, there are no posts to display yet.', 'chipmunk' ); ?></p>
+					<p class="text_content text_separated"><?php esc_html_e( 'Sorry, there are no posts to display yet.', 'chipmunk' ); ?></p>
 				<?php endif; ?>
 			<?php endif; ?>
 		</div>

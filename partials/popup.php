@@ -3,22 +3,22 @@
 		<div class="popup__content">
 			<button class="popup__close" data-popup-toggle>
 				<i class="icon icon_close"></i>
-				<span class="sr-only"><?php _e( 'Close', 'chipmunk' ); ?></span>
+				<span class="sr-only"><?php esc_html_e( 'Close', 'chipmunk' ); ?></span>
 			</button>
 
-			<h4 class="heading heading_xl text_center"><?php _e( 'Submit', 'chipmunk' ); ?></h4>
+			<h4 class="heading heading_xl text_center"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></h4>
 
 			<p class="form__message heading heading_thin" style="display: none;" data-remote-message></p>
 
 			<form action="#" method="post" class="form" novalidate data-remote-form="submit_resource" data-parsley-validate>
 				<div class="form__field">
 					<div class="form__child">
-						<input type="text" name="name" placeholder="<?php _e( 'Resource name', 'chipmunk' ); ?>" required>
+						<input type="text" name="name" placeholder="<?php esc_attr_e( 'Resource name', 'chipmunk' ); ?>" required>
 					</div>
 
 					<div class="form__child">
-						<select name="collection" data-placeholder="<?php _e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors" class="custom-select" required>
-							<option value=""><?php _e( 'Collection', 'chipmunk' ); ?></option>
+						<select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors" class="custom-select" required>
+							<option value=""><?php esc_html_e( 'Collection', 'chipmunk' ); ?></option>
 							<?php
 							$collections = get_terms( 'resource-collection', array(
 								'orderby'    => 'name',
@@ -40,22 +40,22 @@
 
 				<div class="form__field">
 					<div class="form__child">
-						<input type="url" name="website" placeholder="<?php _e( 'Website URL', 'chipmunk' ); ?>" required>
+						<input type="url" name="website" placeholder="<?php esc_attr_e( 'Website URL', 'chipmunk' ); ?>" required>
 					</div>
 
 					<div class="form__child">
-						<input type="text" name="content" placeholder="<?php _e( 'Description', 'chipmunk' ); ?>">
+						<input type="text" name="content" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>">
 					</div>
 				</div>
 
 				<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submitter_info', true ) ) : ?>
 					<div class="form__field form__field_separated">
 						<div class="form__child">
-							<input type="text" name="submitter_name" placeholder="<?php _e( 'Your name', 'chipmunk' ); ?>" required>
+							<input type="text" name="submitter_name" placeholder="<?php esc_attr_e( 'Your name', 'chipmunk' ); ?>" required>
 						</div>
 
 						<div class="form__child">
-							<input type="email" name="submitter_email" placeholder="<?php _e( 'Your email', 'chipmunk' ); ?>" required>
+							<input type="email" name="submitter_email" placeholder="<?php esc_attr_e( 'Your email', 'chipmunk' ); ?>" required>
 						</div>
 					</div>
 				<?php endif; ?>
@@ -66,7 +66,7 @@
 					<?php endif; ?>
 
 					<?php wp_nonce_field( 'submit_resource', 'nonce', false ); ?>
-					<button type="submit" class="button button_secondary"><?php _e( 'Submit', 'chipmunk' ); ?></button>
+					<button type="submit" class="button button_secondary"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></button>
 				</div>
 			</form>
 		</div>

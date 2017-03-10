@@ -12,8 +12,8 @@ get_header(); ?>
 		<div class="container">
 			<div class="error-404 row">
 				<div class="column column_lg-6 text_center">
-					<h3 class="error-404__title heading heading_lg"><?php _e( '404! The page you are looking for couldn\'t be found.', 'chipmunk' ); ?></h3>
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="button button_primary"><?php _e( 'Bring me to the frontpage', 'chipmunk' ); ?></a>
+					<h3 class="error-404__title heading heading_lg"><?php esc_html_e( '404! The page you are looking for couldn\'t be found.', 'chipmunk' ); ?></h3>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="button button_primary"><?php esc_html_e( 'Bring me to the frontpage', 'chipmunk' ); ?></a>
 				</div>
 
 				<div class="column column_lg-6">

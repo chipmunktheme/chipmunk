@@ -21,10 +21,10 @@ function chipmunk_upvote_button( $post_id, $class = '' ) {
 
 	if ( chipmunk_already_upvoted( $post_id ) ) {
 		$class = $class . ' is-active';
-		$title = __( 'Remove Upvote', 'chipmunk' );
+		$title = esc_html__( 'Remove Upvote', 'chipmunk' );
 	}
 	else {
-		$title = __( 'Upvote', 'chipmunk' );
+		$title = esc_html__( 'Upvote', 'chipmunk' );
 	}
 
 	$counter = "<span class='$class' title='$title' data-action='$action' data-nonce='$nonce' data-post-id='$post_id'>$counter</span>";

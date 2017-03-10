@@ -22,7 +22,7 @@
 
 					<button type="button" class="nav-primary__close hidden-lg" data-nav-toggle>
 						<i class="icon icon_close" aria-hidden="true"></i>
-						<span class="sr-only"><?php _e( 'Close', 'chipmunk' ); ?></span>
+						<span class="sr-only"><?php esc_html_e( 'Close', 'chipmunk' ); ?></span>
 					</button>
 				</div>
 				<!-- /.nav-primary__inner -->
@@ -33,18 +33,18 @@
 				<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_search' ) ) : ?>
 					<button type="button" class="page-head__search" data-search-toggle>
 						<i class="icon icon_search" aria-hidden="true"></i>
-						<span class="sr-only"><?php _e( 'Search', 'chipmunk' ); ?></span>
+						<span class="sr-only"><?php esc_html_e( 'Search', 'chipmunk' ); ?></span>
 					</button>
 				<?php endif; ?>
 
 				<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
 					<button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>
-						<?php _e( 'Submit', 'chipmunk' ); ?>
+						<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
 					</button>
 				<?php endif; ?>
 
 				<button type="button" class="page-head__trigger button button_secondary hidden-lg" data-nav-toggle>
-					<?php _e( 'Menu', 'chipmunk' ); ?>
+					<?php esc_html_e( 'Menu', 'chipmunk' ); ?>
 				</button>
 			</div>
 			<!-- /.page-head__cta -->

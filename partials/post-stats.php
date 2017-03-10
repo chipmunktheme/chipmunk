@@ -1,7 +1,7 @@
 <?php $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'category' : 'resource-collection' ) ); ?>
 
 <?php if ( isset( $collections_args ) && $collections_args['display'] and $collections ) : ?>
-	<li class="stats__item" title="<?php _e( 'Collections', 'chipmunk' ); ?>">
+	<li class="stats__item" title="<?php esc_attr_e( 'Collections', 'chipmunk' ); ?>">
 		<i class="icon icon_tag"></i>
 
 		<?php echo chipmunk_display_collections( $collections, $collections_args ); ?>
@@ -9,7 +9,7 @@
 <?php endif; ?>
 
 <?php if ( ! ChipmunkCustomizer::theme_option( 'disable_resource_date' ) ) : ?>
-	<li class="stats__item" title="<?php _e( 'Published', 'chipmunk' ); ?>: <?php echo get_post_time( 'j. F Y', false, get_the_ID(), true ); ?>">
+	<li class="stats__item" title="<?php esc_attr_e( 'Published', 'chipmunk' ); ?>: <?php echo get_post_time( 'j. F Y', false, get_the_ID(), true ); ?>">
 		<i class="icon icon_clock"></i>
 
 		<?php echo get_post_time( 'j. M', false, get_the_ID(), true ); ?>
@@ -17,7 +17,7 @@
 <?php endif; ?>
 
 <?php if ( ! ChipmunkCustomizer::theme_option( 'disable_views' ) ) : ?>
-	<li class="stats__item" title="<?php _e( 'Views', 'chipmunk' ); ?>">
+	<li class="stats__item" title="<?php esc_attr_e( 'Views', 'chipmunk' ); ?>">
 		<i class="icon icon_view"></i>
 
 		<?php echo chipmunk_format_number( chipmunk_get_views( get_the_ID() ) ); ?>
@@ -34,7 +34,7 @@
 		<?php if ( ChipmunkCustomizer::theme_option( 'display_resource_as' ) != 'tile' ) : ?>
 			<li class="stats__item stats__item_sided"><?php echo $upvote_button; ?></li>
 		<?php else : ?>
-			<li class="stats__item" title="<?php _e( 'Upvotes', 'chipmunk' ); ?>"><?php echo $upvote_counter; ?></li>
+			<li class="stats__item" title="<?php esc_attr_e( 'Upvotes', 'chipmunk' ); ?>"><?php echo $upvote_counter; ?></li>
 		<?php endif; ?>
 	<?php endif; ?>
 <?php endif; ?>

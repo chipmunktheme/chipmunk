@@ -17,7 +17,7 @@ function chipmunk_submit_resource() {
 	if ( ChipmunkCustomizer::theme_option( 'recaptcha_site_key' ) ) {
 		if ( isset( $_REQUEST['g-recaptcha-response'] ) and empty( $_REQUEST['g-recaptcha-response'] ) ) {
 			// Failure due to incorrect captcha validation
-			wp_send_json_error( __( 'Please verify that you are not a robot.', 'chipmunk' ) );
+			wp_send_json_error( esc_html__( 'Please verify that you are not a robot.', 'chipmunk' ) );
 		}
 	}
 
@@ -37,7 +37,7 @@ function chipmunk_submit_resource() {
 			'post_type'     => 'resource',
 			'post_status'   => 'pending',
 			'post_title'    => wp_filter_nohtml_kses( $_REQUEST['name'] ),
-			'post_content'  => wp_filter_kses( $_REQUEST['content'] ),
+			'post_content'  => wp_kses_post( wpautop( $_REQUEST['content'] ) ),
 			'meta_input'    => $meta_input,
 		);
 
@@ -74,7 +74,7 @@ function chipmunk_submit_upvote() {
 	chipmunk_verify_nonce();
 
 	// Get post ID
-	$post_id = ( isset( $_REQUEST['postId'] ) && is_numeric( $_REQUEST['postId'] ) ) ? $_REQUEST['postId'] : null;
+	$post_id = ( isset( $_REQUEST['postId'] ) && is_numeric( $_REQUEST['postId'] ) ) ? intval( wp_filter_kses( $_REQUEST['postId'] ) ) : null;
 
 	if ( $post_id ) {
 		// Process the user upvote
@@ -94,9 +94,9 @@ function chipmunk_inform_admin( $post_id ) {
 	$to       = get_bloginfo( 'admin_email' );
 	$from     = 'admin@'.$_SERVER['SERVER_NAME'];
 	$name     = get_bloginfo( 'name' );
-	$subject  = get_bloginfo( 'name' ) . ': ' . __( 'New user submission', 'chipmunk' );
+	$subject  = get_bloginfo( 'name' ) . ': ' . esc_html__( 'New user submission', 'chipmunk' );
 	$post_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
-	$template = '<a href="' . $post_url . '">' . __( 'Review submission', 'chipmunk' ) . '</a>';
+	$template = '<a href="' . $post_url . '">' . esc_html__( 'Review submission', 'chipmunk' ) . '</a>';
 
 	$headers  = array(
 		"Content-Type: text/html; charset=UTF-8;",
@@ -116,7 +116,7 @@ function chipmunk_verify_nonce() {
 	$nonce = isset( $_REQUEST['nonce'] ) ? sanitize_text_field( $_REQUEST['nonce'] ) : null;
 
 	if ( ! $nonce || ! wp_verify_nonce( $nonce, $_REQUEST['action'] ) ) {
-		wp_send_json_error( __( 'Not permitted.', 'chipmunk' ) );
+		wp_send_json_error( esc_html__( 'Not permitted.', 'chipmunk' ) );
 	}
 }
 endif;

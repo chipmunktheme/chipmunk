@@ -31,7 +31,7 @@
 		<?php endif; ?>
 
 		<span class="tile__button button button_secondary visible-lg-block">
-			<?php _e( 'Read more', 'chipmunk' ); ?>
+			<?php esc_html_e( 'Read more', 'chipmunk' ); ?>
 		</span>
 	</div>
 </a>

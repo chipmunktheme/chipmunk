@@ -47,11 +47,11 @@ if ( current_theme_supports( 'comments' ) ) {
 						</div>
 
 						<div class="comment__reply">
-							<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+							<?php comment_reply_link( array_merge( $args, array( 'reply_text' => esc_html__( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 						</div>
 
 						<?php if ( ! $comment->comment_approved ) : ?>
-							<p class="comment__note"><?php _e( 'Your comment is awaiting moderation.', 'chipmunk' ); ?></p>
+							<p class="comment__note"><?php esc_html_e( 'Your comment is awaiting moderation.', 'chipmunk' ); ?></p>
 						<?php endif; ?>
 					</div>
 				</article>
