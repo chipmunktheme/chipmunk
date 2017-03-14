@@ -16,6 +16,6 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
 	<div class="body-bag">
 		<?php get_template_part( 'partials/page-head' ); ?>
