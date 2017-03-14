@@ -87,6 +87,26 @@ function chipmunk_get_posts( $limit = -1, $paged = false, $term = null ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_socials' ) ) :
+/**
+ * Get posts
+ */
+function chipmunk_get_socials() {
+	$socials = array();
+
+	foreach ( ChipmunkCustomizer::$socials as $social ) {
+		$value = ChipmunkCustomizer::theme_option( strtolower( $social ) );
+
+		if ( $value ) {
+			$socials[$social] = $value;
+		}
+	}
+
+	return $socials;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_related_posts' ) ) :
 /**
  * Get posts
