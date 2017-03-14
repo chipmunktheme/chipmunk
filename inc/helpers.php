@@ -57,6 +57,26 @@ function chipmunk_custom_excerpt( $text, $excerpt ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_socials' ) ) :
+/**
+ * Get posts
+ */
+function chipmunk_get_socials() {
+	$socials = array();
+
+	foreach ( ChipmunkCustomizer::$socials as $social ) {
+		$value = ChipmunkCustomizer::theme_option( strtolower( $social ) );
+
+		if ( $value ) {
+			$socials[$social] = $value;
+		}
+	}
+
+	return $socials;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_posts' ) ) :
 /**
  * Get posts
@@ -83,26 +103,6 @@ function chipmunk_get_posts( $limit = -1, $paged = false, $term = null ) {
 
 	$query = new WP_Query( array_merge( $args, $tax_args ) );
 	return $query;
-}
-endif;
-
-
-if ( ! function_exists( 'chipmunk_get_socials' ) ) :
-/**
- * Get posts
- */
-function chipmunk_get_socials() {
-	$socials = array();
-
-	foreach ( ChipmunkCustomizer::$socials as $social ) {
-		$value = ChipmunkCustomizer::theme_option( strtolower( $social ) );
-
-		if ( $value ) {
-			$socials[$social] = $value;
-		}
-	}
-
-	return $socials;
 }
 endif;
 
