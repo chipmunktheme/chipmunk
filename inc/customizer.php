@@ -15,19 +15,19 @@ class ChipmunkCustomizer {
 	private $capability = 'edit_theme_options';
 	private $settings_name = 'chipmunk_settings';
 
-    /**
-     * An array of Customzer sections
-     * @var array
-     */
+	/**
+	 * An array of Customzer sections
+	 * @var array
+	 */
 	private $sections;
 
-    /**
-     * An array of social profiles
-     * @var array
-     */
+	/**
+	 * An array of social profiles
+	 * @var array
+	 */
 	private $socials;
 
-	public function __construct( $sections, $socials ) {
+	public function __construct() {
 		$this->sections = array(
 			array(
 				'title'         => esc_html__( 'Site Identity', 'chipmunk' ),
