@@ -2342,12 +2342,6 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
 .form textarea::-webkit-input-placeholder {
   color: #333333;
 }
-.form input[type="text"]::-moz-placeholder,
-.form input[type="email"]::-moz-placeholder,
-.form input[type="url"]::-moz-placeholder,
-.form textarea::-moz-placeholder {
-  color: #333333;
-}
 .form input[type="text"]:-ms-input-placeholder,
 .form input[type="email"]:-ms-input-placeholder,
 .form input[type="url"]:-ms-input-placeholder,
@@ -3258,9 +3252,6 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
 .search-bar__form input::-webkit-input-placeholder {
   color: #808080;
 }
-.search-bar__form input::-moz-placeholder {
-  color: #808080;
-}
 .search-bar__form input:-ms-input-placeholder {
   color: #808080;
 }
@@ -3352,19 +3343,6 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
 .section_theme-primary input[type="url"]::-webkit-input-placeholder,
 .section_theme-primary textarea,
 .section_theme-primary textarea::-webkit-input-placeholder {
-  color: #FAFAFA;
-}
-.section_theme-primary .heading, .section_theme-primary .entry__title, .section_theme-primary .entry__content h1, .entry__content .section_theme-primary h1, .section_theme-primary .entry__content h2, .entry__content .section_theme-primary h2, .section_theme-primary .entry__content h3, .entry__content .section_theme-primary h3, .section_theme-primary .entry__content h4, .entry__content .section_theme-primary h4, .section_theme-primary .entry__content h5, .entry__content .section_theme-primary h5, .section_theme-primary .entry__content h6, .entry__content .section_theme-primary h6, .section_theme-primary .heading::-moz-placeholder, .section_theme-primary .entry__title::-moz-placeholder, .section_theme-primary .entry__content h1::-moz-placeholder, .entry__content .section_theme-primary h1::-moz-placeholder, .section_theme-primary .entry__content h2::-moz-placeholder, .entry__content .section_theme-primary h2::-moz-placeholder, .section_theme-primary .entry__content h3::-moz-placeholder, .entry__content .section_theme-primary h3::-moz-placeholder, .section_theme-primary .entry__content h4::-moz-placeholder, .entry__content .section_theme-primary h4::-moz-placeholder, .section_theme-primary .entry__content h5::-moz-placeholder, .entry__content .section_theme-primary h5::-moz-placeholder, .section_theme-primary .entry__content h6::-moz-placeholder, .entry__content .section_theme-primary h6::-moz-placeholder,
-.section_theme-primary .button_secondary,
-.section_theme-primary .button_secondary::-moz-placeholder,
-.section_theme-primary input[type="text"],
-.section_theme-primary input[type="text"]::-moz-placeholder,
-.section_theme-primary input[type="email"],
-.section_theme-primary input[type="email"]::-moz-placeholder,
-.section_theme-primary input[type="url"],
-.section_theme-primary input[type="url"]::-moz-placeholder,
-.section_theme-primary textarea,
-.section_theme-primary textarea::-moz-placeholder {
   color: #FAFAFA;
 }
 .section_theme-primary .heading, .section_theme-primary .entry__title, .section_theme-primary .entry__content h1, .entry__content .section_theme-primary h1, .section_theme-primary .entry__content h2, .entry__content .section_theme-primary h2, .section_theme-primary .entry__content h3, .entry__content .section_theme-primary h3, .section_theme-primary .entry__content h4, .entry__content .section_theme-primary h4, .section_theme-primary .entry__content h5, .entry__content .section_theme-primary h5, .section_theme-primary .entry__content h6, .entry__content .section_theme-primary h6, .section_theme-primary .heading:-ms-input-placeholder, .section_theme-primary .entry__title:-ms-input-placeholder, .section_theme-primary .entry__content h1:-ms-input-placeholder, .entry__content .section_theme-primary h1:-ms-input-placeholder, .section_theme-primary .entry__content h2:-ms-input-placeholder, .entry__content .section_theme-primary h2:-ms-input-placeholder, .section_theme-primary .entry__content h3:-ms-input-placeholder, .entry__content .section_theme-primary h3:-ms-input-placeholder, .section_theme-primary .entry__content h4:-ms-input-placeholder, .entry__content .section_theme-primary h4:-ms-input-placeholder, .section_theme-primary .entry__content h5:-ms-input-placeholder, .entry__content .section_theme-primary h5:-ms-input-placeholder, .section_theme-primary .entry__content h6:-ms-input-placeholder, .entry__content .section_theme-primary h6:-ms-input-placeholder,
@@ -3642,10 +3620,6 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
 }
 .tile_blank .tile__content {
   padding: 0;
-}
-.tile__info {
-  -ms-flex: 1;
-      flex: 1;
 }
 .tile__info:not(:last-child) {
   margin-bottom: 1rem;

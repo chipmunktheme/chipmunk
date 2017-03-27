@@ -1,6 +1,7 @@
 <?php
 	$is_column = ( ! is_front_page() or ChipmunkCustomizer::theme_option( 'disable_homepage_listings_sliders' ) );
 	$tile_classes = array(
+		''           => 'tile tile_card',
 		'tile'       => 'tile',
 		'card'       => 'tile tile_card',
 		'card_blank' => 'tile tile_card tile_blank',

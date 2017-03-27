@@ -481,7 +481,7 @@ function chipmunk_get_fonts_url( $font_name = '' ) {
 		'subset' => urlencode( 'latin,latin-ext' ),
 	);
 
-	return esc_url_raw( add_query_arg( $query_args, '//fonts.googleapis.com/css' ) );
+	return esc_url( add_query_arg( $query_args, '//fonts.googleapis.com/css' ) );
 }
 endif;
 
