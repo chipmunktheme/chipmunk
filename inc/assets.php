@@ -26,9 +26,9 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
  * Enqueue custom CSS styles
  */
 function chipmunk_custom_style() {
-	$primary_color  = ChipmunkCustomizer::theme_option( 'primary_color' );
-	$primary_font   = ChipmunkCustomizer::theme_option( 'primary_font' );
-	$custom_css     = ChipmunkCustomizer::theme_option( 'custom_css' );
+	$primary_color  = chipmunk_theme_option( 'primary_color' );
+	$primary_font   = chipmunk_theme_option( 'primary_font' );
+	$custom_css     = chipmunk_theme_option( 'custom_css' );
 
 	$custom_style   = ! empty( $custom_css ) ? $custom_css : '';
 	$primary_font   = $primary_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $primary_font ) . '"';
@@ -95,7 +95,7 @@ if ( ! function_exists( 'chipmunk_google_fonts' ) ) :
  * Enqueue Google Fonts styles
  */
 function chipmunk_google_fonts() {
-	$primary_font = ChipmunkCustomizer::theme_option( 'primary_font' );
+	$primary_font = chipmunk_theme_option( 'primary_font' );
 
 	if ( $primary_font != 'System' ) {
 		wp_enqueue_style( 'chipmunk-fonts', chipmunk_get_fonts_url( $primary_font ) );
@@ -110,7 +110,7 @@ if ( ! function_exists( 'chipmunk_external_scripts' ) ) :
  * Enqueue Google Fonts styles
  */
 function chipmunk_external_scripts() {
-	$recaptcha = ChipmunkCustomizer::theme_option( 'recaptcha_site_key' );
+	$recaptcha = chipmunk_theme_option( 'recaptcha_site_key' );
 
 	if ( $recaptcha ) {
 		wp_enqueue_script( 'chipmunk-external-recaptcha', '//google.com/recaptcha/api.js' );

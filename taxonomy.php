@@ -10,13 +10,13 @@ get_header(); ?>
 
 	<?php $term = get_queried_object(); ?>
 	<?php $paged = chipmunk_get_current_page(); ?>
-	<?php $custom_query = chipmunk_get_resources( ChipmunkCustomizer::theme_option( 'posts_per_page' ), $paged, $term ); ?>
+	<?php $custom_query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged, $term ); ?>
 
 	<div class="section section_theme-gray">
 		<div class="container">
 			<?php $title = sprintf( ( is_tax( 'resource-collection' ) ? esc_html__( '%s Collection', 'chipmunk' ) : esc_html__( '%s Tag', 'chipmunk' ) ), single_term_title( null, false ) ); ?>
 
-			<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_sorting' ) and $custom_query->have_posts() ) : ?>
+			<?php if ( ! chipmunk_theme_option( 'disable_sorting' ) and $custom_query->have_posts() ) : ?>
 				<div class="row row_center">
 					<div class="column column_md-4 column_lg-8">
 						<h3 class="heading heading_md"><?php echo esc_html( $title ); ?></h3>

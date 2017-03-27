@@ -20,7 +20,7 @@
 				<div class="resource__info">
 					<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading_lg', is_single() ? get_the_title() : '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_title() . '</a>' ); ?>
 
-					<?php if ( ! empty( $content ) && ( is_search() || ! ChipmunkCustomizer::theme_option( 'display_resource_content_separated' ) ) ) : ?>
+					<?php if ( ! empty( $content ) && ( is_search() || ! chipmunk_theme_option( 'display_resource_content_separated' ) ) ) : ?>
 						<div class="resource__description"><?php echo wp_kses_post( wpautop( do_shortcode( $content ) ) ); ?></div>
 					<?php endif; ?>
 				</div>
@@ -53,7 +53,7 @@
 </div>
 <!-- /.section -->
 
-<?php if ( ! is_search() && ChipmunkCustomizer::theme_option( 'display_resource_content_separated' ) ) : ?>
+<?php if ( ! is_search() && chipmunk_theme_option( 'display_resource_content_separated' ) ) : ?>
 	<div class="section section_theme-gray section_separated">
 		<div class="container">
 			<div class="row">

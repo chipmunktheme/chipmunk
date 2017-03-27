@@ -56,7 +56,7 @@
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-	<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
+	<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 		<li class="nav-primary__item hidden-lg">
 			<button type="button" class="button button_secondary" data-popup-toggle>
 				<?php esc_html_e( 'Submit', 'chipmunk' ); ?>

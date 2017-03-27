@@ -48,7 +48,7 @@
 					</div>
 				</div>
 
-				<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submitter_info', true ) ) : ?>
+				<?php if ( ! chipmunk_theme_option( 'disable_submitter_info', true ) ) : ?>
 					<div class="form__field form__field_separated">
 						<div class="form__child">
 							<input type="text" name="submitter_name" placeholder="<?php esc_attr_e( 'Your name', 'chipmunk' ); ?>" required>
@@ -61,7 +61,7 @@
 				<?php endif; ?>
 
 				<div class="form__field form__field_center">
-					<?php if ( $recaptcha = ChipmunkCustomizer::theme_option( 'recaptcha_site_key' ) ) : ?>
+					<?php if ( $recaptcha = chipmunk_theme_option( 'recaptcha_site_key' ) ) : ?>
 						<div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $recaptcha ); ?>"></div>
 					<?php endif; ?>
 

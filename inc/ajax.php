@@ -14,7 +14,7 @@ function chipmunk_submit_resource() {
 	chipmunk_verify_nonce();
 
 	// If the reCAPTCHA is configured prevent autosubmission
-	if ( ChipmunkCustomizer::theme_option( 'recaptcha_site_key' ) ) {
+	if ( chipmunk_theme_option( 'recaptcha_site_key' ) ) {
 		if ( isset( $_REQUEST['g-recaptcha-response'] ) and empty( $_REQUEST['g-recaptcha-response'] ) ) {
 			// Failure due to incorrect captcha validation
 			wp_send_json_error( esc_html__( 'Please verify that you are not a robot.', 'chipmunk' ) );
@@ -28,7 +28,7 @@ function chipmunk_submit_resource() {
 		$meta_input[$meta_prefix . '_website'] = esc_url( wp_filter_nohtml_kses( $_REQUEST['website'] ) );
 		$collection = intval( wp_filter_kses( $_REQUEST['collection'] ) );
 
-		if ( ! ChipmunkCustomizer::theme_option( 'disable_submitter_info', true ) ) {
+		if ( ! chipmunk_theme_option( 'disable_submitter_info', true ) ) {
 			$meta_input[$meta_prefix . '_submitter_name'] = wp_filter_nohtml_kses( $_REQUEST['submitter_name'] );
 			$meta_input[$meta_prefix . '_submitter_email'] = wp_filter_nohtml_kses( $_REQUEST['submitter_email'] );
 		}
@@ -46,20 +46,20 @@ function chipmunk_submit_resource() {
 			wp_set_object_terms( $post_id, $collection, 'resource-collection' );
 
 			// Send email to website admin
-			if ( ChipmunkCustomizer::theme_option( 'inform_about_submissions' ) ) {
+			if ( chipmunk_theme_option( 'inform_about_submissions' ) ) {
 				chipmunk_inform_admin( $post_id );
 			}
 
 			// Success
-			wp_send_json_success( ChipmunkCustomizer::theme_option( 'submission_thanks' ) );
+			wp_send_json_success( chipmunk_theme_option( 'submission_thanks' ) );
 		}
 
 		// Failure during wp_insert_post
-		else wp_send_json_error( ChipmunkCustomizer::theme_option( 'submission_failure' ) );
+		else wp_send_json_error( chipmunk_theme_option( 'submission_failure' ) );
 	}
 
 	// Failure due to incorrect nonce verification
-	else wp_send_json_error( ChipmunkCustomizer::theme_option( 'submission_failure' ) );
+	else wp_send_json_error( chipmunk_theme_option( 'submission_failure' ) );
 }
 endif;
 add_action( 'wp_ajax_submit_resource', 'chipmunk_submit_resource' );

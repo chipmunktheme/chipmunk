@@ -15,6 +15,15 @@ define( 'CHIPMUNK_TEMPLATE_DIR', get_template_directory() );
 define( 'CHIPMUNK_THEME_TITLE', 'Chipmunk' );
 define( 'CHIPMUNK_THEME_SLUG', 'chipmunk' );
 
+require_once CHIPMUNK_TEMPLATE_DIR . '/inc/customizer.php';
+require_once CHIPMUNK_TEMPLATE_DIR . '/inc/helpers.php';
+require_once CHIPMUNK_TEMPLATE_DIR . '/inc/config.php';
+require_once CHIPMUNK_TEMPLATE_DIR . '/inc/assets.php';
+require_once CHIPMUNK_TEMPLATE_DIR . '/inc/meta-boxes.php';
+require_once CHIPMUNK_TEMPLATE_DIR . '/inc/views.php';
+require_once CHIPMUNK_TEMPLATE_DIR . '/inc/upvotes.php';
+require_once CHIPMUNK_TEMPLATE_DIR . '/inc/ajax.php';
+
 
 if ( ! function_exists( 'chipmunk_setup' ) ) :
 /**
@@ -125,6 +134,9 @@ function chipmunk_setup() {
 			'crop'    => true,
 		),
 	) );
+
+	global $customizer;
+	$customizer = new ChipmunkCustomizer();
 }
 endif;
 add_action( 'after_setup_theme', 'chipmunk_setup' );
@@ -145,13 +157,3 @@ function chipmunk_load_features() {
 }
 endif;
 add_action( 'init', 'chipmunk_load_features' );
-
-
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/helpers.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/config.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/assets.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/meta-boxes.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/customizer.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/views.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/upvotes.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/ajax.php';

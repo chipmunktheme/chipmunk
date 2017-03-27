@@ -48,7 +48,7 @@ function chipmunk_save_meta_boxes_resource( $post_id ) {
 		update_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_resource_website', sanitize_text_field( $_POST['website'] ) );
 	}
 
-	if ( ! ChipmunkCustomizer::theme_option( 'disable_featured' ) ) {
+	if ( ! chipmunk_theme_option( 'disable_featured' ) ) {
 		if ( isset( $_REQUEST['is_featured'] ) ) {
 			update_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_resource_is_featured', sanitize_text_field( $_POST['is_featured'] ) );
 		}
@@ -102,7 +102,7 @@ function chipmunk_build_meta_boxes_resource( $post ) {
 	wp_nonce_field( basename( __FILE__ ), CHIPMUNK_THEME_SLUG . '_nonce' );
 	$website = get_post_meta( $post->ID, '_' . CHIPMUNK_THEME_SLUG . '_resource_website', true );
 
-	if ( ! ChipmunkCustomizer::theme_option( 'disable_featured' ) ) {
+	if ( ! chipmunk_theme_option( 'disable_featured' ) ) {
 		$is_featured = get_post_meta( $post->ID, '_' . CHIPMUNK_THEME_SLUG . '_resource_is_featured', true );
 	}
 
@@ -113,7 +113,7 @@ function chipmunk_build_meta_boxes_resource( $post ) {
 			<input type="url" name="website" id="website" value="<?php echo esc_attr( $website ); ?>" class="widefat" />
 		</div>
 
-		<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_featured' ) ) : ?>
+		<?php if ( ! chipmunk_theme_option( 'disable_featured' ) ) : ?>
 			<div class="chipmunk-field">
 				<p class="chipmunk-label"><?php esc_html_e( 'Featured?', 'chipmunk' ); ?></p>
 

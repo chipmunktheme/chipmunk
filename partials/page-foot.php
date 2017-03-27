@@ -3,7 +3,7 @@
 		<div class="page-foot__inner">
 			<p class="page-foot__copy">&copy; <?php bloginfo( 'name' ); ?> <?php echo date( 'Y' ); ?></p>
 
-			<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_credits' ) ) : ?>
+			<?php if ( ! chipmunk_theme_option( 'disable_credits' ) ) : ?>
 				<p class="page-foot__credits">
 					<a href="http://chipmunktheme.com" target="_blank" title="<?php esc_attr_e( 'Chipmunk WordPress Theme', 'chipmunk' ); ?>">
 						<?php esc_html_e( 'Chipmunk WordPress Theme', 'chipmunk' ); ?>

@@ -1,13 +1,13 @@
 <?php $term = get_queried_object(); ?>
 <?php $paged = chipmunk_get_current_page(); ?>
-<?php $layout = is_single() || is_front_page() ? 'tiles' : ChipmunkCustomizer::theme_option( 'blog_layout' ); ?>
+<?php $layout = is_single() || is_front_page() ? 'tiles' : chipmunk_theme_option( 'blog_layout' ); ?>
 
 <?php if ( is_single() ) : ?>
 	<?php $custom_query = chipmunk_get_related_posts( get_the_ID() ); ?>
 <?php elseif ( is_front_page() ) : ?>
 	<?php $custom_query = chipmunk_get_posts( 3 ); ?>
 <?php else : ?>
-	<?php $custom_query = chipmunk_get_posts( ChipmunkCustomizer::theme_option( 'blog_posts_per_page' ), $paged, isset( $term->term_id ) ? $term : null ); ?>
+	<?php $custom_query = chipmunk_get_posts( chipmunk_theme_option( 'blog_posts_per_page' ), $paged, isset( $term->term_id ) ? $term : null ); ?>
 <?php endif; ?>
 
 <?php if ( ! is_front_page() || $custom_query->have_posts() ) : ?>

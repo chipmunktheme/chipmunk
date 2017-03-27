@@ -6,7 +6,7 @@
 			<div class="column column_md-3 column_lg-5">
 				<h5 class="heading heading_sm"><?php esc_html_e( 'About', 'chipmunk' ); ?></h5>
 
-				<?php if ( $about_copy = ChipmunkCustomizer::theme_option( 'about_copy' ) ) : ?>
+				<?php if ( $about_copy = chipmunk_theme_option( 'about_copy' ) ) : ?>
 					<div class="page-foot__description">
 						<?php echo wp_kses_post( wpautop( $about_copy ) ); ?>
 					</div>
@@ -27,7 +27,7 @@
 						<?php endforeach; ?>
 					<?php endif; ?>
 
-					<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
+					<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 						<li class="nav-secondary__item">
 							<button type="button" data-popup-toggle><?php esc_html_e( 'Submit', 'chipmunk' ); ?></button>
 						</li>

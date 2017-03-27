@@ -1,6 +1,6 @@
 <?php $socials = chipmunk_get_socials(); ?>
 
-<?php if ( ! empty( $socials ) || ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
+<?php if ( ! empty( $socials ) || ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 	<div class="section section_theme-white section_separated section_compact">
 		<div class="container">
 			<div class="toolbox">
@@ -24,9 +24,9 @@
 					</div>
 				<?php endif; ?>
 
-				<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
+				<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 					<div class="toolbox__cta<?php echo ! empty( $socials ) ? ' visible-md-flex ' : ''; ?>">
-						<p<?php echo ! empty( $socials ) ? ' class="visible-lg-block"': ''; ?>><?php echo esc_html( ChipmunkCustomizer::theme_option( 'submit_tagline' ) ); ?></p>
+						<p<?php echo ! empty( $socials ) ? ' class="visible-lg-block"': ''; ?>><?php echo esc_html( chipmunk_theme_option( 'submit_tagline' ) ); ?></p>
 						<button type="button" class="toolbox__button button button_primary" data-popup-toggle><?php esc_html_e( 'Submit', 'chipmunk' ); ?></button>
 					</div>
 				<?php endif; ?>

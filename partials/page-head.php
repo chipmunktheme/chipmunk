@@ -1,7 +1,7 @@
 <header class="page-head">
 	<div class="container">
 		<div class="page-head__inner">
-			<?php $logo = ChipmunkCustomizer::theme_option( 'logo' ); ?>
+			<?php $logo = chipmunk_theme_option( 'logo' ); ?>
 
 			<?php ob_start(); ?>
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="index">
@@ -30,14 +30,14 @@
 			<!-- /.nav-primary -->
 
 			<div class="page-head__cta">
-				<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_search' ) ) : ?>
+				<?php if ( ! chipmunk_theme_option( 'disable_search' ) ) : ?>
 					<button type="button" class="page-head__search" data-search-toggle>
 						<i class="icon icon_search" aria-hidden="true"></i>
 						<span class="sr-only"><?php esc_html_e( 'Search', 'chipmunk' ); ?></span>
 					</button>
 				<?php endif; ?>
 
-				<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_submissions' ) ) : ?>
+				<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 					<button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>
 						<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
 					</button>

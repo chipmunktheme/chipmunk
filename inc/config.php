@@ -26,7 +26,7 @@ if ( ! function_exists( 'chipmunk_update_search_query' ) ) :
 function chipmunk_update_search_query( $query ) {
 	if ( $query->is_search ) {
 		$query->set( 'post_type', array( 'post', 'resource' ) );
-		$query->set( 'posts_per_page', ChipmunkCustomizer::theme_option( 'results_per_page' ) );
+		$query->set( 'posts_per_page', chipmunk_theme_option( 'results_per_page' ) );
 	}
 
 	return $query;
@@ -41,7 +41,7 @@ if ( ! function_exists( 'chipmunk_update_main_query' ) ) :
  */
 function chipmunk_update_main_query( $query ) {
 	if ( $query->is_tax and is_tax() ) {
-		$query->set( 'posts_per_page', ChipmunkCustomizer::theme_option( 'posts_per_page' ) );
+		$query->set( 'posts_per_page', chipmunk_theme_option( 'posts_per_page' ) );
 	}
 
 	return $query;
@@ -97,7 +97,7 @@ if ( ! function_exists( 'chipmunk_add_og_tags' ) ) :
  * Add facebook's Open Graph tags
  */
 function chipmunk_add_og_tags() {
-	$site_image = ( $logo = ChipmunkCustomizer::theme_option( 'og_image' ) ) ? $logo : CHIPMUNK_TEMPLATE_URI . '/static/dist/images/chipmunk-og.png';
+	$site_image = ( $logo = chipmunk_theme_option( 'og_image' ) ) ? $logo : CHIPMUNK_TEMPLATE_URI . '/static/dist/images/chipmunk-og.png';
 
 	if ( is_front_page() ) {
 		?>

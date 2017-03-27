@@ -3,7 +3,7 @@
 <?php if ( is_single() ) : ?>
 	<?php $custom_query = chipmunk_get_related_resources( get_the_ID() ); ?>
 <?php else : ?>
-	<?php $custom_query = chipmunk_get_resources( ChipmunkCustomizer::theme_option( 'posts_per_page' ), $paged ); ?>
+	<?php $custom_query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged ); ?>
 <?php endif; ?>
 
 <div class="section section_theme-gray">
@@ -11,7 +11,7 @@
 		<?php if ( is_single() ) : ?>
 			<h2 class="heading heading_md"><?php esc_html_e( 'Related', 'chipmunk' ); ?></h2>
 		<?php else : ?>
-			<?php if ( ! ChipmunkCustomizer::theme_option( 'disable_sorting' ) and $custom_query->have_posts() ) : ?>
+			<?php if ( ! chipmunk_theme_option( 'disable_sorting' ) and $custom_query->have_posts() ) : ?>
 				<div class="row row_center">
 					<div class="column column_md-4 column_lg-8">
 						<h1 class="heading heading_md"><?php esc_html_e( 'Resources', 'chipmunk' ); ?></h1>

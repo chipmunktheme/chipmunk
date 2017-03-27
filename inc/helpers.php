@@ -24,6 +24,18 @@ function chipmunk_get_menu_items( $location ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_theme_option' ) ) :
+/**
+ * Get menu items
+ */
+function chipmunk_theme_option( $name, $default = false ) {
+	global $customizer;
+
+	return $customizer->theme_option( $name, $default );
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_custom_excerpt' ) ) :
 /**
  * Custom excerpt function
@@ -62,10 +74,11 @@ if ( ! function_exists( 'chipmunk_get_socials' ) ) :
  * Get posts
  */
 function chipmunk_get_socials() {
+	global $customizer;
 	$socials = array();
 
-	foreach ( ChipmunkCustomizer::$socials as $social ) {
-		$value = ChipmunkCustomizer::theme_option( strtolower( $social ) );
+	foreach ( $customizer->get_socials() as $social ) {
+		$value = chipmunk_theme_option( strtolower( $social ) );
 
 		if ( $value ) {
 			$socials[$social] = $value;
@@ -164,14 +177,14 @@ function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
 	$tax_args = array();
 
 	// Apply sorting options
-	if ( isset( $_GET['sort'] ) and !ChipmunkCustomizer::theme_option( 'disable_sorting' ) ) {
+	if ( isset( $_GET['sort'] ) and ! chipmunk_theme_option( 'disable_sorting' ) ) {
 		$sort_params = explode( '-', $_GET['sort'] );
 		$sort_orderby = $sort_params[0];
 		$sort_order = $sort_params[1];
 	}
 	else {
-		$sort_orderby = ChipmunkCustomizer::theme_option( 'default_sort_by' );
-		$sort_order = ChipmunkCustomizer::theme_option( 'default_sort_order' );
+		$sort_orderby = chipmunk_theme_option( 'default_sort_by' );
+		$sort_order = chipmunk_theme_option( 'default_sort_order' );
 	}
 
 	switch ( $sort_orderby ) {
@@ -403,7 +416,7 @@ if ( ! function_exists( 'chipmunk_external_link' ) ) :
  * Create external links
  */
 function chipmunk_external_link( $url ) {
-	if ( ! ChipmunkCustomizer::theme_option( 'disable_ref' ) ) {
+	if ( ! chipmunk_theme_option( 'disable_ref' ) ) {
 		$title = str_replace( '-', '', sanitize_title( get_bloginfo( 'name' ) ) );
 		$prefix = ( preg_match( '(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
 
