@@ -6,24 +6,6 @@
  * @subpackage Chipmunk
  */
 
-if ( ! function_exists( 'chipmunk_get_menu_items' ) ) :
-/**
- * Get menu items
- */
-function chipmunk_get_menu_items( $location ) {
-	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[$location] ) ) {
-		$menu = wp_get_nav_menu_object( $locations[$location] );
-
-		if ( $menu ) {
-			return wp_get_nav_menu_items( $menu->term_id );
-		}
-	}
-
-	return false;
-}
-endif;
-
-
 if ( ! function_exists( 'chipmunk_theme_option' ) ) :
 /**
  * Get menu items
@@ -32,6 +14,27 @@ function chipmunk_theme_option( $name, $default = false ) {
 	global $customizer;
 
 	return $customizer->theme_option( $name, $default );
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_socials' ) ) :
+/**
+ * Get posts
+ */
+function chipmunk_get_socials() {
+	global $customizer;
+	$socials = array();
+
+	foreach ( $customizer->get_socials() as $social ) {
+		$value = chipmunk_theme_option( strtolower( $social ) );
+
+		if ( $value ) {
+			$socials[$social] = $value;
+		}
+	}
+
+	return $socials;
 }
 endif;
 
@@ -69,23 +72,20 @@ function chipmunk_custom_excerpt( $text, $excerpt ) {
 endif;
 
 
-if ( ! function_exists( 'chipmunk_get_socials' ) ) :
+if ( ! function_exists( 'chipmunk_get_menu_items' ) ) :
 /**
- * Get posts
+ * Get menu items
  */
-function chipmunk_get_socials() {
-	global $customizer;
-	$socials = array();
+function chipmunk_get_menu_items( $location ) {
+	if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[$location] ) ) {
+		$menu = wp_get_nav_menu_object( $locations[$location] );
 
-	foreach ( $customizer->get_socials() as $social ) {
-		$value = chipmunk_theme_option( strtolower( $social ) );
-
-		if ( $value ) {
-			$socials[$social] = $value;
+		if ( $menu ) {
+			return wp_get_nav_menu_items( $menu->term_id );
 		}
 	}
 
-	return $socials;
+	return false;
 }
 endif;
 
