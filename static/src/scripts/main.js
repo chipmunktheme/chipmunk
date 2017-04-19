@@ -15,9 +15,7 @@
   require('./modules/sort')();
   require('./modules/actions').init();
   require('./modules/remote-form').init();
-
-  var Tabs = require('./modules/tabs');
-  new Tabs('[data-tabs]');
+  require('./modules/tabs').init();
 })();
 
 var closePanels = function () {

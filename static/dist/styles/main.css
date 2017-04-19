@@ -29,7 +29,6 @@
   .container {
     padding-left: 20px;
     padding-right: 20px;
-    max-width: calc( + 40px);
   }
 }
 @media (min-width: 680px) {
@@ -213,6 +212,9 @@
   .column_xs-4 {
     width: calc(100% - 20px);
   }
+  .column_xs-offset-0 {
+    margin-left: calc(0% + 10px);
+  }
   .column_xs-offset-1 {
     margin-left: calc(25% + 10px);
   }
@@ -265,6 +267,9 @@
   }
   .column_sm-6 {
     width: calc(100% - 20px);
+  }
+  .column_sm-offset-0 {
+    margin-left: calc(0% + 10px);
   }
   .column_sm-offset-1 {
     margin-left: calc(16.66667% + 10px);
@@ -324,6 +329,9 @@
   }
   .column_md-6 {
     width: calc(100% - 20px);
+  }
+  .column_md-offset-0 {
+    margin-left: calc(0% + 10px);
   }
   .column_md-offset-1 {
     margin-left: calc(16.66667% + 10px);
@@ -401,6 +409,9 @@
   }
   .column_lg-12 {
     width: calc(100% - 20px);
+  }
+  .column_lg-offset-0 {
+    margin-left: calc(0% + 10px);
   }
   .column_lg-offset-1 {
     margin-left: calc(8.33333% + 10px);

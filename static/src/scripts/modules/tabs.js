@@ -2,33 +2,36 @@
 
 var $ = require('jquery');
 
-var Tabs = function (tabsClass) {
-  this.el = $(tabsClass);
-  this.tabs = this.el.find('[data-tabs-toggle]');
-  this.panels = this.el.find('[data-tabs-panel]');
+var Tabs = {
+  $trigger: $('[data-tabs-toggle]'),
 
-  this.bind();
-};
+  init: function () {
+    var _this = this;
+    
+    if (this.$trigger.length) {
+      this.$trigger.on('click', function () {
+        _this.show($(this));
+      });
+    }
+  },
+  
+  show: function ($element) {
+    var $tabs = $element.closest('[data-tabs]');
+    var $triggers = $tabs.find('[data-tabs-toggle]');
+    var $panels = $tabs.find('[data-tabs-panel]');
+    
+    var activePanel, activeTab;
 
-Tabs.prototype.show = function (index) {
-  var activePanel, activeTab;
+    $triggers.removeClass('active');
+    activeTab = $triggers.get($element.index());
+    $(activeTab).addClass('active');
 
-  this.tabs.removeClass('active');
-  activeTab = this.tabs.get(index);
-  $(activeTab).addClass('active');
+    $panels.removeClass('active');
+    activePanel = $panels.get($element.index());
+    $(activePanel).addClass('active');
 
-  this.panels.removeClass('active');
-  activePanel = this.panels.get(index);
-  $(activePanel).addClass('active');
-
-  $(document).trigger('shown.tab');
-};
-
-Tabs.prototype.bind = function () {
-  var _this = this;
-  return this.tabs.on('click', function (e) {
-    return _this.show($(e.currentTarget).index());
-  });
+    $(document).trigger('shown.tab');
+  }
 };
 
 module.exports = Tabs;
