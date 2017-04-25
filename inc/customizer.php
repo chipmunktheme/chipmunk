@@ -196,6 +196,12 @@ class ChipmunkCustomizer {
 						'default'     => false,
 					),
 					array(
+						'name'        => 'disable_resource_tags',
+						'type'        => 'checkbox',
+						'label'       => esc_html__( 'Disable resource tags', 'chipmunk' ),
+						'default'     => false,
+					),
+					array(
 						'name'        => 'disable_featured',
 						'type'        => 'checkbox',
 						'label'       => esc_html__( 'Disable featured panel', 'chipmunk' ),

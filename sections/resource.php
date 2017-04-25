@@ -1,5 +1,6 @@
 <?php $resource_website = get_post_meta( get_the_ID(), '_' . CHIPMUNK_THEME_SLUG . '_resource_website', true ); ?>
 <?php $content = is_search() ? chipmunk_truncate_string( get_the_excerpt(), 120 ) : get_the_content(); ?>
+<?php $tags = wp_get_post_terms( get_the_ID(), 'resource-tag' ); ?>
 
 <div class="section<?php echo ( ! $wp_query->current_post or $wp_query->current_post % 2 == 0 ) ? ' section_theme-white section_separated' : ' section_theme-gray'; ?>">
 	<div class="container">
@@ -22,6 +23,14 @@
 
 					<?php if ( ! empty( $content ) && ( is_search() || ! chipmunk_theme_option( 'display_resource_content_separated' ) ) ) : ?>
 						<div class="resource__description"><?php echo wp_kses_post( wpautop( do_shortcode( $content ) ) ); ?></div>
+					<?php endif; ?>
+
+					<?php if ( ! empty( $tags ) && ! chipmunk_theme_option( 'disable_resource_tags' ) ) : ?>
+						<div class="resource__tags" title="<?php esc_attr_e( 'Tags', 'chipmunk' ); ?>">
+							<i class="icon icon_tag"></i>
+							
+							<?php echo chipmunk_display_collections( $tags ); ?>
+						</div>
 					<?php endif; ?>
 				</div>
 

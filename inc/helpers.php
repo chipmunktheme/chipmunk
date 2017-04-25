@@ -377,7 +377,7 @@ if ( ! function_exists( 'chipmunk_display_collections' ) ) :
 /**
  * Conditionally display post collections
  */
-function chipmunk_display_collections( $collections, $args ) {
+function chipmunk_display_collections( $collections, $args = [] ) {
 	$args = array_merge( array(
 		'type'     => 'link',
 		'quantity' => -1,

@@ -3160,6 +3160,28 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
 .resource__description p:not(:first-child) {
   margin-top: 0.84em;
 }
+.resource__tags {
+  margin-top: 1rem;
+  color: #9a9a9a;
+}
+@media (min-width: 680px) {
+  .resource__tags {
+    margin-top: 2rem;
+  }
+}
+.resource__tags .icon, .resource__tags .slick-arrow::before, .resource__tags .comment__reply a::before, .comment__reply .resource__tags a::before {
+  margin-right: 0.5rem;
+  margin-top: -2px;
+  font-size: 1.6rem;
+  line-height: inherit;
+  vertical-align: middle;
+}
+.resource__tags .icon.icon_arrow-up, .resource__tags .icon_arrow-up.slick-arrow::before, .resource__tags .comment__reply a.icon_arrow-up::before, .comment__reply .resource__tags a.icon_arrow-up::before {
+  font-size: 1.2rem;
+}
+.resource__tags a:hover {
+  color: #333333;
+}
 .resource__actions {
   display: -ms-flexbox;
   display: flex;
