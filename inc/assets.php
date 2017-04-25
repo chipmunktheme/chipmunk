@@ -109,10 +109,20 @@ if ( ! function_exists( 'chipmunk_google_fonts' ) ) :
  * Enqueue Google Fonts styles
  */
 function chipmunk_google_fonts() {
+	$font_names = [];
 	$primary_font = chipmunk_theme_option( 'primary_font' );
+	$heading_font = chipmunk_theme_option( 'heading_font' );
 
-	if ( $primary_font != 'System' ) {
-		wp_enqueue_style( 'chipmunk-fonts', chipmunk_get_fonts_url( $primary_font ) );
+	if ( ! empty( $primary_font ) && $primary_font != 'System' ) {
+		$font_names[] = $primary_font;
+	}
+
+	if ( ! empty( $heading_font ) && $heading_font != 'System' ) {
+		$font_names[] = $heading_font;
+	}
+	
+	if ( ! empty( $font_names ) ) {
+		wp_enqueue_style( 'chipmunk-fonts', chipmunk_get_fonts_url( $font_names ) );
 	}
 }
 endif;

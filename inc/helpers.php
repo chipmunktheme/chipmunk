@@ -484,13 +484,17 @@ if ( ! function_exists( 'chipmunk_get_fonts_url' ) ) :
 /**
  * Parse Google Fonts url
  */
-function chipmunk_get_fonts_url( $font_name = '' ) {
-	$font_families = array();
+function chipmunk_get_fonts_url( $font_names = [] ) {
+	$font_families = [];
 
-	$font_families[] = $font_name . ':400,700';
+	foreach ( $font_names as $font ) {
+		if ( ! array_key_exists( $font, $font_families ) ) {
+			$font_families[$font] = "{$font}:400,700";
+		}
+	}
 
 	$query_args = array(
-		'family' => urlencode( implode( '|', $font_families ) ),
+		'family' => urlencode( implode( '|', array_values( $font_families ) ) ),
 		'subset' => urlencode( 'latin,latin-ext' ),
 	);
 
