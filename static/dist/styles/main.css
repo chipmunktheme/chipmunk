@@ -2401,7 +2401,7 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
   margin-top: 2rem;
 }
 @media (min-width: 680px) {
-  .form__field_separated {
+  .form__field_separated:not(:first-child) {
     margin-top: 6rem;
   }
 }

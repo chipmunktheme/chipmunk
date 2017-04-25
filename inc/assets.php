@@ -28,14 +28,28 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 function chipmunk_custom_style() {
 	$primary_color  = chipmunk_theme_option( 'primary_color' );
 	$primary_font   = chipmunk_theme_option( 'primary_font' );
+	$heading_font   = chipmunk_theme_option( 'heading_font' );
 	$custom_css     = chipmunk_theme_option( 'custom_css' );
 
 	$custom_style   = ! empty( $custom_css ) ? $custom_css : '';
 	$primary_font   = $primary_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $primary_font ) . '"';
+	$heading_font   = $heading_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $heading_font ) . '"';
 
 	$custom_style .= "
 		body {
 			font-family: $primary_font;
+		}
+		
+		.heading:not(.heading_thin),
+		.card__title,
+		.tile__title,
+		.entry__content h1,
+		.entry__content h2,
+		.entry__content h3,
+		.entry__content h4,
+		.entry__content h5,
+		.entry__content h6 {
+			font-family: $heading_font;
 		}
 	";
 

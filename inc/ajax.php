@@ -28,9 +28,13 @@ function chipmunk_submit_resource() {
 		$meta_input[$meta_prefix . '_website'] = esc_url( wp_filter_nohtml_kses( $_REQUEST['website'] ) );
 		$collection = intval( wp_filter_kses( $_REQUEST['collection'] ) );
 
-		if ( ! chipmunk_theme_option( 'disable_submitter_info', true ) ) {
-			$meta_input[$meta_prefix . '_submitter_name'] = wp_filter_nohtml_kses( $_REQUEST['submitter_name'] );
-			$meta_input[$meta_prefix . '_submitter_email'] = wp_filter_nohtml_kses( $_REQUEST['submitter_email'] );
+		if ( ! chipmunk_theme_option( 'disable_submitter_info' ) ) {
+			$submitter_name = wp_filter_nohtml_kses( $_REQUEST['submitter_name'] );
+			$submitter_email = wp_filter_nohtml_kses( $_REQUEST['submitter_email'] );
+			
+			if ( ! empty( $submitter_name ) && ! empty( $submitter_email ) ) {
+				$meta_input[$meta_prefix . '_submitter'] = "{$submitter_name} <{$submitter_email}>";
+			}
 		}
 
 		$post_object = array(

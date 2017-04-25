@@ -81,6 +81,28 @@ class ChipmunkCustomizer {
 						),
 					),
 					array(
+						'name'        => 'heading_font',
+						'type'        => 'select',
+						'label'       => esc_html__( 'Heading Font', 'chipmunk' ),
+						'default'     => 'Poppins',
+						'choices'     => array(
+							'System'          => esc_html__( 'System font', 'chipmunk' ),
+							'Poppins'         => 'Poppins',
+							'Roboto'          => 'Roboto',
+							'Open Sans'       => 'Open Sans',
+							'Lato'            => 'Lato',
+							'Source Sans Pro' => 'Source Sans Pro',
+							'Montserrat'      => 'Montserrat',
+							'Raleway'         => 'Raleway',
+							'PT Sans'         => 'PT Sans',
+							'Lora'            => 'Lora',
+							'Karla'           => 'Karla',
+							'Ubuntu'          => 'Ubuntu',
+							'Droid Sans'      => 'Droid Sans',
+							'Nunito Sans'     => 'Nunito Sans',
+						),
+					),
+					array(
 						'name'        => 'custom_css',
 						'type'        => 'textarea',
 						'label'       => esc_html__( 'Custom CSS', 'chipmunk' ),
@@ -250,13 +272,12 @@ class ChipmunkCustomizer {
 						'label'       => esc_html__( 'Inform me about new submissions', 'chipmunk' ),
 						'default'     => true,
 					),
-					// TODO: Allow to store the submitter's info
-					// array(
-					//   'name'        => 'disable_submitter_info',
-					//   'type'        => 'checkbox',
-					//   'label'       => esc_html__( 'Disable asking for submitter info', 'chipmunk' ),
-					//   'default'     => false,
-					// ),
+					array(
+						'name'        => 'disable_submitter_info',
+						'type'        => 'checkbox',
+						'label'       => esc_html__( 'Disable asking for submitter info', 'chipmunk' ),
+						'default'     => true,
+					),
 					array(
 						'name'        => 'submit_tagline',
 						'type'        => 'textarea',

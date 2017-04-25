@@ -101,6 +101,7 @@ if ( ! function_exists( 'chipmunk_build_meta_boxes_resource' ) ) :
 function chipmunk_build_meta_boxes_resource( $post ) {
 	wp_nonce_field( basename( __FILE__ ), CHIPMUNK_THEME_SLUG . '_nonce' );
 	$website = get_post_meta( $post->ID, '_' . CHIPMUNK_THEME_SLUG . '_resource_website', true );
+	$submitter = get_post_meta( $post->ID, '_' . CHIPMUNK_THEME_SLUG . '_resource_submitter', true );
 
 	if ( ! chipmunk_theme_option( 'disable_featured' ) ) {
 		$is_featured = get_post_meta( $post->ID, '_' . CHIPMUNK_THEME_SLUG . '_resource_is_featured', true );
@@ -121,6 +122,13 @@ function chipmunk_build_meta_boxes_resource( $post ) {
 					<input type="checkbox" name="is_featured" id="is_featured" <?php echo $is_featured ? ' checked' : ''; ?> />
 					<?php esc_html_e( 'Featured on homepage', 'chipmunk' ); ?>
 				</label>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( ! empty( $submitter ) ) : ?>
+			<div class="chipmunk-field">
+				<label class="chipmunk-label" for="submitter"><?php esc_html_e( 'Submitter', 'chipmunk' ); ?></label>
+				<input type="url" name="submitter" id="submitter" value="<?php echo esc_attr( $submitter ); ?>" readonly class="widefat" />
 			</div>
 		<?php endif; ?>
 	</div>

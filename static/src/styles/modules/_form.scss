@@ -75,7 +75,7 @@
     margin-top: $separator;
   }
 
-  &_separated {
+  &_separated:not(:first-child) {
     @include breakpoint(md) {
       margin-top: $separator * 3;
     }
