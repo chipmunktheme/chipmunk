@@ -4,7 +4,7 @@
 			<?php $logo = chipmunk_theme_option( 'logo' ); ?>
 
 			<?php ob_start(); ?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="index">
+			<a href="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>" rel="index">
 				<?php if ( $logo ) : ?>
 					<span class="sr-only"><?php bloginfo( 'name' ); ?></span>
 					<img src="<?php echo esc_url( $logo ); ?>" alt="" />
