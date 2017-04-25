@@ -95,6 +95,7 @@
 .resource__tags {
   margin-top: 1rem;
   color: lighten($color-gray, 10%);
+  font-size: 1.4rem;
 
   @include breakpoint(md) {
     margin-top: $separator;

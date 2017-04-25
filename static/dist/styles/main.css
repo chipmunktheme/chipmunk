@@ -3163,6 +3163,7 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
 .resource__tags {
   margin-top: 1rem;
   color: #9a9a9a;
+  font-size: 1.4rem;
 }
 @media (min-width: 680px) {
   .resource__tags {
