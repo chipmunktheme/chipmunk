@@ -32,26 +32,13 @@
     padding-bottom: 1em;
   }
 
-  &_separated {
-    border-top: 1px solid $color-gray-light;
-    border-bottom: 1px solid $color-gray-light;
-
-    & + &,
-    & + .section_theme-primary {
-      margin-top: -1px;
-    }
-  }
-
   &_theme-white {
+    @include bordered-box;
     background-color: $color-white;
   }
 
   &_theme-gray {
-    background-color: $color-gray-lighter;
-
-    & + & {
-      border-top: 1px solid $color-gray-light;
-    }
+    background-color: $color-gray-lightest;
   }
 
   &_theme-primary {

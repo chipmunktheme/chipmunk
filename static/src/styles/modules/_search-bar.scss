@@ -3,6 +3,7 @@
 ** -----------------------------------------------------------------------------*/
 
 .search-bar {
+  @include bordered-box;
   position: absolute;
   top: 0;
   left: 0;
@@ -11,7 +12,6 @@
   padding-top: $separator * 0.5;
   padding-bottom: $separator * 0.5;
   background-color: $color-white;
-  border-bottom: 1px solid $color-gray-light;
   transform: translateY(-100%);
   opacity: 0;
   transition-property: transform, opacity;

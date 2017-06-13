@@ -3,13 +3,12 @@
 ** -----------------------------------------------------------------------------*/
 
 .page-head {
-  position: relative;
+  @include bordered-box;
   z-index: $zindex-head;
   margin-bottom: -1px;
   padding-top: $separator * 0.5;
   padding-bottom: $separator * 0.5;
   background-color: $color-white;
-  border-bottom: 1px solid $color-gray-light;
 
   @include breakpoint(md) {
     padding-top: $separator;

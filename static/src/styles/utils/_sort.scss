@@ -20,17 +20,26 @@
     }
 
     .select2-dropdown {
-      background-color: $color-gray-lighter;
-      border-color: $color-gray;
+      background-color: $color-gray-lightest;
+      border-color: $color-gray-light;
     }
 
     .select2-results__option {
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1.5rem;
       font-size: 1.4rem;
 
       @include breakpoint(lg) {
         font-size: 1.6rem;
       }
+      
+      [aria-selected=true] {
+        color: $color-white;
+      }
+    }
+    
+    .select2-results__option--highlighted[aria-selected=false] {
+      background-color: $color-gray-lighter;
+      color: $color-black;
     }
 
     .select2-selection {
