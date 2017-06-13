@@ -43,6 +43,7 @@ function chipmunk_custom_style() {
 		.heading:not(.heading_thin),
 		.card__title,
 		.tile__title,
+		.section__title,
 		.entry__content h1,
 		.entry__content h2,
 		.entry__content h3,
