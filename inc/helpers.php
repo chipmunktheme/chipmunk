@@ -39,6 +39,23 @@ function chipmunk_get_socials() {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_og_title' ) ) :
+/**
+ * Create title for post and pages OG tags
+ */
+function chipmunk_og_title() {
+	if ( ! chipmunk_theme_option( 'disable_og_branding' ) ) {
+		$title = sprintf( esc_html__( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) );
+	}
+	else {
+		$title = get_the_title();
+	}
+	
+	return $title;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_meta_description' ) ) :
 /**
  * Create meta description for post and pages

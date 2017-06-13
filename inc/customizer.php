@@ -39,12 +39,6 @@ class ChipmunkCustomizer {
 						'label'       => esc_html__( 'Site Logo', 'chipmunk' ),
 						'description' => esc_html__( 'Upload a logo for your theme. You can leave it empty to use your site name as a plain text logo.', 'chipmunk' ),
 					),
-					array(
-						'name'        => 'og_image',
-						'type'        => 'image',
-						'label'       => esc_html__( 'Open Graph Image', 'chipmunk' ),
-						'description' => esc_html__( '1200x630 pixels', 'chipmunk' ),
-					),
 				),
 			),
 
@@ -108,6 +102,24 @@ class ChipmunkCustomizer {
 						'label'       => esc_html__( 'Custom CSS', 'chipmunk' ),
 						'default'     => '',
 						'description' => esc_html__( 'Quickly add some CSS to your theme by adding it to this block.', 'chipmunk' ),
+					),
+				),
+			),
+			
+			array(
+				'title'         => esc_html__( 'Open Graph', 'chipmunk' ),
+				'slug'          => 'og_section',
+				'fields'        => array(
+					array(
+						'name'        => 'og_image',
+						'type'        => 'image',
+						'label'       => esc_html__( 'Open Graph Image', 'chipmunk' ),
+						'description' => esc_html__( '1200x630 pixels', 'chipmunk' ),
+					),
+					array(
+						'name'        => 'disable_og_branding',
+						'type'        => 'checkbox',
+						'label'       => esc_html__( 'Remove \'on [website name]\' text', 'chipmunk' ),
 					),
 				),
 			),
