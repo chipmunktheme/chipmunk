@@ -64,7 +64,8 @@
     input[type="email"],
     input[type="url"],
     textarea {
-      &, &::placeholder {
+      &,
+      &::placeholder {
         color: $color-white;
       }
     }
@@ -72,6 +73,30 @@
     .button_secondary:hover {
       background-color: $color-white;
       color: $color-primary;
+    }
+  }
+}
+
+.section__title {
+  display: block;
+  color: $color-black;
+  font-size: 3.6rem;
+  font-weight: bold;
+  line-height: 1.2;
+
+  @include breakpoint(md) {
+    font-size: 4.8rem;
+  }
+
+  @include breakpoint(lg) {
+    font-size: 5.2rem;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: $separator * 2;
+
+    @include breakpoint(md) {
+      margin-bottom: $separator * 4;
     }
   }
 }

@@ -3409,6 +3409,31 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
   background-color: #FAFAFA;
   color: #F38181;
 }
+.section__title {
+  display: block;
+  color: #333333;
+  font-size: 3.6rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+@media (min-width: 680px) {
+  .section__title {
+    font-size: 4.8rem;
+  }
+}
+@media (min-width: 980px) {
+  .section__title {
+    font-size: 5.2rem;
+  }
+}
+.section__title:not(:last-child) {
+  margin-bottom: 4rem;
+}
+@media (min-width: 680px) {
+  .section__title:not(:last-child) {
+    margin-bottom: 8rem;
+  }
+}
 /*
 ** Module - Stats
 ** -----------------------------------------------------------------------------*/

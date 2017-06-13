@@ -129,6 +129,12 @@ class ChipmunkCustomizer {
 				'slug'          => 'homepage_section',
 				'fields'        => array(
 					array(
+						'name'        => 'intro_text',
+						'type'        => 'text',
+						'label'       => esc_html__( 'Intro text', 'chipmunk' ),
+						'description' => esc_html__( 'Enter your site\'s tagline to show on homepage under the header. Leave empty to hide.', 'chipmunk' ),
+					),
+					array(
 						'name'        => 'resources_count',
 						'type'        => 'number',
 						'label'       => esc_html__( 'Latest resources count', 'chipmunk' ),
