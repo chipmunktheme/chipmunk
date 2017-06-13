@@ -3410,7 +3410,6 @@ a:focus, button:focus, .button:focus, input[type="submit"]:focus {
   color: #F38181;
 }
 .section__title {
-  display: block;
   color: #333333;
   font-size: 3.6rem;
   font-weight: bold;
