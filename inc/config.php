@@ -112,7 +112,7 @@ function chipmunk_add_og_tags() {
 		<!-- / Twitter Cards -->
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:title" content="<?php bloginfo( 'name' ); ?>">
-		<meta name="twitter:description" content="<?php bloginfo( 'description' ); ?>">
+		<meta name="twitter:description" content="<?php echo chipmunk_meta_description(); ?>">
 		<meta name="twitter:image" content="<?php echo $site_image; ?>">
 
 		<?php
@@ -125,24 +125,20 @@ function chipmunk_add_og_tags() {
 			$thumbnail_object = wp_get_attachment_image_src( $thumbnail_id, 'xl' );
 			$image            = $thumbnail_object[0];
 		}
-
-		$description = chipmunk_custom_excerpt( $post->post_content, $post->post_excerpt );
-		$description = strip_tags( $description );
-		$description = str_replace( '"', '\'', $description );
 		?>
 
 		<!-- / FB Open Graph -->
 		<meta property="og:type" content="article">
 		<meta property="og:url" content="<?php the_permalink(); ?>">
 		<meta property="og:title" content="<?php printf( esc_html__( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) ); ?>">
-		<meta property="og:description" content="<?php echo $description ?>">
+		<meta property="og:description" content="<?php echo chipmunk_meta_description(); ?>">
 		<meta property="og:image" content="<?php echo isset( $image ) ? $image : $site_image; ?>">
 		<meta property="og:site_name" content="<?php echo get_bloginfo( 'name' ); ?>">
 
 		<!-- / Twitter Cards -->
 		<meta name="twitter:card" content="<?php echo isset( $image ) ? 'summary_large_image' : 'summary'; ?>">
 		<meta name="twitter:title" content="<?php printf( esc_html__( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) ); ?>">
-		<meta name="twitter:description" content="<?php echo $description ?>">
+		<meta name="twitter:description" content="<?php echo chipmunk_meta_description(); ?>">
 		<meta name="twitter:image" content="<?php echo isset( $image ) ? $image : $site_image; ?>">
 
 		<?php

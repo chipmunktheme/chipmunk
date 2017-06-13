@@ -39,6 +39,28 @@ function chipmunk_get_socials() {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_meta_description' ) ) :
+/**
+ * Create meta description for post and pages
+ */
+function chipmunk_meta_description() {
+	global $post;
+	
+	if ( is_front_page() ) {
+		$description = get_bloginfo( 'description' );
+	}
+	
+	elseif ( is_single() or is_page() ) {
+		$description = chipmunk_custom_excerpt( $post->post_content, $post->post_excerpt );
+		$description = strip_tags( $description );
+		$description = str_replace( '"', '\'', $description );
+	}
+	
+	return isset( $description ) ? $description : '';
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_custom_excerpt' ) ) :
 /**
  * Custom excerpt function
