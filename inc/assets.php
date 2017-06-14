@@ -100,12 +100,12 @@ function chipmunk_custom_style() {
 			.search-bar,
 			.section_theme-light,
 			.popup__content,
-			.tile_card,
+			.tile_card:not(.tile_blank),
 			.select2-container .select2-dropdown {
 				background-color: $section_color;
 			}
 			
-			.tile_card:hover {
+			.tile_card:not(.tile_blank):hover {
 				background-color: rgba($section_color_rgb, 0.5);
 			}
 		";
