@@ -519,6 +519,26 @@ function chipmunk_format_number( $number, $precision = 1 ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_hex_to_rgb' ) ) :
+/**
+ * Utility function to convert hex colors to RGB arrays
+ *
+ * @param String $color - Hex color value
+ */
+function chipmunk_hex_to_rgb( $color ) {
+	$color = preg_replace( '/[^abcdef]/i', '', $color );
+	
+	if ( strlen( $color ) == 6 ) {
+		list( $r, $g, $b ) = str_split( $color, 2 );
+		
+		return array( hexdec( $r ), hexdec( $g ), hexdec( $b ) );
+	}
+	
+	return false;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_fonts_url' ) ) :
 /**
  * Parse Google Fonts url

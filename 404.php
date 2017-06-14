@@ -8,7 +8,7 @@
 
 get_header(); ?>
 
-	<div class="section section_double section_theme-gray">
+	<div class="section section_double">
 		<div class="container">
 			<div class="error-404 row">
 				<div class="column column_lg-6 text_center">

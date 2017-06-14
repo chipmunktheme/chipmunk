@@ -53,6 +53,24 @@ class ChipmunkCustomizer {
 						'default'     => '#F38181',
 					),
 					array(
+						'name'        => 'background_color',
+						'type'        => 'color',
+						'label'       => esc_html__( 'Background Color', 'chipmunk' ),
+						'default'     => '#EDEDED',
+					),
+					array(
+						'name'        => 'section_color',
+						'type'        => 'color',
+						'label'       => esc_html__( 'Section background Color', 'chipmunk' ),
+						'default'     => '#FAFAFA',
+					),
+					array(
+						'name'        => 'disable_section_borders',
+						'type'        => 'checkbox',
+						'label'       => esc_html__( 'Disable section borders', 'chipmunk' ),
+						'default'     => false,
+					),
+					array(
 						'name'        => 'primary_font',
 						'type'        => 'select',
 						'label'       => esc_html__( 'Primary Font', 'chipmunk' ),

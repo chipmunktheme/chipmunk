@@ -14,7 +14,7 @@ get_header(); ?>
 	<?php endwhile; endif; ?>
 
 	<?php if ( comments_open() || get_comments_number() ) : ?>
-		<div class="section section_theme-white section_separated">
+		<div class="section section_theme-light">
 			<div class="container">
 				<?php comments_template(); ?>
 			</div>

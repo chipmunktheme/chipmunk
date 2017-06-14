@@ -1,6 +1,6 @@
 <?php $socials = chipmunk_get_socials(); ?>
 
-<div class="page-foot section section_theme-white">
+<div class="page-foot section section_theme-light">
 	<div class="container">
 		<div class="row">
 			<div class="column column_md-3 column_lg-5">

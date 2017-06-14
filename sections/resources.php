@@ -6,7 +6,7 @@
 	<?php $custom_query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged ); ?>
 <?php endif; ?>
 
-<div class="section section_theme-gray">
+<div class="section">
 	<div class="container">
 		<?php if ( is_single() ) : ?>
 			<h2 class="heading heading_md"><?php esc_html_e( 'Related', 'chipmunk' ); ?></h2>

@@ -505,8 +505,9 @@
     color: $color-white;
   }
 
-  .select2-results__option--highlighted[aria-selected] {
-    background-color: $color-gray;
+  .select2-results__option--highlighted[aria-selected=false] {
+    background-color: rgba($color-black, 0.025);
+    color: $color-black;
   }
 
   .select2-selection {

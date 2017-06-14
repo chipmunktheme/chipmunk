@@ -13,7 +13,7 @@ if ( strlen( get_search_query() ) < 3 or chipmunk_theme_option( 'disable_search'
 
 get_header(); ?>
 
-	<div class="section section_theme-gray<?php echo ( have_posts() ? ' section_compact-bottom' : '' ); ?>">
+	<div class="section<?php echo ( have_posts() ? ' section_compact-bottom' : '' ); ?>">
 		<div class="container">
 			<h1 class="heading heading_md">
 				<small><?php esc_html_e( 'Search results for:', 'chipmunk' ); ?></small>
@@ -38,7 +38,7 @@ get_header(); ?>
 	<?php endif; ?>
 
 	<?php if ( $wp_query->max_num_pages > 1 ) : ?>
-		<div class="section section_theme-gray">
+		<div class="section">
 			<?php get_template_part( 'sections/pagination' ); ?>
 		</div>
 		<!-- /.section -->

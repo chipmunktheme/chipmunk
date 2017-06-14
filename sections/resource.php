@@ -2,7 +2,7 @@
 <?php $content = is_search() ? chipmunk_truncate_string( get_the_excerpt(), 120 ) : get_the_content(); ?>
 <?php $tags = wp_get_post_terms( get_the_ID(), 'resource-tag' ); ?>
 
-<div class="section<?php echo ( ! $wp_query->current_post or $wp_query->current_post % 2 == 0 ) ? ' section_theme-white section_separated' : ' section_theme-gray'; ?>">
+<div class="section<?php echo ( ! $wp_query->current_post or $wp_query->current_post % 2 == 0 ) ? ' section_theme-light' : ''; ?>">
 	<div class="container">
 		<article class="resource row">
 			<div class="resource__content column column_lg-6">
@@ -63,7 +63,7 @@
 <!-- /.section -->
 
 <?php if ( ! is_search() && chipmunk_theme_option( 'display_resource_content_separated' ) ) : ?>
-	<div class="section section_theme-gray section_separated">
+	<div class="section">
 		<div class="container">
 			<div class="row">
 				<div class="column column_lg-8 column_lg-offset-2">

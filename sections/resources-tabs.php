@@ -10,7 +10,7 @@ $resources = array(
 ?>
 
 <?php if ( $resources['latest']->have_posts() || ! empty( $intro_text ) ) : ?>
-	<div class="section section_theme-gray">
+	<div class="section">
 		<div class="container" data-tabs role="tablist">
 			<?php if ( ! empty( $intro_text ) ) : ?>
 				<h2 class="section__title"><?php echo $intro_text; ?></h2>

@@ -26,14 +26,20 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
  * Enqueue custom CSS styles
  */
 function chipmunk_custom_style() {
-	$primary_color  = chipmunk_theme_option( 'primary_color' );
-	$primary_font   = chipmunk_theme_option( 'primary_font' );
-	$heading_font   = chipmunk_theme_option( 'heading_font' );
-	$custom_css     = chipmunk_theme_option( 'custom_css' );
+	$primary_color     = chipmunk_theme_option( 'primary_color' );
+	$background_color  = chipmunk_theme_option( 'background_color' );
+	$section_color     = chipmunk_theme_option( 'section_color' );
+	$section_color_rgb = implode( ', ', chipmunk_hex_to_rgb( $section_color ) );
+	
+	$primary_font      = chipmunk_theme_option( 'primary_font' );
+	$heading_font      = chipmunk_theme_option( 'heading_font' );
+	$custom_css        = chipmunk_theme_option( 'custom_css' );
 
-	$custom_style   = ! empty( $custom_css ) ? $custom_css : '';
-	$primary_font   = $primary_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $primary_font ) . '"';
-	$heading_font   = $heading_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $heading_font ) . '"';
+	$custom_style      = ! empty( $custom_css ) ? $custom_css : '';
+	$primary_font      = $primary_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $primary_font ) . '"';
+	$heading_font      = $heading_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $heading_font ) . '"';
+	
+	$disable_borders   = chipmunk_theme_option( 'disable_section_borders' );
 
 	$custom_style .= "
 		body {
@@ -83,6 +89,34 @@ function chipmunk_custom_style() {
 			.tile__content_primary,
 			.tile:hover .tile__button {
 				background-color: $primary_color;
+			}
+			
+			body,
+			.sort__select ~ .select2-container .select2-dropdown {
+				background-color: $background_color;
+			}
+			
+			.page-head,
+			.search-bar,
+			.section_theme-light,
+			.popup__content,
+			.tile_card,
+			.select2-container .select2-dropdown {
+				background-color: $section_color;
+			}
+			
+			.tile_card:hover {
+				background-color: rgba($section_color_rgb, 0.5);
+			}
+		";
+	}
+
+	if ( $disable_borders ) {
+		$custom_style .= "
+			.page-head,
+			.search-bar,
+			.section_theme-light {
+				box-shadow: none;
 			}
 		";
 	}

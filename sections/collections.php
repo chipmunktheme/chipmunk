@@ -1,4 +1,4 @@
-<div class="section section_theme-gray">
+<div class="section">
 	<div class="container">
 		<?php echo chipmunk_conditional_markup( is_front_page(), 'h2', 'h1', 'heading heading_md', esc_html__( 'Collections', 'chipmunk' ) ); ?>
 

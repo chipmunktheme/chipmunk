@@ -1,7 +1,7 @@
 <?php $socials = chipmunk_get_socials(); ?>
 
 <?php if ( ! empty( $socials ) || ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
-	<div class="section section_theme-white section_separated section_compact">
+	<div class="section section_theme-light section_compact">
 		<div class="container">
 			<div class="toolbox">
 				<?php if ( ! empty( $socials ) ) : ?>

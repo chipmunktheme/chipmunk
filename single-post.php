@@ -9,7 +9,7 @@
 chipmunk_set_views( get_the_ID() );
 get_header(); ?>
 
-	<div class="section section_theme-gray">
+	<div class="section">
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 			<div class="container">
 				<?php get_template_part( 'sections/entry', 'post' ); ?>
@@ -19,7 +19,7 @@ get_header(); ?>
 	<!-- /.section -->
 
 	<?php if ( comments_open() || get_comments_number() ) : ?>
-		<div class="section section_theme-white section_separated">
+		<div class="section section_theme-light">
 			<div class="container">
 				<?php comments_template(); ?>
 			</div>

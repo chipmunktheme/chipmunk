@@ -10,7 +10,7 @@ $has_content = ( $has_image or $ad_code = chipmunk_theme_option( 'ad_code' ) );
 ?>
 
 <?php if ( $enabled and $enabled_home and $has_content ) : ?>
-	<div class="section section_theme-white section_separated section_compact">
+	<div class="section section_theme-light section_compact">
 		<div class="promo">
 			<div class="container">
 				<?php if ( $has_image and $ad_link = chipmunk_theme_option( 'ad_link' ) ) : ?>

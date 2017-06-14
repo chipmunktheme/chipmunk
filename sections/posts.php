@@ -11,7 +11,7 @@
 <?php endif; ?>
 
 <?php if ( ! is_front_page() || $custom_query->have_posts() ) : ?>
-	<div class="section section_theme-gray">
+	<div class="section">
 		<div class="container">
 			<?php if ( is_single() ) : ?>
 				<h2 class="heading heading_md"><?php esc_html_e( 'Related', 'chipmunk' ); ?></h2>

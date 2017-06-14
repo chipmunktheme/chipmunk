@@ -12,7 +12,7 @@ get_header(); ?>
 	<?php $paged = chipmunk_get_current_page(); ?>
 	<?php $custom_query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged, $term ); ?>
 
-	<div class="section section_theme-gray">
+	<div class="section">
 		<div class="container">
 			<?php $title = sprintf( ( is_tax( 'resource-collection' ) ? esc_html__( '%s Collection', 'chipmunk' ) : esc_html__( '%s Tag', 'chipmunk' ) ), ucfirst( single_term_title( null, false ) ) ); ?>
 

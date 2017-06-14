@@ -32,13 +32,9 @@
     padding-bottom: 1em;
   }
 
-  &_theme-white {
+  &_theme-light {
     @include bordered-box;
     background-color: $color-white;
-  }
-
-  &_theme-gray {
-    background-color: $color-gray-lightest;
   }
 
   &_theme-primary {
