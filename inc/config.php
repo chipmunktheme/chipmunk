@@ -104,7 +104,7 @@ function chipmunk_add_og_tags() {
 
 		<!-- / FB Open Graph -->
 		<meta property="og:type" content="website">
-		<meta property="og:url" content="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>">
+		<meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">">
 		<meta property="og:title" content="<?php bloginfo( 'name' ); ?>">
 		<meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
 		<meta property="og:image" content="<?php echo $site_image; ?>">
