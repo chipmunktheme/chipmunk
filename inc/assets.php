@@ -144,7 +144,7 @@ if ( ! function_exists( 'chipmunk_google_fonts' ) ) :
  * Enqueue Google Fonts styles
  */
 function chipmunk_google_fonts() {
-	$font_names = [];
+	$font_names = array();
 	$primary_font = chipmunk_theme_option( 'primary_font' );
 	$heading_font = chipmunk_theme_option( 'heading_font' );
 

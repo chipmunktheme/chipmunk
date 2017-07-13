@@ -179,7 +179,7 @@ function chipmunk_get_related_posts( $post_id ) {
 			array(
 				'taxonomy'    => 'post_tag',
 				'field'       => 'term_id',
-				'terms'       => array_map( function( $term ) { return $term->term_id; }, $tags ),
+				'terms'       => array_map( 'chipmunk_map_terms', $tags ),
 				'operator'    => 'IN',
 			),
 		);
@@ -189,7 +189,7 @@ function chipmunk_get_related_posts( $post_id ) {
 			array(
 				'taxonomy'    => 'category',
 				'field'       => 'term_id',
-				'terms'       => array_map( function( $term ) { return $term->term_id; }, $collections ),
+				'terms'       => array_map( 'chipmunk_map_terms', $collections ),
 				'operator'    => 'IN',
 			),
 		);
@@ -357,7 +357,7 @@ function chipmunk_get_related_resources( $post_id ) {
 			array(
 				'taxonomy'    => 'resource-tag',
 				'field'       => 'term_id',
-				'terms'       => array_map( function( $term ) { return $term->term_id; }, $tags ),
+				'terms'       => array_map( 'chipmunk_map_terms', $tags ),
 				'operator'    => 'IN',
 			),
 		);
@@ -367,7 +367,7 @@ function chipmunk_get_related_resources( $post_id ) {
 			array(
 				'taxonomy'    => 'resource-collection',
 				'field'       => 'term_id',
-				'terms'       => array_map( function( $term ) { return $term->term_id; }, $collections ),
+				'terms'       => array_map( 'chipmunk_map_terms', $collections ),
 				'operator'    => 'IN',
 			),
 		);
@@ -416,7 +416,7 @@ if ( ! function_exists( 'chipmunk_display_collections' ) ) :
 /**
  * Conditionally display post collections
  */
-function chipmunk_display_collections( $collections, $args = [] ) {
+function chipmunk_display_collections( $collections, $args = array() ) {
 	$args = array_merge( array(
 		'type'     => 'link',
 		'quantity' => -1,
@@ -463,6 +463,16 @@ function chipmunk_external_link( $url ) {
 	}
 
 	return $url;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_map_terms' ) ) :
+/**
+ * Map terms with term ID
+ */
+function chipmunk_map_terms( $term ) {
+	return $term->term_id;
 }
 endif;
 
@@ -543,8 +553,8 @@ if ( ! function_exists( 'chipmunk_get_fonts_url' ) ) :
 /**
  * Parse Google Fonts url
  */
-function chipmunk_get_fonts_url( $font_names = [] ) {
-	$font_families = [];
+function chipmunk_get_fonts_url( $font_names = array() ) {
+	$font_families = array();
 
 	foreach ( $font_names as $font ) {
 		if ( ! array_key_exists( $font, $font_families ) ) {
