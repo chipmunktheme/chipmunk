@@ -1,7 +1,7 @@
 <?php $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'category' : 'resource-collection' ) ); ?>
 
 <?php if ( isset( $collections_args ) && $collections_args['display'] and $collections ) : ?>
-	<li class="stats__item" title="<?php esc_attr_e( 'Collections', 'chipmunk' ); ?>">
+	<li class="stats__item">
 		<i class="icon icon_tag"></i>
 
 		<?php echo chipmunk_display_collections( $collections, $collections_args ); ?>

@@ -432,11 +432,11 @@ function chipmunk_display_collections( $collections, $args = array() ) {
 	foreach ( $collections as $key => $collection ) {
 		if ( $args['quantity'] < 0 || $args['quantity'] > $key ) {
 			if ( $args['type'] == 'link' ) {
-				$output .= '<a href="' . esc_url( get_term_link( $collection->term_id ) ) . '" class="stats__tag">' . esc_html( $collection->name ) . '</a>';
+				$output .= '<a href="' . esc_url( get_term_link( $collection->term_id ) ) . '" class="stats__tag" title="' . esc_attr( $collection->name ) . '">' . esc_html( chipmunk_truncate_string( $collection->name, 25 ) ) . '</a>';
 			}
 
 			if ( $args['type'] == 'text' ) {
-				$output .= '<span class="stats__tag">' . esc_html( $collection->name ) . '</span>';
+				$output .= '<span class="stats__tag">' . esc_html( chipmunk_truncate_string( $collection->name, 25 ) ) . '</span>';
 			}
 		}
 	}
@@ -481,7 +481,7 @@ if ( ! function_exists( 'chipmunk_truncate_string' ) ) :
 /**
  * Truncate long strings
  */
-function chipmunk_truncate_string( $str, $chars, $to_space = true, $replacement = '...' ) {
+function chipmunk_truncate_string( $str, $chars, $to_space = true, $replacement = '&hellip;' ) {
 	$str = strip_tags( $str );
 
 	if ( $chars > strlen( $str ) ) {
