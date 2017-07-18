@@ -30,7 +30,7 @@
 				?>
 
 				<a href="<?php echo $link; ?>" title="<?php echo $provider['name']; ?>" target="_blank">
-					<i class="icon icon_<?php echo $provider['slug']; ?>" aria-hidden="true"></i>
+					<i class="icon icon_social-<?php echo $provider['slug']; ?>" aria-hidden="true"></i>
 					<span class="sr-only"><?php echo $provider['name']; ?></span>
 				</a>
 			</li>

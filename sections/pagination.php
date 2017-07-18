@@ -11,7 +11,7 @@ $paged      = chipmunk_get_current_page();
 		<div class="container">
 			<ul class="pagination__nav">
 				<li class="pagination__item<?php echo get_previous_posts_link( null, $wp_query->max_num_pages ) ? '' : ' pagination__item_disabled'; ?>">
-					<?php $previous_link = '<i class="icon icon_arrow-left" aria-hidden="true"></i><span class="visible-md-inline">' . esc_html__( 'Previous', 'chipmunk' ) . '</span>'; ?>
+					<?php $previous_link = '<i class="icon icon_chevron-left" aria-hidden="true"></i><span class="visible-md-inline">' . esc_html__( 'Previous', 'chipmunk' ) . '</span>'; ?>
 
 					<?php if ( get_previous_posts_link( null, $wp_query->max_num_pages ) ) : ?>
 						<?php previous_posts_link( $previous_link, $wp_query->max_num_pages ); ?>
@@ -23,7 +23,7 @@ $paged      = chipmunk_get_current_page();
 				<li class="pagination__title"><?php printf( esc_html__( 'Page %d of %d', 'chipmunk' ), $paged, $wp_query->max_num_pages ); ?></li>
 
 				<li class="pagination__item<?php echo get_next_posts_link( null, $wp_query->max_num_pages ) ? '' : ' pagination__item_disabled'; ?>">
-					<?php $next_link = '<span class="visible-md-inline">' . esc_html__( 'Next', 'chipmunk' ) . '</span><i class="icon icon_arrow-right" aria-hidden="true"></i>'; ?>
+					<?php $next_link = '<span class="visible-md-inline">' . esc_html__( 'Next', 'chipmunk' ) . '</span><i class="icon icon_chevron-right" aria-hidden="true"></i>'; ?>
 
 					<?php if ( get_next_posts_link( null, $wp_query->max_num_pages ) ) : ?>
 						<?php next_posts_link( $next_link, $wp_query->max_num_pages ); ?>

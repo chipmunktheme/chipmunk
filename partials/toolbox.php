@@ -13,7 +13,7 @@
 								<?php foreach ( $socials as $social_key => $social_value ) : ?>
 									<li class="nav-socials__item">
 										<a href="<?php echo esc_url( $social_value ); ?>" title="<?php echo $social_key; ?>" target="_blank">
-											<i class="icon icon_<?php echo strtolower( $social_key ); ?>" aria-hidden="true"></i>
+											<i class="icon icon_social-<?php echo strtolower( $social_key ); ?>" aria-hidden="true"></i>
 											<span class="sr-only"><?php echo $social_key; ?></span>
 										</a>
 									</li>

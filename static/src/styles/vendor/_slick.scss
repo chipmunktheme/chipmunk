@@ -121,7 +121,7 @@
     right: $separator * 2;
 
     &::before {
-      @extend .icon_arrow-left;
+      @extend .icon_chevron-left;
     }
   }
 
@@ -129,7 +129,7 @@
     right: $separator / 2;
 
     &::before {
-      @extend .icon_arrow-right;
+      @extend .icon_chevron-right;
     }
   }
 }

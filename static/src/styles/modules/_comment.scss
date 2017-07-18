@@ -80,7 +80,7 @@
 
     &::before {
       @extend .icon;
-      @extend .icon_reply;
+      @extend .icon_corner-down-left;
       margin-right: 1em;
       font-size: 1.2rem;
       vertical-align: middle;

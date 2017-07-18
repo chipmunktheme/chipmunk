@@ -727,80 +727,122 @@ input[type="submit"]:focus {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon_arrow-left::before, .slick-arrow.slick-prev::before {
+.icon_arrow-down::before {
   content: '\EA01';
 }
-.icon_arrow-right::before, .slick-arrow.slick-next::before {
+.icon_arrow-left::before {
   content: '\EA02';
 }
-.icon_arrow-up::before {
+.icon_arrow-right::before {
   content: '\EA03';
 }
-.icon_arrow::before {
+.icon_arrow-up::before {
   content: '\EA04';
 }
-.icon_clock::before {
+.icon_chevron-down::before {
   content: '\EA05';
 }
-.icon_close::before {
+.icon_chevron-left::before, .slick-arrow.slick-prev::before {
   content: '\EA06';
 }
-.icon_collection::before {
+.icon_chevron-right::before, .slick-arrow.slick-next::before {
   content: '\EA07';
 }
-.icon_facebook::before {
+.icon_chevron-up::before {
   content: '\EA08';
 }
-.icon_flickr::before {
+.icon_clock::before {
   content: '\EA09';
 }
-.icon_google::before {
+.icon_close::before {
   content: '\EA0A';
 }
-.icon_instagram::before {
+.icon_collections::before {
   content: '\EA0B';
 }
-.icon_like::before {
+.icon_corner-down-left::before, .comment__reply a::before {
   content: '\EA0C';
 }
-.icon_link::before {
+.icon_corner-down-right::before {
   content: '\EA0D';
 }
-.icon_linkedin::before {
+.icon_corner-left-down::before {
   content: '\EA0E';
 }
-.icon_pinterest::before {
+.icon_corner-left-up::before {
   content: '\EA0F';
 }
-.icon_pocket::before {
+.icon_corner-right-down::before {
   content: '\EA10';
 }
-.icon_producthunt::before {
+.icon_corner-right-up::before {
   content: '\EA11';
 }
-.icon_reddit::before {
+.icon_corner-up-left::before {
   content: '\EA12';
 }
-.icon_reply::before, .comment__reply a::before {
+.icon_corner-up-right::before {
   content: '\EA13';
 }
-.icon_search::before {
+.icon_external-link::before {
   content: '\EA14';
 }
-.icon_tag::before {
+.icon_eye::before {
   content: '\EA15';
 }
-.icon_twitter::before {
+.icon_heart::before {
   content: '\EA16';
 }
-.icon_view::before {
+.icon_link::before {
   content: '\EA17';
 }
-.icon_vimeo::before {
+.icon_search::before {
   content: '\EA18';
 }
-.icon_youtube::before {
+.icon_social-facebook::before {
   content: '\EA19';
+}
+.icon_social-flickr::before {
+  content: '\EA1A';
+}
+.icon_social-google::before {
+  content: '\EA1B';
+}
+.icon_social-instagram::before {
+  content: '\EA1C';
+}
+.icon_social-linkedin::before {
+  content: '\EA1D';
+}
+.icon_social-pinterest::before {
+  content: '\EA1E';
+}
+.icon_social-pocket::before {
+  content: '\EA1F';
+}
+.icon_social-producthunt::before {
+  content: '\EA20';
+}
+.icon_social-reddit::before {
+  content: '\EA21';
+}
+.icon_social-twitter::before {
+  content: '\EA22';
+}
+.icon_social-vimeo::before {
+  content: '\EA23';
+}
+.icon_social-youtube::before {
+  content: '\EA24';
+}
+.icon_tag::before {
+  content: '\EA25';
+}
+.icon_thumbs-down::before {
+  content: '\EA26';
+}
+.icon_thumbs-up::before {
+  content: '\EA27';
 }
 /*
 ** Common - Layout
@@ -3712,7 +3754,7 @@ input[type="submit"]:focus {
   margin-top: 2rem;
   overflow: hidden;
 }
-.tile:hover .tile__copy .icon_arrow {
+.tile:hover .tile__copy .icon, .tile:hover .tile__copy .slick-arrow::before, .tile:hover .tile__copy .comment__reply a::before, .comment__reply .tile:hover .tile__copy a::before {
   -webkit-transform: translateX(1rem);
           transform: translateX(1rem);
 }
@@ -3731,7 +3773,7 @@ input[type="submit"]:focus {
           box-shadow: 0 1px 2px 1px rgba(51, 51, 51, 0.1);
   overflow: visible;
 }
-.tile_card .tile__copy .icon_arrow {
+.tile_card .tile__copy .icon, .tile_card .tile__copy .slick-arrow::before, .tile_card .tile__copy .comment__reply a::before, .comment__reply .tile_card .tile__copy a::before {
   display: none;
 }
 .tile_card:hover {
@@ -3899,7 +3941,7 @@ input[type="submit"]:focus {
 .tile__copy span {
   white-space: nowrap;
 }
-.tile__copy .icon_arrow {
+.tile__copy .icon, .tile__copy .slick-arrow::before, .tile__copy .comment__reply a::before, .comment__reply .tile__copy a::before {
   margin-left: 0.5rem;
   font-size: 1.2rem;
   line-height: inherit;

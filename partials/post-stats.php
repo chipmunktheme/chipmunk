@@ -18,7 +18,7 @@
 
 <?php if ( ! chipmunk_theme_option( 'disable_views' ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Views', 'chipmunk' ); ?>">
-		<i class="icon icon_view"></i>
+		<i class="icon icon_eye"></i>
 
 		<?php echo chipmunk_format_number( chipmunk_get_views( get_the_ID() ) ); ?>
 	</li>

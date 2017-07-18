@@ -22,7 +22,7 @@
 			<?php $content = get_the_content(); ?>
 
 			<?php if ( ! chipmunk_theme_option( 'disable_resource_desc' ) and ! empty( $content ) ) : ?>
-				<p class="tile__copy"><?php echo esc_html( chipmunk_truncate_string( $content, ( chipmunk_theme_option( 'display_resource_as' ) == 'card_blank' ? 80 : 60 ) ) ); ?><span>&nbsp;<i class="icon icon_arrow" aria-hidden="true"></i></span></p>
+				<p class="tile__copy"><?php echo esc_html( chipmunk_truncate_string( $content, ( chipmunk_theme_option( 'display_resource_as' ) == 'card_blank' ? 80 : 60 ) ) ); ?><span>&nbsp;<i class="icon icon_arrow-right" aria-hidden="true"></i></span></p>
 			<?php endif; ?>
 		</div>
 
