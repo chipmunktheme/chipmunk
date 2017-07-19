@@ -85,7 +85,6 @@ function chipmunk_custom_style() {
 			.entry[href]:hover .entry__button,
 			.section_theme-primary,
 			.stats__button.is-active,
-			.stats__button.is-loading.is-active::before,
 			.tile__content_primary,
 			.tile:hover .tile__button {
 				background-color: $primary_color;

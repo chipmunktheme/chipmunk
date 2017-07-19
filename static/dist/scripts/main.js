@@ -21412,13 +21412,15 @@ var Actions = {
         })
         .done(function (response) {
           console.log('Upvote: ', response);
+          
+          setTimeout(function () {
+            var $targets = $('[data-post-id="' + response.post + '"]');
 
-          var $targets = $('[data-post-id="' + response.post + '"]');
-
-          if ($target.length > 0) {
-            $targets.html(response.counter);
-            $targets.toggleClass('is-active', response.status === 'upvoted');
-          }
+            if ($target.length > 0) {
+              $targets.html(response.counter);
+              $targets.toggleClass('is-active', response.status === 'upvoted');
+            }
+          }, 250);
         })
         .always(function () {
           // Disable loading indicator

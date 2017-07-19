@@ -50,8 +50,6 @@
   line-height: 1;
   background-color: transparent;
   cursor: pointer;
-  transition-duration: $transition-speed;
-  transition-property: color, background-color, border, opacity;
 
   &:hover {
     color: $color-black;
@@ -65,28 +63,10 @@
   }
 
   &.is-loading {
-    position: relative;
-    color: transparent;
-    transition: none;
+    @include loader;
 
-    &::before {
-      @include cover(-1px);
-      content: '';
-      z-index: $zindex-base;
-      background-image: image('loader-dark.svg');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 15px;
-      border-radius: 1.1em;
-      transition: background-color $transition-speed;
-    }
-
-    &.is-active {
-      color: $color-white;
-      
-      &::before {
-        display: none;
-      }
+    span {
+      color: transparent;
     }
   }
 }
