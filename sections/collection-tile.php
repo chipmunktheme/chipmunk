@@ -2,7 +2,7 @@
 	<div class="tile__image">
 		<?php if ( ! chipmunk_theme_option( 'disable_collection_thumbs' ) ) : ?>
 			<?php
-			$query = new WP_Query( array(
+			$resources = new WP_Query( array(
 				'posts_per_archive_page' => 3,
 				'post_type'       => 'resource',
 				'tax_query'       => array(
@@ -14,11 +14,11 @@
 				),
 			) );
 
-			$query->posts = array_reverse( $query->posts );
+			$resources->posts = array_reverse( $resources->posts );
 			?>
 
-			<?php if ( $query->have_posts() ) : ?>
-				<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+			<?php if ( $resources->have_posts() ) : ?>
+				<?php while ( $resources->have_posts() ) : $resources->the_post(); ?>
 
 					<?php if ( has_post_thumbnail() ) : ?>
 						<?php the_post_thumbnail( 'chipmunk-sm' ); ?>
@@ -31,7 +31,10 @@
 
 	<div class="tile__content <?php echo ( chipmunk_theme_option( 'disable_collection_thumbs' ) ? 'tile__content_primary' : 'tile__content_dimmed' ); ?>">
 		<div>
-			<?php echo chipmunk_conditional_markup( is_front_page(), 'h3', 'h2', 'tile__title', esc_html( chipmunk_truncate_string( $collection->name, 60 ) ) ); ?>
+			<div class="tile__head">
+				<?php echo chipmunk_conditional_markup( is_front_page(), 'h3', 'h2', 'tile__title', esc_html( chipmunk_truncate_string( $collection->name, 60 ) ) ); ?>
+			</div>
+			
 			<p class="tile__copy"><?php esc_html_e( 'View this collection', 'chipmunk' ); ?><span>&nbsp;<i class="icon icon_arrow-right" aria-hidden="true"></i></span></p>
 		</div>
 

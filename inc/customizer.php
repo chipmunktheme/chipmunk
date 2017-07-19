@@ -256,6 +256,12 @@ class ChipmunkCustomizer {
 						'default'     => false,
 					),
 					array(
+						'name'        => 'disable_website_button',
+						'type'        => 'checkbox',
+						'label'       => esc_html__( 'Disable website button', 'chipmunk' ),
+						'default'     => false,
+					),
+					array(
 						'name'        => 'disable_views',
 						'type'        => 'checkbox',
 						'label'       => esc_html__( 'Disable view count', 'chipmunk' ),

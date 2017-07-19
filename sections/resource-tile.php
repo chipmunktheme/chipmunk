@@ -1,5 +1,6 @@
 <?php
 	$is_column = ( ! is_front_page() or chipmunk_theme_option( 'disable_homepage_listings_sliders' ) );
+	$resource_website = get_post_meta( get_the_ID(), '_' . CHIPMUNK_THEME_SLUG . '_resource_website', true );
 	$tile_classes = array(
 		''           => 'tile tile_card',
 		'tile'       => 'tile',
@@ -17,7 +18,23 @@
 
 	<div class="tile__content<?php echo ( chipmunk_theme_option( 'display_resource_as' ) == 'tile' ? ( chipmunk_theme_option( 'disable_resource_thumbs' ) ? ' tile__content_primary' : ' tile__content_dimmed' ) : '' ); ?>">
 		<div class="tile__info">
-			<?php echo chipmunk_conditional_markup( is_front_page() || is_single(), 'h3', 'h2', 'tile__title', chipmunk_theme_option( 'display_resource_as' ) == 'tile' ? get_the_title() : esc_html( chipmunk_truncate_string( get_the_title(), 60 ) ) ); ?>
+			<div class="tile__head">
+				<?php echo chipmunk_conditional_markup( is_front_page() || is_single(), 'h3', 'h2', 'tile__title', chipmunk_theme_option( 'display_resource_as' ) == 'tile' ? get_the_title()  : esc_html( chipmunk_truncate_string( get_the_title(), 60 ) ) ); ?>
+				
+				<?php if ( ! chipmunk_theme_option( 'disable_website_button' ) and ! empty( $resource_website ) ) : ?>
+					<script>
+						function openURL(ev, url) {
+							ev.stopPropagation();
+							ev.preventDefault();
+							
+							var win = window.open(url, '_blank');
+							win.focus();
+						}
+					</script>
+					
+					<div onclick="openURL(event, '<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>');" class="tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><i class="icon icon_external-link" aria-hidden="true"></i></div>
+				<?php endif; ?>
+			</div>
 
 			<?php $content = get_the_content(); ?>
 

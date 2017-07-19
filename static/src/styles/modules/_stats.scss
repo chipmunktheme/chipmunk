@@ -66,13 +66,14 @@
 
   &.is-loading {
     position: relative;
+    color: transparent;
+    transition: none;
 
     &::before {
       @include cover(-1px);
       content: '';
       z-index: $zindex-base;
-      background-color: $color-gray;
-      background-image: image('loader.svg');
+      background-image: image('loader-dark.svg');
       background-position: center;
       background-repeat: no-repeat;
       background-size: 15px;
@@ -81,8 +82,10 @@
     }
 
     &.is-active {
+      color: $color-white;
+      
       &::before {
-        background-color: $color-primary;
+        display: none;
       }
     }
   }
@@ -91,7 +94,6 @@
 .stats__tag {
   & + &::before {
     content: ', ';
-    // margin-left: -4px;
     color: $color-gray;
   }
 

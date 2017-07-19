@@ -7,7 +7,9 @@
 
 	<div class="tile__content">
 		<div class="tile__info">
-			<h2 class="tile__title"><?php the_title(); ?></h2>
+			<div class="tile__head">
+				<h2 class="tile__title"><?php the_title(); ?></h2>
+			</div>
 
 			<?php $content = get_the_content(); ?>
 
