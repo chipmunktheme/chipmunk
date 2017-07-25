@@ -24,6 +24,8 @@ require_once CHIPMUNK_TEMPLATE_DIR . '/inc/views.php';
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/upvotes.php';
 require_once CHIPMUNK_TEMPLATE_DIR . '/inc/ajax.php';
 
+require_once CHIPMUNK_TEMPLATE_DIR . '/vendor/autoload.php';
+
 
 if ( ! function_exists( 'chipmunk_setup' ) ) :
 /**
@@ -157,3 +159,7 @@ function chipmunk_load_features() {
 }
 endif;
 add_action( 'init', 'chipmunk_load_features' );
+
+
+// Check theme updates
+Puc_v4_Factory::buildUpdateChecker( 'https://chipmunktheme.com/updates.json', __FILE__, CHIPMUNK_THEME_SLUG );
