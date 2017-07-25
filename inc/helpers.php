@@ -18,6 +18,39 @@ function chipmunk_theme_option( $name, $default = false ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_check_requirements' ) ) :
+/**
+ * Checks if the technical requirements are met.
+ */
+function chipmunk_check_requirements() {
+	global $wp_version;
+	
+	$php_min_version = '5.3';
+	$wp_min_version = '3.8';
+	$php_current_version = phpversion();
+	$errors = array();
+	
+	if ( version_compare( $php_min_version, $php_current_version, '>' ) ) {
+		$errors[] = sprintf(
+			__( 'Your PHP is outdated. Chipmunk Theme requires at least PHP version %1$s to function correctly (current version: %2$s). Please contact your hosting provider and ask them to upgrade PHP.', CHIPMUNK_THEME_SLUG ),
+			$php_min_version,
+			$php_current_version
+		);
+	}
+	
+	if ( version_compare( $wp_min_version, $wp_version, '>' ) ) {
+		$errors[] = sprintf(
+			__( 'Your WordPress is outdated. Chipmunk Theme requires at least WordPress version %1$s to function correctly (current version: %2$s). Please update your website via Dashboard &gt; Update.', CHIPMUNK_THEME_SLUG ),
+			$wp_min_version,
+			$wp_version
+		);
+	}
+	
+	return $errors;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_socials' ) ) :
 /**
  * Get posts

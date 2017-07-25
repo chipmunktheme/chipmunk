@@ -6,6 +6,25 @@
  * @subpackage Chipmunk
  */
 
+if ( ! function_exists( 'chipmunk_check_admin_notices' ) ) :
+/**
+ * Checks if there are any admin notices to show
+ */
+function chipmunk_check_admin_notices() {
+	$errors = chipmunk_check_requirements();
+	
+	if ( ! empty( $errors ) ) {
+		foreach ( $errors as $error ) { ?>
+			<div class="notice notice-error">
+				<p><?php echo $error; ?></p>
+			</div>
+		<?php }
+	}
+}
+endif;
+add_action( 'admin_notices', 'chipmunk_check_admin_notices' );
+
+
 if ( ! function_exists( 'chipmunk_update_permalinks' ) ) :
 /**
  * Force using postname in WP permalinks
