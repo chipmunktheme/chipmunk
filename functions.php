@@ -9,22 +9,22 @@
  * @subpackage Chipmunk
  */
 
-define( 'CHIPMUNK_VERSION', '1.7.1' );
-define( 'CHIPMUNK_TEMPLATE_URI', get_template_directory_uri() );
-define( 'CHIPMUNK_TEMPLATE_DIR', get_template_directory() );
-define( 'CHIPMUNK_THEME_TITLE', 'Chipmunk' );
-define( 'CHIPMUNK_THEME_SLUG', 'chipmunk' );
+define( 'THEME_VERSION', '1.7.1' );
+define( 'THEME_TEMPLATE_URI', get_template_directory_uri() );
+define( 'THEME_TEMPLATE_DIR', get_template_directory() );
+define( 'THEME_TITLE', 'Chipmunk' );
+define( 'THEME_SLUG', 'chipmunk' );
 
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/customizer.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/helpers.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/config.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/assets.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/meta-boxes.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/views.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/upvotes.php';
-require_once CHIPMUNK_TEMPLATE_DIR . '/inc/ajax.php';
+require_once THEME_TEMPLATE_DIR . '/inc/customizer.php';
+require_once THEME_TEMPLATE_DIR . '/inc/helpers.php';
+require_once THEME_TEMPLATE_DIR . '/inc/config.php';
+require_once THEME_TEMPLATE_DIR . '/inc/assets.php';
+require_once THEME_TEMPLATE_DIR . '/inc/meta-boxes.php';
+require_once THEME_TEMPLATE_DIR . '/inc/views.php';
+require_once THEME_TEMPLATE_DIR . '/inc/upvotes.php';
+require_once THEME_TEMPLATE_DIR . '/inc/ajax.php';
 
-require_once CHIPMUNK_TEMPLATE_DIR . '/vendor/autoload.php';
+require_once THEME_TEMPLATE_DIR . '/vendor/autoload.php';
 
 
 if ( ! function_exists( 'chipmunk_setup' ) ) :
@@ -40,7 +40,7 @@ function chipmunk_setup() {
 	* Makes theme available for translation.
 	* Translations can be filed in the /languages/ directory.
 	*/
-	load_theme_textdomain( CHIPMUNK_THEME_SLUG, CHIPMUNK_TEMPLATE_DIR . '/languages' );
+	load_theme_textdomain( THEME_SLUG, THEME_TEMPLATE_DIR . '/languages' );
 
 	// Theme Support
 	add_theme_support( 'title-tag' );
@@ -149,11 +149,11 @@ if ( ! function_exists( 'chipmunk_load_features' ) ) :
  * Require custom features depending on theme support
  */
 function chipmunk_load_features() {
-	$features = scandir( CHIPMUNK_TEMPLATE_DIR . '/features/' );
+	$features = scandir( THEME_TEMPLATE_DIR . '/features/' );
 
 	foreach ( $features as $feature ) {
 		if ( current_theme_supports( str_replace( '.php', '', $feature ) ) ) {
-			require_once CHIPMUNK_TEMPLATE_DIR . '/features/' . $feature;
+			require_once THEME_TEMPLATE_DIR . '/features/' . $feature;
 		}
 	}
 }
@@ -162,4 +162,4 @@ add_action( 'init', 'chipmunk_load_features' );
 
 
 // Check theme updates
-Puc_v4_Factory::buildUpdateChecker( 'https://chipmunktheme.com/updates.json', __FILE__, CHIPMUNK_THEME_SLUG );
+Puc_v4_Factory::buildUpdateChecker( 'https://chipmunktheme.com/updates.json', __FILE__, THEME_SLUG );

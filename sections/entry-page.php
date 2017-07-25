@@ -1,5 +1,5 @@
-<?php $wide_content = get_post_meta( get_the_ID(), '_' . CHIPMUNK_THEME_SLUG . '_about_wide_content', true ); ?>
-<?php $curators_enabled = get_post_meta( get_the_ID(), '_' . CHIPMUNK_THEME_SLUG . '_about_curators_enabled', true ); ?>
+<?php $wide_content = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_about_wide_content', true ); ?>
+<?php $curators_enabled = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_about_curators_enabled', true ); ?>
 <?php $columns = $wide_content ? 10 : 8; ?>
 
 <div class="row">

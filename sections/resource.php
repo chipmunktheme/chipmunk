@@ -1,4 +1,4 @@
-<?php $resource_website = get_post_meta( get_the_ID(), '_' . CHIPMUNK_THEME_SLUG . '_resource_website', true ); ?>
+<?php $resource_website = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_resource_website', true ); ?>
 <?php $content = is_search() ? chipmunk_truncate_string( get_the_excerpt(), 120 ) : get_the_content(); ?>
 <?php $tags = wp_get_post_terms( get_the_ID(), 'resource-tag' ); ?>
 

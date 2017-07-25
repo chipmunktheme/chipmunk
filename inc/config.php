@@ -93,8 +93,8 @@ if ( ! function_exists( 'chipmunk_set_default_meta' ) ) :
  */
 function chipmunk_set_default_meta( $post_ID ) {
 	$defaut_values = array(
-		'_' . CHIPMUNK_THEME_SLUG . '_post_view_count' 	 => 0,
-		'_' . CHIPMUNK_THEME_SLUG . '_post_upvote_count' => 0,
+		'_' . THEME_SLUG . '_post_view_count' 	 => 0,
+		'_' . THEME_SLUG . '_post_upvote_count' => 0,
 	);
 
 	foreach ( $defaut_values as $meta => $value ) {
@@ -116,7 +116,7 @@ if ( ! function_exists( 'chipmunk_add_og_tags' ) ) :
  * Add facebook's Open Graph tags
  */
 function chipmunk_add_og_tags() {
-	$site_image = ( $logo = chipmunk_theme_option( 'og_image' ) ) ? $logo : CHIPMUNK_TEMPLATE_URI . '/static/dist/images/chipmunk-og.png';
+	$site_image = ( $logo = chipmunk_theme_option( 'og_image' ) ) ? $logo : THEME_TEMPLATE_URI . '/static/dist/images/chipmunk-og.png';
 
 	if ( is_front_page() ) {
 		?>

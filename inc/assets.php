@@ -12,10 +12,10 @@ if ( ! function_exists( 'chipmunk_scripts' ) ) :
  */
 function chipmunk_scripts() {
 	// Load Chipmunk main stylesheet
-	wp_enqueue_style( 'chipmunk-styles', CHIPMUNK_TEMPLATE_URI . '/static/dist/styles/main.min.css', array(), CHIPMUNK_VERSION );
+	wp_enqueue_style( 'chipmunk-styles', THEME_TEMPLATE_URI . '/static/dist/styles/main.min.css', array(), THEME_VERSION );
 
 	// Load Chipmunk main script.
-	wp_enqueue_script( 'chipmunk-scripts', CHIPMUNK_TEMPLATE_URI . '/static/dist/scripts/main.min.js', array(), CHIPMUNK_VERSION, true );
+	wp_enqueue_script( 'chipmunk-scripts', THEME_TEMPLATE_URI . '/static/dist/scripts/main.min.js', array(), THEME_VERSION, true );
 }
 endif;
 add_action( 'wp_enqueue_scripts', 'chipmunk_scripts' );
@@ -132,7 +132,7 @@ if ( ! function_exists( 'chipmunk_admin_scripts' ) ) :
  */
 function chipmunk_admin_scripts() {
 	// Load Chipmunk admin stylesheet
-	wp_enqueue_style( 'chipmunk-admin-styles', CHIPMUNK_TEMPLATE_URI . '/admin.css', array(), CHIPMUNK_VERSION );
+	wp_enqueue_style( 'chipmunk-admin-styles', THEME_TEMPLATE_URI . '/admin.css', array(), THEME_VERSION );
 }
 endif;
 add_action( 'admin_enqueue_scripts', 'chipmunk_admin_scripts' );

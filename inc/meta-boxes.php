@@ -45,15 +45,15 @@ function chipmunk_save_meta_boxes_resource( $post_id ) {
 
 	// store custom fields values
 	if ( isset( $_REQUEST['website'] ) ) {
-		update_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_resource_website', sanitize_text_field( $_POST['website'] ) );
+		update_post_meta( $post_id, '_' . THEME_SLUG . '_resource_website', sanitize_text_field( $_POST['website'] ) );
 	}
 
 	if ( ! chipmunk_theme_option( 'disable_featured' ) ) {
 		if ( isset( $_REQUEST['is_featured'] ) ) {
-			update_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_resource_is_featured', sanitize_text_field( $_POST['is_featured'] ) );
+			update_post_meta( $post_id, '_' . THEME_SLUG . '_resource_is_featured', sanitize_text_field( $_POST['is_featured'] ) );
 		}
 		else {
-			delete_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_resource_is_featured' );
+			delete_post_meta( $post_id, '_' . THEME_SLUG . '_resource_is_featured' );
 		}
 	}
 }
@@ -75,17 +75,17 @@ function chipmunk_save_meta_boxes_about( $post_id ) {
 
 	// store custom fields values
 	if ( isset( $_REQUEST['wide_content'] ) ) {
-		update_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_about_wide_content', sanitize_text_field( $_POST['wide_content'] ) );
+		update_post_meta( $post_id, '_' . THEME_SLUG . '_about_wide_content', sanitize_text_field( $_POST['wide_content'] ) );
 	}
 	else {
-		delete_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_about_wide_content' );
+		delete_post_meta( $post_id, '_' . THEME_SLUG . '_about_wide_content' );
 	}
 
 	if ( isset( $_REQUEST['curators_enabled'] ) ) {
-		update_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_about_curators_enabled', sanitize_text_field( $_POST['curators_enabled'] ) );
+		update_post_meta( $post_id, '_' . THEME_SLUG . '_about_curators_enabled', sanitize_text_field( $_POST['curators_enabled'] ) );
 	}
 	else {
-		delete_post_meta( $post_id, '_' . CHIPMUNK_THEME_SLUG . '_about_curators_enabled' );
+		delete_post_meta( $post_id, '_' . THEME_SLUG . '_about_curators_enabled' );
 	}
 }
 endif;
@@ -99,12 +99,12 @@ if ( ! function_exists( 'chipmunk_build_meta_boxes_resource' ) ) :
  * @param post $post The post object
  */
 function chipmunk_build_meta_boxes_resource( $post ) {
-	wp_nonce_field( basename( __FILE__ ), CHIPMUNK_THEME_SLUG . '_nonce' );
-	$website = get_post_meta( $post->ID, '_' . CHIPMUNK_THEME_SLUG . '_resource_website', true );
-	$submitter = get_post_meta( $post->ID, '_' . CHIPMUNK_THEME_SLUG . '_resource_submitter', true );
+	wp_nonce_field( basename( __FILE__ ), THEME_SLUG . '_nonce' );
+	$website = get_post_meta( $post->ID, '_' . THEME_SLUG . '_resource_website', true );
+	$submitter = get_post_meta( $post->ID, '_' . THEME_SLUG . '_resource_submitter', true );
 
 	if ( ! chipmunk_theme_option( 'disable_featured' ) ) {
-		$is_featured = get_post_meta( $post->ID, '_' . CHIPMUNK_THEME_SLUG . '_resource_is_featured', true );
+		$is_featured = get_post_meta( $post->ID, '_' . THEME_SLUG . '_resource_is_featured', true );
 	}
 
 	?>
@@ -144,9 +144,9 @@ if ( ! function_exists( 'chipmunk_build_meta_boxes_about' ) ) :
  * @param post $post The post object
  */
 function chipmunk_build_meta_boxes_about( $post ) {
-	wp_nonce_field( basename( __FILE__ ), CHIPMUNK_THEME_SLUG . '_nonce' );
-	$wide_content = get_post_meta( $post->ID, '_' . CHIPMUNK_THEME_SLUG . '_about_wide_content', true );
-	$curators_enabled = get_post_meta( $post->ID, '_' . CHIPMUNK_THEME_SLUG . '_about_curators_enabled', true );
+	wp_nonce_field( basename( __FILE__ ), THEME_SLUG . '_nonce' );
+	$wide_content = get_post_meta( $post->ID, '_' . THEME_SLUG . '_about_wide_content', true );
+	$curators_enabled = get_post_meta( $post->ID, '_' . THEME_SLUG . '_about_curators_enabled', true );
 
 	?>
 	<div class="chipmunk-fields">
@@ -180,7 +180,7 @@ if ( ! function_exists( 'chipmunk_add_meta_box' ) ) :
 function chipmunk_add_meta_box( $name, $post_type ) {
 	add_meta_box(
 		// ID
-		CHIPMUNK_THEME_SLUG . '_' . $name,
+		THEME_SLUG . '_' . $name,
 		// Title
 		esc_html__( 'Custom fields', 'chipmunk' ),
 		// Callback
@@ -202,7 +202,7 @@ if ( ! function_exists( 'chipmunk_verify_permissions' ) ) :
  */
 function chipmunk_verify_permissions( $post_id ) {
 	// verify taxonomies meta box nonce
-	if ( ! isset( $_POST[CHIPMUNK_THEME_SLUG . '_nonce'] ) || ! wp_verify_nonce( $_POST[CHIPMUNK_THEME_SLUG . '_nonce'], basename( __FILE__ ) ) ) {
+	if ( ! isset( $_POST[THEME_SLUG . '_nonce'] ) || ! wp_verify_nonce( $_POST[THEME_SLUG . '_nonce'], basename( __FILE__ ) ) ) {
 		return false;
 	}
 

@@ -32,7 +32,7 @@ function chipmunk_check_requirements() {
 	
 	if ( version_compare( $php_min_version, $php_current_version, '>' ) ) {
 		$errors[] = sprintf(
-			__( 'Your PHP is outdated. Chipmunk Theme requires at least PHP version %1$s to function correctly (current version: %2$s). Please contact your hosting provider and ask them to upgrade PHP.', CHIPMUNK_THEME_SLUG ),
+			__( 'Your PHP is outdated. Chipmunk Theme requires at least PHP version %1$s to function correctly (current version: %2$s). Please contact your hosting provider and ask them to upgrade PHP.', THEME_SLUG ),
 			$php_min_version,
 			$php_current_version
 		);
@@ -40,7 +40,7 @@ function chipmunk_check_requirements() {
 	
 	if ( version_compare( $wp_min_version, $wp_version, '>' ) ) {
 		$errors[] = sprintf(
-			__( 'Your WordPress is outdated. Chipmunk Theme requires at least WordPress version %1$s to function correctly (current version: %2$s). Please update your website via Dashboard &gt; Update.', CHIPMUNK_THEME_SLUG ),
+			__( 'Your WordPress is outdated. Chipmunk Theme requires at least WordPress version %1$s to function correctly (current version: %2$s). Please update your website via Dashboard &gt; Update.', THEME_SLUG ),
 			$wp_min_version,
 			$wp_version
 		);
@@ -273,13 +273,13 @@ function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
 		case 'views':
 			$sort_args = array(
 				'orderby'   => 'meta_value_num date',
-				'meta_key'  => '_' . CHIPMUNK_THEME_SLUG . '_post_view_count',
+				'meta_key'  => '_' . THEME_SLUG . '_post_view_count',
 			);
 			break;
 		case 'upvotes':
 			$sort_args = array(
 				'orderby'   => 'meta_value_num date',
-				'meta_key'  => '_' . CHIPMUNK_THEME_SLUG . '_post_upvote_count',
+				'meta_key'  => '_' . THEME_SLUG . '_post_upvote_count',
 			);
 			break;
 	}
@@ -334,11 +334,11 @@ function chipmunk_get_featured_resources( $limit = -1, $paged = false ) {
 		'paged'           => $paged,
 		'meta_query'      => array(
 			'featured'        => array(
-				'key'             => '_' . CHIPMUNK_THEME_SLUG . '_resource_is_featured',
+				'key'             => '_' . THEME_SLUG . '_resource_is_featured',
 				'value'           => 'on',
 			),
 			'views'           => array(
-				'key'             => '_' . CHIPMUNK_THEME_SLUG . '_post_view_count',
+				'key'             => '_' . THEME_SLUG . '_post_view_count',
 			),
 		),
 		'orderby'         => 'rand',
@@ -359,7 +359,7 @@ function chipmunk_get_popular_resources( $limit = -1, $paged = false ) {
 		'post_type'       => 'resource',
 		'posts_per_page'  => $limit,
 		'paged'           => $paged,
-		'meta_key'        => '_' . CHIPMUNK_THEME_SLUG . '_post_view_count',
+		'meta_key'        => '_' . THEME_SLUG . '_post_view_count',
 		'orderby'         => 'meta_value_num',
 		'order'           => 'DESC',
 	);
