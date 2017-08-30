@@ -26,7 +26,7 @@ get_header(); ?>
 						<?php endif; ?>
 					</div>
 
-					<?php get_template_part( 'partials/sort-resources' ); ?>
+					<?php get_template_part( 'partials/filters' ); ?>
 				</div>
 			<?php else : ?>
 				<h3 class="heading heading_md"><?php echo esc_html( $title ); ?></h3>

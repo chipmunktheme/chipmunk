@@ -91,7 +91,7 @@ function chipmunk_custom_style() {
 			}
 
 			body,
-			.sort__select ~ .select2-container .select2-dropdown {
+			.filter__select ~ .select2-container .select2-dropdown {
 				background-color: $background_color;
 			}
 

@@ -7,7 +7,7 @@
 			$collections = get_terms( array(
 				'taxonomy'    => 'resource-collection',
 				'orderby'     => 'name',
-				'hide_empty'  => 0,
+				'hide_empty'  => false,
 				'pad_counts'  => true,
 			) );
 

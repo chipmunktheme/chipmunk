@@ -254,7 +254,6 @@ function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
 		$sort_orderby = $sort_params[0];
 		$sort_order = $sort_params[1];
 	}
-	// TODO Add tag filtering
 	else {
 		$sort_orderby = chipmunk_theme_option( 'default_sort_by' );
 		$sort_order = chipmunk_theme_option( 'default_sort_order' );
@@ -294,7 +293,18 @@ function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
 				'taxonomy'          => $term->taxonomy,
 				'field'             => 'id',
 				'terms'             => $term->term_id,
-				'include_children'  => false
+				'include_children'  => false,
+			),
+		);
+	}
+
+	// Apply tag filters
+	else if ( isset( $_GET['tag'] ) and ! empty( $_GET['tag'] ) and ! chipmunk_theme_option( 'disable_filters' ) ) {
+		$tax_args['tax_query'] = array(
+			array(
+				'taxonomy'          => 'resource-tag',
+				'field'             => 'slug',
+				'terms'             => $_GET['tag'],
 			),
 		);
 	}

@@ -13,6 +13,8 @@ var Filter = function () {
 
       if (value !== '') {
         params[name] = value;
+      } else {
+        delete params[name];
       }
     });
 

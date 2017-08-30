@@ -1,22 +1,39 @@
 /*
-** Utils - Sort
+** Module - Filter
 ** -----------------------------------------------------------------------------*/
 
-.sort {
+.filter {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    @include breakpoint(lg) {
+      margin-right: $separator * 2;
+    }
+  }
+}
+
+.filter__group {
+  display: flex;
+  flex-direction: column;
   margin-top: 1rem;
 
   @include breakpoint(md) {
     margin-top: 0;
+  }
+
+  @include breakpoint(lg) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
     text-align: right;
   }
 }
 
-.sort__select {
+.filter__select {
   ~ .select2-container {
-
-    @include breakpoint(md) {
-      width: auto !important;
-      min-width: 150px;
+    @include breakpoint(lg) {
+      width: 150px !important;
     }
 
     .select2-dropdown {
@@ -25,18 +42,18 @@
     }
 
     .select2-results__option {
-      padding: 0.5rem 1.5rem;
+      padding: 0.25em 1.5rem;
       font-size: 1.4rem;
 
       @include breakpoint(lg) {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
       }
-      
+
       [aria-selected=true] {
         color: $color-white;
       }
     }
-    
+
     .select2-results__option--highlighted[aria-selected=false] {
       color: $color-black;
     }
@@ -67,7 +84,7 @@
   }
 }
 
-.sort__title {
+.filter__title {
   margin-right: $separator;
   font-size: 1.4rem;
 

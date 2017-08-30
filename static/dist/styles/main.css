@@ -1833,72 +1833,6 @@ input[type="submit"]:focus {
   }
 }
 /*
-** Utils - Sort
-** -----------------------------------------------------------------------------*/
-.sort {
-  margin-top: 1rem;
-}
-@media (min-width: 680px) {
-  .sort {
-    margin-top: 0;
-    text-align: right;
-  }
-}
-@media (min-width: 680px) {
-  .sort__select ~ .select2-container {
-    width: auto !important;
-    min-width: 150px;
-  }
-}
-.sort__select ~ .select2-container .select2-dropdown {
-  background-color: #EDEDED;
-  border-color: #CDCDCD;
-}
-.sort__select ~ .select2-container .select2-results__option {
-  padding: 0.5rem 1.5rem;
-  font-size: 1.4rem;
-}
-@media (min-width: 980px) {
-  .sort__select ~ .select2-container .select2-results__option {
-    font-size: 1.6rem;
-  }
-}
-.sort__select ~ .select2-container .select2-results__option [aria-selected=true] {
-  color: #FAFAFA;
-}
-.sort__select ~ .select2-container .select2-results__option--highlighted[aria-selected=false] {
-  color: #333333;
-}
-.sort__select ~ .select2-container .select2-selection .select2-selection__rendered {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  font-size: 1.4rem;
-}
-@media (min-width: 980px) {
-  .sort__select ~ .select2-container .select2-selection .select2-selection__rendered {
-    border-bottom-width: 2px;
-    font-size: 1.6rem;
-  }
-}
-.sort__select ~ .select2-container .select2-selection .select2-selection__arrow {
-  height: 27px;
-}
-.sort__select ~ .select2-container .select2-selection .select2-selection__arrow b {
-  margin-left: -5px;
-  margin-top: -3px;
-  border-color: #333333 transparent transparent;
-  border-width: 10px 6px 0;
-}
-.sort__title {
-  margin-right: 2rem;
-  font-size: 1.4rem;
-}
-@media (min-width: 980px) {
-  .sort__title {
-    font-size: 1.6rem;
-  }
-}
-/*
 ** Utils - Tabs
 ** -----------------------------------------------------------------------------*/
 .tabs__item {
@@ -2478,6 +2412,105 @@ input[type="submit"]:focus {
 }
 .error-404__image img {
   margin: auto;
+}
+/*
+** Module - Filter
+** -----------------------------------------------------------------------------*/
+.filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@media (min-width: 980px) {
+  .filter:not(:last-child) {
+    margin-right: 4rem;
+  }
+}
+.filter__group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 1rem;
+}
+@media (min-width: 680px) {
+  .filter__group {
+    margin-top: 0;
+  }
+}
+@media (min-width: 980px) {
+  .filter__group {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    text-align: right;
+  }
+}
+@media (min-width: 980px) {
+  .filter__select ~ .select2-container {
+    width: 150px !important;
+  }
+}
+.filter__select ~ .select2-container .select2-dropdown {
+  background-color: #EDEDED;
+  border-color: #CDCDCD;
+}
+.filter__select ~ .select2-container .select2-results__option {
+  padding: 0.25em 1.5rem;
+  font-size: 1.4rem;
+}
+@media (min-width: 980px) {
+  .filter__select ~ .select2-container .select2-results__option {
+    font-size: 1.5rem;
+  }
+}
+.filter__select ~ .select2-container .select2-results__option [aria-selected=true] {
+  color: #FAFAFA;
+}
+.filter__select ~ .select2-container .select2-results__option--highlighted[aria-selected=false] {
+  color: #333333;
+}
+.filter__select ~ .select2-container .select2-selection .select2-selection__rendered {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 1.4rem;
+}
+@media (min-width: 980px) {
+  .filter__select ~ .select2-container .select2-selection .select2-selection__rendered {
+    border-bottom-width: 2px;
+    font-size: 1.6rem;
+  }
+}
+.filter__select ~ .select2-container .select2-selection .select2-selection__arrow {
+  height: 27px;
+}
+.filter__select ~ .select2-container .select2-selection .select2-selection__arrow b {
+  margin-left: -5px;
+  margin-top: -3px;
+  border-color: #333333 transparent transparent;
+  border-width: 10px 6px 0;
+}
+.filter__title {
+  margin-right: 2rem;
+  font-size: 1.4rem;
+}
+@media (min-width: 980px) {
+  .filter__title {
+    font-size: 1.6rem;
+  }
 }
 /*
 ** Module - Form

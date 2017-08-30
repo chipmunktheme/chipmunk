@@ -123,7 +123,7 @@ class ChipmunkCustomizer {
 					),
 				),
 			),
-			
+
 			array(
 				'title'         => esc_html__( 'Open Graph', 'chipmunk' ),
 				'slug'          => 'og_section',
@@ -277,6 +277,12 @@ class ChipmunkCustomizer {
 						'name'        => 'disable_sorting',
 						'type'        => 'checkbox',
 						'label'       => esc_html__( 'Disable sorting', 'chipmunk' ),
+						'default'     => false,
+					),
+					array(
+						'name'        => 'disable_filters',
+						'type'        => 'checkbox',
+						'label'       => esc_html__( 'Disable filters', 'chipmunk' ),
 						'default'     => false,
 					),
 					array(

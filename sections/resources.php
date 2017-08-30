@@ -11,13 +11,13 @@
 		<?php if ( is_single() ) : ?>
 			<h2 class="heading heading_md"><?php esc_html_e( 'Related', 'chipmunk' ); ?></h2>
 		<?php else : ?>
-			<?php if ( ! chipmunk_theme_option( 'disable_sorting' ) and $custom_query->have_posts() ) : ?>
+			<?php if ( $custom_query->have_posts() ) : ?>
 				<div class="row row_center">
-					<div class="column column_md-4 column_lg-8">
+					<div class="column column_md-4 column_lg-4">
 						<h1 class="heading heading_md"><?php esc_html_e( 'Resources', 'chipmunk' ); ?></h1>
 					</div>
 
-					<?php get_template_part( 'partials/sort-resources' ); ?>
+					<?php get_template_part( 'partials/filters' ); ?>
 				</div>
 			<?php else : ?>
 				<h1 class="heading heading_md"><?php esc_html_e( 'Resources', 'chipmunk' ); ?></h1>
