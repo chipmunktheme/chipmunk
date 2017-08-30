@@ -12,7 +12,7 @@ if ( ! function_exists( 'chipmunk_check_admin_notices' ) ) :
  */
 function chipmunk_check_admin_notices() {
 	$errors = chipmunk_check_requirements();
-	
+
 	if ( ! empty( $errors ) ) {
 		foreach ( $errors as $error ) { ?>
 			<div class="notice notice-error">
@@ -23,19 +23,6 @@ function chipmunk_check_admin_notices() {
 }
 endif;
 add_action( 'admin_notices', 'chipmunk_check_admin_notices' );
-
-
-if ( ! function_exists( 'chipmunk_update_permalinks' ) ) :
-/**
- * Force using postname in WP permalinks
- */
-function chipmunk_update_permalinks() {
-	global $wp_rewrite;
-
-	$wp_rewrite->set_permalink_structure( '/%postname%/' );
-}
-endif;
-add_action( 'init', 'chipmunk_update_permalinks' );
 
 
 if ( ! function_exists( 'chipmunk_update_search_query' ) ) :
