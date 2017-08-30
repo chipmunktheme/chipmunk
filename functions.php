@@ -45,8 +45,13 @@ function chipmunk_setup() {
 	// Theme Support
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'automatic-feed-links' );
-	add_theme_support( 'comments' );
-	add_theme_support( 'threaded-comments' );
+	add_theme_support( 'html5', [
+		'search-form',
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	] );
 
 	add_theme_support( 'custom-post', array(
 		'resource' => array(

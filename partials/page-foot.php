@@ -1,7 +1,9 @@
 <footer class="page-foot section section_compact">
 	<div class="container">
 		<div class="page-foot__inner">
-			<p class="page-foot__copy">&copy; <?php bloginfo( 'name' ); ?> <?php echo date( 'Y' ); ?></p>
+			<p class="page-foot__copy">
+				<?php printf( esc_html__( '&copy; %1$s %2$s.', 'chipmunk' ), get_bloginfo( 'name' ), date_i18n( 'Y' ) ); ?>
+			</p>
 
 			<?php if ( ! chipmunk_theme_option( 'disable_credits' ) ) : ?>
 				<p class="page-foot__credits">

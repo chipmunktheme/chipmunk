@@ -24,28 +24,28 @@ if ( ! function_exists( 'chipmunk_check_requirements' ) ) :
  */
 function chipmunk_check_requirements() {
 	global $wp_version;
-	
-	$php_min_version = '5.3';
-	$wp_min_version = '3.8';
+
+	$php_min_version = '5.3.0';
+	$wp_min_version = '4.0';
 	$php_current_version = phpversion();
 	$errors = array();
-	
+
 	if ( version_compare( $php_min_version, $php_current_version, '>' ) ) {
 		$errors[] = sprintf(
-			__( 'Your PHP is outdated. Chipmunk Theme requires at least PHP version %1$s to function correctly (current version: %2$s). Please contact your hosting provider and ask them to upgrade PHP.', THEME_SLUG ),
+			__( 'Chipmunk requires PHP %1$s or greater. You have %2$s.', 'chipmunk' ),
 			$php_min_version,
 			$php_current_version
 		);
 	}
-	
+
 	if ( version_compare( $wp_min_version, $wp_version, '>' ) ) {
 		$errors[] = sprintf(
-			__( 'Your WordPress is outdated. Chipmunk Theme requires at least WordPress version %1$s to function correctly (current version: %2$s). Please update your website via Dashboard &gt; Update.', THEME_SLUG ),
+			__( 'Chipmunk requires WordPress %1$s or greater. You have %2$s.', 'chipmunk' ),
 			$wp_min_version,
 			$wp_version
 		);
 	}
-	
+
 	return $errors;
 }
 endif;
@@ -83,7 +83,7 @@ function chipmunk_og_title() {
 	else {
 		$title = get_the_title();
 	}
-	
+
 	return $title;
 }
 endif;
@@ -95,17 +95,17 @@ if ( ! function_exists( 'chipmunk_meta_description' ) ) :
  */
 function chipmunk_meta_description() {
 	global $post;
-	
+
 	if ( is_front_page() ) {
 		$description = get_bloginfo( 'description' );
 	}
-	
+
 	elseif ( is_single() or is_page() ) {
 		$description = chipmunk_custom_excerpt( $post->post_content, $post->post_excerpt );
 		$description = strip_tags( $description );
 		$description = str_replace( '"', '\'', $description );
 	}
-	
+
 	return isset( $description ) ? $description : '';
 }
 endif;
@@ -254,6 +254,7 @@ function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
 		$sort_orderby = $sort_params[0];
 		$sort_order = $sort_params[1];
 	}
+	// TODO Add tag filtering
 	else {
 		$sort_orderby = chipmunk_theme_option( 'default_sort_by' );
 		$sort_order = chipmunk_theme_option( 'default_sort_order' );
@@ -570,13 +571,13 @@ if ( ! function_exists( 'chipmunk_hex_to_rgb' ) ) :
  */
 function chipmunk_hex_to_rgb( $color ) {
 	$color = preg_replace( '/[^abcdef]/i', '', $color );
-	
+
 	if ( strlen( $color ) == 6 ) {
 		list( $r, $g, $b ) = str_split( $color, 2 );
-		
+
 		return array( hexdec( $r ), hexdec( $g ), hexdec( $b ) );
 	}
-	
+
 	return false;
 }
 endif;

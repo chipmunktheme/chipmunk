@@ -12,10 +12,10 @@ if ( ! function_exists( 'chipmunk_scripts' ) ) :
  */
 function chipmunk_scripts() {
 	// Load Chipmunk main stylesheet
-	wp_enqueue_style( 'chipmunk-styles', THEME_TEMPLATE_URI . '/static/dist/styles/main.min.css', array(), THEME_VERSION );
+	wp_enqueue_style( 'chipmunk-styles', THEME_TEMPLATE_URI . '/static/dist/styles/main-min.css', array(), THEME_VERSION );
 
 	// Load Chipmunk main script.
-	wp_enqueue_script( 'chipmunk-scripts', THEME_TEMPLATE_URI . '/static/dist/scripts/main.min.js', array(), THEME_VERSION, true );
+	wp_enqueue_script( 'chipmunk-scripts', THEME_TEMPLATE_URI . '/static/dist/scripts/main-min.js', array(), THEME_VERSION, true );
 }
 endif;
 add_action( 'wp_enqueue_scripts', 'chipmunk_scripts' );
@@ -30,7 +30,7 @@ function chipmunk_custom_style() {
 	$background_color  = chipmunk_theme_option( 'background_color' );
 	$section_color     = chipmunk_theme_option( 'section_color' );
 	$section_color_rgb = implode( ', ', chipmunk_hex_to_rgb( $section_color ) );
-	
+
 	$primary_font      = chipmunk_theme_option( 'primary_font' );
 	$heading_font      = chipmunk_theme_option( 'heading_font' );
 	$custom_css        = chipmunk_theme_option( 'custom_css' );
@@ -38,14 +38,14 @@ function chipmunk_custom_style() {
 	$custom_style      = ! empty( $custom_css ) ? $custom_css : '';
 	$primary_font      = $primary_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $primary_font ) . '"';
 	$heading_font      = $heading_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $heading_font ) . '"';
-	
+
 	$disable_borders   = chipmunk_theme_option( 'disable_section_borders' );
 
 	$custom_style .= "
 		body {
 			font-family: $primary_font;
 		}
-		
+
 		.heading:not(.heading_thin),
 		.card__title,
 		.tile__title,
@@ -89,12 +89,12 @@ function chipmunk_custom_style() {
 			.tile:hover .tile__button {
 				background-color: $primary_color;
 			}
-			
+
 			body,
 			.sort__select ~ .select2-container .select2-dropdown {
 				background-color: $background_color;
 			}
-			
+
 			.page-head,
 			.search-bar,
 			.section_theme-light,
@@ -103,7 +103,7 @@ function chipmunk_custom_style() {
 			.select2-container .select2-dropdown {
 				background-color: $section_color;
 			}
-			
+
 			.tile_card:not(.tile_blank):hover {
 				background-color: rgba($section_color_rgb, 0.5);
 			}
@@ -154,7 +154,7 @@ function chipmunk_google_fonts() {
 	if ( ! empty( $heading_font ) && $heading_font != 'System' ) {
 		$font_names[] = $heading_font;
 	}
-	
+
 	if ( ! empty( $font_names ) ) {
 		wp_enqueue_style( 'chipmunk-fonts', chipmunk_get_fonts_url( $font_names ) );
 	}

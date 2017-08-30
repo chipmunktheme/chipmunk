@@ -1432,6 +1432,9 @@ input[type="submit"]:focus {
 }
 .select2-container .select2-results__option {
   padding: 10px 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .select2-container .select2-results__option[aria-selected=true] {
   background-color: #F38181;
@@ -2315,6 +2318,9 @@ input[type="submit"]:focus {
 }
 .entry__content strong {
   font-weight: bold;
+}
+.entry__content em {
+  font-style: italic;
 }
 .entry__content blockquote {
   padding-top: 0.5em;

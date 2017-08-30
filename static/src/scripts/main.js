@@ -12,7 +12,7 @@
   require('./modules/popup')();
   require('./modules/extras')();
   require('./modules/validate')();
-  require('./modules/sort')();
+  require('./modules/filter')();
   require('./modules/actions').init();
   require('./modules/remote-form').init();
   require('./modules/tabs').init();

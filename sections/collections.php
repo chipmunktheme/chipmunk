@@ -4,7 +4,8 @@
 
 		<div class="row">
 			<?php
-			$collections = get_terms( 'resource-collection', array(
+			$collections = get_terms( array(
+				'taxonomy'    => 'resource-collection',
 				'orderby'     => 'name',
 				'hide_empty'  => 0,
 				'pad_counts'  => true,

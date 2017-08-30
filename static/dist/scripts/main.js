@@ -1,4 +1,100 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+var token = '%[a-f0-9]{2}';
+var singleMatcher = new RegExp(token, 'gi');
+var multiMatcher = new RegExp('(' + token + ')+', 'gi');
+
+function decodeComponents(components, split) {
+	try {
+		// Try to decode the entire string first
+		return decodeURIComponent(components.join(''));
+	} catch (err) {
+		// Do nothing
+	}
+
+	if (components.length === 1) {
+		return components;
+	}
+
+	split = split || 1;
+
+	// Split the array in 2 parts
+	var left = components.slice(0, split);
+	var right = components.slice(split);
+
+	return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
+}
+
+function decode(input) {
+	try {
+		return decodeURIComponent(input);
+	} catch (err) {
+		var tokens = input.match(singleMatcher);
+
+		for (var i = 1; i < tokens.length; i++) {
+			input = decodeComponents(tokens, i).join('');
+
+			tokens = input.match(singleMatcher);
+		}
+
+		return input;
+	}
+}
+
+function customDecodeURIComponent(input) {
+	// Keep track of all the replacements and prefill the map with the `BOM`
+	var replaceMap = {
+		'%FE%FF': '\uFFFD\uFFFD',
+		'%FF%FE': '\uFFFD\uFFFD'
+	};
+
+	var match = multiMatcher.exec(input);
+	while (match) {
+		try {
+			// Decode as big chunks as possible
+			replaceMap[match[0]] = decodeURIComponent(match[0]);
+		} catch (err) {
+			var result = decode(match[0]);
+
+			if (result !== match[0]) {
+				replaceMap[match[0]] = result;
+			}
+		}
+
+		match = multiMatcher.exec(input);
+	}
+
+	// Add `%C2` at the end of the map to make sure it does not replace the combinator before everything else
+	replaceMap['%C2'] = '\uFFFD';
+
+	var entries = Object.keys(replaceMap);
+
+	for (var i = 0; i < entries.length; i++) {
+		// Replace all decoded components
+		var key = entries[i];
+		input = input.replace(new RegExp(key, 'g'), replaceMap[key]);
+	}
+
+	return input;
+}
+
+module.exports = function (encodedURI) {
+	if (typeof encodedURI !== 'string') {
+		throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
+	}
+
+	try {
+		encodedURI = encodedURI.replace(/\+/g, ' ');
+
+		// Try the built in decoder first
+		return decodeURIComponent(encodedURI);
+	} catch (err) {
+		// Fallback to a more advanced decoder
+		return customDecodeURIComponent(encodedURI);
+	}
+};
+
+},{}],2:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
@@ -10253,7 +10349,99 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+'use strict';
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+function toObject(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+},{}],4:[function(require,module,exports){
 (function (global){
 /*!
 * Parsley.js
@@ -12719,7 +12907,215 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //# sourceMappingURL=parsley.js.map
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":1}],3:[function(require,module,exports){
+},{"jquery":2}],5:[function(require,module,exports){
+'use strict';
+var strictUriEncode = require('strict-uri-encode');
+var objectAssign = require('object-assign');
+var decodeComponent = require('decode-uri-component');
+
+function encoderForArrayFormat(opts) {
+	switch (opts.arrayFormat) {
+		case 'index':
+			return function (key, value, index) {
+				return value === null ? [
+					encode(key, opts),
+					'[',
+					index,
+					']'
+				].join('') : [
+					encode(key, opts),
+					'[',
+					encode(index, opts),
+					']=',
+					encode(value, opts)
+				].join('');
+			};
+
+		case 'bracket':
+			return function (key, value) {
+				return value === null ? encode(key, opts) : [
+					encode(key, opts),
+					'[]=',
+					encode(value, opts)
+				].join('');
+			};
+
+		default:
+			return function (key, value) {
+				return value === null ? encode(key, opts) : [
+					encode(key, opts),
+					'=',
+					encode(value, opts)
+				].join('');
+			};
+	}
+}
+
+function parserForArrayFormat(opts) {
+	var result;
+
+	switch (opts.arrayFormat) {
+		case 'index':
+			return function (key, value, accumulator) {
+				result = /\[(\d*)\]$/.exec(key);
+
+				key = key.replace(/\[\d*\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				}
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = {};
+				}
+
+				accumulator[key][result[1]] = value;
+			};
+
+		case 'bracket':
+			return function (key, value, accumulator) {
+				result = /(\[\])$/.exec(key);
+				key = key.replace(/\[\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				} else if (accumulator[key] === undefined) {
+					accumulator[key] = [value];
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+
+		default:
+			return function (key, value, accumulator) {
+				if (accumulator[key] === undefined) {
+					accumulator[key] = value;
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+	}
+}
+
+function encode(value, opts) {
+	if (opts.encode) {
+		return opts.strict ? strictUriEncode(value) : encodeURIComponent(value);
+	}
+
+	return value;
+}
+
+function keysSorter(input) {
+	if (Array.isArray(input)) {
+		return input.sort();
+	} else if (typeof input === 'object') {
+		return keysSorter(Object.keys(input)).sort(function (a, b) {
+			return Number(a) - Number(b);
+		}).map(function (key) {
+			return input[key];
+		});
+	}
+
+	return input;
+}
+
+exports.extract = function (str) {
+	return str.split('?')[1] || '';
+};
+
+exports.parse = function (str, opts) {
+	opts = objectAssign({arrayFormat: 'none'}, opts);
+
+	var formatter = parserForArrayFormat(opts);
+
+	// Create an object with no prototype
+	// https://github.com/sindresorhus/query-string/issues/47
+	var ret = Object.create(null);
+
+	if (typeof str !== 'string') {
+		return ret;
+	}
+
+	str = str.trim().replace(/^(\?|#|&)/, '');
+
+	if (!str) {
+		return ret;
+	}
+
+	str.split('&').forEach(function (param) {
+		var parts = param.replace(/\+/g, ' ').split('=');
+		// Firefox (pre 40) decodes `%3D` to `=`
+		// https://github.com/sindresorhus/query-string/pull/37
+		var key = parts.shift();
+		var val = parts.length > 0 ? parts.join('=') : undefined;
+
+		// missing `=` should be `null`:
+		// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+		val = val === undefined ? null : decodeComponent(val);
+
+		formatter(decodeComponent(key), val, ret);
+	});
+
+	return Object.keys(ret).sort().reduce(function (result, key) {
+		var val = ret[key];
+		if (Boolean(val) && typeof val === 'object' && !Array.isArray(val)) {
+			// Sort object keys, not values
+			result[key] = keysSorter(val);
+		} else {
+			result[key] = val;
+		}
+
+		return result;
+	}, Object.create(null));
+};
+
+exports.stringify = function (obj, opts) {
+	var defaults = {
+		encode: true,
+		strict: true,
+		arrayFormat: 'none'
+	};
+
+	opts = objectAssign(defaults, opts);
+
+	var formatter = encoderForArrayFormat(opts);
+
+	return obj ? Object.keys(obj).sort().map(function (key) {
+		var val = obj[key];
+
+		if (val === undefined) {
+			return '';
+		}
+
+		if (val === null) {
+			return encode(key, opts);
+		}
+
+		if (Array.isArray(val)) {
+			var result = [];
+
+			val.slice().forEach(function (val2) {
+				if (val2 === undefined) {
+					return;
+				}
+
+				result.push(formatter(key, val2, result.length));
+			});
+
+			return result.join('&');
+		}
+
+		return encode(key, opts) + '=' + encode(val, opts);
+	}).filter(function (x) {
+		return x.length > 0;
+	}).join('&') : '';
+};
+
+},{"decode-uri-component":1,"object-assign":3,"strict-uri-encode":8}],6:[function(require,module,exports){
 /*!
  * Select2 4.0.3
  * https://select2.github.io
@@ -18446,7 +18842,7 @@ S2.define('jquery.select2',[
   return select2;
 }));
 
-},{"jquery":1}],4:[function(require,module,exports){
+},{"jquery":2}],7:[function(require,module,exports){
 /*
      _ _      _       _
  ___| (_) ___| | __  (_)___
@@ -21340,7 +21736,15 @@ S2.define('jquery.select2',[
 
 }));
 
-},{"jquery":1}],5:[function(require,module,exports){
+},{"jquery":2}],8:[function(require,module,exports){
+'use strict';
+module.exports = function (str) {
+	return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+		return '%' + c.charCodeAt(0).toString(16).toUpperCase();
+	});
+};
+
+},{}],9:[function(require,module,exports){
 /*!
 ** Project: Chipmunk Theme
 ** Author: Piotr Kulpinski, Jan Wennesland
@@ -21355,7 +21759,7 @@ S2.define('jquery.select2',[
   require('./modules/popup')();
   require('./modules/extras')();
   require('./modules/validate')();
-  require('./modules/sort')();
+  require('./modules/filter')();
   require('./modules/actions').init();
   require('./modules/remote-form').init();
   require('./modules/tabs').init();
@@ -21377,7 +21781,7 @@ document.addEventListener('click', function (ev) {
   }
 });
 
-},{"./modules/actions":6,"./modules/extras":7,"./modules/nav":8,"./modules/popup":9,"./modules/remote-form":10,"./modules/search":11,"./modules/sort":12,"./modules/tabs":13,"./modules/validate":14}],6:[function(require,module,exports){
+},{"./modules/actions":10,"./modules/extras":11,"./modules/filter":12,"./modules/nav":13,"./modules/popup":14,"./modules/remote-form":15,"./modules/search":16,"./modules/tabs":17,"./modules/validate":18}],10:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21434,7 +21838,7 @@ var Actions = {
 
 module.exports = Actions;
 
-},{"../utils/helpers":15,"jquery":1}],7:[function(require,module,exports){
+},{"../utils/helpers":19,"jquery":2}],11:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21494,7 +21898,32 @@ var Extras = function () {
 
 module.exports = Extras;
 
-},{"jquery":1,"select2":3,"slick-carousel":4}],8:[function(require,module,exports){
+},{"jquery":2,"select2":6,"slick-carousel":7}],12:[function(require,module,exports){
+'use strict';
+
+var $ = require('jquery');
+var queryString = require('query-string');
+
+var Filter = function () {
+  $('[data-filter]').on('change', function () {
+    var params = queryString.parse(location.search);
+
+    $('[data-filter]').each(function () {
+      var name = $(this).data('filter');
+      var value = $(this).val();
+
+      if (value !== '') {
+        params[name] = value;
+      }
+    });
+
+    location.search = queryString.stringify(params);
+  });
+};
+
+module.exports = Filter;
+
+},{"jquery":2,"query-string":5}],13:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21510,7 +21939,7 @@ var Nav = function () {
 
 module.exports = Nav;
 
-},{"jquery":1}],9:[function(require,module,exports){
+},{"jquery":2}],14:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21528,7 +21957,7 @@ var Popup = function () {
 
 module.exports = Popup;
 
-},{"jquery":1}],10:[function(require,module,exports){
+},{"jquery":2}],15:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21583,7 +22012,7 @@ var RemoteForm = {
 
 module.exports = RemoteForm;
 
-},{"../utils/helpers":15,"jquery":1}],11:[function(require,module,exports){
+},{"../utils/helpers":19,"jquery":2}],16:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21602,39 +22031,7 @@ var Search = function () {
 
 module.exports = Search;
 
-},{"jquery":1}],12:[function(require,module,exports){
-'use strict';
-
-var $ = require('jquery');
-
-var Sort = function () {
-  $('[data-sort]').on('change', function () {
-    var URIParams = window.location.search;
-    var URIPath = window.location.pathname;
-    var sortSlug = 'sort';
-
-    // Update URI params
-    if (URIParams === '') {
-      URIParams = '?' + sortSlug + '=' + $(this).val();
-    } else if (URIParams.indexOf(sortSlug) >= 0) {
-      URIParams = URIParams.replace(new RegExp(sortSlug + '=[a-z,-]+', 'g'), sortSlug + '=' + $(this).val());
-    } else {
-      URIParams = URIParams + '&' + sortSlug + '=' + $(this).val();
-    }
-
-    if (!window.location.origin) {
-      window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
-    }
-
-    URIPath = URIPath.replace(new RegExp('/page/[0-9]+', 'g'), '');
-    window.location = window.location.origin + URIPath + URIParams;
-    return false;
-  });
-};
-
-module.exports = Sort;
-
-},{"jquery":1}],13:[function(require,module,exports){
+},{"jquery":2}],17:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21680,7 +22077,7 @@ var Tabs = {
 
 module.exports = Tabs;
 
-},{"jquery":1}],14:[function(require,module,exports){
+},{"jquery":2}],18:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21805,7 +22202,7 @@ var Validate = function () {
 
 module.exports = Validate;
 
-},{"jquery":1,"parsleyjs":2}],15:[function(require,module,exports){
+},{"jquery":2,"parsleyjs":4}],19:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21830,4 +22227,4 @@ var Helpers = {
 
 module.exports = Helpers;
 
-},{"jquery":1}]},{},[5])
+},{"jquery":2}]},{},[9])

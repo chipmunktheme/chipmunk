@@ -12,7 +12,8 @@
 			<select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors" class="custom-select" required>
 				<option value=""><?php esc_html_e( 'Collection', 'chipmunk' ); ?></option>
 				<?php
-				$collections = get_terms( 'resource-collection', array(
+				$collections = get_terms( array(
+					'taxonomy'   => 'resource-collection',
 					'orderby'    => 'name',
 					'hide_empty' => 0,
 					'parent'     => 0,
