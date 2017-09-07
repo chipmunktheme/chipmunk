@@ -8,7 +8,7 @@
 
 				<?php if ( $about_copy = chipmunk_theme_option( 'about_copy' ) ) : ?>
 					<div class="page-foot__description">
-						<?php echo wp_kses_post( wpautop( $about_copy ) ); ?>
+						<?php echo do_shortcode( wp_kses_post( wpautop( $about_copy ) ) ); ?>
 					</div>
 				<?php endif; ?>
 			</div>
