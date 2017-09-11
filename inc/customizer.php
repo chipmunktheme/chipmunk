@@ -615,6 +615,7 @@ class ChipmunkCustomizer {
 			'section'  => 'socials_section',
 			'label'    => $social,
 			'type'     => 'url',
+			'default'  => '#',
 		) );
 	}
 
