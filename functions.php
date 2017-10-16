@@ -9,7 +9,7 @@
  * @subpackage Chipmunk
  */
 
-define( 'THEME_VERSION', '1.7.1' );
+define( 'THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 define( 'THEME_TEMPLATE_URI', get_template_directory_uri() );
 define( 'THEME_TEMPLATE_DIR', get_template_directory() );
 define( 'THEME_TITLE', 'Chipmunk' );
@@ -50,6 +50,8 @@ function chipmunk_setup() {
 		'gallery',
 		'caption',
 	] );
+	add_theme_support( 'comments' );
+	add_theme_support( 'threaded-comments' );
 
 	add_theme_support( 'custom-post', array(
 		'resource' => array(

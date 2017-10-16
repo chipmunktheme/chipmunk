@@ -171,8 +171,33 @@ function chipmunk_external_scripts() {
 	$recaptcha = chipmunk_theme_option( 'recaptcha_site_key' );
 
 	if ( $recaptcha ) {
-		wp_enqueue_script( 'chipmunk-external-recaptcha', '//google.com/recaptcha/api.js' );
+		wp_enqueue_script( 'chipmunk-recaptcha', '//google.com/recaptcha/api.js', false, null, true );
 	}
 }
 endif;
 add_action( 'wp_enqueue_scripts', 'chipmunk_external_scripts' );
+
+
+if ( ! function_exists( 'chipmunk_add_async_attribute' ) ) :
+/**
+ * Add async attribute to WordPress scripts
+ */
+function chipmunk_add_async_attribute( $tag, $handle, $src ) {
+	// add script handles to the array below
+	$scripts = array(
+		'defer' => array( 'chipmunk-scripts' ),
+		'async' => array( 'chipmunk-recaptcha' ),
+	);
+
+	if ( in_array( $handle, $scripts['defer'] ) ) {
+		return str_replace( ' src=', ' defer src=', $tag );
+	}
+
+	if ( in_array( $handle, $scripts['async'] ) ) {
+		return str_replace( ' src=', ' async src=', $tag );
+	}
+
+	return $tag;
+}
+endif;
+add_filter( 'script_loader_tag', 'chipmunk_add_async_attribute', 10, 3 );
