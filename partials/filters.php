@@ -17,7 +17,7 @@
 
 					<?php if ( ! empty( $tags ) ) : ?>
 						<?php foreach ( $tags as $tag ) : ?>
-							<option value="<?php echo esc_attr( $tag->slug ); ?>" <?php if ( $_GET['tag'] == $tag->slug ) echo 'selected'; ?>><?php echo esc_html( ucfirst( $tag->name ) ); ?></option>
+							<option value="<?php echo esc_attr( $tag->slug ); ?>" <?php if ( isset( $_GET['tag'] ) and $_GET['tag'] == $tag->slug ) echo 'selected'; ?>><?php echo esc_html( ucfirst( $tag->name ) ); ?></option>
 						<?php endforeach; ?>
 					<?php endif; ?>
 				</select>
