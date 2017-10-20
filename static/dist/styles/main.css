@@ -2223,7 +2223,13 @@ input[type="submit"]:focus {
 .entry__content p:not(:first-child), .entry__content blockquote:not(:first-child), .entry__content table:not(:first-child), .entry__content ul:not(:first-child), .entry__content ol:not(:first-child), .entry__content hr:not(:first-child) {
   margin-top: 1.85em;
 }
-.entry__content p [src], .entry__content blockquote [src], .entry__content table [src], .entry__content ul [src], .entry__content ol [src], .entry__content hr [src] {
+.entry__content p > [src],
+.entry__content p > .fluid-width-video-wrapper, .entry__content blockquote > [src],
+.entry__content blockquote > .fluid-width-video-wrapper, .entry__content table > [src],
+.entry__content table > .fluid-width-video-wrapper, .entry__content ul > [src],
+.entry__content ul > .fluid-width-video-wrapper, .entry__content ol > [src],
+.entry__content ol > .fluid-width-video-wrapper, .entry__content hr > [src],
+.entry__content hr > .fluid-width-video-wrapper {
   margin-top: 1em;
   margin-bottom: 1em;
 }

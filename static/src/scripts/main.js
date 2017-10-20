@@ -13,6 +13,7 @@
   require('./modules/extras')();
   require('./modules/validate')();
   require('./modules/filter')();
+  require('./modules/fitvids')();
   require('./modules/actions').init();
   require('./modules/remote-form').init();
   require('./modules/tabs').init();

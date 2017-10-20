@@ -95,6 +95,131 @@ module.exports = function (encodedURI) {
 };
 
 },{}],2:[function(require,module,exports){
+
+'use strict'
+
+var selectors = [
+	'iframe[src*="player.vimeo.com"]',
+	'iframe[src*="youtube.com"]',
+	'iframe[src*="youtube-nocookie.com"]',
+	'iframe[src*="kickstarter.com"][src*="video.html"]',
+	'object'
+]
+
+var css = '.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}'
+
+module.exports = function (parentSelector, opts) {
+	parentSelector = parentSelector || 'body'
+	opts = opts || {}
+
+	if (isObject(parentSelector)) {
+		opts = parentSelector
+		parentSelector = 'body'
+	}
+
+	opts.ignore = opts.ignore || ''
+	opts.players = opts.players || ''
+
+	var containers = queryAll(parentSelector)
+	if (!hasLength(containers)) return
+
+	if (!document.getElementById('fit-vids-style')) {
+		var head = document.head || document.getElementsByTagName('head')[0]
+		head.appendChild(styles())
+	}
+
+	var custom = toSelectorArray(opts.players) || []
+	var ignored = toSelectorArray(opts.ignore) || []
+	var selector = selectors
+		.filter(notIgnored(ignored))
+		.concat(custom)
+		.join()
+
+	if (!hasLength(selector)) return
+
+	containers.forEach(function (container) {
+		var videos = queryAll(container, selector)
+		videos.forEach(function (video) {
+			wrap(video)
+		})
+	})
+}
+
+function queryAll (el, selector) {
+	if (typeof el === 'string') {
+		selector = el
+		el = document
+	}
+	return Array.prototype.slice.call(el.querySelectorAll(selector))
+}
+
+function toSelectorArray (input) {
+	if (typeof input === 'string') {
+		return input.split(',').map(trim).filter(hasLength)
+	} else if (isArray(input)) {
+		return flatten(input.map(toSelectorArray).filter(hasLength))
+	}
+	return input || []
+}
+
+function wrap (el) {
+	if (/fluid-width-video-wrapper/.test(el.parentNode.className)) return
+
+	var widthAttr = parseInt(el.getAttribute('width'), 10)
+	var heightAttr = parseInt(el.getAttribute('height'), 10)
+
+	var width = !isNaN(widthAttr) ? widthAttr : el.clientWidth
+	var height = !isNaN(heightAttr) ? heightAttr : el.clientHeight
+	var aspect = height / width
+
+	el.removeAttribute('width')
+	el.removeAttribute('height')
+
+	var wrapper = document.createElement('div')
+	el.parentNode.insertBefore(wrapper, el)
+	wrapper.className = 'fluid-width-video-wrapper'
+	wrapper.style.paddingTop = (aspect * 100) + '%'
+	wrapper.appendChild(el)
+}
+
+function styles () {
+	var div = document.createElement('div')
+	div.innerHTML = '<p>x</p><style id="fit-vids-style">' + css + '</style>'
+	return div.childNodes[1]
+}
+
+function notIgnored (ignored) {
+	if (ignored.length < 1) {
+		return function () {
+			return true
+		}
+	}
+	return function (selector) {
+		return ignored.indexOf(selector) === -1
+	}
+}
+
+function hasLength (input) {
+	return input.length > 0
+}
+
+function trim (str) {
+	return str.replace(/^\s+|\s+$/g, '')
+}
+
+function flatten (input) {
+	return [].concat.apply([], input)
+}
+
+function isObject (input) {
+	return Object.prototype.toString.call(input) === '[object Object]'
+}
+
+function isArray (input) {
+	return Object.prototype.toString.call(input) === '[object Array]'
+}
+
+},{}],3:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
@@ -10349,7 +10474,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 /*
 object-assign
 (c) Sindre Sorhus
@@ -10441,7 +10566,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 (function (global){
 /*!
 * Parsley.js
@@ -12907,7 +13032,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //# sourceMappingURL=parsley.js.map
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":2}],5:[function(require,module,exports){
+},{"jquery":3}],6:[function(require,module,exports){
 'use strict';
 var strictUriEncode = require('strict-uri-encode');
 var objectAssign = require('object-assign');
@@ -13115,7 +13240,7 @@ exports.stringify = function (obj, opts) {
 	}).join('&') : '';
 };
 
-},{"decode-uri-component":1,"object-assign":3,"strict-uri-encode":8}],6:[function(require,module,exports){
+},{"decode-uri-component":1,"object-assign":4,"strict-uri-encode":9}],7:[function(require,module,exports){
 /*!
  * Select2 4.0.3
  * https://select2.github.io
@@ -18842,7 +18967,7 @@ S2.define('jquery.select2',[
   return select2;
 }));
 
-},{"jquery":2}],7:[function(require,module,exports){
+},{"jquery":3}],8:[function(require,module,exports){
 /*
      _ _      _       _
  ___| (_) ___| | __  (_)___
@@ -21736,7 +21861,7 @@ S2.define('jquery.select2',[
 
 }));
 
-},{"jquery":2}],8:[function(require,module,exports){
+},{"jquery":3}],9:[function(require,module,exports){
 'use strict';
 module.exports = function (str) {
 	return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
@@ -21744,7 +21869,7 @@ module.exports = function (str) {
 	});
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /*!
 ** Project: Chipmunk Theme
 ** Author: Piotr Kulpinski, Jan Wennesland
@@ -21760,6 +21885,7 @@ module.exports = function (str) {
   require('./modules/extras')();
   require('./modules/validate')();
   require('./modules/filter')();
+  require('./modules/fitvids')();
   require('./modules/actions').init();
   require('./modules/remote-form').init();
   require('./modules/tabs').init();
@@ -21781,7 +21907,7 @@ document.addEventListener('click', function (ev) {
   }
 });
 
-},{"./modules/actions":10,"./modules/extras":11,"./modules/filter":12,"./modules/nav":13,"./modules/popup":14,"./modules/remote-form":15,"./modules/search":16,"./modules/tabs":17,"./modules/validate":18}],10:[function(require,module,exports){
+},{"./modules/actions":11,"./modules/extras":12,"./modules/filter":13,"./modules/fitvids":14,"./modules/nav":15,"./modules/popup":16,"./modules/remote-form":17,"./modules/search":18,"./modules/tabs":19,"./modules/validate":20}],11:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21838,7 +21964,7 @@ var Actions = {
 
 module.exports = Actions;
 
-},{"../utils/helpers":19,"jquery":2}],11:[function(require,module,exports){
+},{"../utils/helpers":21,"jquery":3}],12:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21898,7 +22024,7 @@ var Extras = function () {
 
 module.exports = Extras;
 
-},{"jquery":2,"select2":6,"slick-carousel":7}],12:[function(require,module,exports){
+},{"jquery":3,"select2":7,"slick-carousel":8}],13:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21925,7 +22051,18 @@ var Filter = function () {
 
 module.exports = Filter;
 
-},{"jquery":2,"query-string":5}],13:[function(require,module,exports){
+},{"jquery":3,"query-string":6}],14:[function(require,module,exports){
+'use strict';
+
+var fitvids = require('fitvids');
+
+var Fitvids = function () {
+  fitvids();
+};
+
+module.exports = Fitvids;
+
+},{"fitvids":2}],15:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21941,7 +22078,7 @@ var Nav = function () {
 
 module.exports = Nav;
 
-},{"jquery":2}],14:[function(require,module,exports){
+},{"jquery":3}],16:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -21959,7 +22096,7 @@ var Popup = function () {
 
 module.exports = Popup;
 
-},{"jquery":2}],15:[function(require,module,exports){
+},{"jquery":3}],17:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -22014,7 +22151,7 @@ var RemoteForm = {
 
 module.exports = RemoteForm;
 
-},{"../utils/helpers":19,"jquery":2}],16:[function(require,module,exports){
+},{"../utils/helpers":21,"jquery":3}],18:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -22033,7 +22170,7 @@ var Search = function () {
 
 module.exports = Search;
 
-},{"jquery":2}],17:[function(require,module,exports){
+},{"jquery":3}],19:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -22079,7 +22216,7 @@ var Tabs = {
 
 module.exports = Tabs;
 
-},{"jquery":2}],18:[function(require,module,exports){
+},{"jquery":3}],20:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -22204,7 +22341,7 @@ var Validate = function () {
 
 module.exports = Validate;
 
-},{"jquery":2,"parsleyjs":4}],19:[function(require,module,exports){
+},{"jquery":3,"parsleyjs":5}],21:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
@@ -22229,4 +22366,4 @@ var Helpers = {
 
 module.exports = Helpers;
 
-},{"jquery":2}]},{},[9])
+},{"jquery":3}]},{},[10])

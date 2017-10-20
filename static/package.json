@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "fitvids": "^2.0.0",
     "flexgridy": "^0.x",
     "jquery": "^3.2.1",
     "parsleyjs": "^2.7.2",
