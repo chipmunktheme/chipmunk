@@ -18,7 +18,14 @@ var Filter = function () {
       }
     });
 
-    location.search = queryString.stringify(params);
+    var search = queryString.stringify(params);
+    var pageRegex = /\/page\/[0-9]+\//g;
+
+    if (params['tag']) {
+      location.href = location.origin + location.pathname.replace(pageRegex, '/') + '?' + search;
+    } else {
+      location.search = search;
+    }
   });
 };
 
