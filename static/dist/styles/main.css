@@ -1924,6 +1924,7 @@ input[type="submit"]:focus {
   font-size: 1.8rem;
   font-weight: bold;
   line-height: 1.4;
+  word-break: break-all;
 }
 @media (min-width: 680px) {
   .card__title {
@@ -4008,6 +4009,7 @@ input[type="submit"]:focus {
   font-size: 2rem;
   font-weight: bold;
   line-height: 1.2;
+  word-break: break-all;
 }
 @media (min-width: 680px) {
   .tile__title {
