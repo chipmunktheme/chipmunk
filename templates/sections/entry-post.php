@@ -15,7 +15,7 @@
 						'quantity' => -1,
 					);
 
-					include locate_template( 'partials/post-stats.php' );
+					include locate_template( 'templates/partials/post-stats.php' );
 				?>
 			</ul>
 

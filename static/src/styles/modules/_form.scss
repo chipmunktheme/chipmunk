@@ -4,7 +4,6 @@
 
 .form {
   margin-top: $separator;
-  text-align: center;
 
   @include breakpoint(md) {
     margin-top: $separator * 2;
@@ -47,6 +46,11 @@
 
     li {
       color: $color-status-error;
+      font-size: 1.6rem;
+    }
+
+    li::before {
+      content: initial;
     }
   }
 
@@ -61,11 +65,16 @@
       text-align: center;
     }
   }
+
+  &_centered {
+    text-align: center;
+  }
 }
 
 .form__field {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
 
   &:not(:first-child) {
@@ -105,6 +114,34 @@
       }
     }
   }
+
+  &_checkbox {
+    flex-grow: 1;
+    margin-left: 1em;
+    margin-right: 1em;
+    color: $color-gray;
+    font-size: 0.8em;
+    cursor: pointer;
+    user-select: none;
+    transition: color $transition-speed;
+
+    @include breakpoint(md) {
+      font-size: 1.5rem;
+    }
+
+    &:hover {
+      color: $color-gray-dark;
+    }
+
+    input[type="checkbox"] {
+      display: inline-block;
+      margin-right: 0.25em;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 }
 
 .form__child {
@@ -132,5 +169,54 @@
 
   @include breakpoint(md) {
     margin-top: $separator * 2;
+  }
+}
+
+.form__info {
+  font-size: 0.85em;
+  color: $color-status-info;
+
+  a {
+    color: $color-status-info;
+  }
+
+  &_success {
+    color: $color-status-success;
+
+    a {
+      color: $color-status-success;
+    }
+  }
+
+  &_warning {
+    color: $color-status-warning;
+
+    a {
+      color: $color-status-warning;
+    }
+  }
+
+  &_error {
+    color: $color-status-error;
+
+    a {
+      color: $color-status-error;
+    }
+  }
+
+  a:hover {
+    color: $color-gray-dark;
+  }
+}
+
+.form__link[href] {
+  display: inline-block;
+  margin: 0.5em 0;
+  color: $color-gray;
+  font-size: 0.8em;
+
+  @include breakpoint(md) {
+    margin: 0;
+    font-size: 1.5rem;
   }
 }

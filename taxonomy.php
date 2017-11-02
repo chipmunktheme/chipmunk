@@ -40,7 +40,7 @@ get_header(); ?>
 				<div class="row">
 					<?php foreach ( $children_collections as $collection ) : ?>
 						<?php $collection = get_term_by( 'id', $collection, 'resource-collection' ); ?>
-						<?php include locate_template( 'sections/collection-tile.php' ); ?>
+						<?php include locate_template( 'templates/sections/collection-tile.php' ); ?>
 					<?php endforeach; ?>
 				</div>
 
@@ -74,7 +74,7 @@ get_header(); ?>
 			</div>
 		</div>
 
-		<?php include locate_template( 'sections/pagination.php' ); ?>
+		<?php include locate_template( 'templates/sections/pagination.php' ); ?>
 	</div>
 	<!-- /.section -->
 
