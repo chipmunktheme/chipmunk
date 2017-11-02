@@ -1,0 +1,256 @@
+/*
+** Module - Content
+** -----------------------------------------------------------------------------*/
+
+.content {
+  color: $color-black;
+  font-size: 1.8rem;
+  line-height: 1.85;
+
+  @include breakpoint(md) {
+    font-size: 2.1rem;
+  }
+
+  > h1, > h2, > h3, > h4, > h5, > h6 {
+    @extend .heading;
+
+    &:not(:first-child) {
+      margin-top: $separator;
+
+      @include breakpoint(md) {
+        margin-top: $separator * 2;
+      }
+    }
+
+    + ul:not(:first-child),
+    + ol:not(:first-child) {
+      margin-top: 0;
+    }
+  }
+
+  h1, h2 {
+    @extend .heading_xl;
+
+    &:not(:first-child) {
+      margin-top: $separator * 2;
+
+      @include breakpoint(lg) {
+        margin-top: $separator * 3;
+      }
+    }
+  }
+
+  h3 {
+    @extend .heading_lg;
+  }
+
+  h4 {
+    @extend .heading_md;
+    text-transform: none !important;
+  }
+
+  h5, h6 {
+    font-size: 1.6rem;
+    line-height: 1.6;
+
+    @include breakpoint(md) {
+      font-size: 2.1rem;
+    }
+  }
+
+  p, blockquote, table, ul, ol, hr {
+    overflow: hidden;
+    clear: both;
+
+    &:not(:first-child) {
+      margin-top: 1.85em;
+    }
+
+    > [src],
+    > .fluid-width-video-wrapper {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+  }
+
+  ol {
+    list-style: decimal inside;
+
+    li {
+      padding-left: 0.15em;
+    }
+  }
+
+  ul {
+    li {
+      &::before {
+        content: '\2022';
+        margin-right: 0.75em;
+      }
+    }
+  }
+
+  li {
+    &:first-child {
+      padding-top: 5px;
+    }
+  }
+
+  a {
+    color: $color-gray;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  img {
+    width: auto;
+    height: auto;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  blockquote {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    border-left: 2px solid $color-gray-light;
+
+    @include breakpoint(md) {
+      padding-left: 2em;
+      border-left-width: 3px;
+      font-size: 1.2em;
+    }
+  }
+
+  table {
+    table-layout: fixed;
+    border: 2px solid $color-gray-light;
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-size: 0.8em;
+
+    @include breakpoint(md) {
+      border-width: 3px;
+    }
+
+    thead {
+      background-color: $color-white;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    td, th {
+      padding: 0.5em 1em;
+      border: 2px solid $color-gray-light;
+      vertical-align: top;
+
+      @include breakpoint(md) {
+        border-width: 3px;
+      }
+    }
+  }
+
+  hr {
+    border-bottom: 2px solid $color-gray-light;
+
+    @include breakpoint(md) {
+      border-bottom-width: 3px;
+    }
+  }
+
+  .alignnone, .aligncenter {
+    clear: both;
+    margin-top: 2em;
+
+    @include breakpoint(md) {
+      margin-top: 3em;
+    }
+
+    @include breakpoint(lg) {
+      margin-top: 4em;
+    }
+  }
+
+  .alignright {
+    float: right;
+    margin-top: 2em;
+    margin-left: 1em;
+  }
+
+  .alignleft {
+    float: left;
+    margin-top: 2em;
+    margin-right: 1em;
+  }
+
+  .aligncenter {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  table,
+  blockquote,
+  .wp-caption {
+    width: auto !important;
+
+    @include breakpoint(lg) {
+      .column_lg-8 & {
+        margin-left: -25.85%;
+        margin-right: -25.85%;
+      }
+
+      .column_lg-10 & {
+        margin-left: -10.2%;
+        margin-right: -10.2%;
+      }
+    }
+  }
+
+  .wp-caption {
+    margin-top: 2em;
+    margin-bottom: 1em;
+
+    @include breakpoint(md) {
+      margin-top: 3em;
+      margin-bottom: 2em;
+    }
+
+    @include breakpoint(lg) {
+      margin-top: 4em;
+      margin-bottom: 3.5em;
+    }
+
+    .wp-caption-text {
+      margin-top: 0.5em;
+      color: $color-gray;
+      font-size: 1.4rem;
+
+      @include breakpoint(md) {
+        max-width: 50%;
+        font-size: 1.6rem;
+      }
+    }
+
+    a {
+      display: block;
+
+      img {
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translateZ(0) scale(1.0, 1.0);
+        transition: opacity $transition-speed;
+      }
+
+      &:hover img {
+        opacity: 0.9;
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Collections
+ * Template Name: Listing - Collections
  * Chipmunk: Page Collections
  *
  * @package WordPress

@@ -22,6 +22,7 @@ require_once THEME_TEMPLATE_DIR . '/inc/assets.php';
 require_once THEME_TEMPLATE_DIR . '/inc/meta-boxes.php';
 require_once THEME_TEMPLATE_DIR . '/inc/views.php';
 require_once THEME_TEMPLATE_DIR . '/inc/upvotes.php';
+require_once THEME_TEMPLATE_DIR . '/inc/shortcodes.php';
 require_once THEME_TEMPLATE_DIR . '/inc/ajax.php';
 
 
@@ -59,6 +60,7 @@ function chipmunk_setup() {
 			'plural'                => esc_html__( 'Resources', 'chipmunk' ),
 			'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'comments', 'publicize' ),
 			'menu_icon'             => 'dashicons-screenoptions',
+			'menu_position'         => 20,
 			'show_in_rest'          => true,
 			'rest_base'             => 'resources',
 			'rest_controller_class' => 'WP_REST_Posts_Controller',

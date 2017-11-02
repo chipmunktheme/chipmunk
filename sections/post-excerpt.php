@@ -18,7 +18,7 @@
 
 		<h1 class="entry__title"><?php the_title(); ?></h1>
 
-		<div class="entry__content">
+		<div class="entry__content content">
 			<?php echo esc_html( chipmunk_truncate_string( get_the_excerpt(), 250 ) ); ?>
 		</div>
 		<!-- /.entry -->

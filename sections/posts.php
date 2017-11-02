@@ -19,7 +19,7 @@
 				<h2 class="heading heading_md"><?php esc_html_e( 'Latest Posts', 'chipmunk' ); ?></h2>
 			<?php else : ?>
 				<?php if ( $term && $layout == 'tiles' ) : ?>
-					<h1 class="heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( esc_html__( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : esc_html__( 'Blog', 'chipmunk' ); ?></h1>
+					<h1 class="heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( esc_html__( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : get_the_title(); ?></h1>
 				<?php endif; ?>
 			<?php endif; ?>
 

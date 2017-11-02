@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Blog
+ * Template Name: Listing - Blog
  * Chipmunk: Page Blog
  *
  * @package WordPress

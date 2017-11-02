@@ -67,7 +67,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="column column_lg-8 column_lg-offset-2">
-					<div class="entry__content">
+					<div class="entry__content content">
 						<?php the_content(); ?>
 					</div>
 					<!-- /.entry -->

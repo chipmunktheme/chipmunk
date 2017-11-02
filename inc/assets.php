@@ -50,12 +50,12 @@ function chipmunk_custom_style() {
 		.card__title,
 		.tile__title,
 		.section__title,
-		.entry__content h1,
-		.entry__content h2,
-		.entry__content h3,
-		.entry__content h4,
-		.entry__content h5,
-		.entry__content h6 {
+		.content h1,
+		.content h2,
+		.content h3,
+		.content h4,
+		.content h5,
+		.content h6 {
 			font-family: $heading_font;
 		}
 	";
@@ -64,7 +64,7 @@ function chipmunk_custom_style() {
 		$custom_style .= "
 			.button_primary:hover,
 			.button_secondary,
-			.entry__content a:hover,
+			.content a:hover,
 			.nav-primary__close:hover,
 			.nav-socials__item a:hover,
 			.page-head__logo,

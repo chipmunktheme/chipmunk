@@ -19,10 +19,7 @@ function chipmunk_add_meta_boxes() {
 		$template = get_page_template_slug( $post->ID );
 		$template = str_replace( array( 'page-', '.php' ),  array( '', '' ),  $template );
 
-		if ( empty( $template ) or in_array( $template, array( 'default' ) ) ) {
-			chipmunk_add_meta_box( 'about', 'page' );
-		}
-		elseif ( in_array( $template, array( 'blog', 'collections', 'resources' ) ) ) {
+		if ( in_array( $template, array( 'blog', 'collections', 'resources' ) ) ) {
 			remove_post_type_support( 'page', 'editor' );
 		}
 	}
@@ -59,37 +56,6 @@ function chipmunk_save_meta_boxes_resource( $post_id ) {
 }
 endif;
 add_action( 'save_post_resource', 'chipmunk_save_meta_boxes_resource' );
-
-
-if ( ! function_exists( 'chipmunk_save_meta_boxes_about' ) ) :
-/**
- * Store custom field meta box data
- *
- * @param int $post_id The post ID.
- */
-function chipmunk_save_meta_boxes_about( $post_id ) {
-	// Verify permissions
-	if ( ! chipmunk_verify_permissions( $post_id ) ) {
-		return false;
-	}
-
-	// store custom fields values
-	if ( isset( $_REQUEST['wide_content'] ) ) {
-		update_post_meta( $post_id, '_' . THEME_SLUG . '_about_wide_content', sanitize_text_field( $_POST['wide_content'] ) );
-	}
-	else {
-		delete_post_meta( $post_id, '_' . THEME_SLUG . '_about_wide_content' );
-	}
-
-	if ( isset( $_REQUEST['curators_enabled'] ) ) {
-		update_post_meta( $post_id, '_' . THEME_SLUG . '_about_curators_enabled', sanitize_text_field( $_POST['curators_enabled'] ) );
-	}
-	else {
-		delete_post_meta( $post_id, '_' . THEME_SLUG . '_about_curators_enabled' );
-	}
-}
-endif;
-add_action( 'save_post_page', 'chipmunk_save_meta_boxes_about' );
 
 
 if ( ! function_exists( 'chipmunk_build_meta_boxes_resource' ) ) :
@@ -131,42 +97,6 @@ function chipmunk_build_meta_boxes_resource( $post ) {
 				<input type="url" name="submitter" id="submitter" value="<?php echo esc_attr( $submitter ); ?>" readonly class="widefat" />
 			</div>
 		<?php endif; ?>
-	</div>
-	<?php
-}
-endif;
-
-
-if ( ! function_exists( 'chipmunk_build_meta_boxes_about' ) ) :
-/**
- * Build custom field meta box
- *
- * @param post $post The post object
- */
-function chipmunk_build_meta_boxes_about( $post ) {
-	wp_nonce_field( basename( __FILE__ ), THEME_SLUG . '_nonce' );
-	$wide_content = get_post_meta( $post->ID, '_' . THEME_SLUG . '_about_wide_content', true );
-	$curators_enabled = get_post_meta( $post->ID, '_' . THEME_SLUG . '_about_curators_enabled', true );
-
-	?>
-	<div class="chipmunk-fields">
-		<div class="chipmunk-field">
-			<p class="chipmunk-label"><?php esc_html_e( 'Wide content', 'chipmunk' ); ?></p>
-
-			<label for="wide_content">
-				<input type="checkbox" name="wide_content" id="wide_content" <?php echo $wide_content ? ' checked' : ''; ?> />
-				<?php esc_html_e( 'Enable wide content for this page (it will make first heading of this page a left-floated title)', 'chipmunk' ); ?>
-			</label>
-		</div>
-
-		<div class="chipmunk-field">
-			<p class="chipmunk-label"><?php esc_html_e( 'Enable curators', 'chipmunk' ); ?></p>
-
-			<label for="curators_enabled">
-				<input type="checkbox" name="curators_enabled" id="curators_enabled" <?php echo $curators_enabled ? ' checked' : ''; ?> />
-				<?php esc_html_e( 'Enable curators listing on this page', 'chipmunk' ); ?>
-			</label>
-		</div>
 	</div>
 	<?php
 }

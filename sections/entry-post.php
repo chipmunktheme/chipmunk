@@ -28,7 +28,7 @@
 		</div>
 		<!-- /.entry__head -->
 
-		<div class="entry__content">
+		<div class="entry__content content">
 			<?php the_content(); ?>
 		</div>
 		<!-- /.entry -->

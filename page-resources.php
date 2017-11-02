@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Resources
+ * Template Name: Listing - Resources
  * Chipmunk: Page Resources
  *
  * @package WordPress
