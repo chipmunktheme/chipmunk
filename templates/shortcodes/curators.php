@@ -21,6 +21,12 @@
 					<p class="card__copy"><?php echo esc_html( chipmunk_truncate_string( $description, 120 ) ); ?></p>
 				<?php endif; ?>
 
+				<?php if ( ! empty( $user->user_url ) ) : ?>
+					<div class="card__handle">
+						<a href="<?php echo esc_url( $user->user_url ); ?>" target="_blank" rel="nofollow"><?php echo esc_html( $user->user_url ); ?></a>
+					</div>
+				<?php endif; ?>
+
 				<?php if ( ! empty( $twitter ) ) : ?>
 					<div class="card__handle">
 						<a href="<?php echo esc_url( 'https://twitter.com/' . $twitter ); ?>" target="_blank" rel="nofollow">@<?php echo esc_html( $twitter ); ?></a>

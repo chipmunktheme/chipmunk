@@ -9,24 +9,24 @@
  */
 ?>
 
-		<?php get_template_part( 'partials/promo' ); ?>
+		<?php get_template_part( 'templates/partials/promo' ); ?>
 
 		<?php if ( ! is_front_page() || chipmunk_theme_option( 'disable_homepage_listings' ) ) : ?>
-			<?php get_template_part( 'partials/toolbox' ); ?>
+			<?php get_template_part( 'templates/partials/toolbox' ); ?>
 		<?php endif; ?>
 
-		<?php get_template_part( 'partials/newsletter' ); ?>
-		<?php get_template_part( 'partials/page-bottom' ); ?>
-		<?php get_template_part( 'partials/page-foot' ); ?>
+		<?php get_template_part( 'templates/partials/newsletter' ); ?>
+		<?php get_template_part( 'templates/partials/page-bottom' ); ?>
+		<?php get_template_part( 'templates/partials/page-foot' ); ?>
 
 		<?php if ( ! chipmunk_theme_option( 'disable_search' ) ) : ?>
-			<?php get_template_part( 'partials/search-bar' ); ?>
+			<?php get_template_part( 'templates/partials/search-bar' ); ?>
 		<?php endif; ?>
 	</div>
 	<!-- /.body-bag -->
 
 	<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
-		<?php get_template_part( 'partials/popup' ); ?>
+		<?php get_template_part( 'templates/partials/popup' ); ?>
 	<?php endif; ?>
 
 	<?php wp_footer(); ?>

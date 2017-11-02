@@ -9,6 +9,6 @@
 
 get_header(); ?>
 
-	<?php get_template_part( 'sections/resources' ); ?>
+	<?php get_template_part( 'templates/sections/resources' ); ?>
 
 <?php get_footer(); ?>

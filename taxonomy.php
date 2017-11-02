@@ -26,7 +26,7 @@ get_header(); ?>
 						<?php endif; ?>
 					</div>
 
-					<?php get_template_part( 'partials/filters' ); ?>
+					<?php get_template_part( 'templates/partials/filters' ); ?>
 				</div>
 			<?php else : ?>
 				<h3 class="heading heading_md"><?php echo esc_html( $title ); ?></h3>
@@ -53,7 +53,7 @@ get_header(); ?>
 				<?php if ( $custom_query->have_posts() ) : ?>
 					<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
 
-						<?php get_template_part( 'sections/resource-tile' ); ?>
+						<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 
 					<?php endwhile; wp_reset_postdata(); ?>
 				<?php elseif ( empty( $children_collections ) ) : ?>

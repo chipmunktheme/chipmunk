@@ -18,7 +18,7 @@
 
 			<nav class="nav-primary">
 				<div class="nav-primary__inner">
-					<?php get_template_part( 'partials/nav' ); ?>
+					<?php get_template_part( 'templates/partials/nav' ); ?>
 
 					<button type="button" class="nav-primary__close hidden-lg" data-nav-toggle>
 						<i class="icon icon_close" aria-hidden="true"></i>

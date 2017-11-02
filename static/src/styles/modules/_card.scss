@@ -36,6 +36,10 @@
   margin-bottom: 1rem;
   font-size: 1.4rem;
   opacity: 0.85;
+
+  .content &:not(:first-child) {
+    margin-top: 0;
+  }
 }
 
 .card__handle {

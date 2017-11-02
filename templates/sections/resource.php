@@ -39,7 +39,7 @@
 						<a href="<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>" class="button button_secondary" target="_blank" rel="nofollow"><?php esc_html_e( 'Visit website', 'chipmunk' ); ?></a>
 					<?php endif; ?>
 
-					<?php get_template_part( 'partials/share-box' ); ?>
+					<?php get_template_part( 'templates/partials/share-box' ); ?>
 				</div>
 			</div>
 

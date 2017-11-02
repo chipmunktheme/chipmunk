@@ -9,6 +9,6 @@
 
 get_header(); ?>
 
-	<?php get_template_part( 'sections/collections' ); ?>
+	<?php get_template_part( 'templates/sections/collections' ); ?>
 
 <?php get_footer(); ?>

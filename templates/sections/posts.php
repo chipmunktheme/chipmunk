@@ -30,20 +30,20 @@
 
 						<?php if ( $layout == 'mixed' ) : ?>
 							<?php if ( $i % 4 == 0 && $paged == 1 ) : ?>
-								<?php get_template_part( 'sections/post-excerpt' ); ?>
+								<?php get_template_part( 'templates/sections/post-excerpt' ); ?>
 							<?php else : ?>
-								<?php get_template_part( 'sections/post-tile' ); ?>
+								<?php get_template_part( 'templates/sections/post-tile' ); ?>
 							<?php endif; ?>
 
 							<?php $i++; ?>
 						<?php endif; ?>
 
 						<?php if ( $layout == 'tiles' ) : ?>
-							<?php get_template_part( 'sections/post-tile' ); ?>
+							<?php get_template_part( 'templates/sections/post-tile' ); ?>
 						<?php endif; ?>
 
 						<?php if ( $layout == 'excerpts' ) : ?>
-							<?php get_template_part( 'sections/post-excerpt' ); ?>
+							<?php get_template_part( 'templates/sections/post-excerpt' ); ?>
 						<?php endif; ?>
 					<?php endwhile; ?>
 				</div>

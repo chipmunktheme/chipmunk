@@ -17,7 +17,7 @@
 						<h1 class="heading heading_md"><?php esc_html_e( 'Resources', 'chipmunk' ); ?></h1>
 					</div>
 
-					<?php get_template_part( 'partials/filters' ); ?>
+					<?php get_template_part( 'templates/partials/filters' ); ?>
 				</div>
 			<?php else : ?>
 				<h1 class="heading heading_md"><?php esc_html_e( 'Resources', 'chipmunk' ); ?></h1>
@@ -28,7 +28,7 @@
 			<div class="row">
 				<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
 
-					<?php get_template_part( 'sections/resource-tile' ); ?>
+					<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 
 				<?php endwhile; ?>
 			</div>

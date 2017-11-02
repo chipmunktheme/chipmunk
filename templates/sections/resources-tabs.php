@@ -46,10 +46,10 @@ $resources = array(
 							<?php while ( $resources['featured']->have_posts() ) : $resources['featured']->the_post(); ?>
 
 								<?php if ( $disable_sliders ) : ?>
-									<?php get_template_part( 'sections/resource-tile' ); ?>
+									<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 								<?php else : ?>
 									<div class="tile__slider">
-										<?php get_template_part( 'sections/resource-tile' ); ?>
+										<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 									</div>
 								<?php endif; ?>
 
@@ -62,10 +62,10 @@ $resources = array(
 							<?php while ( $resources['latest']->have_posts() ) : $resources['latest']->the_post(); ?>
 
 								<?php if ( $disable_sliders ) : ?>
-									<?php get_template_part( 'sections/resource-tile' ); ?>
+									<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 								<?php else : ?>
 									<div class="tile__slider">
-										<?php get_template_part( 'sections/resource-tile' ); ?>
+										<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 									</div>
 								<?php endif; ?>
 
@@ -78,10 +78,10 @@ $resources = array(
 							<?php while ( $resources['popular']->have_posts() ) : $resources['popular']->the_post(); ?>
 
 								<?php if ( $disable_sliders ) : ?>
-									<?php get_template_part( 'sections/resource-tile' ); ?>
+									<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 								<?php else : ?>
 									<div class="tile__slider">
-										<?php get_template_part( 'sections/resource-tile' ); ?>
+										<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 									</div>
 								<?php endif; ?>
 

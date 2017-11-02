@@ -12,7 +12,7 @@ get_header(); ?>
 	<div class="section">
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 			<div class="container">
-				<?php get_template_part( 'sections/entry', 'post' ); ?>
+				<?php get_template_part( 'templates/sections/entry', 'post' ); ?>
 			</div>
 		<?php endwhile; endif; ?>
 	</div>
@@ -27,6 +27,6 @@ get_header(); ?>
 		<!-- /.section -->
 	<?php endif; ?>
 
-	<?php get_template_part( 'sections/posts' ); ?>
+	<?php get_template_part( 'templates/sections/posts' ); ?>
 
 <?php get_footer(); ?>

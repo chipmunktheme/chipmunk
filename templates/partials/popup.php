@@ -6,7 +6,7 @@
 				<span class="sr-only"><?php esc_html_e( 'Close', 'chipmunk' ); ?></span>
 			</button>
 
-			<?php get_template_part( 'sections/submit' ); ?>
+			<?php get_template_part( 'templates/sections/submit' ); ?>
 		</div>
 
 		<div class="popup__loader"></div>

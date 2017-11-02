@@ -1936,6 +1936,9 @@ input[type="submit"]:focus {
   font-size: 1.4rem;
   opacity: 0.85;
 }
+.content .card__copy:not(:first-child) {
+  margin-top: 0;
+}
 .card__handle {
   font-size: 1.6rem;
 }
