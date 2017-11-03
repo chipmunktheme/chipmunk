@@ -114,34 +114,6 @@
       }
     }
   }
-
-  &_checkbox {
-    flex-grow: 1;
-    margin-left: 1em;
-    margin-right: 1em;
-    color: $color-gray;
-    font-size: 0.8em;
-    cursor: pointer;
-    user-select: none;
-    transition: color $transition-speed;
-
-    @include breakpoint(md) {
-      font-size: 1.5rem;
-    }
-
-    &:hover {
-      color: $color-gray-dark;
-    }
-
-    input[type="checkbox"] {
-      display: inline-block;
-      margin-right: 0.25em;
-
-      &:focus {
-        outline: none;
-      }
-    }
-  }
 }
 
 .form__child {
@@ -160,6 +132,34 @@
   }
 }
 
+.form__checkbox {
+  flex-grow: 1;
+  margin-left: 1em;
+  margin-right: 1em;
+  color: $color-gray;
+  font-size: 0.8em;
+  cursor: pointer;
+  user-select: none;
+  transition: color $transition-speed;
+
+  @include breakpoint(md) {
+    font-size: 1.5rem;
+  }
+
+  &:hover {
+    color: $color-gray-dark;
+  }
+
+  input[type="checkbox"] {
+    display: inline-block;
+    margin-right: 0.25em;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
 .form__message {
   margin-top: $separator;
   max-width: 600px;
@@ -174,11 +174,6 @@
 
 .form__info {
   font-size: 0.85em;
-  color: $color-status-info;
-
-  a {
-    color: $color-status-info;
-  }
 
   &_success {
     color: $color-status-success;
