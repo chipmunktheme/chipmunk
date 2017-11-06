@@ -6,6 +6,30 @@
  * @subpackage Chipmunk
  */
 
+if ( ! function_exists( 'chipmunk_has_plugin' ) ) :
+/**
+ * Check if Chipmunk plugin is enabled
+ */
+function chipmunk_has_plugin( $plugin ) {
+	return class_exists( 'Chipmunk_' . $plugin );
+}
+endif;
+
+if ( ! function_exists( 'chipmunk_get_plugin_option' ) ) :
+/**
+ * Check if Chipmunk plugin is enabled and get option from it
+ */
+function chipmunk_get_plugin_option( $plugin, $option ) {
+	if ( ! chipmunk_has_plugin( $plugin ) ) {
+		return null;
+	}
+
+	// TODO: Get option from the plugin
+	return true;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_theme_option' ) ) :
 /**
  * Get menu items

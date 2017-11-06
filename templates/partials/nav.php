@@ -56,11 +56,33 @@
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-	<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
-		<li class="nav-primary__item hidden-lg">
-			<button type="button" class="button button_secondary" data-popup-toggle>
-				<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
-			</button>
+	<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
+		<li class="nav-primary__item nav-primary__item_condensed hidden-lg">
+			<?php if ( is_user_logged_in() ) : ?>
+				<a href="<?php echo esc_url( home_url( 'dashboard' ) ); ?>" class="button button_secondary">
+					<?php esc_html_e( 'Dashoboard', 'chipmunk' ); ?>
+				</a>
+
+				<a href="<?php echo esc_url( wp_logout_url() ); ?>" class="button button_secondary">
+					<?php esc_html_e( 'Logout', 'chipmunk' ); ?>
+				</a>
+			<?php else : ?>
+				<a href="<?php echo esc_url( home_url( 'login' ) ); ?>" class="button button_secondary">
+					<?php esc_html_e( 'Login', 'chipmunk' ); ?>
+				</a>
+
+				<a href="<?php echo esc_url( home_url( 'register' ) ); ?>" class="button button_secondary">
+					<?php esc_html_e( 'Register', 'chipmunk' ); ?>
+				</a>
+			<?php endif; ?>
 		</li>
+	<?php else : ?>
+		<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
+			<li class="nav-primary__item nav-primary__item_condensed hidden-lg">
+				<button type="button" class="button button_secondary" data-popup-toggle>
+					<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
+				</button>
+			</li>
+		<?php endif; ?>
 	<?php endif; ?>
 </ul>

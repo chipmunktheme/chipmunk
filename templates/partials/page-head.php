@@ -37,10 +37,30 @@
 					</button>
 				<?php endif; ?>
 
-				<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
-					<button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>
-						<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
-					</button>
+				<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
+					<?php if ( is_user_logged_in() ) : ?>
+						<a href="<?php echo esc_url( home_url( 'dashboard' ) ); ?>" class="button button_secondary visible-lg-block">
+							<?php esc_html_e( 'Dashoboard', 'chipmunk' ); ?>
+						</a>
+
+						<a href="<?php echo esc_url( wp_logout_url() ); ?>" class="button button_secondary visible-lg-block">
+							<?php esc_html_e( 'Logout', 'chipmunk' ); ?>
+						</a>
+					<?php else : ?>
+						<a href="<?php echo esc_url( home_url( 'login' ) ); ?>" class="button button_secondary visible-lg-block">
+							<?php esc_html_e( 'Login', 'chipmunk' ); ?>
+						</a>
+
+						<a href="<?php echo esc_url( home_url( 'register' ) ); ?>" class="button button_secondary visible-lg-block">
+							<?php esc_html_e( 'Register', 'chipmunk' ); ?>
+						</a>
+					<?php endif; ?>
+				<?php else : ?>
+					<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
+						<button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>
+							<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
+						</button>
+					<?php endif; ?>
 				<?php endif; ?>
 
 				<button type="button" class="page-head__trigger button button_secondary hidden-lg" data-nav-toggle>

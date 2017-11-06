@@ -6,13 +6,13 @@
   margin-top: $separator;
 
   @include breakpoint(md) {
-    margin-top: $separator * 2;
+    margin-top: $separator * 1.5;
   }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="url"],
-  input[type="password"],
+  [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="password"],
   textarea {
     display: inline-block;
     width: 100%;
@@ -74,11 +74,14 @@
 .form__field {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
 
   &:not(:first-child) {
     margin-top: $separator * 1.5;
+  }
+
+  &:last-child {
+    align-items: center;
   }
 
   .form_compact &:not(:first-child) {
@@ -150,7 +153,7 @@
     color: $color-gray-dark;
   }
 
-  input[type="checkbox"] {
+  [type="checkbox"] {
     display: inline-block;
     margin-right: 0.25em;
 

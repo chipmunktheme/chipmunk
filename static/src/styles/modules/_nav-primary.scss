@@ -45,28 +45,34 @@
 
 .nav-primary__inner {
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100%;
+  padding-left: $separator;
+  padding-right: $separator;
   text-align: center;
 
   @include breakpoint(lg) {
     display: block;
     height: auto;
+    padding-left: 0;
+    padding-right: 0;
     text-align: left;
   }
 }
 
 .nav-primary__list {
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: space-between;
   flex-direction: column;
 
   @include breakpoint(lg) {
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-start;
+    margin-right: $separator;
   }
 
   ul {
@@ -135,6 +141,19 @@
 
   &_active {
     color: $color-black;
+  }
+
+  &_condensed {
+    display: flex;
+    justify-content: center;
+
+    .button {
+      min-width: 10rem;
+    }
+
+    .button:not(:first-child) {
+      margin-left: 1rem;
+    }
   }
 }
 
