@@ -59,8 +59,8 @@
 	<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
 		<li class="nav-primary__item nav-primary__item_condensed hidden-lg">
 			<?php if ( is_user_logged_in() ) : ?>
-				<a href="<?php echo esc_url( home_url( 'dashboard' ) ); ?>" class="button button_secondary">
-					<?php esc_html_e( 'Dashoboard', 'chipmunk' ); ?>
+				<a href="<?php echo esc_url( home_url( 'account' ) ); ?>" class="button button_secondary">
+					<?php esc_html_e( 'Account', 'chipmunk' ); ?>
 				</a>
 
 				<a href="<?php echo esc_url( wp_logout_url() ); ?>" class="button button_secondary">

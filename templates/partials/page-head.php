@@ -39,8 +39,8 @@
 
 				<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
 					<?php if ( is_user_logged_in() ) : ?>
-						<a href="<?php echo esc_url( home_url( 'dashboard' ) ); ?>" class="button button_secondary visible-lg-block">
-							<?php esc_html_e( 'Dashoboard', 'chipmunk' ); ?>
+						<a href="<?php echo esc_url( home_url( 'account' ) ); ?>" class="button button_secondary visible-lg-block">
+							<?php esc_html_e( 'Account', 'chipmunk' ); ?>
 						</a>
 
 						<a href="<?php echo esc_url( wp_logout_url() ); ?>" class="button button_secondary visible-lg-block">
