@@ -62,8 +62,10 @@
   display: inline-block;
   margin-left: $separator;
   color: $color-gray;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
-  transition: color $transition-speed;
+  transition-property: color, border-color;
+  transition-duration: $transition-speed;
 
   @include breakpoint(md) {
     margin-left: ($separator * 1.5);
@@ -73,8 +75,13 @@
     margin-left: 0;
   }
 
-  &.active,
-  &:hover {
+  &:hover,
+  &:focus {
+    color: $color-gray-dark;
+  }
+
+  &.active {
     color: $color-black;
+    border-bottom-color: rgba($color-black, 0.075);
   }
 }

@@ -2829,9 +2829,12 @@ input[type="submit"]:focus {
   display: inline-block;
   margin-left: 2rem;
   color: #808080;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
-  -webkit-transition: color 0.25s;
-  transition: color 0.25s;
+  -webkit-transition-property: color, border-color;
+  transition-property: color, border-color;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
 }
 @media (min-width: 680px) {
   .heading__link {
@@ -2841,8 +2844,12 @@ input[type="submit"]:focus {
 .heading__link:first-child {
   margin-left: 0;
 }
-.heading__link.active, .heading__link:hover {
+.heading__link:hover, .heading__link:focus {
+  color: #666666;
+}
+.heading__link.active {
   color: #333333;
+  border-bottom-color: rgba(51, 51, 51, 0.075);
 }
 /*
 ** Module - Nav primary
