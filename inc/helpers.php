@@ -168,6 +168,52 @@ function chipmunk_custom_excerpt( $text, $excerpt ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_verify_recaptcha' ) ) :
+/**
+ * Checks that the reCAPTCHA parameter sent with the registration
+ * request is valid.
+ *
+ * @return bool True if the CAPTCHA is OK, otherwise false.
+ */
+function chipmunk_verify_recaptcha( $response ) {
+	$site_key = chipmunk_theme_option( 'recaptcha_site_key' );
+	$secret_key = chipmunk_theme_option( 'recaptcha_secret_key' );
+
+	if ( ! $site_key ) {
+		return true;
+	}
+
+	if ( ! isset( $response ) or empty( $response ) ) {
+		return false;
+	}
+
+	if ( $secret_key ) {
+		// Verify the captcha response from Google
+		$remote_response = wp_remote_post(
+			'https://www.google.com/recaptcha/api/siteverify',
+			array(
+				'body' => array(
+					'secret' => $secret_key,
+					'response' => $response
+				)
+			)
+		);
+
+		$success = false;
+
+		if ( $remote_response && is_array( $remote_response ) ) {
+			$decoded_response = json_decode( $remote_response['body'] );
+			$success = $decoded_response->success;
+		}
+
+		return $success;
+	}
+
+	return true;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_menu_items' ) ) :
 /**
  * Get menu items

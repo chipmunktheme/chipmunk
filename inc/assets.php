@@ -168,10 +168,22 @@ if ( ! function_exists( 'chipmunk_external_scripts' ) ) :
  * Enqueue Google Fonts styles
  */
 function chipmunk_external_scripts() {
-	$recaptcha = chipmunk_theme_option( 'recaptcha_site_key' );
+	$site_key = chipmunk_theme_option( 'recaptcha_site_key' );
 
-	if ( $recaptcha ) {
-		wp_enqueue_script( 'chipmunk-recaptcha', '//google.com/recaptcha/api.js', false, null, true );
+	if ( $site_key ) {
+		wp_enqueue_script( 'chipmunk-recaptcha', '//google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit', false, null, true );
+
+		wp_add_inline_script( 'chipmunk-recaptcha', "
+			var CaptchaCallback = function() {
+				if (document.getElementById('submit-recaptcha')) {
+					grecaptcha.render('submit-recaptcha', {'sitekey' : '$site_key'});
+				}
+
+				if (document.getElementById('register-recaptcha')) {
+					grecaptcha.render('register-recaptcha', {'sitekey' : '$site_key'});
+				}
+			};
+		" );
 	}
 }
 endif;

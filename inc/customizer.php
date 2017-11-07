@@ -350,12 +350,6 @@ class ChipmunkCustomizer {
 						'label'       => esc_html__( 'Submission "Failure" message', 'chipmunk' ),
 						'default'     => esc_html__( 'Your submission could not be processed.', 'chipmunk' ),
 					),
-					array(
-						'name'        => 'recaptcha_site_key',
-						'type'        => 'text',
-						'label'       => esc_html__( 'reCAPTCHA Site key', 'chipmunk' ),
-						'description' => sprintf( wp_kses( __( 'Register at <a href="%1$s" target="_blank">reCAPTCHA</a>.', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://www.google.com/recaptcha/admin' ) ),
-					),
 				),
 			),
 
@@ -387,6 +381,25 @@ class ChipmunkCustomizer {
 				'title'         => esc_html__( 'Social Profiles', 'chipmunk' ),
 				'slug'          => 'socials_section',
 				'callback'      => 'register_socials',
+			),
+
+			array(
+				'title'         => esc_html__( 'ReCaptcha', 'chipmunk' ),
+				'slug'          => 'recaptcha',
+				'fields'        => array(
+					array(
+						'name'        => 'recaptcha_site_key',
+						'type'        => 'text',
+						'label'       => esc_html__( 'reCAPTCHA Site key', 'chipmunk' ),
+						'description' => sprintf( wp_kses( __( 'Register at <a href="%1$s" target="_blank">reCAPTCHA</a>.', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://www.google.com/recaptcha/admin' ) ),
+					),
+					array(
+						'name'        => 'recaptcha_secret_key',
+						'type'        => 'text',
+						'label'       => esc_html__( 'reCAPTCHA Secret key', 'chipmunk' ),
+						'description' => sprintf( wp_kses( __( 'Register at <a href="%1$s" target="_blank">reCAPTCHA</a>.', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://www.google.com/recaptcha/admin' ) ),
+					),
+				),
 			),
 
 			array(

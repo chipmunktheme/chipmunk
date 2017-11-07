@@ -13,12 +13,9 @@ if ( ! function_exists( 'chipmunk_submit_resource' ) ) :
 function chipmunk_submit_resource() {
 	chipmunk_verify_nonce();
 
-	// If the reCAPTCHA is configured prevent autosubmission
-	if ( chipmunk_theme_option( 'recaptcha_site_key' ) ) {
-		if ( isset( $_REQUEST['g-recaptcha-response'] ) and empty( $_REQUEST['g-recaptcha-response'] ) ) {
-			// Failure due to incorrect captcha validation
-			wp_send_json_error( esc_html__( 'Please verify that you are not a robot.', 'chipmunk' ) );
-		}
+	// If the reCAPTCHA is configured and not verified, prevent autosubmission
+	if ( ! chipmunk_verify_recaptcha( $_REQUEST['g-recaptcha-response'] ) ) {
+		wp_send_json_error( esc_html__( 'Please verify that you are not a robot.', 'chipmunk' ) );
 	}
 
 	if ( ! empty( $_REQUEST['name'] ) ) {
@@ -31,7 +28,7 @@ function chipmunk_submit_resource() {
 		if ( ! chipmunk_theme_option( 'disable_submitter_info' ) ) {
 			$submitter_name = wp_filter_nohtml_kses( $_REQUEST['submitter_name'] );
 			$submitter_email = wp_filter_nohtml_kses( $_REQUEST['submitter_email'] );
-			
+
 			if ( ! empty( $submitter_name ) && ! empty( $submitter_email ) ) {
 				$meta_input[$meta_prefix . '_submitter'] = "{$submitter_name} <{$submitter_email}>";
 			}

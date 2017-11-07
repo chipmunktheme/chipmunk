@@ -54,8 +54,8 @@
 	<?php endif; ?>
 
 	<div class="form__field form__field_center">
-		<?php if ( $recaptcha = chipmunk_theme_option( 'recaptcha_site_key' ) ) : ?>
-			<div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $recaptcha ); ?>"></div>
+		<?php if ( chipmunk_theme_option( 'recaptcha_site_key' ) ) : ?>
+			<div class="g-recaptcha" id="submit-recaptcha"></div>
 		<?php endif; ?>
 
 		<?php wp_nonce_field( 'submit_resource', 'nonce', false ); ?>
