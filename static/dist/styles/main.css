@@ -2601,15 +2601,18 @@ input[type="submit"]:focus {
 .form textarea:focus {
   outline: none;
 }
-.form .parsley-errors-list.filled {
-  margin-top: 0.5rem;
+.form .parsley-errors-list:not(:first-child) {
+  margin-top: 0;
   text-align: left;
 }
-.form .parsley-errors-list.filled li {
+.form .parsley-errors-list:not(:first-child).filled {
+  margin-top: 0.5rem;
+}
+.form .parsley-errors-list:not(:first-child) li {
   color: #F74444;
   font-size: 1.6rem;
 }
-.form .parsley-errors-list.filled li::before {
+.form .parsley-errors-list:not(:first-child) li::before {
   content: initial;
 }
 .form_compact input,

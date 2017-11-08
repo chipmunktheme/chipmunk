@@ -40,9 +40,13 @@
     }
   }
 
-  .parsley-errors-list.filled {
-    margin-top: 0.5rem;
+  .parsley-errors-list:not(:first-child) {
+    margin-top: 0;
     text-align: left;
+
+    &.filled {
+      margin-top: 0.5rem;
+    }
 
     li {
       color: $color-status-error;
