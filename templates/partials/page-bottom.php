@@ -22,7 +22,7 @@
 					<?php if ( ! empty( $menu_items ) ) : ?>
 						<?php foreach ( $menu_items as $menu_item ) : ?>
 							<li class="nav-secondary__item">
-								<a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a>
+								<a href="<?php echo $menu_item->url; ?>"<?php echo ( ! empty( $menu_item->target ) ? ' target="' . $menu_item->target . '"' : ''); ?>><?php echo $menu_item->title; ?></a>
 							</li>
 						<?php endforeach; ?>
 					<?php endif; ?>

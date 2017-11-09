@@ -40,13 +40,13 @@
 				<?php endforeach; ?>
 
 				<li class="nav-primary__item<?php echo ( $is_active ? ' nav-primary__item_active' : '' ); ?><?php echo ( ! empty( $children ) ? ' dropdown__trigger' : '' ); ?>">
-					<a href="<?php echo $menu_item->url; ?>"><?php echo $menu_item->title; ?></a>
+					<a href="<?php echo $menu_item->url; ?>"<?php echo ( ! empty( $menu_item->target ) ? ' target="' . $menu_item->target . '"' : ''); ?>><?php echo $menu_item->title; ?></a>
 
 					<?php if ( ! empty( $children ) ) : ?>
 						<ul class="dropdown">
 							<?php foreach ( $children as $item ) : ?>
 								<li class="dropdown__item">
-									<a href="<?php echo $item->url; ?>" class="dropdown__link"><?php echo $item->title; ?></a>
+									<a href="<?php echo $item->url; ?>"<?php echo ( ! empty( $item->target ) ? ' target="' . $item->target . '"' : ''); ?> class="dropdown__link"><?php echo $item->title; ?></a>
 								</li>
 							<?php endforeach; ?>
 						</ul>

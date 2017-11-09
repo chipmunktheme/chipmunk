@@ -4040,7 +4040,7 @@ input[type="submit"]:focus {
   display: block;
   padding-bottom: 70%;
 }
-.tile__image img {
+.tile__image > * {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -4059,11 +4059,11 @@ input[type="submit"]:focus {
   transition: transform 0.25s ease-in-out 0.05s;
   transition: transform 0.25s ease-in-out 0.05s, -webkit-transform 0.25s ease-in-out 0.05s;
 }
-.tile__image img:nth-child(2) {
+.tile__image > *:nth-child(2) {
   -webkit-transform: translateX(25%);
           transform: translateX(25%);
 }
-.tile__image img:nth-child(3) {
+.tile__image > *:nth-child(3) {
   -webkit-transform: translateX(50%);
           transform: translateX(50%);
 }
