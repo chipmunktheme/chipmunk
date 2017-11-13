@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2017-03-10 15:25+0100\n"
-"PO-Revision-Date: 2017-03-10 15:25+0100\n"
+"POT-Creation-Date: 2017-11-13 11:18+0100\n"
+"PO-Revision-Date: 2017-11-13 11:23+0100\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: nb_NO\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: 404.php:15
@@ -34,8 +34,8 @@ msgid_plural "%s Comments"
 msgstr[0] "%s Kommentar"
 msgstr[1] "%s Kommentarer"
 
-#: comments.php:63 inc/customizer.php:274 partials/sort-resources.php:11
-#: partials/sort-resources.php:12
+#: comments.php:63 inc/customizer.php:295 templates/partials/filters.php:40
+#: templates/partials/filters.php:41
 msgid "Name"
 msgstr "Navn"
 
@@ -55,163 +55,161 @@ msgstr "Svare"
 msgid "Your comment is awaiting moderation."
 msgstr "Din kommentar venter på godkjenning."
 
-#: functions.php:42
+#: functions.php:59
 msgid "Resource"
 msgstr "Ressurs"
 
-#: functions.php:43 inc/customizer.php:187 sections/collection-tile.php:43
-#: sections/resources-tabs.php:18 sections/resources-tabs.php:25
-#: sections/resources-tabs.php:32 sections/resources.php:17
-#: sections/resources.php:23
+#: functions.php:60 inc/customizer.php:190
+#: templates/sections/collection-tile.php:46
+#: templates/sections/resources-tabs.php:24
+#: templates/sections/resources-tabs.php:31
+#: templates/sections/resources-tabs.php:38 templates/sections/resources.php:17
+#: templates/sections/resources.php:23
 msgid "Resources"
 msgstr "Ressurser"
 
-#: functions.php:50
+#: functions.php:68
 msgid "Add New Resource"
 msgstr "Legg til ny ressurs"
 
-#: functions.php:51
+#: functions.php:69
 msgid "Edit Resource"
 msgstr "Rediger ressurs"
 
-#: functions.php:52
+#: functions.php:70
 msgid "New Resource"
 msgstr "Ny ressurs"
 
-#: functions.php:53
+#: functions.php:71
 msgid "View Resource"
 msgstr "Se ressurs"
 
-#: functions.php:54
+#: functions.php:72
 msgid "All Resources"
 msgstr "Alle ressurser"
 
-#: functions.php:55
+#: functions.php:73
 msgid "Search Resources"
 msgstr "Søk ressurser"
 
-#: functions.php:56
+#: functions.php:74
 msgid "No Resources found."
-msgstr "Ingen ressurser funnet"
+msgstr "Ingen ressurser funnet."
 
-#: functions.php:57
+#: functions.php:75
 msgid "No Resources found in trash."
 msgstr "Ingen ressurser funnet i søppelkurven."
 
-#: functions.php:64 partials/popup.php:20 partials/popup.php:21
+#: functions.php:82 templates/sections/submit.php:12
+#: templates/sections/submit.php:13
 msgid "Collection"
 msgstr "Kolleksjon"
 
-#: functions.php:65 partials/post-stats.php:4 sections/collections.php:3
+#: functions.php:83 templates/sections/collections.php:3
 msgid "Collections"
 msgstr "Kolleksjoner"
 
-#: functions.php:67
+#: functions.php:85
 msgid "collection"
 msgstr "kolleksjon"
 
-#: functions.php:71
+#: functions.php:89
 msgid "Add Collection"
 msgstr "Legg til kolleksjon"
 
-#: functions.php:72
+#: functions.php:90
 msgid "New Collection Name"
 msgstr "Nytt navn for kolleksjon"
 
-#: functions.php:73
+#: functions.php:91
 msgid "Edit Collection"
 msgstr "Rediger kolleksjon"
 
-#: functions.php:74
+#: functions.php:92
 msgid "Update Collection"
 msgstr "Oppdater kolleksjon"
 
-#: functions.php:75
+#: functions.php:93
 msgid "Parent Collection"
 msgstr "Foreldre kolleksjon"
 
-#: functions.php:76
+#: functions.php:94
 msgid "Parent Collection:"
 msgstr "Foreldre kolleksjon:"
 
-#: functions.php:77
+#: functions.php:95
 msgid "All Collections"
 msgstr "Alle kolleksjoner"
 
-#: functions.php:78
+#: functions.php:96
 msgid "Search Collections"
 msgstr "Søk kolleksjoner"
 
-#: functions.php:83
+#: functions.php:101
 msgid "Tag"
 msgstr "Tag"
 
-#: functions.php:84
+#: functions.php:102 templates/sections/resource.php:29
 msgid "Tags"
 msgstr "Tags"
 
-#: functions.php:89
+#: functions.php:107
 msgid "Add Tag"
 msgstr "Legg til Tag"
 
-#: functions.php:90
+#: functions.php:108
 msgid "New Tag Name"
 msgstr "New Tag Name"
 
-#: functions.php:91
+#: functions.php:109
 msgid "Edit Tag"
 msgstr "Edit Tag"
 
-#: functions.php:92
+#: functions.php:110
 msgid "Update Tag"
 msgstr "Update Tag"
 
-#: functions.php:93
+#: functions.php:111
 msgid "Parent Tag"
 msgstr "Parent Tag"
 
-#: functions.php:94
+#: functions.php:112
 msgid "Parent Tag:"
 msgstr "Parent Tag:"
 
-#: functions.php:95
+#: functions.php:113
 msgid "All Tags"
 msgstr "All Tags"
 
-#: functions.php:96
+#: functions.php:114
 msgid "Search Tags"
 msgstr "Search Tags"
 
-#: inc/ajax.php:20
+#: inc/ajax.php:18
 msgid "Please verify that you are not a robot."
 msgstr "Venligst verifiser at du ikke er en robot."
 
-#: inc/ajax.php:97
+#: inc/ajax.php:98
 msgid "New user submission"
 msgstr "Ny bruker innsendelse"
 
-#: inc/ajax.php:99
+#: inc/ajax.php:100
 msgid "Review submission"
 msgstr "Se over innsendelse"
 
-#: inc/ajax.php:119
+#: inc/ajax.php:120
 msgid "Not permitted."
 msgstr "Ikke tillatt."
 
-#: inc/config.php:137 inc/config.php:144
-#, php-format
-msgid "%s on %s"
-msgstr "%s på %s"
-
-#: inc/customizer.php:88
+#: inc/customizer.php:33
 msgid "Site Identity"
 msgstr "Webside identitet"
 
-#: inc/customizer.php:94
+#: inc/customizer.php:39
 msgid "Site Logo"
 msgstr "Webside logo"
 
-#: inc/customizer.php:95
+#: inc/customizer.php:40
 msgid ""
 "Upload a logo for your theme. You can leave it empty to use your site name "
 "as a plain text logo."
@@ -219,182 +217,232 @@ msgstr ""
 "Last opp logo for ditt tema. Du kan la det stå blank for å bruke webside "
 "navnet som text logo."
 
-#: inc/customizer.php:100
-msgid "Open Graph Image"
-msgstr "Open Graph Image"
-
-#: inc/customizer.php:101
-msgid "1200x630 pixels"
-msgstr "1200x630 px"
-
-#: inc/customizer.php:107
+#: inc/customizer.php:46
 msgid "Visuals"
 msgstr "Visuelle"
 
-#: inc/customizer.php:113
+#: inc/customizer.php:52
 msgid "Primary Color"
 msgstr "Primær farge"
 
-#: inc/customizer.php:119
+#: inc/customizer.php:58
+msgid "Background Color"
+msgstr ""
+
+#: inc/customizer.php:64
+msgid "Section background Color"
+msgstr ""
+
+#: inc/customizer.php:70
+msgid "Disable section borders"
+msgstr ""
+
+#: inc/customizer.php:76
 msgid "Primary Font"
 msgstr "Primær font"
 
-#: inc/customizer.php:122
+#: inc/customizer.php:79 inc/customizer.php:101
 msgid "System font"
 msgstr "System font"
 
-#: inc/customizer.php:141
+#: inc/customizer.php:98
+msgid "Heading Font"
+msgstr ""
+
+#: inc/customizer.php:120
 msgid "Custom CSS"
 msgstr "Tilpasset CSS"
 
-#: inc/customizer.php:143
+#: inc/customizer.php:122
 msgid "Quickly add some CSS to your theme by adding it to this block."
-msgstr "Raskt legg til CSS til ditt tema ved å legge det til denne blokken"
+msgstr "Raskt legg til CSS til ditt tema ved å legge det til denne blokken."
 
-#: inc/customizer.php:149
+#: inc/customizer.php:128
+msgid "Open Graph"
+msgstr "Open Graph"
+
+#: inc/customizer.php:134
+msgid "Open Graph Image"
+msgstr "Open Graph Image"
+
+#: inc/customizer.php:135
+msgid "1200x630 pixels"
+msgstr "1200x630 px"
+
+#: inc/customizer.php:140
+msgid "Remove 'on [website name]' text"
+msgstr ""
+
+#: inc/customizer.php:146
 msgid "Homepage"
 msgstr "Hjemmeside"
 
-#: inc/customizer.php:155
+#: inc/customizer.php:152
+msgid "Intro text"
+msgstr ""
+
+#: inc/customizer.php:153
+msgid ""
+"Enter your site's tagline to show on homepage under the header. Leave empty "
+"to hide."
+msgstr ""
+
+#: inc/customizer.php:158
 msgid "Latest resources count"
 msgstr "Siste antall ressurser"
 
-#: inc/customizer.php:157
+#: inc/customizer.php:160
 msgid "Enter the max resources number to show on resource sliders."
-msgstr "Skriv inn max antall ressurser for å vise i ressurs karusellene"
+msgstr "Skriv inn max antall ressurser for å vise i ressurs karusellene."
 
-#: inc/customizer.php:162
+#: inc/customizer.php:165
 msgid "Disable resource listings"
 msgstr "Deaktiver ressurs utlisting"
 
-#: inc/customizer.php:168
+#: inc/customizer.php:171
 msgid "Disable resource listings sliders"
 msgstr "Deaktiver ressurs utlisting karusellene"
 
-#: inc/customizer.php:174
+#: inc/customizer.php:177
 msgid "Disable collections"
 msgstr "Deaktiver kolleksjoner"
 
-#: inc/customizer.php:180
+#: inc/customizer.php:183
 msgid "Disable latest posts"
 msgstr "Deaktiver siste innlegg"
 
-#: inc/customizer.php:193
+#: inc/customizer.php:196
 msgid "Number of resources per page"
 msgstr "Antall ressurser pr side"
 
-#: inc/customizer.php:199
+#: inc/customizer.php:202
 msgid "Number of search results per page"
 msgstr "Anntal søkeresultat pr side"
 
-#: inc/customizer.php:205
+#: inc/customizer.php:208
 msgid "Display resources as"
 msgstr "Vis ressurser som"
 
-#: inc/customizer.php:208
+#: inc/customizer.php:211
 msgid "Tile"
 msgstr "Flis"
 
-#: inc/customizer.php:209
+#: inc/customizer.php:212
 msgid "Card"
 msgstr "Kort"
 
-#: inc/customizer.php:210
+#: inc/customizer.php:213
 msgid "Card (blank)"
 msgstr "Kort (renslig)"
 
-#: inc/customizer.php:216
+#: inc/customizer.php:219
 msgid "Display resource content in a separate section"
 msgstr "Vis ressurs innhold i en separat seksjon"
 
-#: inc/customizer.php:222
+#: inc/customizer.php:225
 msgid "Disable resource description"
-msgstr "Deaktiver ressursbeskrivelse "
+msgstr "Deaktiver ressursbeskrivelse"
 
-#: inc/customizer.php:228
+#: inc/customizer.php:231
 msgid "Disable resource date"
 msgstr "Deaktiver ressurs dato"
 
-#: inc/customizer.php:234
+#: inc/customizer.php:237
+msgid "Disable resource tags"
+msgstr ""
+
+#: inc/customizer.php:243
 msgid "Disable featured panel"
 msgstr "Deaktiver hoved panel"
 
-#: inc/customizer.php:240
+#: inc/customizer.php:249
 msgid "Disable resource thumbs"
 msgstr "Deaktiver ressurs miniatyr bilde"
 
-#: inc/customizer.php:246
+#: inc/customizer.php:255
 msgid "Disable collection thumbs"
 msgstr "Deaktiver kolleksjon miniatyr bilde"
 
-#: inc/customizer.php:252
+#: inc/customizer.php:261
+msgid "Disable website button"
+msgstr ""
+
+#: inc/customizer.php:267
 msgid "Disable view count"
 msgstr "Deaktiver visningsteller"
 
-#: inc/customizer.php:258
+#: inc/customizer.php:273
 msgid "Disable upvoting"
 msgstr "Deaktiver avstemming"
 
-#: inc/customizer.php:264
+#: inc/customizer.php:279
 msgid "Disable sorting"
 msgstr "Deaktiver filtrering"
 
-#: inc/customizer.php:270 partials/sort-resources.php:2
+#: inc/customizer.php:285
+msgid "Disable filters"
+msgstr ""
+
+#: inc/customizer.php:291 templates/partials/filters.php:31
 msgid "Sort by"
 msgstr "Sorter ved"
 
-#: inc/customizer.php:273 partials/sort-resources.php:9
-#: partials/sort-resources.php:10
+#: inc/customizer.php:294 templates/partials/filters.php:38
+#: templates/partials/filters.php:39
 msgid "Date"
 msgstr "Dato"
 
-#: inc/customizer.php:275 partials/post-stats.php:20
-#: partials/sort-resources.php:15 partials/sort-resources.php:16
+#: inc/customizer.php:296 templates/partials/filters.php:44
+#: templates/partials/filters.php:45 templates/partials/post-stats.php:20
 msgid "Views"
 msgstr "Visninger"
 
-#: inc/customizer.php:276 partials/post-stats.php:37
-#: partials/sort-resources.php:20 partials/sort-resources.php:21
+#: inc/customizer.php:297 templates/partials/filters.php:49
+#: templates/partials/filters.php:50 templates/partials/post-stats.php:37
 msgid "Upvotes"
 msgstr "Stemmer"
 
-#: inc/customizer.php:282
+#: inc/customizer.php:303
 msgid "Sort order"
 msgstr "Sorteringsrekkefølge"
 
-#: inc/customizer.php:285
+#: inc/customizer.php:306
 msgid "Ascending"
 msgstr "Stigende"
 
-#: inc/customizer.php:286
+#: inc/customizer.php:307
 msgid "Descending"
 msgstr "Synkende"
 
-#: inc/customizer.php:293
+#: inc/customizer.php:314
 msgid "Submissions"
 msgstr "Innsendinger"
 
-#: inc/customizer.php:299
+#: inc/customizer.php:320
 msgid "Disable user submissions"
 msgstr "Deaktiver bruker innsendelser"
 
-#: inc/customizer.php:305
+#: inc/customizer.php:326
 msgid "Inform me about new submissions"
 msgstr "Informer meg om nye innsendelser"
 
-#: inc/customizer.php:318
+#: inc/customizer.php:332
+msgid "Disable asking for submitter info"
+msgstr "Disable asking for submitter info"
+
+#: inc/customizer.php:338
 msgid "Submission tagline"
 msgstr "Innsendelse beskrivelse"
 
-#: inc/customizer.php:319
+#: inc/customizer.php:339
 msgid "Internet is huge! Help us find great content"
-msgstr "Internet er enormt. Hjelp oss med å finne bra innhold."
+msgstr "Internet er enormt. Hjelp oss med å finne bra innhold"
 
-#: inc/customizer.php:324
+#: inc/customizer.php:344
 msgid "Submission \"Thank You\" message"
 msgstr "Innsendelse \"Takke\" melding"
 
-#: inc/customizer.php:325
+#: inc/customizer.php:345
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
@@ -402,72 +450,81 @@ msgstr ""
 "Takk for ditt bidrag. Innsendelsen er sendt til eier av websiden for "
 "gjennomgang."
 
-#: inc/customizer.php:330
+#: inc/customizer.php:350
 msgid "Submission \"Failure\" message"
 msgstr "Innsendelse \"Feil\" melding"
 
-#: inc/customizer.php:331
+#: inc/customizer.php:351
 msgid "Your submission could not be processed."
 msgstr "Din innsendelse kunne ikke prosesseres."
 
-#: inc/customizer.php:336
-msgid "reCAPTCHA Site key"
-msgstr "reCAPTCHA nøkkel"
+#: inc/customizer.php:357
+msgid "Blog"
+msgstr "Blogg"
 
-#: inc/customizer.php:337
+#: inc/customizer.php:363
+msgid "Blog list layout"
+msgstr "Blogg layout"
+
+#: inc/customizer.php:366
+msgid "Tiles"
+msgstr "Blokker"
+
+#: inc/customizer.php:367
+msgid "Excerpts"
+msgstr "Utdrag"
+
+#: inc/customizer.php:368
+msgid "Mixed"
+msgstr "Blandet"
+
+#: inc/customizer.php:374
+msgid "Number of blog posts per page"
+msgstr "Antall poster pr side"
+
+#: inc/customizer.php:381
+msgid "Social Profiles"
+msgstr "Sosiale profiler"
+
+#: inc/customizer.php:387
+msgid "ReCaptcha"
+msgstr ""
+
+#: inc/customizer.php:393
+msgid "reCAPTCHA Site key"
+msgstr "reCAPTCHA Site key"
+
+#: inc/customizer.php:394 inc/customizer.php:400
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 msgstr "Registrer ved <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 
-#: inc/customizer.php:343 sections/posts.php:22
-msgid "Blog"
-msgstr "Blogg"
+#: inc/customizer.php:399
+#| msgid "reCAPTCHA Site key"
+msgid "reCAPTCHA Secret key"
+msgstr "reCAPTCHA Secret key"
 
-#: inc/customizer.php:349
-msgid "Blog list layout"
-msgstr "Blogg layout"
-
-#: inc/customizer.php:352
-msgid "Tiles"
-msgstr "Blokker"
-
-#: inc/customizer.php:353
-msgid "Excerpts"
-msgstr "Utdrag"
-
-#: inc/customizer.php:354
-msgid "Mixed"
-msgstr "Blandet"
-
-#: inc/customizer.php:360
-msgid "Number of blog posts per page"
-msgstr "Antall poster pr side"
-
-#: inc/customizer.php:367
-msgid "Social Profiles"
-msgstr "Sosiale profiler"
-
-#: inc/customizer.php:373
+#: inc/customizer.php:406
 msgid "Ads"
 msgstr "Annonser"
 
-#: inc/customizer.php:379
+#: inc/customizer.php:412
 msgid "Disable ads"
 msgstr "Deaktiver annonser"
 
-#: inc/customizer.php:385
+#: inc/customizer.php:418
 msgid "Show ads only on homepage"
 msgstr "Vis annonser kun ved hovedside"
 
-#: inc/customizer.php:391
+#: inc/customizer.php:424
 msgid "Ad link URL"
 msgstr "Legg til link URL"
 
-#: inc/customizer.php:396
+#: inc/customizer.php:429
 msgid "Ad image (Desktop)"
 msgstr "Legg til bilde (Desktop)"
 
-#: inc/customizer.php:397 inc/customizer.php:403
+#: inc/customizer.php:430 inc/customizer.php:436
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
@@ -476,15 +533,15 @@ msgstr ""
 "Vi anbefaler å bruke rektanulært horisontalt bilde som er minst %1$d piksler "
 "bred."
 
-#: inc/customizer.php:402
+#: inc/customizer.php:435
 msgid "Ad image (Tablet)"
 msgstr "Legg til bilde (Tablet)"
 
-#: inc/customizer.php:408
+#: inc/customizer.php:441
 msgid "Ad image (Mobile)"
 msgstr "Legg til bilde (Mobil)"
 
-#: inc/customizer.php:409
+#: inc/customizer.php:442
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
@@ -493,31 +550,31 @@ msgstr ""
 "Vi anbefaler å bruke rektanulært vertikalt bilde som er minst %1$d piksler "
 "bred."
 
-#: inc/customizer.php:414
+#: inc/customizer.php:447
 msgid "Ad HTML code"
 msgstr "Legg til HTML kode"
 
-#: inc/customizer.php:415
+#: inc/customizer.php:448
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
 msgstr ""
 "Legg inn din Google AdSense (eller annet) gerererte HTML kode for å vise "
-"annonser på anviste plasser"
+"annonser på anviste plasser."
 
-#: inc/customizer.php:421 partials/newsletter.php:4
+#: inc/customizer.php:454 templates/partials/newsletter.php:4
 msgid "Newsletter"
 msgstr "Nyhetsbrev"
 
-#: inc/customizer.php:427
+#: inc/customizer.php:460
 msgid "Disable newsletter"
 msgstr "Deaktiver nyhetsbrev"
 
-#: inc/customizer.php:433
+#: inc/customizer.php:466
 msgid "Mailchimp form action URL"
 msgstr "Mailchimp form action URL"
 
-#: inc/customizer.php:435
+#: inc/customizer.php:468
 #, php-format
 msgid ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
@@ -526,36 +583,36 @@ msgstr ""
 "Hvor finner jeg min <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
 "URL?</a>"
 
-#: inc/customizer.php:440
+#: inc/customizer.php:473
 msgid "Newsletter tagline"
 msgstr "Nyhetsbrev undertittel"
 
-#: inc/customizer.php:441
+#: inc/customizer.php:474
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr ""
 "Ikke gå glipp av noe! Meld deg på nyhetsbrevet for å holde deg oppdatert."
 
-#: inc/customizer.php:447
+#: inc/customizer.php:480
 msgid "Theme Options"
 msgstr "Tema alternativer"
 
-#: inc/customizer.php:453
+#: inc/customizer.php:486
 msgid "Disable theme credits"
 msgstr "Deaktiver tema promotering"
 
-#: inc/customizer.php:459
+#: inc/customizer.php:492
 msgid "Disable search"
 msgstr "Deaktiver søk"
 
-#: inc/customizer.php:465
+#: inc/customizer.php:498
 msgid "Disable \"ref\" attribute"
 msgstr "Deaktiver \"ref\" funksjon"
 
-#: inc/customizer.php:471
+#: inc/customizer.php:504
 msgid "About copy (footer)"
 msgstr "Om tekst (bunnlinjen)"
 
-#: inc/customizer.php:473
+#: inc/customizer.php:506
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
@@ -563,44 +620,43 @@ msgstr ""
 "Skriv inn webside beskrivelse som vises i bunnlinjen. Du kan bruke normale "
 "HTML tagger her (<p>, <a>, <strong>, <i>)."
 
-#: inc/helpers.php:373
+#: inc/helpers.php:59
+#, php-format
+msgid "Chipmunk requires PHP %1$s or greater. You have %2$s."
+msgstr ""
+
+#: inc/helpers.php:67
+#, php-format
+msgid "Chipmunk requires WordPress %1$s or greater. You have %2$s."
+msgstr ""
+
+#: inc/helpers.php:105
+#, php-format
+msgid "%s on %s"
+msgstr "%s på %s"
+
+#: inc/helpers.php:559
 #, php-format
 msgid "+%d more"
 msgstr "+%d mer"
 
-#: inc/meta-boxes.php:112 partials/popup.php:43
+#: inc/meta-boxes.php:79 templates/sections/submit.php:36
 msgid "Website URL"
 msgstr "Webside URL"
 
-#: inc/meta-boxes.php:118
+#: inc/meta-boxes.php:85
 msgid "Featured?"
-msgstr "Utvalgte"
+msgstr "Utvalgte?"
 
-#: inc/meta-boxes.php:122
+#: inc/meta-boxes.php:89
 msgid "Featured on homepage"
 msgstr "Utvalgte på hjemmesiden"
 
-#: inc/meta-boxes.php:146
-msgid "Wide content"
-msgstr "Vidt innhold"
-
-#: inc/meta-boxes.php:150
-msgid ""
-"Enable wide content for this page (it will make first heading of this page a "
-"left-floated title)"
+#: inc/meta-boxes.php:96
+msgid "Submitter"
 msgstr ""
-"Aktiver vidt innhold for denne siden (det vill gjøre første headinger av "
-"denne siden venstre-flytende)"
 
-#: inc/meta-boxes.php:155
-msgid "Enable curators"
-msgstr "Aktiver kuratorere"
-
-#: inc/meta-boxes.php:159
-msgid "Enable curators listing on this page"
-msgstr "Aktiver kuratorers utlistinger på denne siden"
-
-#: inc/meta-boxes.php:177
+#: inc/meta-boxes.php:115
 msgid "Custom fields"
 msgstr "Tilpasset felter"
 
@@ -612,181 +668,13 @@ msgstr "Fjerne stemme"
 msgid "Upvote"
 msgstr "Avstemninger"
 
-#: partials/nav.php:62 partials/page-bottom.php:30 partials/page-head.php:42
-#: partials/popup.php:9 partials/popup.php:69 partials/toolbox.php:23
-msgid "Submit"
-msgstr "Send inn"
-
-#: partials/newsletter.php:10
-msgid "Email address"
-msgstr "E-post adresse"
-
-#: partials/newsletter.php:13
-msgid "Join now"
-msgstr "Bli med"
-
-#: partials/page-bottom.php:5
-msgid "About"
-msgstr "Om"
-
-#: partials/page-bottom.php:15
-msgid "Navigation"
-msgstr "Navigasjon"
-
-#: partials/page-bottom.php:37
-msgid "Follow"
-msgstr "Følg"
-
-#: partials/page-foot.php:8 partials/page-foot.php:9
-msgid "Chipmunk WordPress Theme"
-msgstr "Chipmunk WordPress Tema"
-
-#: partials/page-head.php:25 partials/popup.php:6 partials/search-bar.php:11
-msgid "Close"
-msgstr "Lukk"
-
-#: partials/page-head.php:36
-msgid "Search"
-msgstr "Søk"
-
-#: partials/page-head.php:47
-msgid "Menu"
-msgstr "Meny"
-
-#: partials/popup.php:16
-msgid "Resource name"
-msgstr "Ressurs navn"
-
-#: partials/popup.php:47
-msgid "Description"
-msgstr "Beskrivelse"
-
-#: partials/popup.php:54
-msgid "Your name"
-msgstr "Ditt navn"
-
-#: partials/popup.php:58
-msgid "Your email"
-msgstr "Din e-post"
-
-#: partials/post-stats.php:12
-msgid "Published"
-msgstr "Publisert"
-
-#: partials/search-bar.php:6
-msgid "Search query..."
-msgstr "Søkeord..."
-
-#: partials/search-bar.php:6
-msgid "3 characters minimum"
-msgstr "Minimum 3 karakterer"
-
-#: partials/share-box.php:20
-msgid "Share"
-msgstr "Del"
-
-#: partials/toolbox.php:6
-msgid "Follow us"
-msgstr "Følg oss"
-
 #: search.php:19
 msgid "Search results for:"
 msgstr "Søkeresultat for:"
 
 #: search.php:25
 msgid "Sorry, your search did not match any resources."
-msgstr "Beklager, ditt søk ga ingen resultater"
-
-#: sections/collection-tile.php:35
-msgid "View this collection"
-msgstr "Vis denne kolleksjonen"
-
-#: sections/collection-tile.php:40
-msgid "Sub collections"
-msgstr "Underkolleksjon"
-
-#: sections/collections.php:26
-msgid "Ready to publish your first collection?"
-msgstr "Klar for å publisere din første kolleksjon?"
-
-#: sections/collections.php:28 sections/posts.php:55 sections/resources.php:40
-#: taxonomy.php:66
-msgid "Get started here"
-msgstr "Start her"
-
-#: sections/collections.php:30
-msgid "Sorry, there are no collections to display yet."
-msgstr "Beklager, det er ingen kolleksjoner å vise enda."
-
-#: sections/curators.php:4
-msgid "Curators"
-msgstr "Kuratorer"
-
-#: sections/entry-post.php:26
-msgid "Posted by"
-msgstr "Skrevet av"
-
-#: sections/pagination.php:14
-msgid "Previous"
-msgstr "Forrige"
-
-#: sections/pagination.php:23
-#, php-format
-msgid "Page %d of %d"
-msgstr "Side %d av %d"
-
-#: sections/pagination.php:26
-msgid "Next"
-msgstr "Neste"
-
-#: sections/post-excerpt.php:27 sections/post-tile.php:34
-msgid "Read more"
-msgstr "Les mer"
-
-#: sections/posts.php:17 sections/resources.php:12
-msgid "Related"
-msgstr "Relatert"
-
-#: sections/posts.php:19
-msgid "Latest Posts"
-msgstr "Siste innlegg"
-
-#: sections/posts.php:22
-#, php-format
-msgid "%s Category"
-msgstr "%s Kategori"
-
-#: sections/posts.php:53
-msgid "Ready to publish your first post?"
-msgstr "Klar for å publisere din første post?"
-
-#: sections/posts.php:57
-msgid "Sorry, there are no posts to display yet."
-msgstr "Beklager, det er ingen poster å vise enda."
-
-#: sections/resource.php:30
-msgid "Visit website"
-msgstr "Besøk webside"
-
-#: sections/resources-tabs.php:17
-msgid "Featured"
-msgstr "Utvalgte"
-
-#: sections/resources-tabs.php:24
-msgid "Latest"
-msgstr "Siste"
-
-#: sections/resources-tabs.php:31
-msgid "Popular"
-msgstr "Populær"
-
-#: sections/resources.php:38 taxonomy.php:64
-msgid "Ready to publish your first resource?"
-msgstr "Klar for å publisere din første ressurs?"
-
-#: sections/resources.php:42 taxonomy.php:68
-msgid "Sorry, there are no resources to display yet."
-msgstr "Beklager, det er ingen ressurser å vise enda."
+msgstr "Beklager, ditt søk ga ingen resultater."
 
 #: taxonomy.php:17
 #, php-format
@@ -797,6 +685,247 @@ msgstr "%s Kolleksjon"
 #, php-format
 msgid "%s Tag"
 msgstr "%s Knagg"
+
+#: taxonomy.php:64 templates/sections/resources.php:38
+msgid "Ready to publish your first resource?"
+msgstr "Klar for å publisere din første ressurs?"
+
+#: taxonomy.php:66 templates/sections/collections.php:29
+#: templates/sections/posts.php:55 templates/sections/resources.php:40
+msgid "Get started here"
+msgstr "Start her"
+
+#: taxonomy.php:68 templates/sections/resources.php:42
+msgid "Sorry, there are no resources to display yet."
+msgstr "Beklager, det er ingen ressurser å vise enda."
+
+#: templates/partials/filters.php:13
+msgid "Filter by"
+msgstr ""
+
+#: templates/partials/filters.php:16
+msgid "Choose topic"
+msgstr ""
+
+#: templates/partials/nav.php:63 templates/partials/page-head.php:43
+msgid "Account"
+msgstr ""
+
+#: templates/partials/nav.php:67 templates/partials/page-head.php:47
+msgid "Logout"
+msgstr ""
+
+#: templates/partials/nav.php:71 templates/partials/page-head.php:51
+msgid "Login"
+msgstr ""
+
+#: templates/partials/nav.php:75 templates/partials/page-head.php:55
+msgid "Register"
+msgstr ""
+
+#: templates/partials/nav.php:83 templates/partials/page-bottom.php:32
+#: templates/partials/page-head.php:61 templates/partials/toolbox.php:30
+#: templates/sections/submit.php:1 templates/sections/submit.php:62
+msgid "Submit"
+msgstr "Send inn"
+
+#: templates/partials/newsletter.php:10
+msgid "Email address"
+msgstr "E-post adresse"
+
+#: templates/partials/newsletter.php:13
+msgid "Join now"
+msgstr "Bli med"
+
+#: templates/partials/page-bottom.php:7
+msgid "About"
+msgstr "Om"
+
+#: templates/partials/page-bottom.php:17
+msgid "Navigation"
+msgstr "Navigasjon"
+
+#: templates/partials/page-bottom.php:40
+msgid "Follow"
+msgstr "Følg"
+
+#: templates/partials/page-foot.php:5
+#, php-format
+msgid "&copy; %1$s %2$s."
+msgstr ""
+
+#: templates/partials/page-foot.php:10 templates/partials/page-foot.php:11
+msgid "Chipmunk WordPress Theme"
+msgstr "Chipmunk WordPress Tema"
+
+#: templates/partials/page-head.php:25 templates/partials/popup.php:6
+#: templates/partials/search-bar.php:11
+msgid "Close"
+msgstr "Lukk"
+
+#: templates/partials/page-head.php:36
+msgid "Search"
+msgstr "Søk"
+
+#: templates/partials/page-head.php:67
+msgid "Menu"
+msgstr "Meny"
+
+#: templates/partials/post-stats.php:12
+msgid "Published"
+msgstr "Publisert"
+
+#: templates/partials/search-bar.php:6
+msgid "Search query..."
+msgstr "Søkeord..."
+
+#: templates/partials/search-bar.php:6
+msgid "3 characters minimum"
+msgstr "Minimum 3 karakterer"
+
+#: templates/partials/share-box.php:20
+msgid "Share"
+msgstr "Del"
+
+#: templates/partials/toolbox.php:10
+msgid "Follow us"
+msgstr "Følg oss"
+
+#: templates/sections/collection-tile.php:38
+msgid "View this collection"
+msgstr "Vis denne kolleksjonen"
+
+#: templates/sections/collection-tile.php:43
+msgid "Sub collections"
+msgstr "Underkolleksjon"
+
+#: templates/sections/collections.php:27
+msgid "Ready to publish your first collection?"
+msgstr "Klar for å publisere din første kolleksjon?"
+
+#: templates/sections/collections.php:31
+msgid "Sorry, there are no collections to display yet."
+msgstr "Beklager, det er ingen kolleksjoner å vise enda."
+
+#: templates/sections/entry-post.php:26
+msgid "Posted by"
+msgstr "Skrevet av"
+
+#: templates/sections/pagination.php:14
+msgid "Previous"
+msgstr "Forrige"
+
+#: templates/sections/pagination.php:23
+#, php-format
+msgid "Page %d of %d"
+msgstr "Side %d av %d"
+
+#: templates/sections/pagination.php:26
+msgid "Next"
+msgstr "Neste"
+
+#: templates/sections/post-excerpt.php:27 templates/sections/post-tile.php:36
+msgid "Read more"
+msgstr "Les mer"
+
+#: templates/sections/posts.php:17 templates/sections/resources.php:12
+msgid "Related"
+msgstr "Relatert"
+
+#: templates/sections/posts.php:19
+msgid "Latest Posts"
+msgstr "Siste innlegg"
+
+#: templates/sections/posts.php:22
+#, php-format
+msgid "%s Category"
+msgstr "%s Kategori"
+
+#: templates/sections/posts.php:53
+msgid "Ready to publish your first post?"
+msgstr "Klar for å publisere din første post?"
+
+#: templates/sections/posts.php:57
+msgid "Sorry, there are no posts to display yet."
+msgstr "Beklager, det er ingen poster å vise enda."
+
+#: templates/sections/resource-tile.php:35 templates/sections/resource.php:39
+msgid "Visit website"
+msgstr "Besøk webside"
+
+#: templates/sections/resources-tabs.php:23
+msgid "Featured"
+msgstr "Utvalgte"
+
+#: templates/sections/resources-tabs.php:30
+msgid "Latest"
+msgstr "Siste"
+
+#: templates/sections/resources-tabs.php:37
+msgid "Popular"
+msgstr "Populær"
+
+#: templates/sections/submit.php:8
+msgid "Resource name"
+msgstr "Ressurs navn"
+
+#: templates/sections/submit.php:40
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: templates/sections/submit.php:47
+msgid "Your name"
+msgstr "Ditt navn"
+
+#: templates/sections/submit.php:51
+msgid "Your email"
+msgstr "Din e-post"
+
+#: templates/shortcodes/curators.php:6
+msgid "Curators"
+msgstr "Kuratorer"
+
+#. Theme Name of the plugin/theme
+msgid "Chipmunk"
+msgstr "Chipmunk"
+
+#. Theme URI of the plugin/theme
+msgid "https://chipmunktheme.com"
+msgstr "https://chipmunktheme.com"
+
+#. Description of the plugin/theme
+msgid ""
+"Chipmunk WordPress Theme is tailored to meet the increased demand in curated "
+"content. Carefully crafted with the user in mind, to aid in great content "
+"discovery. Have fun becoming a curator and influencer."
+msgstr ""
+"Chipmunk WordPress Theme is tailored to meet the increased demand in curated "
+"content. Carefully crafted with the user in mind, to aid in great content "
+"discovery. Have fun becoming a curator and influencer."
+
+#. Author of the plugin/theme
+msgid "Piotr Kulpinski"
+msgstr "Piotr Kulpinski"
+
+#. Author URI of the plugin/theme
+msgid "https://kulpinski.co"
+msgstr "https://kulpinski.co"
+
+#~ msgid "Wide content"
+#~ msgstr "Vidt innhold"
+
+#~ msgid ""
+#~ "Enable wide content for this page (it will make first heading of this "
+#~ "page a left-floated title)"
+#~ msgstr ""
+#~ "Aktiver vidt innhold for denne siden (det vill gjøre første headinger av "
+#~ "denne siden venstre-flytende)"
+
+#~ msgid "Enable curators"
+#~ msgstr "Aktiver kuratorere"
+
+#~ msgid "Enable curators listing on this page"
+#~ msgstr "Aktiver kuratorers utlistinger på denne siden"
 
 #~ msgid "Display resources as cards"
 #~ msgstr "Vis ressurser som kort"
@@ -926,9 +1055,6 @@ msgstr "%s Knagg"
 #~ "We recommend using a square vertical image that is at least %1$d pixels "
 #~ "wide."
 
-#~ msgid "Disable asking for submitter info"
-#~ msgstr "Disable asking for submitter info"
-
 #~ msgid "Ad image"
 #~ msgstr "Ad image"
 
@@ -956,9 +1082,6 @@ msgstr "%s Knagg"
 
 #~ msgid "boolean"
 #~ msgstr "boolean"
-
-#~ msgid "count"
-#~ msgstr "count"
 
 #~ msgid "string"
 #~ msgstr "string"
