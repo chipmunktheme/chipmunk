@@ -82,7 +82,11 @@ function chipmunk_setup() {
 			'singular'              => esc_html__( 'Collection', 'chipmunk' ),
 			'plural'                => esc_html__( 'Collections', 'chipmunk' ),
 			'posts'                 => array( 'resource' ),
-			'rewrite'               => array( 'slug' => esc_attr__( 'collection', 'chipmunk' ), 'with_front' => false ),
+			'rewrite'               => array(
+				'slug'                  => esc_attr__( 'collection', 'chipmunk' ),
+				'with_front'            => false,
+				'hierarchical'          => true,
+			),
 			'rest_base'             => 'collections',
 			'rest_controller_class' => 'WP_REST_Terms_Controller',
 			'labels'                => array(
