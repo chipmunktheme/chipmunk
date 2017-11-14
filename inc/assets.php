@@ -29,7 +29,7 @@ function chipmunk_custom_style() {
 	$primary_color     = chipmunk_theme_option( 'primary_color' );
 	$background_color  = chipmunk_theme_option( 'background_color' );
 	$section_color     = chipmunk_theme_option( 'section_color' );
-	$section_color_rgb = implode( ', ', chipmunk_hex_to_rgb( $section_color ) );
+	$section_color_rgb = chipmunk_hex_to_rgb( $section_color, true );
 
 	$primary_font      = chipmunk_theme_option( 'primary_font' );
 	$heading_font      = chipmunk_theme_option( 'heading_font' );

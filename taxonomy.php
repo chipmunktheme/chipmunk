@@ -36,10 +36,9 @@ get_header(); ?>
 				<?php endif; ?>
 			<?php endif; ?>
 
-			<?php if ( ( $children_collections = get_term_children( $term->term_id, 'resource-collection' ) ) && $paged == 1 ) : ?>
+			<?php if ( ( $children_collections = get_terms( 'resource-collection', array( 'parent' => $term->term_id ) ) ) && $paged == 1 ) : ?>
 				<div class="row">
 					<?php foreach ( $children_collections as $collection ) : ?>
-						<?php $collection = get_term_by( 'id', $collection, 'resource-collection' ); ?>
 						<?php include locate_template( 'templates/sections/collection-tile.php' ); ?>
 					<?php endforeach; ?>
 				</div>

@@ -648,14 +648,15 @@ if ( ! function_exists( 'chipmunk_hex_to_rgb' ) ) :
  * Utility function to convert hex colors to RGB arrays
  *
  * @param String $color - Hex color value
+ * @param Boolean $implode - Return color as a string
  */
-function chipmunk_hex_to_rgb( $color ) {
-	$color = preg_replace( '/[^abcdef]/i', '', $color );
+function chipmunk_hex_to_rgb( $color, $implode = false ) {
+	$color = str_replace( '#', '', $color );
 
 	if ( strlen( $color ) == 6 ) {
-		list( $r, $g, $b ) = str_split( $color, 2 );
+		list( $r, $g, $b ) = array_map( 'hexdec', str_split( $color, 2 ) );
 
-		return array( hexdec( $r ), hexdec( $g ), hexdec( $b ) );
+		return $implode ? implode( ', ', array( $r, $g, $b ) ) : array( $r, $g, $b );
 	}
 
 	return false;
