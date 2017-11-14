@@ -103,6 +103,10 @@ if ( ! function_exists( 'chipmunk_add_og_tags' ) ) :
  * Add facebook's Open Graph tags
  */
 function chipmunk_add_og_tags() {
+	if ( chipmunk_theme_option( 'disable_og' ) ) {
+		return;
+	}
+
 	$site_image = ( $logo = chipmunk_theme_option( 'og_image' ) ) ? $logo : THEME_TEMPLATE_URI . '/static/dist/images/chipmunk-og.png';
 
 	if ( is_front_page() ) {

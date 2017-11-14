@@ -129,6 +129,11 @@ class ChipmunkCustomizer {
 				'slug'          => 'og_section',
 				'fields'        => array(
 					array(
+						'name'        => 'disable_og',
+						'type'        => 'checkbox',
+						'label'       => esc_html__( 'Disable Open Graph', 'chipmunk' ),
+					),
+					array(
 						'name'        => 'og_image',
 						'type'        => 'image',
 						'label'       => esc_html__( 'Open Graph Image', 'chipmunk' ),
