@@ -1,6 +1,6 @@
 {
   "source": "src",
-  "proxy": "internetcurated.dev",
+  "proxy": "internetcurated.localhost",
   "targets": [
     {
       "path": "dist",
