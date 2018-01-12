@@ -479,8 +479,6 @@ function chipmunk_get_related_resources( $post_id ) {
 		);
 	}
 
-	var_dump($tax_query);
-
 	$args = array(
 		'posts_per_page'  => 3,
 		'post_type'       => 'resource',
