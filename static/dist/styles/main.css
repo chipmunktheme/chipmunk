@@ -657,29 +657,6 @@ body {
   font-weight: normal;
   line-height: 1.875;
 }
-body::before {
-  display: none;
-}
-@media (min-width: 0) {
-  body::before {
-    content: "xs";
-  }
-}
-@media (min-width: 490px) {
-  body::before {
-    content: "sm";
-  }
-}
-@media (min-width: 680px) {
-  body::before {
-    content: "md";
-  }
-}
-@media (min-width: 980px) {
-  body::before {
-    content: "lg";
-  }
-}
 body::after {
   position: absolute;
   top: 0;
@@ -2142,6 +2119,11 @@ input[type="submit"]:focus {
 .content img {
   width: auto;
   height: auto;
+}
+.content iframe {
+  display: block;
+  width: 100%;
+  background-color: #FAFAFA;
 }
 .content strong {
   font-weight: bold;

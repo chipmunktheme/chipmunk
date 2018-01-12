@@ -58,7 +58,7 @@ function chipmunk_setup() {
 		'resource' => array(
 			'singular'              => esc_html__( 'Resource', 'chipmunk' ),
 			'plural'                => esc_html__( 'Resources', 'chipmunk' ),
-			'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'comments', 'publicize' ),
+			'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'publicize' ),
 			'menu_icon'             => 'dashicons-screenoptions',
 			'menu_position'         => 20,
 			'show_in_rest'          => true,

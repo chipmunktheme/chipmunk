@@ -12,19 +12,6 @@ body {
   font-weight: normal;
   line-height: $font-line-height;
 
-  // These values will not show up in content, but can be
-  // queried by JavaScript to know which breakpoint is active.
-  // Add or remove as many breakpoints as you like.
-  &::before {
-    display: none;
-
-    @each $breakpoint, $size in $breakpoints {
-      @include breakpoint($breakpoint) {
-        content: '#{$breakpoint}';
-      }
-    }
-  }
-
   &::after {
     @include cover;
     content: '';

@@ -28,7 +28,7 @@
 					<?php if ( ! empty( $tags ) && ! chipmunk_theme_option( 'disable_resource_tags' ) ) : ?>
 						<div class="resource__tags" title="<?php esc_attr_e( 'Tags', 'chipmunk' ); ?>">
 							<i class="icon icon_tag"></i>
-							
+
 							<?php echo chipmunk_display_collections( $tags ); ?>
 						</div>
 					<?php endif; ?>

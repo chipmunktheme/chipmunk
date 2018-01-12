@@ -109,6 +109,12 @@
     height: auto;
   }
 
+  iframe {
+    display: block;
+    width: 100%;
+    background-color: $color-white;
+  }
+
   strong {
     font-weight: bold;
   }
