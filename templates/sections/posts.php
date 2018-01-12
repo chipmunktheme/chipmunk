@@ -10,7 +10,7 @@
 	<?php $custom_query = chipmunk_get_posts( chipmunk_theme_option( 'blog_posts_per_page' ), $paged, isset( $term->term_id ) ? $term : null ); ?>
 <?php endif; ?>
 
-<?php if ( ! is_front_page() || $custom_query->have_posts() ) : ?>
+<?php if ( ( ! is_front_page() && ! is_single() ) || $custom_query->have_posts() ) : ?>
 	<div class="section">
 		<div class="container">
 			<?php if ( is_single() ) : ?>

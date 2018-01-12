@@ -456,36 +456,38 @@ if ( ! function_exists( 'chipmunk_get_related_resources' ) ) :
  * Get related resources
  */
 function chipmunk_get_related_resources( $post_id ) {
-	$args = array(
-		'posts_per_page'  => 3,
-		'post_type'       => 'resource',
-		'post__not_in'    => array( $post_id ),
-		'orderby'         => 'rand',
+	$tax_query = array(
+		'relation' => 'OR',
 	);
 
 	$tags = get_the_terms( $post_id, 'resource-tag' );
 	$collections = get_the_terms( $post_id, 'resource-collection' );
 
-	if ( ! empty( $tags ) ) {
-		$args['tax_query'] = array(
-			array(
-				'taxonomy'    => 'resource-tag',
-				'field'       => 'term_id',
-				'terms'       => array_map( 'chipmunk_map_terms', $tags ),
-				'operator'    => 'IN',
-			),
+	$tax_query[] = array(
+		'taxonomy'    => 'resource-tag',
+		'field'       => 'term_id',
+		'terms'       => array_map( 'chipmunk_map_terms', $tags ),
+		'operator'    => 'IN',
+	);
+
+	if ( empty( $tags ) ) {
+		$tax_query[] = array(
+			'taxonomy'    => 'resource-collection',
+			'field'       => 'term_id',
+			'terms'       => array_map( 'chipmunk_map_terms', $collections ),
+			'operator'    => 'IN',
 		);
 	}
-	elseif ( ! empty( $collections ) ) {
-		$args['tax_query'] = array(
-			array(
-				'taxonomy'    => 'resource-collection',
-				'field'       => 'term_id',
-				'terms'       => array_map( 'chipmunk_map_terms', $collections ),
-				'operator'    => 'IN',
-			),
-		);
-	}
+
+	var_dump($tax_query);
+
+	$args = array(
+		'posts_per_page'  => 3,
+		'post_type'       => 'resource',
+		'post__not_in'    => array( $post_id ),
+		'orderby'         => 'rand',
+		'tax_query'       => $tax_query,
+	);
 
 	$query = new WP_Query( $args );
 	return $query;
