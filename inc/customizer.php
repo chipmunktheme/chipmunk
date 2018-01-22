@@ -329,13 +329,13 @@ class ChipmunkCustomizer {
 						'name'        => 'inform_about_submissions',
 						'type'        => 'checkbox',
 						'label'       => esc_html__( 'Inform me about new submissions', 'chipmunk' ),
-						'default'     => true,
+						'default'     => false,
 					),
 					array(
 						'name'        => 'disable_submitter_info',
 						'type'        => 'checkbox',
 						'label'       => esc_html__( 'Disable asking for submitter info', 'chipmunk' ),
-						'default'     => true,
+						'default'     => false,
 					),
 					array(
 						'name'        => 'submit_tagline',
