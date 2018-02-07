@@ -2617,9 +2617,15 @@ input[type="submit"]:focus {
 }
 .form label, .content form label {
   display: inline-block;
-  margin-bottom: 0.5em;
-  color: #808080;
+  margin: 0.5em 0;
   font-size: 1.6rem;
+  font-weight: bold;
+}
+.form label span, .content form label span {
+  display: inline-block;
+  margin-left: 0.5em;
+  font-weight: normal;
+  color: #808080;
 }
 .form_compact input,
 .form_compact textarea {

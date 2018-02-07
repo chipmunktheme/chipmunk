@@ -63,9 +63,16 @@
 
   label {
     display: inline-block;
-    margin-bottom: 0.5em;
-    color: $color-gray;
+    margin: 0.5em 0;
     font-size: 1.6rem;
+    font-weight: bold;
+
+    span {
+      display: inline-block;
+      margin-left: 0.5em;
+      font-weight: normal;
+      color: $color-gray;
+    }
   }
 
   &_compact {
