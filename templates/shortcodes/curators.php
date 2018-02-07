@@ -10,7 +10,7 @@
 			<?php $twitter = get_user_meta( $user->ID, 'twitter', true ); ?>
 			<?php $description = get_user_meta( $user->ID, 'description', true ); ?>
 
-			<div class="card column column_sm-3 column_md-2 column_lg-4">
+			<div class="card column column_sm-3 column_md-3 column_lg-6">
 				<?php if ( get_avatar( $user->ID ) ) : ?>
 					<div class="card__image" style="background-image: url(<?php echo esc_url( get_avatar_url( $user->ID, array( 'size' => 300 ) ) ); ?>)"></div>
 				<?php endif; ?>

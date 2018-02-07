@@ -116,7 +116,13 @@
     }
   }
 
-  .form-submit .form__field {
-    margin-top: ($separator * 2);
+  .form-submit {
+    .form__field {
+      margin-top: ($separator * 2);
+    }
+
+    + p {
+      margin-top: $separator;
+    }
   }
 }

@@ -31,8 +31,11 @@ if ( ! function_exists( 'chipmunk_update_search_query' ) ) :
  */
 function chipmunk_update_search_query( $query ) {
 	if ( $query->is_search ) {
-		$query->set( 'post_type', array( 'post', 'resource' ) );
+		// Use custom value for posts per page
 		$query->set( 'posts_per_page', chipmunk_theme_option( 'results_per_page' ) );
+
+		// Include resources
+		$query->set( 'post_type', array( 'post', 'resource' ) );
 	}
 
 	return $query;

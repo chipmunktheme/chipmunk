@@ -73,7 +73,7 @@
     }
   }
 
-  ol {
+  > ol {
     list-style: decimal inside;
 
     li {
@@ -81,7 +81,7 @@
     }
   }
 
-  ul {
+  > ul {
     li {
       &::before {
         content: '\2022';
@@ -249,8 +249,8 @@
       display: block;
 
       img {
-        -webkit-backface-visibility: hidden;
-        -webkit-transform: translateZ(0) scale(1.0, 1.0);
+        backface-visibility: hidden;
+        transform: translateZ(0) scale(1, 1);
         transition: opacity $transition-speed;
       }
 
@@ -258,5 +258,18 @@
         opacity: 0.9;
       }
     }
+  }
+
+  form {
+    @extend .form;
+
+    > div {
+      @extend .form__field;
+    }
+  }
+
+  input[type="submit"] {
+    @extend .button;
+    @extend .button_primary;
   }
 }

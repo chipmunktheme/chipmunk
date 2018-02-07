@@ -21974,7 +21974,7 @@ require('slick-carousel');
 
 var Extras = function () {
   // Custom select
-  $('.custom-select').each(function () {
+  $('form select').each(function () {
     $(this).select2({
       minimumResultsForSearch: Infinity,
       dropdownParent: $(this).parent()
