@@ -106,7 +106,6 @@ function chipmunk_setup() {
 			'plural'                => esc_html__( 'Tags', 'chipmunk' ),
 			'posts'                 => array( 'resource' ),
 			'hierarchical'          => false,
-			'show_in_menu'          => false,
 			'labels'                => array(
 				'add_new_item'        => esc_html__( 'Add Tag', 'chipmunk' ),
 				'new_item_name'       => esc_html__( 'New Tag Name', 'chipmunk' ),
