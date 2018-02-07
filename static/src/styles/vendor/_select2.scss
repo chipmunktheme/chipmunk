@@ -491,6 +491,13 @@
 .select2-container {
   text-align: left;
   width: 100% !important;
+  color: $color-black;
+  font-size: 1.8rem;
+  line-height: 1.6;
+
+  @include breakpoint(lg) {
+    font-size: 2.2rem;
+  }
 
   .select2-results__options {
     max-height: 320px !important;
@@ -499,7 +506,7 @@
   .select2-results__option {
     padding: 10px $separator;
     overflow: hidden;
-    font-size: 1.6rem;
+    font-size: 0.85em;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -532,13 +539,9 @@
       padding-top: 5px;
       padding-bottom: 5px;
       border-bottom: 2px solid currentColor;
-      color: $color-black;
-      font-size: 1.8rem;
-      line-height: 1.6;
 
       @include breakpoint(lg) {
         border-bottom-width: 3px;
-        font-size: 2.2rem;
       }
     }
 

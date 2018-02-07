@@ -7,7 +7,7 @@ require('slick-carousel');
 
 var Extras = function () {
   // Custom select
-  $('form select').each(function () {
+  $('select').each(function () {
     $(this).select2({
       minimumResultsForSearch: Infinity,
       dropdownParent: $(this).parent()

@@ -32,22 +32,19 @@
 
 .filter__select {
   ~ .select2-container {
+    font-size: 1.4rem;
+
     @include breakpoint(lg) {
       width: 150px !important;
+      font-size: 1.6rem;
     }
 
     .select2-dropdown {
       background-color: $color-gray-lightest;
-      border-color: $color-gray-light;
     }
 
     .select2-results__option {
-      padding: 0.25em 1.5rem;
-      font-size: 1.4rem;
-
-      @include breakpoint(lg) {
-        font-size: 1.5rem;
-      }
+      padding: 0.5em 1.5rem;
 
       [aria-selected=true] {
         color: $color-white;
@@ -62,11 +59,9 @@
       .select2-selection__rendered {
         padding-top: 4px;
         padding-bottom: 4px;
-        font-size: 1.4rem;
 
         @include breakpoint(lg) {
           border-bottom-width: 2px;
-          font-size: 1.6rem;
         }
       }
 

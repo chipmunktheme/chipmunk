@@ -1405,6 +1405,14 @@ input[type="submit"]:focus {
 .select2-container {
   text-align: left;
   width: 100% !important;
+  color: #333333;
+  font-size: 1.8rem;
+  line-height: 1.6;
+}
+@media (min-width: 980px) {
+  .select2-container {
+    font-size: 2.2rem;
+  }
 }
 .select2-container .select2-results__options {
   max-height: 320px !important;
@@ -1412,7 +1420,7 @@ input[type="submit"]:focus {
 .select2-container .select2-results__option {
   padding: 10px 2rem;
   overflow: hidden;
-  font-size: 1.6rem;
+  font-size: 0.85em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -1441,14 +1449,10 @@ input[type="submit"]:focus {
   padding-top: 5px;
   padding-bottom: 5px;
   border-bottom: 2px solid currentColor;
-  color: #333333;
-  font-size: 1.8rem;
-  line-height: 1.6;
 }
 @media (min-width: 980px) {
   .select2-container .select2-selection .select2-selection__rendered {
     border-bottom-width: 3px;
-    font-size: 2.2rem;
   }
 }
 .select2-container .select2-selection .select2-selection__arrow {
@@ -2472,23 +2476,20 @@ input[type="submit"]:focus {
     text-align: right;
   }
 }
+.filter__select ~ .select2-container {
+  font-size: 1.4rem;
+}
 @media (min-width: 980px) {
   .filter__select ~ .select2-container {
     width: 150px !important;
+    font-size: 1.6rem;
   }
 }
 .filter__select ~ .select2-container .select2-dropdown {
   background-color: #EDEDED;
-  border-color: #CDCDCD;
 }
 .filter__select ~ .select2-container .select2-results__option {
-  padding: 0.25em 1.5rem;
-  font-size: 1.4rem;
-}
-@media (min-width: 980px) {
-  .filter__select ~ .select2-container .select2-results__option {
-    font-size: 1.5rem;
-  }
+  padding: 0.5em 1.5rem;
 }
 .filter__select ~ .select2-container .select2-results__option [aria-selected=true] {
   color: #FAFAFA;
@@ -2499,12 +2500,10 @@ input[type="submit"]:focus {
 .filter__select ~ .select2-container .select2-selection .select2-selection__rendered {
   padding-top: 4px;
   padding-bottom: 4px;
-  font-size: 1.4rem;
 }
 @media (min-width: 980px) {
   .filter__select ~ .select2-container .select2-selection .select2-selection__rendered {
     border-bottom-width: 2px;
-    font-size: 1.6rem;
   }
 }
 .filter__select ~ .select2-container .select2-selection .select2-selection__arrow {
