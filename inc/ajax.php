@@ -101,6 +101,8 @@ function chipmunk_inform_admin( $post_id ) {
 	$name     = $name;
 	$subject  = $name . ': ' . esc_html__( 'New user submission', 'chipmunk' );
 
+	$post     = get_post( $post_id );
+
 	$post_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
 	$template = '<a href="' . $post_url . '">' . esc_html__( 'Review submission', 'chipmunk' ) . '</a>';
 

@@ -1557,6 +1557,7 @@ input[type="submit"]:focus {
   padding-top: 5px;
   padding-bottom: 5px;
   border-bottom: 2px solid currentColor;
+  line-height: inherit;
 }
 @media (min-width: 980px) {
   .select2-container .select2-selection .select2-selection__rendered {
@@ -1564,13 +1565,21 @@ input[type="submit"]:focus {
   }
 }
 .select2-container .select2-selection .select2-selection__arrow {
-  height: 37px;
+  top: 0;
+  right: 0;
+  width: 1.5em;
+  height: calc(100% - 2px);
 }
 .select2-container .select2-selection .select2-selection__arrow b {
-  margin-left: -12px;
-  margin-top: -5px;
+  margin: 0;
   border-color: #333333 transparent transparent;
-  border-width: 15px 8px 0;
+  border-width: 0.5em 0.35em 0;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  -webkit-transition: -webkit-transform 0.25s;
+  transition: -webkit-transform 0.25s;
+  transition: transform 0.25s;
+  transition: transform 0.25s, -webkit-transform 0.25s;
 }
 .select2-container .select2-selection .select2-selection__placeholder {
   color: #333333;
@@ -1580,6 +1589,12 @@ input[type="submit"]:focus {
   border-color: #CDCDCD;
   border-radius: 0;
   color: #333333;
+}
+.select2-container.select2-container--open .select2-selection__arrow b[role] {
+  border-color: #333333 transparent transparent;
+  border-width: 0.5em 0.35em 0;
+  -webkit-transform: translate3d(-50%, -50%, 0) rotate(180deg);
+          transform: translate3d(-50%, -50%, 0) rotate(180deg);
 }
 /*
 ** Vendor - Slick
@@ -2614,15 +2629,6 @@ input[type="submit"]:focus {
     border-bottom-width: 2px;
   }
 }
-.filter__select ~ .select2-container .select2-selection .select2-selection__arrow {
-  height: 27px;
-}
-.filter__select ~ .select2-container .select2-selection .select2-selection__arrow b {
-  margin-left: -5px;
-  margin-top: -3px;
-  border-color: #333333 transparent transparent;
-  border-width: 10px 6px 0;
-}
 .filter__title {
   margin-right: 2rem;
   font-size: 1.4rem;
@@ -3569,6 +3575,11 @@ input[type="submit"]:focus {
   height: auto;
   max-height: 100%;
   margin: auto;
+}
+@media (min-width: 680px) {
+  .popup__content .form, .popup__content .content form, .content .popup__content form {
+    margin-top: 4rem;
+  }
 }
 /*
 ** Module - Promo

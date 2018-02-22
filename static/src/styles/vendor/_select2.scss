@@ -53,6 +53,7 @@
       padding-top: 5px;
       padding-bottom: 5px;
       border-bottom: 2px solid currentColor;
+      line-height: inherit;
 
       @include breakpoint(lg) {
         border-bottom-width: 3px;
@@ -60,13 +61,17 @@
     }
 
     .select2-selection__arrow {
-      height: 37px;
+      top: 0;
+      right: 0;
+      width: 1.5em;
+      height: calc(100% - 2px);
 
       b {
-        margin-left: -12px;
-        margin-top: -5px;
+        margin: 0;
         border-color: $color-black transparent transparent;
-        border-width: 15px 8px 0;
+        border-width: 0.5em 0.35em 0;
+        transform: translate3d(-50%, -50%, 0);
+        transition: transform $transition-speed;
       }
     }
 
@@ -80,5 +85,13 @@
     border-color: $color-gray-light;
     border-radius: 0;
     color: $color-black;
+  }
+
+  &.select2-container--open {
+    .select2-selection__arrow b[role] {
+      border-color: $color-black transparent transparent;
+      border-width: 0.5em 0.35em 0;
+      transform: translate3d(-50%, -50%, 0) rotate(180deg);
+    }
   }
 }
