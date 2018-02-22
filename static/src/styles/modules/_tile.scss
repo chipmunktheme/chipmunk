@@ -101,7 +101,7 @@
   }
 
   > * {
-    @include cover;
+    @include u-overlay;
     display: block;
     max-width: none;
     height: 100%;
@@ -126,7 +126,7 @@
 }
 
 .tile__content {
-  @include cover;
+  @include u-overlay;
   z-index: $zindex-base;
   display: flex;
   flex-direction: column;

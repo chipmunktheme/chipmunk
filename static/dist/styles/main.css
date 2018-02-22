@@ -7,16 +7,17 @@
 ** Setup - Variables
 ** -----------------------------------------------------------------------------*/
 /*!
-** Name:      Flexgridy
-** Version:   v0.1.0
+** Name:      Bespoke Toolkit
+** Version:   v0.3.4
 ** Author:    Piotr Kulpinski
-** Copyright: 2016
+** Copyright: 2017
 ** License:   MIT
 ** --------------------------------
 **/
 .container {
   margin-right: auto;
   margin-left: auto;
+  width: 100%;
 }
 @media (min-width: 0) {
   .container {
@@ -500,6 +501,130 @@
             order: 1;
   }
 }
+.visible-xs-block {
+  display: none !important;
+}
+.visible-xs-flex {
+  display: none !important;
+}
+.visible-xs-inline {
+  display: none !important;
+}
+.visible-xs-inline-block {
+  display: none !important;
+}
+@media (min-width: 0) {
+  .visible-xs-block {
+    display: block !important;
+  }
+  .visible-xs-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .visible-xs-inline {
+    display: inline !important;
+  }
+  .visible-xs-inline-block {
+    display: inline-block !important;
+  }
+  .hidden-xs {
+    display: none !important;
+  }
+}
+.visible-sm-block {
+  display: none !important;
+}
+.visible-sm-flex {
+  display: none !important;
+}
+.visible-sm-inline {
+  display: none !important;
+}
+.visible-sm-inline-block {
+  display: none !important;
+}
+@media (min-width: 490px) {
+  .visible-sm-block {
+    display: block !important;
+  }
+  .visible-sm-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .visible-sm-inline {
+    display: inline !important;
+  }
+  .visible-sm-inline-block {
+    display: inline-block !important;
+  }
+  .hidden-sm {
+    display: none !important;
+  }
+}
+.visible-md-block {
+  display: none !important;
+}
+.visible-md-flex {
+  display: none !important;
+}
+.visible-md-inline {
+  display: none !important;
+}
+.visible-md-inline-block {
+  display: none !important;
+}
+@media (min-width: 680px) {
+  .visible-md-block {
+    display: block !important;
+  }
+  .visible-md-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .visible-md-inline {
+    display: inline !important;
+  }
+  .visible-md-inline-block {
+    display: inline-block !important;
+  }
+  .hidden-md {
+    display: none !important;
+  }
+}
+.visible-lg-block {
+  display: none !important;
+}
+.visible-lg-flex {
+  display: none !important;
+}
+.visible-lg-inline {
+  display: none !important;
+}
+.visible-lg-inline-block {
+  display: none !important;
+}
+@media (min-width: 980px) {
+  .visible-lg-block {
+    display: block !important;
+  }
+  .visible-lg-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .visible-lg-inline {
+    display: inline !important;
+  }
+  .visible-lg-inline-block {
+    display: inline-block !important;
+  }
+  .hidden-lg {
+    display: none !important;
+  }
+}
 /*
 ** Setup - Mixins
 ** -----------------------------------------------------------------------------*/
@@ -508,9 +633,6 @@
 **/
 /*
 ** Add loading indicator
-**/
-/*
-** Cover
 **/
 /*
 ** Clearfix
@@ -536,20 +658,6 @@
 ** @param {String} $file - Asset file name, including extension
 ** @return {URL} - A `url()` function leading to the font
 ** @require {Function} asset
-**/
-/*
-** Mix color with black
-**
-** @param {Color} $color - Color hex value
-** @return {Percent} $weight - The relative weight of black color
-** @require {Function} mix
-**/
-/*
-** Mix color with white
-**
-** @param {Color} $color - Color hex value
-** @return {Percent} $weight - The relative weight of white color
-** @require {Function} mix
 **/
 /*
 ** Setup - Animations
@@ -1403,11 +1511,11 @@ input[type="submit"]:focus {
   border-color: #5897fb;
 }
 .select2-container {
-  text-align: left;
   width: 100% !important;
   color: #333333;
   font-size: 1.8rem;
   line-height: 1.6;
+  text-align: left;
 }
 @media (min-width: 980px) {
   .select2-container {
@@ -1469,7 +1577,7 @@ input[type="submit"]:focus {
 }
 .select2-container .select2-dropdown {
   background-color: #FAFAFA;
-  border-color: #333333;
+  border-color: #CDCDCD;
   border-radius: 0;
   color: #333333;
 }
@@ -2467,9 +2575,9 @@ input[type="submit"]:focus {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
@@ -2556,6 +2664,9 @@ input[type="submit"]:focus {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 @media (min-width: 980px) {
   .form [type="text"], .content form [type="text"],

@@ -28,6 +28,9 @@
     resize: none;
     vertical-align: middle;
     appearance: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     @include breakpoint(lg) {
       border-bottom-width: 3px;

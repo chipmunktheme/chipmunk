@@ -17,9 +17,9 @@ get_header(); ?>
 			<?php $title = sprintf( ( is_tax( 'resource-collection' ) ? esc_html__( '%s Collection', 'chipmunk' ) : esc_html__( '%s Tag', 'chipmunk' ) ), ucfirst( single_term_title( null, false ) ) ); ?>
 
 			<?php if ( ! chipmunk_theme_option( 'disable_sorting' ) and $custom_query->have_posts() ) : ?>
-				<div class="row row_center">
+				<div class="row">
 					<div class="column column_md-4 column_lg-8">
-						<h3 class="heading heading_md"><?php echo esc_html( $title ); ?></h3>
+						<h1 class="heading heading_md"><?php echo esc_html( $title ); ?></h1>
 
 						<?php if ( ! empty( $term->description ) ) : ?>
 							<p class="text_content text_subtitle"><?php echo esc_html( $term->description ); ?></p>

@@ -62,7 +62,7 @@
 </div>
 <!-- /.section -->
 
-<?php if ( ! is_search() && chipmunk_theme_option( 'display_resource_content_separated' ) ) : ?>
+<?php if ( ! empty( get_the_content() ) && ! is_search() && chipmunk_theme_option( 'display_resource_content_separated' ) ) : ?>
 	<div class="section">
 		<div class="container">
 			<div class="row">

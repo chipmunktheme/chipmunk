@@ -3,7 +3,7 @@
 ** -----------------------------------------------------------------------------*/
 
 .nav-primary {
-  @include cover;
+  @include u-overlay;
   position: fixed;
   z-index: $zindex-nav;
   background-color: $color-white;

@@ -13,7 +13,7 @@ body {
   line-height: $font-line-height;
 
   &::after {
-    @include cover;
+    @include u-overlay;
     content: '';
     z-index: $zindex-popup - 1;
     background-color: rgba($color-black, 0.8);

@@ -3,7 +3,7 @@
 ** -----------------------------------------------------------------------------*/
 
 .popup {
-  @include cover;
+  @include u-overlay;
   z-index: $zindex-popup;
   overflow: hidden;
   pointer-events: none;
@@ -75,7 +75,7 @@
 
   &.is-loading {
     &::before {
-      @include cover;
+      @include u-overlay;
       content: '';
       z-index: $zindex-base;
       background-color: rgba($color-white, 0.75);

@@ -489,11 +489,11 @@
 
 // Custom
 .select2-container {
-  text-align: left;
   width: 100% !important;
   color: $color-black;
   font-size: 1.8rem;
   line-height: 1.6;
+  text-align: left;
 
   @include breakpoint(lg) {
     font-size: 2.2rem;
@@ -563,7 +563,7 @@
 
   .select2-dropdown {
     background-color: $color-white;
-    border-color: $color-black;
+    border-color: $color-gray-light;
     border-radius: 0;
     color: $color-black;
   }

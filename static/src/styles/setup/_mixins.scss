@@ -38,17 +38,6 @@
 }
 
 /*
-** Cover
-**/
-@mixin cover($offset: 0) {
-  position: absolute;
-  top: $offset;
-  bottom: $offset;
-  left: $offset;
-  right: $offset;
-}
-
-/*
 ** Clearfix
 **/
 @mixin clearfix {
@@ -91,26 +80,4 @@
 **/
 @function font($file) {
   @return asset('fonts', $file);
-}
-
-/*
-** Mix color with black
-**
-** @param {Color} $color - Color hex value
-** @return {Percent} $weight - The relative weight of black color
-** @require {Function} mix
-**/
-@function blacken($color, $weight) {
-  @return mix($color-black, $color, $weight);
-}
-
-/*
-** Mix color with white
-**
-** @param {Color} $color - Color hex value
-** @return {Percent} $weight - The relative weight of white color
-** @require {Function} mix
-**/
-@function whiten($color, $weight) {
-  @return mix($color-white, $color, $weight);
 }
