@@ -282,7 +282,7 @@ function chipmunk_get_related_posts( $post_id ) {
 			array(
 				'taxonomy'    => 'post_tag',
 				'field'       => 'term_id',
-				'terms'       => array_map( 'chipmunk_map_terms', $tags ),
+				'terms'       => array_map( 'chipmunk_get_term_id', $tags ),
 				'operator'    => 'IN',
 			),
 		);
@@ -292,7 +292,7 @@ function chipmunk_get_related_posts( $post_id ) {
 			array(
 				'taxonomy'    => 'category',
 				'field'       => 'term_id',
-				'terms'       => array_map( 'chipmunk_map_terms', $collections ),
+				'terms'       => array_map( 'chipmunk_get_term_id', $collections ),
 				'operator'    => 'IN',
 			),
 		);
@@ -468,7 +468,7 @@ function chipmunk_get_related_resources( $post_id, $limit = 3 ) {
 			$tax_query[] = array(
 				'taxonomy'    => $taxonomy,
 				'field'       => 'term_id',
-				'terms'       => array_map( 'chipmunk_map_terms', $terms ),
+				'terms'       => array_map( 'chipmunk_get_term_id', $terms ),
 				'operator'    => 'IN',
 			);
 		};
@@ -580,12 +580,22 @@ function chipmunk_external_link( $url ) {
 endif;
 
 
-if ( ! function_exists( 'chipmunk_map_terms' ) ) :
+if ( ! function_exists( 'chipmunk_get_term_id' ) ) :
 /**
  * Map terms with term ID
  */
-function chipmunk_map_terms( $term ) {
+function chipmunk_get_term_id( $term ) {
 	return $term->term_id;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_term_name' ) ) :
+/**
+ * Map terms with term name
+ */
+function chipmunk_get_term_name( $term ) {
+	return $term->name;
 }
 endif;
 

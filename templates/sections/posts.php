@@ -61,7 +61,7 @@
 		</div>
 
 		<?php if ( ! is_single() && ! is_front_page() ) : ?>
-			<?php include locate_template( 'templates/sections/pagination.php' ); ?>
+			<?php require locate_template( 'templates/sections/pagination.php' ); ?>
 		<?php endif; ?>
 	</div>
 	<!-- /.section -->

@@ -46,7 +46,7 @@
 			<?php endif; ?>
 		</div>
 
-		<?php include locate_template( 'templates/sections/pagination.php' ); ?>
+		<?php require locate_template( 'templates/sections/pagination.php' ); ?>
 	</div>
 	<!-- /.section -->
 <?php endif; ?>

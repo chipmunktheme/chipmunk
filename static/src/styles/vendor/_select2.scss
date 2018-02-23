@@ -69,9 +69,8 @@
       b {
         margin: 0;
         border-color: $color-black transparent transparent;
-        border-width: 0.5em 0.35em 0;
+        border-width: 0.4em 0.3em 0;
         transform: translate3d(-50%, -50%, 0);
-        transition: transform $transition-speed;
       }
     }
 
@@ -89,9 +88,8 @@
 
   &.select2-container--open {
     .select2-selection__arrow b[role] {
-      border-color: $color-black transparent transparent;
-      border-width: 0.5em 0.35em 0;
-      transform: translate3d(-50%, -50%, 0) rotate(180deg);
+      border-color: transparent transparent $color-black;
+      border-width: 0 0.3em 0.4em;
     }
   }
 }

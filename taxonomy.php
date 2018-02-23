@@ -39,7 +39,7 @@ get_header(); ?>
 			<?php if ( ( $children_collections = get_terms( 'resource-collection', array( 'parent' => $term->term_id ) ) ) && $paged == 1 ) : ?>
 				<div class="row">
 					<?php foreach ( $children_collections as $collection ) : ?>
-						<?php include locate_template( 'templates/sections/collection-tile.php' ); ?>
+						<?php require locate_template( 'templates/sections/collection-tile.php' ); ?>
 					<?php endforeach; ?>
 				</div>
 
@@ -73,7 +73,7 @@ get_header(); ?>
 			</div>
 		</div>
 
-		<?php include locate_template( 'templates/sections/pagination.php' ); ?>
+		<?php require locate_template( 'templates/sections/pagination.php' ); ?>
 	</div>
 	<!-- /.section -->
 

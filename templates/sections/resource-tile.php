@@ -50,7 +50,7 @@
 						'display'  => false,
 					);
 
-					include locate_template( 'templates/partials/post-stats.php' );
+					require locate_template( 'templates/partials/post-stats.php' );
 				?>
 			</ul>
 		<?php endif; ?>

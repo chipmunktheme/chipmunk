@@ -1573,13 +1573,9 @@ input[type="submit"]:focus {
 .select2-container .select2-selection .select2-selection__arrow b {
   margin: 0;
   border-color: #333333 transparent transparent;
-  border-width: 0.5em 0.35em 0;
+  border-width: 0.4em 0.3em 0;
   -webkit-transform: translate3d(-50%, -50%, 0);
           transform: translate3d(-50%, -50%, 0);
-  -webkit-transition: -webkit-transform 0.25s;
-  transition: -webkit-transform 0.25s;
-  transition: transform 0.25s;
-  transition: transform 0.25s, -webkit-transform 0.25s;
 }
 .select2-container .select2-selection .select2-selection__placeholder {
   color: #333333;
@@ -1591,10 +1587,8 @@ input[type="submit"]:focus {
   color: #333333;
 }
 .select2-container.select2-container--open .select2-selection__arrow b[role] {
-  border-color: #333333 transparent transparent;
-  border-width: 0.5em 0.35em 0;
-  -webkit-transform: translate3d(-50%, -50%, 0) rotate(180deg);
-          transform: translate3d(-50%, -50%, 0) rotate(180deg);
+  border-color: transparent transparent #333333;
+  border-width: 0 0.3em 0.4em;
 }
 /*
 ** Vendor - Slick

@@ -92,6 +92,7 @@ if ( ! function_exists( 'chipmunk_inform_admin' ) ) :
  * Send email to website owner after resource is submitted
  */
 function chipmunk_inform_admin( $post_id ) {
+	$post     = get_post( $post_id );
 	$name     = get_bloginfo( 'name' );
 	$admin    = get_bloginfo( 'admin_email' );
 
@@ -99,12 +100,12 @@ function chipmunk_inform_admin( $post_id ) {
 	$from     = $admin;
 
 	$name     = $name;
-	$subject  = $name . ': ' . esc_html__( 'New user submission', 'chipmunk' );
+	$subject  = sprintf( esc_html__( '%s: New user submission', 'chipmunk' ), $name );
 
-	$post     = get_post( $post_id );
-
-	$post_url = admin_url( 'post.php?post=' . $post_id . '&action=edit' );
-	$template = '<a href="' . $post_url . '">' . esc_html__( 'Review submission', 'chipmunk' ) . '</a>';
+	ob_start();
+	include locate_template( 'templates/emails/submission.php' );
+	$template = ob_get_contents();
+	ob_end_clean();
 
 	$headers  = array(
 		"Content-Type: text/html; charset=UTF-8;",
