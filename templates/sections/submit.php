@@ -12,18 +12,13 @@
 			<select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors" class="custom-select" required>
 				<option value=""><?php esc_html_e( 'Collection', 'chipmunk' ); ?></option>
 				<?php
-				$collections = get_terms( array(
-					'taxonomy'   => 'resource-collection',
-					'orderby'    => 'name',
-					'hide_empty' => false,
-					'parent'     => 0,
-				) );
+					$collections = chipmunk_get_taxonomy_hierarchy( 'resource-collection', array(
+						'hide_empty' => false,
+					) );
 				?>
 
 				<?php if ( ! empty( $collections ) ) : ?>
-					<?php foreach ( $collections as $collection ) : ?>
-						<option value="<?php echo $collection->term_id; ?>"><?php echo $collection->name; ?></option>
-					<?php endforeach; ?>
+					<?php chipmunk_display_terms( $collections ); ?>
 				<?php endif; ?>
 			</select>
 

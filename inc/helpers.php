@@ -232,6 +232,43 @@ function chipmunk_get_menu_items( $location ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_taxonomy_hierarchy' ) ) :
+/**
+ * Recursively get taxonomy and its children
+ */
+function chipmunk_get_taxonomy_hierarchy( $taxonomy, $args = array(), $parent = 0 ) {
+	$children = array();
+	$taxonomy = is_array( $taxonomy ) ? array_shift( $taxonomy ) : $taxonomy;
+
+	$terms = get_terms( $taxonomy, wp_parse_args( $args, array( 'parent' => $parent ) ) );
+
+	foreach ( $terms as $term ) {
+		$term->children = chipmunk_get_taxonomy_hierarchy( $taxonomy, $args, $term->term_id );
+
+		$children[$term->term_id] = $term;
+	}
+
+	return $children;
+}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_display_terms' ) ) :
+/**
+ * Recursively display taxonomy and its children
+ */
+function chipmunk_display_terms( $terms, $level = 0 ) {
+	foreach ( $terms as $term ) {
+		echo '<option value="'. $term->term_id . '">' . str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' ) . $term->name . '</option>';
+
+		if ( $term->children ) {
+			chipmunk_display_terms( $term->children, $level + 1 );
+		}
+	}
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_related' ) ) :
 /**
  * Get related resources
@@ -267,8 +304,7 @@ function chipmunk_get_related( $post_id, $limit = 3 ) {
 		'orderby'         => 'rand',
 	);
 
-	$query = new WP_Query( $args );
-	return $query;
+	return new WP_Query( $args );
 }
 endif;
 
@@ -297,8 +333,7 @@ function chipmunk_get_posts( $limit = -1, $paged = false, $term = null ) {
 		);
 	}
 
-	$query = new WP_Query( array_merge( $args, $tax_args ) );
-	return $query;
+	return new WP_Query( array_merge( $args, $tax_args ) );
 }
 endif;
 
@@ -378,8 +413,7 @@ function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
 		);
 	}
 
-	$query = new WP_Query( array_merge( $args, $sort_args, $tax_args ) );
-	return $query;
+	return new WP_Query( array_merge( $args, $sort_args, $tax_args ) );
 }
 endif;
 
@@ -397,8 +431,7 @@ function chipmunk_get_latest_resources( $limit = -1, $paged = false ) {
 		'order'           => 'DESC',
 	);
 
-	$query = new WP_Query( $args );
-	return $query;
+	return new WP_Query( $args );
 }
 endif;
 
@@ -424,8 +457,7 @@ function chipmunk_get_featured_resources( $limit = -1, $paged = false ) {
 		'orderby'         => 'rand',
 	);
 
-	$query = new WP_Query( $args );
-	return $query;
+	return new WP_Query( $args );
 }
 endif;
 
@@ -444,8 +476,7 @@ function chipmunk_get_popular_resources( $limit = -1, $paged = false ) {
 		'order'           => 'DESC',
 	);
 
-	$query = new WP_Query( $args );
-	return $query;
+	return new WP_Query( $args );
 }
 endif;
 
@@ -462,8 +493,7 @@ function chipmunk_get_users( $limit = -1 ) {
 		'order'    => 'ASC',
 	);
 
-	$query = new WP_User_Query( $args );
-	return $query;
+	return new WP_User_Query( $args );
 }
 endif;
 

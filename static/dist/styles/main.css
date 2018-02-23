@@ -2711,18 +2711,18 @@ input[type="submit"]:focus {
 .form textarea:focus, .content form textarea:focus {
   outline: none;
 }
-.form .parsley-errors-list:not(:first-child), .content form .parsley-errors-list:not(:first-child) {
+.form .parsley-errors-list, .content form .parsley-errors-list {
   margin-top: 0;
   text-align: left;
 }
-.form .parsley-errors-list:not(:first-child).filled, .content form .parsley-errors-list:not(:first-child).filled {
+.form .parsley-errors-list.filled, .content form .parsley-errors-list.filled {
   margin-top: 0.5rem;
 }
-.form .parsley-errors-list:not(:first-child) li, .content form .parsley-errors-list:not(:first-child) li {
+.form .parsley-errors-list li, .content form .parsley-errors-list li {
   color: #F74444;
   font-size: 1.6rem;
 }
-.form .parsley-errors-list:not(:first-child) li::before, .content form .parsley-errors-list:not(:first-child) li::before {
+.form .parsley-errors-list li::before, .content form .parsley-errors-list li::before {
   content: initial;
 }
 .form label, .content form label {
