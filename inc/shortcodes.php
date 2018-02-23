@@ -41,7 +41,7 @@ function chipmunk_get_shortcode_template( $template_name, $attributes = null ) {
 
 	do_action( 'chipmunk_shortcode_template_before_' . $template_name );
 
-	require_once THEME_TEMPLATE_DIR . '/templates/shortcodes/' . $template_name . '.php';
+	require_once locate_template( 'templates/shortcodes/' . $template_name . '.php' );
 
 	do_action( 'chipmunk_shortcode_template_after_' . $template_name );
 

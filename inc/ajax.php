@@ -103,7 +103,9 @@ function chipmunk_inform_admin( $post_id ) {
 	$subject  = sprintf( esc_html__( '%s: New user submission', 'chipmunk' ), $name );
 
 	ob_start();
-	include locate_template( 'templates/emails/submission.php' );
+
+	require_once locate_template( 'templates/emails/submission.php' );
+
 	$template = ob_get_contents();
 	ob_end_clean();
 

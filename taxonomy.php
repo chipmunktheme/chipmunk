@@ -73,7 +73,7 @@ get_header(); ?>
 			</div>
 		</div>
 
-		<?php require locate_template( 'templates/sections/pagination.php' ); ?>
+		<?php require_once locate_template( 'templates/sections/pagination.php' ); ?>
 	</div>
 	<!-- /.section -->
 
