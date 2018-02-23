@@ -68,7 +68,7 @@
 }
 
 .tile__slider {
-  display: none;
+  display: flex;
   padding: 0 ($separator / 2);
   float: left;
   width: 33.3%;
@@ -77,13 +77,9 @@
     outline: none;
   }
 
-  &.slick-slide {
-    display: flex;
-
-    .tile {
-      flex-grow: 1;
-      width: 100%;
-    }
+  .tile {
+    flex-grow: 1;
+    width: 100%;
   }
 }
 

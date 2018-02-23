@@ -2,7 +2,7 @@
 
 var $ = require('jquery');
 
-require('select2');
+require('select2')();
 require('slick-carousel');
 
 var Extras = function () {

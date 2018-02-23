@@ -4133,7 +4133,9 @@ input[type="submit"]:focus {
   clear: both;
 }
 .tile__slider {
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   padding: 0 1rem;
   float: left;
   width: 33.3%;
@@ -4141,12 +4143,7 @@ input[type="submit"]:focus {
 .tile__slider:focus {
   outline: none;
 }
-.tile__slider.slick-slide {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.tile__slider.slick-slide .tile {
+.tile__slider .tile {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
