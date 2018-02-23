@@ -22,11 +22,6 @@
   &:focus {
     outline: none;
   }
-
-  &.dragging {
-    cursor: pointer;
-    cursor: hand;
-  }
 }
 
 .slick-slider .slick-track,
@@ -39,16 +34,6 @@
   left: 0;
   top: 0;
   display: flex;
-
-  &:before,
-  &:after {
-    content: "";
-    display: table;
-  }
-
-  &:after {
-    clear: both;
-  }
 
   .slick-loading & {
     visibility: hidden;

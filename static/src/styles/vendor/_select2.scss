@@ -13,8 +13,17 @@
     font-size: 2.2rem;
   }
 
+  .select2-results {
+    max-height: 320px;
+    overflow-y: auto;
+    border-bottom: 1px solid $color-gray-light;
+  }
+
   .select2-results__options {
-    max-height: 320px !important;
+    max-height: none !important;
+    overflow: visible !important;
+    border: solid $color-gray-light;
+    border-width: 0 1px;
   }
 
   .select2-results__option {
@@ -28,6 +37,8 @@
   .select2-results__option[aria-selected=true] {
     background-color: $color-primary;
     color: $color-white;
+    margin-left: -1px;
+    margin-right: -1px;
   }
 
   .select2-results__option--highlighted[aria-selected=false] {
@@ -81,7 +92,7 @@
 
   .select2-dropdown {
     background-color: $color-white;
-    border-color: $color-gray-light;
+    border: 0;
     border-radius: 0;
     color: $color-black;
   }
