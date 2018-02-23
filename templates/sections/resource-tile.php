@@ -1,5 +1,5 @@
 <?php
-	$is_column = ( ! is_front_page() or chipmunk_theme_option( 'disable_homepage_listings_sliders' ) );
+	$is_column = ( ! is_front_page() );
 	$resource_website = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_resource_website', true );
 	$tile_classes = array(
 		''           => 'tile tile_card',

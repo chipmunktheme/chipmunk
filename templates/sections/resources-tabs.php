@@ -15,7 +15,7 @@ $resources = array(
 			<?php if ( ! empty( $intro_text ) ) : ?>
 				<h2 class="section__title"><?php echo $intro_text; ?></h2>
 			<?php endif; ?>
-			
+
 			<?php if ( $resources['latest']->have_posts() ) : ?>
 				<div class="heading heading_md">
 					<?php if ( $resources['featured']->have_posts() ) : ?>
@@ -42,50 +42,44 @@ $resources = array(
 
 				<div class="tab-content">
 					<?php if ( $resources['featured']->have_posts() ) : ?>
-						<div class="tile__list tabs__item<?php if ( $disable_sliders ) echo ' row'; ?> active" data-tabs-panel<?php if ( ! $disable_sliders ) echo ' data-resource-slider'; ?> role="tabpanel">
-							<?php while ( $resources['featured']->have_posts() ) : $resources['featured']->the_post(); ?>
+						<div class="tabs__item active" data-tabs-panel role="tabpanel">
+							<div class="tile__list"<?php if ( ! $disable_sliders ) echo ' data-resource-slider'; ?>>
+								<?php while ( $resources['featured']->have_posts() ) : $resources['featured']->the_post(); ?>
 
-								<?php if ( $disable_sliders ) : ?>
-									<?php get_template_part( 'templates/sections/resource-tile' ); ?>
-								<?php else : ?>
 									<div class="tile__slider">
 										<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 									</div>
-								<?php endif; ?>
 
-							<?php endwhile; wp_reset_postdata(); ?>
+								<?php endwhile; wp_reset_postdata(); ?>
+							</div>
 						</div>
 					<?php endif; ?>
 
 					<?php if ( $resources['latest']->have_posts() ) : ?>
-						<div class="tile__list tabs__item<?php if ( $disable_sliders ) echo ' row'; ?><?php echo ! $resources['featured']->have_posts() ? ' active' : ''; ?>" data-tabs-panel<?php if ( ! $disable_sliders ) echo ' data-resource-slider'; ?> role="tabpanel">
-							<?php while ( $resources['latest']->have_posts() ) : $resources['latest']->the_post(); ?>
+						<div class="tabs__item" data-tabs-panel role="tabpanel">
+							<div class="tile__list<?php echo ! $resources['featured']->have_posts() ? ' active' : ''; ?>"<?php if ( ! $disable_sliders ) echo ' data-resource-slider'; ?>>
+								<?php while ( $resources['latest']->have_posts() ) : $resources['latest']->the_post(); ?>
 
-								<?php if ( $disable_sliders ) : ?>
-									<?php get_template_part( 'templates/sections/resource-tile' ); ?>
-								<?php else : ?>
 									<div class="tile__slider">
 										<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 									</div>
-								<?php endif; ?>
 
-							<?php endwhile; wp_reset_postdata(); ?>
+								<?php endwhile; wp_reset_postdata(); ?>
+							</div>
 						</div>
 					<?php endif; ?>
 
 					<?php if ( $resources['popular']->have_posts() ) : ?>
-						<div class="tile__list tabs__item<?php if ( $disable_sliders ) echo ' row'; ?>" data-tabs-panel<?php if ( ! $disable_sliders ) echo ' data-resource-slider'; ?> role="tabpanel">
-							<?php while ( $resources['popular']->have_posts() ) : $resources['popular']->the_post(); ?>
+						<div class="tabs__item" data-tabs-panel role="tabpanel">
+							<div class="tile__list"<?php if ( ! $disable_sliders ) echo ' data-resource-slider'; ?>>
+								<?php while ( $resources['popular']->have_posts() ) : $resources['popular']->the_post(); ?>
 
-								<?php if ( $disable_sliders ) : ?>
-									<?php get_template_part( 'templates/sections/resource-tile' ); ?>
-								<?php else : ?>
 									<div class="tile__slider">
 										<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 									</div>
-								<?php endif; ?>
 
-							<?php endwhile; wp_reset_postdata(); ?>
+								<?php endwhile; wp_reset_postdata(); ?>
+							</div>
 						</div>
 					<?php endif; ?>
 				</div>

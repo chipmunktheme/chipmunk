@@ -56,10 +56,6 @@
 }
 
 .slick-slide {
-  float: left;
-  min-height: 1px;
-  display: none;
-
   [dir="rtl"] & {
     float: right;
   }
@@ -74,10 +70,6 @@
 
   &.dragging img {
     pointer-events: none;
-  }
-
-  .slick-initialized & {
-    display: block;
   }
 
   .slick-loading & {

@@ -63,15 +63,27 @@
 }
 
 .tile__list {
-  @include clearfix;
+  display: flex;
+  flex-wrap: wrap;
   margin: 0 (-$separator / 2);
+
+  &.slick-slider {
+    display: block;
+  }
 }
 
 .tile__slider {
   display: flex;
   padding: 0 ($separator / 2);
-  float: left;
-  width: 33.3%;
+  width: 100%;
+
+  @include breakpoint(md) {
+    width: 50%;
+  }
+
+  @include breakpoint(lg) {
+    width: 33.3%;
+  }
 
   &:focus {
     outline: none;

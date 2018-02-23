@@ -22235,6 +22235,7 @@ var Extras = function () {
   // Resources carousel
   $('[data-resource-slider]').slick({
     infinite: false,
+    rows: 0,
     slidesToShow: 3,
     slidesToScroll: 3,
     responsive: [
