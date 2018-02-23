@@ -3,7 +3,7 @@
 <?php $layout = is_single() || is_front_page() ? 'tiles' : chipmunk_theme_option( 'blog_layout' ); ?>
 
 <?php if ( is_single() ) : ?>
-	<?php $custom_query = chipmunk_get_related_posts( get_the_ID() ); ?>
+	<?php $custom_query = chipmunk_get_related( get_the_ID() ); ?>
 <?php elseif ( is_front_page() ) : ?>
 	<?php $custom_query = chipmunk_get_posts( 3 ); ?>
 <?php else : ?>

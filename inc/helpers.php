@@ -232,6 +232,47 @@ function chipmunk_get_menu_items( $location ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_related' ) ) :
+/**
+ * Get related resources
+ */
+function chipmunk_get_related( $post_id, $limit = 3 ) {
+	$tax_query = array();
+
+	$post = get_post( $post_id );
+	$taxonomies = get_object_taxonomies( $post, 'names' );
+
+	foreach ( $taxonomies as $taxonomy ) {
+		$terms = get_the_terms( $post_id, $taxonomy );
+
+		if ( ! empty( $terms ) ) {
+			$tax_query[] = array(
+				'taxonomy'    => $taxonomy,
+				'field'       => 'term_id',
+				'terms'       => array_map( 'chipmunk_get_term_id', $terms ),
+				'operator'    => 'IN',
+			);
+		};
+	}
+
+	if ( count( $tax_query ) > 1 ) {
+		$tax_query['relation'] = 'OR';
+	}
+
+	$args = array(
+		'post_type'       => get_post_type( $post_id ),
+		'post__not_in'    => array( $post_id ),
+		'posts_per_page'  => $limit,
+		'tax_query'       => $tax_query,
+		'orderby'         => 'rand',
+	);
+
+	$query = new WP_Query( $args );
+	return $query;
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_posts' ) ) :
 /**
  * Get posts
@@ -257,48 +298,6 @@ function chipmunk_get_posts( $limit = -1, $paged = false, $term = null ) {
 	}
 
 	$query = new WP_Query( array_merge( $args, $tax_args ) );
-	return $query;
-}
-endif;
-
-
-if ( ! function_exists( 'chipmunk_get_related_posts' ) ) :
-/**
- * Get posts
- */
-function chipmunk_get_related_posts( $post_id ) {
-	$args = array(
-		'posts_per_page'  => 3,
-		'post_type'       => 'post',
-		'post__not_in'    => array( $post_id ),
-		'orderby'         => 'rand',
-	);
-
-	$tags = get_the_terms( $post_id, 'post_tag' );
-	$collections = get_the_terms( $post_id, 'category' );
-
-	if ( ! empty( $tags ) ) {
-		$args['tax_query'] = array(
-			array(
-				'taxonomy'    => 'post_tag',
-				'field'       => 'term_id',
-				'terms'       => array_map( 'chipmunk_get_term_id', $tags ),
-				'operator'    => 'IN',
-			),
-		);
-	}
-	elseif ( ! empty( $collections ) ) {
-		$args['tax_query'] = array(
-			array(
-				'taxonomy'    => 'category',
-				'field'       => 'term_id',
-				'terms'       => array_map( 'chipmunk_get_term_id', $collections ),
-				'operator'    => 'IN',
-			),
-		);
-	}
-
-	$query = new WP_Query( $args );
 	return $query;
 }
 endif;
@@ -443,47 +442,6 @@ function chipmunk_get_popular_resources( $limit = -1, $paged = false ) {
 		'meta_key'        => '_' . THEME_SLUG . '_post_view_count',
 		'orderby'         => 'meta_value_num',
 		'order'           => 'DESC',
-	);
-
-	$query = new WP_Query( $args );
-	return $query;
-}
-endif;
-
-
-if ( ! function_exists( 'chipmunk_get_related_resources' ) ) :
-/**
- * Get related resources
- */
-function chipmunk_get_related_resources( $post_id, $limit = 3 ) {
-	$tax_query = array();
-
-	$post = get_post( $post_id );
-	$taxonomies = get_object_taxonomies( $post, 'names' );
-
-	foreach ( $taxonomies as $taxonomy ) {
-		$terms = get_the_terms( $post_id, $taxonomy );
-
-		if ( ! empty( $terms ) ) {
-			$tax_query[] = array(
-				'taxonomy'    => $taxonomy,
-				'field'       => 'term_id',
-				'terms'       => array_map( 'chipmunk_get_term_id', $terms ),
-				'operator'    => 'IN',
-			);
-		};
-	}
-
-	if ( count( $tax_query ) > 1 ) {
-		$tax_query['relation'] = 'OR';
-	}
-
-	$args = array(
-		'posts_per_page'  => $limit,
-		'post_type'       => get_post_type( $post_id ),
-		'post__not_in'    => array( $post_id ),
-		'orderby'         => 'rand',
-		'tax_query'       => $tax_query,
 	);
 
 	$query = new WP_Query( $args );
