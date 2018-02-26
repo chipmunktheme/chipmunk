@@ -7,7 +7,7 @@
 
 			<?php if ( ! chipmunk_theme_option( 'disable_credits' ) ) : ?>
 				<p class="page-foot__credits">
-					<a href="https://chipmunktheme.com" target="_blank" title="<?php esc_attr_e( 'Chipmunk WordPress Theme', 'chipmunk' ); ?>">
+					<a href="<?php echo esc_url( chipmunk_external_link( 'https://chipmunktheme.com' ) ); ?>" target="_blank" title="<?php esc_attr_e( 'Chipmunk WordPress Theme', 'chipmunk' ); ?>">
 						<?php esc_html_e( 'Chipmunk WordPress Theme', 'chipmunk' ); ?>
 						<img src="<?php echo get_template_directory_uri(); ?>/static/dist/images/chipmunk.png" alt="" />
 					</a>

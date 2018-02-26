@@ -470,7 +470,7 @@ class ChipmunkCustomizer {
 						'type'        => 'text',
 						'label'       => esc_html__( 'Mailchimp form action URL', 'chipmunk' ),
 						'default'     => '#',
-						'description' => sprintf( wp_kses( __( 'Where do I find my <a href="%1$s" target="_blank">Mailchimp form action URL?</a>', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'http://chipmunktheme.com/help/mailchimp-url' ) ),
+						'description' => sprintf( wp_kses( __( 'Where do I find my <a href="%1$s" target="_blank">Mailchimp form action URL?</a>', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://chipmunktheme.com/help/mailchimp-url' ) ),
 					),
 					array(
 						'name'        => 'newsletter_tagline',

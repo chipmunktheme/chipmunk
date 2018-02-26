@@ -3,7 +3,7 @@
  * Chipmunk: Theme specific functionalities
  *
  * Author: Piotr Kulpinski
- * URL: http://chipmunktheme.com
+ * URL: https://chipmunktheme.com
  *
  * @package WordPress
  * @subpackage Chipmunk
