@@ -23,7 +23,7 @@ var Tabs = {
 
     return $triggers.on('click', function () {
       return _this.show($(this).index(), $triggers, $panels);
-    }).first().trigger('click');
+    });
   },
 
   show: function (index, $triggers, $panels) {

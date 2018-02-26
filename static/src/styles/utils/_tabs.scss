@@ -2,6 +2,13 @@
 ** Utils - Tabs
 ** -----------------------------------------------------------------------------*/
 
+.tabs__title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-right: 6rem;
+}
+
 .tabs__item {
   display: none;
 
