@@ -7,25 +7,25 @@ var Tabs = {
 
   init: function () {
     var _this = this;
-    
+
     if (this.$trigger.length) {
       this.$trigger.each(function () {
         var $triggers = $(this).find('[data-tabs-toggle]');
         var $panels = $(this).find('[data-tabs-panel]');
-        
+
         _this.bind($triggers, $panels);
       });
     }
   },
-  
+
   bind: function ($triggers, $panels) {
     var _this = this;
-    
+
     return $triggers.on('click', function () {
       return _this.show($(this).index(), $triggers, $panels);
-    });
+    }).first().trigger('click');
   },
-  
+
   show: function (index, $triggers, $panels) {
     var activePanel, activeTab;
 

@@ -19,14 +19,14 @@ $resources = array(
 			<?php if ( $resources['latest']->have_posts() ) : ?>
 				<div class="heading heading_md">
 					<?php if ( $resources['featured']->have_posts() ) : ?>
-						<h2 class="heading__link active" data-tabs-toggle role="tab">
+						<h2 class="heading__link" data-tabs-toggle role="tab">
 							<?php esc_html_e( 'Featured', 'chipmunk' ); ?>
 							<span class="sr-only"> <?php esc_html_e( 'Resources', 'chipmunk' ); ?></span>
 						</h2>
 					<?php endif; ?>
 
 					<?php if ( $resources['latest']->have_posts() ) : ?>
-						<h2 class="heading__link<?php echo ! $resources['featured']->have_posts() ? ' active' : ''; ?>" data-tabs-toggle role="tab">
+						<h2 class="heading__link" data-tabs-toggle role="tab">
 							<?php esc_html_e( 'Latest', 'chipmunk' ); ?>
 							<span class="sr-only"> <?php esc_html_e( 'Resources', 'chipmunk' ); ?></span>
 						</h2>
@@ -42,7 +42,7 @@ $resources = array(
 
 				<div class="tab-content">
 					<?php if ( $resources['featured']->have_posts() ) : ?>
-						<div class="tabs__item active" data-tabs-panel role="tabpanel">
+						<div class="tabs__item" data-tabs-panel role="tabpanel">
 							<div class="tile__list"<?php if ( ! $disable_sliders ) echo ' data-resource-slider'; ?>>
 								<?php while ( $resources['featured']->have_posts() ) : $resources['featured']->the_post(); ?>
 
@@ -57,7 +57,7 @@ $resources = array(
 
 					<?php if ( $resources['latest']->have_posts() ) : ?>
 						<div class="tabs__item" data-tabs-panel role="tabpanel">
-							<div class="tile__list<?php echo ! $resources['featured']->have_posts() ? ' active' : ''; ?>"<?php if ( ! $disable_sliders ) echo ' data-resource-slider'; ?>>
+							<div class="tile__list"<?php if ( ! $disable_sliders ) echo ' data-resource-slider'; ?>>
 								<?php while ( $resources['latest']->have_posts() ) : $resources['latest']->the_post(); ?>
 
 									<div class="tile__slider">
