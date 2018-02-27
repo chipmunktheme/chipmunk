@@ -1,20 +1,19 @@
-'use strict';
+const $ = require('jquery');
 
-var $ = require('jquery');
-var helpers = require('../utils/helpers');
+import helpers from '../utils/helpers';
 
-var RemoteForm = {
+const RemoteForm = {
   $form: $('[data-remote-form]'),
   $message: $('[data-remote-message]'),
 
-  init: function () {
+  init() {
     if (this.$form.length) {
       this.$form.on('submit', this.events.onFormSubmit.bind(this));
     }
   },
 
   events: {
-    onFormSubmit: function (ev) {
+    onFormSubmit(ev) {
       ev.preventDefault();
 
       var $form = $(ev.target);
@@ -26,12 +25,12 @@ var RemoteForm = {
       $form.parent().addClass('is-loading');
 
       helpers.request(formAction, formObject)
-        .fail(function (xhr, ajaxOptions, thrownError) {
+        .fail((xhr, ajaxOptions, thrownError) => {
           console.log(xhr.status);
           console.log(xhr.responseText);
           console.log(thrownError);
         })
-        .done(function (response) {
+        .done((response) => {
           console.log('Remote form: ', response);
 
           if (this.$message.length) {
@@ -41,13 +40,13 @@ var RemoteForm = {
 
             this.$message.text(response.data).show();
           }
-        }.bind(this))
-        .always(function () {
+        })
+        .always(() => {
           // Disable loading indicator
           $form.parent().removeClass('is-loading');
         });
     }
-  }
+  },
 };
 
-module.exports = RemoteForm;
+export default RemoteForm;

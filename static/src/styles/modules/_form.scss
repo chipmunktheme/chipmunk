@@ -29,6 +29,7 @@
     vertical-align: middle;
     appearance: none;
     overflow: hidden;
+    text-align: inherit;
     text-overflow: ellipsis;
     white-space: nowrap;
 
@@ -43,24 +44,6 @@
 
     &:focus {
       outline: none;
-    }
-  }
-
-  .parsley-errors-list {
-    margin-top: 0;
-    text-align: left;
-
-    &.filled {
-      margin-top: 0.5rem;
-    }
-
-    li {
-      color: $color-status-error;
-      font-size: 1.6rem;
-    }
-
-    li::before {
-      content: initial;
     }
   }
 
@@ -79,18 +62,6 @@
   }
 
   &_compact {
-    input,
-    textarea {
-      text-align: center;
-    }
-
-    .parsley-errors-list.filled {
-      width: 100%;
-      text-align: center;
-    }
-  }
-
-  &_centered {
     text-align: center;
   }
 }

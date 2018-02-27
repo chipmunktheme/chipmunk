@@ -1,12 +1,11 @@
-'use strict';
+const $ = require('jquery');
 
-var $ = require('jquery');
-var helpers = require('../utils/helpers');
+import helpers from '../utils/helpers';
 
-var Actions = {
+const Actions = {
   $trigger: $('[data-action]'),
 
-  init: function () {
+  init() {
     if (this.$trigger.length) {
       this.$trigger.on('click', function (ev) {
         ev.preventDefault();
@@ -18,22 +17,22 @@ var Actions = {
   },
 
   events: {
-    submit_upvote: function ($target) {
+    submit_upvote($target) {
       var data = $target.data();
 
       // Enable loading indicator
       $target.addClass('is-loading');
 
       helpers.request(data.action, data)
-        .fail(function (xhr, ajaxOptions, thrownError) {
+        .fail((xhr, ajaxOptions, thrownError) => {
           console.log(xhr.status);
           console.log(xhr.responseText);
           console.log(thrownError);
         })
-        .done(function (response) {
+        .done((response) => {
           console.log('Upvote: ', response);
-          
-          setTimeout(function () {
+
+          setTimeout(() => {
             var $targets = $('[data-post-id="' + response.post + '"]');
 
             if ($target.length > 0) {
@@ -42,14 +41,12 @@ var Actions = {
             }
           }, 250);
         })
-        .always(function () {
+        .always(() => {
           // Disable loading indicator
-          setTimeout(function () {
-            $target.removeClass('is-loading');
-          }, 250);
+          setTimeout(() => $target.removeClass('is-loading'), 250);
         });
     }
   }
 };
 
-module.exports = Actions;
+export default Actions;

@@ -2,7 +2,7 @@
 
 <p class="form__message heading heading_thin" style="display: none;" data-remote-message></p>
 
-<form action="#" method="post" enctype="multipart/form-data" class="form form_centered" novalidate data-parsley-validate data-remote-form="submit_resource">
+<form action="#" method="post" enctype="multipart/form-data" class="form" novalidate data-remote-form="submit_resource">
 	<div class="form__field">
 		<div class="form__child">
 			<input type="text" name="name" placeholder="<?php esc_attr_e( 'Resource name', 'chipmunk' ); ?>" required>

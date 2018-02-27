@@ -1508,6 +1508,24 @@ input[type="submit"]:focus {
   overflow: hidden;
 }
 /*
+** Vendor - Parsley
+** -----------------------------------------------------------------------------*/
+.parsley-errors-list {
+  width: 100%;
+  margin-top: 0;
+  text-align: inherit;
+}
+.parsley-errors-list.filled {
+  margin-top: 0.5rem;
+}
+.parsley-errors-list li {
+  color: #F74444;
+  font-size: 1.6rem;
+}
+.parsley-errors-list li::before {
+  content: initial;
+}
+/*
 ** Vendor - Select2
 ** -----------------------------------------------------------------------------*/
 .select2-container {
@@ -2661,6 +2679,7 @@ input[type="submit"]:focus {
      -moz-appearance: none;
           appearance: none;
   overflow: hidden;
+  text-align: inherit;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -2707,20 +2726,6 @@ input[type="submit"]:focus {
 .form textarea:focus, .content form textarea:focus {
   outline: none;
 }
-.form .parsley-errors-list, .content form .parsley-errors-list {
-  margin-top: 0;
-  text-align: left;
-}
-.form .parsley-errors-list.filled, .content form .parsley-errors-list.filled {
-  margin-top: 0.5rem;
-}
-.form .parsley-errors-list li, .content form .parsley-errors-list li {
-  color: #F74444;
-  font-size: 1.6rem;
-}
-.form .parsley-errors-list li::before, .content form .parsley-errors-list li::before {
-  content: initial;
-}
 .form label, .content form label {
   display: inline-block;
   margin: 0.5em 0;
@@ -2733,15 +2738,7 @@ input[type="submit"]:focus {
   font-weight: normal;
   color: #808080;
 }
-.form_compact input,
-.form_compact textarea {
-  text-align: center;
-}
-.form_compact .parsley-errors-list.filled {
-  width: 100%;
-  text-align: center;
-}
-.form_centered {
+.form_compact {
   text-align: center;
 }
 .form__field, .content form > div {
@@ -3817,6 +3814,7 @@ input[type="submit"]:focus {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
+  position: relative;
 }
 .search-bar__form input {
   width: 100%;
@@ -3839,6 +3837,22 @@ input[type="submit"]:focus {
 }
 .search-bar__form input:focus {
   outline: none;
+}
+.search-bar__form .parsley-errors-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  text-align: right;
+}
+@media (min-width: 980px) {
+  .search-bar__form .parsley-errors-list {
+    display: block;
+  }
+}
+.search-bar__form .parsley-errors-list li {
+  font-size: 0.8em;
 }
 .search-bar__close {
   display: block;

@@ -1,9 +1,9 @@
-'use strict';
+import fitvids from 'fitvids';
 
-var fitvids = require('fitvids');
-
-var Fitvids = function () {
-  fitvids();
+const Fitvids = {
+  init() {
+    fitvids();
+  },
 };
 
-module.exports = Fitvids;
+export default Fitvids;

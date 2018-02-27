@@ -60,6 +60,7 @@
   display: flex;
   align-items: center;
   width: 100%;
+  position: relative;
 
   input {
     width: 100%;
@@ -77,6 +78,23 @@
 
     &:focus {
       outline: none;
+    }
+  }
+
+  .parsley-errors-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    text-align: right;
+
+    @include breakpoint(lg) {
+      display: block;
+    }
+
+    li {
+      font-size: 0.8em;
     }
   }
 }

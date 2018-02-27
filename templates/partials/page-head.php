@@ -20,7 +20,7 @@
 				<div class="nav-primary__inner">
 					<?php get_template_part( 'templates/partials/nav' ); ?>
 
-					<button type="button" class="nav-primary__close hidden-lg" data-nav-toggle>
+					<button type="button" class="nav-primary__close hidden-lg" data-toggle="nav">
 						<i class="icon icon_close" aria-hidden="true"></i>
 						<span class="sr-only"><?php esc_html_e( 'Close', 'chipmunk' ); ?></span>
 					</button>
@@ -31,7 +31,7 @@
 
 			<div class="page-head__cta">
 				<?php if ( ! chipmunk_theme_option( 'disable_search' ) ) : ?>
-					<button type="button" class="page-head__search" data-search-toggle>
+					<button type="button" class="page-head__search" data-toggle="search">
 						<i class="icon icon_search" aria-hidden="true"></i>
 						<span class="sr-only"><?php esc_html_e( 'Search', 'chipmunk' ); ?></span>
 					</button>
@@ -57,13 +57,13 @@
 					<?php endif; ?>
 				<?php else : ?>
 					<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
-						<button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>
+						<button type="button" class="button button_secondary visible-lg-block" data-toggle="popup">
 							<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
 						</button>
 					<?php endif; ?>
 				<?php endif; ?>
 
-				<button type="button" class="page-head__trigger button button_secondary hidden-lg" data-nav-toggle>
+				<button type="button" class="page-head__trigger button button_secondary hidden-lg" data-toggle="nav">
 					<?php esc_html_e( 'Menu', 'chipmunk' ); ?>
 				</button>
 			</div>

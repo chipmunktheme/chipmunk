@@ -1,8 +1,6 @@
-'use strict';
+const $ = require('jquery');
 
-var $ = require('jquery');
-
-var Tabs = {
+const Tabs = {
   $trigger: $('[data-tabs]'),
 
   init: function () {
@@ -41,4 +39,4 @@ var Tabs = {
   }
 };
 
-module.exports = Tabs;
+export default Tabs;

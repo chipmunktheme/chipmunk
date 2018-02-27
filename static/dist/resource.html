@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Resource - Chipmunk Theme</title>
-    <link rel="stylesheet" media="all" href="styles/main-min.css?v=1519661135">
+    <link rel="stylesheet" media="all" href="styles/main-min.css?v=1519727908">
     <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=Poppins:400,700">
     <link rel="icon" type="image/png" href="images/chipmunk.png">
   </head>
@@ -52,11 +52,11 @@
                     </ul>
                   </li>
                   <li class="nav-primary__item hidden-lg">
-                    <button type="button" class="button button_secondary" data-popup-toggle>Submit</button>
+                    <button type="button" class="button button_secondary" data-toggle="popup">Submit</button>
                   </li>
                 </ul>
 
-                <button type="button" class="nav-primary__close hidden-lg" data-nav-toggle>
+                <button type="button" class="nav-primary__close hidden-lg" data-toggle="nav">
                   <span class="sr-only">Close</span>
                   <i class="icon icon_close"></i>
                 </button>
@@ -66,12 +66,12 @@
             <!-- /.nav-primary -->
 
             <div class="page-head__cta">
-              <button type="button" class="page-head__search" data-search-toggle>
+              <button type="button" class="page-head__search" data-toggle="search">
                 <i class="icon icon_search"></i>
                 <span class="sr-only">Search</span>
               </button>
-              <button type="button" class="button button_secondary visible-lg-block" data-popup-toggle>Submit</button>
-              <button type="button" class="page-head__trigger button button_secondary hidden-lg" data-nav-toggle>Menu</button>
+              <button type="button" class="button button_secondary visible-lg-block" data-toggle="popup">Submit</button>
+              <button type="button" class="page-head__trigger button button_secondary hidden-lg" data-toggle="nav">Menu</button>
             </div>
             <!-- /.page-head__cta -->
           </div>
@@ -92,12 +92,12 @@
                   <span class="stats__tag stats__tag_dimmed">+3 more</span>
                 </li>
                 <li class="stats__item" title="Published">
-                  <i class="icon icon_clock"></i> 1. August</li>
+                  <i class="icon icon_clock"></i> 23. August</li>
                 <li class="stats__item" title="Views">
-                  <i class="icon icon_view"></i> 1635</li>
+                  <i class="icon icon_view"></i> 285</li>
                 <li class="stats__item" title="Upvotes">
                   <button class="stats__button" title="Upvote">
-                    <i class="icon icon_arrow-up"></i> 12</button>
+                    <i class="icon icon_arrow-up"></i> 70</button>
                 </li>
               </ul>
 
@@ -272,12 +272,12 @@
 
                 <ul class="tile__stats stats">
                   <li class="stats__item" title="Published">
-                    <i class="icon icon_clock"></i> 4. August</li>
+                    <i class="icon icon_clock"></i> 27. August</li>
                   <li class="stats__item" title="Views">
-                    <i class="icon icon_view"></i> 1978</li>
+                    <i class="icon icon_view"></i> 669</li>
                   <li class="stats__item stats__item_sided" title="Upvotes">
                     <button class="stats__button" title="Upvote">
-                      <i class="icon icon_arrow-up"></i> 64</button>
+                      <i class="icon icon_arrow-up"></i> 34</button>
                   </li>
                 </ul>
               </div>
@@ -297,12 +297,12 @@
 
                 <ul class="tile__stats stats">
                   <li class="stats__item" title="Published">
-                    <i class="icon icon_clock"></i> 22. August</li>
+                    <i class="icon icon_clock"></i> 4. August</li>
                   <li class="stats__item" title="Views">
-                    <i class="icon icon_view"></i> 382</li>
+                    <i class="icon icon_view"></i> 244</li>
                   <li class="stats__item stats__item_sided" title="Upvotes">
                     <button class="stats__button" title="Upvote">
-                      <i class="icon icon_arrow-up"></i> 44</button>
+                      <i class="icon icon_arrow-up"></i> 66</button>
                   </li>
                 </ul>
               </div>
@@ -322,12 +322,12 @@
 
                 <ul class="tile__stats stats">
                   <li class="stats__item" title="Published">
-                    <i class="icon icon_clock"></i> 19. August</li>
+                    <i class="icon icon_clock"></i> 26. August</li>
                   <li class="stats__item" title="Views">
-                    <i class="icon icon_view"></i> 328</li>
+                    <i class="icon icon_view"></i> 1649</li>
                   <li class="stats__item stats__item_sided" title="Upvotes">
                     <button class="stats__button" title="Upvote">
-                      <i class="icon icon_arrow-up"></i> 15</button>
+                      <i class="icon icon_arrow-up"></i> 79</button>
                   </li>
                 </ul>
               </div>
@@ -400,7 +400,7 @@
 
             <div class="toolbox__cta visible-md-flex">
               <p class="visible-lg-block">Internet is huge! Help us find great content</p>
-              <button type="button" class="toolbox__button button button_primary" data-popup-toggle>Submit</button>
+              <button type="button" class="toolbox__button button button_primary" data-toggle="popup">Submit</button>
             </div>
           </div>
           <!-- /.toolbox -->
@@ -501,10 +501,10 @@
             <button type="submit">
               <i class="search-bar__icon icon icon_search"></i>
             </button>
-            <input type="text" name="search" placeholder="Search query&hellip;">
+            <input type="text" name="search" placeholder="Search query&hellip;" required>
           </form>
 
-          <button type="button" class="search-bar__close" data-search-toggle>
+          <button type="button" class="search-bar__close" data-toggle="search">
             <i class="icon icon_close"></i>
             <span class="sr-only">Close</span>
           </button>
@@ -516,7 +516,7 @@
     <div class="popup">
       <div class="container">
         <div class="popup__content">
-          <button class="popup__close" data-popup-toggle>
+          <button class="popup__close" data-toggle="popup">
             <i class="icon icon_close"></i>
             <span class="sr-only">Close</span>
           </button>
@@ -569,6 +569,6 @@
       </div>
     </div>
     <!-- /.popup -->
-    <script src="scripts/main-min.js?v=1519661135"></script>
+    <script src="scripts/main-min.js?v=1519727908"></script>
   </body>
 </html>

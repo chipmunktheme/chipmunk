@@ -1,23 +1,21 @@
-'use strict';
+const $ = require('jquery');
 
-var $ = require('jquery');
-
-var Helpers = {
-  request: function (action, data) {
-    var requestData = $.extend(data, { 'action': action });
+const Helpers = {
+  request(action, data) {
+    const requestData = $.extend(data, { 'action': action });
 
     return $.get(document.body.dataset.ajaxUrl, requestData);
   },
 
-  convertToObject: function (params) {
-    var object = {};
+  convertToObject(params) {
+    const object = {};
 
-    for (var param in params) {
-      object[params[param].name] = params[param].value;
-    }
+    params.forEach(param => {
+      object[param.name] = param.value;
+    });
 
     return object;
   }
 };
 
-module.exports = Helpers;
+export default Helpers;

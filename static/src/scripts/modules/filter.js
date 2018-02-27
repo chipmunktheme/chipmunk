@@ -1,15 +1,22 @@
-'use strict';
+import queryString from 'query-string';
 
-var $ = require('jquery');
-var queryString = require('query-string');
+const Filter = {
+  element: '[data-filter]',
 
-var Filter = function () {
-  $('[data-filter]').on('change', function () {
-    var params = queryString.parse(location.search);
+  init() {
+    this.filters = document.querySelectorAll(this.element);
 
-    $('[data-filter]').each(function () {
-      var name = $(this).data('filter');
-      var value = $(this).val();
+    [].forEach.call(this.filters, filter => {
+      filter.onchange = this.filterResults.bind(this);
+    });
+  },
+
+  filterResults() {
+    const params = queryString.parse(location.search);
+
+    [].forEach.call(this.filters, filter => {
+      const name = filter.dataset.filter;
+      const value = filter.value;
 
       if (value !== '') {
         params[name] = value;
@@ -18,15 +25,15 @@ var Filter = function () {
       }
     });
 
-    var search = queryString.stringify(params);
-    var pageRegex = /\/page\/[0-9]+\//g;
+    const search = queryString.stringify(params);
+    const pageRegex = /\/page\/[0-9]+\//g;
 
     if (params['tag']) {
       location.href = location.origin + location.pathname.replace(pageRegex, '/') + '?' + search;
     } else {
       location.search = search;
     }
-  });
+  },
 };
 
-module.exports = Filter;
+export default Filter;
