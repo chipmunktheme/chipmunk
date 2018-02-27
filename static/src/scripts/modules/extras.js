@@ -9,7 +9,7 @@ const Extras = {
     $('select').each(function () {
       $(this).select2({
         minimumResultsForSearch: Infinity,
-        dropdownParent: $(this).parent()
+        dropdownParent: $(this).parent(),
       });
     });
 
@@ -24,17 +24,17 @@ const Extras = {
           breakpoint: 980,
           settings: {
             slidesToShow: 2,
-            slidesToScroll: 2
-          }
+            slidesToScroll: 2,
+          },
         },
         {
           breakpoint: 680,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]
+            slidesToScroll: 1,
+          },
+        },
+      ],
     });
 
     $(document).on('shown.tab', function () {

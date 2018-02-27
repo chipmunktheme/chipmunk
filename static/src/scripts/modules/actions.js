@@ -7,12 +7,12 @@ const Actions = {
 
   init() {
     if (this.$trigger.length) {
-      this.$trigger.on('click', function (ev) {
+      this.$trigger.on('click', ev => {
         ev.preventDefault();
         ev.stopPropagation();
 
         this.events[$(ev.currentTarget).data('action')].call(this, $(ev.currentTarget));
-      }.bind(this));
+      });
     }
   },
 

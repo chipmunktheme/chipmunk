@@ -1,5 +1,3 @@
-const $ = require('jquery');
-
 const Toggle = {
   element: '[data-toggle]',
 
@@ -16,7 +14,11 @@ const Toggle = {
     document.body.classList.toggle(`has-${ev.currentTarget.dataset.toggle}-open`);
 
     // Scroll page to the top
-    $('html, body').animate({ scrollTop: 0 }, 500);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   },
 };
 

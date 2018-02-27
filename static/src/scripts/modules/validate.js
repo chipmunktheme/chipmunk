@@ -1,5 +1,3 @@
-const $ = require('jquery');
-
 import Parsley from 'parsleyjs';
 
 const Validate = {
@@ -137,19 +135,21 @@ const Validate = {
     if (this.triggers) {
       [].forEach.call(this.triggers, trigger => this.validate(trigger));
     }
-  },
 
-  validate(form) {
     if (this.lang && this.lang !== 'en-US' && this.messages[this.lang]) {
       Parsley.addMessages(this.lang, this.messages[this.lang]);
       Parsley.setLocale(this.lang);
     }
+  },
 
-    $('form[action] .custom-select').on('change', function () {
-      $(this).parsley().validate();
+  validate(form) {
+    const instance = new Parsley.Factory(form);
+
+    [].forEach.call(form.querySelectorAll('.custom-select'), select => {
+      select.onchange = () => {
+        instance.validate();
+      };
     });
-
-    new Parsley.Factory(form);
   },
 };
 
