@@ -3,12 +3,12 @@ const $ = require('jquery');
 import helpers from '../utils/helpers';
 
 const RemoteForm = {
-  $form: $('[data-remote-form]'),
-  $message: $('[data-remote-message]'),
+  form: $('[data-remote-form]'),
+  message: $('[data-remote-message]'),
 
   init() {
-    if (this.$form.length) {
-      this.$form.on('submit', this.events.onFormSubmit.bind(this));
+    if (this.form.length) {
+      this.form.on('submit', this.events.onFormSubmit.bind(this));
     }
   },
 
@@ -16,13 +16,13 @@ const RemoteForm = {
     onFormSubmit(ev) {
       ev.preventDefault();
 
-      var $form = $(ev.target);
-      var formAction = $form.data('remote-form');
-      var formData = $form.serializeArray();
+      var form = $(ev.target);
+      var formAction = form.data('remote-form');
+      var formData = form.serializeArray();
       var formObject = helpers.convertToObject(formData);
 
       // Enable loading indicator
-      $form.parent().addClass('is-loading');
+      form.parent().addClass('is-loading');
 
       helpers.request(formAction, formObject)
         .fail((xhr, ajaxOptions, thrownError) => {
@@ -33,17 +33,17 @@ const RemoteForm = {
         .done((response) => {
           console.log('Remote form: ', response);
 
-          if (this.$message.length) {
+          if (this.message.length) {
             if (response.success) {
-              $form.hide();
+              form.hide();
             }
 
-            this.$message.text(response.data).show();
+            this.message.text(response.data).show();
           }
         })
         .always(() => {
           // Disable loading indicator
-          $form.parent().removeClass('is-loading');
+          form.parent().removeClass('is-loading');
         });
     }
   },

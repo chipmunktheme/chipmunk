@@ -134,11 +134,11 @@ const Validate = {
 
     if (this.triggers) {
       [].forEach.call(this.triggers, trigger => this.validate(trigger));
-    }
 
-    if (this.lang && this.lang !== 'en-US' && this.messages[this.lang]) {
-      Parsley.addMessages(this.lang, this.messages[this.lang]);
-      Parsley.setLocale(this.lang);
+      if (this.lang && this.lang !== 'en-US' && this.messages[this.lang]) {
+        Parsley.addMessages(this.lang, this.messages[this.lang]);
+        Parsley.setLocale(this.lang);
+      }
     }
   },
 

@@ -3,11 +3,11 @@ const $ = require('jquery');
 import helpers from '../utils/helpers';
 
 const Actions = {
-  $trigger: $('[data-action]'),
+  trigger: $('[data-action]'),
 
   init() {
-    if (this.$trigger.length) {
-      this.$trigger.on('click', ev => {
+    if (this.trigger.length) {
+      this.trigger.on('click', ev => {
         ev.preventDefault();
         ev.stopPropagation();
 

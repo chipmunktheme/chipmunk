@@ -1,41 +1,40 @@
-const $ = require('jquery');
-
 const Tabs = {
-  $trigger: $('[data-tabs]'),
+  element: '[data-tabs]',
 
-  init: function () {
-    var _this = this;
+  init() {
+    this.tabs = document.querySelectorAll(this.element);
 
-    if (this.$trigger.length) {
-      this.$trigger.each(function () {
-        var $triggers = $(this).find('[data-tabs-toggle]');
-        var $panels = $(this).find('[data-tabs-panel]');
+    if (this.tabs.length) {
+      [].forEach.call(this.tabs, tab => {
+        const toggles = tab.querySelectorAll('[data-tabs-toggle]');
+        const panels = tab.querySelectorAll('[data-tabs-panel]');
 
-        _this.bind($triggers, $panels);
+        this.bind(toggles, panels);
       });
     }
   },
 
-  bind: function ($triggers, $panels) {
-    var _this = this;
-
-    return $triggers.on('click', function () {
-      return _this.show($(this).index(), $triggers, $panels);
+  bind(toggles, panels) {
+    [].forEach.call(toggles, (toggle, index) => {
+      toggle.addEventListener('click', () => {
+        this.show(index, toggles, panels);
+      });
     });
   },
 
-  show: function (index, $triggers, $panels) {
-    var activePanel, activeTab;
+  show(index, toggles, panels) {
+    [].forEach.call(toggles, toggle => {
+      toggle.classList.remove('active');
+    });
 
-    $triggers.removeClass('active');
-    activeTab = $triggers.get(index);
-    $(activeTab).addClass('active');
+    [].forEach.call(panels, panel => {
+      panel.classList.remove('active');
+    });
 
-    $panels.removeClass('active');
-    activePanel = $panels.get(index);
-    $(activePanel).addClass('active');
+    toggles[index].classList.add('active');
+    panels[index].classList.add('active');
 
-    $(document).trigger('shown.tab');
+    window.dispatchEvent(new CustomEvent('tabs:show'));
   }
 };
 

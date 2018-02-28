@@ -78,7 +78,7 @@ endif;
 			'title_reply_after'    => '</h3>',
 			'submit_button'        => '<span class="form__field"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></span>',
 			'fields'               => apply_filters( 'comment_form_fields', $fields ),
-			'comment_field'        => '<div class="form__field"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . esc_attr__( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' data-update-rows></textarea></div>',
+			'comment_field'        => '<div class="form__field"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . esc_attr__( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '"' . $req . ' data-dynamic-rows></textarea></div>',
 		) );
 
 		?>

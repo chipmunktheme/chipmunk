@@ -4,10 +4,13 @@
 ** --------------------------------
 **/
 
+import 'custom-event-polyfill';
+
 import toggle from './modules/toggle';
 import validate from './modules/validate';
 import filter from './modules/filter';
 import tabs from './modules/tabs';
+import dynamicRows from './modules/dynamic-rows';
 import fitvids from './modules/fitvids';
 import extras from './modules/extras';
 import actions from './modules/actions';
@@ -18,6 +21,7 @@ import remoteForm from './modules/remote-form';
   validate.init();
   filter.init();
   tabs.init();
+  dynamicRows.init();
   fitvids.init();
   extras.init();
   actions.init();
