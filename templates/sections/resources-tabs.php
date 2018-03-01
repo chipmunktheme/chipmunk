@@ -56,7 +56,9 @@
 
 								<?php endwhile; wp_reset_postdata(); ?>
 							</div>
+							<!-- /.tile__list -->
 						</div>
+						<!-- /.tabs__item -->
 
 					<?php endforeach; ?>
 				</div>

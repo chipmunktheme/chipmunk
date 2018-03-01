@@ -7,20 +7,7 @@
           <p class="text_content text_subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Donec id elit non mi porta gravida at eget metus. Donec sed odio dui.</p>
         </div>
 
-        <div class="sort column column_md-2 column_lg-4">
-        	<h4 class="sort__title visible-lg-inline-block">Sort by:</h4>
-
-        	<select class="sort__select custom-select" data-sort>
-        		<option value="date-desc" selected>Date &darr;</option>
-        		<option value="date-asc">Date &uarr;</option>
-        		<option value="name-desc">Name &darr;</option>
-        		<option value="name-asc">Name &uarr;</option>
-      			<option value="views-desc">Views &darr;</option>
-      			<option value="views-asc">Views &uarr;</option>
-      			<option value="upvotes-desc">Upvotes &darr;</option>
-      			<option value="upvotes-asc">Upvotes &uarr;</option>
-        	</select>
-        </div>
+        {% include '../partials/filters.twig' %}
       </div>
     {% else %}
       <h3 class="heading heading_md">{{ title }}</h3>

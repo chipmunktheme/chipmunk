@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Error 404 - Chipmunk Theme</title>
-    <link rel="stylesheet" media="all" href="styles/main-min.css?v=1519834003">
+    <link rel="stylesheet" media="all" href="styles/main-min.css?v=1519890013">
     <link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=Poppins:400,700">
     <link rel="icon" type="image/png" href="images/chipmunk.png">
   </head>
@@ -121,37 +121,37 @@
                 <ul>
                   <li class="nav-socials__item">
                     <a href="#" title="Twitter">
-                      <i class="icon icon_twitter"></i>
+                      <i class="icon icon_social-twitter"></i>
                       <span class="sr-only">Twitter</span>
                     </a>
                   </li>
                   <li class="nav-socials__item">
                     <a href="#" title="Facebook">
-                      <i class="icon icon_facebook"></i>
+                      <i class="icon icon_social-facebook"></i>
                       <span class="sr-only">Facebook</span>
                     </a>
                   </li>
                   <li class="nav-socials__item">
                     <a href="#" title="Google+">
-                      <i class="icon icon_google"></i>
+                      <i class="icon icon_social-google"></i>
                       <span class="sr-only">Google+</span>
                     </a>
                   </li>
                   <li class="nav-socials__item">
                     <a href="#" title="YouTube">
-                      <i class="icon icon_youtube"></i>
+                      <i class="icon icon_social-youtube"></i>
                       <span class="sr-only">YouTube</span>
                     </a>
                   </li>
                   <li class="nav-socials__item">
                     <a href="#" title="Instagram">
-                      <i class="icon icon_instagram"></i>
+                      <i class="icon icon_social-instagram"></i>
                       <span class="sr-only">Instagram</span>
                     </a>
                   </li>
                   <li class="nav-socials__item">
                     <a href="#" title="Pinterest">
-                      <i class="icon icon_pinterest"></i>
+                      <i class="icon icon_social-pinterest"></i>
                       <span class="sr-only">Pinterest</span>
                     </a>
                   </li>
@@ -295,12 +295,7 @@
                 <input type="text" name="name" placeholder="Resource name" required>
               </div>
               <div class="form__child">
-                <input type="text" name="description" placeholder="Description">
-              </div>
-            </div>
-            <div class="form__field">
-              <div class="form__child">
-                <select name="collection" data-placeholder="Collection" class="custom-select" required>
+                <select name="collection" data-placeholder="Collection" class="custom-select" data-parsley-errors-container=".collection-errors" required>
                   <option value="">Collection</option>
                   <option value="design">Design</option>
                   <option value="development">Development</option>
@@ -309,9 +304,16 @@
                   <option value="apps">Apps</option>
                   <option value="podcasts">Podcasts</option>
                 </select>
+
+                <div class="collection-errors"></div>
               </div>
+            </div>
+            <div class="form__field">
               <div class="form__child">
                 <input type="url" name="url" placeholder="Website URL" required>
+              </div>
+              <div class="form__child">
+                <input type="text" name="description" placeholder="Description">
               </div>
             </div>
             <div class="form__field form__field_separated">
@@ -331,6 +333,6 @@
       </div>
     </div>
     <!-- /.popup -->
-    <script src="scripts/main-min.js?v=1519834003"></script>
+    <script src="scripts/main-min.js?v=1519890013"></script>
   </body>
 </html>

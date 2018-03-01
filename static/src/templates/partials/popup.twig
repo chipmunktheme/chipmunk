@@ -18,12 +18,7 @@
             <input type="text" name="name" placeholder="Resource name" required>
           </div>
           <div class="form__child">
-            <input type="text" name="description" placeholder="Description">
-          </div>
-        </div>
-        <div class="form__field">
-          <div class="form__child">
-            <select name="collection" data-placeholder="Collection" class="custom-select" required>
+            <select name="collection" data-placeholder="Collection" class="custom-select" data-parsley-errors-container=".collection-errors" required>
               <option value="">Collection</option>
               <option value="design">Design</option>
               <option value="development">Development</option>
@@ -32,9 +27,16 @@
               <option value="apps">Apps</option>
               <option value="podcasts">Podcasts</option>
             </select>
+
+            <div class="collection-errors"></div>
           </div>
+        </div>
+        <div class="form__field">
           <div class="form__child">
             <input type="url" name="url" placeholder="Website URL" required>
+          </div>
+          <div class="form__child">
+            <input type="text" name="description" placeholder="Description">
           </div>
         </div>
         <div class="form__field form__field_separated">

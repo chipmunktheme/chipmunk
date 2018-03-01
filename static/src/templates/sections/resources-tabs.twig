@@ -1,49 +1,63 @@
 <div class="section">
-  <div class="container" data-tabs role="tablist">
-    <h3 class="heading heading_md">
-      <span class="heading__link active" data-tabs-toggle role="tab">Featured</span>
-      <span class="heading__link" data-tabs-toggle role="tab">Latest</span>
-      <span class="heading__link visible-sm-inline-block" data-tabs-toggle role="tab">Popular</span>
-    </h3>
+  <div class="container">
+    <h2 class="section__title">Chipmunk — A WordPress Theme for Content Curation</h2>
 
-    <div class="tab-content">
-      <div class="tile__list tabs__item active" id="featured" data-tabs-panel data-resource-slider role="tabpanel">
-        {% for i in 1..rows | default(1) %}
-          {% set resources = ['Color Hunt', 'Canopy', 'Startup Stash'] %}
-
-          {% for resource in resources %}
-            <div class="tile__slider">
-              {% include 'resource-item.twig' %}
-            </div>
-          {% endfor %}
-        {% endfor %}
+    <div class="tabs" data-tabs role="tablist">
+      <div class="tabs__title heading heading_md">
+        <strong class="heading__link active" data-tabs-toggle role="tab">Featured</strong>
+        <strong class="heading__link" data-tabs-toggle role="tab">Latest</strong>
+        <strong class="heading__link visible-sm-inline-block" data-tabs-toggle role="tab">Popular</strong>
       </div>
 
-      <div class="tile__list tabs__item" id="latest" data-tabs-panel data-resource-slider role="tabpanel">
-        {% for i in 1..rows | default(1) %}
-          {% set resources = ['Startup Stash', 'Color Hunt', 'Canopy'] %}
+      <div class="tabs__item active" data-tabs-panel role="tabpanel">
+        <div class="tile__list" data-resource-slider>
+          {% for i in 1..rows | default(1) %}
+            {% set resources = ['Color Hunt', 'Canopy', 'Startup Stash'] %}
 
-          {% for resource in resources %}
-            <div class="tile__slider">
-              {% include 'resource-item.twig' %}
-            </div>
+            {% for resource in resources %}
+              <div class="tile__slider">
+                {% include 'resource-item.twig' %}
+              </div>
+            {% endfor %}
           {% endfor %}
-        {% endfor %}
+        </div>
+        <!-- /.tile__list -->
       </div>
+      <!-- /.tabs__item -->
 
-      <div class="tile__list tabs__item" id="popular" data-tabs-panel data-resource-slider role="tabpanel">
-        {% for i in 1..rows | default(1) %}
-          {% set resources = ['Startup Stash', 'Color Hunt', 'Canopy'] %}
+      <div class="tabs__item" data-tabs-panel role="tabpanel">
+        <div class="tile__list" data-resource-slider>
+          {% for i in 1..rows | default(1) %}
+            {% set resources = ['Startup Stash', 'Color Hunt', 'Canopy'] %}
 
-          {% for resource in resources %}
-            <div class="tile__slider">
-              {% include 'resource-item.twig' %}
-            </div>
+            {% for resource in resources %}
+              <div class="tile__slider">
+                {% include 'resource-item.twig' %}
+              </div>
+            {% endfor %}
           {% endfor %}
-        {% endfor %}
+        </div>
+        <!-- /.tile__list -->
       </div>
+      <!-- /.tabs__item -->
+
+      <div class="tabs__item" data-tabs-panel role="tabpanel">
+        <div class="tile__list" data-resource-slider>
+          {% for i in 1..rows | default(1) %}
+            {% set resources = ['Startup Stash', 'Color Hunt', 'Canopy'] %}
+
+            {% for resource in resources %}
+              <div class="tile__slider">
+                {% include 'resource-item.twig' %}
+              </div>
+            {% endfor %}
+          {% endfor %}
+        </div>
+        <!-- /.tile__list -->
+      </div>
+      <!-- /.tabs__item -->
     </div>
-    <!-- /.tab-content -->
+    <!-- /.tabs -->
   </div>
 </div>
 <!-- /.section -->
