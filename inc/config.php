@@ -115,18 +115,18 @@ function chipmunk_add_og_tags() {
 	if ( is_front_page() ) {
 		?>
 
+		<!-- / Twitter Card -->
+		<meta name="twitter:card" content="summary">
+
 		<!-- / FB Open Graph -->
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">
 		<meta property="og:title" content="<?php bloginfo( 'name' ); ?>">
 		<meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
 		<meta property="og:image" content="<?php echo $site_image; ?>">
-
-		<!-- / Twitter Cards -->
-		<meta name="twitter:card" content="summary">
-		<meta name="twitter:title" content="<?php bloginfo( 'name' ); ?>">
-		<meta name="twitter:description" content="<?php echo chipmunk_meta_description(); ?>">
-		<meta name="twitter:image" content="<?php echo $site_image; ?>">
+		<meta property="og:image:width" content="1200">
+		<meta property="og:image:height" content="630">
+		<meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>">
 
 		<?php
 	}
@@ -140,19 +140,18 @@ function chipmunk_add_og_tags() {
 		}
 		?>
 
+		<!-- / Twitter Card -->
+		<meta name="twitter:card" content="<?php echo isset( $image ) ? 'summary_large_image' : 'summary'; ?>">
+
 		<!-- / FB Open Graph -->
 		<meta property="og:type" content="article">
 		<meta property="og:url" content="<?php the_permalink(); ?>">
 		<meta property="og:title" content="<?php echo chipmunk_og_title(); ?>">
 		<meta property="og:description" content="<?php echo chipmunk_meta_description(); ?>">
 		<meta property="og:image" content="<?php echo isset( $image ) ? $image : $site_image; ?>">
-		<meta property="og:site_name" content="<?php echo get_bloginfo( 'name' ); ?>">
-
-		<!-- / Twitter Cards -->
-		<meta name="twitter:card" content="<?php echo isset( $image ) ? 'summary_large_image' : 'summary'; ?>">
-		<meta name="twitter:title" content="<?php echo chipmunk_og_title(); ?>">
-		<meta name="twitter:description" content="<?php echo chipmunk_meta_description(); ?>">
-		<meta name="twitter:image" content="<?php echo isset( $image ) ? $image : $site_image; ?>">
+		<meta property="og:image:width" content="1200">
+		<meta property="og:image:height" content="630">
+		<meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>">
 
 		<?php
 	}
