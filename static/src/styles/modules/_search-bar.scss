@@ -42,13 +42,16 @@
 
 .search-bar__icon {
   display: block;
-  margin-right: $separator;
   font-size: 2.2rem;
   line-height: 1;
   transition: color $transition-speed;
 
-  @include breakpoint(md) {
-    margin-right: 2.5rem;
+  &:first-child {
+    margin-right: $separator;
+  }
+
+  &:last-child {
+    margin-left: $separator;
   }
 
   &:hover {

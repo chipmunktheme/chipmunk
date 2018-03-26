@@ -3791,16 +3791,16 @@ input[type="submit"]:focus {
 }
 .search-bar__icon {
   display: block;
-  margin-right: 2rem;
   font-size: 2.2rem;
   line-height: 1;
   -webkit-transition: color 0.25s;
   transition: color 0.25s;
 }
-@media (min-width: 680px) {
-  .search-bar__icon {
-    margin-right: 2.5rem;
-  }
+.search-bar__icon:first-child {
+  margin-right: 2rem;
+}
+.search-bar__icon:last-child {
+  margin-left: 2rem;
 }
 .search-bar__icon:hover {
   color: #F38181;
