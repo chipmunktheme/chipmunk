@@ -9,7 +9,7 @@
 		</div>
 
 		<div class="form__child">
-			<select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors" class="custom-select" required>
+			<select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors" data-parsley-group="select" class="custom-select" required>
 				<option value=""><?php esc_html_e( 'Collection', 'chipmunk' ); ?></option>
 				<?php
 					$collections = chipmunk_get_taxonomy_hierarchy( 'resource-collection', array(
