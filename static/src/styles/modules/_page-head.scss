@@ -29,8 +29,13 @@
 }
 
 .page-head__logo {
+  margin-right: $separator;
   color: $color-primary;
   font-weight: bold;
+
+  @include breakpoint(lg) {
+    margin-right: $separator * 2;
+  }
 
   a {
     display: block;

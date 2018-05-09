@@ -470,7 +470,7 @@ class ChipmunkCustomizer {
 						'type'        => 'text',
 						'label'       => esc_html__( 'Mailchimp form action URL', 'chipmunk' ),
 						'default'     => '#',
-						'description' => sprintf( wp_kses( __( 'Where do I find my <a href="%1$s" target="_blank">Mailchimp form action URL?</a>', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://chipmunktheme.com/mailchimp-url/' ) ),
+						'description' => sprintf( wp_kses( __( 'Where do I find my <a href="%1$s" target="_blank">Mailchimp form action URL?</a>', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'http://chipmunktheme.com/help/mailchimp-url' ) ),
 					),
 					array(
 						'name'        => 'newsletter_tagline',
@@ -511,7 +511,7 @@ class ChipmunkCustomizer {
 						'description' => esc_html__( 'Enter your site\'s description displayed in the footer section. You can use basic HTML tags here (<p>, <a>, <strong>, <i>).', 'chipmunk' ),
 					),
 				),
-			)
+			),
 		);
 
 		$this->socials = array(
@@ -525,7 +525,11 @@ class ChipmunkCustomizer {
 			'Vimeo',
 			'YouTube',
 			'Reddit',
-			'ProductHunt'
+			'Medium',
+			'ProductHunt',
+			'IndieHackers',
+			'Telegram',
+			'Discord',
 		);
 
 		add_action( 'customize_register', array( $this, 'customize_register' ) );

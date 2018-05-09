@@ -45,7 +45,6 @@
 
 .nav-primary__inner {
   display: flex;
-  // align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100%;
@@ -64,7 +63,6 @@
 
 .nav-primary__list {
   display: flex;
-  // align-items: center;
   justify-content: space-between;
   flex-direction: column;
 
@@ -105,7 +103,6 @@
   font-size: 2rem;
 
   @include breakpoint(lg) {
-    margin-left: 4rem;
     font-size: 1.6rem;
   }
 
@@ -124,6 +121,7 @@
 
     @include breakpoint(lg) {
       margin-top: 0;
+      margin-left: 4rem;
     }
   }
 

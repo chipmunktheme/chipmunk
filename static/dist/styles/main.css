@@ -1352,7 +1352,7 @@ input[type="submit"] {
 a:focus,
 button:focus,
 .button:focus,
-.content input[type="submit"]:focus,
+.content input:focus[type="submit"],
 input[type="submit"]:focus {
   outline: none;
 }
@@ -1454,50 +1454,62 @@ input[type="submit"]:focus {
 .icon_search::before {
   content: '\EA18';
 }
-.icon_social-facebook::before {
+.icon_social-discord::before {
   content: '\EA19';
 }
-.icon_social-flickr::before {
+.icon_social-facebook::before {
   content: '\EA1A';
 }
-.icon_social-google::before {
+.icon_social-flickr::before {
   content: '\EA1B';
 }
-.icon_social-instagram::before {
+.icon_social-google::before {
   content: '\EA1C';
 }
-.icon_social-linkedin::before {
+.icon_social-indiehackers::before {
   content: '\EA1D';
 }
-.icon_social-pinterest::before {
+.icon_social-instagram::before {
   content: '\EA1E';
 }
-.icon_social-pocket::before {
+.icon_social-linkedin::before {
   content: '\EA1F';
 }
-.icon_social-producthunt::before {
+.icon_social-medium::before {
   content: '\EA20';
 }
-.icon_social-reddit::before {
+.icon_social-pinterest::before {
   content: '\EA21';
 }
-.icon_social-twitter::before {
+.icon_social-pocket::before {
   content: '\EA22';
 }
-.icon_social-vimeo::before {
+.icon_social-producthunt::before {
   content: '\EA23';
 }
-.icon_social-youtube::before {
+.icon_social-reddit::before {
   content: '\EA24';
 }
-.icon_tag::before {
+.icon_social-telegram::before {
   content: '\EA25';
 }
-.icon_thumbs-down::before {
+.icon_social-twitter::before {
   content: '\EA26';
 }
-.icon_thumbs-up::before {
+.icon_social-vimeo::before {
   content: '\EA27';
+}
+.icon_social-youtube::before {
+  content: '\EA28';
+}
+.icon_tag::before {
+  content: '\EA29';
+}
+.icon_thumbs-down::before {
+  content: '\EA2A';
+}
+.icon_thumbs-up::before {
+  content: '\EA2B';
 }
 /*
 ** Common - Layout
@@ -1990,7 +2002,8 @@ input[type="submit"]:focus {
 /*
 ** Module - Button
 ** -----------------------------------------------------------------------------*/
-.button, .content input[type="submit"] {
+.button,
+.content input[type="submit"] {
   display: inline-block;
   padding: 8px 25px;
   border: 1px solid transparent;
@@ -2002,7 +2015,7 @@ input[type="submit"]:focus {
   background-color: #F38181;
   color: #FAFAFA;
 }
-.button_primary:hover, .content input[type="submit"]:hover, .members__form .button-primary:hover {
+.button_primary:hover, .content input:hover[type="submit"], .members__form .button-primary:hover {
   background-color: transparent;
   border-color: currentColor;
   color: #F38181;
@@ -2658,11 +2671,16 @@ input[type="submit"]:focus {
   }
 }
 .form [type="text"], .content form [type="text"],
-.form [type="email"], .content form [type="email"],
-.form [type="url"], .content form [type="url"],
-.form [type="password"], .content form [type="password"],
-.form select, .content form select,
-.form textarea, .content form textarea {
+.form [type="email"],
+.content form [type="email"],
+.form [type="url"],
+.content form [type="url"],
+.form [type="password"],
+.content form [type="password"],
+.form select,
+.content form select,
+.form textarea,
+.content form textarea {
   display: inline-block;
   width: 100%;
   padding: 5px 0;
@@ -2684,45 +2702,83 @@ input[type="submit"]:focus {
 }
 @media (min-width: 980px) {
   .form [type="text"], .content form [type="text"],
-  .form [type="email"], .content form [type="email"],
-  .form [type="url"], .content form [type="url"],
-  .form [type="password"], .content form [type="password"],
-  .form select, .content form select,
-  .form textarea, .content form textarea {
+  .form [type="email"],
+  .content form [type="email"],
+  .form [type="url"],
+  .content form [type="url"],
+  .form [type="password"],
+  .content form [type="password"],
+  .form select,
+  .content form select,
+  .form textarea,
+  .content form textarea {
     border-bottom-width: 3px;
     font-size: 2.2rem;
   }
 }
 .form [type="text"]::-webkit-input-placeholder, .content form [type="text"]::-webkit-input-placeholder,
-.form [type="email"]::-webkit-input-placeholder, .content form [type="email"]::-webkit-input-placeholder,
-.form [type="url"]::-webkit-input-placeholder, .content form [type="url"]::-webkit-input-placeholder,
-.form [type="password"]::-webkit-input-placeholder, .content form [type="password"]::-webkit-input-placeholder,
-.form select::-webkit-input-placeholder, .content form select::-webkit-input-placeholder,
-.form textarea::-webkit-input-placeholder, .content form textarea::-webkit-input-placeholder {
+.form [type="email"]::-webkit-input-placeholder,
+.content form [type="email"]::-webkit-input-placeholder,
+.form [type="url"]::-webkit-input-placeholder,
+.content form [type="url"]::-webkit-input-placeholder,
+.form [type="password"]::-webkit-input-placeholder,
+.content form [type="password"]::-webkit-input-placeholder,
+.form select::-webkit-input-placeholder,
+.content form select::-webkit-input-placeholder,
+.form textarea::-webkit-input-placeholder,
+.content form textarea::-webkit-input-placeholder {
   color: #333333;
 }
 .form [type="text"]:-ms-input-placeholder, .content form [type="text"]:-ms-input-placeholder,
-.form [type="email"]:-ms-input-placeholder, .content form [type="email"]:-ms-input-placeholder,
-.form [type="url"]:-ms-input-placeholder, .content form [type="url"]:-ms-input-placeholder,
-.form [type="password"]:-ms-input-placeholder, .content form [type="password"]:-ms-input-placeholder,
-.form select:-ms-input-placeholder, .content form select:-ms-input-placeholder,
-.form textarea:-ms-input-placeholder, .content form textarea:-ms-input-placeholder {
+.form [type="email"]:-ms-input-placeholder,
+.content form [type="email"]:-ms-input-placeholder,
+.form [type="url"]:-ms-input-placeholder,
+.content form [type="url"]:-ms-input-placeholder,
+.form [type="password"]:-ms-input-placeholder,
+.content form [type="password"]:-ms-input-placeholder,
+.form select:-ms-input-placeholder,
+.content form select:-ms-input-placeholder,
+.form textarea:-ms-input-placeholder,
+.content form textarea:-ms-input-placeholder {
+  color: #333333;
+}
+.form [type="text"]::-ms-input-placeholder, .content form [type="text"]::-ms-input-placeholder,
+.form [type="email"]::-ms-input-placeholder,
+.content form [type="email"]::-ms-input-placeholder,
+.form [type="url"]::-ms-input-placeholder,
+.content form [type="url"]::-ms-input-placeholder,
+.form [type="password"]::-ms-input-placeholder,
+.content form [type="password"]::-ms-input-placeholder,
+.form select::-ms-input-placeholder,
+.content form select::-ms-input-placeholder,
+.form textarea::-ms-input-placeholder,
+.content form textarea::-ms-input-placeholder {
   color: #333333;
 }
 .form [type="text"]::placeholder, .content form [type="text"]::placeholder,
-.form [type="email"]::placeholder, .content form [type="email"]::placeholder,
-.form [type="url"]::placeholder, .content form [type="url"]::placeholder,
-.form [type="password"]::placeholder, .content form [type="password"]::placeholder,
-.form select::placeholder, .content form select::placeholder,
-.form textarea::placeholder, .content form textarea::placeholder {
+.form [type="email"]::placeholder,
+.content form [type="email"]::placeholder,
+.form [type="url"]::placeholder,
+.content form [type="url"]::placeholder,
+.form [type="password"]::placeholder,
+.content form [type="password"]::placeholder,
+.form select::placeholder,
+.content form select::placeholder,
+.form textarea::placeholder,
+.content form textarea::placeholder {
   color: #333333;
 }
 .form [type="text"]:focus, .content form [type="text"]:focus,
-.form [type="email"]:focus, .content form [type="email"]:focus,
-.form [type="url"]:focus, .content form [type="url"]:focus,
-.form [type="password"]:focus, .content form [type="password"]:focus,
-.form select:focus, .content form select:focus,
-.form textarea:focus, .content form textarea:focus {
+.form [type="email"]:focus,
+.content form [type="email"]:focus,
+.form [type="url"]:focus,
+.content form [type="url"]:focus,
+.form [type="password"]:focus,
+.content form [type="password"]:focus,
+.form select:focus,
+.content form select:focus,
+.form textarea:focus,
+.content form textarea:focus {
   outline: none;
 }
 .form label, .content form label {
@@ -3112,7 +3168,6 @@ input[type="submit"]:focus {
 }
 @media (min-width: 980px) {
   .nav-primary__item {
-    margin-left: 4rem;
     font-size: 1.6rem;
   }
 }
@@ -3134,6 +3189,7 @@ input[type="submit"]:focus {
 @media (min-width: 980px) {
   .nav-primary__item:not(:first-child) {
     margin-top: 0;
+    margin-left: 4rem;
   }
 }
 .nav-primary__item a {
@@ -3159,7 +3215,7 @@ input[type="submit"]:focus {
 .nav-primary__item_condensed .button, .nav-primary__item_condensed .content input[type="submit"], .content .nav-primary__item_condensed input[type="submit"] {
   min-width: 10rem;
 }
-.nav-primary__item_condensed .button:not(:first-child), .nav-primary__item_condensed .content input[type="submit"]:not(:first-child), .content .nav-primary__item_condensed input[type="submit"]:not(:first-child) {
+.nav-primary__item_condensed .button:not(:first-child), .nav-primary__item_condensed .content input:not(:first-child)[type="submit"], .content .nav-primary__item_condensed input:not(:first-child)[type="submit"] {
   margin-left: 1rem;
 }
 .nav-primary__close {
@@ -3343,8 +3399,14 @@ input[type="submit"]:focus {
   min-height: 40px;
 }
 .page-head__logo {
+  margin-right: 2rem;
   color: #F38181;
   font-weight: bold;
+}
+@media (min-width: 980px) {
+  .page-head__logo {
+    margin-right: 4rem;
+  }
 }
 .page-head__logo a {
   display: block;
@@ -3366,11 +3428,11 @@ input[type="submit"]:focus {
       -ms-flex-align: center;
           align-items: center;
 }
-.page-head__cta .button:not(:first-child), .page-head__cta .content input[type="submit"]:not(:first-child), .content .page-head__cta input[type="submit"]:not(:first-child) {
+.page-head__cta .button:not(:first-child), .page-head__cta .content input:not(:first-child)[type="submit"], .content .page-head__cta input:not(:first-child)[type="submit"] {
   margin-left: 1.5rem;
 }
 @media (min-width: 680px) {
-  .page-head__cta .button:not(:first-child), .page-head__cta .content input[type="submit"]:not(:first-child), .content .page-head__cta input[type="submit"]:not(:first-child) {
+  .page-head__cta .button:not(:first-child), .page-head__cta .content input:not(:first-child)[type="submit"], .content .page-head__cta input:not(:first-child)[type="submit"] {
     margin-left: 2rem;
   }
 }
@@ -3831,6 +3893,9 @@ input[type="submit"]:focus {
 .search-bar__form input:-ms-input-placeholder {
   color: #808080;
 }
+.search-bar__form input::-ms-input-placeholder {
+  color: #808080;
+}
 .search-bar__form input::placeholder {
   color: #808080;
 }
@@ -3938,6 +4003,19 @@ input[type="submit"]:focus {
 .section_theme-primary input[type="url"]:-ms-input-placeholder,
 .section_theme-primary textarea,
 .section_theme-primary textarea:-ms-input-placeholder {
+  color: #FAFAFA;
+}
+.section_theme-primary .heading, .section_theme-primary .content > h1, .section_theme-primary .content > h2, .section_theme-primary .content > h3, .section_theme-primary .content > h4, .section_theme-primary .content > h5, .section_theme-primary .content > h6, .section_theme-primary .entry__title, .section_theme-primary .heading::-ms-input-placeholder, .section_theme-primary .content > h1::-ms-input-placeholder, .section_theme-primary .content > h2::-ms-input-placeholder, .section_theme-primary .content > h3::-ms-input-placeholder, .section_theme-primary .content > h4::-ms-input-placeholder, .section_theme-primary .content > h5::-ms-input-placeholder, .section_theme-primary .content > h6::-ms-input-placeholder, .section_theme-primary .entry__title::-ms-input-placeholder,
+.section_theme-primary .button_secondary,
+.section_theme-primary .button_secondary::-ms-input-placeholder,
+.section_theme-primary input[type="text"],
+.section_theme-primary input[type="text"]::-ms-input-placeholder,
+.section_theme-primary input[type="email"],
+.section_theme-primary input[type="email"]::-ms-input-placeholder,
+.section_theme-primary input[type="url"],
+.section_theme-primary input[type="url"]::-ms-input-placeholder,
+.section_theme-primary textarea,
+.section_theme-primary textarea::-ms-input-placeholder {
   color: #FAFAFA;
 }
 .section_theme-primary .heading, .section_theme-primary .content > h1, .section_theme-primary .content > h2, .section_theme-primary .content > h3, .section_theme-primary .content > h4, .section_theme-primary .content > h5, .section_theme-primary .content > h6, .section_theme-primary .entry__title, .section_theme-primary .heading::placeholder, .section_theme-primary .content > h1::placeholder, .section_theme-primary .content > h2::placeholder, .section_theme-primary .content > h3::placeholder, .section_theme-primary .content > h4::placeholder, .section_theme-primary .content > h5::placeholder, .section_theme-primary .content > h6::placeholder, .section_theme-primary .entry__title::placeholder,
@@ -4450,6 +4528,13 @@ input[type="submit"]:focus {
 .members__form input[type="url"]:-ms-input-placeholder,
 .members__form input[type="password"]:-ms-input-placeholder,
 .members__form textarea:-ms-input-placeholder {
+  color: #333333;
+}
+.members__form input[type="text"]::-ms-input-placeholder,
+.members__form input[type="email"]::-ms-input-placeholder,
+.members__form input[type="url"]::-ms-input-placeholder,
+.members__form input[type="password"]::-ms-input-placeholder,
+.members__form textarea::-ms-input-placeholder {
   color: #333333;
 }
 .members__form input[type="text"]::placeholder,

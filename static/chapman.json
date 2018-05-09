@@ -1,5 +1,5 @@
 {
-  "proxy": "internetcurated.localhost",
+  "proxy": "internet-curated.test",
   "source": "src",
   "es": "6",
   "targets": [
