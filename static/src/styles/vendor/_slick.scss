@@ -88,7 +88,7 @@
   }
 
   &::before {
-    @extend .icon;
+    // @extend .icon;
     display: block;
     font-size: 2.5rem;
   }
@@ -97,7 +97,7 @@
     right: $separator * 2;
 
     &::before {
-      @extend .icon_chevron-left;
+      // @extend .icon_chevron-left;
     }
   }
 
@@ -105,7 +105,7 @@
     right: $separator / 2;
 
     &::before {
-      @extend .icon_chevron-right;
+      // @extend .icon_chevron-right;
     }
   }
 }

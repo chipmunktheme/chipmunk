@@ -1,17 +1,12 @@
 {
   "proxy": "internet-curated.test",
-  "source": "src",
-  "es": "6",
-  "targets": [
-    {
-      "path": "dist",
-      "tasks": [
-        "assets",
-        "icons",
-        "scripts",
-        "styles",
-        "templates"
-      ]
-    }
+  "src": "src",
+  "dest": "dist",
+  "tasks": [
+    "assets",
+    "icons",
+    "scripts",
+    "styles",
+    "templates"
   ]
 }

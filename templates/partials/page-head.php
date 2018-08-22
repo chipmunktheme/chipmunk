@@ -21,7 +21,7 @@
 					<?php get_template_part( 'templates/partials/nav' ); ?>
 
 					<button type="button" class="nav-primary__close hidden-lg" data-toggle="nav">
-						<i class="icon icon_close" aria-hidden="true"></i>
+						<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'close' ) ); ?>
 						<span class="sr-only"><?php esc_html_e( 'Close', 'chipmunk' ); ?></span>
 					</button>
 				</div>
@@ -32,7 +32,7 @@
 			<div class="page-head__cta">
 				<?php if ( ! chipmunk_theme_option( 'disable_search' ) ) : ?>
 					<button type="button" class="page-head__search" data-toggle="search">
-						<i class="icon icon_search" aria-hidden="true"></i>
+						<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'search' ) ); ?>
 						<span class="sr-only"><?php esc_html_e( 'Search', 'chipmunk' ); ?></span>
 					</button>
 				<?php endif; ?>

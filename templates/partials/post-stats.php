@@ -1,16 +1,20 @@
-<?php $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'category' : 'resource-collection' ) ); ?>
+<?php
+global $wp_query;
 
-<?php if ( isset( $collections_args ) && $collections_args['display'] and $collections ) : ?>
+$collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'category' : 'resource-collection' ) );
+?>
+
+<?php if ( isset( $args ) && $args['display'] and $collections ) : ?>
 	<li class="stats__item">
-		<i class="icon icon_tag"></i>
+		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'tag' ) ); ?>
 
-		<?php echo chipmunk_display_collections( $collections, $collections_args ); ?>
+		<?php echo chipmunk_display_collections( $collections, $args ); ?>
 	</li>
 <?php endif; ?>
 
 <?php if ( ! chipmunk_theme_option( 'disable_resource_date' ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Published', 'chipmunk' ); ?>: <?php echo get_post_time( 'j. F Y', false, get_the_ID(), true ); ?>">
-		<i class="icon icon_clock"></i>
+		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'clock' ) ); ?>
 
 		<?php echo get_post_time( 'j. M', false, get_the_ID(), true ); ?>
 	</li>
@@ -18,7 +22,7 @@
 
 <?php if ( ! chipmunk_theme_option( 'disable_views' ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Views', 'chipmunk' ); ?>">
-		<i class="icon icon_eye"></i>
+		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'eye' ) ); ?>
 
 		<?php echo chipmunk_format_number( chipmunk_get_views( get_the_ID() ) ); ?>
 	</li>

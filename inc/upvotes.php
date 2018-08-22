@@ -173,7 +173,7 @@ if ( ! function_exists( 'chipmunk_get_upvote_counter' ) ) :
  */
 function chipmunk_get_upvote_counter( $count ) {
 	$counter = ( is_numeric( $count ) && $count > 0 ) ? chipmunk_format_number( $count ) : 0;
-	$counter = "<span><i class='icon icon_arrow-up'></i> $counter</span>";
+	$counter = "<span>" . chipmunk_get_template( 'partials/icon', array( 'icon' => 'arrow-up' ), false ) . " $counter</span>";
 
 	return $counter;
 }

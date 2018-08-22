@@ -23,5 +23,5 @@
 <?php endif; ?>
 
 <p>
-	<a href="<?php echo admin_url( 'post.php?post=' . $post_id . '&action=edit' ); ?>"><strong>&raquo; <?php esc_html_e( 'Review submission', 'chipmunk' ); ?></strong></a>
+	<a href="<?php echo admin_url( 'post.php?post=' . $post->ID . '&action=edit' ); ?>"><strong>&raquo; <?php esc_html_e( 'Review submission', 'chipmunk' ); ?></strong></a>
 </p>

@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="pagination__nav">
       <li class="pagination__item pagination__item_disabled">
-        <i class="icon icon_chevron-left" aria-hidden="true"></i>
+        <?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-left' ) ); ?>
         <span class="visible-md-inline">Previous</span>
       </li>
 
@@ -11,7 +11,7 @@
       <li class="pagination__item">
         <a href="#">
           <span class="visible-md-inline">Next</span>
-          <i class="icon icon_chevron-right" aria-hidden="true"></i>
+          <?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-right' ) ); ?>
         </a>
       </li>
     </ul>

@@ -16,6 +16,29 @@ function chipmunk_has_plugin( $plugin ) {
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_template' ) ) :
+/**
+ * Load a template with supplied data.
+ */
+function chipmunk_get_template($template, array $params = array(), $output = true) {
+	if ( ! $output ) {
+		ob_start();
+	}
+
+	if ( ! $template_file = locate_template( "templates/{$template}.php", false, false ) ) {
+		trigger_error( sprintf(__( 'Error locating %s for inclusion', 'chipmunk' ), $template_file ), E_USER_ERROR );
+	}
+
+	extract( $params, EXTR_SKIP );
+	require( $template_file );
+
+	if ( ! $output ) {
+		return ob_get_clean();
+	}
+}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_plugin_option' ) ) :
 /**
  * Check if Chipmunk plugin is enabled and get option from it

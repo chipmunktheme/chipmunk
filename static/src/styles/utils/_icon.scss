@@ -1,0 +1,29 @@
+/*
+** Utils - Icon
+** ----------------------------------------------------------------------------- */
+
+.icon {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+
+  * {
+    fill: currentColor;
+    stroke: none;
+  }
+
+  &_sm {
+    height: 0.75em;
+    width: 0.75em;
+  }
+
+  &_md {
+    height: 1em;
+    width: 1em;
+  }
+
+  &_lg {
+    height: 1.25em;
+    width: 1.25em;
+  }
+}

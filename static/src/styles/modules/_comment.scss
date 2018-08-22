@@ -79,8 +79,8 @@
     font-size: 1.4rem;
 
     &::before {
-      @extend .icon;
-      @extend .icon_corner-down-left;
+      // @extend .icon;
+      // @extend .icon_reply;
       margin-right: 1em;
       font-size: 1.2rem;
       vertical-align: middle;

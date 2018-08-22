@@ -99,15 +99,8 @@ function chipmunk_inform_admin( $post_id ) {
 	$to       = $admin;
 	$from     = $admin;
 
-	$name     = $name;
 	$subject  = sprintf( esc_html__( '%s: New user submission', 'chipmunk' ), $name );
-
-	ob_start();
-
-	require_once locate_template( 'templates/emails/submission.php' );
-
-	$template = ob_get_contents();
-	ob_end_clean();
+	$template = chipmunk_get_template( 'emails/submission', array( 'name' => $name, 'post' => $post ), false );
 
 	$headers  = array(
 		"Content-Type: text/html; charset=UTF-8;",

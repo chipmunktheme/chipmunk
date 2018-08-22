@@ -14,7 +14,7 @@
 							'quantity' => 1,
 						);
 
-						require locate_template( 'templates/partials/post-stats.php' );
+						chipmunk_get_template( 'partials/post-stats', array( 'args' => $collections_args ) );
 					?>
 				</ul>
 
@@ -27,7 +27,7 @@
 
 					<?php if ( ! empty( $tags ) && ! chipmunk_theme_option( 'disable_resource_tags' ) ) : ?>
 						<div class="resource__tags" title="<?php esc_attr_e( 'Tags', 'chipmunk' ); ?>">
-							<i class="icon icon_tag"></i>
+							<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'tag' ) ); ?>
 
 							<?php echo chipmunk_display_collections( $tags ); ?>
 						</div>

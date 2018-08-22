@@ -66,7 +66,7 @@ function chipmunk_custom_style() {
 			.button_secondary,
 			.content a:hover,
 			.nav-primary__close:hover,
-			.nav-socials__item a:hover,
+			.nav-socials__link:hover,
 			.page-head__logo,
 			.pagination__item a:hover,
 			.popup__close:hover,

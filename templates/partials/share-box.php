@@ -29,8 +29,8 @@
 				) );
 				?>
 
-				<a href="<?php echo $link; ?>" title="<?php echo $provider['name']; ?>" target="_blank">
-					<i class="icon icon_social-<?php echo $provider['slug']; ?>" aria-hidden="true"></i>
+				<a href="<?php echo $link; ?>" class="nav-socials__link" title="<?php echo $provider['name']; ?>" target="_blank">
+					<?php chipmunk_get_template( 'partials/icon', array( 'icon' => "social-{$provider['slug']}" ) ); ?>
 					<span class="sr-only"><?php echo $provider['name']; ?></span>
 				</a>
 			</li>

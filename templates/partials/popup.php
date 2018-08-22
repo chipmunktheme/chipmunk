@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="popup__content">
 			<button class="popup__close" data-toggle="popup">
-				<i class="icon icon_close"></i>
+				<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'close' ) ); ?>
 				<span class="sr-only"><?php esc_html_e( 'Close', 'chipmunk' ); ?></span>
 			</button>
 

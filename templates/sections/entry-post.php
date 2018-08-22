@@ -15,7 +15,7 @@
 						'quantity' => -1,
 					);
 
-					require locate_template( 'templates/partials/post-stats.php' );
+					chipmunk_get_template( 'partials/post-stats', array( 'args' => $collections_args ) );
 				?>
 			</ul>
 

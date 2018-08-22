@@ -10,13 +10,13 @@ get_header(); ?>
 
 	<?php $term = get_queried_object(); ?>
 	<?php $paged = chipmunk_get_current_page(); ?>
-	<?php $custom_query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged, $term ); ?>
+	<?php $query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged, $term ); ?>
 
 	<div class="section">
 		<div class="container">
 			<?php $title = sprintf( ( is_tax( 'resource-collection' ) ? esc_html__( '%s Collection', 'chipmunk' ) : esc_html__( '%s Tag', 'chipmunk' ) ), ucfirst( single_term_title( null, false ) ) ); ?>
 
-			<?php if ( ! chipmunk_theme_option( 'disable_sorting' ) and $custom_query->have_posts() ) : ?>
+			<?php if ( ! chipmunk_theme_option( 'disable_sorting' ) and $query->have_posts() ) : ?>
 				<div class="row">
 					<div class="column column_md-4 column_lg-8">
 						<h1 class="heading heading_md"><?php echo esc_html( $title ); ?></h1>
@@ -39,18 +39,18 @@ get_header(); ?>
 			<?php if ( ( $children_collections = get_terms( 'resource-collection', array( 'parent' => $term->term_id ) ) ) && $paged == 1 ) : ?>
 				<div class="row">
 					<?php foreach ( $children_collections as $collection ) : ?>
-						<?php require locate_template( 'templates/sections/collection-tile.php' ); ?>
+						<?php chipmunk_get_template( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
 					<?php endforeach; ?>
 				</div>
 
-				<?php if ( $custom_query->have_posts() ) : ?>
+				<?php if ( $query->have_posts() ) : ?>
 					<div class="separator"></div>
 				<?php endif; ?>
 			<?php endif; ?>
 
 			<div class="row">
-				<?php if ( $custom_query->have_posts() ) : ?>
-					<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
+				<?php if ( $query->have_posts() ) : ?>
+					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
 						<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 
@@ -73,7 +73,7 @@ get_header(); ?>
 			</div>
 		</div>
 
-		<?php require_once locate_template( 'templates/sections/pagination.php' ); ?>
+		<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query ) ); ?>
 	</div>
 	<!-- /.section -->
 

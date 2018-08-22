@@ -32,14 +32,14 @@
 						}
 					</script>
 
-					<div onclick="openURL(event, '<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>');" class="tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><i class="icon icon_external-link" aria-hidden="true"></i></div>
+					<div onclick="openURL(event, '<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>');" class="tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'external-link' ) ); ?></div>
 				<?php endif; ?>
 			</div>
 
 			<?php $content = get_the_content(); ?>
 
 			<?php if ( ! chipmunk_theme_option( 'disable_resource_desc' ) and ! empty( $content ) ) : ?>
-				<p class="tile__copy"><?php echo esc_html( chipmunk_truncate_string( $content, ( chipmunk_theme_option( 'display_resource_as' ) == 'card_blank' ? 80 : 60 ) ) ); ?><span>&nbsp;<i class="icon icon_arrow-right" aria-hidden="true"></i></span></p>
+				<p class="tile__copy"><?php echo esc_html( chipmunk_truncate_string( $content, ( chipmunk_theme_option( 'display_resource_as' ) == 'card_blank' ? 80 : 60 ) ) ); ?><span>&nbsp;<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'arrow-right' ) ); ?></span></p>
 			<?php endif; ?>
 		</div>
 
@@ -50,7 +50,7 @@
 						'display'  => false,
 					);
 
-					require locate_template( 'templates/partials/post-stats.php' );
+					chipmunk_get_template( 'partials/post-stats', array( 'args' => $collections_args ) );
 				?>
 			</ul>
 		<?php endif; ?>

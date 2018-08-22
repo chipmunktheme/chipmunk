@@ -41,13 +41,13 @@ function chipmunk_get_shortcode_template( $template_name, $attributes = null ) {
 
 	do_action( 'chipmunk_shortcode_template_before_' . $template_name );
 
-	require_once locate_template( 'templates/shortcodes/' . $template_name . '.php' );
+	chipmunk_get_template( 'shortcodes/' . $template_name, array( 'attributes' => $attributes ) );
 
 	do_action( 'chipmunk_shortcode_template_after_' . $template_name );
 
-	$html = ob_get_contents();
+	$template = ob_get_contents();
 	ob_end_clean();
 
-	return $html;
+	return $template;
 }
 endif;
