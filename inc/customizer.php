@@ -530,6 +530,7 @@ class ChipmunkCustomizer {
 			'IndieHackers',
 			'Telegram',
 			'Discord',
+			'Email',
 		);
 
 		add_action( 'customize_register', array( $this, 'customize_register' ) );
