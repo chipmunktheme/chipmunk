@@ -29,7 +29,7 @@
 
           <button type="button" class="nav-primary__close hidden-lg" data-toggle="nav">
             <span class="sr-only">Close</span>
-            <i class="icon icon_close"></i>
+            {% include '../partials/icon.twig' with { 'icon': 'close' } %}
           </button>
         </div>
         <!-- /.nav-primary__inner -->
@@ -37,7 +37,7 @@
       <!-- /.nav-primary -->
 
       <div class="page-head__cta">
-        <button type="button" class="page-head__search" data-toggle="search"><i class="icon icon_search"></i><span class="sr-only">Search</span></button>
+        <button type="button" class="page-head__search" data-toggle="search">{% include '../partials/icon.twig' with { 'icon': 'search' } %}<span class="sr-only">Search</span></button>
         <button type="button" class="button button_secondary visible-lg-block" data-toggle="popup">Submit</button>
         <button type="button" class="page-head__trigger button button_secondary hidden-lg" data-toggle="nav">Menu</button>
       </div>

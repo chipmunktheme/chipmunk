@@ -3121,14 +3121,14 @@ input[type="submit"]:focus {
   margin-right: 2rem;
 }
 .pagination__item:first-child .icon {
-  margin-right: 0.75em;
+  margin-right: 0.5em;
 }
 .pagination__item:last-child {
   margin-left: 2rem;
   text-align: right;
 }
 .pagination__item:last-child .icon {
-  margin-left: 0.75em;
+  margin-left: 0.5em;
 }
 .pagination__item a {
   display: block;
@@ -3941,7 +3941,6 @@ input[type="submit"]:focus {
   white-space: nowrap;
 }
 .tile__copy .icon {
-  margin-left: 0.5rem;
   font-size: 1.2rem;
   line-height: inherit;
   transition: -webkit-transform 0.25s ease-in-out 0.05s;

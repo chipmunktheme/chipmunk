@@ -2,11 +2,17 @@
   <div class="container">
     <div class="search-bar__inner">
       <form action="#" method="get" class="search-bar__form">
-        <button type="submit"><i class="search-bar__icon icon icon_search"></i></button>
+        <button type="submit" class="search-bar__icon">
+          {% include '../partials/icon.twig' with { 'icon': 'search' } %}
+        </button>
+
         <input type="text" name="search" placeholder="Search query&hellip;" required>
       </form>
 
-      <button type="button" class="search-bar__close" data-toggle="search"><i class="icon icon_close"></i><span class="sr-only">Close</span></button>
+      <button type="button" class="search-bar__close" data-toggle="search">
+        {% include '../partials/icon.twig' with { 'icon': 'close' } %}
+        <span class="sr-only">Close</span>
+      </button>
     </div>
     <!-- /.search-bar__inner -->
   </div>

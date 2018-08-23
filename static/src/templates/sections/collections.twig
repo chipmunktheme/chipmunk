@@ -16,11 +16,14 @@
           <div class="tile__content tile__content_dimmed">
             <div>
               <h3 class="tile__title">{{ collection }}</h3>
-              <p class="tile__copy">View this collection&nbsp;<i class="icon icon_arrow"></i></p>
+              <p class="tile__copy">View this collection&nbsp;{% include '../partials/icon.twig' with { 'icon': 'arrow-right' } %}</p>
             </div>
 
             <ul class="stats">
-              <li class="stats__item" title="Resources"><i class="icon icon_link"></i> {{ random(200) }}</li>
+              <li class="stats__item" title="Resources">
+                {% include '../partials/icon.twig' with { 'icon': 'link' } %}
+                {{ random(200) }}
+              </li>
             </ul>
           </div>
         </a>

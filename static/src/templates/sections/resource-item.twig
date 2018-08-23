@@ -6,13 +6,11 @@
   <div class="tile__content">
     <div class="tile__info">
       <h3 class="tile__title">{{ resource }}</h3>
-      <p class="tile__copy">A curated directory of 400 resources & tools for startups&nbsp;<i class="icon icon_arrow"></i></p>
+      <p class="tile__copy">A curated directory of 400 resources & tools for startups&nbsp;{% include '../partials/icon.twig' with { 'icon': 'arrow-right' } %}</p>
     </div>
 
     <ul class="tile__stats stats">
-      <li class="stats__item" title="Published"><i class="icon icon_clock"></i> {{ random(30) + 1 }}. August</li>
-      <li class="stats__item" title="Views"><i class="icon icon_eye"></i> {{ random(2000) }}</li>
-      <li class="stats__item stats__item_sided" title="Upvotes"><button class="stats__button" title="Upvote"><i class="icon icon_arrow-up"></i> {{ random(100) }}</button></li>
+      {% include '../partials/post-stats.twig' with { upvote: true } %}
     </ul>
   </div>
 </a>

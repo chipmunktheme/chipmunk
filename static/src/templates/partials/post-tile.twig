@@ -10,9 +10,7 @@
 		</div>
 
 		<ul class="tile__stats stats">
-      <li class="stats__item" title="Collections"><i class="icon icon_tag"></i><span class="stats__tag">{{ post.categories | first }}</span></li>
-      <li class="stats__item" title="Published: {{ post.date }}"><i class="icon icon_clock"></i> {{ post.date }}</li>
-      <li class="stats__item" title="Views"><i class="icon icon_eye"></i> {{ random(500) }}</li>
+			{% include '../partials/post-stats.twig' with { collections: post.categories | slice (0, 1) } %}
 		</ul>
 
 		<button type="button" class="tile__button button button_secondary visible-lg-block">Read more</button>

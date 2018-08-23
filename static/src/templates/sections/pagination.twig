@@ -2,16 +2,16 @@
   <div class="container">
     <ul class="pagination__nav">
       <li class="pagination__item pagination__item_disabled">
-        <?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-left' ) ); ?>
+        {% include '../partials/icon.twig' with { 'icon': 'chevron-left' } %}
         <span class="visible-md-inline">Previous</span>
       </li>
 
       <li class="pagination__title">Page 1 of 3</li>
 
       <li class="pagination__item">
-        <a href="#">
+        <a href="#" class="pagination__link">
           <span class="visible-md-inline">Next</span>
-          <?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-right' ) ); ?>
+          {% include '../partials/icon.twig' with { 'icon': 'chevron-right' } %}
         </a>
       </li>
     </ul>

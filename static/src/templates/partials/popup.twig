@@ -2,7 +2,7 @@
   <div class="container">
     <div class="popup__content">
       <button class="popup__close" data-toggle="popup">
-        <i class="icon icon_close"></i>
+        {% include '../partials/icon.twig' with { 'icon': 'close' } %}
         <span class="sr-only">Close</span>
       </button>
 
