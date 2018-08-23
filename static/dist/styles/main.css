@@ -1102,6 +1102,13 @@
 ** @require {Function} asset
 **/
 /*
+** Icon asset helper
+**
+** @param {String} $file - Asset file name, including extension
+** @return {URL} - A `url()` function leading to the icon
+** @require {Function} asset
+**/
+/*
 ** Setup - Animations
 ** -----------------------------------------------------------------------------*/
 @-webkit-keyframes button-spin {
@@ -1437,26 +1444,26 @@ input[type="submit"]:focus {
   position: absolute;
   z-index: 5;
   bottom: 100%;
+  display: block;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   color: #333333;
-  font-size: 0;
+  text-indent: -999em;
 }
 .slick-arrow.slick-disabled {
-  color: #808080;
-}
-@media (min-width: 680px) {
-  .slick-arrow {
-    margin-bottom: 6px;
-  }
-}
-.slick-arrow::before {
-  display: block;
-  font-size: 2.5rem;
+  opacity: 0.5;
+  cursor: default;
 }
 .slick-arrow.slick-prev {
-  right: 4rem;
+  right: calc(4rem - 0.5em);
+  background-image: url("../icons/chevron-left.svg");
 }
 .slick-arrow.slick-next {
-  right: 1rem;
+  right: calc(1rem - 0.5em);
+  background-image: url("../icons/chevron-right.svg");
 }
 /*
 ** Utils - Dropdown

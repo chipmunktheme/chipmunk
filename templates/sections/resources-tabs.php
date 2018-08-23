@@ -47,7 +47,7 @@
 					<?php foreach ( array_keys( $sections ) as $index => $key ) : ?>
 
 						<div class="tabs__item<?php echo $index == 0 ? ' active' : ''; ?>" data-tabs-panel role="tabpanel">
-							<div class="tile__list"<?php echo $disable_sliders ? '' : ' data-resource-slider'; ?>>
+							<div class="tile__list"<?php echo $disable_sliders ? '' : ' data-carousel'; ?>>
 								<?php while ( $sections[$key]['results']->have_posts() ) : $sections[$key]['results']->the_post(); ?>
 
 									<div class="tile__slider">

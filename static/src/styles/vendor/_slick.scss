@@ -76,36 +76,27 @@
   position: absolute;
   z-index: $zindex-utils;
   bottom: 100%;
+  display: block;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   color: $color-black;
-  font-size: 0;
+  text-indent: -999em;
 
   &.slick-disabled {
-    color: $color-gray;
-  }
-
-  @include breakpoint(md) {
-    margin-bottom: 6px;
-  }
-
-  &::before {
-    // @extend .icon;
-    display: block;
-    font-size: 2.5rem;
+    opacity: 0.5;
+    cursor: default;
   }
 
   &.slick-prev {
-    right: $separator * 2;
-
-    &::before {
-      // @extend .icon_chevron-left;
-    }
+    right: calc(#{$separator * 2} - 0.5em);
+    background-image: icon('chevron-left.svg');
   }
 
   &.slick-next {
-    right: $separator / 2;
-
-    &::before {
-      // @extend .icon_chevron-right;
-    }
+    right: calc(#{$separator / 2} - 0.5em);
+    background-image: icon('chevron-right.svg');
   }
 }
