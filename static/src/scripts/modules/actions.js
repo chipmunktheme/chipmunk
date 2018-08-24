@@ -1,52 +1,108 @@
-const $ = require('jquery');
-
-import helpers from '../utils/helpers';
+import $http from '../utils/http';
 
 const Actions = {
-  trigger: $('[data-action]'),
+  init(selector = document) {
+    this.triggers = selector.querySelectorAll('[data-action]');
 
-  init() {
-    if (this.trigger.length) {
-      this.trigger.on('click', ev => {
-        ev.preventDefault();
-        ev.stopPropagation();
-
-        this.events[$(ev.currentTarget).data('action')].call(this, $(ev.currentTarget));
-      });
-    }
+    [].forEach.call(this.triggers, ($trigger) => {
+      if ($trigger.hasAttribute('action')) {
+        $trigger.addEventListener('submit', this.handleEvent.bind(this));
+      } else {
+        $trigger.addEventListener('click', this.handleEvent.bind(this));
+      }
+    });
   },
 
-  events: {
-    submit_upvote($target) {
-      var data = $target.data();
+  handleEvent(ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
 
-      // Enable loading indicator
-      $target.addClass('is-loading');
+    const trigger = ev.currentTarget;
+    const data = trigger.dataset;
 
-      helpers.request(data.action, data)
-        .fail((xhr, ajaxOptions, thrownError) => {
-          console.log(xhr.status);
-          console.log(xhr.responseText);
-          console.log(thrownError);
-        })
-        .done((response) => {
-          console.log('Upvote: ', response);
+    this.runAction(trigger, data);
+  },
 
-          setTimeout(() => {
-            var $targets = $('[data-post-id="' + response.post + '"]');
+  runAction(trigger, data) {
+    const formData = new FormData(trigger.hasAttribute('action') ? trigger : document.createElement('form'));
 
-            if ($target.length > 0) {
-              $targets.html(response.counter);
-              $targets.toggleClass('is-active', response.status === 'upvoted');
-            }
-          }, 250);
-        })
-        .always(() => {
-          // Disable loading indicator
-          setTimeout(() => $target.removeClass('is-loading'), 250);
-        });
-    }
-  }
+    // Enable loading indicator
+    trigger.classList.add('is-loading');
+    trigger.setAttribute('disabled', true);
+
+    // Extend formData with trigger data attributes
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+
+    setTimeout(() => {
+      $http.post(document.body.dataset.ajaxSource, formData)
+      // Run action callback
+      .then((response) => {
+        if (this.callbacks[data.action]) {
+          this.callbacks[data.action](trigger, response, data.action, 'success');
+        }
+      })
+
+      // Log errors
+      .catch((response) => {
+        console.error(response);
+
+        if (this.callbacks[data.action]) {
+          this.callbacks[data.action](trigger, response, data.action, 'error')
+        }
+      })
+
+      // Disable loading indicator
+      .then(() => {
+        trigger.classList.remove('is-loading');
+        trigger.removeAttribute('disabled');
+      });
+    }, 500);
+  },
+
+  callbacks: {
+    submit_resource: (trigger, response, action, status) => {
+      const element = trigger.querySelector(`[data-action-element=${action}]`);
+      const message = trigger.querySelector(`[data-action-message=${action}]`);
+
+      if (message) {
+        message.style.display = 'block';
+        message.dataset.status = status;
+        message.innerHTML = response;
+
+        if (status === 'success') {
+          element.style.display = 'none';
+        }
+      }
+    },
+
+    submit_upvote: (trigger, response, action, status) => {
+      var targets = document.querySelectorAll(`[data-post-id="${response.post}"]`);
+
+      [].forEach.call(targets, (target) => {
+        target.innerHTML = response.counter;
+        target.classList.toggle('is-active', response.status === 'upvoted');
+      });
+    },
+
+    load_posts: (trigger, response, action, status) => {
+      const element = document.querySelector(`[data-action-element=${action}]`);
+
+      if (element) {
+        element.insertAdjacentHTML('beforeend', status === 'success' ? response : `<p class="column text_center">${response}</p>`);
+
+        if (status == 'success') {
+          trigger.dataset.page = parseInt(trigger.dataset.page) + 1;
+        } else {
+          trigger.parentNode.removeChild(trigger);
+        }
+
+        // Rebind actions listeners
+        Actions.init(element);
+      }
+    },
+  },
 };
 
 export default Actions;

@@ -62,15 +62,13 @@ function chipmunk_custom_style() {
 
 	if ( $primary_color and $primary_color != '#F38181' ) {
 		$custom_style .= "
-			.button_primary:hover,
+			.button_primary:not([disabled]):hover,
 			.button_secondary,
 			.content a:hover,
 			.nav-primary__close:hover,
 			.nav-socials__link:hover,
 			.page-head__logo,
 			.pagination__item a:hover,
-			.popup__close:hover,
-			.popup__close:hover,
 			.popup__close:hover,
 			.resource__description a,
 			.section_theme-primary .button_secondary:hover,
@@ -81,7 +79,7 @@ function chipmunk_custom_style() {
 
 			.select2-container .select2-results__option[aria-selected=true],
 			.button_primary,
-			.button_secondary:hover,
+			.button_secondary:not([disabled]):hover,
 			.entry[href]:hover .entry__button,
 			.section_theme-primary,
 			.stats__button.is-active,

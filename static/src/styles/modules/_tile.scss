@@ -159,7 +159,12 @@
 
   .tile_card & {
     position: relative;
-    padding: 0 $separator $separator;
+  }
+
+  .tile_card:not(.tile_blank) & {
+    &:not(:first-child) {
+      padding: 0 $separator $separator;
+    }
   }
 
   .tile_blank & {
@@ -168,6 +173,8 @@
 }
 
 .tile__info {
+  flex: 1;
+
   &:not(:last-child) {
     margin-bottom: 1rem;
   }

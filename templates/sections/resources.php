@@ -26,7 +26,7 @@
 			<?php endif; ?>
 
 			<?php if ( $query->have_posts() ) : ?>
-				<div class="row">
+				<div class="row" data-action-element="load_posts">
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
 						<?php get_template_part( 'templates/sections/resource-tile' ); ?>
@@ -46,7 +46,7 @@
 			<?php endif; ?>
 		</div>
 
-		<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query ) ); ?>
+		<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query, 'type' => 'resource' ) ); ?>
 	</div>
 	<!-- /.section -->
 <?php endif; ?>

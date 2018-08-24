@@ -383,6 +383,23 @@ class ChipmunkCustomizer {
 			),
 
 			array(
+				'title'         => esc_html__( 'Pagination', 'chipmunk' ),
+				'slug'          => 'pagination_section',
+				'fields'        => array(
+					array(
+						'name'        => 'pagination_type',
+						'type'        => 'radio',
+						'label'       => esc_html__( 'Pagination type', 'chipmunk' ),
+						'default'     => 'standard',
+						'choices'     => array(
+							'standard'     => esc_html__( 'Standard', 'chipmunk' ),
+							'load_more'  => esc_html__( 'Load More', 'chipmunk' ),
+						),
+					),
+				),
+			),
+
+			array(
 				'title'         => esc_html__( 'Social Profiles', 'chipmunk' ),
 				'slug'          => 'socials_section',
 				'callback'      => 'register_socials',

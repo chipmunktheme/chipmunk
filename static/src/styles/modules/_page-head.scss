@@ -56,6 +56,8 @@
 .page-head__cta {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex: 1;
 
   .button:not(:first-child) {
     margin-left: 1.5rem;

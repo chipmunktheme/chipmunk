@@ -24,7 +24,7 @@
 			<?php endif; ?>
 
 			<?php if ( $query->have_posts() ) : ?>
-				<div class="row">
+				<div class="row" data-action-element="load_posts">
 					<?php $i = 0; ?>
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
@@ -61,7 +61,7 @@
 		</div>
 
 		<?php if ( ! is_single() && ! is_front_page() ) : ?>
-			<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query ) ); ?>
+			<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query, 'type' => 'post' ) ); ?>
 		<?php endif; ?>
 	</div>
 	<!-- /.section -->

@@ -48,32 +48,29 @@ get_header(); ?>
 				<?php endif; ?>
 			<?php endif; ?>
 
-			<div class="row">
-				<?php if ( $query->have_posts() ) : ?>
+			<?php if ( $query->have_posts() ) : ?>
+				<div class="row" data-action-element="load_posts">
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
 						<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 
 					<?php endwhile; wp_reset_postdata(); ?>
-				<?php elseif ( empty( $children_collections ) ) : ?>
+				</div>
+			<?php elseif ( empty( $children_collections ) ) : ?>
+				<p class="text_content text_separated">
+					<?php if ( current_user_can( 'publish_posts' ) ) : ?>
+						<?php esc_html_e( 'Ready to publish your first resource?', 'chipmunk' ); ?>
 
-					<div class="column">
-						<p class="text_content text_separated">
-							<?php if ( current_user_can( 'publish_posts' ) ) : ?>
-								<?php esc_html_e( 'Ready to publish your first resource?', 'chipmunk' ); ?>
+						<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=resource' ) ); ?>"><?php esc_html_e( 'Get started here', 'chipmunk' ); ?></a>.
+					<?php else : ?>
+						<?php esc_html_e( 'Sorry, there are no resources to display yet.', 'chipmunk' ); ?>
+					<?php endif; ?>
+				</p>
 
-								<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=resource' ) ); ?>"><?php esc_html_e( 'Get started here', 'chipmunk' ); ?></a>.
-							<?php else : ?>
-								<?php esc_html_e( 'Sorry, there are no resources to display yet.', 'chipmunk' ); ?>
-							<?php endif; ?>
-						</p>
-					</div>
-
-				<?php endif; ?>
-			</div>
+			<?php endif; ?>
 		</div>
 
-		<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query ) ); ?>
+		<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query, 'type' => 'resource' ) ); ?>
 	</div>
 	<!-- /.section -->
 

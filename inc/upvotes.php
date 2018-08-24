@@ -27,7 +27,7 @@ function chipmunk_upvote_button( $post_id, $class = '' ) {
 		$title = esc_html__( 'Upvote', 'chipmunk' );
 	}
 
-	$counter = "<span class='$class' title='$title' data-action='$action' data-nonce='$nonce' data-post-id='$post_id'>$counter</span>";
+	$counter = "<span class='$class' title='$title' data-action='$action' data-post-id='$post_id'>$counter</span>";
 	return $counter;
 }
 endif;
@@ -82,13 +82,12 @@ function chipmunk_process_upvote( $post_id ) {
 		$response['status'] = 'removed';
 	}
 
-
 	update_post_meta( $post_id, $db_post_key, $count );
 
 	$response['post'] = $post_id;
 	$response['counter'] = chipmunk_get_upvote_counter( $count );
 
-	wp_send_json( $response );
+	wp_send_json_success( $response );
 }
 endif;
 

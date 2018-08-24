@@ -63,6 +63,18 @@
   &_compact {
     text-align: center;
   }
+
+  &.is-loading::after {
+    font-size: 5rem;
+  }
+}
+
+.form__content {
+  transition: opacity $transition-speed;
+
+  .is-loading & {
+    opacity: 0.25;
+  }
 }
 
 .form__field {
@@ -167,6 +179,14 @@
 
   @include breakpoint(md) {
     margin-top: $separator * 2;
+  }
+
+  &[data-status='success'] {
+    color: $color-status-success;
+  }
+
+  &[data-status='error'] {
+    color: $color-status-error;
   }
 }
 

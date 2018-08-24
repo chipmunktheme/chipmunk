@@ -40,10 +40,16 @@
 
 		<ul class="tile__stats stats">
 			<?php if ( $term_children = get_term_children( $collection->term_id, 'resource-collection' ) ) : ?>
-				<li class="stats__item" title="<?php esc_attr_e( 'Sub collections', 'chipmunk' ); ?>"><?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'collections' ) ); ?></li>
+				<li class="stats__item" title="<?php esc_attr_e( 'Sub collections', 'chipmunk' ); ?>">
+					<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'collections' ) ); ?>
+					<?php echo count( $term_children ); ?>
+				</li>
 			<?php endif; ?>
 
-			<li class="stats__item" title="<?php esc_attr_e( 'Resources', 'chipmunk' ); ?>"><?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'link' ) ); ?> <?php echo $collection->count; ?></li>
+			<li class="stats__item" title="<?php esc_attr_e( 'Resources', 'chipmunk' ); ?>">
+				<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'link' ) ); ?>
+				<?php echo $collection->count; ?>
+			</li>
 		</ul>
 	</div>
 </a>

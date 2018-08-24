@@ -15,7 +15,6 @@ import fitvids from './modules/fitvids';
 import carousel from './modules/carousel';
 import extras from './modules/extras';
 import actions from './modules/actions';
-import remoteForm from './modules/remote-form';
 
 (function () {
   toggle.init();
@@ -27,7 +26,6 @@ import remoteForm from './modules/remote-form';
   carousel.init();
   extras.init();
   actions.init();
-  remoteForm.init();
 })();
 
 window.closePanels = function () {

@@ -73,18 +73,6 @@
     transform: scale(1) translateY(0);
   }
 
-  &.is-loading {
-    &::before {
-      @include u-overlay;
-      content: '';
-      z-index: $zindex-base;
-      background-color: rgba($color-white, 0.75);
-      background-image: image('loader-dark.svg');
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-  }
-
   > img {
     width: auto;
     height: auto;

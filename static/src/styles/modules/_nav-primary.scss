@@ -30,7 +30,6 @@
   @include breakpoint(lg) {
     position: relative;
     z-index: $zindex-base;
-    flex: 1;
     background-color: transparent;
     opacity: 1;
     transform: none;

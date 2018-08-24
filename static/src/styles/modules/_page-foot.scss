@@ -38,6 +38,14 @@
   i {
     font-style: italic;
   }
+
+  a {
+    color: $color-gray-dark;
+
+    &:hover {
+      color: $color-black;
+    }
+  }
 }
 
 .page-foot__inner {
@@ -53,7 +61,7 @@
 
 .page-foot__credits {
   user-select: none;
-  
+
   img {
     display: inline-block;
     margin-left: 1rem;
