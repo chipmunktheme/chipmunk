@@ -59,7 +59,6 @@
   }
 
   p, blockquote, table, ul, ol, hr {
-    overflow: hidden;
     clear: both;
 
     &:not(:first-child) {
@@ -204,8 +203,10 @@
 
   table,
   blockquote,
-  .wp-caption {
+  .wp-caption,
+  .alignnone {
     width: auto !important;
+    max-width: 151.7%;
 
     @include breakpoint(lg) {
       .column_lg-8 & {
