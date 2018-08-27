@@ -1,7 +1,6 @@
 const $ = require('jquery');
 
 require('select2')();
-require('slick-carousel');
 
 const Extras = {
   init() {

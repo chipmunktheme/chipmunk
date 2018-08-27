@@ -8,14 +8,14 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: $zindex-head + 1;
+  z-index: $layer-head + 1;
   padding-top: $separator * 0.5;
   padding-bottom: $separator * 0.5;
   background-color: $color-white;
   transform: translateY(-100%);
   opacity: 0;
   transition-property: transform, opacity;
-  transition-duration: $transition-speed * 1.5;
+  transition-duration: $transition-duration * 1.5;
 
   @include breakpoint(md) {
     padding-top: $separator;
@@ -44,7 +44,7 @@
   display: block;
   font-size: 2.2rem;
   line-height: 1;
-  transition: color $transition-speed;
+  transition: color $transition-duration;
 
   &:first-child {
     margin-right: $separator;

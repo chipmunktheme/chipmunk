@@ -147,7 +147,7 @@ const Validate = {
 
     [].forEach.call(form.querySelectorAll('.custom-select'), select => {
       select.onchange = () => {
-        instance.validate('select');
+        instance.validate({ group: 'select' });
       };
     });
   },

@@ -70,7 +70,7 @@
 }
 
 .form__content {
-  transition: opacity $transition-speed;
+  transition: opacity $transition-duration;
 
   .is-loading & {
     opacity: 0.25;
@@ -150,7 +150,7 @@
   font-size: 0.8em;
   cursor: pointer;
   user-select: none;
-  transition: color $transition-speed;
+  transition: color $transition-duration;
 
   @include breakpoint(md) {
     font-size: 1.5rem;

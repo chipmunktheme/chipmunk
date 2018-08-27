@@ -15,12 +15,12 @@ body {
   &::after {
     @include u-overlay;
     content: '';
-    z-index: $zindex-popup - 1;
+    z-index: $layer-popup - 1;
     background-color: rgba($color-black, 0.8);
     opacity: 0;
     pointer-events: none;
     transform: translateX(-300%);
-    transition: opacity $transition-speed, transform 0s $transition-speed;
+    transition: opacity $transition-duration, transform 0s $transition-duration;
   }
 
   &.has-popup-open {
@@ -28,7 +28,7 @@ body {
       opacity: 1;
       transform: translateX(0);
       pointer-events: all;
-      transition: opacity $transition-speed 0s, transform 0s 0s;
+      transition: opacity $transition-duration 0s, transform 0s 0s;
     }
   }
 
@@ -42,7 +42,7 @@ button,
 .button,
 input[type="submit"] {
   cursor: pointer;
-  transition-duration: $transition-speed;
+  transition-duration: $transition-duration;
   transition-property: color, background-color, border, opacity;
 
   &:focus {

@@ -14,9 +14,6 @@ const Toggle = {
 
     // Toggle the body class
     document.body.classList.toggle(`has-${ev.currentTarget.dataset.toggle}-open`);
-
-    // Scroll page to the top
-    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   },
 };
 

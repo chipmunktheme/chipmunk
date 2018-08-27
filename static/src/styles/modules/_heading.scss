@@ -65,7 +65,7 @@
   font-size: 0.8em;
   cursor: pointer;
   transition-property: color, border-color;
-  transition-duration: $transition-speed;
+  transition-duration: $transition-duration;
 
   @include breakpoint(sm) {
     font-size: 1em;

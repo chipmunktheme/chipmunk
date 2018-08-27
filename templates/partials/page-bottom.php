@@ -29,7 +29,7 @@
 
 					<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 						<li class="nav-secondary__item">
-							<button type="button" data-toggle="popup"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></button>
+							<button type="button" data-popup="#submit"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></button>
 						</li>
 					<?php endif; ?>
 				</ul>

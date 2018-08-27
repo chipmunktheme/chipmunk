@@ -7,7 +7,7 @@
     position: absolute;
     top: 100%;
     left: 50%;
-    z-index: $zindex-dropdown;
+    z-index: $layer-dropdown;
     padding: 0.25em 1em;
     background-color: $color-white;
     border: 1px solid $color-gray-light;
@@ -16,7 +16,7 @@
     pointer-events: none;
     text-align: center;
     transform: translate3d(-50%, 20px, 0);
-    transition: opacity $transition-speed, transform $transition-speed;
+    transition: opacity $transition-duration, transform $transition-duration;
 
     .dropdown__trigger:hover > & {
       opacity: 1;

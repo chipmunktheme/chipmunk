@@ -68,7 +68,7 @@
     max-height: #{$font-line-height}em;
     vertical-align: middle;
     opacity: 0.5;
-    transition: opacity $transition-speed;
+    transition: opacity $transition-duration;
   }
 
   a:hover img {

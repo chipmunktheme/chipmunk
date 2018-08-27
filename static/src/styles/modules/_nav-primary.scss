@@ -5,13 +5,13 @@
 .nav-primary {
   @include u-overlay;
   position: fixed;
-  z-index: $zindex-nav;
+  z-index: $layer-nav;
   background-color: $color-white;
   opacity: 0;
   transform: translateY(-10%);
   pointer-events: none;
   transition: opacity, transform;
-  transition-duration: $transition-speed * 2;
+  transition-duration: $transition-duration * 2;
 
   .admin-bar & {
     top: 46px;
@@ -29,7 +29,7 @@
 
   @include breakpoint(lg) {
     position: relative;
-    z-index: $zindex-base;
+    z-index: $layer-base;
     background-color: transparent;
     opacity: 1;
     transform: none;

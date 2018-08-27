@@ -57,7 +57,7 @@
 					<?php endif; ?>
 				<?php else : ?>
 					<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
-						<button type="button" class="button button_secondary visible-lg-block" data-toggle="popup">
+						<button type="button" class="button button_secondary visible-lg-block" data-popup="#submit">
 							<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
 						</button>
 					<?php endif; ?>

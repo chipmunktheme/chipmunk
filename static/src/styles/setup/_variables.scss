@@ -18,14 +18,14 @@ $color-status-info:     #00529B !default;
 $color-status-error:    #F74444 !default;
 
 // Z-indexes
-$zindex-negative:       -1 !default;
-$zindex-neutral:        0 !default;
-$zindex-base:           1 !default;
-$zindex-utils:          5 !default;
-$zindex-head:           10 !default;
-$zindex-nav:            15 !default;
-$zindex-dropdown:       20 !default;
-$zindex-popup:          25 !default;
+$layer-negative:        -1 !default;
+$layer-neutral:         0 !default;
+$layer-base:            1 !default;
+$layer-utils:           5 !default;
+$layer-head:            10 !default;
+$layer-nav:             15 !default;
+$layer-dropdown:        20 !default;
+$layer-popup:           25 !default;
 
 // Font definitions
 $font-poppins:          'Poppins', 'Arial', 'Helvetica Neue', Helvetica, sans-serif !default;
@@ -36,7 +36,7 @@ $font-line-height:      1.875 !default;
 
 // Others
 $separator:             2rem !default;
-$transition-speed:      0.25s !default;
+$transition-duration:   0.25s !default;
 
 // Base path for assets
 $base-path:             '..' !default;

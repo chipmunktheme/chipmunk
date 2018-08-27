@@ -1,58 +1,14 @@
 <div class="popup">
   <div class="container">
     <div class="popup__content">
-      <button class="popup__close" data-toggle="popup">
-        {% include '../partials/icon.twig' with { 'icon': 'close' } %}
-        <span class="sr-only">Close</span>
-      </button>
-
-      <h2 class="heading heading_xl text_center">Submit</h2>
-
-      <div class="form__message">
-        <p class="heading heading_thin">Thank you for your contribution. The submission was sent to the website owners for review.</p>
+      <div class="popup__inner">
+        {% include '../sections/submit.twig' %}
       </div>
 
-      <form action="#" method="post" class="form">
-        <div class="form__field">
-          <div class="form__child">
-            <input type="text" name="name" placeholder="Resource name" required>
-          </div>
-          <div class="form__child">
-            <select name="collection" data-placeholder="Collection" class="custom-select" data-parsley-errors-container=".collection-errors" required>
-              <option value="">Collection</option>
-              <option value="design">Design</option>
-              <option value="development">Development</option>
-              <option value="technology">Technology</option>
-              <option value="products">Products</option>
-              <option value="apps">Apps</option>
-              <option value="podcasts">Podcasts</option>
-            </select>
-
-            <div class="collection-errors"></div>
-          </div>
-        </div>
-        <div class="form__field">
-          <div class="form__child">
-            <input type="url" name="url" placeholder="Website URL" required>
-          </div>
-          <div class="form__child">
-            <input type="text" name="description" placeholder="Description">
-          </div>
-        </div>
-        <div class="form__field form__field_separated">
-          <div class="form__child">
-            <input type="text" name="submitter_name" placeholder="Your name" required>
-          </div>
-          <div class="form__child">
-            <input type="email" name="submitter_email" placeholder="Your email" required>
-          </div>
-        </div>
-        <div class="form__field form__field_center">
-          <button type="submit" class="button button_secondary">Submit</button>
-        </div>
-      </form>
+      <button class="popup__close" onclick="closePanels()">
+        {% include '../partials/icon.twig' with { icon: 'close' } %}
+      </button>
     </div>
-    <div class="popup__loader"></div>
   </div>
 </div>
 <!-- /.popup -->

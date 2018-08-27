@@ -3246,7 +3246,6 @@ input[type="submit"]:focus {
   color: #333333;
   font-size: 2.2rem;
   line-height: 1;
-  opacity: 0;
   transition-property: opacity, color;
   transition-duration: 0.375s;
 }
@@ -3264,9 +3263,6 @@ input[type="submit"]:focus {
 .popup__close:hover {
   color: #F38181;
 }
-.has-popup-open .popup__close {
-  opacity: 1;
-}
 .popup__content {
   position: relative;
   top: -300%;
@@ -3275,8 +3271,8 @@ input[type="submit"]:focus {
   background-color: #FAFAFA;
   opacity: 0;
   -webkit-overflow-scrolling: touch;
-  -webkit-transform: scale(0.95) translateY(-7.5%);
-          transform: scale(0.95) translateY(-7.5%);
+  -webkit-transform: translateY(5%);
+          transform: translateY(5%);
   transition: opacity 0.375s, -webkit-transform 0.375s;
   transition: opacity 0.375s, transform 0.375s;
   transition: opacity 0.375s, transform 0.375s, -webkit-transform 0.375s;
@@ -3295,8 +3291,8 @@ input[type="submit"]:focus {
 }
 .has-popup-open .popup__content {
   opacity: 1;
-  -webkit-transform: scale(1) translateY(0);
-          transform: scale(1) translateY(0);
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 .popup__content > img {
   width: auto;

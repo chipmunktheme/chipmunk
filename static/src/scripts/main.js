@@ -7,6 +7,7 @@
 import 'custom-event-polyfill';
 
 import toggle from './modules/toggle';
+import popup from './modules/popup';
 import validate from './modules/validate';
 import filter from './modules/filter';
 import tabs from './modules/tabs';
@@ -18,6 +19,7 @@ import actions from './modules/actions';
 
 (function () {
   toggle.init();
+  popup.init();
   validate.init();
   filter.init();
   tabs.init();
@@ -28,23 +30,26 @@ import actions from './modules/actions';
   actions.init();
 })();
 
-window.closePanels = function () {
+window.closePanels = () => {
   const bodyClasses = ['has-nav-open', 'has-search-open', 'has-popup-open'];
 
   document.body.classList.remove(...bodyClasses);
-  document.body.dispatchEvent(new Event('panels:close'));
+  window.dispatchEvent(new Event('panels:close'));
+};
+
+const listener = ev => {
+  const pattern = /popup($|\s)/;
+
+  if (pattern.test(ev.target.className)) {
+    window.closePanels();
+  }
 };
 
 document.addEventListener('keyup', ev => {
   if (ev.keyCode === 27) {
-    closePanels();
+    window.closePanels();
   }
 });
 
-document.addEventListener('click', ev => {
-  const pattern = /popup($|\s)/;
-
-  if (pattern.test(ev.target.className)) {
-    closePanels();
-  }
-});
+document.addEventListener('click', listener);
+document.addEventListener('touchend', listener);

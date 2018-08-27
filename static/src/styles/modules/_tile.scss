@@ -100,7 +100,7 @@
   pointer-events: none;
   overflow: hidden;
   background-color: $color-gray-light;
-  transition: opacity $transition-speed;
+  transition: opacity $transition-duration;
 
   &::before {
     content: '';
@@ -116,7 +116,7 @@
     width: 100%;
     object-fit: cover;
     box-shadow: -2px 0 10px 0 rgba($color-black, 0.5);
-    transition: transform $transition-speed ease-in-out 0.05s;
+    transition: transform $transition-duration ease-in-out 0.05s;
 
     &:nth-child(2) {
       transform: translateX(25%);
@@ -135,7 +135,7 @@
 
 .tile__content {
   @include u-overlay;
-  z-index: $zindex-base;
+  z-index: $layer-base;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -207,7 +207,7 @@
   padding: 0.2em;
   line-height: 1;
   cursor: pointer;
-  transition: color $transition-speed;
+  transition: color $transition-duration;
 
   .tile_card & {
     color: $color-gray;
@@ -230,7 +230,7 @@
   .icon {
     font-size: 1.2rem;
     line-height: inherit;
-    transition: transform $transition-speed ease-in-out 0.05s;
+    transition: transform $transition-duration ease-in-out 0.05s;
   }
 
   small {

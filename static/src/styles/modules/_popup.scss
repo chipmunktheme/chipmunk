@@ -4,11 +4,11 @@
 
 .popup {
   @include u-overlay;
-  z-index: $zindex-popup;
+  z-index: $layer-popup;
   overflow: hidden;
   pointer-events: none;
   transform: translateX(-300%);
-  transition: transform 0s $transition-speed;
+  transition: transform 0s $transition-duration;
 
   .has-popup-open & {
     transform: translateX(0);
@@ -21,13 +21,12 @@
   position: absolute;
   top: $separator;
   right: $separator;
-  z-index: $zindex-utils;
+  z-index: $layer-utils;
   color: $color-black;
   font-size: 2.2rem;
   line-height: 1;
-  opacity: 0;
   transition-property: opacity, color;
-  transition-duration: $transition-speed * 1.5;
+  transition-duration: $transition-duration * 1.5;
 
   @include breakpoint(md) {
     font-size: 2.4rem;
@@ -41,10 +40,6 @@
   &:hover {
     color: $color-primary;
   }
-
-  .has-popup-open & {
-    opacity: 1;
-  }
 }
 
 .popup__content {
@@ -55,8 +50,8 @@
   background-color: $color-white;
   opacity: 0;
   -webkit-overflow-scrolling: touch;
-  transform: scale(0.95) translateY(-7.5%);
-  transition: opacity $transition-speed * 1.5, transform $transition-speed * 1.5;
+  transform: translateY(5%);
+  transition: opacity $transition-duration * 1.5, transform $transition-duration * 1.5;
 
   @include breakpoint(md) {
     padding: $separator * 2;
@@ -70,7 +65,7 @@
 
   .has-popup-open & {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translateY(0);
   }
 
   > img {

@@ -52,7 +52,7 @@
     display: inline-block;
     color: $color-gray-light;
     opacity: 0;
-    transition: opacity $transition-speed;
+    transition: opacity $transition-duration;
     vertical-align: middle;
 
     .comment:hover & {

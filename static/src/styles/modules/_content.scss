@@ -252,7 +252,7 @@
       img {
         backface-visibility: hidden;
         transform: translateZ(0) scale(1, 1);
-        transition: opacity $transition-speed;
+        transition: opacity $transition-duration;
       }
 
       &:hover img {
