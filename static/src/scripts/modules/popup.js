@@ -8,7 +8,6 @@ const Popup = {
       );
 
       window.addEventListener('load', this.hashHandler.bind(this), false);
-      window.addEventListener('hashchange', this.hashHandler.bind(this), false);
       window.addEventListener('panels:close', this.closePopup.bind(this), false);
     }
   },
@@ -36,6 +35,8 @@ const Popup = {
   hashHandler() {
     if (location.hash === "#submit") {
       this.openPopup();
+    } else {
+      this.closePopup();
     }
   },
 };
