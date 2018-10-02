@@ -28,7 +28,7 @@
     }
   }
 
-  h1, h2 {
+  > h1, > h2 {
     @extend .heading_xl;
 
     &:not(:first-child) {
@@ -40,16 +40,16 @@
     }
   }
 
-  h3 {
+  > h3 {
     @extend .heading_lg;
   }
 
-  h4 {
+  > h4 {
     @extend .heading_md;
     text-transform: none !important;
   }
 
-  h5, h6 {
+  > h5, > h6 {
     font-size: 1.6rem;
     line-height: 1.6;
 
@@ -58,7 +58,7 @@
     }
   }
 
-  p, blockquote, table, ul, ol, hr {
+  > p, > blockquote, > table, > ul, > ol, > hr {
     clear: both;
 
     &:not(:first-child) {
