@@ -51,9 +51,11 @@
 							<?php esc_html_e( 'Login', 'chipmunk' ); ?>
 						</a>
 
-						<a href="<?php echo esc_url( home_url( 'register' ) ); ?>" class="button button_secondary visible-lg-block">
-							<?php esc_html_e( 'Register', 'chipmunk' ); ?>
-						</a>
+						<?php if ( get_option( 'users_can_register' ) ) : ?>
+							<a href="<?php echo esc_url( home_url( 'register' ) ); ?>" class="button button_secondary visible-lg-block">
+								<?php esc_html_e( 'Register', 'chipmunk' ); ?>
+							</a>
+						<?php endif; ?>
 					<?php endif; ?>
 				<?php else : ?>
 					<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>

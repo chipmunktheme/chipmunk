@@ -1962,40 +1962,40 @@ input[type="submit"]:focus {
 .content > h6 + ol:not(:first-child) {
   margin-top: 0;
 }
-.content h1:not(:first-child), .content h2:not(:first-child) {
+.content > h1:not(:first-child), .content > h2:not(:first-child) {
   margin-top: 4rem;
 }
 @media (min-width: 980px) {
-  .content h1:not(:first-child), .content h2:not(:first-child) {
+  .content > h1:not(:first-child), .content > h2:not(:first-child) {
     margin-top: 6rem;
   }
 }
-.content h4 {
+.content > h4 {
   text-transform: none !important;
 }
-.content h5, .content h6 {
+.content > h5, .content > h6 {
   font-size: 1.6rem;
   line-height: 1.6;
 }
 @media (min-width: 680px) {
-  .content h5, .content h6 {
+  .content > h5, .content > h6 {
     font-size: 2.1rem;
   }
 }
-.content p, .content blockquote, .content table, .content ul, .content ol, .content hr {
+.content > p, .content > blockquote, .content > table, .content > ul, .content > ol, .content > hr {
   overflow: hidden;
   clear: both;
 }
-.content p:not(:first-child), .content blockquote:not(:first-child), .content table:not(:first-child), .content ul:not(:first-child), .content ol:not(:first-child), .content hr:not(:first-child) {
+.content > p:not(:first-child), .content > blockquote:not(:first-child), .content > table:not(:first-child), .content > ul:not(:first-child), .content > ol:not(:first-child), .content > hr:not(:first-child) {
   margin-top: 1.85em;
 }
-.content p > [src],
-.content p > .fluid-width-video-wrapper, .content blockquote > [src],
-.content blockquote > .fluid-width-video-wrapper, .content table > [src],
-.content table > .fluid-width-video-wrapper, .content ul > [src],
-.content ul > .fluid-width-video-wrapper, .content ol > [src],
-.content ol > .fluid-width-video-wrapper, .content hr > [src],
-.content hr > .fluid-width-video-wrapper {
+.content > p > [src],
+.content > p > .fluid-width-video-wrapper, .content > blockquote > [src],
+.content > blockquote > .fluid-width-video-wrapper, .content > table > [src],
+.content > table > .fluid-width-video-wrapper, .content > ul > [src],
+.content > ul > .fluid-width-video-wrapper, .content > ol > [src],
+.content > ol > .fluid-width-video-wrapper, .content > hr > [src],
+.content > hr > .fluid-width-video-wrapper {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -2504,18 +2504,6 @@ input[type="submit"]:focus {
 .content form textarea:focus {
   outline: none;
 }
-.form label, .content form label {
-  display: inline-block;
-  margin: 0.5em 0;
-  font-size: 1.6rem;
-  font-weight: bold;
-}
-.form label span, .content form label span {
-  display: inline-block;
-  margin-left: 0.5em;
-  font-weight: normal;
-  color: #808080;
-}
 .form_compact {
   text-align: center;
 }
@@ -2667,34 +2655,34 @@ input[type="submit"]:focus {
     margin-bottom: 2rem;
   }
 }
-.heading_md, .content h4 {
+.heading_md, .content > h4 {
   font-size: 2rem;
   line-height: 1.6;
   letter-spacing: 0.025em;
 }
 @media (min-width: 680px) {
-  .heading_md, .content h4 {
+  .heading_md, .content > h4 {
     font-size: 2.4rem;
   }
 }
-.heading_md small, .content h4 small {
+.heading_md small, .content > h4 small {
   color: #808080;
 }
-.heading_lg, .content h3 {
+.heading_lg, .content > h3 {
   font-size: 2.6rem;
   line-height: 1.4;
 }
 @media (min-width: 680px) {
-  .heading_lg, .content h3 {
+  .heading_lg, .content > h3 {
     font-size: 3.6rem;
   }
 }
-.heading_xl, .content h1, .content h2, .entry__title {
+.heading_xl, .content > h1, .content > h2, .entry__title {
   font-size: 3.6rem;
   line-height: 1.4;
 }
 @media (min-width: 680px) {
-  .heading_xl, .content h1, .content h2, .entry__title {
+  .heading_xl, .content > h1, .content > h2, .entry__title {
     font-size: 4.8rem;
   }
 }
