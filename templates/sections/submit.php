@@ -55,12 +55,21 @@
             </div>
         <?php endif; ?>
 
-        <div class="form__field form__field_center">
-            <?php if ( chipmunk_theme_option( 'recaptcha_site_key' ) ) : ?>
-                <div class="g-recaptcha" id="submit-recaptcha"></div>
-            <?php endif; ?>
+        <?php if ( ! empty( chipmunk_theme_option( 'submission_consent' ) ) ) : ?>
+            <div class="form__field form__field_center form__field_separated">
+                <div class="form__child">
+                    <?php chipmunk_get_template( 'partials/checkbox', array( 'name' => 'consent', 'label' => chipmunk_theme_option( 'submission_consent' ), 'required' => true ) ); ?>
+                </div>
+            </div>
+        <?php endif; ?>
 
-            <?php wp_nonce_field( 'submit_resource', 'nonce', false ); ?>
+        <?php if ( ! empty( chipmunk_theme_option( 'recaptcha_enabled' ) ) ) : ?>
+            <div class="form__field form__field_center">
+                <div class="g-recaptcha" id="submit-recaptcha"></div>
+            </div>
+        <?php endif; ?>
+
+        <div class="form__field form__field_center">
             <button type="submit" class="button button_secondary"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></button>
         </div>
     </div>

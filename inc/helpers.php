@@ -217,10 +217,11 @@ if ( ! function_exists( 'chipmunk_verify_recaptcha' ) ) :
      * @return bool True if the CAPTCHA is OK, otherwise false.
      */
     function chipmunk_verify_recaptcha( $response ) {
-        $site_key = chipmunk_theme_option( 'recaptcha_site_key' );
+        $enabled    = chipmunk_theme_option( 'recaptcha_enabled' );
+        $site_key   = chipmunk_theme_option( 'recaptcha_site_key' );
         $secret_key = chipmunk_theme_option( 'recaptcha_secret_key' );
 
-        if ( ! $site_key ) {
+        if ( ! $enabled or ! $site_key ) {
             return true;
         }
 
