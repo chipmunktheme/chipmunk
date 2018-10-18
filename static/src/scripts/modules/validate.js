@@ -130,7 +130,7 @@ const Validate = {
 
   init() {
     this.lang = document.documentElement.lang;
-    this.triggers = document.querySelectorAll('form[action]');
+    this.triggers = document.querySelectorAll('[data-validate]');
 
     if (this.triggers) {
       [].forEach.call(this.triggers, trigger => this.validate(trigger));

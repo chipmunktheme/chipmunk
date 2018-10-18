@@ -54,7 +54,7 @@
     }
 
     .button_secondary:hover {
-      background-color: $color-white;
+      background-color: $color-white !important;
       color: $color-primary;
     }
   }

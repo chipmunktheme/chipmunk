@@ -3660,7 +3660,7 @@ input[type="submit"]:focus {
   color: #FAFAFA;
 }
 .section_theme-primary .button_secondary:hover {
-  background-color: #FAFAFA;
+  background-color: #FAFAFA !important;
   color: #F38181;
 }
 .section__title {

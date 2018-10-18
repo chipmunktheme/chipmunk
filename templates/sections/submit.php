@@ -2,7 +2,7 @@
 
 <h4 class="heading heading_xl text_center"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></h4>
 
-<form action="#" class="form loader" novalidate data-action="<?php echo $action; ?>" data-action-event="submit">
+<form action="#" class="form loader" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
     <p class="form__message heading heading_thin" data-action-message="<?php echo $action; ?>"></p>
 
     <input type="hidden" name="filter" value="">
