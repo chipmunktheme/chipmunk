@@ -6,7 +6,7 @@
 	<?php $query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged ); ?>
 <?php endif; ?>
 
-<?php if ( $query->have_posts() || ! is_single() ) : ?>
+<?php if ( $query->have_posts() or ! is_single() ) : ?>
 	<div class="section">
 		<div class="container">
 			<?php if ( is_single() ) : ?>

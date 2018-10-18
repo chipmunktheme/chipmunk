@@ -4,7 +4,7 @@ global $wp_query;
 $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'category' : 'resource-collection' ) );
 ?>
 
-<?php if ( isset( $args ) && $args['display'] and $collections ) : ?>
+<?php if ( isset( $args ) and $args['display'] and $collections ) : ?>
 	<li class="stats__item">
 		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'tag' ) ); ?>
 
@@ -32,7 +32,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 	<?php $upvote_button = chipmunk_upvote_button( get_the_ID(), 'stats__button' ); ?>
 	<?php $upvote_counter = chipmunk_upvote_counter( get_the_ID() ); ?>
 
-	<?php if ( $wp_query->current_post == 0 || is_search() ) : ?>
+	<?php if ( $wp_query->current_post == 0 or is_search() ) : ?>
 		<li class="stats__item"><?php echo $upvote_button; ?></li>
 	<?php else : ?>
 		<?php if ( chipmunk_theme_option( 'display_resource_as' ) != 'tile' ) : ?>

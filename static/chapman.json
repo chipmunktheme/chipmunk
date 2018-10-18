@@ -1,5 +1,5 @@
 {
-  "proxy": "internetcurated.test",
+  "proxy": "internet-curated.test",
   "src": "src",
   "dest": "dist",
   "tasks": [

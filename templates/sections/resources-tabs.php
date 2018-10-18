@@ -23,7 +23,7 @@
 	});
 ?>
 
-<?php if ( ! empty( $sections ) || ! empty( $intro_text ) ) : ?>
+<?php if ( ! empty( $sections ) or ! empty( $intro_text ) ) : ?>
 	<div class="section">
 		<div class="container">
 			<?php if ( ! empty( $intro_text ) ) : ?>

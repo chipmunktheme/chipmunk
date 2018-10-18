@@ -19,7 +19,7 @@
 	<div class="tile__content<?php echo ( chipmunk_theme_option( 'display_resource_as' ) == 'tile' ? ( chipmunk_theme_option( 'disable_resource_thumbs' ) ? ' tile__content_primary' : ' tile__content_dimmed' ) : '' ); ?>">
 		<div class="tile__info">
 			<div class="tile__head">
-				<?php echo chipmunk_conditional_markup( is_front_page() || is_single(), 'h3', 'h2', 'tile__title', chipmunk_theme_option( 'display_resource_as' ) == 'tile' ? esc_html( chipmunk_truncate_string( get_the_title(), 60 ) ) : get_the_title() ); ?>
+				<?php echo chipmunk_conditional_markup( is_front_page() or is_single(), 'h3', 'h2', 'tile__title', chipmunk_theme_option( 'display_resource_as' ) == 'tile' ? esc_html( chipmunk_truncate_string( get_the_title(), 60 ) ) : get_the_title() ); ?>
 
 				<?php if ( ! chipmunk_theme_option( 'disable_website_button' ) and ! empty( $resource_website ) ) : ?>
 					<script>

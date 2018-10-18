@@ -1,6 +1,6 @@
 <?php $term = get_queried_object(); ?>
 <?php $paged = chipmunk_get_current_page(); ?>
-<?php $layout = is_single() || is_front_page() ? 'tiles' : chipmunk_theme_option( 'blog_layout' ); ?>
+<?php $layout = is_single() or is_front_page() ? 'tiles' : chipmunk_theme_option( 'blog_layout' ); ?>
 
 <?php if ( is_single() ) : ?>
 	<?php $query = chipmunk_get_related( get_the_ID() ); ?>
@@ -10,7 +10,7 @@
 	<?php $query = chipmunk_get_posts( chipmunk_theme_option( 'blog_posts_per_page' ), $paged, isset( $term->term_id ) ? $term : null ); ?>
 <?php endif; ?>
 
-<?php if ( ( ! is_front_page() && ! is_single() ) || $query->have_posts() ) : ?>
+<?php if ( ( ! is_front_page() and ! is_single() ) or $query->have_posts() ) : ?>
 	<div class="section">
 		<div class="container">
 			<?php if ( is_single() ) : ?>
@@ -18,7 +18,7 @@
 			<?php elseif ( is_front_page() ) : ?>
 				<h2 class="heading heading_md"><?php esc_html_e( 'Latest Posts', 'chipmunk' ); ?></h2>
 			<?php else : ?>
-				<?php if ( $term && $layout == 'tiles' ) : ?>
+				<?php if ( $term and $layout == 'tiles' ) : ?>
 					<h1 class="heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( esc_html__( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : get_the_title(); ?></h1>
 				<?php endif; ?>
 			<?php endif; ?>
@@ -29,7 +29,7 @@
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
 						<?php if ( $layout == 'mixed' ) : ?>
-							<?php if ( $i % 4 == 0 && $paged == 1 ) : ?>
+							<?php if ( $i % 4 == 0 and $paged == 1 ) : ?>
 								<?php get_template_part( 'templates/sections/post-excerpt' ); ?>
 							<?php else : ?>
 								<?php get_template_part( 'templates/sections/post-tile' ); ?>
@@ -60,7 +60,7 @@
 			<?php endif; ?>
 		</div>
 
-		<?php if ( ! is_single() && ! is_front_page() ) : ?>
+		<?php if ( ! is_single() and ! is_front_page() ) : ?>
 			<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query, 'type' => 'post' ) ); ?>
 		<?php endif; ?>
 	</div>

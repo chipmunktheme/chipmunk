@@ -11,17 +11,17 @@
 					}
 
 					// Blog template
-					elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-blog.php' && ( is_singular( 'post' ) || ( is_home() && $menu_item->url == get_permalink( get_option( 'page_for_posts' ) ) ) || ( get_queried_object() && isset( get_queried_object()->taxonomy ) && get_queried_object()->taxonomy == 'category' ) ) ) {
+					elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-blog.php' and ( is_singular( 'post' ) or ( is_home() and $menu_item->url == get_permalink( get_option( 'page_for_posts' ) ) ) or ( get_queried_object() and isset( get_queried_object()->taxonomy ) and get_queried_object()->taxonomy == 'category' ) ) ) {
 						$is_active = true;
 					}
 
 					// Resources template
-					elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-resources.php' && ( is_singular( 'resource' ) ) ) {
+					elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-resources.php' and ( is_singular( 'resource' ) ) ) {
 						$is_active = true;
 					}
 
 					// Collections template
-					elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-collections.php' && ( is_tax( 'resource-collection' ) ) ) {
+					elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-collections.php' and ( is_tax( 'resource-collection' ) ) ) {
 						$is_active = true;
 					}
 

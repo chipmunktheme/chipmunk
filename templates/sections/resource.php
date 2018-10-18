@@ -21,11 +21,11 @@
 				<div class="resource__info">
 					<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading_lg', is_single() ? get_the_title() : '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_title() . '</a>' ); ?>
 
-					<?php if ( ! empty( $content ) && ( is_search() || ! chipmunk_theme_option( 'display_resource_content_separated' ) ) ) : ?>
+					<?php if ( ! empty( $content ) and ( is_search() or! chipmunk_theme_option( 'display_resource_content_separated' ) ) ) : ?>
 						<div class="resource__description"><?php echo wp_kses_post( wpautop( do_shortcode( $content ) ) ); ?></div>
 					<?php endif; ?>
 
-					<?php if ( ! empty( $tags ) && ! chipmunk_theme_option( 'disable_resource_tags' ) ) : ?>
+					<?php if ( ! empty( $tags ) and ! chipmunk_theme_option( 'disable_resource_tags' ) ) : ?>
 						<div class="resource__tags" title="<?php esc_attr_e( 'Tags', 'chipmunk' ); ?>">
 							<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'tag' ) ); ?>
 
@@ -62,7 +62,7 @@
 </div>
 <!-- /.section -->
 
-<?php if ( ! empty( get_the_content() ) && ! is_search() && chipmunk_theme_option( 'display_resource_content_separated' ) ) : ?>
+<?php if ( ! empty( get_the_content() ) and ! is_search() and chipmunk_theme_option( 'display_resource_content_separated' ) ) : ?>
 	<div class="section">
 		<div class="container">
 			<div class="row">
