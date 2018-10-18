@@ -1,152 +1,155 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2018-10-18 14:42+0200\n"
-"PO-Revision-Date: 2018-10-18 15:13+0200\n"
-"Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: Chipmunk\n"
+"POT-Creation-Date: 2018-10-18 14:41+0200\n"
+"PO-Revision-Date: 2018-10-18 15:10+0200\n"
 "Language-Team: \n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.2\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _e;__;_x;_n:1,2;esc_html_e;esc_html__;esc_attr_e;"
-"esc_attr__\n"
 "X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: de\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: static\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: 404.php:15
 msgid "404! The page you are looking for couldn't be found."
-msgstr "Strona, której szukasz nie została znaleziona."
+msgstr "Oops! Die gewünschte Seite kann nicht gefunden werden."
 
 #: 404.php:16
 msgid "Bring me to the frontpage"
-msgstr "Zabierz mnie do strony głównej"
+msgstr "Zurück zur Startseite"
 
 #: comments.php:14
 msgid ""
 "This post is password protected. Enter the password to view any comments."
-msgstr "Ten post jest chroniony hasłem. Wprowadź je, aby zobaczyć komentarze."
+msgstr ""
+"Dieser Inhalt ist passwortgeschützt. Bitte gib das Passwort ein, um "
+"fortzufahren."
 
 #: comments.php:33
 #, php-format
 msgid "%s Comment"
 msgid_plural "%s Comments"
-msgstr[0] "%s Komentarz"
-msgstr[1] "%s Komentarze"
-msgstr[2] "%s Komentarzy"
+msgstr[0] "%s Kommentar"
+msgstr[1] "%s Kommentare"
 
 #: comments.php:63 inc/customizer.php:300 templates/partials/filters.php:40
 #: templates/partials/filters.php:41
 msgid "Name"
-msgstr "Nazwa"
+msgstr "Name"
 
 #: comments.php:67
 msgid "Email"
-msgstr "E-mail"
+msgstr "E-Mail"
 
 #: comments.php:81
 msgid "Comment"
-msgstr "Komentarz"
+msgstr "Kommentieren"
 
 #: features/comments.php:50
 msgid "Reply"
-msgstr "Odpowiedz"
+msgstr "Antworten"
 
 #: features/comments.php:54
 msgid "Your comment is awaiting moderation."
-msgstr "Twój komentarz czeka na zatwierdzenie."
+msgstr "Dein Kommentar wird geprüft."
 
 #: functions.php:60
 msgid "Resource"
-msgstr "Materiał"
+msgstr "Ressource"
 
 #: functions.php:61 inc/customizer.php:195
 #: templates/sections/collection-tile.php:49
 #: templates/sections/resources.php:18 templates/sections/resources.php:24
 msgid "Resources"
-msgstr "Materiały"
+msgstr "Ressourcen"
 
 #: functions.php:69
 msgid "Add New Resource"
-msgstr "Dodaj Nowy Materiał"
+msgstr "Neue Ressource hinzufügen"
 
 #: functions.php:70
 msgid "Edit Resource"
-msgstr "Edytuj Materiał"
+msgstr "Ressource bearbeiten"
 
 #: functions.php:71
 msgid "New Resource"
-msgstr "Nowy Materiał"
+msgstr "Neue Ressource"
 
 #: functions.php:72
 msgid "View Resource"
-msgstr "Zobacz Materiał"
+msgstr "Ressourcen anzeigen"
 
 #: functions.php:73
 msgid "All Resources"
-msgstr "Wszystkie Materiały"
+msgstr "Alle Ressourcen"
 
 #: functions.php:74
 msgid "Search Resources"
-msgstr "Szukaj Materiałów"
+msgstr "Ressourcen durchsuchen"
 
 #: functions.php:75
 msgid "No Resources found."
-msgstr "Nie znaleziono materiałów."
+msgstr "Keine Ressourcen gefunden."
 
 #: functions.php:76
 msgid "No Resources found in trash."
-msgstr "Nie znaleziono materiałów w koszu."
+msgstr "Keine Ressourcen im Papierkorb gefunden."
 
 #: functions.php:83 templates/emails/submission.php:9
 #: templates/sections/submit.php:19 templates/sections/submit.php:20
 msgid "Collection"
-msgstr "Kolekcja"
+msgstr "Sammlung"
 
 #: functions.php:84 templates/sections/collections.php:3
 msgid "Collections"
-msgstr "Kolekcje"
+msgstr "Sammlungen"
 
 #: functions.php:87
 msgid "collection"
-msgstr "kolekcja"
+msgstr "sammlung"
 
 #: functions.php:94
 msgid "Add Collection"
-msgstr "Dodaj Kolekcję"
+msgstr "Sammlung hinzufügen"
 
 #: functions.php:95
 msgid "New Collection Name"
-msgstr "Nazwa Nowej Kolekcji"
+msgstr "Neuer Name für Sammlung"
 
 #: functions.php:96
 msgid "Edit Collection"
-msgstr "Edytuj Kolekcję"
+msgstr "Sammlung bearbeiten"
 
 #: functions.php:97
 msgid "Update Collection"
-msgstr "Zaktualizuj Kolekcję"
+msgstr "Sammlung aktualisieren"
 
 #: functions.php:98
 msgid "Parent Collection"
-msgstr "Kolekcja Rodzica"
+msgstr "Übergeordnete Sammlung"
 
 #: functions.php:99
 msgid "Parent Collection:"
-msgstr "Kolekcja Rodzica:"
+msgstr "Übergeordnete Sammlung:"
 
 #: functions.php:100
 msgid "All Collections"
-msgstr "Wszystkie Kolekcje"
+msgstr "Alle Sammlungen"
 
 #: functions.php:101
 msgid "Search Collections"
-msgstr "Szukaj Kolekcji"
+msgstr "Sammlungen durchsuchen"
 
 #: functions.php:106
 msgid "Tag"
@@ -158,47 +161,47 @@ msgstr "Tags"
 
 #: functions.php:111
 msgid "Add Tag"
-msgstr "Dodaj Tag"
+msgstr "Neuen Tag hinzufügen"
 
 #: functions.php:112
 msgid "New Tag Name"
-msgstr "New Tag Name"
+msgstr "Neuer Name für Tag"
 
 #: functions.php:113
 msgid "Edit Tag"
-msgstr "Edit Tag"
+msgstr "Tag bearbeiten"
 
 #: functions.php:114
 msgid "Update Tag"
-msgstr "Update Tag"
+msgstr "Tag aktualisieren"
 
 #: functions.php:115
 msgid "Parent Tag"
-msgstr "Parent Tag"
+msgstr "Übergeordneter Tag"
 
 #: functions.php:116
 msgid "Parent Tag:"
-msgstr "Parent Tag:"
+msgstr "Übergeordneter Tag:"
 
 #: functions.php:117
 msgid "All Tags"
-msgstr "All Tags"
+msgstr "Alle Tags"
 
 #: functions.php:118
 msgid "Search Tags"
-msgstr "Search Tags"
+msgstr "Tags durchsuchen"
 
 #: inc/ajax.php:68
 msgid "No more results found."
-msgstr "Nie znaleziono więcej wyników."
+msgstr "Keine Ergebnisse mehr gefunden."
 
 #: inc/ajax.php:83
 msgid "Not permitted."
-msgstr "Brak dostępu."
+msgstr "Nicht zugelassen."
 
 #: inc/customizer.php:33
 msgid "Site Identity"
-msgstr "Tożsamość witryny"
+msgstr "Seiten-Identität"
 
 #: inc/customizer.php:39
 msgid "Site Logo"
@@ -209,48 +212,48 @@ msgid ""
 "Upload a logo for your theme. You can leave it empty to use your site name "
 "as a plain text logo."
 msgstr ""
-"Wrzuć plik z logo Twojej strony. Możesz zostawić to pole pustym, aby "
-"wyświetlić tylko nazwę strony w postaci tekstu."
+"Lade ein Logo für dein Theme hoch. Wenn du kein Logo hochlädst, wird der "
+"Seitenname als Text dargestellt."
 
 #: inc/customizer.php:46
 msgid "Visuals"
-msgstr "Elementy graficzne"
+msgstr "Darstellung"
 
 #: inc/customizer.php:52
 msgid "Primary Color"
-msgstr "Kolor podstawowy"
+msgstr "Primäre Farbe"
 
 #: inc/customizer.php:58
 msgid "Background Color"
-msgstr "Kolor tła"
+msgstr "Hintergrundfarbe"
 
 #: inc/customizer.php:64
 msgid "Section background Color"
-msgstr "Kolor tła sekcji"
+msgstr "Abschnitt Hintergrundfarbe"
 
 #: inc/customizer.php:70
 msgid "Disable section borders"
-msgstr "Wyłącz obramowanie sekcji"
+msgstr "Abschnittrahmen deaktivieren"
 
 #: inc/customizer.php:76
 msgid "Primary Font"
-msgstr "Czcionka podstawowa"
+msgstr "Primäre Schriftart"
 
 #: inc/customizer.php:79 inc/customizer.php:101
 msgid "System font"
-msgstr "Czcionka systemowa"
+msgstr "Standart Schriftart"
 
 #: inc/customizer.php:98
 msgid "Heading Font"
-msgstr "Czcionka nagłówków"
+msgstr "Überschriften Schriftart"
 
 #: inc/customizer.php:120
 msgid "Custom CSS"
-msgstr "Dodatkowy kod CSS"
+msgstr "Benutzerdefiniertes CSS"
 
 #: inc/customizer.php:122
 msgid "Quickly add some CSS to your theme by adding it to this block."
-msgstr "Dodaj w łatwy sposób swój kod CSS wpisując go w polu poniżej."
+msgstr "Hier kannst du deine CSS für dein Theme einfügen."
 
 #: inc/customizer.php:128
 msgid "Open Graph"
@@ -258,210 +261,212 @@ msgstr "Open Graph"
 
 #: inc/customizer.php:134
 msgid "Disable Open Graph"
-msgstr "Wyłącz Open Graph"
+msgstr "Open Graph deaktivieren"
 
 #: inc/customizer.php:139
 msgid "Open Graph Image"
-msgstr "Obrazek \"Open Graph\""
+msgstr "Open Graph Bild"
 
 #: inc/customizer.php:140
 msgid "1200x630 pixels"
-msgstr "1200x630 px"
+msgstr "1200x630 Pixel"
 
 #: inc/customizer.php:145
 msgid "Remove 'on [website name]' text"
-msgstr "Usuń tekst ‘» [nazwa strony]’"
+msgstr "Entferne “on [dein Website Namen]” Text"
 
 #: inc/customizer.php:151
 msgid "Homepage"
-msgstr "Strona główna"
+msgstr "Startseite"
 
 #: inc/customizer.php:157
 msgid "Intro text"
-msgstr "Opis strony"
+msgstr "Intro tekst"
 
 #: inc/customizer.php:158
 msgid ""
 "Enter your site's tagline to show on homepage under the header. Leave empty "
 "to hide."
 msgstr ""
-"Podaj opis Twojej strony, który będzie widoczny pod nagłówkiem strony. "
-"Zostaw to pole puste by go ukryć."
+"Füge deinen Slogan hier ein, um ihn unter deinem Header anzeigen zu lassen. "
+"Freilassen, wenn hier nichts angezeigt werden soll."
 
 #: inc/customizer.php:163
 msgid "Latest resources count"
-msgstr "Liczba materiałów do wyświetlenia"
+msgstr "Aktuelle Anzahl an Ressourcen"
 
 #: inc/customizer.php:165
 msgid "Enter the max resources number to show on resource sliders."
-msgstr "Podaj maksymalną liczbę materiałów do wyświetlenia na sliderze."
+msgstr ""
+"Gib die Maximale Anzahl an Ressourcen an, die im Slider angezeigt werden "
+"soll."
 
 #: inc/customizer.php:170
 msgid "Disable resource listings"
-msgstr "Wyłącz listy materiałów"
+msgstr "Ressourcen Listings ausblenden"
 
 #: inc/customizer.php:176
 msgid "Disable resource listings sliders"
-msgstr "Wyłącz slidery z materiałami"
+msgstr "Ressourcen Listings Sliders ausblenden"
 
 #: inc/customizer.php:182
 msgid "Disable collections"
-msgstr "Wyłącz kolekcje"
+msgstr "Sammlungen ausblenden"
 
 #: inc/customizer.php:188
 msgid "Disable latest posts"
-msgstr "Wyłącz najnowsze wpisy"
+msgstr "Neue Posts ausblenden"
 
 #: inc/customizer.php:201
 msgid "Number of resources per page"
-msgstr "Liczba materiałów na stronę"
+msgstr "Anzahl an Ressourcen pro Seite"
 
 #: inc/customizer.php:207
 msgid "Number of search results per page"
-msgstr "Liczba materiałów na stronę wyszukiwania"
+msgstr "Anzahl an Suchergebnissen pro Seite"
 
 #: inc/customizer.php:213
 msgid "Display resources as"
-msgstr "Wyświetlaj materiały jako"
+msgstr "Ressourcen anzeigen als"
 
 #: inc/customizer.php:216
 msgid "Tile"
-msgstr "Kafelków"
+msgstr "Kachel"
 
 #: inc/customizer.php:217
 msgid "Card"
-msgstr "Kart"
+msgstr "Karte"
 
 #: inc/customizer.php:218
 msgid "Card (blank)"
-msgstr "Kart (bez tła)"
+msgstr "Karte (leer)"
 
 #: inc/customizer.php:224
 msgid "Display resource content in a separate section"
-msgstr "Wyświetlaj opis materiałów w osobnej sekcji"
+msgstr "Inhalt der Ressource in einem separaten Abschnitt anzeigen"
 
 #: inc/customizer.php:230
 msgid "Disable resource description"
-msgstr "Wyłącz opisy materiałów"
+msgstr "Beschreibung der Ressourcen ausblenden"
 
 #: inc/customizer.php:236
 msgid "Disable resource date"
-msgstr "Wyłącz datowanie materiałów"
+msgstr "Datum der Ressourcen ausblenden"
 
 #: inc/customizer.php:242
 msgid "Disable resource tags"
-msgstr "Wyłącz tagi dla materiałów"
+msgstr "Tags der Ressourcen ausblenden"
 
 #: inc/customizer.php:248
 msgid "Disable featured panel"
-msgstr "Wyłącz promowane materiały"
+msgstr "Featured Feld ausblenden"
 
 #: inc/customizer.php:254
 msgid "Disable resource thumbs"
-msgstr "Wyłącz miniaturki dla materiałów"
+msgstr "Bewertungen für Ressourcen ausblenden"
 
 #: inc/customizer.php:260
 msgid "Disable collection thumbs"
-msgstr "Wyłącz miniaturki dla kolekcji"
+msgstr "Bewertungen für Sammlungen ausblenden"
 
 #: inc/customizer.php:266
 msgid "Disable website button"
-msgstr "Wyłącz przycisk \"Przejdź do strony\""
+msgstr "Website Button ausblenden"
 
 #: inc/customizer.php:272
 msgid "Disable view count"
-msgstr "Wyłącz popularne materiały"
+msgstr "Anzahl der Aufrufe ausblenden"
 
 #: inc/customizer.php:278
 msgid "Disable upvoting"
-msgstr "Wyłącz głosowanie na materiały"
+msgstr "Upvoting deaktivieren"
 
 #: inc/customizer.php:284
 msgid "Disable sorting"
-msgstr "Wyłącz sortowanie"
+msgstr "Sortieren deaktivieren"
 
 #: inc/customizer.php:290
 msgid "Disable filters"
-msgstr "Wyłącz filtry"
+msgstr "Filter deaktivieren"
 
 #: inc/customizer.php:296 templates/partials/filters.php:31
 msgid "Sort by"
-msgstr "Sortuj"
+msgstr "Sortieren nach"
 
 #: inc/customizer.php:299 templates/partials/filters.php:38
 #: templates/partials/filters.php:39
 msgid "Date"
-msgstr "Data"
+msgstr "Datum"
 
 #: inc/customizer.php:301 templates/partials/filters.php:44
 #: templates/partials/filters.php:45 templates/partials/post-stats.php:24
 msgid "Views"
-msgstr "Wizyty"
+msgstr "Aufrufe"
 
 #: inc/customizer.php:302 templates/partials/filters.php:49
 #: templates/partials/filters.php:50 templates/partials/post-stats.php:41
 msgid "Upvotes"
-msgstr "Głosy"
+msgstr "Upvotes"
 
 #: inc/customizer.php:308
 msgid "Sort order"
-msgstr "Kierunek sortowania"
+msgstr "Sortierung"
 
 #: inc/customizer.php:311
 msgid "Ascending"
-msgstr "Rosnąco"
+msgstr "Aufsteigend"
 
 #: inc/customizer.php:312
 msgid "Descending"
-msgstr "Malejąco"
+msgstr "Absteigend"
 
 #: inc/customizer.php:319
 msgid "Submissions"
-msgstr "Zgłoszenia"
+msgstr "Vorschläge"
 
 #: inc/customizer.php:325
 msgid "Disable user submissions"
-msgstr "Wyłącz możliwość zgłaszania materiałów"
+msgstr "Benutzer Vorschläge deaktivieren"
 
 #: inc/customizer.php:331
 msgid "Inform me about new submissions"
-msgstr "Informuj mnie o nowych zgłoszeniach"
+msgstr "Benachrichtige mich bei neuen Vorschlägen"
 
 #: inc/customizer.php:337
 msgid "Disable asking for submitter info"
-msgstr "Nie pytaj zgłaszającego o imię/email"
+msgstr "Nicht nach persönlichen Daten (Name und E-Mail) der Besucher fragen"
 
 #: inc/customizer.php:343
 msgid "Submission tagline"
-msgstr "Opis dla zgłaszających"
+msgstr "Slogan für Vorschläge"
 
 #: inc/customizer.php:344
 msgid "Internet is huge! Help us find great content"
-msgstr "Pomoż nam znaleźć wartościowe treści"
+msgstr "Das Internet ist groß! Hilf uns großartigen Content zu finden"
 
 #: inc/customizer.php:349
 msgid "Submission consent"
-msgstr "Zgody zgłoszenia"
+msgstr "Vorschläge Zustimmung"
 
 #: inc/customizer.php:354
 msgid "Submission \"Thank You\" message"
-msgstr "Tekst podziękowania za zgłoszenie"
+msgstr "“Danke” Mitteilung für Vorschläge"
 
 #: inc/customizer.php:355
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
 msgstr ""
-"Dziękujemy za Twoje zgłoszenie. Informacje zostały przekazane do właścicieli "
-"strony to przeglądu."
+"Danke für deine Unterstützung. Dein Vorschlag wurde zur Überprüfung an uns "
+"gesendet."
 
 #: inc/customizer.php:360
 msgid "Submission \"Failure\" message"
-msgstr "Tekst błędu podczas zgłoszenia"
+msgstr "“Fehler” Mittleilung für Vorschläge"
 
 #: inc/customizer.php:361
 msgid "Your submission could not be processed."
-msgstr "Twoje zgłoszenie nie zostało wysłane. Prosimy spróbować ponownie."
+msgstr "Dein Vorschlag konnte nicht verarbeitet werden."
 
 #: inc/customizer.php:367
 msgid "Blog"
@@ -469,43 +474,43 @@ msgstr "Blog"
 
 #: inc/customizer.php:373
 msgid "Blog list layout"
-msgstr "Układ listy postów"
+msgstr "Blog List Layout"
 
 #: inc/customizer.php:376
 msgid "Tiles"
-msgstr "Kafelki"
+msgstr "Kacheln"
 
 #: inc/customizer.php:377
 msgid "Excerpts"
-msgstr "Zajawki"
+msgstr "Auszüge"
 
 #: inc/customizer.php:378
 msgid "Mixed"
-msgstr "Mieszane"
+msgstr "Gemischt"
 
 #: inc/customizer.php:384
 msgid "Number of blog posts per page"
-msgstr "Liczba postów na stronę"
+msgstr "Anzahl der Blog Posts pro Seite"
 
 #: inc/customizer.php:391
 msgid "Pagination"
-msgstr "Stronicowanie"
+msgstr "Paginierung"
 
 #: inc/customizer.php:397
 msgid "Pagination type"
-msgstr "Typ stronicowania"
+msgstr "Typ Paginierung"
 
 #: inc/customizer.php:400
 msgid "Standard"
-msgstr "Domyślne"
+msgstr "Standard"
 
 #: inc/customizer.php:401
 msgid "Load More"
-msgstr "Załaduj więcej"
+msgstr "Mehr laden"
 
 #: inc/customizer.php:408
 msgid "Social Profiles"
-msgstr "Profile Social Media"
+msgstr "Social Media Profile"
 
 #: inc/customizer.php:414
 msgid "ReCaptcha"
@@ -513,40 +518,40 @@ msgstr "ReCaptcha"
 
 #: inc/customizer.php:420
 msgid "Enable reCAPTCHA"
-msgstr "Włącz reCAPTCHA"
+msgstr "ReCAPTCHA aktivieren"
 
 #: inc/customizer.php:426
 msgid "reCAPTCHA Site key"
-msgstr "reCAPTCHA Site key"
+msgstr "reCAPTCHA Key"
 
 #: inc/customizer.php:427 inc/customizer.php:433
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
-msgstr "Zarejestruj się na <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
+msgstr "Registriere dich bei <a href=“%1$s” target=“_blank”>reCAPTCHA</a>."
 
 #: inc/customizer.php:432
 msgid "reCAPTCHA Secret key"
-msgstr "reCAPTCHA Secret key"
+msgstr "reCAPTCHA Secret Key"
 
 #: inc/customizer.php:439
 msgid "Ads"
-msgstr "Reklamy"
+msgstr "Werbung"
 
 #: inc/customizer.php:445
 msgid "Disable ads"
-msgstr "Wyłącz reklamy"
+msgstr "Werbung ausblenden"
 
 #: inc/customizer.php:451
 msgid "Show ads only on homepage"
-msgstr "Pokazuj reklamy tylko na stronie głównej"
+msgstr "Werbung nur auf Startseite anzeigen"
 
 #: inc/customizer.php:457
 msgid "Ad link URL"
-msgstr "Dodaj adres URL"
+msgstr "Werbung Link URL"
 
 #: inc/customizer.php:462
 msgid "Ad image (Desktop)"
-msgstr "Obrazek reklamy (na komputer)"
+msgstr "Werbebanner (Desktop)"
 
 #: inc/customizer.php:463 inc/customizer.php:469
 #, php-format
@@ -554,16 +559,16 @@ msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
 "wide."
 msgstr ""
-"Polecamy użyć prostokątnego obrazka w poziomie o minimalnej szrokości %1$d "
-"pikseli."
+"Wir empfehlen ein rechteckiges, horizontales Bild mit einer Breite von "
+"mindestens %1$d Pixel."
 
 #: inc/customizer.php:468
 msgid "Ad image (Tablet)"
-msgstr "Obrazek reklamy (na tablet)"
+msgstr "Werbebanner (Tablet)"
 
 #: inc/customizer.php:474
 msgid "Ad image (Mobile)"
-msgstr "Obrazek reklamy (na telefon)"
+msgstr "Werbebanner (Mobile)"
 
 #: inc/customizer.php:475
 #, php-format
@@ -571,20 +576,20 @@ msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
 "wide."
 msgstr ""
-"Polecamy użyć prostokątnego obrazka w pionie o minimalnej szrokości %1$d "
-"pikseli."
+"Wir empfehlen ein rechteckiges, horizontales Bild mit einer Breite von "
+"mindestens %1$d Pixel."
 
 #: inc/customizer.php:480
 msgid "Ad HTML code"
-msgstr "Dodaj kod HTML"
+msgstr "Werbung HTML Code"
 
 #: inc/customizer.php:481
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
 msgstr ""
-"Wklej tutaj swój wygenerowany kod HTML z Google AdSense (lub podobnych) aby "
-"wyświetlić dynamiczne reklamy w wyznaczonych miejscach."
+"Füge deinen bei Google AdSense (oder andere) generierten HTML Code hier ein, "
+"um die Werbung in den vorgesehenen Abschnitten anzuzeigen."
 
 #: inc/customizer.php:487 templates/partials/newsletter.php:5
 msgid "Newsletter"
@@ -592,11 +597,11 @@ msgstr "Newsletter"
 
 #: inc/customizer.php:493
 msgid "Disable newsletter"
-msgstr "Wyłącz newsletter"
+msgstr "Newsletter deaktivieren"
 
 #: inc/customizer.php:499
 msgid "Mailchimp form action URL"
-msgstr "Formularz subskrypcji Mailchimp"
+msgstr "Mailchimp form action URL"
 
 #: inc/customizer.php:501
 #, php-format
@@ -604,223 +609,223 @@ msgid ""
 "Where do I find my <a href=\"%1$s\" target=\"_blank\">Mailchimp form action "
 "URL?</a>"
 msgstr ""
-"Gdzie mogę znaleźć <a href=\"%1$s\" target=\"_blank\">MailChimp form action "
-"URL?</a>"
+"Wo finde ich meine <a href=“%1$s” target=“_blank”>Mailchimp form action URL?"
+"</a>"
 
 #: inc/customizer.php:506
 msgid "Newsletter tagline"
-msgstr "Opis newslettera"
+msgstr "Slogan für Newsletter"
 
 #: inc/customizer.php:507
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr ""
-"Nigdy nie przegap nowych materiałów! Zapisz się do newslettera i zostań w "
-"kontakcie."
+"Verpasse keine Neuigkeiten! Abonniere unseren Newsletter und bleibe immer "
+"auf dem Laufenden."
 
 #: inc/customizer.php:512
 msgid "Newsletter consent"
-msgstr "Zgody newslettera"
+msgstr "Newsletter-Zustimmung"
 
 #: inc/customizer.php:518
 msgid "Theme Options"
-msgstr "Ustawienia motywu"
+msgstr "Theme-Einstellungen"
 
 #: inc/customizer.php:524
 msgid "Disable theme credits"
-msgstr "Wyłącz informację o szablonie"
+msgstr "Theme Credits ausblenden"
 
 #: inc/customizer.php:530
 msgid "Disable search"
-msgstr "Wyłącz wyszukiwawnie"
+msgstr "Suche deaktivieren"
 
 #: inc/customizer.php:536
 msgid "Disable \"ref\" attribute"
-msgstr "Wyłącz atrybut \"ref\""
+msgstr "“ref” Attribut deaktivieren"
 
 #: inc/customizer.php:542
 msgid "About copy (footer)"
-msgstr "O Nas (stopka)"
+msgstr "“Über” Text (Footer)"
 
 #: inc/customizer.php:544
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
 msgstr ""
-"Podaj opis swojej strony wyświetlany w stopce. Możesz używać podstawowych "
-"tagów HTML (<p>, <a>, <strong>, <i>)."
+"Füge deine Seitenbeschreibung hier ein. Sie wird im Footer angezeigt. Du "
+"kannst hier Standard HTML Tags verwenden (<p>, <a>, <strong>, <i>)."
 
 #: inc/helpers.php:29
 #, php-format
 msgid "Error locating %s for inclusion"
-msgstr "Błąd podczas ładowania %s"
+msgstr "Fehler bei der Erfassung von %s"
 
 #: inc/helpers.php:82
 #, php-format
 msgid "Chipmunk requires PHP %1$s or greater. You have %2$s."
-msgstr "Chipmunk wymaga PHP %1$s lub nowszego. Ty posiadasz %2$s."
+msgstr "Chipmunk setzt PHP %1$s oder neuer voraus. Du verwendest %2$s."
 
 #: inc/helpers.php:90
 #, php-format
 msgid "Chipmunk requires WordPress %1$s or greater. You have %2$s."
-msgstr "Chipmunk wymaga WordPress %1$s lub nowszego. Ty posiadasz %2$s."
+msgstr "Chipmunk setzt WordPress %1$s oder neuer voraus. Du verwendest %2$s."
 
 #: inc/helpers.php:128
 #, php-format
 msgid "%s on %s"
-msgstr "%s » %s"
+msgstr "%s – %s"
 
 #: inc/helpers.php:204
 #, php-format
 msgid "%s: New user submission"
-msgstr "%s: Nowe zgłoszenie od użytkownika"
+msgstr "%s: Neuer User Vorschlag"
 
 #: inc/helpers.php:588
 #, php-format
 msgid "+%d more"
-msgstr "+%d więcej"
+msgstr "`+%d mehr`"
 
 #: inc/meta-boxes.php:79 templates/emails/submission.php:14
 #: templates/sections/submit.php:38
 msgid "Website URL"
-msgstr "Adres strony WWW"
+msgstr "Seiten-URL"
 
 #: inc/meta-boxes.php:85
 msgid "Featured?"
-msgstr "Promowany?"
+msgstr "Featured?"
 
 #: inc/meta-boxes.php:89
 msgid "Featured on homepage"
-msgstr "Promowany na stronie głównej"
+msgstr "Featured auf der Startseite"
 
 #: inc/meta-boxes.php:96
 msgid "Submitter"
-msgstr "Zgłaszający"
+msgstr "Vorschlag von"
 
 #: inc/meta-boxes.php:115
 msgid "Custom fields"
-msgstr "Dodatkowe pola"
+msgstr "Angepasste Felder"
 
 #: inc/submission.php:42
 msgid "Please verify that you are not a robot."
-msgstr "Zweryfikuj, że nie jesteś robotem."
+msgstr "Bitte bestätige, dass Du kein Roboter bist."
 
 #: inc/submission.php:47
 msgid "Please fill out required fields."
-msgstr "Proszę wypełnić wymagane pola."
+msgstr "Bitte füllen Sie die gewünschten Felder aus."
 
 #: inc/submission.php:54
 msgid "Your request could not be processed."
-msgstr "Nie można przetworzyć żądania."
+msgstr "Ihr Antrag konnte nicht bearbeitet werden."
 
 #: inc/upvotes.php:24
 msgid "Remove Upvote"
-msgstr "Usuń głos"
+msgstr "Upvote entfernen"
 
 #: inc/upvotes.php:27
 msgid "Upvote"
-msgstr "Zagłosuj"
+msgstr "Upvote"
 
 #: search.php:21
 msgid "Search results for:"
-msgstr "Wyniki wyszukiwania dla:"
+msgstr "Suchergebnisse für:"
 
 #: search.php:29 templates/partials/search-bar.php:9
 msgid "Search query..."
-msgstr "Wyszukiwana fraza…"
+msgstr "Suche…"
 
 #: search.php:41
 msgid "Sorry, your search did not match any resources."
-msgstr "Przepraszamy, nie udało nam się znaleźć żadnych pasujących materiałów."
+msgstr "Tut uns leid, deine Suche hatte keine Treffer."
 
 #: taxonomy.php:17
 #, php-format
 msgid "%s Collection"
-msgstr "%s"
+msgstr "%s Sammlung"
 
 #: taxonomy.php:17
 #, php-format
 msgid "%s Tag"
-msgstr "%s"
+msgstr "%s Tag"
 
 #: taxonomy.php:62 templates/sections/resources.php:39
 msgid "Ready to publish your first resource?"
-msgstr "Gotowy na dodanie pierwszego materiału?"
+msgstr "Bist du bereit, deine erste Ressource zu veröffentlichen?"
 
 #: taxonomy.php:64 templates/sections/collections.php:29
 #: templates/sections/posts.php:55 templates/sections/resources.php:41
 msgid "Get started here"
-msgstr "Rozpocznij tutaj"
+msgstr "Starte hier"
 
 #: taxonomy.php:66 templates/sections/resources.php:43
 msgid "Sorry, there are no resources to display yet."
-msgstr "Brak materiałów do wyświetlenia."
+msgstr "Es tut uns leid, es gibt noch keine Ressourcen."
 
 #: templates/emails/submission.php:4
 msgid "Title"
-msgstr "Tytuł"
+msgstr "Titel"
 
 #: templates/emails/submission.php:15 templates/sections/resource-tile.php:35
 #: templates/sections/resource.php:39
 msgid "Visit website"
-msgstr "Odwiedź stronę"
+msgstr "Zur Website"
 
 #: templates/emails/submission.php:20 templates/sections/submit.php:42
 msgid "Description"
-msgstr "Opis"
+msgstr "Beschreibung"
 
 #: templates/emails/submission.php:26
 msgid "Review submission"
-msgstr "Sprawdź zgłoszenie"
+msgstr "Vorschlag prüfen"
 
 #: templates/partials/filters.php:13
 msgid "Filter by"
-msgstr "Filtruj wg"
+msgstr "Filtern nach"
 
 #: templates/partials/filters.php:16
 msgid "Choose topic"
-msgstr "Wybierz temat"
+msgstr "Thema wählen"
 
 #: templates/partials/nav.php:63 templates/partials/page-head.php:43
 msgid "Account"
-msgstr "Profil"
+msgstr "Account"
 
 #: templates/partials/nav.php:67 templates/partials/page-head.php:47
 msgid "Logout"
-msgstr "Wyloguj"
+msgstr "Ausloggen"
 
 #: templates/partials/nav.php:71 templates/partials/page-head.php:51
 msgid "Login"
-msgstr "Logowanie"
+msgstr "Einloggen"
 
 #: templates/partials/nav.php:75 templates/partials/page-head.php:56
 msgid "Register"
-msgstr "Rejestracja"
+msgstr "Registrieren"
 
 #: templates/partials/nav.php:83 templates/partials/page-bottom.php:32
 #: templates/partials/page-head.php:63 templates/partials/toolbox.php:30
 #: templates/sections/submit.php:3 templates/sections/submit.php:73
 msgid "Submit"
-msgstr "Zgłoś materiał"
+msgstr "Vorschlagen"
 
 #: templates/partials/newsletter.php:12
 msgid "Email address"
-msgstr "Adres e-mail"
+msgstr "E-Mail"
 
 #: templates/partials/newsletter.php:22
 msgid "Join now"
-msgstr "Zapisz się"
+msgstr "Newsletter abonnieren"
 
 #: templates/partials/page-bottom.php:7
 msgid "About"
-msgstr "O Nas"
+msgstr "Über"
 
 #: templates/partials/page-bottom.php:17
 msgid "Navigation"
-msgstr "Nawigacja"
+msgstr "Navigation"
 
 #: templates/partials/page-bottom.php:40
 msgid "Follow"
-msgstr "Obserwuj"
+msgstr "Folgen"
 
 #: templates/partials/page-foot.php:5
 #, php-format
@@ -829,390 +834,167 @@ msgstr "&copy; %1$s %2$s."
 
 #: templates/partials/page-foot.php:10 templates/partials/page-foot.php:11
 msgid "Chipmunk WordPress Theme"
-msgstr "Motyw WordPressa: Chipmunk"
+msgstr "Chipmunk WordPress Theme"
 
 #: templates/partials/page-head.php:25 templates/partials/popup.php:10
 #: templates/partials/search-bar.php:14
 msgid "Close"
-msgstr "Zamknij"
+msgstr "Schließen"
 
 #: templates/partials/page-head.php:36
 msgid "Search"
-msgstr "Szukaj"
+msgstr "Suchen"
 
 #: templates/partials/page-head.php:69
 msgid "Menu"
-msgstr "Menu"
+msgstr "Menü"
 
 #: templates/partials/post-stats.php:16
 msgid "Published"
-msgstr "Opublikowany"
+msgstr "Veröffentlicht"
 
 #: templates/partials/share-box.php:20
 msgid "Share"
-msgstr "Podziel się"
+msgstr "Teilen"
 
 #: templates/partials/toolbox.php:10
 msgid "Follow us"
-msgstr "Obserwuj nas"
+msgstr "Folge uns"
 
 #: templates/sections/collection-tile.php:38
 msgid "View this collection"
-msgstr "Zobacz kolekcję"
+msgstr "Diese Sammlung anzeigen"
 
 #: templates/sections/collection-tile.php:43
 msgid "Sub collections"
-msgstr "Podkolekcje"
+msgstr "Sub-Sammlungen"
 
 #: templates/sections/collections.php:27
 msgid "Ready to publish your first collection?"
-msgstr "Gotowy na dodanie pierwszej kolekcji?"
+msgstr "Bist du bereit, deine erste Sammlung zu veröffentlichen?"
 
 #: templates/sections/collections.php:31
 msgid "Sorry, there are no collections to display yet."
-msgstr "Brak kolekcji do wyświetlenia."
+msgstr "Tut uns leid, es gibt noch keine Sammlungen."
 
 #: templates/sections/entry-post.php:26
 msgid "Posted by"
-msgstr "Dodany przez"
+msgstr "Veröffentlicht von"
 
 #: templates/sections/pagination.php:17
 msgid "Load more"
-msgstr "Załaduj więcej"
+msgstr "Mehr laden"
 
 #: templates/sections/pagination.php:23
 msgid "Previous"
-msgstr "Poprzednie"
+msgstr "Zurück"
 
 #: templates/sections/pagination.php:32
 #, php-format
 msgid "Page %d of %d"
-msgstr "Strona %d z %d"
+msgstr "Seite %d von %d"
 
 #: templates/sections/pagination.php:35
 msgid "Next"
-msgstr "Następne"
+msgstr "Weiter"
 
 #: templates/sections/post-excerpt.php:27 templates/sections/post-tile.php:36
 msgid "Read more"
-msgstr "Czytaj więcej"
+msgstr "Weiterlesen"
 
 #: templates/sections/posts.php:17 templates/sections/resources.php:13
 msgid "Related"
-msgstr "Podobne"
+msgstr "Passend"
 
 #: templates/sections/posts.php:19
 msgid "Latest Posts"
-msgstr "Najnowsze wpisy"
+msgstr "Neue Posts"
 
 #: templates/sections/posts.php:22
 #, php-format
 msgid "%s Category"
-msgstr "Kategoria: %s"
+msgstr "%s Kategorie"
 
 #: templates/sections/posts.php:53
 msgid "Ready to publish your first post?"
-msgstr "Gotowy na dodanie pierwszego posta?"
+msgstr "Bist du bereit, deinen ersten Post zu veröffentlichen?"
 
 #: templates/sections/posts.php:57
 msgid "Sorry, there are no posts to display yet."
-msgstr "Brak postów do wyświetlenia."
+msgstr "Tut uns leid, es gibt noch keine Posts."
 
 #: templates/sections/resources-tabs.php:8
 msgid "Featured"
-msgstr "Promowane"
+msgstr "Featured"
 
 #: templates/sections/resources-tabs.php:12
 msgid "Latest"
-msgstr "Najnowsze"
+msgstr "Neu"
 
 #: templates/sections/resources-tabs.php:16
 msgid "Popular"
-msgstr "Popularne"
+msgstr "Beliebt"
 
 #: templates/sections/submit.php:15
 msgid "Resource name"
-msgstr "Nazwa materiału"
+msgstr "Name der Ressource"
 
 #: templates/sections/submit.php:49
 msgid "Your name"
-msgstr "Twoje imię"
+msgstr "Dein Name"
 
 #: templates/sections/submit.php:53
 msgid "Your email"
-msgstr "Twój e-mail"
+msgstr "Deine E-Mail"
 
 #: templates/shortcodes/curators.php:6
 msgid "Curators"
-msgstr "Redaktorzy"
-
-#~ msgid "3 characters minimum"
-#~ msgstr "Minimum 3 znaki"
-
-#~ msgid "Chipmunk"
-#~ msgstr "Chipmunk"
-
-#~ msgid "https://chipmunktheme.com"
-#~ msgstr "https://chipmunktheme.com"
-
-#~ msgid ""
-#~ "Chipmunk WordPress Theme is tailored to meet the increased demand in "
-#~ "curated content. Carefully crafted with the user in mind, to aid in great "
-#~ "content discovery. Have fun becoming a curator and influencer."
-#~ msgstr ""
-#~ "Chipmunk WordPress Theme is tailored to meet the increased demand in "
-#~ "curated content. Carefully crafted with the user in mind, to aid in great "
-#~ "content discovery. Have fun becoming a curator and influencer."
-
-#~ msgid "Piotr Kulpinski"
-#~ msgstr "Piotr Kulpinski"
-
-#~ msgid "https://kulpinski.co"
-#~ msgstr "https://kulpinski.co"
-
-#~ msgid "Wide content"
-#~ msgstr "Szeroka kolumna treści"
-
-#~ msgid ""
-#~ "Enable wide content for this page (it will make first heading of this "
-#~ "page a left-floated title)"
-#~ msgstr ""
-#~ "Włącz wyświetlanie treści w postaci szerszej kolumny tekstu (pierwszy z "
-#~ "nagłówków treści zostanie przeniesiony do lewej kolumny)"
-
-#~ msgid "Enable curators"
-#~ msgstr "Włącz redaktorów"
-
-#~ msgid "Enable curators listing on this page"
-#~ msgstr "Włącz wyświetlanie redaktorów na tej stronie"
-
-#~ msgid "Display resources as cards"
-#~ msgstr "Wyświetlaj materiały w formie kart"
-
-#~ msgid "resource"
-#~ msgstr "material"
-
-#~ msgid "Add %s"
-#~ msgstr "Dodaj %s"
-
-#~ msgid "Edit %s"
-#~ msgstr "Edytuj %s"
-
-#~ msgid "New %s"
-#~ msgstr "Nowy/a %s"
-
-#~ msgid "View %s"
-#~ msgstr "Zobacz %s"
-
-#~ msgid "All %s"
-#~ msgstr "Wszystkie %s"
-
-#~ msgid "Search %s"
-#~ msgstr "Szukaj %s"
-
-#~ msgid "No %s found."
-#~ msgstr "%s: Nie znaleziono."
-
-#~ msgid "No %s found in trash."
-#~ msgstr "%s: Nie znaleziono w koszu."
-
-#~ msgid "New %s Name"
-#~ msgstr "Nowy/a %s"
-
-#~ msgid "Update %s"
-#~ msgstr "Update %s"
-
-#~ msgid "Parent %s"
-#~ msgstr "Parent %s"
-
-#~ msgid "Parent %s:"
-#~ msgstr "Parent %s:"
-
-#~ msgid "Add New"
-#~ msgstr "Dodaj Nowy"
-
-#~ msgid "Parent Resource:"
-#~ msgstr "Materiał Rodzica"
-
-#~ msgid "No resources found in Trash."
-#~ msgstr "Nie znaleziono materiałów w koszu."
-
-#~ msgid "Add New Collection"
-#~ msgstr "Dodaj Nową Kolekcję"
-
-#~ msgid "Curator"
-#~ msgstr "Redaktor"
-
-#~ msgid "Add New Curator"
-#~ msgstr "Dodaj Nowego Redaktora"
-
-#~ msgid "New Curator"
-#~ msgstr "Nowy Redaktor"
-
-#~ msgid "Edit Curator"
-#~ msgstr "Edytuj Redaktora"
-
-#~ msgid "View Curator"
-#~ msgstr "Zobacz Redaktora"
-
-#~ msgid "All Curators"
-#~ msgstr "Wszyscy Redaktorzy"
-
-#~ msgid "Search Curators"
-#~ msgstr "Szukaj Redaktorów"
-
-#~ msgid "Parent Curator:"
-#~ msgstr "Redaktor Rodzica"
-
-#~ msgid "No curators found."
-#~ msgstr "Nie znaleziono redaktorów."
-
-#~ msgid "No curators found in Trash."
-#~ msgstr "Nie znaleziono redaktorów w koszu."
-
-#~ msgid "Twitter Handle"
-#~ msgstr "Twitter"
-
-#~ msgid "Popularity"
-#~ msgstr "Popularności"
-
-#~ msgid "Search results for %s"
-#~ msgstr "Wyniki wyszukiwania dla %s"
-
-#~ msgid "Page %s"
-#~ msgstr "Strona %s"
-
-#~ msgid "%1$s Collection"
-#~ msgstr "Kolekcja %1$s"
-
-#~ msgid "Newsletter form action URL"
-#~ msgstr "Newsletter “form action URL”"
-
-#~ msgid ""
-#~ "Where do I find my newsletter form action URL? <a href=\"%1$s\" target="
-#~ "\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank\">Campaign "
-#~ "Monitor</a>"
-#~ msgstr ""
-#~ "Gdzie znajdę “form action URL” dla mojego newslettera? <a href=\"%1$s\" "
-#~ "target=\"_blank\">Mailchimp</a> | <a href=\"%2$s\" target=\"_blank"
-#~ "\">Campaign Monitor</a>"
-
-#~ msgid ""
-#~ "We recommend using a square horizontal image that is at least %1$d pixels "
-#~ "wide."
-#~ msgstr "Polecamy uży %1$d pixels wide."
-
-#~ msgid ""
-#~ "We recommend using a square vertical image that is at least %1$d pixels "
-#~ "wide."
-#~ msgstr ""
-#~ "We recommend using a square vertical image that is at least %1$d pixels "
-#~ "wide."
-
-#~ msgid "Ad image"
-#~ msgstr "Dodaj obrazek"
-
-#~ msgid "<a href=\"%1$s\">Review submission</a>"
-#~ msgstr "<a href=\"%1$s\">Sprawdź zgłoszenie</a>"
-
-#~ msgid "Category"
-#~ msgstr "Kategoria"
-
-#~ msgid ""
-#~ "Upload a logo for your theme. You can leave it empty to use your site "
-#~ "name as a plain text logo., "
-#~ msgstr ""
-#~ "Upload a logo for your theme. You can leave it empty to use your site "
-#~ "name as a plain text logo., "
-
-#~ msgid "Not enough arguments following: %s"
-#~ msgstr "Not enough arguments following: %s"
-
-#~ msgid "Invalid JSON config file: %s"
-#~ msgstr "Invalid JSON config file: %s"
-
-#~ msgid "Commands:"
-#~ msgstr "Commands:"
-
-#~ msgid "boolean"
-#~ msgstr "boolean"
-
-#~ msgid "string"
-#~ msgstr "string"
-
-#~ msgid "array"
-#~ msgstr "array"
-
-#~ msgid "number"
-#~ msgstr "number"
-
-#~ msgid "required"
-#~ msgstr "required"
-
-#~ msgid "choices:"
-#~ msgstr "choices:"
-
-#~ msgid "Examples:"
-#~ msgstr "Examples:"
-
-#~ msgid "generated-value"
-#~ msgstr "generated-value"
-
-#~ msgid "default:"
-#~ msgstr "default:"
-
-#~ msgid "Not enough non-option arguments: got %s, need at least %s"
-#~ msgstr "Not enough non-option arguments: got %s, need at least %s"
-
-#~ msgid "Too many non-option arguments: got %s, maximum of %s"
-#~ msgstr "Too many non-option arguments: got %s, maximum of %s"
-
-#~ msgid "Invalid values:"
-#~ msgstr "Invalid values:"
-
-#~ msgid "Argument: %s, Given: %s, Choices: %s"
-#~ msgstr "Argument: %s, Given: %s, Choices: %s"
-
-#~ msgid "Argument check failed: %s"
-#~ msgstr "Argument check failed: %s"
-
-#~ msgid "Implications failed:"
-#~ msgstr "Implications failed:"
-
-#~ msgid "Add New Tag"
-#~ msgstr "Add New Tag"
-
-#~ msgid "Tracking code"
-#~ msgstr "Kod analizujący stronę"
-
-#~ msgid ""
-#~ "Paste your Google Analytics (or other) tracking code here. It will be "
-#~ "inserted before the closing body tag of your theme."
-#~ msgstr ""
-#~ "Podaj swój kod Google Analytics (lub inny). Zostanie on dodany w kodzie "
-#~ "HTML zaraz przed zamknięciem tagu body."
-
-#~ msgid ""
-#~ "Ready to publish your first collection? <a href=\"%1$s\">Get started "
-#~ "here</a>."
-#~ msgstr ""
-#~ "Gotowy na dodanie pierwszej kolekcji? <a href=\"%1$s\">Zacznij tutaj</a>."
-
-#~ msgid ""
-#~ "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-#~ msgstr ""
-#~ "Gotowy na dodanie pierwszego posta? <a href=“%1$s”>Zacznij tutaj</a>."
-
-#~ msgid ""
-#~ "Ready to publish your first resource? <a href=\"%1$s\">Get started here</"
-#~ "a>."
-#~ msgstr ""
-#~ "Gotowy na dodanie pierwszego materiału? <a href=\"%1$s\">Zacznij tutaj</"
-#~ "a>."
-
-#~ msgid ""
-#~ "Where do I find my <a href=%1$s target=\"_blank\">Mailchimp form action "
-#~ "URL?</a>"
-#~ msgstr ""
-#~ "Gdzie mogę znaleźć <a href=%1$s target=\"_blank\">MailChimp form action "
-#~ "URL?</a>"
+msgstr "Kuratoren"
+
+#. Theme Name of the plugin/theme
+msgid "Chipmunk"
+msgstr "Chipmunk"
+
+#. Theme URI of the plugin/theme
+msgid "https://chipmunktheme.com"
+msgstr "https://chipmunktheme.com"
+
+#. Description of the plugin/theme
+msgid ""
+"Chipmunk WordPress Theme makes it ridiculously easy to make a content "
+"curation website for marketing, authority or just for fun. No coding skills "
+"required. It’s clean, modern and highly customizable. Utilizing world class "
+"code and is built for speed. All of our customers and their users love it!"
+msgstr ""
+"Chipmunk WordPress Theme makes it ridiculously easy to make a content "
+"curation website for marketing, authority or just for fun. No coding skills "
+"required. It’s clean, modern and highly customizable. Utilizing world class "
+"code and is built for speed. All of our customers and their users love it!"
+
+#. Author of the plugin/theme
+msgid "Made by Less"
+msgstr "Made by Less"
+
+#. Author URI of the plugin/theme
+msgid "https://madebyless.com"
+msgstr "https://madebyless.com"
+
+#. Template Name of the plugin/theme
+msgid "Listing - Blog"
+msgstr "Listing - Blog"
+
+#. Template Name of the plugin/theme
+msgid "Listing - Resources"
+msgstr "Listing - Ressourcen"
+
+#. Template Name of the plugin/theme
+msgid "Layout - Full Width"
+msgstr "Layout - volle Breite"
+
+#. Template Name of the plugin/theme
+msgid "Layout - Narrow Width"
+msgstr "Layout - begrenzte Breite"
+
+#. Template Name of the plugin/theme
+msgid "Listing - Collections"
+msgstr "Listing - Sammlungen"
