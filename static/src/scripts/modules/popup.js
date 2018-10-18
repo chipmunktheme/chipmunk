@@ -35,8 +35,6 @@ const Popup = {
   hashHandler() {
     if (location.hash === "#submit") {
       this.openPopup();
-    } else {
-      this.closePopup();
     }
   },
 };

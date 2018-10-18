@@ -15,6 +15,7 @@ import consents from './modules/consents';
 import dynamicRows from './modules/dynamic-rows';
 import fitvids from './modules/fitvids';
 import carousel from './modules/carousel';
+import animations from './modules/animations';
 import extras from './modules/extras';
 import actions from './modules/actions';
 
@@ -28,6 +29,7 @@ import actions from './modules/actions';
   dynamicRows.init();
   fitvids.init();
   carousel.init();
+  animations.init();
   extras.init();
   actions.init();
 })();

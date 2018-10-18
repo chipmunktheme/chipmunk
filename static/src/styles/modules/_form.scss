@@ -61,6 +61,17 @@
       display: block;
     }
   }
+
+  .comment-subscription-form {
+    &:not(:first-child) {
+      margin-top: 0.5em;
+    }
+
+    label {
+      margin-left: 0.25em;
+      font-weight: normal;
+    }
+  }
 }
 
 .form__content {

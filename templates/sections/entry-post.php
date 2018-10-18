@@ -1,36 +1,46 @@
-<div class="row">
-	<?php if ( has_post_thumbnail() ) : ?>
-		<div class="column">
-			<div class="entry__image" style="background-image: url(<?php the_post_thumbnail_url( 'xl' ); ?>)"></div>
-		</div>
-	<?php endif; ?>
+<?php if ( has_post_thumbnail() ) : ?>
+    <div class="entry__hero">
+        <?php if ( has_post_thumbnail() ) : ?>
+            <div class="entry__background" style="background-image: url(<?php the_post_thumbnail_url( 'xl' ); ?>)" data-rellax data-rellax-speed="-5"></div>
+        <?php endif; ?>
 
-	<div class="column column_lg-8 column_lg-offset-2">
-		<div class="entry__head">
-			<ul class="entry__stats stats">
-				<?php
-					$collections_args = array(
-						'display'  => true,
-						'type'     => 'link',
-						'quantity' => -1,
-					);
+        <div class="entry__details section">
+            <div class="container">
+                <div class="row">
+                    <div class="column column_lg-8 column_lg-offset-2">
+                        <?php chipmunk_get_template( 'partials/post-head', array( 'show_author' => true, 'collections' => array(
+                            'display'  => true,
+                            'type'     => 'link',
+                            'quantity' => -1,
+                        ) ) ); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.entry__head -->
+<?php endif; ?>
 
-					chipmunk_get_template( 'partials/post-stats', array( 'args' => $collections_args ) );
-				?>
-			</ul>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="column column_lg-8 column_lg-offset-2">
+                <?php if ( ! has_post_thumbnail() ) : ?>
+                    <div class="entry__head">
+                        <?php chipmunk_get_template( 'partials/post-head', array( 'show_author' => true, 'collections' => array(
+                            'display'  => true,
+                            'type'     => 'link',
+                            'quantity' => -1,
+                        ) ) ); ?>
+                    </div>
+                <?php endif; ?>
 
-			<h1 class="entry__title"><?php the_title(); ?></h1>
-
-			<div class="entry__author">
-				<?php echo get_avatar( get_the_author_meta( 'ID' ), 50 ); ?>
-				<?php esc_html_e( 'Posted by', 'chipmunk') ?> <strong><?php the_author(); ?></strong>
-			</div>
-		</div>
-		<!-- /.entry__head -->
-
-		<div class="entry__content content">
-			<?php the_content(); ?>
-		</div>
-		<!-- /.entry -->
-	</div>
+                <div class="entry__content content">
+                    <?php the_content(); ?>
+                </div>
+                <!-- /.entry -->
+            </div>
+        </div>
+    </div>
 </div>
+<!-- /.section -->
