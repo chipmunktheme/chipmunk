@@ -59,6 +59,7 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
             'resource' => array(
                 'singular'              => esc_html__( 'Resource', 'chipmunk' ),
                 'plural'                => esc_html__( 'Resources', 'chipmunk' ),
+                'rewrite'               => array( 'slug' => ( ! empty( get_option( 'chipmunk_resource_cpt_base' ) ) ? get_option( 'chipmunk_resource_cpt_base' ) : lcfirst( esc_html__( 'Resource', 'chipmunk' ) ) ) ),
                 'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'publicize' ),
                 'menu_icon'             => 'dashicons-screenoptions',
                 'menu_position'         => 20,
@@ -83,11 +84,7 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
                 'singular'              => esc_html__( 'Collection', 'chipmunk' ),
                 'plural'                => esc_html__( 'Collections', 'chipmunk' ),
                 'posts'                 => array( 'resource' ),
-                'rewrite'               => array(
-                    'slug'                  => esc_attr__( 'collection', 'chipmunk' ),
-                    'with_front'            => false,
-                    'hierarchical'          => true,
-                ),
+                'rewrite'               => array( 'slug' => ( ! empty( get_option( 'chipmunk_collection_cpt_base' ) ) ? get_option( 'chipmunk_collection_cpt_base' ) : lcfirst( esc_html__( 'Collection', 'chipmunk' ) ) ), 'with_front' => false, 'hierarchical' => true ),
                 'rest_base'             => 'collections',
                 'rest_controller_class' => 'WP_REST_Terms_Controller',
                 'labels'                => array(
@@ -106,6 +103,7 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
                 'singular'              => esc_html__( 'Tag', 'chipmunk' ),
                 'plural'                => esc_html__( 'Tags', 'chipmunk' ),
                 'posts'                 => array( 'resource' ),
+                'rewrite'               => array( 'slug' => ( ! empty( get_option( 'chipmunk_tag_cpt_base' ) ) ? get_option( 'chipmunk_tag_cpt_base' ) : lcfirst( esc_html__( 'Tag', 'chipmunk' ) ) ), 'with_front' => false, 'hierarchical' => true ),
                 'hierarchical'          => false,
                 'labels'                => array(
                     'add_new_item'        => esc_html__( 'Add Tag', 'chipmunk' ),

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Chipmunk\n"
-"POT-Creation-Date: 2018-10-18 14:41+0200\n"
+"POT-Creation-Date: 2018-10-18 17:42+0200\n"
 "PO-Revision-Date: 2017-08-30 14:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -62,7 +62,7 @@ msgstr ""
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: functions.php:60
+#: functions.php:60 functions.php:62
 msgid "Resource"
 msgstr ""
 
@@ -72,120 +72,116 @@ msgstr ""
 msgid "Resources"
 msgstr ""
 
-#: functions.php:69
+#: functions.php:70
 msgid "Add New Resource"
 msgstr ""
 
-#: functions.php:70
+#: functions.php:71
 msgid "Edit Resource"
 msgstr ""
 
-#: functions.php:71
+#: functions.php:72
 msgid "New Resource"
 msgstr ""
 
-#: functions.php:72
+#: functions.php:73
 msgid "View Resource"
 msgstr ""
 
-#: functions.php:73
+#: functions.php:74
 msgid "All Resources"
 msgstr ""
 
-#: functions.php:74
+#: functions.php:75
 msgid "Search Resources"
 msgstr ""
 
-#: functions.php:75
+#: functions.php:76
 msgid "No Resources found."
 msgstr ""
 
-#: functions.php:76
+#: functions.php:77
 msgid "No Resources found in trash."
 msgstr ""
 
-#: functions.php:83 templates/emails/submission.php:9
+#: functions.php:84 functions.php:87 templates/emails/submission.php:9
 #: templates/sections/submit.php:19 templates/sections/submit.php:20
 msgid "Collection"
 msgstr ""
 
-#: functions.php:84 templates/sections/collections.php:3
+#: functions.php:85 templates/sections/collections.php:3
 msgid "Collections"
 msgstr ""
 
-#: functions.php:87
-msgid "collection"
-msgstr ""
-
-#: functions.php:94
+#: functions.php:91
 msgid "Add Collection"
 msgstr ""
 
-#: functions.php:95
+#: functions.php:92
 msgid "New Collection Name"
 msgstr ""
 
-#: functions.php:96
+#: functions.php:93
 msgid "Edit Collection"
 msgstr ""
 
-#: functions.php:97
+#: functions.php:94
 msgid "Update Collection"
 msgstr ""
 
-#: functions.php:98
+#: functions.php:95
 msgid "Parent Collection"
 msgstr ""
 
-#: functions.php:99
+#: functions.php:96
 msgid "Parent Collection:"
 msgstr ""
 
-#: functions.php:100
+#: functions.php:97
 msgid "All Collections"
 msgstr ""
 
-#: functions.php:101
+#: functions.php:98
 msgid "Search Collections"
 msgstr ""
 
-#: functions.php:106
+#: functions.php:103 functions.php:106
 msgid "Tag"
 msgstr ""
 
-#: functions.php:107 templates/sections/resource.php:29
+#: functions.php:104 templates/sections/resource.php:29
 msgid "Tags"
 msgstr ""
 
-#: functions.php:111
+#: functions.php:109
 msgid "Add Tag"
 msgstr ""
 
-#: functions.php:112
+#: functions.php:110
 msgid "New Tag Name"
 msgstr ""
 
-#: functions.php:113
+#: functions.php:111
 msgid "Edit Tag"
 msgstr ""
 
-#: functions.php:114
+#: functions.php:112
 msgid "Update Tag"
 msgstr ""
 
-#: functions.php:115
+#: functions.php:113
 msgid "Parent Tag"
 msgstr ""
 
-#: functions.php:116
+#: functions.php:114
 msgid "Parent Tag:"
 msgstr ""
 
-#: functions.php:117
+#: functions.php:115
 msgid "All Tags"
 msgstr ""
 
-#: functions.php:118
+#: functions.php:116
 msgid "Search Tags"
 msgstr ""
 
@@ -195,6 +191,18 @@ msgstr ""
 
 #: inc/ajax.php:83
 msgid "Not permitted."
+msgstr ""
+
+#: inc/config.php:102
+msgid "Resource base"
+msgstr ""
+
+#: inc/config.php:128
+msgid "Collection base"
+msgstr ""
+
+#: inc/config.php:154
+msgid "Resource tag base"
 msgstr ""
 
 #: inc/customizer.php:33
@@ -725,16 +733,16 @@ msgstr ""
 msgid "%s Tag"
 msgstr ""
 
-#: taxonomy.php:62 templates/sections/resources.php:39
+#: taxonomy.php:68 templates/sections/resources.php:39
 msgid "Ready to publish your first resource?"
 msgstr ""
 
-#: taxonomy.php:64 templates/sections/collections.php:29
-#: templates/sections/posts.php:55 templates/sections/resources.php:41
+#: taxonomy.php:70 templates/sections/collections.php:29
+#: templates/sections/posts.php:54 templates/sections/resources.php:41
 msgid "Get started here"
 msgstr ""
 
-#: taxonomy.php:66 templates/sections/resources.php:43
+#: taxonomy.php:72 templates/sections/resources.php:43
 msgid "Sorry, there are no resources to display yet."
 msgstr ""
 
@@ -855,10 +863,6 @@ msgstr ""
 msgid "Sorry, there are no collections to display yet."
 msgstr ""
 
-#: templates/sections/entry-post.php:26
-msgid "Posted by"
-msgstr ""
-
 #: templates/sections/pagination.php:17
 msgid "Load more"
 msgstr ""
@@ -876,7 +880,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: templates/sections/post-excerpt.php:27 templates/sections/post-tile.php:36
+#: templates/sections/post-excerpt.php:21 templates/sections/post-tile.php:36
 msgid "Read more"
 msgstr ""
 
@@ -893,11 +897,11 @@ msgstr ""
 msgid "%s Category"
 msgstr ""
 
-#: templates/sections/posts.php:53
+#: templates/sections/posts.php:52
 msgid "Ready to publish your first post?"
 msgstr ""
 
-#: templates/sections/posts.php:57
+#: templates/sections/posts.php:56
 msgid "Sorry, there are no posts to display yet."
 msgstr ""
 
