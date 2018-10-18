@@ -53,6 +53,14 @@
   &.is-loading::after {
     font-size: 5rem;
   }
+
+  [data-consent] {
+    display: none;
+
+    &.is-visible {
+      display: block;
+    }
+  }
 }
 
 .form__content {

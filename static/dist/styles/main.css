@@ -2602,6 +2602,12 @@ input:checked + .u-checkbox__mark .icon {
 .form.is-loading::after, .content form.is-loading::after {
   font-size: 5rem;
 }
+.form [data-consent], .content form [data-consent] {
+  display: none;
+}
+.form [data-consent].is-visible, .content form [data-consent].is-visible {
+  display: block;
+}
 .form__content {
   transition: opacity 0.25s;
 }

@@ -13,7 +13,7 @@
                     </div>
 
                     <?php if ( ! empty( chipmunk_theme_option( 'newsletter_consent' ) ) ) : ?>
-                        <div class="form__field">
+                        <div class="form__field" data-consent>
                             <?php chipmunk_get_template( 'partials/checkbox', array( 'name' => 'consent', 'label' => chipmunk_theme_option( 'newsletter_consent' ), 'required' => true ) ); ?>
                         </div>
                     <?php endif; ?>
