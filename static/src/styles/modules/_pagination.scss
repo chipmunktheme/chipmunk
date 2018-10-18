@@ -42,19 +42,11 @@
 
   &:first-child {
     margin-right: $separator;
-
-    .icon {
-      margin-right: 0.25em;
-    }
   }
 
   &:last-child {
     margin-left: $separator;
     text-align: right;
-
-    .icon {
-      margin-left: 0.25em;
-    }
   }
 
   a {

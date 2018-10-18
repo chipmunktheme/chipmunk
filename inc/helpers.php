@@ -392,10 +392,10 @@ if ( ! function_exists( 'chipmunk_get_resources' ) ) :
         );
 
         $sort_args = array();
-        $tax_args = array();
+        $tax_query = array();
 
         // Apply sorting options
-        if ( isset( $_GET['sort'] ) and ! chipmunk_theme_option( 'disable_sorting' ) ) {
+        if ( isset( $_GET['sort'] ) and ! empty( $_GET['sort'] ) and ! chipmunk_theme_option( 'disable_sorting' ) ) {
             $sort_params = explode( '-', $_GET['sort'] );
             $sort_orderby = $sort_params[0];
             $sort_order = $sort_params[1];
@@ -434,28 +434,28 @@ if ( ! function_exists( 'chipmunk_get_resources' ) ) :
 
         // Apply taxonomy options
         if ( is_tax() and isset( $term ) ) {
-            $tax_args['tax_query'] = array(
-                array(
-                    'taxonomy'          => $term->taxonomy,
-                    'field'             => 'id',
-                    'terms'             => $term->term_id,
-                    'include_children'  => false,
-                ),
+            $tax_query[] = array(
+                'taxonomy'          => $term->taxonomy,
+                'field'             => 'id',
+                'terms'             => $term->term_id,
+                'include_children'  => false,
             );
         }
 
         // Apply tag filters
-        else if ( isset( $_GET['tag'] ) and ! empty( $_GET['tag'] ) and ! chipmunk_theme_option( 'disable_filters' ) ) {
-            $tax_args['tax_query'] = array(
-                array(
-                    'taxonomy'          => 'resource-tag',
-                    'field'             => 'slug',
-                    'terms'             => $_GET['tag'],
-                ),
+        if ( isset( $_GET['tag'] ) and ! empty( $_GET['tag'] ) and ! chipmunk_theme_option( 'disable_filters' ) ) {
+            $tax_query[] = array(
+                'taxonomy'          => 'resource-tag',
+                'field'             => 'slug',
+                'terms'             => $_GET['tag'],
             );
         }
 
-        return new WP_Query( array_merge( $args, $sort_args, $tax_args ) );
+        if ( count( $tax_query ) > 1 ) {
+            $tax_query['relation'] = 'AND';
+        }
+
+        return new WP_Query( array_merge( $args, $sort_args, array( 'tax_query' => $tax_query ) ) );
     }
 endif;
 

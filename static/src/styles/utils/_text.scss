@@ -26,10 +26,11 @@
   }
 
   &_subtitle {
+    margin-top: $separator;
     margin-bottom: $separator;
 
     @include breakpoint(lg) {
-      margin-bottom: $separator * 1.5;
+      margin-bottom: ($separator * 1.5);
     }
   }
 }

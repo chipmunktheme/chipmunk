@@ -1826,6 +1826,7 @@ input:checked + .u-checkbox__mark .icon {
   margin-top: 1em;
 }
 .text_subtitle {
+  margin-top: 2rem;
   margin-bottom: 2rem;
 }
 @media (min-width: 980px) {
@@ -3278,15 +3279,9 @@ input:checked + .u-checkbox__mark .icon {
 .pagination__item:first-child {
   margin-right: 2rem;
 }
-.pagination__item:first-child .icon {
-  margin-right: 0.25em;
-}
 .pagination__item:last-child {
   margin-left: 2rem;
   text-align: right;
-}
-.pagination__item:last-child .icon {
-  margin-left: 0.25em;
 }
 .pagination__item a {
   display: block;
