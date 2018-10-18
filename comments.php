@@ -22,7 +22,7 @@
 endif;
 ?>
 
-<?php if ( comments_open() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+<?php if ( post_type_supports( get_post_type(), 'comments' ) ) : ?>
 	<?php
 	/**
 	 * List comments acording to custom_comment function specified
@@ -47,7 +47,7 @@ endif;
 		 </ul>
 	<?php endif; ?>
 
-	<?php if ( comments_open() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+	<?php if ( comments_open() ) : ?>
 		<?php
 		/*
 		 * Alter default values of form field
