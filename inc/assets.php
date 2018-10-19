@@ -65,6 +65,7 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
                 .button_primary:not([disabled]):hover,
                 .button_secondary,
                 .content a:hover,
+                .entry__title a:hover,
                 .nav-primary__close:hover,
                 .nav-socials__link:hover,
                 .page-head__logo,
@@ -74,7 +75,8 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
                 .section_theme-primary .button_secondary:hover,
                 .search-bar__icon:hover,
                 .search-bar__close:hover,
-                .stats__button:not(.is-active):hover {
+                .stats__button:not(.is-active):hover,
+                .tile__title a:hover {
                     color: $primary_color;
                 }
 
@@ -85,7 +87,8 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
                 .section_theme-primary,
                 .stats__button.is-active,
                 .tile__content_primary,
-                .tile:hover .tile__button {
+                .tile[href]:hover .tile__button,
+                .tile__button[href]:hover {
                     background-color: $primary_color;
                 }
 

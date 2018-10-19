@@ -15,15 +15,12 @@
     }
   }
 
-  .entry__head {
-    @include breakpoint(lg) {
-      margin-left: 17%;
-      margin-right: 17%;
+  &[href]:hover {
+    .entry__image,
+    .entry__title,
+    .entry__content {
+      opacity: 0.8;
     }
-  }
-
-  &[href]:hover .entry__image {
-    opacity: 0.8;
   }
 }
 
@@ -59,10 +56,6 @@
   @include u-overlay;
   background-color: transparent;
   transition: opacity $transition-duration;
-
-  &[href]:hover {
-    opacity: 0.8;
-  }
 }
 
 .entry__details {
@@ -90,17 +83,20 @@
 }
 
 .entry__head {
-  margin-bottom: $separator;
-
-  @include breakpoint(md) {
-    margin-bottom: ($separator * 2);
-  }
-
   &:not(:first-child) {
     margin-top: $separator;
 
     @include breakpoint(md) {
       margin-top: ($separator * 2);
+    }
+  }
+
+  &:only-child,
+  &:not(:last-child) {
+    margin-bottom: $separator;
+
+    @include breakpoint(md) {
+      margin-bottom: ($separator * 2);
     }
   }
 }
@@ -109,6 +105,7 @@
   @extend .heading;
   @extend .heading_xl;
   line-height: 1.25 !important;
+  transition: opacity $transition-duration;
 
   &:not(:first-child) {
     margin-top: $separator;
@@ -151,6 +148,8 @@
 
 .entry__content,
 .entry__footer {
+  transition: opacity $transition-duration;
+
   &:not(:first-child) {
     margin-top: $separator;
 

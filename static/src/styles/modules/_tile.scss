@@ -56,7 +56,8 @@
       background-color: transparent;
     }
 
-    &:hover .tile__image {
+    &[href]:hover .tile__image,
+    &[href]:hover .tile__info {
       opacity: 0.8;
     }
   }
@@ -96,8 +97,6 @@
 }
 
 .tile__image {
-  user-select: none;
-  pointer-events: none;
   overflow: hidden;
   background-color: $color-gray-light;
   transition: opacity $transition-duration;
@@ -106,6 +105,10 @@
     content: '';
     display: block;
     padding-bottom: 70%;
+  }
+
+  &[href]:hover {
+    opacity: 0.8;
   }
 
   > * {
@@ -174,6 +177,7 @@
 
 .tile__info {
   flex: 1;
+  transition: opacity $transition-duration;
 
   &:not(:last-child) {
     margin-bottom: 1rem;
@@ -198,6 +202,14 @@
 
   @include breakpoint(md) {
     font-size: 2.2rem;
+  }
+
+  a {
+    display: inline-block;
+
+    &:hover {
+      color: $color-primary;
+    }
   }
 }
 
@@ -257,7 +269,8 @@
   align-self: flex-start;
   margin-top: 2rem;
 
-  .tile:hover & {
+  .tile[href]:hover &,
+  &[href]:hover {
     background-color: $color-primary;
     border-color: transparent;
     color: $color-white;

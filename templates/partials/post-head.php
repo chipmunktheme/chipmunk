@@ -1,7 +1,13 @@
-<h1 class="entry__title"><?php the_title(); ?></h1>
+<h1 class="entry__title">
+    <?php if ( is_single() ) : ?>
+        <?php the_title(); ?>
+    <?php else : ?>
+        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+    <?php endif; ?>
+</h1>
 
 <div class="entry__meta">
-    <?php if ( isset( $show_author ) ) : ?>
+    <?php if ( is_single() ) : ?>
         <div class="entry__author">
             <?php echo get_avatar( get_the_author_meta( 'ID' ), 32 ); ?>
             <?php the_author(); ?>

@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <!-- /.entry__head -->
+    <!-- /.entry__hero -->
 <?php endif; ?>
 
 <div class="section">

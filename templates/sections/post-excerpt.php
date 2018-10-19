@@ -1,12 +1,12 @@
-<a href="<?php the_permalink(); ?>" class="entry column">
+<div class="entry column column_lg-8 column_lg-offset-2">
     <?php if ( has_post_thumbnail() ) : ?>
-        <div class="entry__image" style="background-image: url(<?php the_post_thumbnail_url( 'xl' ); ?>)"></div>
+        <a href="<?php the_permalink(); ?>" class="entry__image" style="background-image: url(<?php the_post_thumbnail_url( 'xl' ); ?>)"></a>
     <?php endif; ?>
 
     <div class="entry__head">
         <?php chipmunk_get_template( 'partials/post-head', array( 'collections' => array(
             'display'  => true,
-            'type'     => 'text',
+            'type'     => 'link',
             'quantity' => -1,
         ) ) ); ?>
 
@@ -17,9 +17,9 @@
             <!-- /.entry__content -->
         <?php endif; ?>
 
-        <span class="entry__button button button_secondary">
+        <a href="<?php the_permalink(); ?>" class="entry__button button button_secondary">
             <?php esc_html_e( 'Read more', 'chipmunk' ); ?>
-        </span>
+        </a>
     </div>
     <!-- /.entry__head -->
-</a>
+</div>
