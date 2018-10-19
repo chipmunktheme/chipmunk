@@ -291,6 +291,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
                             'default'     => false,
                         ),
                         array(
+                            'name'        => 'resources_disable_sharing',
+                            'type'        => 'checkbox',
+                            'label'       => esc_html__( 'Disable sharing', 'chipmunk' ),
+                            'default'     => false,
+                        ),
+                        array(
                             'name'        => 'default_sort_by',
                             'type'        => 'select',
                             'label'       => esc_html__( 'Sort by', 'chipmunk' ),
@@ -383,6 +389,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
                             'type'        => 'number',
                             'label'       => esc_html__( 'Number of blog posts per page', 'chipmunk' ),
                             'default'     => 12,
+                        ),
+                        array(
+                            'name'        => 'blog_disable_sharing',
+                            'type'        => 'checkbox',
+                            'label'       => esc_html__( 'Disable blog sharing', 'chipmunk' ),
+                            'default'     => false,
                         ),
                     ),
                 ),

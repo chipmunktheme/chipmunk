@@ -41,9 +41,7 @@ a,
 button,
 .button,
 input[type="submit"] {
-  cursor: pointer;
-  transition-duration: $transition-duration;
-  transition-property: color, background-color, border, opacity;
+  @extend %link-transition;
 
   &:focus {
     outline: none;

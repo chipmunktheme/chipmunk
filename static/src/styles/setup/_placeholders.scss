@@ -1,0 +1,9 @@
+/*
+** Setup - Placeholders
+** ----------------------------------------------------------------------------- */
+
+%link-transition {
+  cursor: pointer;
+  transition-duration: $transition-duration;
+  transition-property: color, background-color, border, opacity, transform;
+}

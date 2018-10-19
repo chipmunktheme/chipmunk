@@ -73,7 +73,8 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
                 .resource__description a,
                 .section_theme-primary .button_secondary:hover,
                 .search-bar__icon:hover,
-                .search-bar__close:hover {
+                .search-bar__close:hover,
+                .stats__button:not(.is-active):hover {
                     color: $primary_color;
                 }
 
@@ -86,6 +87,11 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
                 .tile__content_primary,
                 .tile:hover .tile__button {
                     background-color: $primary_color;
+                }
+
+                .nav-socials__link:hover,
+                .stats__button:not(.is-active):hover {
+                    border-color: $primary_color;
                 }
 
                 body,

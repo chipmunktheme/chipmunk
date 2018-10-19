@@ -149,7 +149,8 @@
   }
 }
 
-.entry__content {
+.entry__content,
+.entry__footer {
   &:not(:first-child) {
     margin-top: $separator;
 

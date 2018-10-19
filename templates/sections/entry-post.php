@@ -39,6 +39,12 @@
                     <?php the_content(); ?>
                 </div>
                 <!-- /.entry -->
+
+                <?php if ( ! chipmunk_theme_option( 'blog_disable_sharing' ) ) : ?>
+                    <div class="entry__footer">
+                        <?php get_template_part( 'templates/partials/share-box' ); ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

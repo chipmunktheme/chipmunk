@@ -36,6 +36,9 @@
   text-align: center;
 
   &:hover {
+    border-color: $color-primary;
     color: $color-primary;
+    opacity: 0.75;
+    transform: scale(1.05);
   }
 }

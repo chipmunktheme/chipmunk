@@ -60,6 +60,28 @@
   }
 }
 
+.section__separator {
+  margin-top: $separator * 2;
+
+  @include breakpoint(md) {
+    margin-top: $separator * 4;
+  }
+
+  .section_compact & {
+    margin-top: $separator;
+
+    @include breakpoint(md) {
+      margin-top: $separator * 2;
+    }
+  }
+
+  .section_double & {
+    @include breakpoint(lg) {
+      margin-top: $separator * 8;
+    }
+  }
+}
+
 .section__title {
   color: $color-black;
   font-size: 3.6rem;
