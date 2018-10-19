@@ -39,8 +39,14 @@
                         <a href="<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>" class="button button_secondary" target="_blank" rel="nofollow"><?php esc_html_e( 'Visit website', 'chipmunk' ); ?></a>
                     <?php endif; ?>
 
-                    <?php if ( ! chipmunk_theme_option( 'resources_disable_sharing' ) ) : ?>
-                        <?php get_template_part( 'templates/partials/share-box' ); ?>
+                    <?php if ( ! is_search() ) : ?>
+                        <?php if ( get_post_type() == 'resource' and ! chipmunk_theme_option( 'resources_disable_sharing' ) ) : ?>
+                            <?php get_template_part( 'templates/partials/share-box' ); ?>
+                        <?php endif; ?>
+
+                        <?php if ( get_post_type() == 'post' and ! chipmunk_theme_option( 'blog_disable_sharing' ) ) : ?>
+                            <?php get_template_part( 'templates/partials/share-box' ); ?>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </div>
