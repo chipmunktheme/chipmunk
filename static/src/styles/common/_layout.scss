@@ -7,3 +7,11 @@
   width: 100%;
   overflow: hidden;
 }
+
+.row_separated {
+  margin-top: -($separator * 2);
+
+  > .column {
+    margin-top: ($separator * 2);
+  }
+}

@@ -55,6 +55,12 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
         add_theme_support( 'comments' );
         add_theme_support( 'threaded-comments' );
 
+        add_theme_support( 'sidebars', array(
+            'blog-sidebar'  => array(
+                'name' => __( 'Blog sidebar', 'chipmunk' ),
+            ),
+        ) );
+
         add_theme_support( 'custom-post', array(
             'resource' => array(
                 'singular'              => esc_html__( 'Resource', 'chipmunk' ),

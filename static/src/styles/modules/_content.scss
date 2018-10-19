@@ -12,7 +12,7 @@
   }
 
   > h1, > h2, > h3, > h4, > h5, > h6 {
-    @extend .heading;
+    @extend %heading;
 
     &:not(:first-child) {
       margin-top: $separator;
@@ -29,7 +29,7 @@
   }
 
   > h1, > h2 {
-    @extend .heading_xl;
+    @extend %heading-xl;
 
     &:not(:first-child) {
       margin-top: $separator * 2;
@@ -41,11 +41,11 @@
   }
 
   > h3 {
-    @extend .heading_lg;
+    @extend %heading-lg;
   }
 
   > h4 {
-    @extend .heading_md;
+    @extend %heading-md;
     text-transform: none !important;
   }
 
@@ -206,15 +206,18 @@
   .wp-caption,
   .alignnone {
     width: auto !important;
-    max-width: 151.7%;
+
+    [class*="offset"] & {
+      max-width: 151.7%;
+    }
 
     @include breakpoint(lg) {
-      .column_lg-8 & {
+      .column_lg-8[class*="offset"] & {
         margin-left: -25.85%;
         margin-right: -25.85%;
       }
 
-      .column_lg-10 & {
+      .column_lg-10[class*="offset"] & {
         margin-left: -10.2%;
         margin-right: -10.2%;
       }

@@ -1,4 +1,4 @@
-<h1 class="entry__title">
+<h1 class="entry__title heading heading_xl">
     <?php if ( is_single() ) : ?>
         <?php the_title(); ?>
     <?php else : ?>

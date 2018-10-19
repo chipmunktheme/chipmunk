@@ -22,6 +22,14 @@
   }
 }
 
+.page-foot__heading {
+  margin-bottom: $separator / 2;
+
+  @include breakpoint(md) {
+    margin-bottom: $separator;
+  }
+}
+
 .page-foot__description {
   p {
     @include breakpoint(md) {

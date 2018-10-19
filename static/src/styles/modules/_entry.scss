@@ -3,15 +3,19 @@
 ** -----------------------------------------------------------------------------*/
 
 .entry {
-  @include breakpoint(md) {
-    margin-bottom: $separator;
-  }
-
   &:not(:first-child) {
     margin-top: $separator;
 
     @include breakpoint(md) {
       margin-top: ($separator * 2);
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: ($separator * 2);
+
+    @include breakpoint(md) {
+      margin-bottom: ($separator * 3);
     }
   }
 
@@ -102,8 +106,6 @@
 }
 
 .entry__title {
-  @extend .heading;
-  @extend .heading_xl;
   line-height: 1.25 !important;
   transition: opacity $transition-duration;
 

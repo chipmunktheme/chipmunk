@@ -1134,6 +1134,54 @@
 /*
 ** Setup - Placeholders
 ** ----------------------------------------------------------------------------- */
+.content > h1, .content > h2, .content > h3, .content > h4, .content > h5, .content > h6, .heading, .widget__title {
+  color: #333333;
+  font-weight: bold;
+}
+.content > h1 small, .content > h2 small, .content > h3 small, .content > h4 small, .content > h5 small, .content > h6 small, .heading small, .widget__title small {
+  color: #808080;
+}
+.heading_sm, .widget__title {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+.content > h4, .heading_md {
+  font-size: 2rem;
+  line-height: 1.6;
+  letter-spacing: 0.025em;
+}
+@media (min-width: 680px) {
+  .content > h4, .heading_md {
+    font-size: 2.4rem;
+  }
+}
+.content > h3, .heading_lg {
+  font-size: 2.6rem;
+  line-height: 1.4;
+}
+@media (min-width: 680px) {
+  .content > h3, .heading_lg {
+    font-size: 3.6rem;
+  }
+}
+.content > h1, .content > h2, .heading_xl {
+  font-size: 3.6rem;
+  line-height: 1.4;
+}
+@media (min-width: 680px) {
+  .content > h1, .content > h2, .heading_xl {
+    font-size: 4.8rem;
+  }
+}
+.heading_thin {
+  font-weight: normal;
+  font-size: 1.6rem;
+}
+@media (min-width: 680px) {
+  .heading_thin {
+    font-size: 2.2rem;
+  }
+}
 a,
 button,
 .button, .content input[type="submit"],
@@ -1271,6 +1319,12 @@ input[type="submit"]:focus {
   position: relative;
   width: 100%;
   overflow: hidden;
+}
+.row_separated {
+  margin-top: -4rem;
+}
+.row_separated > .column {
+  margin-top: 4rem;
 }
 /*
 ** Vendor - Parsley
@@ -2206,19 +2260,24 @@ input:checked + .u-checkbox__mark .icon {
 .content .wp-caption,
 .content .alignnone {
   width: auto !important;
+}
+[class*="offset"] .content table, [class*="offset"]
+.content blockquote, [class*="offset"]
+.content .wp-caption, [class*="offset"]
+.content .alignnone {
   max-width: 151.7%;
 }
 @media (min-width: 980px) {
-  .column_lg-8 .content table, .column_lg-8
-  .content blockquote, .column_lg-8
-  .content .wp-caption, .column_lg-8
+  .column_lg-8[class*="offset"] .content table, .column_lg-8[class*="offset"]
+  .content blockquote, .column_lg-8[class*="offset"]
+  .content .wp-caption, .column_lg-8[class*="offset"]
   .content .alignnone {
     margin-left: -25.85%;
     margin-right: -25.85%;
   }
-  .column_lg-10 .content table, .column_lg-10
-  .content blockquote, .column_lg-10
-  .content .wp-caption, .column_lg-10
+  .column_lg-10[class*="offset"] .content table, .column_lg-10[class*="offset"]
+  .content blockquote, .column_lg-10[class*="offset"]
+  .content .wp-caption, .column_lg-10[class*="offset"]
   .content .alignnone {
     margin-left: -10.2%;
     margin-right: -10.2%;
@@ -2267,17 +2326,20 @@ input:checked + .u-checkbox__mark .icon {
 /*
 ** Module - Entry
 ** -----------------------------------------------------------------------------*/
-@media (min-width: 680px) {
-  .entry {
-    margin-bottom: 2rem;
-  }
-}
 .entry:not(:first-child) {
   margin-top: 2rem;
 }
 @media (min-width: 680px) {
   .entry:not(:first-child) {
     margin-top: 4rem;
+  }
+}
+.entry:not(:last-child) {
+  margin-bottom: 4rem;
+}
+@media (min-width: 680px) {
+  .entry:not(:last-child) {
+    margin-bottom: 6rem;
   }
 }
 .entry[href]:hover .entry__image,
@@ -2570,117 +2632,6 @@ input:checked + .u-checkbox__mark .icon {
     margin-top: 3rem;
   }
 }
-.form [type="text"], .content form [type="text"],
-.form [type="email"],
-.content form [type="email"],
-.form [type="url"],
-.content form [type="url"],
-.form [type="password"],
-.content form [type="password"],
-.form select,
-.content form select,
-.form textarea,
-.content form textarea {
-  display: inline-block;
-  width: 100%;
-  padding: 5px 0;
-  background-color: transparent;
-  border-bottom: 2px solid currentColor;
-  border-radius: 0;
-  color: #333333;
-  font-size: 1.8rem;
-  line-height: 1.6;
-  resize: none;
-  vertical-align: middle;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  overflow: hidden;
-  text-align: inherit;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-@media (min-width: 980px) {
-  .form [type="text"], .content form [type="text"],
-  .form [type="email"],
-  .content form [type="email"],
-  .form [type="url"],
-  .content form [type="url"],
-  .form [type="password"],
-  .content form [type="password"],
-  .form select,
-  .content form select,
-  .form textarea,
-  .content form textarea {
-    border-bottom-width: 3px;
-    font-size: 2.2rem;
-  }
-}
-.form [type="text"]::-webkit-input-placeholder, .content form [type="text"]::-webkit-input-placeholder,
-.form [type="email"]::-webkit-input-placeholder,
-.content form [type="email"]::-webkit-input-placeholder,
-.form [type="url"]::-webkit-input-placeholder,
-.content form [type="url"]::-webkit-input-placeholder,
-.form [type="password"]::-webkit-input-placeholder,
-.content form [type="password"]::-webkit-input-placeholder,
-.form select::-webkit-input-placeholder,
-.content form select::-webkit-input-placeholder,
-.form textarea::-webkit-input-placeholder,
-.content form textarea::-webkit-input-placeholder {
-  color: #333333;
-}
-.form [type="text"]:-ms-input-placeholder, .content form [type="text"]:-ms-input-placeholder,
-.form [type="email"]:-ms-input-placeholder,
-.content form [type="email"]:-ms-input-placeholder,
-.form [type="url"]:-ms-input-placeholder,
-.content form [type="url"]:-ms-input-placeholder,
-.form [type="password"]:-ms-input-placeholder,
-.content form [type="password"]:-ms-input-placeholder,
-.form select:-ms-input-placeholder,
-.content form select:-ms-input-placeholder,
-.form textarea:-ms-input-placeholder,
-.content form textarea:-ms-input-placeholder {
-  color: #333333;
-}
-.form [type="text"]::-ms-input-placeholder, .content form [type="text"]::-ms-input-placeholder,
-.form [type="email"]::-ms-input-placeholder,
-.content form [type="email"]::-ms-input-placeholder,
-.form [type="url"]::-ms-input-placeholder,
-.content form [type="url"]::-ms-input-placeholder,
-.form [type="password"]::-ms-input-placeholder,
-.content form [type="password"]::-ms-input-placeholder,
-.form select::-ms-input-placeholder,
-.content form select::-ms-input-placeholder,
-.form textarea::-ms-input-placeholder,
-.content form textarea::-ms-input-placeholder {
-  color: #333333;
-}
-.form [type="text"]::placeholder, .content form [type="text"]::placeholder,
-.form [type="email"]::placeholder,
-.content form [type="email"]::placeholder,
-.form [type="url"]::placeholder,
-.content form [type="url"]::placeholder,
-.form [type="password"]::placeholder,
-.content form [type="password"]::placeholder,
-.form select::placeholder,
-.content form select::placeholder,
-.form textarea::placeholder,
-.content form textarea::placeholder {
-  color: #333333;
-}
-.form [type="text"]:focus, .content form [type="text"]:focus,
-.form [type="email"]:focus,
-.content form [type="email"]:focus,
-.form [type="url"]:focus,
-.content form [type="url"]:focus,
-.form [type="password"]:focus,
-.content form [type="password"]:focus,
-.form select:focus,
-.content form select:focus,
-.form textarea:focus,
-.content form textarea:focus {
-  outline: none;
-}
 .form_compact {
   text-align: center;
 }
@@ -2705,6 +2656,53 @@ input:checked + .u-checkbox__mark .icon {
 }
 .is-loading .form__content {
   opacity: 0.25;
+}
+.form__input, .widget_search .search-field {
+  display: inline-block;
+  width: 100%;
+  padding: 5px 0;
+  background-color: transparent;
+  border-bottom: 2px solid currentColor;
+  border-radius: 0;
+  color: #333333;
+  font-size: 1.8rem;
+  line-height: 1.6;
+  resize: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  overflow: hidden;
+  text-align: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (min-width: 980px) {
+  .form__input, .widget_search .search-field {
+    border-bottom-width: 3px;
+    font-size: 2.2rem;
+  }
+}
+.form__input::-webkit-input-placeholder, .widget_search .search-field::-webkit-input-placeholder {
+  color: #333333;
+}
+.form__input:-ms-input-placeholder, .widget_search .search-field:-ms-input-placeholder {
+  color: #333333;
+}
+.form__input::-ms-input-placeholder, .widget_search .search-field::-ms-input-placeholder {
+  color: #333333;
+}
+.form__input::placeholder, .widget_search .search-field::placeholder {
+  color: #333333;
+}
+.form__input:focus, .widget_search .search-field:focus {
+  outline: none;
+}
+@media (min-width: 980px) {
+  .form__input_sm, .widget_search .search-field {
+    border-bottom-width: 2px;
+    font-size: 1.8rem;
+  }
 }
 .form__field, .content form > div {
   position: relative;
@@ -2801,60 +2799,6 @@ input:checked + .u-checkbox__mark .icon {
 /*
 ** Module - Heading
 ** -----------------------------------------------------------------------------*/
-.heading, .content > h1, .content > h2, .content > h3, .content > h4, .content > h5, .content > h6, .entry__title {
-  color: #333333;
-  font-weight: bold;
-}
-.heading_sm {
-  margin-bottom: 1rem;
-  font-size: 1.6rem;
-  line-height: 1.6;
-}
-@media (min-width: 680px) {
-  .heading_sm {
-    margin-bottom: 2rem;
-  }
-}
-.heading_md, .content > h4 {
-  font-size: 2rem;
-  line-height: 1.6;
-  letter-spacing: 0.025em;
-}
-@media (min-width: 680px) {
-  .heading_md, .content > h4 {
-    font-size: 2.4rem;
-  }
-}
-.heading_md small, .content > h4 small {
-  color: #808080;
-}
-.heading_lg, .content > h3 {
-  font-size: 2.6rem;
-  line-height: 1.4;
-}
-@media (min-width: 680px) {
-  .heading_lg, .content > h3 {
-    font-size: 3.6rem;
-  }
-}
-.heading_xl, .content > h1, .content > h2, .entry__title {
-  font-size: 3.6rem;
-  line-height: 1.4;
-}
-@media (min-width: 680px) {
-  .heading_xl, .content > h1, .content > h2, .entry__title {
-    font-size: 4.8rem;
-  }
-}
-.heading_thin {
-  font-weight: normal;
-  font-size: 1.6rem;
-}
-@media (min-width: 680px) {
-  .heading_thin {
-    font-size: 2.2rem;
-  }
-}
 .heading__link {
   display: inline-block;
   margin-left: 2rem;
@@ -3119,6 +3063,14 @@ input:checked + .u-checkbox__mark .icon {
 @media (min-width: 680px) {
   .page-foot .column {
     margin-top: 0;
+  }
+}
+.page-foot__heading {
+  margin-bottom: 1rem;
+}
+@media (min-width: 680px) {
+  .page-foot__heading {
+    margin-bottom: 2rem;
   }
 }
 @media (min-width: 680px) {
@@ -3711,7 +3663,7 @@ input:checked + .u-checkbox__mark .icon {
   background-color: #F38181;
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .content > h1, .section_theme-primary .content > h2, .section_theme-primary .content > h3, .section_theme-primary .content > h4, .section_theme-primary .content > h5, .section_theme-primary .content > h6, .section_theme-primary .entry__title, .section_theme-primary .heading::-webkit-input-placeholder, .section_theme-primary .content > h1::-webkit-input-placeholder, .section_theme-primary .content > h2::-webkit-input-placeholder, .section_theme-primary .content > h3::-webkit-input-placeholder, .section_theme-primary .content > h4::-webkit-input-placeholder, .section_theme-primary .content > h5::-webkit-input-placeholder, .section_theme-primary .content > h6::-webkit-input-placeholder, .section_theme-primary .entry__title::-webkit-input-placeholder,
+.section_theme-primary .heading, .section_theme-primary .heading::-webkit-input-placeholder,
 .section_theme-primary .button_secondary,
 .section_theme-primary .button_secondary::-webkit-input-placeholder,
 .section_theme-primary input[type="text"],
@@ -3724,7 +3676,7 @@ input:checked + .u-checkbox__mark .icon {
 .section_theme-primary textarea::-webkit-input-placeholder {
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .content > h1, .section_theme-primary .content > h2, .section_theme-primary .content > h3, .section_theme-primary .content > h4, .section_theme-primary .content > h5, .section_theme-primary .content > h6, .section_theme-primary .entry__title, .section_theme-primary .heading:-ms-input-placeholder, .section_theme-primary .content > h1:-ms-input-placeholder, .section_theme-primary .content > h2:-ms-input-placeholder, .section_theme-primary .content > h3:-ms-input-placeholder, .section_theme-primary .content > h4:-ms-input-placeholder, .section_theme-primary .content > h5:-ms-input-placeholder, .section_theme-primary .content > h6:-ms-input-placeholder, .section_theme-primary .entry__title:-ms-input-placeholder,
+.section_theme-primary .heading, .section_theme-primary .heading:-ms-input-placeholder,
 .section_theme-primary .button_secondary,
 .section_theme-primary .button_secondary:-ms-input-placeholder,
 .section_theme-primary input[type="text"],
@@ -3737,7 +3689,7 @@ input:checked + .u-checkbox__mark .icon {
 .section_theme-primary textarea:-ms-input-placeholder {
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .content > h1, .section_theme-primary .content > h2, .section_theme-primary .content > h3, .section_theme-primary .content > h4, .section_theme-primary .content > h5, .section_theme-primary .content > h6, .section_theme-primary .entry__title, .section_theme-primary .heading::-ms-input-placeholder, .section_theme-primary .content > h1::-ms-input-placeholder, .section_theme-primary .content > h2::-ms-input-placeholder, .section_theme-primary .content > h3::-ms-input-placeholder, .section_theme-primary .content > h4::-ms-input-placeholder, .section_theme-primary .content > h5::-ms-input-placeholder, .section_theme-primary .content > h6::-ms-input-placeholder, .section_theme-primary .entry__title::-ms-input-placeholder,
+.section_theme-primary .heading, .section_theme-primary .heading::-ms-input-placeholder,
 .section_theme-primary .button_secondary,
 .section_theme-primary .button_secondary::-ms-input-placeholder,
 .section_theme-primary input[type="text"],
@@ -3750,7 +3702,7 @@ input:checked + .u-checkbox__mark .icon {
 .section_theme-primary textarea::-ms-input-placeholder {
   color: #FAFAFA;
 }
-.section_theme-primary .heading, .section_theme-primary .content > h1, .section_theme-primary .content > h2, .section_theme-primary .content > h3, .section_theme-primary .content > h4, .section_theme-primary .content > h5, .section_theme-primary .content > h6, .section_theme-primary .entry__title, .section_theme-primary .heading::placeholder, .section_theme-primary .content > h1::placeholder, .section_theme-primary .content > h2::placeholder, .section_theme-primary .content > h3::placeholder, .section_theme-primary .content > h4::placeholder, .section_theme-primary .content > h5::placeholder, .section_theme-primary .content > h6::placeholder, .section_theme-primary .entry__title::placeholder,
+.section_theme-primary .heading, .section_theme-primary .heading::placeholder,
 .section_theme-primary .button_secondary,
 .section_theme-primary .button_secondary::placeholder,
 .section_theme-primary input[type="text"],
@@ -4185,6 +4137,73 @@ input:checked + .u-checkbox__mark .icon {
 }
 .toolbox__button {
   margin-left: 2.5rem;
+}
+/*
+** Module - Widget
+** -----------------------------------------------------------------------------*/
+.widget:first-child {
+  margin-top: 0.33em;
+}
+.widget:not(:first-child) {
+  margin-top: 2rem;
+}
+@media (min-width: 680px) {
+  .widget:not(:first-child) {
+    margin-top: 4rem;
+  }
+}
+.widget ul {
+  list-style: disc;
+  list-style-position: inside;
+}
+.widget p + p {
+  margin-top: 0.925em;
+}
+.widget a:hover {
+  color: #333333;
+}
+.widget__title {
+  margin-bottom: 1rem;
+}
+.widget_text .alignleft,
+.widget_text .alignright {
+  max-width: 10rem;
+  height: auto;
+  margin-bottom: 0.5em;
+}
+.widget_text .alignleft {
+  float: left;
+  margin-right: 1em;
+}
+.widget_text .alignright {
+  float: right;
+  margin-left: 1em;
+}
+.widget_search .screen-reader-text {
+  display: none;
+}
+.widget_search .search-form {
+  display: flex;
+  align-items: center;
+}
+.widget_search .search-form label {
+  flex: 1;
+  width: 100%;
+}
+.widget_search .search-submit {
+  margin-left: 0.5em;
+  height: 1.25em;
+  width: 1.25em;
+  background-image: url("../icons/search.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  text-indent: -999em;
+  opacity: 0.5;
+  transition: opacity 0.25s;
+}
+.widget_search .search-submit:hover {
+  opacity: 1;
 }
 /*
 ** Plugin - Members

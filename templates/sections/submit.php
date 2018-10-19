@@ -12,11 +12,11 @@
     <div class="form__content" data-action-element="<?php echo $action; ?>">
         <div class="form__field">
             <div class="form__child">
-                <input type="text" name="name" placeholder="<?php esc_attr_e( 'Resource name', 'chipmunk' ); ?>" required>
+                <input type="text" name="name" placeholder="<?php esc_attr_e( 'Resource name', 'chipmunk' ); ?>" class="form__input" required>
             </div>
 
             <div class="form__child">
-                <select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors" data-parsley-group="select" class="custom-select" required>
+                <select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors" data-parsley-group="select" class="form__input custom-select" required>
                     <option value=""><?php esc_html_e( 'Collection', 'chipmunk' ); ?></option>
                     <?php
                         $collections = chipmunk_get_taxonomy_hierarchy( 'resource-collection', array(
@@ -35,22 +35,22 @@
 
         <div class="form__field">
             <div class="form__child">
-                <input type="url" name="website" placeholder="<?php esc_attr_e( 'Website URL', 'chipmunk' ); ?>" required>
+                <input type="url" name="website" placeholder="<?php esc_attr_e( 'Website URL', 'chipmunk' ); ?>" class="form__input" required>
             </div>
 
             <div class="form__child">
-                <input type="text" name="content" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>">
+                <input type="text" name="content" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>" class="form__input">
             </div>
         </div>
 
         <?php if ( ! chipmunk_theme_option( 'disable_submitter_info' ) and ! is_user_logged_in() ) : ?>
             <div class="form__field form__field_separated">
                 <div class="form__child">
-                    <input type="text" name="submitter_name" placeholder="<?php esc_attr_e( 'Your name', 'chipmunk' ); ?>" required>
+                    <input type="text" name="submitter_name" placeholder="<?php esc_attr_e( 'Your name', 'chipmunk' ); ?>" class="form__input" required>
                 </div>
 
                 <div class="form__child">
-                    <input type="email" name="submitter_email" placeholder="<?php esc_attr_e( 'Your email', 'chipmunk' ); ?>" required>
+                    <input type="email" name="submitter_email" placeholder="<?php esc_attr_e( 'Your email', 'chipmunk' ); ?>" class="form__input" required>
                 </div>
             </div>
         <?php endif; ?>

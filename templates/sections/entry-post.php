@@ -7,8 +7,8 @@
         <div class="entry__details section">
             <div class="container">
                 <div class="row">
-                    <div class="column column_lg-8 column_lg-offset-2">
-                        <?php chipmunk_get_template( 'partials/post-head', array( 'show_author' => true, 'collections' => array(
+                    <div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? 'column_lg-8 column_lg-offset-2' : ''; ?>">
+                        <?php chipmunk_get_template( 'partials/post-head', array( 'collections' => array(
                             'display'  => true,
                             'type'     => 'link',
                             'quantity' => -1,
@@ -23,18 +23,22 @@
 
 <div class="section">
     <div class="container">
-        <div class="row">
-            <div class="column column_lg-8 column_lg-offset-2">
-                <?php if ( ! has_post_thumbnail() ) : ?>
+        <?php if ( ! has_post_thumbnail() ) : ?>
+            <div class="row">
+                <div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? 'column_lg-8 column_lg-offset-2' : ''; ?>">
                     <div class="entry__head">
-                        <?php chipmunk_get_template( 'partials/post-head', array( 'show_author' => true, 'collections' => array(
+                        <?php chipmunk_get_template( 'partials/post-head', array( 'collections' => array(
                             'display'  => true,
                             'type'     => 'link',
                             'quantity' => -1,
                         ) ) ); ?>
                     </div>
-                <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
 
+        <div class="row row_separated">
+            <div class="column column_lg-8 <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? 'column_lg-offset-2' : ''; ?>">
                 <div class="entry__content content">
                     <?php the_content(); ?>
                 </div>
@@ -46,6 +50,12 @@
                     </div>
                 <?php endif; ?>
             </div>
+
+            <?php if ( is_active_sidebar( 'blog-sidebar' ) ) : ?>
+                <div class="column column_lg-4">
+                    <?php dynamic_sidebar( 'blog-sidebar' ); ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
