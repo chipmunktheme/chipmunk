@@ -1,10 +1,12 @@
-<h1 class="entry__title heading heading_xl">
-    <?php if ( is_single() ) : ?>
+<?php if ( is_single() ) : ?>
+    <h1 class="entry__title heading heading_xl">
         <?php the_title(); ?>
-    <?php else : ?>
+    </h1>
+<?php else : ?>
+    <h2 class="entry__title heading heading_lg">
         <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-    <?php endif; ?>
-</h1>
+    </h2>
+<?php endif; ?>
 
 <div class="entry__meta">
     <?php if ( is_single() ) : ?>

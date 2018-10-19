@@ -1166,7 +1166,7 @@
 }
 .content > h1, .content > h2, .heading_xl {
   font-size: 3.6rem;
-  line-height: 1.4;
+  line-height: 1.25;
 }
 @media (min-width: 680px) {
   .content > h1, .content > h2, .heading_xl {
@@ -2440,7 +2440,6 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .entry__title {
-  line-height: 1.25 !important;
   transition: opacity 0.25s;
 }
 .entry__title:not(:first-child) {
@@ -3738,17 +3737,6 @@ input:checked + .u-checkbox__mark .icon {
 @media (min-width: 980px) {
   .section_double .section__separator {
     margin-top: 16rem;
-  }
-}
-.section__title {
-  color: #333333;
-  font-size: 3.6rem;
-  font-weight: bold;
-  line-height: 1.4;
-}
-@media (min-width: 680px) {
-  .section__title {
-    font-size: 4.8rem;
   }
 }
 @media (min-width: 980px) {

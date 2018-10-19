@@ -83,15 +83,6 @@
 }
 
 .section__title {
-  color: $color-black;
-  font-size: 3.6rem;
-  font-weight: bold;
-  line-height: 1.4;
-
-  @include breakpoint(md) {
-    font-size: 4.8rem;
-  }
-
   @include breakpoint(lg) {
     font-size: 5.2rem;
   }
