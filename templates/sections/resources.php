@@ -14,7 +14,7 @@
 			<?php else : ?>
 				<?php if ( $query->have_posts() ) : ?>
 					<div class="row">
-						<div class="column column_md-4 column_lg-4">
+						<div class="column column--md-4 column--lg-4">
 							<h1 class="heading heading_md"><?php esc_html_e( 'Resources', 'chipmunk' ); ?></h1>
 						</div>
 

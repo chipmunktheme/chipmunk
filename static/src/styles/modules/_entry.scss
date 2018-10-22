@@ -57,8 +57,11 @@
 
 .entry__background {
   @include u-cover(0.33, $color-black);
+  @include u-object-fit;
   @include u-overlay;
   background-color: transparent;
+  pointer-events: none;
+  user-select: none;
   transition: opacity $transition-duration;
 }
 
@@ -70,19 +73,14 @@
 
 .entry__image {
   display: block;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   transition: opacity $transition-duration;
-
-  &::before {
-    content: '';
-    display: block;
-    padding-bottom: 56.25%;
-  }
 
   &[href]:hover {
     opacity: 0.8;
+  }
+
+  img {
+    height: auto;
   }
 }
 

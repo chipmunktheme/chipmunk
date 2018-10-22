@@ -1,4 +1,4 @@
-<div class="tile tile_card tile_blank column column_md-3 column_lg-4">
+<div class="tile tile_card tile_blank column column--md-3 column--lg-4">
     <a href="<?php the_permalink(); ?>" class="tile__image">
         <?php if ( has_post_thumbnail() ) : ?>
             <?php the_post_thumbnail( 'chipmunk-sm' ); ?>

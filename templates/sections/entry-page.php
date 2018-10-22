@@ -14,7 +14,7 @@ switch ( $template ) {
 ?>
 
 <div class="row">
-	<div class="column<?php echo $template == 'page-narrow-width.php' ? ' column_md-4 column_md-offset-1' : ''; ?> column_lg-<?php echo $columns; ?> column_lg-offset-<?php echo ( 12 - $columns ) / 2; ?>">
+	<div class="column<?php echo $template == 'page-narrow-width.php' ? ' column--md-4 column--md-offset-1' : ''; ?> column--lg-<?php echo $columns; ?> column--lg-offset-<?php echo ( 12 - $columns ) / 2; ?>">
 		<h1 class="entry__subtitle heading heading_md"><?php the_title(); ?></h1>
 
 		<div class="entry__content content">

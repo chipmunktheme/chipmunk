@@ -1,4 +1,4 @@
-<a href="<?php echo esc_url( get_term_link( $collection ) ); ?>" class="tile column column_md-3 column_lg-4">
+<a href="<?php echo esc_url( get_term_link( $collection ) ); ?>" class="tile column column--md-3 column--lg-4">
 	<div class="tile__image">
 		<?php if ( ! chipmunk_theme_option( 'disable_collection_thumbs' ) ) : ?>
 			<?php

@@ -5,7 +5,7 @@
 <div class="section<?php echo ( ! $wp_query->current_post or $wp_query->current_post % 2 == 0 ) ? ' section_theme-light' : ''; ?>">
     <div class="container">
         <article class="resource row">
-            <div class="resource__content column column_lg-6">
+            <div class="resource__content column column--lg-6">
                 <ul class="resource__stats stats">
                     <?php
                         $collections_args = array(
@@ -52,15 +52,15 @@
             </div>
 
             <?php if ( has_post_thumbnail() ) : ?>
-                <aside class="resource__image column column_lg-6">
+                <aside class="resource__image column column--lg-6">
                     <?php if ( is_single() ) : ?>
                         <?php if ( ! empty( $resource_website ) ) : ?>
-                            <a href="<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>" target="_blank" rel="nofollow"><?php the_post_thumbnail( 'chipmunk-xl' ); ?></a>
+                            <a href="<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>" target="_blank" rel="nofollow"><?php the_post_thumbnail( 'chipmunk-lg' ); ?></a>
                         <?php else : ?>
-                            <?php the_post_thumbnail( 'chipmunk-xl' ); ?>
+                            <?php the_post_thumbnail( 'chipmunk-lg' ); ?>
                         <?php endif; ?>
                     <?php else : ?>
-                        <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'chipmunk-xl' ); ?></a>
+                        <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'chipmunk-lg' ); ?></a>
                     <?php endif; ?>
                 </aside>
             <?php endif; ?>
@@ -74,7 +74,7 @@
     <div class="section">
         <div class="container">
             <div class="row">
-                <div class="column column_lg-8 column_lg-offset-2">
+                <div class="column column--lg-8 column--lg-offset-2">
                     <div class="entry__content content">
                         <?php the_content(); ?>
                     </div>

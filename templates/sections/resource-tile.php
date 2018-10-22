@@ -9,7 +9,7 @@
 	);
 ?>
 
-<a href="<?php the_permalink(); ?>" class="<?php echo $tile_classes[chipmunk_theme_option( 'display_resource_as' )]; ?><?php echo $is_column ? ' column column_md-3 column_lg-4' : ''; ?>">
+<a href="<?php the_permalink(); ?>" class="<?php echo $tile_classes[chipmunk_theme_option( 'display_resource_as' )]; ?><?php echo $is_column ? ' column column--md-3 column--lg-4' : ''; ?>">
 	<div class="tile__image">
 		<?php if ( has_post_thumbnail() ) : ?>
 			<?php the_post_thumbnail( 'chipmunk-sm' ); ?>

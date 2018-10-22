@@ -131,18 +131,18 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
 
         add_theme_support( 'images', array(
             'chipmunk-xl' => array(
+                'width'   => 1920,
+                'height'  => 1080,
+                'crop'    => true,
+            ),
+            'chipmunk-lg' => array(
                 'width'   => 1280,
                 'height'  => 888,
                 'crop'    => true,
             ),
-            'chipmunk-lg' => array(
-                'width'   => 640,
-                'height'  => 444,
-                'crop'    => true,
-            ),
             'chipmunk-md' => array(
-                'width'   => 460,
-                'height'  => 320,
+                'width'   => 600,
+                'height'  => 420,
                 'crop'    => true,
             ),
             'chipmunk-sm' => array(

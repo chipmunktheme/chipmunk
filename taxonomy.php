@@ -18,21 +18,21 @@ get_header(); ?>
 
             <?php if ( ! chipmunk_theme_option( 'disable_sorting' ) and $query->have_posts() ) : ?>
                 <div class="row">
-                    <div class="column column_md-4 column_lg-4">
+                    <div class="column column--md-4 column--lg-4">
                         <h1 class="heading heading_md"><?php echo esc_html( $title ); ?></h1>
                     </div>
 
                     <?php get_template_part( 'templates/partials/filters' ); ?>
 
                     <?php if ( ! empty( $term->description ) ) : ?>
-                        <div class="column column_md-4 column_lg-8">
+                        <div class="column column--md-4 column--lg-8">
                             <p class="text_content text_subtitle"><?php echo esc_html( $term->description ); ?></p>
                         </div>
                     <?php endif; ?>
                 </div>
             <?php else : ?>
                 <div class="row">
-                    <div class="column column_md-4 column_lg-8">
+                    <div class="column column--md-4 column--lg-8">
                         <h3 class="heading heading_md"><?php echo esc_html( $title ); ?></h3>
 
                         <?php if ( ! empty( $term->description ) ) : ?>

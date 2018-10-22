@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bespoke-toolkit": "^0.3.4",
+    "bespoke-toolkit": "^1.0.7",
     "custom-event-polyfill": "^0.3.0",
     "fitvids": "^2.0.0",
     "jquery": "^3.2.1",

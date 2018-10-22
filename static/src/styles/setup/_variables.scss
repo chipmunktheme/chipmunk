@@ -42,7 +42,7 @@ $transition-duration:   0.25s !default;
 $base-path:             '..' !default;
 
 // Grid definitions
-$breakpoints: (
+$grid-breakpoints: (
   xs: (
     min-width: 0,
     container: 450px,

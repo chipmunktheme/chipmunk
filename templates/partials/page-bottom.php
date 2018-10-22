@@ -3,7 +3,7 @@
 <div class="page-foot section section_theme-light">
 	<div class="container">
 		<div class="row">
-			<div class="column column_md-3 column_lg-5">
+			<div class="column column--md-3 column--lg-5">
 				<h5 class="page-foot__heading heading heading_sm"><?php esc_html_e( 'About', 'chipmunk' ); ?></h5>
 
 				<?php if ( $about_copy = chipmunk_theme_option( 'about_copy' ) ) : ?>
@@ -13,7 +13,7 @@
 				<?php endif; ?>
 			</div>
 
-			<div class="column column_md-2 column_md-offset-1 column_lg-2 column_lg-offset-<?php echo empty( $socials ) ? '5 text-right' : '3'; ?>">
+			<div class="column column--md-2 column--md-offset-1 column--lg-2 column--lg-offset-<?php echo empty( $socials ) ? '5 text-right' : '3'; ?>">
 				<h5 class="page-foot__heading heading heading_sm"><?php esc_html_e( 'Navigation', 'chipmunk' ); ?></h5>
 
 				<ul class="nav-secondary">
@@ -36,7 +36,7 @@
 			</div>
 
 			<?php if ( ! empty( $socials ) ) : ?>
-				<div class="column column_lg-2 visible-lg-block">
+				<div class="column column--lg-2 visible-lg-block">
 					<h5 class="page-foot__heading heading heading_sm"><?php esc_html_e( 'Follow', 'chipmunk' ); ?></h5>
 
 					<ul class="nav-secondary">
