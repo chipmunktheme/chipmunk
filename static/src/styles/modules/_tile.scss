@@ -97,27 +97,15 @@
 }
 
 .tile__image {
-  overflow: hidden;
+  @include u-object-fit(75%);
   background-color: $color-gray-light;
   transition: opacity $transition-duration;
-
-  &::before {
-    content: '';
-    display: block;
-    padding-bottom: 70%;
-  }
 
   &[href]:hover {
     opacity: 0.8;
   }
 
   > * {
-    @include u-overlay;
-    display: block;
-    max-width: none;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
     box-shadow: -2px 0 10px 0 rgba($color-black, 0.5);
     transition: transform $transition-duration ease-in-out 0.05s;
 

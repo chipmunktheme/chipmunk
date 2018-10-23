@@ -19,18 +19,17 @@
   @include breakpoint(lg) {
     margin-top: 0;
   }
+}
 
-  a {
+.resource__media {
+  @include u-object-fit(75%);
+
+  &[href] {
     display: block;
 
     &:hover {
       opacity: 0.8;
     }
-  }
-
-  img {
-    width: 100%;
-    height: auto !important;
   }
 }
 

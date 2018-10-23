@@ -21,7 +21,7 @@
 				<?php while ( $resources->have_posts() ) : $resources->the_post(); ?>
 
 					<?php if ( has_post_thumbnail() ) : ?>
-						<?php the_post_thumbnail( 'chipmunk-sm' ); ?>
+						<?php the_post_thumbnail( '600x420' ); ?>
 					<?php endif; ?>
 
 				<?php endwhile; wp_reset_postdata(); ?>

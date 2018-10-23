@@ -130,22 +130,27 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
         ) );
 
         add_theme_support( 'images', array(
-            'chipmunk-xl' => array(
+            '1920x1080' => array(
                 'width'   => 1920,
                 'height'  => 1080,
                 'crop'    => true,
             ),
-            'chipmunk-lg' => array(
+            '1280x960' => array(
                 'width'   => 1280,
-                'height'  => 888,
+                'height'  => 960,
                 'crop'    => true,
             ),
-            'chipmunk-md' => array(
+            '1280x720' => array(
+                'width'   => 1280,
+                'height'  => 720,
+                'crop'    => true,
+            ),
+            '600x420' => array(
                 'width'   => 600,
                 'height'  => 420,
                 'crop'    => true,
             ),
-            'chipmunk-sm' => array(
+            '300x210' => array(
                 'width'   => 300,
                 'height'  => 210,
                 'crop'    => true,

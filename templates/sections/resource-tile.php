@@ -12,7 +12,7 @@
 <a href="<?php the_permalink(); ?>" class="<?php echo $tile_classes[chipmunk_theme_option( 'display_resource_as' )]; ?><?php echo $is_column ? ' column column--md-3 column--lg-4' : ''; ?>">
 	<div class="tile__image">
 		<?php if ( has_post_thumbnail() ) : ?>
-			<?php the_post_thumbnail( 'chipmunk-sm' ); ?>
+			<?php the_post_thumbnail( '600x420' ); ?>
 		<?php endif; ?>
 	</div>
 

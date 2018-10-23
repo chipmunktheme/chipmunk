@@ -1,7 +1,7 @@
 <div class="entry column column--lg-8 column--lg-offset-2">
     <?php if ( has_post_thumbnail() ) : ?>
         <a href="<?php the_permalink(); ?>" class="entry__image">
-            <?php the_post_thumbnail( 'chipmunk-lg' ); ?>
+            <?php the_post_thumbnail( '1280x720' ); ?>
         </a>
     <?php endif; ?>
 

@@ -2,7 +2,7 @@
     <div class="entry__hero">
         <?php if ( has_post_thumbnail() ) : ?>
             <div class="entry__background" data-rellax data-rellax-speed="-5">
-                <?php the_post_thumbnail( 'chipmunk-xl' ); ?>
+                <?php the_post_thumbnail( '1920x1080' ); ?>
             </div>
         <?php endif; ?>
 

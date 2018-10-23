@@ -55,12 +55,12 @@
                 <aside class="resource__image column column--lg-6">
                     <?php if ( is_single() ) : ?>
                         <?php if ( ! empty( $resource_website ) ) : ?>
-                            <a href="<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>" target="_blank" rel="nofollow"><?php the_post_thumbnail( 'chipmunk-lg' ); ?></a>
+                            <a href="<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>" class="resource__media" target="_blank" rel="nofollow"><?php the_post_thumbnail( '1280x960' ); ?></a>
                         <?php else : ?>
-                            <?php the_post_thumbnail( 'chipmunk-lg' ); ?>
+                            <span class="resource__media"><?php the_post_thumbnail( '1280x960' ); ?></span>
                         <?php endif; ?>
                     <?php else : ?>
-                        <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'chipmunk-lg' ); ?></a>
+                        <a href="<?php the_permalink(); ?>" class="resource__media"><?php the_post_thumbnail( '1280x960' ); ?></a>
                     <?php endif; ?>
                 </aside>
             <?php endif; ?>

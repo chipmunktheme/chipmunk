@@ -114,6 +114,16 @@
   p {
     text-align: left;
 
+    &:not(:first-child) {
+      margin-top: $separator;
+
+      &.form-submit {
+        @include breakpoint(md) {
+          margin-top: ($separator * 2);
+        }
+      }
+    }
+
     a {
       &:hover {
         color: $color-black;
@@ -125,25 +135,7 @@
     cursor: pointer;
   }
 
-  form {
-    > p:not(:first-child) {
-      margin-top: $separator;
-    }
-
-    [type="checkbox"] {
-      margin-right: 0.5em;
-    }
-  }
-
-  .form-submit:not(:first-child) {
-    margin-top: $separator;
-
-    @include breakpoint(md) {
-      margin-top: ($separator * 2);
-    }
-
-    + p {
-      margin-top: $separator;
-    }
+  [type="checkbox"] {
+    margin-right: 0.5em;
   }
 }
