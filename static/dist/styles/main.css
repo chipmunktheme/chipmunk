@@ -1957,6 +1957,8 @@ input:checked + .u-checkbox__mark .icon {
   margin-top: 0.8em;
 }
 .comment__reply {
+  display: inline-flex;
+  align-items: center;
   margin-top: 0.5em;
 }
 .comment__reply a {
@@ -1970,6 +1972,10 @@ input:checked + .u-checkbox__mark .icon {
 }
 .comment__reply a:hover {
   color: #333333;
+}
+.comment__reply .icon {
+  margin-right: 0.5em;
+  opacity: 0.75;
 }
 .comment__note {
   margin-top: 1em;
@@ -1989,10 +1995,24 @@ input:checked + .u-checkbox__mark .icon {
 .comment-respond p a:hover {
   color: #333333;
 }
-.comment-respond .form-submit .form__field, .comment-respond .form-submit .content form > div, .content .comment-respond .form-submit form > div {
-  margin-top: 4rem;
+.comment-respond label {
+  cursor: pointer;
 }
-.comment-respond .form-submit + p {
+.comment-respond form > p:not(:first-child) {
+  margin-top: 2rem;
+}
+.comment-respond form [type="checkbox"] {
+  margin-right: 0.5em;
+}
+.comment-respond .form-submit:not(:first-child) {
+  margin-top: 2rem;
+}
+@media (min-width: 680px) {
+  .comment-respond .form-submit:not(:first-child) {
+    margin-top: 4rem;
+  }
+}
+.comment-respond .form-submit:not(:first-child) + p {
   margin-top: 2rem;
 }
 /*

@@ -47,6 +47,7 @@ if ( current_theme_supports( 'comments' ) ) {
                         </div>
 
                         <div class="comment__reply">
+                            <?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'reply' ) ); ?>
                             <?php comment_reply_link( array_merge( $args, array( 'reply_text' => esc_html__( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
                         </div>
 

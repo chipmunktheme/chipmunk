@@ -155,7 +155,7 @@ const Validate = {
 
   init() {
     this.lang = document.documentElement.lang;
-    this.triggers = document.querySelectorAll('[data-validate]');
+    this.triggers = document.querySelectorAll('[data-validate], #commentform');
 
     if (this.triggers) {
       [].forEach.call(this.triggers, trigger => this.validate(trigger));

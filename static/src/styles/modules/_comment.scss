@@ -72,6 +72,8 @@
 }
 
 .comment__reply {
+  display: inline-flex;
+  align-items: center;
   margin-top: 0.5em;
 
   a {
@@ -79,8 +81,6 @@
     font-size: 1.4rem;
 
     &::before {
-      // @extend .icon;
-      // @extend .icon_reply;
       margin-right: 1em;
       font-size: 1.2rem;
       vertical-align: middle;
@@ -89,6 +89,11 @@
     &:hover {
       color: $color-black;
     }
+  }
+
+  .icon {
+    margin-right: 0.5em;
+    opacity: 0.75;
   }
 }
 
@@ -116,8 +121,24 @@
     }
   }
 
-  .form-submit {
-    .form__field {
+  label {
+    cursor: pointer;
+  }
+
+  form {
+    > p:not(:first-child) {
+      margin-top: $separator;
+    }
+
+    [type="checkbox"] {
+      margin-right: 0.5em;
+    }
+  }
+
+  .form-submit:not(:first-child) {
+    margin-top: $separator;
+
+    @include breakpoint(md) {
       margin-top: ($separator * 2);
     }
 
