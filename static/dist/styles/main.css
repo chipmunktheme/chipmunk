@@ -1316,7 +1316,7 @@ body::after {
   right: 0;
   content: '';
   z-index: 24;
-  background-color: rgba(51, 51, 51, 0.8);
+  background-color: rgba(51, 51, 51, 0.9);
   opacity: 0;
   pointer-events: none;
   -webkit-transform: translateX(-300%);

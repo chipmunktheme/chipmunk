@@ -355,27 +355,35 @@ if ( ! function_exists( 'chipmunk_get_posts' ) ) :
     /**
      * Get posts
      */
-    function chipmunk_get_posts( $limit = -1, $paged = false, $term = null ) {
-        $args = array(
+    function chipmunk_get_posts( $args, $tax = null, $date = null ) {
+        $defaults = array(
             'post_type'       => 'post',
-            'posts_per_page'  => $limit,
-            'paged'           => $paged,
+            'posts_per_page'  => -1,
         );
-        $tax_args = array();
 
-        // Apply taxonomy options
-        if ( isset( $term ) ) {
-            $tax_args['tax_query'] = array(
+        // Apply taxonomy params
+        if ( isset( $tax ) ) {
+            $defaults['tax_query'] = array(
                 array(
-                    'taxonomy'          => $term->taxonomy,
+                    'taxonomy'          => $tax->taxonomy,
                     'field'             => 'id',
-                    'terms'             => $term->term_id,
-                    'include_children'  => false
+                    'terms'             => $tax->term_id,
+                    'include_children'  => false,
                 ),
             );
         }
 
-        return new WP_Query( array_merge( $args, $tax_args ) );
+        // Apply date params
+        if ( isset( $date ) ) {
+            $defaults['date_query'] = array(
+                array(
+                    'year'  => $date['year'],
+                    'month' => $date['month'],
+                ),
+            );
+        }
+
+        return new WP_Query( wp_parse_args( $args, $defaults ) );
     }
 endif;
 

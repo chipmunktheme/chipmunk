@@ -16,7 +16,7 @@ body {
     @include u-overlay;
     content: '';
     z-index: $layer-popup - 1;
-    background-color: rgba($color-black, 0.8);
+    background-color: rgba($color-black, 0.9);
     opacity: 0;
     pointer-events: none;
     transform: translateX(-300%);

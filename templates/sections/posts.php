@@ -1,13 +1,18 @@
-<?php $term = get_queried_object(); ?>
+<?php $tax = get_queried_object(); ?>
 <?php $paged = chipmunk_get_current_page(); ?>
+<?php $limit = chipmunk_theme_option( 'blog_posts_per_page' ); ?>
 <?php $layout = ( is_single() or is_front_page() ) ? 'tiles' : chipmunk_theme_option( 'blog_layout' ); ?>
 
 <?php if ( is_single() ) : ?>
     <?php $query = chipmunk_get_related( get_the_ID() ); ?>
 <?php elseif ( is_front_page() ) : ?>
-    <?php $query = chipmunk_get_posts( 3 ); ?>
+    <?php $query = chipmunk_get_posts( array( 'posts_per_page' => 3 ) ); ?>
+<?php elseif ( is_date() ) : ?>
+    <?php $query = chipmunk_get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ), null, array( 'year' => get_query_var( 'year' ), 'month' => get_query_var( 'monthnum' ) ) ); ?>
+<?php elseif ( is_category() ) : ?>
+    <?php $query = chipmunk_get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ), $tax ); ?>
 <?php else : ?>
-    <?php $query = chipmunk_get_posts( chipmunk_theme_option( 'blog_posts_per_page' ), $paged, isset( $term->term_id ) ? $term : null ); ?>
+    <?php $query = chipmunk_get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ) ); ?>
 <?php endif; ?>
 
 <?php if ( ( ! is_front_page() and ! is_single() ) or $query->have_posts() ) : ?>
@@ -18,8 +23,8 @@
             <?php elseif ( is_front_page() ) : ?>
                 <h2 class="heading heading_md"><?php esc_html_e( 'Latest Posts', 'chipmunk' ); ?></h2>
             <?php else : ?>
-                <?php if ( $term and $layout == 'tiles' ) : ?>
-                    <h1 class="heading heading_md"><?php echo $term->taxonomy == 'category' ? sprintf( esc_html__( '%s Category', 'chipmunk' ), single_term_title( null, false ) ) : get_the_title(); ?></h1>
+                <?php if ( isset( $tax ) and $layout == 'tiles' ) : ?>
+                    <h1 class="heading heading_md"><?php echo $tax->taxonomy == 'category' ? sprintf( esc_html__( '%s Category', 'chipmunk' ), $tax->name ) : get_the_title(); ?></h1>
                 <?php endif; ?>
             <?php endif; ?>
 
