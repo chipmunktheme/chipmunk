@@ -41,29 +41,32 @@ $transition-duration:   0.25s !default;
 // Base path for assets
 $base-path:             '..' !default;
 
+// Grid container
+$grid-container-gutter: 1.5em !default;
+
 // Grid definitions
 $grid-breakpoints: (
   xs: (
     min-width: 0,
     container: 450px,
-    gutter: 20px,
+    gutter: 1.5em,
     columns: 4
   ),
   sm: (
     min-width: 490px,
-    gutter: 20px,
+    gutter: 1.5em,
     columns: 6
   ),
   md: (
     min-width: 680px,
     container: 640px,
-    gutter: 20px,
+    gutter: 1.5em,
     columns: 6
   ),
   lg: (
     min-width: 980px,
     container: 940px,
-    gutter: 20px,
+    gutter: 1.5em,
     columns: 12
   )
 ) !default;

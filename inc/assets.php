@@ -65,7 +65,6 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
                 .button_primary:not([disabled]):hover,
                 .button_secondary,
                 .content a:hover,
-                .entry__title a:hover,
                 .nav-primary__close:hover,
                 .nav-socials__link:hover,
                 .page-head__logo,
@@ -75,8 +74,7 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
                 .section_theme-primary .button_secondary:hover,
                 .search-bar__icon:hover,
                 .search-bar__close:hover,
-                .stats__button:not(.is-active):hover,
-                .tile__title a:hover {
+                .stats__button:not(.is-active):hover {
                     color: $primary_color;
                 }
 

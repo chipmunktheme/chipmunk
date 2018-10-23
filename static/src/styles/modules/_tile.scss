@@ -6,7 +6,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: $separator;
+  margin-top: 1.5em;
   overflow: hidden;
 
   &:hover {
@@ -66,7 +66,7 @@
 .tile__list {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 (-$separator / 2);
+  margin: 0 -0.75em;
 
   &.slick-slider {
     display: block;
@@ -75,7 +75,7 @@
 
 .tile__slider {
   display: flex;
-  padding: 0 ($separator / 2);
+  padding: 0 0.75em;
   width: 100%;
 
   @include breakpoint(md) {
@@ -196,7 +196,7 @@
     display: inline-block;
 
     &:hover {
-      color: $color-primary;
+      color: $color-gray-dark;
     }
   }
 }
