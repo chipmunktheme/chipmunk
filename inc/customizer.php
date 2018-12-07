@@ -385,6 +385,16 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
                             ),
                         ),
                         array(
+                            'name'        => 'blog_post_layout',
+                            'type'        => 'select',
+                            'label'       => esc_html__( 'Blog post layout', 'chipmunk' ),
+                            'default'     => 'hero',
+                            'choices'     => array(
+                                'hero'      => esc_html__( 'Hero', 'chipmunk' ),
+                                'no_hero'   => esc_html__( 'No Hero', 'chipmunk' ),
+                            ),
+                        ),
+                        array(
                             'name'        => 'blog_posts_per_page',
                             'type'        => 'number',
                             'label'       => esc_html__( 'Number of blog posts per page', 'chipmunk' ),

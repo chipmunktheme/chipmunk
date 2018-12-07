@@ -1,4 +1,4 @@
-<?php if ( has_post_thumbnail() ) : ?>
+<?php if ( has_post_thumbnail() and chipmunk_theme_option( 'blog_post_layout' ) == 'hero' ) : ?>
     <div class="entry__hero">
         <?php if ( has_post_thumbnail() ) : ?>
             <div class="entry__background" data-rellax data-rellax-speed="-5">
@@ -25,7 +25,13 @@
 
 <div class="section">
     <div class="container">
-        <?php if ( ! has_post_thumbnail() ) : ?>
+        <?php if ( ! has_post_thumbnail() or chipmunk_theme_option( 'blog_post_layout' ) == 'no_hero' ) : ?>
+            <?php if ( has_post_thumbnail() ) : ?>
+                <div class="entry__image">
+                    <?php the_post_thumbnail( '1280x720' ); ?>
+                </div>
+            <?php endif; ?>
+
             <div class="row">
                 <div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? 'column--lg-8 column--lg-offset-2' : ''; ?>">
                     <div class="entry__head">

@@ -2385,19 +2385,20 @@ input:checked + .u-checkbox__mark .icon {
   display: block;
   transition: opacity 0.25s;
 }
+.entry__image:not(:last-child) {
+  margin-bottom: 2rem;
+}
+@media (min-width: 680px) {
+  .entry__image:not(:last-child) {
+    margin-bottom: 4rem;
+  }
+}
 .entry__image[href]:hover {
   opacity: 0.8;
 }
 .entry__image img {
+  width: 100%;
   height: auto;
-}
-.entry__head:not(:first-child) {
-  margin-top: 2rem;
-}
-@media (min-width: 680px) {
-  .entry__head:not(:first-child) {
-    margin-top: 4rem;
-  }
 }
 .entry__head:only-child, .entry__head:not(:last-child) {
   margin-bottom: 2rem;
@@ -3523,7 +3524,7 @@ input:checked + .u-checkbox__mark .icon {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 40px;
+  min-height: 4rem;
 }
 .search-bar__icon {
   display: block;

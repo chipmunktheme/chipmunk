@@ -90,24 +90,25 @@
   display: block;
   transition: opacity $transition-duration;
 
+  &:not(:last-child) {
+    margin-bottom: $separator;
+
+    @include breakpoint(md) {
+      margin-bottom: ($separator * 2);
+    }
+  }
+
   &[href]:hover {
     opacity: 0.8;
   }
 
   img {
+    width: 100%;
     height: auto;
   }
 }
 
 .entry__head {
-  &:not(:first-child) {
-    margin-top: $separator;
-
-    @include breakpoint(md) {
-      margin-top: ($separator * 2);
-    }
-  }
-
   &:only-child,
   &:not(:last-child) {
     margin-bottom: $separator;
