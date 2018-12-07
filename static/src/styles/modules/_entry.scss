@@ -29,25 +29,40 @@
 }
 
 .entry__hero {
+  $head-outer-height: ($head-height + $separator);
+
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-top: calc(-40px - #{$separator});
-  padding-top: calc(40px + #{$separator});
+  height: calc(50vh + #{$head-outer-height});
+  min-height: calc(36rem + #{$head-outer-height});
+  max-height: calc(75rem + #{$head-outer-height});
+  margin-top: calc(-#{$head-outer-height});
+  padding-top: calc(#{$head-outer-height});
   background-color: rgba($color-black, 0.9);
   overflow: hidden;
 
   @include breakpoint(md) {
-    min-height: calc(42rem + 40px + #{$separator * 2});
-    margin-top: calc(-40px - #{$separator * 2});
-    padding-top: calc(40px + #{$separator * 2});
+    $head-outer-height: ($head-height + $separator * 2);
+
+    height: calc(40vh + #{$head-outer-height});
+    min-height: calc(55vw + #{$head-outer-height});
+    margin-top: calc(-#{$head-outer-height});
+    padding-top: calc(#{$head-outer-height});
   }
 
   @include breakpoint(lg) {
-    min-height: calc(56.25vw + 40px + #{$separator * 3});
-    margin-top: calc(-40px - #{$separator * 3});
-    padding-top: calc(40px + #{$separator * 3});
+    $head-outer-height: ($head-height + $separator * 3);
+
+    height: auto;
+    min-height: calc(45rem + #{$head-outer-height});
+    margin-top: calc(-#{$head-outer-height});
+    padding-top: calc(#{$head-outer-height});
+
+    @media (min-height: 800px) {
+      height: calc(60vh + #{$head-outer-height});
+    }
   }
 
   .entry__title {

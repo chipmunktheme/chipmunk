@@ -25,7 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 40px;
+  min-height: $head-height;
 }
 
 .page-head__logo {
@@ -47,7 +47,7 @@
 
   img {
     display: inline-block;
-    max-height: 40px;
+    max-height: $head-height;
     max-width: 180px;
     vertical-align: middle;
   }

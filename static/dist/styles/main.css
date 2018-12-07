@@ -1200,10 +1200,15 @@
   }
 }
 .content > h1, .content > h2, .heading_xl {
-  font-size: 3.6rem;
+  font-size: 3.2rem;
   line-height: 1.25;
 }
 @media (min-width: 680px) {
+  .content > h1, .content > h2, .heading_xl {
+    font-size: 4.2rem;
+  }
+}
+@media (min-width: 980px) {
   .content > h1, .content > h2, .heading_xl {
     font-size: 4.8rem;
   }
@@ -2282,23 +2287,33 @@ input:checked + .u-checkbox__mark .icon {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-top: calc(-40px - 2rem);
-  padding-top: calc(40px + 2rem);
+  height: calc(50vh + 6rem);
+  min-height: calc(36rem + 6rem);
+  max-height: calc(75rem + 6rem);
+  margin-top: calc(-6rem);
+  padding-top: calc(6rem);
   background-color: rgba(51, 51, 51, 0.9);
   overflow: hidden;
 }
 @media (min-width: 680px) {
   .entry__hero {
-    min-height: calc(42rem + 40px + 4rem);
-    margin-top: calc(-40px - 4rem);
-    padding-top: calc(40px + 4rem);
+    height: calc(40vh + 8rem);
+    min-height: calc(55vw + 8rem);
+    margin-top: calc(-8rem);
+    padding-top: calc(8rem);
   }
 }
 @media (min-width: 980px) {
   .entry__hero {
-    min-height: calc(56.25vw + 40px + 6rem);
-    margin-top: calc(-40px - 6rem);
-    padding-top: calc(40px + 6rem);
+    height: auto;
+    min-height: calc(45rem + 10rem);
+    margin-top: calc(-10rem);
+    padding-top: calc(10rem);
+  }
+}
+@media (min-width: 980px) and (min-height: 800px) {
+  .entry__hero {
+    height: calc(60vh + 10rem);
   }
 }
 .entry__hero .entry__title {
@@ -2636,9 +2651,6 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .form__input::-webkit-input-placeholder, .widget_search .search-field::-webkit-input-placeholder {
-  color: #333333;
-}
-.form__input:-ms-input-placeholder, .widget_search .search-field:-ms-input-placeholder {
   color: #333333;
 }
 .form__input::-ms-input-placeholder, .widget_search .search-field::-ms-input-placeholder {
@@ -3099,7 +3111,7 @@ input:checked + .u-checkbox__mark .icon {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 40px;
+  min-height: 4rem;
 }
 .page-head__logo {
   margin-right: 2rem;
@@ -3119,7 +3131,7 @@ input:checked + .u-checkbox__mark .icon {
 }
 .page-head__logo img {
   display: inline-block;
-  max-height: 40px;
+  max-height: 4rem;
   max-width: 180px;
   vertical-align: middle;
 }
@@ -3547,9 +3559,6 @@ input:checked + .u-checkbox__mark .icon {
 .search-bar__form input::-webkit-input-placeholder {
   color: #808080;
 }
-.search-bar__form input:-ms-input-placeholder {
-  color: #808080;
-}
 .search-bar__form input::-ms-input-placeholder {
   color: #808080;
 }
@@ -3646,19 +3655,6 @@ input:checked + .u-checkbox__mark .icon {
 .section_theme-primary input[type="url"]::-webkit-input-placeholder,
 .section_theme-primary textarea,
 .section_theme-primary textarea::-webkit-input-placeholder {
-  color: #FAFAFA;
-}
-.section_theme-primary .heading, .section_theme-primary .heading:-ms-input-placeholder,
-.section_theme-primary .button_secondary,
-.section_theme-primary .button_secondary:-ms-input-placeholder,
-.section_theme-primary input[type="text"],
-.section_theme-primary input[type="text"]:-ms-input-placeholder,
-.section_theme-primary input[type="email"],
-.section_theme-primary input[type="email"]:-ms-input-placeholder,
-.section_theme-primary input[type="url"],
-.section_theme-primary input[type="url"]:-ms-input-placeholder,
-.section_theme-primary textarea,
-.section_theme-primary textarea:-ms-input-placeholder {
   color: #FAFAFA;
 }
 .section_theme-primary .heading, .section_theme-primary .heading::-ms-input-placeholder,
@@ -4215,13 +4211,6 @@ input:checked + .u-checkbox__mark .icon {
 .members__form input[type="url"]::-webkit-input-placeholder,
 .members__form input[type="password"]::-webkit-input-placeholder,
 .members__form textarea::-webkit-input-placeholder {
-  color: #333333;
-}
-.members__form input[type="text"]:-ms-input-placeholder,
-.members__form input[type="email"]:-ms-input-placeholder,
-.members__form input[type="url"]:-ms-input-placeholder,
-.members__form input[type="password"]:-ms-input-placeholder,
-.members__form textarea:-ms-input-placeholder {
   color: #333333;
 }
 .members__form input[type="text"]::-ms-input-placeholder,
