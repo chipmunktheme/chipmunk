@@ -6,9 +6,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 
 <?php if ( isset( $args ) and $args['display'] and $collections ) : ?>
     <li class="stats__item">
-        <?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'tag' ) ); ?>
-
-        <?php echo chipmunk_display_collections( $collections, $args ); ?>
+        <?php chipmunk_get_template( 'partials/post-terms', array( 'terms' => $collections, 'args' => $args ) ); ?>
     </li>
 <?php endif; ?>
 

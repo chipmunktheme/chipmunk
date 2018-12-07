@@ -573,37 +573,37 @@ if ( ! function_exists( 'chipmunk_conditional_markup' ) ) :
 endif;
 
 
-if ( ! function_exists( 'chipmunk_display_collections' ) ) :
+if ( ! function_exists( 'chipmunk_display_term_list' ) ) :
     /**
-     * Conditionally display post collections
+     * Conditionally display post terms
      */
-    function chipmunk_display_collections( $collections, $args = array() ) {
+    function chipmunk_display_term_list( $terms, $args = array() ) {
         $args = array_merge( array(
             'type'     => 'link',
             'quantity' => -1,
         ), $args );
 
         $output = '';
-        $count = count( $collections );
+        $count = count( $terms );
 
         if ( $args['quantity'] > 0 && $args['quantity'] < $count ) {
-            shuffle( $collections );
+            shuffle( $terms );
         }
 
-        foreach ( $collections as $key => $collection ) {
+        foreach ( $terms as $key => $term ) {
             if ( $args['quantity'] < 0 || $args['quantity'] > $key ) {
                 if ( $args['type'] == 'link' ) {
-                    $output .= '<a href="' . esc_url( get_term_link( $collection->term_id ) ) . '" class="stats__tag" title="' . esc_attr( $collection->name ) . '">' . esc_html( chipmunk_truncate_string( $collection->name, 25 ) ) . '</a>';
+                    $output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '" class="tag" title="' . esc_attr( $term->name ) . '">' . esc_html( chipmunk_truncate_string( $term->name, 25 ) ) . '</a>';
                 }
 
                 if ( $args['type'] == 'text' ) {
-                    $output .= '<span class="stats__tag">' . esc_html( chipmunk_truncate_string( $collection->name, 25 ) ) . '</span>';
+                    $output .= '<span class="tag">' . esc_html( chipmunk_truncate_string( $term->name, 25 ) ) . '</span>';
                 }
             }
         }
 
         if ( $args['quantity'] > 0 && $args['quantity'] < $count && $args['type'] == 'link' ) {
-            $output .= '<span class="stats__tag stats__tag_dimmed">' . sprintf( esc_html__( '+%d more', 'chipmunk' ), $count - 1 ) . '</span>';
+            $output .= '<span class="tag tag--dimmed">' . sprintf( esc_html__( '+%d more', 'chipmunk' ), $count - 1 ) . '</span>';
         }
 
         return $output;

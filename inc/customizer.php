@@ -406,6 +406,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
                             'label'       => esc_html__( 'Disable blog sharing', 'chipmunk' ),
                             'default'     => false,
                         ),
+                        array(
+                            'name'        => 'blog_disable_tags',
+                            'type'        => 'checkbox',
+                            'label'       => esc_html__( 'Disable blog tags', 'chipmunk' ),
+                            'default'     => false,
+                        ),
                     ),
                 ),
 

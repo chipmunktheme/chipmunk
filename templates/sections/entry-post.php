@@ -1,3 +1,5 @@
+<?php $tags = wp_get_post_tags( get_the_ID() ); ?>
+
 <?php if ( has_post_thumbnail() and chipmunk_theme_option( 'blog_post_layout' ) == 'hero' ) : ?>
     <div class="entry__hero">
         <?php if ( has_post_thumbnail() ) : ?>
@@ -52,9 +54,17 @@
                 </div>
                 <!-- /.entry -->
 
-                <?php if ( ! chipmunk_theme_option( 'blog_disable_sharing' ) ) : ?>
+                <?php if ( ! chipmunk_theme_option( 'blog_disable_sharing' ) and ! chipmunk_theme_option( 'blog_disable_tags' ) ) : ?>
                     <div class="entry__footer">
-                        <?php get_template_part( 'templates/partials/share-box' ); ?>
+                        <?php if ( ! empty( $tags ) and ! chipmunk_theme_option( 'blog_disable_tags' ) ) : ?>
+                            <div class="tag__list">
+                                <?php chipmunk_get_template( 'partials/post-terms', array( 'terms' => $tags ) ); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ( ! chipmunk_theme_option( 'blog_disable_tags' ) ) : ?>
+                            <?php get_template_part( 'templates/partials/share-box' ); ?>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
             </div>

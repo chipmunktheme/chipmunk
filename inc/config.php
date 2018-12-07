@@ -44,17 +44,6 @@ endif;
 add_filter( 'pre_get_posts', 'chipmunk_update_search_query' );
 
 
-if ( ! function_exists( 'chipmunk_unregister_post_tags' ) ) :
-    /**
-     * Update search query
-     */
-    function chipmunk_unregister_post_tags( $query ) {
-        unregister_taxonomy_for_object_type( 'post_tag', 'post' );
-    }
-endif;
-add_filter( 'init', 'chipmunk_unregister_post_tags' );
-
-
 if ( ! function_exists( 'chipmunk_update_main_query' ) ) :
     /**
      * Update main query

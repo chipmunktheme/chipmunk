@@ -29,10 +29,8 @@
                     <?php endif; ?>
 
                     <?php if ( ! empty( $tags ) and ! chipmunk_theme_option( 'disable_resource_tags' ) ) : ?>
-                        <div class="resource__tags" title="<?php esc_attr_e( 'Tags', 'chipmunk' ); ?>">
-                            <?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'tag' ) ); ?>
-
-                            <?php echo chipmunk_display_collections( $tags ); ?>
+                        <div class="resource__tags tag__list">
+                            <?php chipmunk_get_template( 'partials/post-terms', array( 'terms' => $tags ) ); ?>
                         </div>
                     <?php endif; ?>
                 </div>
