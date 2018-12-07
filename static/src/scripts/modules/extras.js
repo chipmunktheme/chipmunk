@@ -14,7 +14,7 @@ const Extras = {
 
     // Make images full-width
     $(window).on('load resize', function () {
-      $('.alignfull').each(function () {
+      $('[class*="offset"] .alignfull').each(function () {
         $(this).css({
           width: '100vw',
           maxWidth: 'none',
