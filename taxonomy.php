@@ -14,7 +14,7 @@ get_header(); ?>
 
     <div class="section">
         <div class="container">
-            <?php $title = sprintf( ( is_tax( 'resource-collection' ) ? esc_html__( '%s Collection', 'chipmunk' ) : esc_html__( '%s Tag', 'chipmunk' ) ), ucfirst( single_term_title( null, false ) ) ); ?>
+            <?php $title = ucfirst( single_term_title( null, false ) ); ?>
 
             <?php if ( ! chipmunk_theme_option( 'disable_sorting' ) and $query->have_posts() ) : ?>
                 <div class="row">

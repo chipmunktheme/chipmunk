@@ -16,6 +16,16 @@ if ( ! function_exists( 'chipmunk_has_plugin' ) ) :
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_version' ) ) :
+    /**
+     * Get current theme version
+     */
+    function chipmunk_get_version() {
+        return wp_get_theme()->get( 'Version' );
+    }
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_template' ) ) :
     /**
      * Load a template with supplied data.
