@@ -5,44 +5,31 @@
         <?php foreach ( $menu_items as $menu_item ) : ?>
             <?php if ( $menu_item->menu_item_parent == 0 ) : ?>
                 <?php
-                    // Current Page
-                    if ( is_page( $menu_item->object_id ) ) {
-                        $is_active = true;
-                    }
+                    $is_active = false;
 
-                    // Blog template
-                    elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-blog.php' and ( is_singular( 'post' ) or ( is_home() and $menu_item->url == get_permalink( get_option( 'page_for_posts' ) ) ) or ( get_queried_object() and isset( get_queried_object()->taxonomy ) and get_queried_object()->taxonomy == 'category' ) ) ) {
-                        $is_active = true;
-                    }
+                    if (
+                        // Current Page
+                        ( is_page( $menu_item->object_id ) ) or
 
-                    // Resources template
-                    elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-resources.php' and is_singular( 'resource' ) ) {
-                        $is_active = true;
-                    }
+                        // Blog template
+                        ( get_page_template_slug( $menu_item->object_id ) == 'page-blog.php' and ( is_singular( 'post' ) or ( is_home() and $menu_item->url == get_permalink( get_option( 'page_for_posts' ) ) ) or ( is_category() ) ) ) or
 
-                    // Collections template
-                    elseif ( get_page_template_slug( $menu_item->object_id ) == 'page-collections.php' and is_tax( 'resource-collection' ) ) {
-                        $is_active = true;
-                    }
+                        // Resources template
+                        ( get_page_template_slug( $menu_item->object_id ) == 'page-resources.php' and is_singular( 'resource' ) ) or
 
-                    // Single resource
-                    elseif ( is_single( $menu_item->object_id ) ) {
-                        $is_active = true;
-                    }
+                        // Collections template
+                        ( get_page_template_slug( $menu_item->object_id ) == 'page-collections.php' and is_tax( 'resource-collection' ) ) or
 
-                    // Single collection
-                    elseif ( is_tax( 'resource-collection', $menu_item->object_id ) ) {
-                        $is_active = true;
-                    }
+                        // Single resource
+                        ( is_single( $menu_item->object_id ) ) or
 
-                    // Single tag
-                    elseif ( is_tax( 'resource-tag', $menu_item->object_id ) ) {
-                        $is_active = true;
-                    }
+                        // Single collection
+                        ( is_tax( 'resource-collection', $menu_item->object_id ) ) or
 
-                    // Inactive link
-                    else {
-                        $is_active = false;
+                        // Single tag
+                        ( is_tax( 'resource-tag', $menu_item->object_id ) )
+                    ) {
+                        $is_active = true;
                     }
                 ?>
 
