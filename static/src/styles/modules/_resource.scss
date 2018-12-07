@@ -10,11 +10,7 @@
 
 .resource__image {
   align-self: center;
-  margin-top: $separator;
-
-  @include breakpoint(md) {
-    margin-top: $separator * 2;
-  }
+  margin-top: $separator * 2;
 
   @include breakpoint(lg) {
     margin-top: 0;

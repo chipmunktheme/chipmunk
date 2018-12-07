@@ -3366,12 +3366,7 @@ input:checked + .u-checkbox__mark .icon {
 }
 .resource__image {
   align-self: center;
-  margin-top: 2rem;
-}
-@media (min-width: 680px) {
-  .resource__image {
-    margin-top: 4rem;
-  }
+  margin-top: 4rem;
 }
 @media (min-width: 980px) {
   .resource__image {
