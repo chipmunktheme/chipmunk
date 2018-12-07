@@ -46,6 +46,7 @@
 .alignright,
 .alignleft {
   @include spacer(top);
+  max-width: 100%;
   clear: both;
 }
 

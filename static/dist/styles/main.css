@@ -1917,6 +1917,7 @@ input:checked + .u-checkbox__mark .icon {
 .aligncenter,
 .alignright,
 .alignleft {
+  max-width: 100%;
   clear: both;
 }
 .alignnone:not(:first-child),
