@@ -42,3 +42,38 @@
     }
   }
 }
+
+/*
+** Add spacing to the section
+**/
+@mixin spacer($direction, $size: 1, $property: 'margin') {
+  @if ($property == 'margin' and $size >= 0) {
+    &:not(:#{if($direction == top, first, last)}-child) {
+      #{$property}-#{$direction}: ($font-line-height * 1em);
+
+      @if ($size > 1) {
+        @include breakpoint(md) {
+          #{$property}-#{$direction}: ($font-line-height * 1em * (($size + 1) / 2));
+        }
+
+        @include breakpoint(lg) {
+          #{$property}-#{$direction}: ($font-line-height * 1em * $size);
+        }
+      }
+    }
+  }
+
+  @else {
+    #{$property}-#{$direction}: ($font-line-height * 1em);
+
+    @if ($size > 1) {
+      @include breakpoint(md) {
+        #{$property}-#{$direction}: ($font-line-height * 1em * (($size + 1) / 2));
+      }
+
+      @include breakpoint(lg) {
+        #{$property}-#{$direction}: ($font-line-height * 1em * $size);
+      }
+    }
+  }
+}

@@ -11,6 +11,19 @@ const Extras = {
         dropdownParent: $(this).parent(),
       });
     });
+
+    // Make images full-width
+    $(window).on('load resize', function () {
+      $('.alignfull').each(function () {
+        $(this).css({
+          width: '100vw',
+          maxWidth: 'none',
+          marginLeft: () => {
+            return 0 - parseInt(($(document).width() - $(this).parent().width()) / 2);
+          },
+        });
+      });
+    });
   },
 };
 

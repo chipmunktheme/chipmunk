@@ -55,6 +55,10 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
         add_theme_support( 'comments' );
         add_theme_support( 'threaded-comments' );
 
+        // Gutenberg
+        add_theme_support( 'align-wide' );
+        add_theme_support( 'responsive-embeds' );
+
         add_theme_support( 'sidebars', array(
             'blog-sidebar'  => array(
                 'name' => __( 'Blog sidebar', 'chipmunk' ),

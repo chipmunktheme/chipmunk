@@ -62,3 +62,9 @@
   transition-duration: $transition-duration;
   transition-property: color, background-color, border, opacity, transform;
 }
+
+%caption {
+  margin-top: 0.5em;
+  color: $color-gray;
+  font-size: 0.75em;
+}
