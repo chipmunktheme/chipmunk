@@ -63,7 +63,7 @@
             </div>
         <?php endif; ?>
 
-        <?php if ( ! empty( chipmunk_theme_option( 'recaptcha_enabled' ) ) ) : ?>
+        <?php if ( ! empty( chipmunk_theme_option( 'recaptcha_enabled' ) ) and ! is_user_logged_in() ) : ?>
             <div class="form__field form__field_center">
                 <div class="g-recaptcha" id="submit-recaptcha"></div>
             </div>
