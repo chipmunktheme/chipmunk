@@ -1240,6 +1240,7 @@ input[type="submit"], .stats__button {
 .wp-block-cover figcaption,
 .wp-block-gallery figcaption,
 .wp-block-embed figcaption,
+.wp-block-quote figcaption,
 .wp-block-pullquote figcaption, .wp-caption .wp-caption-text, .content blockquote cite {
   margin-top: 0.5em;
   color: #808080;
@@ -1837,18 +1838,31 @@ input:checked + .u-checkbox__mark .icon {
 ** Module - Gutenberg blocks
 ** -----------------------------------------------------------------------------*/
 .wp-block-button,
-.wp-block-code {
+.wp-block-code,
+.wp-block-table,
+.wp-block-latest-posts .wp-block-subhead,
+.wp-block-categories,
+.wp-block-verse,
+.wp-block-preformatted,
+.wp-block-text-columns {
   margin-bottom: 0;
   padding: 0;
 }
 .wp-block-button:not(:first-child),
-.wp-block-code:not(:first-child) {
+.wp-block-code:not(:first-child),
+.wp-block-table:not(:first-child),
+.wp-block-latest-posts .wp-block-subhead:not(:first-child),
+.wp-block-categories:not(:first-child),
+.wp-block-verse:not(:first-child),
+.wp-block-preformatted:not(:first-child),
+.wp-block-text-columns:not(:first-child) {
   margin-top: 1.875em;
 }
 .wp-block-image,
 .wp-block-cover,
 .wp-block-gallery,
 .wp-block-embed,
+.wp-block-quote,
 .wp-block-pullquote {
   padding: 0;
 }
@@ -1856,6 +1870,7 @@ input:checked + .u-checkbox__mark .icon {
 .wp-block-cover:not(:first-child),
 .wp-block-gallery:not(:first-child),
 .wp-block-embed:not(:first-child),
+.wp-block-quote:not(:first-child),
 .wp-block-pullquote:not(:first-child) {
   margin-top: 1.875em;
 }
@@ -1864,8 +1879,9 @@ input:checked + .u-checkbox__mark .icon {
   .wp-block-cover:not(:first-child),
   .wp-block-gallery:not(:first-child),
   .wp-block-embed:not(:first-child),
+  .wp-block-quote:not(:first-child),
   .wp-block-pullquote:not(:first-child) {
-    margin-top: 2.8125em;
+    margin-top: 2.34375em;
   }
 }
 @media (min-width: 980px) {
@@ -1873,14 +1889,16 @@ input:checked + .u-checkbox__mark .icon {
   .wp-block-cover:not(:first-child),
   .wp-block-gallery:not(:first-child),
   .wp-block-embed:not(:first-child),
+  .wp-block-quote:not(:first-child),
   .wp-block-pullquote:not(:first-child) {
-    margin-top: 3.75em;
+    margin-top: 2.8125em;
   }
 }
 .wp-block-image:not(:last-child),
 .wp-block-cover:not(:last-child),
 .wp-block-gallery:not(:last-child),
 .wp-block-embed:not(:last-child),
+.wp-block-quote:not(:last-child),
 .wp-block-pullquote:not(:last-child) {
   margin-bottom: 1.875em;
 }
@@ -1889,8 +1907,9 @@ input:checked + .u-checkbox__mark .icon {
   .wp-block-cover:not(:last-child),
   .wp-block-gallery:not(:last-child),
   .wp-block-embed:not(:last-child),
+  .wp-block-quote:not(:last-child),
   .wp-block-pullquote:not(:last-child) {
-    margin-bottom: 2.8125em;
+    margin-bottom: 2.34375em;
   }
 }
 @media (min-width: 980px) {
@@ -1898,20 +1917,47 @@ input:checked + .u-checkbox__mark .icon {
   .wp-block-cover:not(:last-child),
   .wp-block-gallery:not(:last-child),
   .wp-block-embed:not(:last-child),
+  .wp-block-quote:not(:last-child),
   .wp-block-pullquote:not(:last-child) {
-    margin-bottom: 3.75em;
+    margin-bottom: 2.8125em;
   }
 }
 .wp-block-image li,
 .wp-block-cover li,
 .wp-block-gallery li,
 .wp-block-embed li,
+.wp-block-quote li,
 .wp-block-pullquote li {
   padding: 0;
   list-style: none;
 }
 .wp-block-cover-text {
   color: #FAFAFA;
+}
+.wp-block-spacer {
+  padding-top: 1.875em;
+  padding-bottom: 1.875em;
+  height: auto !important;
+}
+@media (min-width: 680px) {
+  .wp-block-spacer {
+    padding-top: 2.34375em;
+  }
+}
+@media (min-width: 980px) {
+  .wp-block-spacer {
+    padding-top: 2.8125em;
+  }
+}
+@media (min-width: 680px) {
+  .wp-block-spacer {
+    padding-bottom: 2.34375em;
+  }
+}
+@media (min-width: 980px) {
+  .wp-block-spacer {
+    padding-bottom: 2.8125em;
+  }
 }
 .alignnone,
 .aligncenter,
@@ -2237,13 +2283,28 @@ input:checked + .u-checkbox__mark .icon {
     font-size: 2.1rem;
   }
 }
-.content > p, .content > blockquote, .content > table, .content > ul, .content > ol, .content > hr {
+.content > p,
+.content > blockquote,
+.content > table,
+.content > ul,
+.content > ol,
+.content > hr {
   clear: both;
 }
-.content > p:not(:first-child), .content > blockquote:not(:first-child), .content > table:not(:first-child), .content > ul:not(:first-child), .content > ol:not(:first-child), .content > hr:not(:first-child) {
+.content > p:not([class^="wp-block-"]):not(:first-child),
+.content > blockquote:not([class^="wp-block-"]):not(:first-child),
+.content > table:not([class^="wp-block-"]):not(:first-child),
+.content > ul:not([class^="wp-block-"]):not(:first-child),
+.content > ol:not([class^="wp-block-"]):not(:first-child),
+.content > hr:not([class^="wp-block-"]):not(:first-child) {
   margin-top: 1.875em;
 }
-.content > p > [src], .content > blockquote > [src], .content > table > [src], .content > ul > [src], .content > ol > [src], .content > hr > [src] {
+.content > p > [src],
+.content > blockquote > [src],
+.content > table > [src],
+.content > ul > [src],
+.content > ol > [src],
+.content > hr > [src] {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -2284,8 +2345,10 @@ input:checked + .u-checkbox__mark .icon {
   .content blockquote {
     padding-left: 2em;
     border-left-width: 3px;
-    font-size: 1.2em;
   }
+}
+.content blockquote p {
+  font-size: 1.2em;
 }
 .content blockquote cite::before {
   content: '– ';

@@ -3,7 +3,14 @@
 ** -----------------------------------------------------------------------------*/
 
 .wp-block-button,
-.wp-block-code {
+.wp-block-code,
+.wp-block-table,
+.wp-block-latest-posts
+.wp-block-subhead,
+.wp-block-categories,
+.wp-block-verse,
+.wp-block-preformatted,
+.wp-block-text-columns {
   @include spacer(top);
   margin-bottom: 0;
   padding: 0;
@@ -14,9 +21,10 @@
 .wp-block-cover,
 .wp-block-gallery,
 .wp-block-embed,
+.wp-block-quote,
 .wp-block-pullquote {
-  @include spacer(top, 2);
-  @include spacer(bottom, 2);
+  @include spacer(top, 1.5);
+  @include spacer(bottom, 1.5);
   padding: 0;
 
   figcaption {
@@ -38,6 +46,12 @@
 .wp-block-button__link {
   @extend .button;
   @extend .button_tertiary;
+}
+
+.wp-block-spacer {
+  @include spacer(top, 1.5, padding);
+  @include spacer(bottom, 1.5, padding);
+  height: auto !important;
 }
 
 // Alignments

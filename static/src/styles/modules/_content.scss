@@ -58,9 +58,17 @@
     }
   }
 
-  > p, > blockquote, > table, > ul, > ol, > hr {
-    @include spacer(top);
+  > p,
+  > blockquote,
+  > table,
+  > ul,
+  > ol,
+  > hr {
     clear: both;
+
+    &:not([class^="wp-block-"]) {
+      @include spacer(top);
+    }
 
     > [src] {
       margin-top: 1em;
@@ -112,6 +120,9 @@
     @include breakpoint(md) {
       padding-left: 2em;
       border-left-width: 3px;
+    }
+
+    p {
       font-size: 1.2em;
     }
 
