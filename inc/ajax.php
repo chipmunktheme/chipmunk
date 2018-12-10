@@ -55,7 +55,7 @@ if ( ! function_exists( 'chipmunk_load_posts' ) ) :
         if ( $query->have_posts() ) {
             while ( $query->have_posts() ) : $query->the_post();
                 if ( isset( $query->query['s'] ) ) {
-                    $template .= chipmunk_get_template( 'sections/' . get_post_type(), array(), false );
+                    $template .= chipmunk_get_template( 'sections/resource', array(), false );
                 }
                 else {
                     $template .= chipmunk_get_template( 'sections/' . get_post_type(). '-tile', array(), false );
