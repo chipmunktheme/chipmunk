@@ -1,7 +1,18 @@
 <?php $content_separated = ( strlen( get_the_content() ) > 500 or chipmunk_theme_option( 'display_resource_content_separated' ) ); ?>
 <?php $resource_website = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_resource_website', true ); ?>
-<?php $description = ( is_search() or $content_separated ) ? ( ( has_excerpt() and ( get_the_content() != get_the_excerpt() ) ) ? chipmunk_truncate_string( get_the_excerpt(), 120 ) : '' ) : get_the_content(); ?>
+<?php $description = ''; ?>
+<?php $excerpt = chipmunk_truncate_string( get_the_excerpt(), 120 ); ?>
 <?php $tags = wp_get_post_terms( get_the_ID(), 'resource-tag' ); ?>
+
+<?php if ( is_search() ) : ?>
+    <?php $description = $excerpt; ?>
+<?php elseif ( $content_separated ) : ?>
+    <?php if ( has_excerpt() and ( get_the_content() != get_the_excerpt() ) ) : ?>
+        <?php $description = $excerpt; ?>
+    <?php endif; ?>
+<?php else : ?>
+    <?php $description = get_the_content(); ?>
+<?php endif; ?>
 
 <div class="section<?php echo ( ! $wp_query->current_post or $wp_query->current_post % 2 == 0 ) ? ' section_theme-light' : ''; ?>">
     <div class="container">

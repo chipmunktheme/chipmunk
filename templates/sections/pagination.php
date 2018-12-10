@@ -1,7 +1,7 @@
 <?php
 global $wp_query;
 
-if ( ! $query ) {
+if ( ! isset( $query ) ) {
     $query = $wp_query;
 }
 
@@ -11,9 +11,9 @@ $paged = chipmunk_get_current_page();
 <?php if ( $query and $query->max_num_pages > 1 and ( ! isset( $query->query['orderby'] ) or $query->query['orderby'] != 'rand' ) ) : ?>
     <nav class="pagination">
         <div class="container">
-            <?php if ( chipmunk_theme_option( 'pagination_type' ) == 'load_more' ) : ?>
+            <?php if ( ! is_search() and ( chipmunk_theme_option( 'pagination_type' ) == 'load_more' or chipmunk_theme_option( 'pagination_type' ) == 'infinite' ) ) : ?>
                 <div class="text_center">
-                    <button class="button button_tertiary loader" data-action="load_posts" data-post-type="<?php echo $type; ?>" data-page="<?php echo $paged + 1; ?>" data-limit="<?php echo chipmunk_theme_option( 'posts_per_page' ); ?>">
+                    <button class="button button_secondary loader" data-action="load_posts" data-post-type="<?php echo $type; ?>" data-page="<?php echo $paged + 1; ?>" data-limit="<?php echo $limit; ?>"<?php echo chipmunk_theme_option( 'pagination_type' ) == 'infinite' ? ' data-view-trigger="click"' : ''; ?>>
                         <span><?php esc_html_e( 'Load more', 'chipmunk' ); ?></span>
                     </button>
                 </div>

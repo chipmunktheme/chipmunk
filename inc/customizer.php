@@ -431,8 +431,9 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
                             'label'       => esc_html__( 'Pagination type', 'chipmunk' ),
                             'default'     => 'standard',
                             'choices'     => array(
-                                'standard'     => esc_html__( 'Standard', 'chipmunk' ),
-                                'load_more'  => esc_html__( 'Load More', 'chipmunk' ),
+                                'standard'  => esc_html__( 'Standard', 'chipmunk' ),
+                                'load_more' => esc_html__( 'Load More', 'chipmunk' ),
+                                'infinite'  => esc_html__( 'Infinite scroll', 'chipmunk' ),
                             ),
                         ),
                     ),

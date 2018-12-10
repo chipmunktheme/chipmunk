@@ -76,7 +76,11 @@ get_header(); ?>
             <?php endif; ?>
         </div>
 
-        <?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query, 'type' => 'resource' ) ); ?>
+        <?php chipmunk_get_template( 'sections/pagination', array(
+            'query' => $query,
+            'type'  => 'resource',
+            'limit' => chipmunk_theme_option( 'posts_per_page' ),
+        ) ); ?>
     </div>
     <!-- /.section -->
 

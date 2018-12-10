@@ -66,7 +66,11 @@
         </div>
 
         <?php if ( ! is_single() and ! is_front_page() ) : ?>
-            <?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query, 'type' => 'post' ) ); ?>
+            <?php chipmunk_get_template( 'sections/pagination', array(
+                'query' => $query,
+                'type'  => 'post',
+                'limit' => chipmunk_theme_option( 'blog_posts_per_page' ),
+            ) ); ?>
         <?php endif; ?>
     </div>
     <!-- /.section -->
