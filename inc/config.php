@@ -36,6 +36,9 @@ if ( ! function_exists( 'chipmunk_update_search_query' ) ) :
 
             // Include resources
             $query->set( 'post_type', array( 'post', 'resource' ) );
+
+            // Include only published posts
+            $query->set( 'post_status', array( 'publish' ) );
         }
 
         return $query;

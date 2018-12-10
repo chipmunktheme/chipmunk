@@ -1,4 +1,11 @@
-<?php if ( ! chipmunk_theme_option( 'disable_newsletter' ) and $action = esc_url( chipmunk_theme_option( 'newsletter_action' ) ) ) : ?>
+<?php $action = esc_url( chipmunk_theme_option( 'newsletter_action' ) ); ?>
+<?php $email_field = 'email'; ?>
+
+<?php if ( strpos( $action, 'convertkit.com' ) ) : ?>
+    <?php $email_field = 'email_address'; ?>
+<?php endif; ?>
+
+<?php if ( ! chipmunk_theme_option( 'disable_newsletter' ) and ! empty( $action ) ) : ?>
     <div class="section section_theme-primary text_center">
         <div class="container">
             <div class="column column--lg-8 column--lg-offset-2">
@@ -9,7 +16,7 @@
             <div class="row">
                 <form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="form form_compact column column--sm-4 column--sm-offset-1 column--md-4 column--md-offset-1 column--lg-6 column--lg-offset-3" target="_blank" novalidate data-validate>
                     <div class="form__field">
-                        <input type="email" name="<?php echo strpos( $action, 'list-manage.com' ) !== false ? 'MERGE0' : 'email'; ?>" placeholder="<?php esc_html_e( 'Email address', 'chipmunk' ); ?>" class="form__input" required>
+                        <input type="email" name="<?php echo $email_field; ?>" placeholder="<?php esc_html_e( 'Email address', 'chipmunk' ); ?>" class="form__input" required>
                     </div>
 
                     <?php if ( ! empty( chipmunk_theme_option( 'newsletter_consent' ) ) ) : ?>

@@ -349,11 +349,12 @@ if ( ! function_exists( 'chipmunk_get_related' ) ) :
         }
 
         $args = array(
-            'post_type'       => get_post_type( $post_id ),
-            'post__not_in'    => array( $post_id ),
-            'posts_per_page'  => $limit,
-            'tax_query'       => $tax_query,
-            'orderby'         => 'rand',
+            'post_type'         => get_post_type( $post_id ),
+            'post_status'       => 'publish',
+            'post__not_in'      => array( $post_id ),
+            'posts_per_page'    => $limit,
+            'tax_query'         => $tax_query,
+            'orderby'           => 'rand',
         );
 
         return new WP_Query( $args );
@@ -367,8 +368,9 @@ if ( ! function_exists( 'chipmunk_get_posts' ) ) :
      */
     function chipmunk_get_posts( $args, $tax = null, $date = null ) {
         $defaults = array(
-            'post_type'       => 'post',
-            'posts_per_page'  => -1,
+            'post_type'         => 'post',
+            'post_status'       => 'publish',
+            'posts_per_page'    => -1,
         );
 
         // Apply taxonomy params
@@ -404,9 +406,10 @@ if ( ! function_exists( 'chipmunk_get_resources' ) ) :
      */
     function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
         $args = array(
-            'post_type'       => 'resource',
-            'posts_per_page'  => $limit,
-            'paged'           => $paged,
+            'post_type'         => 'resource',
+            'post_status'       => 'publish',
+            'posts_per_page'    => $limit,
+            'paged'             => $paged,
         );
 
         $sort_args = array();
@@ -484,11 +487,12 @@ if ( ! function_exists( 'chipmunk_get_latest_resources' ) ) :
      */
     function chipmunk_get_latest_resources( $limit = -1, $paged = false ) {
         $args = array(
-            'post_type'       => 'resource',
-            'posts_per_page'  => $limit,
-            'paged'           => $paged,
-            'orderby'         => 'date',
-            'order'           => 'DESC',
+            'post_type'         => 'resource',
+            'post_status'       => 'publish',
+            'posts_per_page'    => $limit,
+            'paged'             => $paged,
+            'orderby'           => 'date',
+            'order'             => 'DESC',
         );
 
         return new WP_Query( $args );
@@ -502,19 +506,20 @@ if ( ! function_exists( 'chipmunk_get_featured_resources' ) ) :
      */
     function chipmunk_get_featured_resources( $limit = -1, $paged = false ) {
         $args = array(
-            'post_type'       => 'resource',
-            'posts_per_page'  => $limit,
-            'paged'           => $paged,
-            'meta_query'      => array(
-                'featured'        => array(
-                    'key'             => '_' . THEME_SLUG . '_resource_is_featured',
-                    'value'           => 'on',
+            'post_type'         => 'resource',
+            'post_status'       => 'publish',
+            'posts_per_page'    => $limit,
+            'paged'             => $paged,
+            'meta_query'        => array(
+                'featured'          => array(
+                    'key'               => '_' . THEME_SLUG . '_resource_is_featured',
+                    'value'             => 'on',
                 ),
-                'views'           => array(
-                    'key'             => '_' . THEME_SLUG . '_post_view_count',
+                'views'             => array(
+                    'key'               => '_' . THEME_SLUG . '_post_view_count',
                 ),
             ),
-            'orderby'         => 'rand',
+            'orderby'           => 'rand',
         );
 
         return new WP_Query( $args );
@@ -528,12 +533,13 @@ if ( ! function_exists( 'chipmunk_get_popular_resources' ) ) :
      */
     function chipmunk_get_popular_resources( $limit = -1, $paged = false ) {
         $args = array(
-            'post_type'       => 'resource',
-            'posts_per_page'  => $limit,
-            'paged'           => $paged,
-            'meta_key'        => '_' . THEME_SLUG . '_post_view_count',
-            'orderby'         => 'meta_value_num',
-            'order'           => 'DESC',
+            'post_type'         => 'resource',
+            'post_status'       => 'publish',
+            'posts_per_page'    => $limit,
+            'paged'             => $paged,
+            'meta_key'          => '_' . THEME_SLUG . '_post_view_count',
+            'orderby'           => 'meta_value_num',
+            'order'             => 'DESC',
         );
 
         return new WP_Query( $args );
