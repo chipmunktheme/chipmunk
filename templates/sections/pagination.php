@@ -6,14 +6,15 @@ if ( ! isset( $query ) ) {
 }
 
 $paged = chipmunk_get_current_page();
+$query_vars = json_encode( $query->query );
 ?>
 
 <?php if ( $query and $query->max_num_pages > 1 and ( ! isset( $query->query['orderby'] ) or $query->query['orderby'] != 'rand' ) ) : ?>
     <nav class="pagination">
         <div class="container">
-            <?php if ( ! is_search() and ( chipmunk_theme_option( 'pagination_type' ) == 'load_more' or chipmunk_theme_option( 'pagination_type' ) == 'infinite' ) ) : ?>
+            <?php if ( chipmunk_theme_option( 'pagination_type' ) == 'load_more' or chipmunk_theme_option( 'pagination_type' ) == 'infinite' ) : ?>
                 <div class="text_center">
-                    <button class="button button_secondary loader" data-action="load_posts" data-post-type="<?php echo $type; ?>" data-page="<?php echo $paged + 1; ?>" data-limit="<?php echo $limit; ?>"<?php echo chipmunk_theme_option( 'pagination_type' ) == 'infinite' ? ' data-view-trigger="click"' : ''; ?>>
+                    <button class="button button_secondary loader" data-action="load_posts" data-query-vars="<?php echo esc_attr( $query_vars ); ?>" data-page="<?php echo $paged + 1; ?>"<?php echo chipmunk_theme_option( 'pagination_type' ) == 'infinite' ? ' data-view-trigger="click"' : ''; ?>>
                         <span><?php esc_html_e( 'Load more', 'chipmunk' ); ?></span>
                     </button>
                 </div>

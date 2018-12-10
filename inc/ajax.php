@@ -46,23 +46,25 @@ if ( ! function_exists( 'chipmunk_load_posts' ) ) :
     function chipmunk_load_posts() {
         $template = '';
 
-        $query = new WP_Query( array(
-            'posts_per_page'      => $_REQUEST['limit'],
-            'paged'               => $_REQUEST['page'],
-            'post_type'           => $_REQUEST['postType'],
-            'post_status'         => 'publish',
-            'post__not_in'        => array( $_REQUEST['exclude'] ),
-            'ignore_sticky_posts' => true,
-        ) );
+        $query_vars = json_decode( stripslashes( $_REQUEST['queryVars'] ), true );
+        $query_vars['paged'] = $_REQUEST['page'];
+
+        $query = new WP_Query( $query_vars );
+        $GLOBALS['wp_query'] = $query;
 
         if ( $query->have_posts() ) {
             while ( $query->have_posts() ) : $query->the_post();
-                $template .= chipmunk_get_template( "sections/{$_REQUEST['postType']}-tile", array(), false );
+                if ( isset( $query->query['s'] ) ) {
+                    $template .= chipmunk_get_template( 'sections/' . get_post_type(), array(), false );
+                }
+                else {
+                    $template .= chipmunk_get_template( 'sections/' . get_post_type(). '-tile', array(), false );
+                }
             endwhile;
+        }
 
-            if ( ! empty( $template ) ) {
-                wp_send_json_success( $template );
-            }
+        if ( ! empty( $template ) ) {
+            wp_send_json_success( $template );
         }
 
         wp_send_json_error( __( 'No more results found.', 'chipmunk' ) );

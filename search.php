@@ -57,7 +57,7 @@ get_header(); ?>
 
     <?php if ( $wp_query->max_num_pages > 1 ) : ?>
         <div class="section">
-            <?php get_template_part( 'templates/sections/pagination' ); ?>
+            <?php chipmunk_get_template( 'sections/pagination' ); ?>
         </div>
         <!-- /.section -->
     <?php endif; ?>

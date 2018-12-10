@@ -90,11 +90,11 @@ const Actions = {
       const element = document.querySelector(`[data-action-element=${action}]`);
 
       if (element) {
-        element.insertAdjacentHTML('beforeend', status === 'success' ? response : `<p class="column text_center">${response}</p>`);
-
         if (status == 'success') {
+          element.insertAdjacentHTML('beforeend', response);
           trigger.dataset.page = parseInt(trigger.dataset.page) + 1;
         } else {
+          trigger.parentNode.insertAdjacentHTML('beforeend', `<p class="text_center">${response}</p>`);
           trigger.parentNode.removeChild(trigger);
         }
 
