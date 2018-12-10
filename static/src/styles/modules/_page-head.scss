@@ -28,6 +28,14 @@
     left: 0;
     right: 0;
 
+    .admin-bar & {
+      top: 4.6rem;
+
+      @media (min-height: 782px) {
+        top: 3.2rem;
+      }
+    }
+
     &.is-condensed {
       padding-top: $separator * 0.5;
       padding-bottom: $separator * 0.5;

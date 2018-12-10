@@ -32,9 +32,16 @@
     transform: translateY(0);
   }
 
+  .admin-bar & {
+    top: 4.6rem;
+
+    @media (min-height: 782px) {
+      top: 3.2rem;
+    }
+  }
+
   [data-sticky] ~ & {
     position: fixed;
-    top: 0;
   }
 
   [data-sticky].is-condensed ~ & {

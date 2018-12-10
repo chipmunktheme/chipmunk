@@ -3271,6 +3271,14 @@ input:checked + .u-checkbox__mark .icon {
   left: 0;
   right: 0;
 }
+.admin-bar .page-head[data-sticky] {
+  top: 4.6rem;
+}
+@media (min-height: 782px) {
+  .admin-bar .page-head[data-sticky] {
+    top: 3.2rem;
+  }
+}
 .page-head[data-sticky].is-condensed {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -3667,9 +3675,16 @@ input:checked + .u-checkbox__mark .icon {
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
+.admin-bar .search-bar {
+  top: 4.6rem;
+}
+@media (min-height: 782px) {
+  .admin-bar .search-bar {
+    top: 3.2rem;
+  }
+}
 [data-sticky] ~ .search-bar {
   position: fixed;
-  top: 0;
 }
 [data-sticky].is-condensed ~ .search-bar {
   padding-top: 1rem;
