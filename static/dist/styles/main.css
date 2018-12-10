@@ -2317,7 +2317,7 @@ input:checked + .u-checkbox__mark .icon {
 .content > ul {
   list-style: disc inside;
 }
-.content li:first-child {
+.content:not([class^="wp-block-"]):first-child {
   padding-top: 0.25em;
 }
 .content a:not([class]) {

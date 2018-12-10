@@ -88,7 +88,7 @@
     list-style: disc inside;
   }
 
-  li:first-child {
+  &:not([class^="wp-block-"]):first-child {
     padding-top: 0.25em;
   }
 
