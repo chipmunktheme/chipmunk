@@ -18,12 +18,12 @@
         <?php get_template_part( 'templates/partials/newsletter' ); ?>
         <?php get_template_part( 'templates/partials/page-bottom' ); ?>
         <?php get_template_part( 'templates/partials/page-foot' ); ?>
-
-        <?php if ( ! chipmunk_theme_option( 'disable_search' ) ) : ?>
-            <?php get_template_part( 'templates/partials/search-bar' ); ?>
-        <?php endif; ?>
     </div>
     <!-- /.body-bag -->
+
+    <?php if ( ! chipmunk_theme_option( 'disable_search' ) ) : ?>
+        <?php get_template_part( 'templates/partials/search-bar' ); ?>
+    <?php endif; ?>
 
     <?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
         <?php get_template_part( 'templates/partials/popup' ); ?>

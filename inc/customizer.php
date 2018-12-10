@@ -65,6 +65,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
                             'default'     => '#FAFAFA',
                         ),
                         array(
+                            'name'        => 'sticky_header',
+                            'type'        => 'checkbox',
+                            'label'       => esc_html__( 'Enable sticky header', 'chipmunk' ),
+                            'default'     => false,
+                        ),
+                        array(
                             'name'        => 'disable_section_borders',
                             'type'        => 'checkbox',
                             'label'       => esc_html__( 'Disable section borders', 'chipmunk' ),

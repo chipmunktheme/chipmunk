@@ -16,5 +16,6 @@
 </head>
 
 <body <?php body_class(); ?> data-ajax-source="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
+    <?php get_template_part( 'templates/partials/page-head' ); ?>
+
     <div class="body-bag">
-        <?php get_template_part( 'templates/partials/page-head' ); ?>

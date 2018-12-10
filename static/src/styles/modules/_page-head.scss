@@ -9,6 +9,8 @@
   padding-top: $separator * 0.5;
   padding-bottom: $separator * 0.5;
   background-color: $color-white;
+  transition-property: padding;
+  transition-duration: $transition-duration;
 
   @include breakpoint(md) {
     padding-top: $separator;
@@ -18,6 +20,18 @@
   @include breakpoint(lg) {
     padding-top: $separator * 1.5;
     padding-bottom: $separator * 1.5;
+  }
+
+  &[data-sticky] {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    &.is-condensed {
+      padding-top: $separator * 0.5;
+      padding-bottom: $separator * 0.5;
+    }
   }
 }
 
