@@ -608,10 +608,6 @@ if ( ! function_exists( 'chipmunk_display_term_list' ) ) :
 			}
 		}
 
-		if ( $args['quantity'] > 0 && $args['quantity'] < $count && $args['type'] == 'link' ) {
-			$output .= '<span class="tag tag--dimmed">' . sprintf( esc_html__( '+%d more', 'chipmunk' ), $count - 1 ) . '</span>';
-		}
-
 		return $output;
 	}
 endif;
