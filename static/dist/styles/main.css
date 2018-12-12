@@ -3971,9 +3971,6 @@ input:checked + .u-checkbox__mark .icon {
 .tag + .tag::before {
   content: ', ';
 }
-.tag--dimmed {
-  opacity: 0.75;
-}
 .tag__list {
   color: #9a9a9a;
   font-size: 1.4rem;

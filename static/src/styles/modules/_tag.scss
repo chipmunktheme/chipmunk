@@ -6,10 +6,6 @@
   & + &::before {
     content: ', ';
   }
-
-  &--dimmed {
-    opacity: 0.75;
-  }
 }
 
 .tag__list {

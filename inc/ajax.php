@@ -11,7 +11,8 @@ if ( ! function_exists( 'chipmunk_submit_resource' ) ) :
 	 * Submit resource callback
 	 */
 	function chipmunk_submit_resource() {
-		chipmunk_verify_nonce();
+		// Validate nonce token.
+		check_ajax_referer( 'submit_resource', 'nonce' );
 
 		$submission_form = new SubmissionForm( $_REQUEST );
 		$submission_form->submit();
@@ -72,17 +73,3 @@ if ( ! function_exists( 'chipmunk_load_posts' ) ) :
 endif;
 add_action( 'wp_ajax_load_posts', 'chipmunk_load_posts' );
 add_action( 'wp_ajax_nopriv_load_posts', 'chipmunk_load_posts' );
-
-
-if ( ! function_exists( 'chipmunk_verify_nonce' ) ) :
-	/**
-	 * Secure callbacks by verifying WP Nonce
-	 */
-	function chipmunk_verify_nonce() {
-		$nonce = isset( $_REQUEST['nonce'] ) ? sanitize_text_field( $_REQUEST['nonce'] ) : null;
-
-		if ( ! $nonce || ! wp_verify_nonce( $nonce, $_REQUEST['action'] ) ) {
-			wp_send_json_error( esc_html__( 'Not permitted.', 'chipmunk' ) );
-		}
-	}
-endif;
