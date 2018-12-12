@@ -12,7 +12,7 @@
     padding-bottom: $separator * 4;
   }
 
-  &_compact {
+  &--compact {
     padding-top: $separator;
     padding-bottom: $separator;
 
@@ -22,28 +22,24 @@
     }
   }
 
-  &_double {
+  &--double {
     @include breakpoint(lg) {
       padding-top: $separator * 8;
       padding-bottom: $separator * 8;
     }
   }
 
-  &_compact-bottom {
-    padding-bottom: 1em;
-  }
-
-  &_theme-light {
+  &--theme-light {
     @include bordered-box;
     background-color: $color-white;
   }
 
-  &_theme-primary {
+  &--theme-primary {
     background-color: $color-primary;
     color: $color-white;
 
     .heading,
-    .button_secondary,
+    .button--secondary,
     input[type="text"],
     input[type="email"],
     input[type="url"],
@@ -54,7 +50,7 @@
       }
     }
 
-    .button_secondary:hover {
+    .button--secondary:hover {
       background-color: $color-white !important;
       color: $color-primary;
     }

@@ -1,4 +1,4 @@
-<a href="#" class="tile tile_card tile_blank column column--md-3 column--lg-4">
+<a href="#" class="tile tile--card tile--blank column column--md-3 column--lg-4">
   <div class="tile__image">
     <img src="http://placehold.it/600x420?text=Blog+post" alt="">
   </div>
@@ -15,6 +15,6 @@
       {% include '../partials/post-stats.twig' with { collections: post.categories | slice (0, 1) } %}
     </ul>
 
-    <button type="button" class="tile__button button button_secondary visible-lg-block">Read more</button>
+    <button type="button" class="tile__button button button--secondary visible-lg-block">Read more</button>
   </div>
 </a>

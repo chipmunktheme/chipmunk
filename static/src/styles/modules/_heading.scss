@@ -5,23 +5,23 @@
 .heading {
   @extend %heading;
 
-  &_sm {
+  &--sm {
     @extend %heading-sm;
   }
 
-  &_md {
+  &--md {
     @extend %heading-md;
   }
 
-  &_lg {
+  &--lg {
     @extend %heading-lg;
   }
 
-  &_xl {
+  &--xl {
     @extend %heading-xl;
   }
 
-  &_thin {
+  &--thin {
     @extend %heading-thin;
   }
 }

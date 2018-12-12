@@ -3,29 +3,29 @@
 ** -----------------------------------------------------------------------------*/
 
 .text {
-  &_center {
+  &--center {
     text-align: center;
   }
 
-  &_left {
+  &--left {
     text-align: left;
   }
 
-  &_right {
+  &--right {
     text-align: right;
   }
 
-  &_content {
+  &--content {
     a:hover {
       color: $color-black;
     }
   }
 
-  &_separated {
+  &--separated {
     margin-top: 1em;
   }
 
-  &_subtitle {
+  &--subtitle {
     margin-top: $separator;
     margin-bottom: $separator;
 

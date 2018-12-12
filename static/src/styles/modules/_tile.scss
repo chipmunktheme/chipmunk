@@ -25,7 +25,7 @@
     }
   }
 
-  &_card {
+  &--card {
     margin-bottom: $separator;
     background-color: $color-white;
     box-shadow: 0 1px 2px 1px rgba($color-black, 0.1);
@@ -44,7 +44,7 @@
     }
   }
 
-  &_blank {
+  &--blank {
     background-color: transparent;
     box-shadow: none;
 
@@ -118,7 +118,7 @@
     }
   }
 
-  .tile_card & {
+  .tile--card & {
     position: relative;
     margin-bottom: $separator;
   }
@@ -138,27 +138,27 @@
     padding: $separator * 1.5;
   }
 
-  &_dimmed {
+  &--dimmed {
     background-color: rgba($color-black, 0.75);
     color: $color-white;
   }
 
-  &_primary {
+  &--primary {
     background-color: rgba($color-black, 0.75);
     color: $color-white;
   }
 
-  .tile_card & {
+  .tile--card & {
     position: relative;
   }
 
-  .tile_card:not(.tile_blank) & {
+  .tile--card:not(.tile--blank) & {
     &:not(:first-child) {
       padding: 0 $separator $separator;
     }
   }
 
-  .tile_blank & {
+  .tile--blank & {
     padding: 0;
   }
 }
@@ -177,7 +177,7 @@
   justify-content: space-between;
   margin-bottom: 0.5rem;
 
-  .tile_card & {
+  .tile--card & {
     margin-bottom: 1rem;
   }
 }
@@ -209,7 +209,7 @@
   cursor: pointer;
   transition: color $transition-duration;
 
-  .tile_card & {
+  .tile--card & {
     color: $color-gray;
 
     &:hover {
@@ -242,13 +242,13 @@
     }
   }
 
-  .tile_card & {
+  .tile--card & {
     opacity: 1;
   }
 }
 
 .tile__stats {
-  .tile_card & {
+  .tile--card & {
     color: $color-gray;
   }
 }

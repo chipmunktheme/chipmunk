@@ -74,7 +74,7 @@
   }
 
   .button-primary {
-    @extend .button_primary;
+    @extend .button--primary;
   }
 
   .forgot-password {

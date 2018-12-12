@@ -1,6 +1,6 @@
 <div class="section">
   <div class="container">
-    <h3 class="heading heading_md">Collections</h3>
+    <h3 class="heading heading--md">Collections</h3>
 
     <div class="row">
       {% set collections = ['Design', 'Development', 'Technology', 'Products', 'Apps', 'Podcasts', 'Startups', 'Business', 'Marketing', 'Writings', 'Newsletters', 'Typography', 'Bots', 'Themes', 'Photography'] %}
@@ -13,7 +13,7 @@
             <img src="http://placehold.it/600x420?text=Resource.png" alt="" />
           </div>
 
-          <div class="tile__content tile__content_dimmed">
+          <div class="tile__content tile__content--dimmed">
             <div>
               <h3 class="tile__title">{{ collection }}</h3>
               <p class="tile__copy">View this collection&nbsp;{% include '../partials/icon.twig' with { 'icon': 'arrow-right' } %}</p>

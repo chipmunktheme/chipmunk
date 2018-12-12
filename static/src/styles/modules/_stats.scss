@@ -29,12 +29,12 @@
     line-height: inherit;
     vertical-align: middle;
 
-    &.icon_arrow-up {
+    &.icon--arrow-up {
       font-size: 1.2rem;
     }
   }
 
-  &_sided {
+  &--sided {
     flex-grow: 1;
     margin-right: 0;
     text-align: right;
@@ -81,7 +81,7 @@
     color: $color-gray;
   }
 
-  &_dimmed {
+  &--dimmed {
     color: lighten($color-gray, 20%);
 
     &::before {

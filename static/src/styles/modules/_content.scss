@@ -187,6 +187,6 @@
 
   input[type="submit"] {
     @extend .button;
-    @extend .button_primary;
+    @extend .button--primary;
   }
 }

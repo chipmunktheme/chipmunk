@@ -9,7 +9,7 @@
     margin-top: $separator * 1.5;
   }
 
-  &_compact {
+  &--compact {
     text-align: center;
   }
 
@@ -76,7 +76,7 @@
     outline: none;
   }
 
-  &_sm {
+  &--sm {
     @include breakpoint(lg) {
       border-bottom-width: 2px;
       font-size: 1.8rem;
@@ -102,13 +102,13 @@
     margin-top: $separator;
   }
 
-  &_separated:not(:first-child) {
+  &--separated:not(:first-child) {
     @include breakpoint(md) {
       margin-top: $separator * 3;
     }
   }
 
-  &_center {
+  &--center {
     justify-content: center;
   }
 }
@@ -147,38 +147,6 @@
   &[data-status='error'] {
     margin-bottom: 2rem;
     color: $color-status-error;
-  }
-}
-
-.form__info {
-  font-size: 0.85em;
-
-  &_success {
-    color: $color-status-success;
-
-    a {
-      color: $color-status-success;
-    }
-  }
-
-  &_warning {
-    color: $color-status-warning;
-
-    a {
-      color: $color-status-warning;
-    }
-  }
-
-  &_error {
-    color: $color-status-error;
-
-    a {
-      color: $color-status-error;
-    }
-  }
-
-  a:hover {
-    color: $color-gray-dark;
   }
 }
 

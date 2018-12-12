@@ -4,7 +4,7 @@
 
     {% if collections == 'compact' %}
       <a href="#" class="stats__tag">Marketing</a>
-      <span class="stats__tag stats__tag_dimmed">+{{ random(5) + 1 }} more</span>
+      <span class="stats__tag stats__tag--dimmed">+{{ random(5) + 1 }} more</span>
     {% else%}
       {% for collection in collections %}
         <span class="stats__tag">{{ collection }}</span>
@@ -26,7 +26,7 @@
 </li>
 
 {% if upvote %}
-  <li class="stats__item {{ not collections ? 'stats__item_sided' }}" title="Upvotes">
+  <li class="stats__item {{ not collections ? 'stats__item--sided' }}" title="Upvotes">
     <button class="stats__button" title="Upvote">
       {% include '../partials/icon.twig' with { 'icon': 'arrow-up' } %}
       

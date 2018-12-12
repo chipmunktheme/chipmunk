@@ -3,7 +3,7 @@
 <?php if ( ! empty( $query->results ) ) : ?>
 	<div class="separator"></div>
 
-	<h4 class="heading heading_md"><?php echo $attributes['title'] ? $attributes['title'] : esc_html__( 'Curators', 'chipmunk' ); ?></h4>
+	<h4 class="heading heading--md"><?php echo $attributes['title'] ? $attributes['title'] : esc_html__( 'Curators', 'chipmunk' ); ?></h4>
 
 	<div class="row">
 		<?php foreach ( $query->results as $user ) : ?>

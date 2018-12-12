@@ -136,11 +136,11 @@
     font-weight: bold;
   }
 
-  &_active {
+  &--active {
     color: $color-black;
   }
 
-  &_condensed {
+  &--condensed {
     display: flex;
     justify-content: center;
 

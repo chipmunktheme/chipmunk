@@ -29,9 +29,11 @@
     right: 0;
 
     .admin-bar & {
-      top: 4.6rem;
+      @media (min-width: 600px) {
+        top: 4.6rem;
+      }
 
-      @media (min-height: 782px) {
+      @media (min-width: 782px) {
         top: 3.2rem;
       }
     }

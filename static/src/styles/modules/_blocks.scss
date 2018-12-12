@@ -45,7 +45,7 @@
 
 .wp-block-button__link {
   @extend .button;
-  @extend .button_tertiary;
+  @extend .button--tertiary;
 }
 
 .wp-block-spacer {

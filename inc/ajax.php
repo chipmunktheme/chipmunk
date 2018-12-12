@@ -7,82 +7,82 @@
  */
 
 if ( ! function_exists( 'chipmunk_submit_resource' ) ) :
-    /**
-     * Submit resource callback
-     */
-    function chipmunk_submit_resource() {
-        chipmunk_verify_nonce();
+	/**
+	 * Submit resource callback
+	 */
+	function chipmunk_submit_resource() {
+		chipmunk_verify_nonce();
 
-        $submission_form = new SubmissionForm( $_REQUEST );
-        $submission_form->submit();
-    }
+		$submission_form = new SubmissionForm( $_REQUEST );
+		$submission_form->submit();
+	}
 endif;
 add_action( 'wp_ajax_submit_resource', 'chipmunk_submit_resource' );
 add_action( 'wp_ajax_nopriv_submit_resource', 'chipmunk_submit_resource' );
 
 
 if ( ! function_exists( 'chipmunk_submit_upvote' ) ) :
-    /**
-     * Process upvote callback
-     */
-    function chipmunk_submit_upvote() {
-        // Get post ID
-        $post_id = ( isset( $_REQUEST['postId'] ) && is_numeric( $_REQUEST['postId'] ) ) ? intval( wp_filter_kses( $_REQUEST['postId'] ) ) : null;
+	/**
+	 * Process upvote callback
+	 */
+	function chipmunk_submit_upvote() {
+		// Get post ID
+		$post_id = ( isset( $_REQUEST['postId'] ) && is_numeric( $_REQUEST['postId'] ) ) ? intval( wp_filter_kses( $_REQUEST['postId'] ) ) : null;
 
-        if ( $post_id ) {
-            // Process the user upvote
-            chipmunk_process_upvote( $post_id );
-        }
-    }
+		if ( $post_id ) {
+			// Process the user upvote
+			chipmunk_process_upvote( $post_id );
+		}
+	}
 endif;
 add_action( 'wp_ajax_submit_upvote', 'chipmunk_submit_upvote' );
 add_action( 'wp_ajax_nopriv_submit_upvote', 'chipmunk_submit_upvote' );
 
 
 if ( ! function_exists( 'chipmunk_load_posts' ) ) :
-    /**
-     * Form callback
-     */
-    function chipmunk_load_posts() {
-        $template = '';
+	/**
+	 * Form callback
+	 */
+	function chipmunk_load_posts() {
+		$template = '';
 
-        $query_vars = json_decode( stripslashes( $_REQUEST['queryVars'] ), true );
-        $query_vars['paged'] = $_REQUEST['page'];
+		$query_vars = json_decode( stripslashes( $_REQUEST['queryVars'] ), true );
+		$query_vars['paged'] = $_REQUEST['page'];
 
-        $query = new WP_Query( $query_vars );
-        $GLOBALS['wp_query'] = $query;
+		$query = new WP_Query( $query_vars );
+		$GLOBALS['wp_query'] = $query;
 
-        if ( $query->have_posts() ) {
-            while ( $query->have_posts() ) : $query->the_post();
-                if ( isset( $query->query['s'] ) ) {
-                    $template .= chipmunk_get_template( 'sections/resource', array(), false );
-                }
-                else {
-                    $template .= chipmunk_get_template( 'sections/' . get_post_type(). '-tile', array(), false );
-                }
-            endwhile;
-        }
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) : $query->the_post();
+				if ( isset( $query->query['s'] ) ) {
+					$template .= chipmunk_get_template( 'sections/resource', array(), false );
+				}
+				else {
+					$template .= chipmunk_get_template( 'sections/' . get_post_type(). '-tile', array(), false );
+				}
+			endwhile;
+		}
 
-        if ( ! empty( $template ) ) {
-            wp_send_json_success( $template );
-        }
+		if ( ! empty( $template ) ) {
+			wp_send_json_success( $template );
+		}
 
-        wp_send_json_error( __( 'No more results found.', 'chipmunk' ) );
-    }
+		wp_send_json_error( __( 'No more results found.', 'chipmunk' ) );
+	}
 endif;
 add_action( 'wp_ajax_load_posts', 'chipmunk_load_posts' );
 add_action( 'wp_ajax_nopriv_load_posts', 'chipmunk_load_posts' );
 
 
 if ( ! function_exists( 'chipmunk_verify_nonce' ) ) :
-    /**
-     * Secure callbacks by verifying WP Nonce
-     */
-    function chipmunk_verify_nonce() {
-        $nonce = isset( $_REQUEST['nonce'] ) ? sanitize_text_field( $_REQUEST['nonce'] ) : null;
+	/**
+	 * Secure callbacks by verifying WP Nonce
+	 */
+	function chipmunk_verify_nonce() {
+		$nonce = isset( $_REQUEST['nonce'] ) ? sanitize_text_field( $_REQUEST['nonce'] ) : null;
 
-        if ( ! $nonce || ! wp_verify_nonce( $nonce, $_REQUEST['action'] ) ) {
-            wp_send_json_error( esc_html__( 'Not permitted.', 'chipmunk' ) );
-        }
-    }
+		if ( ! $nonce || ! wp_verify_nonce( $nonce, $_REQUEST['action'] ) ) {
+			wp_send_json_error( esc_html__( 'Not permitted.', 'chipmunk' ) );
+		}
+	}
 endif;

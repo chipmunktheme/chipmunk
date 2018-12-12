@@ -73,7 +73,7 @@
 
   .search-field {
     @extend .form__input;
-    @extend .form__input_sm;
+    @extend .form__input--sm;
   }
 
   .search-submit {

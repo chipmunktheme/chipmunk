@@ -29,7 +29,7 @@
 		<?php endif; ?>
 	</div>
 
-	<div class="tile__content <?php echo ( chipmunk_theme_option( 'disable_collection_thumbs' ) ? 'tile__content_primary' : 'tile__content_dimmed' ); ?>">
+	<div class="tile__content <?php echo ( chipmunk_theme_option( 'disable_collection_thumbs' ) ? 'tile__content--primary' : 'tile__content--dimmed' ); ?>">
 		<div>
 			<div class="tile__head">
 				<?php echo chipmunk_conditional_markup( is_front_page(), 'h3', 'h2', 'tile__title', esc_html( chipmunk_truncate_string( $collection->name, 60 ) ) ); ?>

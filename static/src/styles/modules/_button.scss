@@ -10,7 +10,7 @@
   font-size: 1.4rem;
   line-height: 1;
 
-  &_primary {
+  &--primary {
     background-color: $color-primary;
     color: $color-white;
 
@@ -21,7 +21,7 @@
     }
   }
 
-  &_secondary {
+  &--secondary {
     background-color: transparent;
     border-color: currentColor;
     color: $color-primary;
@@ -33,7 +33,7 @@
     }
   }
 
-  &_tertiary {
+  &--tertiary {
     background-color: transparent;
     border-color: $color-gray;
     color: $color-gray;

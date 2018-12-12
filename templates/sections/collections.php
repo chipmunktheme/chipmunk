@@ -1,6 +1,6 @@
 <div class="section">
 	<div class="container">
-		<?php echo chipmunk_conditional_markup( is_front_page(), 'h2', 'h1', 'heading heading_md', esc_html__( 'Collections', 'chipmunk' ) ); ?>
+		<?php echo chipmunk_conditional_markup( is_front_page(), 'h2', 'h1', 'heading heading--md', esc_html__( 'Collections', 'chipmunk' ) ); ?>
 
 		<div class="row">
 			<?php
@@ -22,7 +22,7 @@
 				<?php endforeach; ?>
 			<?php else : ?>
 				<div class="column">
-					<p class="text_content text_separated">
+					<p class="text--content text--separated">
 						<?php if ( current_user_can( 'publish_posts' ) ) : ?>
 							<?php esc_html_e( 'Ready to publish your first collection?', 'chipmunk' ); ?>
 

@@ -3,14 +3,14 @@
     {% if showDetails %}
       <div class="row row_center">
         <div class="column column--md-4 column--lg-8">
-          <h1 class="heading heading_md">{{ title }}</h1>
-          <p class="text_content text_subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Donec id elit non mi porta gravida at eget metus. Donec sed odio dui.</p>
+          <h1 class="heading heading--md">{{ title }}</h1>
+          <p class="text--content text--subtitle">Nullam id dolor id nibh ultricies vehicula ut id elit. Donec id elit non mi porta gravida at eget metus. Donec sed odio dui.</p>
         </div>
 
         {% include '../partials/filters.twig' %}
       </div>
     {% else %}
-      <h3 class="heading heading_md">{{ title }}</h3>
+      <h3 class="heading heading--md">{{ title }}</h3>
     {% endif %}
 
     {% for i in 1..rows | default(1) %}

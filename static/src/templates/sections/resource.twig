@@ -1,4 +1,4 @@
-<div class="section{{ (loop is empty) or (loop.index0 % 2 == 0) ? ' section_theme-light' : '' }}">
+<div class="section{{ (loop is empty) or (loop.index0 % 2 == 0) ? ' section--theme-light' : '' }}">
   <div class="container">
     <article class="resource row">
       <div class="resource__content column column--lg-6">
@@ -7,7 +7,7 @@
         </ul>
 
         <div class="resource__info">
-          <h2 class="resource__title heading heading_xl">
+          <h2 class="resource__title heading heading--xl">
             {% if not loop is empty %}
               <a href="#">
             {% endif %}
@@ -22,7 +22,7 @@
         </div>
 
         <div class="resource__actions">
-          <a href="#" class="button button_secondary" target="_blank">Visit website</a>
+          <a href="#" class="button button--secondary" target="_blank">Visit website</a>
 
           <nav class="nav-socials">
             <h4 class="nav-socials__title">Share</h4>
