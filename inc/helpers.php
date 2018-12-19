@@ -7,12 +7,12 @@
  */
 
 if ( ! function_exists( 'chipmunk_has_plugin' ) ) :
-	/**
-	 * Check if Chipmunk plugin is enabled
-	 */
-	function chipmunk_has_plugin( $plugin ) {
-		return class_exists( 'Chipmunk_' . $plugin );
-	}
+/**
+ * Check if Chipmunk plugin is enabled
+ */
+function chipmunk_has_plugin( $plugin ) {
+	return class_exists( 'Chipmunk' . $plugin );
+}
 endif;
 
 
