@@ -61,7 +61,7 @@
 	<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
 		<li class="nav-primary__item nav-primary__item--condensed hidden-lg">
 			<?php if ( is_user_logged_in() ) : ?>
-				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'account' ) ); ?>" class="button button_secondary">
+				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'account' ) ); ?>" class="button button--secondary">
 					<?php esc_html_e( 'Account', 'chipmunk' ); ?>
 				</a>
 
@@ -69,11 +69,11 @@
 					<?php esc_html_e( 'Logout', 'chipmunk' ); ?>
 				</a>
 			<?php else : ?>
-				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'login' ) ); ?>" class="button button_secondary">
+				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'login' ) ); ?>" class="button button--secondary">
 					<?php esc_html_e( 'Login', 'chipmunk' ); ?>
 				</a>
 
-				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'register' ) ); ?>" class="button button_secondary">
+				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'register' ) ); ?>" class="button button--secondary">
 					<?php esc_html_e( 'Register', 'chipmunk' ); ?>
 				</a>
 			<?php endif; ?>

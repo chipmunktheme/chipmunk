@@ -2827,6 +2827,7 @@ input:checked + .u-checkbox__mark .icon {
   position: relative;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
 }
 .form__field:not(:first-child), .content form > div:not(:first-child) {
