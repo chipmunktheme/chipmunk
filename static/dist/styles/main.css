@@ -1819,6 +1819,10 @@ input:checked + .u-checkbox__mark .icon {
 .text--right {
   text-align: right;
 }
+.text--content {
+  color: #808080;
+  font-size: 1.6rem;
+}
 .text--content a:hover {
   color: #333333;
 }
@@ -4158,23 +4162,45 @@ input:checked + .u-checkbox__mark .icon {
 .tile__image[href]:hover {
   opacity: 0.8;
 }
-.tile__image > * {
+.tile__image img,
+.tile__image svg,
+.tile__image video,
+.tile__image audio,
+.tile__image iframe {
   box-shadow: -2px 0 10px 0 rgba(51, 51, 51, 0.5);
   transition: -webkit-transform 0.25s ease-in-out 0.05s;
   transition: transform 0.25s ease-in-out 0.05s;
   transition: transform 0.25s ease-in-out 0.05s, -webkit-transform 0.25s ease-in-out 0.05s;
 }
-.tile__image > *:nth-child(2) {
+.tile__image img:nth-child(2),
+.tile__image svg:nth-child(2),
+.tile__image video:nth-child(2),
+.tile__image audio:nth-child(2),
+.tile__image iframe:nth-child(2) {
   -webkit-transform: translateX(25%);
           transform: translateX(25%);
 }
-.tile__image > *:nth-child(3) {
+.tile__image img:nth-child(3),
+.tile__image svg:nth-child(3),
+.tile__image video:nth-child(3),
+.tile__image audio:nth-child(3),
+.tile__image iframe:nth-child(3) {
   -webkit-transform: translateX(50%);
           transform: translateX(50%);
 }
 .tile--card .tile__image {
   position: relative;
   margin-bottom: 2rem;
+}
+.tile__image--with-status::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 33.3%;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(51, 51, 51, 0.066) 25%, rgba(51, 51, 51, 0.33) 100%);
 }
 .tile__content {
   position: absolute;
@@ -4213,6 +4239,9 @@ input:checked + .u-checkbox__mark .icon {
   padding: 0;
 }
 .tile__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   flex: 1;
   transition: opacity 0.25s;
 }
@@ -4222,21 +4251,17 @@ input:checked + .u-checkbox__mark .icon {
 .tile__head {
   display: flex;
   justify-content: space-between;
+  width: 100%;
   margin-bottom: 0.5rem;
+  font-size: 2rem;
 }
 .tile--card .tile__head {
   margin-bottom: 1rem;
 }
 .tile__title {
   flex: 1;
-  font-size: 2rem;
   font-weight: bold;
   line-height: 1.4;
-}
-@media (min-width: 680px) {
-  .tile__title {
-    font-size: 2.2rem;
-  }
 }
 .tile__title a {
   display: inline-block;
@@ -4248,6 +4273,7 @@ input:checked + .u-checkbox__mark .icon {
   margin-left: 1rem;
   margin-top: 0.1em;
   padding: 0.2em;
+  font-size: 0.9em;
   line-height: 1;
   cursor: pointer;
   transition: color 0.25s;
@@ -4294,6 +4320,31 @@ input:checked + .u-checkbox__mark .icon {
   background-color: #F38181;
   border-color: transparent;
   color: #FAFAFA;
+}
+.tile__status {
+  display: block;
+  padding: 0.25em 0.75em;
+  background-color: #808080;
+  box-shadow: 0 0 3px rgba(51, 51, 51, 0.25);
+  border-radius: 1.1em;
+  color: #FAFAFA;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.tile__status--publish {
+  background-color: #4F8A10;
+}
+.tile__status--pending {
+  background-color: #9F6000;
+}
+.tile__status--trash {
+  background-color: #F74444;
+}
+.tile__image .tile__status {
+  position: absolute;
+  bottom: 1rem;
+  left: 2rem;
+  z-index: 1;
 }
 /*
 ** Module - Toolbox

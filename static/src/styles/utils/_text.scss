@@ -16,6 +16,9 @@
   }
 
   &--content {
+    color: $color-gray;
+    font-size: 1.6rem;
+
     a:hover {
       color: $color-black;
     }
