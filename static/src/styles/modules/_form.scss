@@ -6,7 +6,7 @@
   margin-top: $separator;
 
   @include breakpoint(md) {
-    margin-top: $separator * 1.5;
+    margin-top: ($separator * 1.5);
   }
 
   &--compact {
@@ -130,6 +130,36 @@
   }
 }
 
+
+
+.form__checkbox {
+  flex-grow: 1;
+  margin-left: 1em;
+  margin-right: 1em;
+  color: $color-gray;
+  font-size: 0.8em;
+  cursor: pointer;
+  user-select: none;
+  transition: color $transition-duration;
+
+  @include breakpoint(md) {
+    font-size: 1.5rem;
+  }
+
+  &:hover {
+    color: $color-gray-dark;
+  }
+
+  [type="checkbox"] {
+    display: inline-block;
+    margin-right: 0.25em;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
 .form__message {
   margin-top: $separator;
   max-width: 600px;
@@ -148,6 +178,39 @@
   &[data-status='error'] {
     margin-bottom: 2rem;
     color: $color-status-error;
+  }
+}
+
+.form__info {
+  color: $color-gray-dark;
+  font-size: 0.85em;
+
+  &_success {
+    color: $color-status-success;
+
+    a {
+      color: $color-status-success;
+    }
+  }
+
+  &_warning {
+    color: $color-status-warning;
+
+    a {
+      color: $color-status-warning;
+    }
+  }
+
+  &_error {
+    color: $color-status-error;
+
+    a {
+      color: $color-status-error;
+    }
+  }
+
+  a:hover {
+    color: $color-gray-dark;
   }
 }
 

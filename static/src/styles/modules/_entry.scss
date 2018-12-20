@@ -169,7 +169,7 @@
     margin-top: $separator;
 
     @include breakpoint(md) {
-      margin-top: ($separator * 2);
+      margin-top: ($separator * 1.5);
     }
   }
 }

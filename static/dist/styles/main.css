@@ -2393,6 +2393,9 @@ input:checked + .u-checkbox__mark .icon {
   width: 100%;
   font-family: "Lucida Console", "Monaco", monospace;
 }
+.content form:first-child {
+  margin-top: 0;
+}
 /*
 ** Module - Entry
 ** -----------------------------------------------------------------------------*/
@@ -2587,7 +2590,7 @@ input:checked + .u-checkbox__mark .icon {
 @media (min-width: 680px) {
   .entry__content:not(:first-child),
   .entry__footer:not(:first-child) {
-    margin-top: 4rem;
+    margin-top: 3rem;
   }
 }
 .entry__footer {
@@ -2861,6 +2864,34 @@ input:checked + .u-checkbox__mark .icon {
     margin-top: 0;
   }
 }
+.form__checkbox {
+  flex-grow: 1;
+  margin-left: 1em;
+  margin-right: 1em;
+  color: #808080;
+  font-size: 0.8em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: color 0.25s;
+}
+@media (min-width: 680px) {
+  .form__checkbox {
+    font-size: 1.5rem;
+  }
+}
+.form__checkbox:hover {
+  color: #666666;
+}
+.form__checkbox [type="checkbox"] {
+  display: inline-block;
+  margin-right: 0.25em;
+}
+.form__checkbox [type="checkbox"]:focus {
+  outline: none;
+}
 .form__message {
   margin-top: 2rem;
   max-width: 600px;
@@ -2879,6 +2910,31 @@ input:checked + .u-checkbox__mark .icon {
 .form__message[data-status='error'] {
   margin-bottom: 2rem;
   color: #F74444;
+}
+.form__info {
+  color: #666666;
+  font-size: 0.85em;
+}
+.form__info_success {
+  color: #4F8A10;
+}
+.form__info_success a {
+  color: #4F8A10;
+}
+.form__info_warning {
+  color: #9F6000;
+}
+.form__info_warning a {
+  color: #9F6000;
+}
+.form__info_error {
+  color: #F74444;
+}
+.form__info_error a {
+  color: #F74444;
+}
+.form__info a:hover {
+  color: #666666;
 }
 .form__link[href] {
   display: inline-block;
