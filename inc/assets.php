@@ -64,7 +64,7 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 			$custom_style .= "
 				.button--primary:not([disabled]):hover,
 				.button--secondary,
-				.content a:hover,
+				.content a:not([class]):hover,
 				.nav-primary__close:hover,
 				.nav-socials__link:hover,
 				.page-head__logo,
