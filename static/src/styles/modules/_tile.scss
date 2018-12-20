@@ -290,7 +290,6 @@
   display: block;
   padding: 0.25em 0.75em;
   background-color: $color-gray;
-  box-shadow: 0 0 3px rgba($color-black, 0.25);
   border-radius: 1.1em;
   color: $color-white;
   font-size: 1.2rem;
@@ -310,7 +309,7 @@
 
   .tile__image & {
     position: absolute;
-    bottom: 1rem;
+    bottom: 2rem;
     left: 2rem;
     z-index: $layer-base;
   }

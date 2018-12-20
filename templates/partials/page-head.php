@@ -39,8 +39,8 @@
 
 				<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
 					<?php if ( is_user_logged_in() ) : ?>
-						<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'account' ) ); ?>" class="button button--secondary visible-lg-block">
-							<?php esc_html_e( 'Account', 'chipmunk' ); ?>
+						<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'dashboard' ) ); ?>" class="button button--secondary visible-lg-block">
+							<?php esc_html_e( 'Dashboard', 'chipmunk' ); ?>
 						</a>
 
 						<a href="<?php echo esc_url( wp_logout_url() ); ?>" class="button button--secondary visible-lg-block">
