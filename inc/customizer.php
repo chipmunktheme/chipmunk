@@ -713,6 +713,11 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 		 * Add setting and control for each field
 		 */
 		private function register_field( $section, $field ) {
+			// Plugin restricted fields
+			if ( ! empty( $field['restrict'] ) && ! chipmunk_has_plugin( $field['restrict'] ) ) {
+				return;
+			}
+
 			$setting_args = array(
 				'capability'  => $this->capability,
 				'type'        => 'option',
