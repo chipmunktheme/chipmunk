@@ -31,6 +31,10 @@
 				</ul>
 
 				<div class="resource__info">
+					<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
+						<?php echo ( new ChipmunkBookmarks( get_the_ID() ) )->get_button( 'toggle_bookmark', 'stats__button' ); ?>
+					<?php endif; ?>
+
 					<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading--lg', is_single() ? get_the_title() : '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_title() . '</a>' ); ?>
 
 					<?php if ( ! empty( $description ) ) : ?>

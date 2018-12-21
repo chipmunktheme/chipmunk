@@ -6,22 +6,48 @@
  * @subpackage Chipmunk
  */
 
-if ( ! function_exists( 'chipmunk_has_plugin' ) ) :
-/**
- * Check if Chipmunk plugin is enabled
- */
-function chipmunk_has_plugin( $plugin ) {
-	return class_exists( 'Chipmunk' . $plugin );
-}
-endif;
-
-
 if ( ! function_exists( 'chipmunk_get_version' ) ) :
 	/**
 	 * Get current theme version
 	 */
 	function chipmunk_get_version() {
 		return wp_get_theme()->get( 'Version' );
+	}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_has_plugin' ) ) :
+	/**
+	 * Check if Chipmunk plugin is enabled
+	 */
+	function chipmunk_has_plugin( $plugin ) {
+		return class_exists( 'Chipmunk' . $plugin );
+	}
+	endif;
+
+
+	if ( ! function_exists( 'chipmunk_get_plugin_option' ) ) :
+	/**
+	 * Check if Chipmunk plugin is enabled and get option from it
+	 */
+	function chipmunk_get_plugin_option( $plugin, $option ) {
+		if ( ! chipmunk_has_plugin( $plugin ) ) {
+			return false;
+		}
+
+		return get_option( 'chipmunk_' . strtolower( $plugin ) . '_' . $option );
+	}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_theme_option' ) ) :
+	/**
+	 * Get menu items
+	 */
+	function chipmunk_theme_option( $name, $default = false ) {
+		global $customizer;
+
+		return $customizer->theme_option( $name, $default );
 	}
 endif;
 
@@ -45,32 +71,6 @@ if ( ! function_exists( 'chipmunk_get_template' ) ) :
 		if ( ! $output ) {
 			return ob_get_clean();
 		}
-	}
-endif;
-
-
-if ( ! function_exists( 'chipmunk_get_plugin_option' ) ) :
-	/**
-	 * Check if Chipmunk plugin is enabled and get option from it
-	 */
-	function chipmunk_get_plugin_option( $plugin, $option ) {
-		if ( ! chipmunk_has_plugin( $plugin ) ) {
-			return false;
-		}
-
-		return get_option( 'chipmunk_members_' . $option );
-	}
-endif;
-
-
-if ( ! function_exists( 'chipmunk_theme_option' ) ) :
-	/**
-	 * Get menu items
-	 */
-	function chipmunk_theme_option( $name, $default = false ) {
-		global $customizer;
-
-		return $customizer->theme_option( $name, $default );
 	}
 endif;
 

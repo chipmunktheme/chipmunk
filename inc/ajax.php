@@ -18,8 +18,21 @@ if ( ! function_exists( 'chipmunk_submit_resource' ) ) :
 		$submission_form->submit();
 	}
 endif;
-add_action( 'wp_ajax_submit_resource', 'chipmunk_submit_resource' );
-add_action( 'wp_ajax_nopriv_submit_resource', 'chipmunk_submit_resource' );
+add_action( 'wp_ajax_chipmunk_submit_resource', 'chipmunk_submit_resource' );
+add_action( 'wp_ajax_nopriv_chipmunk_submit_resource', 'chipmunk_submit_resource' );
+
+
+if ( ! function_exists( 'chipmunk_toggle_bookmark' ) ) :
+    /**
+     * Process bookmark callback
+     */
+    function chipmunk_toggle_bookmark() {
+        $bookmarks = new ChipmunkBookmarks( $_REQUEST['actionPostId'] );
+        $bookmarks->process();
+    }
+endif;
+add_action( 'wp_ajax_chipmunk_toggle_bookmark', 'chipmunk_toggle_bookmark' );
+add_action( 'wp_ajax_nopriv_chipmunk_toggle_bookmark', 'chipmunk_toggle_bookmark' );
 
 
 if ( ! function_exists( 'chipmunk_submit_upvote' ) ) :
@@ -36,8 +49,8 @@ if ( ! function_exists( 'chipmunk_submit_upvote' ) ) :
 		}
 	}
 endif;
-add_action( 'wp_ajax_submit_upvote', 'chipmunk_submit_upvote' );
-add_action( 'wp_ajax_nopriv_submit_upvote', 'chipmunk_submit_upvote' );
+add_action( 'wp_ajax_chipmunk_submit_upvote', 'chipmunk_submit_upvote' );
+add_action( 'wp_ajax_nopriv_chipmunk_submit_upvote', 'chipmunk_submit_upvote' );
 
 
 if ( ! function_exists( 'chipmunk_load_posts' ) ) :
@@ -71,5 +84,5 @@ if ( ! function_exists( 'chipmunk_load_posts' ) ) :
 		wp_send_json_error( __( 'No more results found.', 'chipmunk' ) );
 	}
 endif;
-add_action( 'wp_ajax_load_posts', 'chipmunk_load_posts' );
-add_action( 'wp_ajax_nopriv_load_posts', 'chipmunk_load_posts' );
+add_action( 'wp_ajax_chipmunk_load_posts', 'chipmunk_load_posts' );
+add_action( 'wp_ajax_nopriv_chipmunk_load_posts', 'chipmunk_load_posts' );

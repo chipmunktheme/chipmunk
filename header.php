@@ -15,7 +15,10 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?> data-ajax-source="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
+<body <?php body_class(); ?>
+	data-ajax-source="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
+    data-login-url="<?php echo wp_login_url( home_url( add_query_arg( array(), $wp->request ) ) ); ?>">
+
 	<?php get_template_part( 'templates/partials/page-head' ); ?>
 
 	<div class="body-bag">

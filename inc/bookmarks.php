@@ -1,0 +1,125 @@
+<?php
+/**
+ * Bookmarks class
+ *
+ * @package WordPress
+ * @subpackage Chipmunk
+ */
+
+if ( ! class_exists( 'ChipmunkBookmarks' ) ) :
+	class ChipmunkBookmarks {
+		/**
+		 * Database meta key
+		 *
+		 * @var string
+		 */
+		public static $db_key = '_chipmunk_bookmark';
+
+		/**
+		 * Create a new bookmarks object
+		 *
+		 * @param  object $post_id
+		 *
+		 * @return void
+		 */
+		function __construct( $post_id ) {
+			global $current_user;
+
+			$this->post_id = intval( wp_filter_kses( $post_id ) );
+			$this->user_id = $current_user->ID;
+		}
+
+		/**
+		 * Output the bookmark button
+		 *
+		 * @param  string $class
+		 *
+		 * @return string
+		 */
+		public function get_button( $action, $class = '' ) {
+			$bookmarked  = $this->is_bookmarked();
+			$icon       = $this->get_icon( $bookmarked );
+
+			if ( $bookmarked ) {
+				$class = $class . ' is-active';
+				$title = esc_html__( 'Remove bookmark', 'chipmunk' );
+			}
+			else {
+				$title = esc_html__( 'Bookmark', 'chipmunk' );
+			}
+
+			$button = "<button type='button' class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$icon</button>";
+			return $button;
+		}
+
+		/**
+		 * Toggles post bookmark status
+		 *
+		 * @return object
+		 */
+		private function toggle_bookmark() {
+			$bookmarked = $this->is_bookmarked();
+
+			// Remove bookmark from the post
+			if ( $bookmarked ) {
+				delete_post_meta( $this->post_id, self::$db_key, $this->user_id );
+				$response['status'] = 'unbookmarked';
+			}
+
+			// Bookmark the post
+			else {
+				add_post_meta( $this->post_id, self::$db_key, $this->user_id );
+				$response['status'] = 'bookmarked';
+			}
+
+			$response['post'] = $this->post_id;
+			$response['icon'] = $this->get_icon( ! $bookmarked );
+
+			return $response;
+		}
+
+		/**
+		 * Tests if the post is already bookmarked
+		 *
+		 * @return boolean
+		 */
+		private function is_bookmarked() {
+			return in_array( $this->user_id, get_post_meta( $this->post_id, self::$db_key ) );
+		}
+
+		/**
+		 * Retrieves proper icon template
+		 *
+		 * @param  boolean  $active
+		 *
+		 * @return string
+		 */
+		private function get_icon( $active ) {
+			ob_start();
+
+			$params = array( 'icon' => 'heart-empty' );
+
+			chipmunk_get_template( 'partials/icon', $params );
+
+			return ob_get_clean();
+		}
+
+		/**
+		 * Processes the bookmark request
+		 *
+		 * @return void
+		 */
+		public function process() {
+			// Check required attributes
+			if ( ! $this->post_id || ! $this->user_id ) {
+				wp_send_json_error( __( 'Not permitted.', 'chipmunk' ) );
+			}
+
+			// Set proper Post meta values
+			$params = $this->toggle_bookmark();
+
+			// Return success response
+			wp_send_json_success( $params );
+		}
+	}
+endif;
