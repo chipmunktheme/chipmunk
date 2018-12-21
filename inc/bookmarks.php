@@ -95,11 +95,10 @@ if ( ! class_exists( 'ChipmunkBookmarks' ) ) :
 		 * @return string
 		 */
 		private function get_content( $active ) {
-			$params = array( 'icon' => 'pocket' );
-			$icon = chipmunk_get_template( 'partials/icon', $params, false );
+			$icon = chipmunk_get_template( 'partials/icon', array( 'icon' => 'pocket' ), false );
 			$label = $active ? __( 'Bookmarked', 'chipmunk' ) : __( 'Bookmark', 'chipmunk' );
 
-			return '<span>' . $icon . ( $label ) . '</span>';
+			return '<span>' . $icon . $label . '</span>';
 		}
 
 		/**

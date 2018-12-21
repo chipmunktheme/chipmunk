@@ -2410,6 +2410,14 @@ input:checked + .u-checkbox__mark .icon {
 .content__component {
   font-size: 1.6rem;
 }
+.content__component:not(:first-child) {
+  margin-top: 2rem;
+}
+@media (min-width: 680px) {
+  .content__component:not(:first-child) {
+    margin-top: 4rem;
+  }
+}
 /*
 ** Module - Entry
 ** -----------------------------------------------------------------------------*/
@@ -4266,7 +4274,6 @@ input:checked + .u-checkbox__mark .icon {
   justify-content: space-between;
   width: 100%;
   margin-bottom: 0.5rem;
-  font-size: 2rem;
 }
 .tile--card .tile__head {
   margin-bottom: 1rem;
@@ -4275,6 +4282,7 @@ input:checked + .u-checkbox__mark .icon {
   flex: 1;
   font-weight: bold;
   line-height: 1.4;
+  font-size: 2rem;
 }
 .tile__title a {
   display: inline-block;
@@ -4286,7 +4294,7 @@ input:checked + .u-checkbox__mark .icon {
   margin-left: 1rem;
   margin-top: 0.1em;
   padding: 0.2em;
-  font-size: 0.9em;
+  font-size: 1.6rem;
   line-height: 1;
   cursor: pointer;
   transition: color 0.25s;

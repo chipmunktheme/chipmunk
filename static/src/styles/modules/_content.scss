@@ -197,4 +197,12 @@
 
 .content__component {
   font-size: 1.6rem;
+
+  &:not(:first-child) {
+    margin-top: $separator;
+
+    @include breakpoint(md) {
+      margin-top: ($separator * 2);
+    }
+  }
 }

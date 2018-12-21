@@ -34,10 +34,8 @@ const Actions = {
         trigger = ev.currentTarget;
       }
 
-      if (trigger.getAttribute('action') === '#') {
-        ev.preventDefault();
-        ev.stopPropagation();
-      }
+      ev.preventDefault();
+      ev.stopPropagation();
     }
 
     this.runActions(trigger, [{ data: trigger.dataset }]);
