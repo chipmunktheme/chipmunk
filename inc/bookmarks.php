@@ -38,7 +38,7 @@ if ( ! class_exists( 'ChipmunkBookmarks' ) ) :
 		 */
 		public function get_button( $action, $class = '' ) {
 			$bookmarked  = $this->is_bookmarked();
-			$icon       = $this->get_icon( $bookmarked );
+			$content     = $this->get_content( $bookmarked );
 
 			if ( $bookmarked ) {
 				$class = $class . ' is-active';
@@ -48,7 +48,7 @@ if ( ! class_exists( 'ChipmunkBookmarks' ) ) :
 				$title = esc_html__( 'Bookmark', 'chipmunk' );
 			}
 
-			$button = "<button type='button' class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$icon</button>";
+			$button = "<button type='button' class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$content</button>";
 			return $button;
 		}
 
@@ -73,7 +73,7 @@ if ( ! class_exists( 'ChipmunkBookmarks' ) ) :
 			}
 
 			$response['post'] = $this->post_id;
-			$response['icon'] = $this->get_icon( ! $bookmarked );
+			$response['content'] = $this->get_content( ! $bookmarked );
 
 			return $response;
 		}
@@ -88,20 +88,18 @@ if ( ! class_exists( 'ChipmunkBookmarks' ) ) :
 		}
 
 		/**
-		 * Retrieves proper icon template
+		 * Retrieves proper content template
 		 *
 		 * @param  boolean  $active
 		 *
 		 * @return string
 		 */
-		private function get_icon( $active ) {
-			ob_start();
+		private function get_content( $active ) {
+			$params = array( 'icon' => 'pocket' );
+			$icon = chipmunk_get_template( 'partials/icon', $params, false );
+			$label = $active ? __( 'Bookmarked', 'chipmunk' ) : __( 'Bookmark', 'chipmunk' );
 
-			$params = array( 'icon' => 'heart-empty' );
-
-			chipmunk_get_template( 'partials/icon', $params );
-
-			return ob_get_clean();
+			return '<span>' . $icon . ( $label ) . '</span>';
 		}
 
 		/**

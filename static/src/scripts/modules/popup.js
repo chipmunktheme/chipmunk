@@ -29,7 +29,7 @@ const Popup = {
 
   closePopup() {
     // Remove location hash
-    history.pushState(null, null, location.pathname);
+    history.pushState(null, null, location.pathname + location.search);
   },
 
   hashHandler() {

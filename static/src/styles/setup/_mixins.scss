@@ -16,11 +16,15 @@
 ** Add loading indicator
 **/
 @mixin loader($size: 1em) {
+  > span {
+    transition: opacity $transition-duration;
+  }
+
   &.is-loading {
     position: relative;
 
     > span {
-      color: transparent;
+      opacity: 0;
     }
 
     &::after {

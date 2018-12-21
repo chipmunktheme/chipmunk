@@ -109,7 +109,7 @@ const Actions = {
 
         [].forEach.call(targets, target => {
           target.classList.toggle('is-active', data.status === 'bookmarked');
-          target.innerHTML = data.icon;
+          target.innerHTML = data.content;
         });
       } else {
         const loginUrl = document.body.dataset.loginUrl;
@@ -139,7 +139,7 @@ const Actions = {
           element.insertAdjacentHTML('beforeend', data);
           trigger.dataset.page = parseInt(trigger.dataset.page) + 1;
         } else {
-          trigger.parentNode.insertAdjacentHTML('beforeend', `<p class="text_center">${data}</p>`);
+          trigger.parentNode.insertAdjacentHTML('beforeend', `<p class="text--content">${data}</p>`);
           trigger.parentNode.removeChild(trigger);
         }
 

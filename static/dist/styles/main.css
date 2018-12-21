@@ -1387,6 +1387,10 @@ input[type="submit"]:focus {
 .row_separated > .column {
   margin-top: 4rem;
 }
+.container .container {
+  padding-left: 0;
+  padding-right: 0;
+}
 /*
 ** Vendor - Parsley
 ** -----------------------------------------------------------------------------*/
@@ -1756,11 +1760,14 @@ input:checked + .u-checkbox__mark .icon {
 /*
 ** Utils - Loader
 ** -----------------------------------------------------------------------------*/
+.loader > span {
+  transition: opacity 0.25s;
+}
 .loader.is-loading {
   position: relative;
 }
 .loader.is-loading > span {
-  color: transparent;
+  opacity: 0;
 }
 .loader.is-loading::after {
   position: absolute;
@@ -2399,6 +2406,9 @@ input:checked + .u-checkbox__mark .icon {
 }
 .content form:first-child {
   margin-top: 0;
+}
+.content__component {
+  font-size: 1.6rem;
 }
 /*
 ** Module - Entry
@@ -3941,7 +3951,7 @@ input:checked + .u-checkbox__mark .icon {
   margin-top: 1rem;
 }
 .stats__item:not(:last-child) {
-  margin-right: 2rem;
+  margin-right: 1.5rem;
 }
 .stats__item a:hover {
   opacity: 0.8;
@@ -3955,6 +3965,10 @@ input:checked + .u-checkbox__mark .icon {
 }
 .stats__item .icon.icon--arrow-up {
   font-size: 1.2rem;
+}
+.stats__item .icon.icon--pocket {
+  -webkit-transform: translateY(0.05em);
+          transform: translateY(0.05em);
 }
 .stats__item--sided {
   flex-grow: 1;
@@ -3973,11 +3987,14 @@ input:checked + .u-checkbox__mark .icon {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
+.stats__button > span {
+  transition: opacity 0.25s;
+}
 .stats__button.is-loading {
   position: relative;
 }
 .stats__button.is-loading > span {
-  color: transparent;
+  opacity: 0;
 }
 .stats__button.is-loading::after {
   position: absolute;
@@ -3997,10 +4014,6 @@ input:checked + .u-checkbox__mark .icon {
           animation: button-spin 0.6s linear;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
-}
-.stats__button:hover {
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
 }
 .stats__button:not(.is-active):hover {
   color: #F38181;
@@ -4332,9 +4345,6 @@ input:checked + .u-checkbox__mark .icon {
 }
 .tile__status--publish {
   background-color: #4F8A10;
-}
-.tile__status--pending {
-  background-color: #9F6000;
 }
 .tile__status--trash {
   background-color: #F74444;
