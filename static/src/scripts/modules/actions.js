@@ -53,6 +53,7 @@ const Actions = {
       // Disable the current trigger
       trigger.setAttribute('disabled', true);
 
+      // Loop through the actions provided
       actions.forEach(action => {
         const formData = new FormData(trigger.hasAttribute('action') ? trigger : document.createElement('form'));
 
@@ -72,14 +73,16 @@ const Actions = {
       axios.all(requests)
         .then(axios.spread((...args) => {
           args.forEach((arg, index) => {
-            setTimeout(() => actions[index].callback(trigger, arg.data, actions[index].data.action), 0);
+            setTimeout(() => {
+              actions[index].callback(trigger, arg.data, actions[index].data.action);
+
+              // Disable loading indicator
+              trigger.classList.remove('is-loading');
+
+              // Enable the current trigger
+              trigger.removeAttribute('disabled');
+            }, 250);
           });
-
-          // Disable loading indicator
-          trigger.classList.remove('is-loading');
-
-          // Enable the current trigger
-          trigger.removeAttribute('disabled');
         }));
     }
   },

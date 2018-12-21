@@ -1,5 +1,3 @@
-const $ = require('jquery');
-
 const ViewTrigger = {
   options: { threshold: [1] },
 
@@ -19,7 +17,7 @@ const ViewTrigger = {
         const event = entry.target.dataset.viewTrigger;
 
         if (entry && entry.isIntersecting) {
-          $(trigger).trigger(event);
+          trigger.dispatchEvent(new Event(event));
         }
       }
     }, this.options);
