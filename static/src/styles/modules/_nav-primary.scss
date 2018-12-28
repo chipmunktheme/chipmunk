@@ -85,11 +85,6 @@
 
     @include breakpoint(lg) {
       margin-top: 0;
-      font-size: 0.9em;
-    }
-
-    li {
-      padding: 0.25em 0;
     }
   }
 }
