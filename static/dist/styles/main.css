@@ -2923,7 +2923,12 @@ input:checked + .u-checkbox__mark .icon {
   justify-content: space-between;
 }
 .form__field:not(:first-child), .content form > div:not(:first-child) {
-  margin-top: 3rem;
+  margin-top: 2rem;
+}
+@media (min-width: 680px) {
+  .form__field:not(:first-child), .content form > div:not(:first-child) {
+    margin-top: 3rem;
+  }
 }
 .form__field:last-child, .content form > div:last-child {
   align-items: center;
@@ -2944,7 +2949,12 @@ input:checked + .u-checkbox__mark .icon {
   width: 100%;
 }
 .form__child:not(:first-child) {
-  margin-top: 3rem;
+  margin-top: 2rem;
+}
+@media (min-width: 680px) {
+  .form__child:not(:first-child) {
+    margin-top: 3rem;
+  }
 }
 @media (min-width: 680px) {
   .form__child {

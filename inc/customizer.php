@@ -285,6 +285,13 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => false,
 						),
 						array(
+							'name'        => 'disable_bookmarks',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Disable bookmarking', 'chipmunk' ),
+							'default'     => false,
+							'restrict'    => 'members',
+						),
+						array(
 							'name'        => 'disable_sorting',
 							'type'        => 'checkbox',
 							'label'       => esc_html__( 'Disable sorting', 'chipmunk' ),
@@ -301,6 +308,13 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'type'        => 'checkbox',
 							'label'       => esc_html__( 'Disable sharing', 'chipmunk' ),
 							'default'     => false,
+						),
+						array(
+							'name'        => 'restrict_guest_upvotes',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Restrict guest upvoting', 'chipmunk' ),
+							'default'     => false,
+							'restrict'    => 'members',
 						),
 						array(
 							'name'        => 'default_sort_by',

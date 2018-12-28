@@ -27,7 +27,7 @@ if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
 			global $current_user;
 
 			$this->post_id = intval( wp_filter_kses( $post_id ) );
-			$this->user_id = ! empty( $current_user->ID ) ? $current_user->ID : chipmunk_get_ip();
+			$this->user_id = ! empty( $current_user->ID ) ? $current_user->ID : ( chipmunk_has_plugin( 'members' ) && chipmunk_theme_option( 'restrict_guest_upvotes' ) ? null : chipmunk_get_ip() );
 		}
 
 		/**

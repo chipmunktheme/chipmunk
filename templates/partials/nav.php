@@ -61,13 +61,9 @@
 	<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
 		<li class="nav-primary__item nav-primary__item--condensed hidden-lg">
 			<?php if ( is_user_logged_in() ) : ?>
-				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'dashboard' ) ); ?>" class="button button--secondary">
-					<?php esc_html_e( 'Dashboard', 'chipmunk' ); ?>
-				</a>
-
-				<a href="<?php echo esc_url( wp_logout_url() ); ?>" class="button button--secondary">
-					<?php esc_html_e( 'Logout', 'chipmunk' ); ?>
-				</a>
+				<button type="button" class="button button--secondary" data-popup="#submit">
+					<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
+				</button>
 			<?php else : ?>
 				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'login' ) ); ?>" class="button button--secondary">
 					<?php esc_html_e( 'Login', 'chipmunk' ); ?>

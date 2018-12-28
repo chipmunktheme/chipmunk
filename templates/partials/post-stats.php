@@ -4,7 +4,7 @@ global $wp_query;
 $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'category' : 'resource-collection' ) );
 ?>
 
-<?php if ( isset( $args ) and $args['display'] and $collections ) : ?>
+<?php if ( isset( $args ) && $args['display'] && $collections ) : ?>
 	<li class="stats__item">
 		<?php chipmunk_get_template( 'partials/post-terms', array( 'terms' => $collections, 'args' => $args ) ); ?>
 	</li>
@@ -26,7 +26,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 	</li>
 <?php endif; ?>
 
-<?php if ( ! chipmunk_theme_option( 'disable_upvotes' ) and get_post_type() == 'resource' ) : ?>
+<?php if ( ! chipmunk_theme_option( 'disable_upvotes' ) && get_post_type() == 'resource' ) : ?>
 	<?php $upvotes = new ChipmunkUpvotes( get_the_ID() ); ?>
 	<?php $upvote_button = $upvotes->get_button( 'toggle_upvote', 'stats__button' ); ?>
 	<?php $upvote_counter = $upvotes->get_content(); ?>
@@ -42,7 +42,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 	<?php endif; ?>
 <?php endif; ?>
 
-<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
+<?php if ( chipmunk_has_plugin( 'members' ) && ! chipmunk_theme_option( 'disable_bookmarks' ) && get_post_type() == 'resource' ) : ?>
 	<?php if ( ( is_singular( 'resource' ) && $wp_query->current_post == 0 ) or is_search() ) : ?>
 		<li class="stats__item">
 			<?php echo ( new ChipmunkBookmarks( get_the_ID() ) )->get_button( 'toggle_bookmark', 'stats__button' ); ?>
