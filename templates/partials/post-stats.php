@@ -27,10 +27,11 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 <?php endif; ?>
 
 <?php if ( ! chipmunk_theme_option( 'disable_upvotes' ) and get_post_type() == 'resource' ) : ?>
-	<?php $upvote_button = chipmunk_upvote_button( get_the_ID(), 'stats__button' ); ?>
-	<?php $upvote_counter = chipmunk_upvote_counter( get_the_ID() ); ?>
+	<?php $upvotes = new ChipmunkUpvotes( get_the_ID() ); ?>
+	<?php $upvote_button = $upvotes->get_button( 'toggle_upvote', 'stats__button' ); ?>
+	<?php $upvote_counter = $upvotes->get_content(); ?>
 
-	<?php if ( is_singular( 'resource' ) or is_search() ) : ?>
+	<?php if ( ( is_singular( 'resource' ) && $wp_query->current_post == 0 ) or is_search() ) : ?>
 		<li class="stats__item"><?php echo $upvote_button; ?></li>
 	<?php else : ?>
 		<?php if ( chipmunk_theme_option( 'display_resource_as' ) != 'tile' ) : ?>
@@ -42,7 +43,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 <?php endif; ?>
 
 <?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
-	<?php if ( is_singular( 'resource' ) or is_search() ) : ?>
+	<?php if ( ( is_singular( 'resource' ) && $wp_query->current_post == 0 ) or is_search() ) : ?>
 		<li class="stats__item">
 			<?php echo ( new ChipmunkBookmarks( get_the_ID() ) )->get_button( 'toggle_bookmark', 'stats__button' ); ?>
 		</li>

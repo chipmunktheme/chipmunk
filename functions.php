@@ -21,10 +21,10 @@ require_once THEME_TEMPLATE_DIR . '/inc/config.php';
 require_once THEME_TEMPLATE_DIR . '/inc/assets.php';
 require_once THEME_TEMPLATE_DIR . '/inc/meta-boxes.php';
 require_once THEME_TEMPLATE_DIR . '/inc/views.php';
-require_once THEME_TEMPLATE_DIR . '/inc/upvotes.php';
 require_once THEME_TEMPLATE_DIR . '/inc/shortcodes.php';
 require_once THEME_TEMPLATE_DIR . '/inc/ajax.php';
 require_once THEME_TEMPLATE_DIR . '/inc/submission.php';
+require_once THEME_TEMPLATE_DIR . '/inc/upvotes.php';
 require_once THEME_TEMPLATE_DIR . '/inc/bookmarks.php';
 
 

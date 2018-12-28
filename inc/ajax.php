@@ -35,6 +35,19 @@ add_action( 'wp_ajax_chipmunk_toggle_bookmark', 'chipmunk_toggle_bookmark' );
 add_action( 'wp_ajax_nopriv_chipmunk_toggle_bookmark', 'chipmunk_toggle_bookmark' );
 
 
+if ( ! function_exists( 'chipmunk_toggle_upvote' ) ) :
+	/**
+	 * Process upvote callback
+	 */
+	function chipmunk_toggle_upvote() {
+        $upvotes = new ChipmunkUpvotes( $_REQUEST['actionPostId'] );
+		$upvotes->process();
+	}
+endif;
+add_action( 'wp_ajax_chipmunk_toggle_upvote', 'chipmunk_toggle_upvote' );
+add_action( 'wp_ajax_nopriv_chipmunk_toggle_upvote', 'chipmunk_toggle_upvote' );
+
+
 if ( ! function_exists( 'chipmunk_submit_upvote' ) ) :
 	/**
 	 * Process upvote callback

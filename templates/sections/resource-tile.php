@@ -66,5 +66,5 @@
 				?>
 			</ul>
 		<?php endif; ?>
-				</div>
+	</div>
 </<?php echo get_post_status() == 'publish' ? 'a' : 'article'; ?>>

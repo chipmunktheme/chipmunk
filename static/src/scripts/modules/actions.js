@@ -85,6 +85,25 @@ const Actions = {
     }
   },
 
+  handlers: {
+    toggle: (trigger, { success, data }, action) => {
+      if (success) {
+        var targets = document.querySelectorAll(`[data-action="${action}"][data-action-post-id="${data.post}"]`);
+
+        [].forEach.call(targets, target => {
+          target.classList[data.status]('is-active');
+          target.innerHTML = data.content;
+        });
+      } else {
+        const loginUrl = document.body.dataset.loginUrl;
+
+        if (loginUrl) {
+          window.location = loginUrl;
+        }
+      }
+    },
+  },
+
   callbacks: {
     submit_resource: (trigger, { success, data }, action) => {
       const element = trigger.querySelector(`[data-action-element=${action}]`);
@@ -97,23 +116,6 @@ const Actions = {
 
         if (success) {
           element.style.display = 'none';
-        }
-      }
-    },
-
-    toggle_bookmark: (trigger, { success, data }) => {
-      if (success) {
-        var targets = document.querySelectorAll(`[data-action-post-id="${data.post}"]`);
-
-        [].forEach.call(targets, target => {
-          target.classList.toggle('is-active', data.status === 'bookmarked');
-          target.innerHTML = data.content;
-        });
-      } else {
-        const loginUrl = document.body.dataset.loginUrl;
-
-        if (loginUrl) {
-          window.location = loginUrl;
         }
       }
     },
@@ -144,6 +146,14 @@ const Actions = {
         // Rebind actions listeners
         Actions.init(element);
       }
+    },
+
+    toggle_bookmark: (trigger, response, action) => {
+      Actions.handlers.toggle(trigger, response, action);
+    },
+
+    toggle_upvote: (trigger, response, action) => {
+      Actions.handlers.toggle(trigger, response, action);
     },
   },
 };

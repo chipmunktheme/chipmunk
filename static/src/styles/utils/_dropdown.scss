@@ -31,7 +31,7 @@
 }
 
 .dropdown__item {
-  padding: 0.25em 0;
+  padding: 0.25rem 0;
 
   @include breakpoint(lg) {
     white-space: nowrap;

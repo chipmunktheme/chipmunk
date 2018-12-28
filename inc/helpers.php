@@ -593,7 +593,7 @@ if ( ! function_exists( 'chipmunk_display_term_list' ) ) :
 		$count = count( $terms );
 
 		if ( $args['quantity'] > 0 && $args['quantity'] < $count ) {
-			shuffle( $terms );
+			// shuffle( $terms );
 		}
 
 		foreach ( $terms as $key => $term ) {

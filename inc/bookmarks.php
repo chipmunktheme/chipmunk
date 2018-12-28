@@ -63,13 +63,13 @@ if ( ! class_exists( 'ChipmunkBookmarks' ) ) :
 			// Remove bookmark from the post
 			if ( $bookmarked ) {
 				delete_post_meta( $this->post_id, self::$db_key, $this->user_id );
-				$response['status'] = 'unbookmarked';
+				$response['status'] = 'remove';
 			}
 
 			// Bookmark the post
 			else {
 				add_post_meta( $this->post_id, self::$db_key, $this->user_id );
-				$response['status'] = 'bookmarked';
+				$response['status'] = 'add';
 			}
 
 			$response['post'] = $this->post_id;
