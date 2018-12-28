@@ -120,17 +120,6 @@ const Actions = {
       }
     },
 
-    submit_upvote: (trigger, { success, data }) => {
-      if (success) {
-        var targets = document.querySelectorAll(`[data-post-id="${data.post}"]`);
-
-        [].forEach.call(targets, (target) => {
-          target.innerHTML = data.counter;
-          target.classList.toggle('is-active', data.status === 'upvoted');
-        });
-      }
-    },
-
     load_posts: (trigger, { success, data }, action) => {
       const element = document.querySelector(`[data-action-element=${action}]`);
 

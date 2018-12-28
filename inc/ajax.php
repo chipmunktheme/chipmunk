@@ -22,50 +22,6 @@ add_action( 'wp_ajax_chipmunk_submit_resource', 'chipmunk_submit_resource' );
 add_action( 'wp_ajax_nopriv_chipmunk_submit_resource', 'chipmunk_submit_resource' );
 
 
-if ( ! function_exists( 'chipmunk_toggle_bookmark' ) ) :
-    /**
-     * Process bookmark callback
-     */
-    function chipmunk_toggle_bookmark() {
-        $bookmarks = new ChipmunkBookmarks( $_REQUEST['actionPostId'] );
-        $bookmarks->process();
-    }
-endif;
-add_action( 'wp_ajax_chipmunk_toggle_bookmark', 'chipmunk_toggle_bookmark' );
-add_action( 'wp_ajax_nopriv_chipmunk_toggle_bookmark', 'chipmunk_toggle_bookmark' );
-
-
-if ( ! function_exists( 'chipmunk_toggle_upvote' ) ) :
-	/**
-	 * Process upvote callback
-	 */
-	function chipmunk_toggle_upvote() {
-        $upvotes = new ChipmunkUpvotes( $_REQUEST['actionPostId'] );
-		$upvotes->process();
-	}
-endif;
-add_action( 'wp_ajax_chipmunk_toggle_upvote', 'chipmunk_toggle_upvote' );
-add_action( 'wp_ajax_nopriv_chipmunk_toggle_upvote', 'chipmunk_toggle_upvote' );
-
-
-if ( ! function_exists( 'chipmunk_submit_upvote' ) ) :
-	/**
-	 * Process upvote callback
-	 */
-	function chipmunk_submit_upvote() {
-		// Get post ID
-		$post_id = ( isset( $_REQUEST['postId'] ) && is_numeric( $_REQUEST['postId'] ) ) ? intval( wp_filter_kses( $_REQUEST['postId'] ) ) : null;
-
-		if ( $post_id ) {
-			// Process the user upvote
-			chipmunk_process_upvote( $post_id );
-		}
-	}
-endif;
-add_action( 'wp_ajax_chipmunk_submit_upvote', 'chipmunk_submit_upvote' );
-add_action( 'wp_ajax_nopriv_chipmunk_submit_upvote', 'chipmunk_submit_upvote' );
-
-
 if ( ! function_exists( 'chipmunk_load_posts' ) ) :
 	/**
 	 * Form callback
@@ -99,3 +55,29 @@ if ( ! function_exists( 'chipmunk_load_posts' ) ) :
 endif;
 add_action( 'wp_ajax_chipmunk_load_posts', 'chipmunk_load_posts' );
 add_action( 'wp_ajax_nopriv_chipmunk_load_posts', 'chipmunk_load_posts' );
+
+
+if ( ! function_exists( 'chipmunk_toggle_bookmark' ) ) :
+    /**
+     * Process bookmark callback
+     */
+    function chipmunk_toggle_bookmark() {
+        $bookmarks = new ChipmunkBookmarks( $_REQUEST['actionPostId'] );
+        $bookmarks->process();
+    }
+endif;
+add_action( 'wp_ajax_chipmunk_toggle_bookmark', 'chipmunk_toggle_bookmark' );
+add_action( 'wp_ajax_nopriv_chipmunk_toggle_bookmark', 'chipmunk_toggle_bookmark' );
+
+
+if ( ! function_exists( 'chipmunk_toggle_upvote' ) ) :
+	/**
+	 * Process upvote callback
+	 */
+	function chipmunk_toggle_upvote() {
+        $upvotes = new ChipmunkUpvotes( $_REQUEST['actionPostId'] );
+		$upvotes->process();
+	}
+endif;
+add_action( 'wp_ajax_chipmunk_toggle_upvote', 'chipmunk_toggle_upvote' );
+add_action( 'wp_ajax_nopriv_chipmunk_toggle_upvote', 'chipmunk_toggle_upvote' );
