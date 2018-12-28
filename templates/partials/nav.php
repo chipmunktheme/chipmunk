@@ -41,7 +41,7 @@
 					<?php endif; ?>
 				<?php endforeach; ?>
 
-				<li class="nav-primary__item<?php echo ( $is_active ? ' nav-primary__item--active' : '' ); ?><?php echo ( ! empty( $children ) ? ' dropdown__trigger' : '' ); ?>">
+				<li class="nav-primary__item<?php echo ( $is_active ? ' nav-primary__item--active' : '' ); ?><?php echo ( ! empty( $children ) ? ' dropdown__trigger' : '' ); ?>"<?php echo ( ! empty( $children ) ? ' data-dropdown' : '' ); ?>>
 					<a href="<?php echo $menu_item->url; ?>"<?php echo ( ! empty( $menu_item->target ) ? ' target="' . $menu_item->target . '"' : ''); ?>><?php echo $menu_item->title; ?></a>
 
 					<?php if ( ! empty( $children ) ) : ?>

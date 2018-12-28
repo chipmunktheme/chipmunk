@@ -1,0 +1,22 @@
+/*
+** Module - Nav toolbox
+** -----------------------------------------------------------------------------*/
+
+.nav-toolbox {
+  &:not(:first-child) {
+    margin-left: 1.5rem;
+  }
+}
+
+.nav-toolbox__dropdown {
+  display: flex;
+  align-items: center;
+
+  .icon {
+    margin-left: 0.25em;
+
+    .is-open & {
+      transform: scale(-1);
+    }
+  }
+}

@@ -9,7 +9,7 @@
   margin-top: 1.5em;
   overflow: hidden;
 
-  &:hover {
+  &[href]:hover {
     .tile__copy .icon {
       transform: translateX(1rem);
     }
@@ -35,7 +35,7 @@
       display: none;
     }
 
-    &:hover {
+    &[href]:hover {
       background-color: rgba($color-white, 0.5);
     }
 
@@ -52,7 +52,7 @@
       margin-bottom: $separator * 2;
     }
 
-    &:hover {
+    &[href]:hover {
       background-color: transparent;
     }
 

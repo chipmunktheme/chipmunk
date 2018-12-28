@@ -1,0 +1,29 @@
+/*
+** Module - Nav secondary
+** -----------------------------------------------------------------------------*/
+
+.nav-secondary {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.nav-secondary__item {
+  position: relative;
+}
+
+.nav-secondary__link {
+  &[href]:hover,
+  &[title]:hover {
+    color: $color-black;
+  }
+}
+
+.nav-toolbox__dropdown {
+  .u-icon {
+    margin-left: 0.5em;
+
+    .is-open & {
+      transform: scale(-1);
+    }
+  }
+}

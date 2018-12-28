@@ -8,7 +8,7 @@
 
 get_header(); ?>
 
-	<div class="section section--double">
+	<div class="section">
 		<div class="container">
 			<div class="error-404 row">
 				<div class="column column--lg-6 text--center">
@@ -18,7 +18,7 @@ get_header(); ?>
 
 				<div class="column column--lg-6">
 					<div class="error-404__image">
-						<img src="<?php echo get_template_directory_uri(); ?>/static/dist/images/pic-404.png" alt="" />
+						<img src="<?php echo get_template_directory_uri(); ?>/static/dist/images/pic-404.svg" alt="" />
 					</div>
 				</div>
 			</div>

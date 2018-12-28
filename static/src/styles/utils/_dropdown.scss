@@ -3,50 +3,31 @@
 ** -----------------------------------------------------------------------------*/
 
 .dropdown {
-  @include breakpoint(lg) {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    z-index: $layer-dropdown;
-    padding: 0.25em 1em;
-    background-color: $color-white;
-    border: 1px solid $color-gray-light;
-    box-shadow: 0 1px 2px 1px rgba($color-black, 0.05);
-    opacity: 0;
-    pointer-events: none;
-    text-align: center;
-    transform: translate3d(-50%, 20px, 0);
-    transition: opacity $transition-duration, transform $transition-duration;
+  [data-dropdown] ~ & {
+    @include dropdown;
+  }
 
-    .dropdown__trigger:hover > & {
-      opacity: 1;
-      pointer-events: all;
-      transform: translate3d(-50%, 0, 0);
+  [data-dropdown] > & {
+    @include breakpoint(lg) {
+      @include dropdown;
+    }
+  }
+
+  .is-open [data-dropdown] ~ & {
+    @include dropdown-open;
+  }
+
+  .is-open[data-dropdown] > & {
+    @include breakpoint(lg) {
+      @include dropdown-open(true);
     }
   }
 }
 
 .dropdown__trigger {
-  @include breakpoint(lg) {
-    position: relative;
-    margin-bottom: -0.75rem;
-
-    > a {
-      padding-bottom: 0.75rem;
-
-      &::after {
-        content: '';
-        display: inline-block;
-        margin-left: 0.5em;
-        width: 0;
-        height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 5px solid currentColor;
-        vertical-align: middle;
-      }
-    }
-  }
+  position: relative;
+  padding-bottom: 0.75rem;
+  margin-bottom: -0.75rem;
 }
 
 .dropdown__item {

@@ -13,6 +13,55 @@
 }
 
 /*
+** Dropdown
+**/
+@mixin dropdown() {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: $layer-dropdown;
+  padding: 0.25em 1em;
+  background-color: $color-white;
+  border: 1px solid $color-gray-light;
+  box-shadow: 0 1px 2px 1px rgba($color-black, 0.05);
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  transform: translate3d(-50%, 2rem, 0);
+  transition: opacity $transition-duration, transform $transition-duration;
+
+  &--left,
+  &--right {
+    transform: translate3d(0, 2rem, 0);
+  }
+
+  &--left {
+    left: 0;
+    text-align: left;
+  }
+
+  &--right {
+    left: auto;
+    right: 0;
+    text-align: right;
+  }
+}
+/*
+** Dropdown open
+**/
+@mixin dropdown-open($center: false) {
+  opacity: 1;
+  pointer-events: all;
+
+  @if ($center) {
+    transform: translate3d(-50%, 0, 0);
+  }
+  @else {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/*
 ** Add loading indicator
 **/
 @mixin loader($size: 1em) {

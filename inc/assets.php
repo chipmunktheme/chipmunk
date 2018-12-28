@@ -109,7 +109,7 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 					background-color: $section_color;
 				}
 
-				.tile--card:not(.tile--blank):hover {
+				.tile--card:not(.tile--blank)[href]:hover {
 					background-color: rgba($section_color_rgb, 0.5);
 				}
 			";

@@ -39,13 +39,25 @@
 
 				<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
 					<?php if ( is_user_logged_in() ) : ?>
-						<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'dashboard' ) ); ?>" class="button button--secondary visible-lg-block">
-							<?php esc_html_e( 'Dashboard', 'chipmunk' ); ?>
-						</a>
+						<?php $current_user = wp_get_current_user(); ?>
 
-						<a href="<?php echo esc_url( wp_logout_url() ); ?>" class="button button--secondary visible-lg-block">
-							<?php esc_html_e( 'Logout', 'chipmunk' ); ?>
-						</a>
+						<div class="nav-toolbox dropdown__trigger u-dropdown__trigger">
+							<button class="nav-toolbox__dropdown" data-dropdown="click">
+								<div class="u-avatar">
+									<?php echo get_avatar( $current_user->ID, 64 ); ?>
+								</div>
+
+								<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-down', 'size' => 'sm' ) ); ?>
+							</button>
+
+							<div class="dropdown dropdown--right">
+								<ul class="nav-secondary">
+									<li class="nav-secondary__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'dashboard' ) ); ?>" class="nav-secondary__link"><?php esc_html_e( 'Dashboard', 'chipmunk' ); ?></a></li>
+									<li class="nav-secondary__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'profile' ) ); ?>" class="nav-secondary__link"><?php esc_html_e( 'Profile', 'chipmunk' ); ?></a></li>
+									<li class="nav-secondary__item"><a href="<?php echo esc_url( wp_logout_url() ); ?>" class="nav-secondary__link"><?php esc_html_e( 'Logout', 'chipmunk' ); ?></a></li>
+								</ul>
+							</div>
+						</div>
 					<?php else : ?>
 						<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'login' ) ); ?>" class="button button--secondary visible-lg-block">
 							<?php esc_html_e( 'Login', 'chipmunk' ); ?>

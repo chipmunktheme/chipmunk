@@ -7,6 +7,7 @@
 import 'custom-event-polyfill';
 
 import toggle from './modules/toggle';
+import dropdown from './modules/dropdown';
 import popup from './modules/popup';
 import validate from './modules/validate';
 import filter from './modules/filter';
@@ -20,8 +21,11 @@ import animations from './modules/animations';
 import extras from './modules/extras';
 import actions from './modules/actions';
 
+import panels from './utils/panels';
+
 (function () {
   toggle.init();
+  dropdown.init();
   popup.init();
   validate.init();
   filter.init();
@@ -34,28 +38,7 @@ import actions from './modules/actions';
   animations.init();
   extras.init();
   actions.init();
+
+  // Utils
+  panels.init();
 })();
-
-window.closePanels = () => {
-  const bodyClasses = ['has-nav-open', 'has-search-open', 'has-popup-open'];
-
-  document.body.classList.remove(...bodyClasses);
-  window.dispatchEvent(new Event('panels:close'));
-};
-
-const listener = ev => {
-  const pattern = /popup($|\s)/;
-
-  if (pattern.test(ev.target.className)) {
-    window.closePanels();
-  }
-};
-
-document.addEventListener('keyup', ev => {
-  if (ev.keyCode === 27) {
-    window.closePanels();
-  }
-});
-
-document.addEventListener('click', listener);
-document.addEventListener('touchend', listener);

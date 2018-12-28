@@ -115,6 +115,7 @@
 }
 
 .form__child {
+  align-self: flex-start;
   width: 100%;
 
   &:not(:first-child) {
