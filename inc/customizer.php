@@ -11,10 +11,6 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 	 * Create a Customizer class
 	 */
 	class ChipmunkCustomizer {
-		// Define settings access
-		private $capability = 'edit_theme_options';
-		private $settings_name = 'chipmunk_settings';
-
 		/**
 		 * An array of Customzer sections
 		 * @var array
@@ -22,11 +18,63 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 		private $sections;
 
 		/**
-		 * An array of social profiles
+		 * Define settings access
+		 * @var string
+		 */
+		private $capability = 'edit_theme_options';
+
+		/**
+		 * Define settings name
+		 * @var string
+		 */
+		private $settings_name = 'chipmunk_settings';
+
+		/**
+		 * An array of available social profiles
 		 * @var array
 		 */
-		private $socials;
+		private $socials = array(
+			'Twitter',
+			'Facebook',
+			'Google',
+			'Instagram',
+			'LinkedIn',
+			'Pinterest',
+			'Flickr',
+			'Vimeo',
+			'YouTube',
+			'Reddit',
+			'Medium',
+			'ProductHunt',
+			'IndieHackers',
+			'Telegram',
+			'Discord',
+			'Email',
+		);
 
+		/**
+		 * An array of available Google fonts
+		 * @var array
+		 */
+		private $google_fonts = array(
+			'Poppins'         => 'Poppins',
+			'Roboto'          => 'Roboto',
+			'Open Sans'       => 'Open Sans',
+			'Lato'            => 'Lato',
+			'Source Sans Pro' => 'Source Sans Pro',
+			'Montserrat'      => 'Montserrat',
+			'Raleway'         => 'Raleway',
+			'PT Sans'         => 'PT Sans',
+			'Lora'            => 'Lora',
+			'Karla'           => 'Karla',
+			'Ubuntu'          => 'Ubuntu',
+			'Droid Sans'      => 'Droid Sans',
+			'Nunito Sans'     => 'Nunito Sans',
+		);
+
+		/**
+		 * Class constructor
+		 */
 		public function __construct() {
 			$this->sections = array(
 				array(
@@ -81,44 +129,14 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'type'        => 'select',
 							'label'       => esc_html__( 'Primary Font', 'chipmunk' ),
 							'default'     => 'Poppins',
-							'choices'     => array(
-								'System'          => esc_html__( 'System font', 'chipmunk' ),
-								'Poppins'         => 'Poppins',
-								'Roboto'          => 'Roboto',
-								'Open Sans'       => 'Open Sans',
-								'Lato'            => 'Lato',
-								'Source Sans Pro' => 'Source Sans Pro',
-								'Montserrat'      => 'Montserrat',
-								'Raleway'         => 'Raleway',
-								'PT Sans'         => 'PT Sans',
-								'Lora'            => 'Lora',
-								'Karla'           => 'Karla',
-								'Ubuntu'          => 'Ubuntu',
-								'Droid Sans'      => 'Droid Sans',
-								'Nunito Sans'     => 'Nunito Sans',
-							),
+							'choices'     => array_merge( array( 'System' => esc_html__( 'System font', 'chipmunk' ) ), $this->get_google_fonts() ),
 						),
 						array(
-							'name'        => 'heading--font',
+							'name'        => 'heading_font',
 							'type'        => 'select',
 							'label'       => esc_html__( 'Heading Font', 'chipmunk' ),
 							'default'     => 'Poppins',
-							'choices'     => array(
-								'System'          => esc_html__( 'System font', 'chipmunk' ),
-								'Poppins'         => 'Poppins',
-								'Roboto'          => 'Roboto',
-								'Open Sans'       => 'Open Sans',
-								'Lato'            => 'Lato',
-								'Source Sans Pro' => 'Source Sans Pro',
-								'Montserrat'      => 'Montserrat',
-								'Raleway'         => 'Raleway',
-								'PT Sans'         => 'PT Sans',
-								'Lora'            => 'Lora',
-								'Karla'           => 'Karla',
-								'Ubuntu'          => 'Ubuntu',
-								'Droid Sans'      => 'Droid Sans',
-								'Nunito Sans'     => 'Nunito Sans',
-							),
+							'choices'     => array_merge( array( 'System' => esc_html__( 'System font', 'chipmunk' ) ), $this->get_google_fonts() ),
 						),
 						array(
 							'name'        => 'custom_css',
@@ -595,25 +613,6 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 				),
 			);
 
-			$this->socials = array(
-				'Twitter',
-				'Facebook',
-				'Google',
-				'Instagram',
-				'LinkedIn',
-				'Pinterest',
-				'Flickr',
-				'Vimeo',
-				'YouTube',
-				'Reddit',
-				'Medium',
-				'ProductHunt',
-				'IndieHackers',
-				'Telegram',
-				'Discord',
-				'Email',
-			);
-
 			add_action( 'customize_register', array( $this, 'customize_register' ) );
 		}
 
@@ -648,7 +647,14 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 		 * Get social list
 		 */
 		public function get_socials() {
-			return $this->socials;
+			return apply_filters( 'chipmunk_socials', $this->socials );
+		}
+
+		/**
+		 * Get Google fonts list
+		 */
+		public function get_google_fonts() {
+			return apply_filters( 'chipmunk_google_fonts', $this->google_fonts );
 		}
 
 		/**
@@ -698,7 +704,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 		 * Register social profile settings
 		 */
 		private function register_socials() {
-			foreach( $this->socials as $social ) {
+			foreach( $this->get_socials() as $social ) {
 				$this->register_social( $social );
 			}
 		}
@@ -737,6 +743,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 				'type'        => 'option',
 				'default'     => ! empty( $field['default'] ) ? $field['default'] : null,
 			);
+
 			$control_args = array(
 				'label'       => $field['label'],
 				'section'     => $section['slug'],

@@ -1,12 +1,12 @@
 const Panels = {
-  event: new Event('panels:close'),
+  event: new CustomEvent('panels:close'),
 
   init() {
     window.closePanels = () => {
       const bodyClasses = ['has-nav-open', 'has-search-open', 'has-popup-open'];
 
       document.body.classList.remove(...bodyClasses);
-      document.dispatchEvent(this.event);
+      window.dispatchEvent(this.event);
     };
 
     const listener = ev => {

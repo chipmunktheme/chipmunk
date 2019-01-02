@@ -727,10 +727,10 @@ if ( ! function_exists( 'chipmunk_get_fonts_url' ) ) :
 	/**
 	 * Parse Google Fonts url
 	 */
-	function chipmunk_get_fonts_url( $font_names = array() ) {
+	function chipmunk_get_fonts_url( $fonts = array() ) {
 		$font_families = array();
 
-		foreach ( $font_names as $font ) {
+		foreach ( $fonts as $font ) {
 			if ( ! array_key_exists( $font, $font_families ) ) {
 				$font_families[$font] = "{$font}:400,700";
 			}

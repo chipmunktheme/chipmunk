@@ -148,20 +148,21 @@ if ( ! function_exists( 'chipmunk_google_fonts' ) ) :
 	 * Enqueue Google Fonts styles
 	 */
 	function chipmunk_google_fonts() {
-		$font_names = array();
+		$fonts = array();
+
 		$primary_font = chipmunk_theme_option( 'primary_font' );
 		$heading_font = chipmunk_theme_option( 'heading_font' );
 
 		if ( ! empty( $primary_font ) && $primary_font != 'System' ) {
-			$font_names[] = $primary_font;
+			$fonts[] = $primary_font;
 		}
 
 		if ( ! empty( $heading_font ) && $heading_font != 'System' ) {
-			$font_names[] = $heading_font;
+			$fonts[] = $heading_font;
 		}
 
-		if ( ! empty( $font_names ) ) {
-			wp_enqueue_style( 'chipmunk-fonts', chipmunk_get_fonts_url( $font_names ) );
+		if ( ! empty( $fonts ) ) {
+			wp_enqueue_style( 'chipmunk-fonts', chipmunk_get_fonts_url( $fonts ) );
 		}
 	}
 endif;
