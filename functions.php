@@ -184,3 +184,25 @@ if ( ! function_exists( 'chipmunk_load_features' ) ) :
 	}
 	endif;
 add_action( 'init', 'chipmunk_load_features' );
+
+if ( isset( $_GET['refresh_upvotes'] ) ) {
+	$db_key = '_' . THEME_SLUG . '_upvote';
+	$db_old_key = '_' . THEME_SLUG . '_post_upvote_count';
+
+	$resources = get_posts( array(
+		'post_type'         => 'resource',
+		'post_status'       => 'any',
+		'posts_per_page'    => -1,
+	) );
+
+	foreach ( $resources as $resource ) {
+		$old_count = (int) get_post_meta( $resource->ID, $db_old_key, true );
+		$old_count = ( isset( $old_count ) && is_numeric( $old_count ) ) ? $old_count : 0;
+
+		for ( $i = 0; $i < $old_count; $i++ ) {
+			add_post_meta( $resource->ID, $db_key, '0.0.0.0' );
+		}
+
+		delete_post_meta( $resource->ID, $db_old_key );
+	}
+}

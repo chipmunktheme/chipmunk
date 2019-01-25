@@ -6,7 +6,6 @@
   @include u-overlay;
   position: fixed;
   z-index: $layer-nav;
-  flex: 1;
   background-color: $color-white;
   opacity: 0;
   transform: translateY(-10%);
@@ -31,6 +30,7 @@
   @include breakpoint(lg) {
     position: relative;
     z-index: $layer-base;
+    flex: 1;
     background-color: transparent;
     opacity: 1;
     transform: none;

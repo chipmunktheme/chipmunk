@@ -13,8 +13,8 @@ if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
 		 *
 		 * @var string
 		 */
-		public static $db_key = '_chipmunk_upvote';
-		public static $db_old_key = '_chipmunk_post_upvote_count';
+		public static $db_key = '_' . THEME_SLUG . '_upvote';
+		public static $db_old_key = '_' . THEME_SLUG . '_post_upvote_count';
 
 		/**
 		 * Create a new upvotes object
@@ -74,6 +74,8 @@ if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
 		 */
 		private function toggle_upvote() {
 			$upvoted = $this->is_upvoted();
+
+			// wp_send_json_success( $upvoted );
 
 			// Remove upvote from the post
 			if ( $upvoted ) {

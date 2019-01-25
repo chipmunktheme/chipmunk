@@ -3089,7 +3089,6 @@ input:checked + .u-checkbox__mark .icon {
   right: 0;
   position: fixed;
   z-index: 15;
-  flex: 1;
   background-color: #FAFAFA;
   opacity: 0;
   -webkit-transform: translateY(-10%);
@@ -3118,6 +3117,7 @@ input:checked + .u-checkbox__mark .icon {
   .nav-primary {
     position: relative;
     z-index: 1;
+    flex: 1;
     background-color: transparent;
     opacity: 1;
     -webkit-transform: none;
@@ -3487,7 +3487,7 @@ input:checked + .u-checkbox__mark .icon {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  flex: 1;
+  margin-left: auto;
 }
 .page-head__cta .button:not(:first-child), .page-head__cta .wp-block-button__link:not(:first-child), .page-head__cta .content input:not(:first-child)[type="submit"], .content .page-head__cta input:not(:first-child)[type="submit"] {
   margin-left: 1.5rem;
