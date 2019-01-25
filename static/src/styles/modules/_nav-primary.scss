@@ -6,6 +6,7 @@
   @include u-overlay;
   position: fixed;
   z-index: $layer-nav;
+  flex: 1;
   background-color: $color-white;
   opacity: 0;
   transform: translateY(-10%);
@@ -69,6 +70,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-left: -($separator * 2);
     margin-right: $separator;
   }
 
@@ -94,6 +96,7 @@
 
   @include breakpoint(lg) {
     font-size: 1.6rem;
+    margin-left: ($separator * 2);
   }
 
   &:not(:first-child) {
@@ -111,7 +114,6 @@
 
     @include breakpoint(lg) {
       margin-top: 0;
-      margin-left: 4rem;
     }
   }
 

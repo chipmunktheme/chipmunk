@@ -3089,6 +3089,7 @@ input:checked + .u-checkbox__mark .icon {
   right: 0;
   position: fixed;
   z-index: 15;
+  flex: 1;
   background-color: #FAFAFA;
   opacity: 0;
   -webkit-transform: translateY(-10%);
@@ -3156,6 +3157,7 @@ input:checked + .u-checkbox__mark .icon {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-left: -4rem;
     margin-right: 2rem;
   }
 }
@@ -3183,6 +3185,7 @@ input:checked + .u-checkbox__mark .icon {
 @media (min-width: 980px) {
   .nav-primary__item {
     font-size: 1.6rem;
+    margin-left: 4rem;
   }
 }
 @media (min-height: 300px) {
@@ -3203,7 +3206,6 @@ input:checked + .u-checkbox__mark .icon {
 @media (min-width: 980px) {
   .nav-primary__item:not(:first-child) {
     margin-top: 0;
-    margin-left: 4rem;
   }
 }
 .nav-primary__item a {

@@ -45,9 +45,6 @@ if ( ! function_exists( 'chipmunk_get_shortcode_template' ) ) :
 
 		do_action( 'chipmunk_shortcode_template_after_' . $template_name );
 
-		$template = ob_get_contents();
-		ob_end_clean();
-
-		return $template;
+		return ob_get_clean();
 	}
 endif;
