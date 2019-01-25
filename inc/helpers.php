@@ -231,6 +231,12 @@ if ( ! function_exists( 'chipmunk_verify_recaptcha' ) ) :
 		$site_key   = chipmunk_theme_option( 'recaptcha_site_key' );
 		$secret_key = chipmunk_theme_option( 'recaptcha_secret_key' );
 
+		// Verify if user is logged in
+		if ( is_user_logged_in() ) {
+			return true;
+		}
+
+		// Verify if recaptcha is disabled
 		if ( ! $enabled or ! $site_key ) {
 			return true;
 		}
