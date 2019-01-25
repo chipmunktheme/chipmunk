@@ -14,6 +14,7 @@ if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
 		 * @var string
 		 */
 		public static $db_key = '_' . THEME_SLUG . '_upvote';
+		public static $db_key_count = '_' . THEME_SLUG . '_upvote_count';
 		public static $db_old_key = '_' . THEME_SLUG . '_post_upvote_count';
 
 		/**
@@ -75,7 +76,7 @@ if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
 		private function toggle_upvote() {
 			$upvoted = $this->is_upvoted();
 
-			// wp_send_json_success( $upvoted );
+			// wp_send_json_success( $this->user_id );
 
 			// Remove upvote from the post
 			if ( $upvoted ) {
@@ -89,6 +90,10 @@ if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
 				$response['status'] = 'add';
 			}
 
+			// Update upvote counter
+			update_post_meta( $this->post_id, self::$db_key_count, count( get_post_meta( $this->post_id, self::$db_key ) ) );
+
+			// Set proper resounse params
 			$response['post'] = $this->post_id;
 			$response['content'] = $this->get_content( ! $upvoted );
 
@@ -114,7 +119,10 @@ if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
 			$old_count = (int) get_post_meta( $this->post_id, self::$db_old_key, true );
 			$old_count = ( isset( $old_count ) && is_numeric( $old_count ) ) ? $old_count : 0;
 
-			return count( get_post_meta( $this->post_id, self::$db_key ) ) + $old_count;
+			$count = (int) get_post_meta( $this->post_id, self::$db_key_count, true );
+			$count = ( isset( $count ) && is_numeric( $count ) ) ? $count : 0;
+
+			return $count + $old_count;
 		}
 
 		/**

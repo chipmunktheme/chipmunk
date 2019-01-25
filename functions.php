@@ -187,6 +187,7 @@ add_action( 'init', 'chipmunk_load_features' );
 
 if ( isset( $_GET['refresh_upvotes'] ) ) {
 	$db_key = '_' . THEME_SLUG . '_upvote';
+	$db_key_count = '_' . THEME_SLUG . '_upvote_count';
 	$db_old_key = '_' . THEME_SLUG . '_post_upvote_count';
 
 	$resources = get_posts( array(
@@ -203,6 +204,7 @@ if ( isset( $_GET['refresh_upvotes'] ) ) {
 			add_post_meta( $resource->ID, $db_key, '0.0.0.0' );
 		}
 
+		update_post_meta( $resource->ID, $db_key_count, count( get_post_meta( $resource->ID, $db_key ) ) );
 		delete_post_meta( $resource->ID, $db_old_key );
 	}
 }

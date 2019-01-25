@@ -452,7 +452,7 @@ if ( ! function_exists( 'chipmunk_get_resources' ) ) :
 			case 'upvotes':
 				$sort_args = array(
 					'orderby'   => 'meta_value_num date',
-					'meta_key'  => '_' . THEME_SLUG . '_upvote',
+					'meta_key'  => '_' . THEME_SLUG . '_upvote_count',
 				);
 				break;
 		}

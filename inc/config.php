@@ -164,8 +164,8 @@ if ( ! function_exists( 'chipmunk_set_default_meta' ) ) :
 	 */
 	function chipmunk_set_default_meta( $post_ID ) {
 		$defaut_values = array(
-			'_' . THEME_SLUG . '_post_view_count' 	 => 0,
-			'_' . THEME_SLUG . '_post_upvote_count' => 0,
+			'_' . THEME_SLUG . '_post_view_count'   => 0,
+			'_' . THEME_SLUG . '_upvote_count'      => 0,
 		);
 
 		foreach ( $defaut_values as $meta => $value ) {
