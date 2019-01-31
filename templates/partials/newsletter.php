@@ -1,6 +1,10 @@
 <?php $action = esc_url( chipmunk_theme_option( 'newsletter_action' ) ); ?>
 <?php $email_field = 'email'; ?>
 
+<?php if ( strpos( $action, 'list-manage.com' ) ) : ?>
+	<?php $email_field = 'EMAIL'; ?>
+<?php endif; ?>
+
 <?php if ( strpos( $action, 'convertkit.com' ) ) : ?>
 	<?php $email_field = 'email_address'; ?>
 <?php endif; ?>
