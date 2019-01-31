@@ -19,10 +19,9 @@
 
 .resource__media {
   @include u-object-fit(75%);
+  display: block;
 
   &[href] {
-    display: block;
-
     &:hover {
       opacity: 0.8;
     }

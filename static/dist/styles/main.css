@@ -3704,6 +3704,7 @@ input:checked + .u-checkbox__mark .icon {
 .resource__media {
   position: relative;
   overflow: hidden;
+  display: block;
 }
 .resource__media::before {
   content: '';
@@ -3724,9 +3725,6 @@ input:checked + .u-checkbox__mark .icon {
   -o-object-fit: cover;
      object-fit: cover;
   font-family: "object-fit: cover;";
-}
-.resource__media[href] {
-  display: block;
 }
 .resource__media[href]:hover {
   opacity: 0.8;
