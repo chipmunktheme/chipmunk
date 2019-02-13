@@ -71,7 +71,7 @@ endif;
 
 		comment_form( array(
 			'class_form'           => 'form',
-			'class_submit'         => 'button button--secondary',
+			'class_submit'         => 'button button--primary-outline',
 			'comment_notes_before' => '',
 			'comment_notes_after'  => '',
 			'title_reply_before'   => '<h3 class="heading heading--md">',
