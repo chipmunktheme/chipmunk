@@ -1642,6 +1642,14 @@ sub {
   }
 }
 /*
+** Placeholders - Ellipsis
+** -----------------------------------------------------------------------------*/
+.select2-container .select2-results__option, .form__input:not([rows]), .widget_search .search-field:not([rows]) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/*
 ** Placeholders - Heading
 ** -----------------------------------------------------------------------------*/
 .content > h1, .content > h2, .content > h3, .content > h4, .content > h5, .content > h6, .heading, .widget__title {
@@ -1837,10 +1845,7 @@ input[type="submit"]:focus {
 }
 .select2-container .select2-results__option {
   padding: 10px 2rem;
-  overflow: hidden;
   font-size: 0.85em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .select2-container .select2-results__option[aria-selected=true] {
   background-color: var(--color-primary, #F38181);
@@ -3014,10 +3019,7 @@ input:checked + .u-checkbox__mark .icon {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  overflow: hidden;
   text-align: inherit;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 @media (min-width: 680px) {
   .form__input, .widget_search .search-field {

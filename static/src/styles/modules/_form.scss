@@ -60,10 +60,7 @@
   resize: none;
   vertical-align: middle;
   appearance: none;
-  overflow: hidden;
   text-align: inherit;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 
   @include breakpoint(md) {
     font-size: $size-content;
@@ -71,6 +68,10 @@
 
   @include breakpoint(lg) {
     border-bottom-width: 3px;
+  }
+
+  &:not([rows]) {
+    @extend %ellipsis;
   }
 
   &::placeholder {
