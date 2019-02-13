@@ -1492,21 +1492,21 @@ sub {
   border-radius: 0;
 }
 .button--primary, .content input[type="submit"], .members__form .button-primary, .wp-block-button__link:not(.has-background) {
-  background-color: var(--color-accent, #F38181);
+  background-color: var(--color-primary, #F38181);
   color: #FAFAFA;
 }
 .button--primary:not([disabled]):hover, .content input:not([disabled]):hover[type="submit"], .members__form .button-primary:not([disabled]):hover, .wp-block-button__link:not([disabled]):hover:not(.has-background) {
   background-color: transparent;
   border-color: currentColor;
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
 }
 .button--primary-outline, .is-style-outline .wp-block-button__link:not(.has-background) {
   background-color: transparent;
   border-color: currentColor;
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
 }
 .button--primary-outline:not([disabled]):hover, .is-style-outline .wp-block-button__link:not([disabled]):hover:not(.has-background) {
-  background-color: var(--color-accent, #F38181);
+  background-color: var(--color-primary, #F38181);
   border-color: transparent;
   color: #FAFAFA;
 }
@@ -1546,12 +1546,12 @@ sub {
 .button--white-outline:not([disabled]):hover {
   background-color: #FAFAFA;
   border-color: transparent;
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
 }
 /*
 ** Placeholders - Caption
 ** -----------------------------------------------------------------------------*/
-.blocks-gallery-item figcaption, .content blockquote cite, .content .wp-caption-text, .wp-block-audio figcaption,
+.blocks-gallery-item figcaption, .content blockquote:not([class*='block']) cite, .content .wp-caption-text, .wp-block-audio figcaption,
 .wp-block-video figcaption,
 .wp-block-embed figcaption, .wp-block-image figcaption, .wp-block-pullquote cite,
 .wp-block-pullquote footer, .wp-block-quote cite,
@@ -1569,17 +1569,17 @@ sub {
   padding: 0.875em 2.4rem 0;
   text-align: center;
 }
-.content blockquote cite, .wp-block-pullquote cite,
+.content blockquote:not([class*='block']) cite, .wp-block-pullquote cite,
 .wp-block-pullquote footer, .wp-block-quote cite,
 .wp-block-quote footer {
   display: inline-block;
 }
-.content blockquote cite:not(:first-child), .wp-block-pullquote cite:not(:first-child),
+.content blockquote:not([class*='block']) cite:not(:first-child), .wp-block-pullquote cite:not(:first-child),
 .wp-block-pullquote footer:not(:first-child), .wp-block-quote cite:not(:first-child),
 .wp-block-quote footer:not(:first-child) {
   margin-top: 1.75em;
 }
-.content blockquote cite::before, .wp-block-pullquote cite::before,
+.content blockquote:not([class*='block']) cite::before, .wp-block-pullquote cite::before,
 .wp-block-pullquote footer::before, .wp-block-quote cite::before,
 .wp-block-quote footer::before {
   content: '– ';
@@ -1646,6 +1646,7 @@ sub {
 ** -----------------------------------------------------------------------------*/
 .content > h1, .content > h2, .content > h3, .content > h4, .content > h5, .content > h6, .heading, .widget__title {
   color: #333333;
+  font-family: var(--font-heading, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif);
   font-weight: bold;
 }
 .content > h1 small, .content > h2 small, .content > h3 small, .content > h4 small, .content > h5 small, .content > h6 small, .heading small, .widget__title small {
@@ -1707,7 +1708,7 @@ sub {
   color: #808080;
 }
 .content a:not([class]):hover, .content a:not([class]):focus {
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
 }
 a,
 button, .button, .content input[type="submit"],
@@ -1725,9 +1726,9 @@ input[type="submit"], .stats__button {
 body {
   min-height: 100%;
   position: relative;
-  background-color: #EDEDED;
+  background-color: var(--color-background, #EDEDED);
   color: #808080;
-  font-family: "Poppins", "Arial", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--font-primary, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif);
   font-size: 1.6em;
   font-weight: normal;
   line-height: 1.75;
@@ -1842,7 +1843,7 @@ input[type="submit"]:focus {
   white-space: nowrap;
 }
 .select2-container .select2-results__option[aria-selected=true] {
-  background-color: var(--color-accent, #F38181);
+  background-color: var(--color-primary, #F38181);
   color: #FAFAFA;
   margin-left: -1px;
   margin-right: -1px;
@@ -1892,7 +1893,7 @@ input[type="submit"]:focus {
   color: #333333;
 }
 .select2-container .select2-dropdown {
-  background-color: #FAFAFA;
+  background-color: var(--color-section, #FAFAFA);
   border: 0;
   border-radius: 0;
   color: #333333;
@@ -1996,7 +1997,7 @@ input[type="submit"]:focus {
   justify-content: center;
   height: 3.2rem;
   width: 3.2rem;
-  background-color: #EDEDED;
+  background-color: var(--color-background, #EDEDED);
   border-radius: 50%;
   color: #333333;
   font-size: 1.6rem;
@@ -2323,6 +2324,7 @@ input:checked + .u-checkbox__mark .icon {
 .card__title {
   margin-top: 2rem;
   color: #333333;
+  font-family: var(--font-heading, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif);
   font-size: 1.8rem;
   font-weight: bold;
   line-height: 1.4;
@@ -2543,9 +2545,8 @@ input:checked + .u-checkbox__mark .icon {
   width: 100%;
   background-color: #FAFAFA;
 }
-.content blockquote p {
+.content blockquote:not([class*='block']) p {
   font-size: 1.2em;
-  line-height: 1.6;
 }
 .content table {
   min-width: 100%;
@@ -2580,7 +2581,7 @@ input:checked + .u-checkbox__mark .icon {
 }
 .content code {
   width: 100%;
-  font-family: Menlo, Consolas, monaco, monospace;
+  font-family: var(--font-mono, Menlo, Consolas, monaco, monospace);
 }
 .content form:first-child {
   margin-top: 0;
@@ -2861,7 +2862,7 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .entry[href]:hover .entry__button {
-  background-color: var(--color-accent, #F38181);
+  background-color: var(--color-primary, #F38181);
   border-color: transparent;
   color: #FAFAFA;
 }
@@ -2933,7 +2934,7 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .filter__select ~ .select2-container .select2-dropdown {
-  background-color: #EDEDED;
+  background-color: var(--color-background, #EDEDED);
 }
 .filter__select ~ .select2-container .select2-results__option {
   padding: 0.5em 1.5rem;
@@ -3397,7 +3398,7 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .nav-primary__close:hover {
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
 }
 /*
 ** Module - Nav secondary
@@ -3451,8 +3452,8 @@ input:checked + .u-checkbox__mark .icon {
   text-align: center;
 }
 .nav-socials__link:hover {
-  border-color: var(--color-accent, #F38181);
-  color: var(--color-accent, #F38181);
+  border-color: var(--color-primary, #F38181);
+  color: var(--color-primary, #F38181);
   opacity: 0.75;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
@@ -3555,7 +3556,7 @@ input:checked + .u-checkbox__mark .icon {
   margin-bottom: -1px;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #FAFAFA;
+  background-color: var(--color-section, #FAFAFA);
   transition-property: padding;
   transition-duration: 0.25s;
 }
@@ -3600,7 +3601,7 @@ input:checked + .u-checkbox__mark .icon {
 }
 .page-head__logo {
   margin-right: 2rem;
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
   font-weight: bold;
 }
 @media (min-width: 980px) {
@@ -3695,7 +3696,7 @@ input:checked + .u-checkbox__mark .icon {
   display: block;
 }
 .pagination__item a:hover {
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
 }
 .pagination__item .icon {
   margin-top: -0.1em;
@@ -3753,14 +3754,14 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .popup__close:hover {
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
 }
 .popup__content {
   position: relative;
   top: -300%;
   padding: 2rem;
   margin-top: 4rem;
-  background-color: #FAFAFA;
+  background-color: var(--color-section, #FAFAFA);
   color: #333333;
   opacity: 0;
   -webkit-overflow-scrolling: touch;
@@ -3902,7 +3903,7 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .resource__description a {
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
 }
 .resource__description a:hover {
   color: #333333;
@@ -3956,7 +3957,7 @@ input:checked + .u-checkbox__mark .icon {
   z-index: 11;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #FAFAFA;
+  background-color: var(--color-section, #FAFAFA);
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
   opacity: 0;
@@ -4016,7 +4017,7 @@ input:checked + .u-checkbox__mark .icon {
   margin-left: 2rem;
 }
 .search-bar__icon:hover {
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
 }
 .search-bar__form {
   display: flex;
@@ -4081,7 +4082,7 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .search-bar__close:hover {
-  color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
 }
 /*
 ** Module - Section
@@ -4116,10 +4117,10 @@ input:checked + .u-checkbox__mark .icon {
   position: relative;
   z-index: 1;
   box-shadow: 0 1px 0 0 rgba(51, 51, 51, 0.075), 0 -1px 0 0 rgba(51, 51, 51, 0.075);
-  background-color: #FAFAFA;
+  background-color: var(--color-section, #FAFAFA);
 }
 .section--theme-primary {
-  background-color: var(--color-accent, #F38181);
+  background-color: var(--color-primary, #F38181);
   color: #FAFAFA;
 }
 .section__separator {
@@ -4236,11 +4237,11 @@ input:checked + .u-checkbox__mark .icon {
           animation-iteration-count: infinite;
 }
 .stats__button:not(.is-active):hover {
-  color: var(--color-accent, #F38181);
-  border-color: var(--color-accent, #F38181);
+  color: var(--color-primary, #F38181);
+  border-color: var(--color-primary, #F38181);
 }
 .stats__button.is-active {
-  background-color: var(--color-accent, #F38181);
+  background-color: var(--color-primary, #F38181);
   border-color: transparent;
   color: #FAFAFA;
 }
@@ -4307,7 +4308,7 @@ input:checked + .u-checkbox__mark .icon {
 }
 .tile--card {
   margin-bottom: 2rem;
-  background-color: #FAFAFA;
+  background-color: var(--color-section, #FAFAFA);
   box-shadow: 0 1px 2px 1px rgba(51, 51, 51, 0.1);
   overflow: visible;
 }
@@ -4315,7 +4316,7 @@ input:checked + .u-checkbox__mark .icon {
   display: none;
 }
 .tile--card[href]:hover {
-  background-color: rgba(250, 250, 250, 0.5);
+  opacity: 0.9;
 }
 .slick-slide .tile--card {
   margin-bottom: 5px;
@@ -4492,6 +4493,7 @@ input:checked + .u-checkbox__mark .icon {
 }
 .tile__title {
   flex: 1;
+  font-family: var(--font-heading, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif);
   font-weight: bold;
   line-height: 1.4;
   font-size: 2rem;
@@ -4550,7 +4552,7 @@ input:checked + .u-checkbox__mark .icon {
   margin-top: 2rem;
 }
 .tile[href]:hover .tile__button, .tile__button[href]:hover {
-  background-color: var(--color-accent, #F38181);
+  background-color: var(--color-primary, #F38181);
   border-color: transparent;
   color: #FAFAFA;
 }
@@ -4688,7 +4690,7 @@ input:checked + .u-checkbox__mark .icon {
   padding: 1em 1.25em;
   border: 1px solid #CDCDCD;
   border-radius: 0.5em;
-  font-family: Menlo, Consolas, monaco, monospace;
+  font-family: var(--font-mono, Menlo, Consolas, monaco, monospace);
   font-size: 1.4rem;
 }
 /*
@@ -5461,7 +5463,7 @@ p.has-background {
 ** Blocks / Preformatted
 ** -----------------------------------------------------------------------------*/
 .wp-block-preformatted {
-  font-family: Menlo, Consolas, monaco, monospace;
+  font-family: var(--font-mono, Menlo, Consolas, monaco, monospace);
   font-size: 1.4rem;
 }
 /*
@@ -5488,7 +5490,6 @@ p.has-background {
 }
 .wp-block-pullquote p {
   font-size: 1.2em;
-  line-height: 1.6;
 }
 .wp-block-pullquote.is-style-solid-color {
   padding: 0;
@@ -5507,7 +5508,6 @@ p.has-background {
 ** -----------------------------------------------------------------------------*/
 .wp-block-quote.is-style-large p {
   font-size: 1.2em;
-  line-height: 1.6;
 }
 /*
 ** Blocks / Separator

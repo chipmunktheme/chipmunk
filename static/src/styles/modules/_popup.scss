@@ -38,7 +38,7 @@
   }
 
   &:hover {
-    color: $color-accent;
+    color: $color-primary;
   }
 }
 
@@ -47,7 +47,7 @@
   top: -300%;
   padding: $separator;
   margin-top: $separator * 2;
-  background-color: $color-white;
+  background-color: $color-section;
   color: $color-black;
   opacity: 0;
   -webkit-overflow-scrolling: touch;

@@ -30,11 +30,11 @@
 
   &--theme-light {
     @include bordered-box;
-    background-color: $color-white;
+    background-color: $color-section;
   }
 
   &--theme-primary {
-    background-color: $color-accent;
+    background-color: $color-primary;
     color: $color-white;
   }
 }

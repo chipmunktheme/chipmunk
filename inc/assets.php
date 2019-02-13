@@ -41,78 +41,15 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 
 		$disable_borders   = chipmunk_theme_option( 'disable_section_borders' );
 
-		$custom_style .= "
-			body {
-				font-family: $primary_font;
-			}
-
-			.heading:not(.heading--thin),
-			.card__title,
-			.tile__title,
-			.section__title,
-			.content h1,
-			.content h2,
-			.content h3,
-			.content h4,
-			.content h5,
-			.content h6 {
-				font-family: $heading_font;
-			}
-		";
-
-		if ( $primary_color and $primary_color != '#F38181' ) {
+		if ( ! empty( $primary_font ) ) {
 			$custom_style .= "
 				:root {
-					--color-accent: $primary_color;
+					--font-primary: $primary_font;
+					--font-heading: $heading_font;
+
+					--color-primary: $primary_color;
 					--color-background: $background_color;
 					--color-section: $section_color;
-				}
-
-				/*.button--primary:not([disabled]):hover,
-				.button--secondary,
-				.content a:not([class]):hover,
-				.nav-primary__close:hover,
-				.nav-socials__link:hover,
-				.page-head__logo,
-				.pagination__item a:hover,
-				.popup__close:hover,
-				.resource__description a,
-				.section--theme-primary .button--secondary:hover,
-				.search-bar__icon:hover,
-				.search-bar__close:hover,
-				.stats__button:not(.is-active):hover {
-					color: $primary_color;
-				}
-
-				.select2-container .select2-results__option[aria-selected=true],
-				.button--primary,
-				.button--secondary:not([disabled]):hover,
-				.entry[href]:hover .entry__button,
-				.section--theme-primary,
-				.stats__button.is-active,
-				.tile__content--primary,
-				.tile[href]:hover .tile__button,
-				.tile__button[href]:hover {
-					background-color: $primary_color;
-				}
-
-				.nav-socials__link:hover,
-				.stats__button:not(.is-active):hover {
-					border-color: $primary_color;
-				}*/
-
-				body,
-				.filter__select ~ .select2-container .select2-dropdown {
-					background-color: $background_color;
-				}
-
-				.page-head,
-				.search-bar,
-				.section--theme-light,
-				.popup__content,
-				.tile--card:not(.tile--blank),
-				.select2-container .select2-dropdown {
-					background-color: $section_color;
 				}
 
 				.tile--card:not(.tile--blank)[href]:hover {
@@ -121,7 +58,7 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 			";
 		}
 
-		if ( $disable_borders ) {
+		if ( ! empty( $disable_borders ) ) {
 			$custom_style .= "
 				.page-head,
 				.search-bar,

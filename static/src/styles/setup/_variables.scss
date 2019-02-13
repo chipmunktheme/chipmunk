@@ -3,7 +3,7 @@
 ** -----------------------------------------------------------------------------*/
 
 // Color definitions
-$color-primary:         #F38181 !default;
+$color-accent:          #F38181 !default;
 $color-black:           #333333 !default;
 $color-gray-dark:       #666666 !default;
 $color-gray:            #808080 !default;
@@ -17,11 +17,6 @@ $color-status-warning:  #9F6000 !default;
 $color-status-info:     #00529B !default;
 $color-status-error:    #F74444 !default;
 
-// Customizable colors
-$color-accent:          var(--color-accent, #{$color-primary}) !default;
-$color-background:      var(--color-background, #{$color-gray-lightest}) !default;
-$color-section:         var(--color-section, #{$color-white}) !default;
-
 // Z-indexes
 $layer-negative:        -1 !default;
 $layer-neutral:         0 !default;
@@ -33,12 +28,11 @@ $layer-dropdown:        20 !default;
 $layer-popup:           25 !default;
 
 // Font definitions
+$font-system:           -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !default;
 $font-poppins:          'Poppins', 'Arial', 'Helvetica Neue', Helvetica, sans-serif !default;
 $font-menlo:            Menlo, Consolas, monaco, monospace !default;
-$font-mono:             $font-menlo !default;
 
 $font-color:            $color-gray !default;
-$font-family:           $font-poppins !default;
 $font-size:             1.6em !default;
 $font-line-height:      1.75 !default;
 
@@ -93,3 +87,13 @@ $grid-breakpoints: (
     columns: 12
   )
 ) !default;
+
+// Customizable colors
+$color-primary:         var(--color-primary, #{$color-accent}) !default;
+$color-background:      var(--color-background, #{$color-gray-lightest}) !default;
+$color-section:         var(--color-section, #{$color-white}) !default;
+
+// Customizable fonts
+$font-primary:          var(--font-primary, #{$font-system}) !default;
+$font-heading:          var(--font-heading, #{$font-system}) !default;
+$font-mono:             var(--font-mono, #{$font-menlo}) !default;

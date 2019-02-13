@@ -98,10 +98,9 @@
     background-color: $color-white;
   }
 
-  blockquote {
+  blockquote:not([class*='block']) {
     p {
       font-size: 1.2em;
-      line-height: 1.6;
     }
 
     cite {

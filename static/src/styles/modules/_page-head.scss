@@ -8,7 +8,7 @@
   margin-bottom: -1px;
   padding-top: $separator * 0.5;
   padding-bottom: $separator * 0.5;
-  background-color: $color-white;
+  background-color: $color-section;
   transition-property: padding;
   transition-duration: $transition-duration;
 
@@ -54,7 +54,7 @@
 
 .page-head__logo {
   margin-right: $separator;
-  color: $color-accent;
+  color: $color-primary;
   font-weight: bold;
 
   @include breakpoint(lg) {

@@ -59,12 +59,12 @@
   backface-visibility: hidden;
 
   &:not(.is-active):hover {
-    color: $color-accent;
-    border-color: $color-accent;
+    color: $color-primary;
+    border-color: $color-primary;
   }
 
   &.is-active {
-    background-color: $color-accent;
+    background-color: $color-primary;
     border-color: transparent;
     color: $color-white;
   }

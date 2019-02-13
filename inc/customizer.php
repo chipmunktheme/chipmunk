@@ -128,14 +128,14 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'name'        => 'primary_font',
 							'type'        => 'select',
 							'label'       => esc_html__( 'Primary Font', 'chipmunk' ),
-							'default'     => 'Poppins',
+							'default'     => 'System',
 							'choices'     => array_merge( array( 'System' => esc_html__( 'System font', 'chipmunk' ) ), $this->get_google_fonts() ),
 						),
 						array(
 							'name'        => 'heading_font',
 							'type'        => 'select',
 							'label'       => esc_html__( 'Heading Font', 'chipmunk' ),
-							'default'     => 'Poppins',
+							'default'     => 'System',
 							'choices'     => array_merge( array( 'System' => esc_html__( 'System font', 'chipmunk' ) ), $this->get_google_fonts() ),
 						),
 						array(
