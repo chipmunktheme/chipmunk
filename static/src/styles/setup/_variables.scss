@@ -34,6 +34,7 @@ $font-menlo:            Menlo, Consolas, monaco, monospace !default;
 
 $font-color:            $color-gray !default;
 $font-size:             1.6em !default;
+$font-size-content:     2.1rem !default;
 $font-line-height:      1.75 !default;
 
 // Dimensions
@@ -97,3 +98,6 @@ $color-section:         var(--color-section, #{$color-white}) !default;
 $font-primary:          var(--font-primary, #{$font-system}) !default;
 $font-heading:          var(--font-heading, #{$font-system}) !default;
 $font-mono:             var(--font-mono, #{$font-menlo}) !default;
+
+// Customizable sizes
+$size-content:          var(--size-content, #{$font-size-content}) !default;

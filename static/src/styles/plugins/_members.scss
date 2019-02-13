@@ -4,10 +4,11 @@
 
 .members__form {
   margin-top: $separator;
-  font-size: 1.8rem;
+  font-size: calc(#{$size-content} * 0.9);
 
   @include breakpoint(md) {
     margin-top: $separator * 2;
+    font-size: $size-content;
   }
 
   input[type="text"],
@@ -22,14 +23,17 @@
     border-bottom: 2px solid currentColor;
     border-radius: 0;
     color: $color-black;
-    font-size: 1.8rem;
+    font-size: calc(#{$size-content} * 0.9);
     line-height: 1.6;
     resize: none;
     vertical-align: middle;
 
+    @include breakpoint(md) {
+      font-size: $size-content;
+    }
+
     @include breakpoint(lg) {
       border-bottom-width: 3px;
-      font-size: 2.2rem;
     }
 
     &::placeholder {

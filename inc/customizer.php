@@ -113,18 +113,6 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => '#FAFAFA',
 						),
 						array(
-							'name'        => 'sticky_header',
-							'type'        => 'checkbox',
-							'label'       => esc_html__( 'Enable sticky header', 'chipmunk' ),
-							'default'     => false,
-						),
-						array(
-							'name'        => 'disable_section_borders',
-							'type'        => 'checkbox',
-							'label'       => esc_html__( 'Disable section borders', 'chipmunk' ),
-							'default'     => false,
-						),
-						array(
 							'name'        => 'primary_font',
 							'type'        => 'select',
 							'label'       => esc_html__( 'Primary Font', 'chipmunk' ),
@@ -137,6 +125,25 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'label'       => esc_html__( 'Heading Font', 'chipmunk' ),
 							'default'     => 'System',
 							'choices'     => array_merge( array( 'System' => esc_html__( 'System font', 'chipmunk' ) ), $this->get_google_fonts() ),
+						),
+						array(
+							'name'        => 'content_size',
+							'type'        => 'text',
+							'label'       => esc_html__( 'Content Size', 'chipmunk' ),
+							'default'     => '2.1rem',
+							'description' => esc_html__( 'You can use any CSS unit here (eg. px, em, rem, vw)', 'chipmunk' )
+						),
+						array(
+							'name'        => 'sticky_header',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Enable sticky header', 'chipmunk' ),
+							'default'     => false,
+						),
+						array(
+							'name'        => 'disable_section_borders',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Disable section borders', 'chipmunk' ),
+							'default'     => false,
 						),
 						array(
 							'name'        => 'custom_css',

@@ -9,6 +9,8 @@
 if ( ! function_exists( 'chipmunk_scripts' ) ) :
 	/**
 	 * Enqueue front end styles and scripts
+	 *
+	 * @return void
 	 */
 	function chipmunk_scripts() {
 		// Load Chipmunk main stylesheet
@@ -24,15 +26,18 @@ add_action( 'wp_enqueue_scripts', 'chipmunk_scripts' );
 if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 	/**
 	 * Enqueue custom CSS styles
+	 *
+	 * @return void
 	 */
 	function chipmunk_custom_style() {
+		$primary_font      = chipmunk_theme_option( 'primary_font' );
+		$heading_font      = chipmunk_theme_option( 'heading_font' );
+
 		$primary_color     = chipmunk_theme_option( 'primary_color' );
 		$background_color  = chipmunk_theme_option( 'background_color' );
 		$section_color     = chipmunk_theme_option( 'section_color' );
-		$section_color_rgb = chipmunk_hex_to_rgb( $section_color, true );
 
-		$primary_font      = chipmunk_theme_option( 'primary_font' );
-		$heading_font      = chipmunk_theme_option( 'heading_font' );
+		$content_size      = chipmunk_theme_option( 'content_size' );
 		$custom_css        = chipmunk_theme_option( 'custom_css' );
 
 		$custom_style      = ! empty( $custom_css ) ? $custom_css : '';
@@ -44,16 +49,17 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 		if ( ! empty( $primary_font ) ) {
 			$custom_style .= "
 				:root {
+					/* Fonts */
 					--font-primary: $primary_font;
 					--font-heading: $heading_font;
 
+					/* Colors */
 					--color-primary: $primary_color;
 					--color-background: $background_color;
 					--color-section: $section_color;
-				}
 
-				.tile--card:not(.tile--blank)[href]:hover {
-					background-color: rgba($section_color_rgb, 0.5);
+					/* Sizes */
+					--size-content: $content_size;
 				}
 			";
 		}
@@ -77,6 +83,8 @@ add_action( 'wp_enqueue_scripts', 'chipmunk_custom_style' );
 if ( ! function_exists( 'chipmunk_admin_scripts' ) ) :
 	/**
 	 * Enqueue admin end styles and scripts
+	 *
+	 * @return void
 	 */
 	function chipmunk_admin_scripts() {
 		// Load Chipmunk admin stylesheet

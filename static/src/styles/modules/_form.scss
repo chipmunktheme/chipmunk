@@ -55,7 +55,7 @@
   border-bottom: 2px solid currentColor;
   border-radius: 0;
   color: inherit;
-  font-size: 1.8rem;
+  font-size: calc(#{$size-content} * 0.9);
   line-height: 1.6;
   resize: none;
   vertical-align: middle;
@@ -65,9 +65,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  @include breakpoint(md) {
+    font-size: $size-content;
+  }
+
   @include breakpoint(lg) {
     border-bottom-width: 3px;
-    font-size: 2.2rem;
   }
 
   &::placeholder {
@@ -81,7 +84,7 @@
   &--sm {
     @include breakpoint(lg) {
       border-bottom-width: 2px;
-      font-size: 1.8rem;
+      font-size: calc(#{$size-content} * 0.9);
     }
   }
 }

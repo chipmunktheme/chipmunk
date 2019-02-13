@@ -54,11 +54,10 @@
 }
 
 .resource__description {
-  font-size: 1.8rem;
-  line-height: 1.68;
+  font-size: calc(#{$size-content} * 0.9);
 
   @include breakpoint(md) {
-    font-size: 2.2rem;
+    font-size: $size-content;
   }
 
   @include breakpoint(lg) {
