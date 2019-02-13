@@ -4,7 +4,7 @@
 
 %button {
   display: inline-block;
-  padding: 0.575em 1.75em;
+  padding: 0.55em 1.75em;
   background-color: transparent;
   border: 1px solid transparent;
   font-size: 1.4rem;
@@ -64,5 +64,28 @@
     background-color: $color-gray;
     border-color: transparent;
     color: $color-white;
+  }
+}
+
+%button-white {
+  background-color: $color-white;
+  color: $color-white;
+
+  &:not([disabled]):hover {
+    background-color: transparent;
+    border-color: currentColor;
+    color: $color-white;
+  }
+}
+
+%button-white-outline {
+  background-color: transparent;
+  border-color: currentColor;
+  color: $color-white;
+
+  &:not([disabled]):hover {
+    background-color: $color-white;
+    border-color: transparent;
+    color: $color-accent;
   }
 }

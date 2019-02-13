@@ -27,7 +27,7 @@
 				<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 					<div class="toolbox__cta<?php echo ! empty( $socials ) ? ' visible-md-flex ' : ''; ?>">
 						<p<?php echo ! empty( $socials ) ? ' class="visible-lg-block"': ''; ?>><?php echo esc_html( chipmunk_theme_option( 'submit_tagline' ) ); ?></p>
-						<button type="button" class="toolbox__button button button--primary" data-popup="#submit"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></button>
+						<?php chipmunk_get_template( 'partials/submit-button', array( 'class' => 'toolbox__button button button--primary' ) ); ?>
 					</div>
 				<?php endif; ?>
 			</div>

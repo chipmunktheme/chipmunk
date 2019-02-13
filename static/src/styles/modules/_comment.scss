@@ -48,7 +48,7 @@
 .comment__date {
   display: none;
 
-  @include breakpoint(sm) {
+  @include breakpoint(md) {
     display: inline-block;
     color: $color-gray-light;
     opacity: 0;

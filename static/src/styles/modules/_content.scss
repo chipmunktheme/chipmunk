@@ -154,10 +154,6 @@
     &:first-child {
       margin-top: 0;
     }
-
-    > div {
-      @extend .form__field;
-    }
   }
 
   input[type="submit"] {

@@ -13,7 +13,7 @@
 
 // Separators
 .wp-block-separator {
-  &:not(.align-left):not(.alignright) {
+  &:not(.alignleft):not(.alignright) {
     @include spacer(top);
     @include spacer(bottom);
   }
@@ -31,7 +31,7 @@
 .wp-block-quote,
 .wp-block-pullquote,
 .wp-block-verse {
-  &:not(.align-left):not(.alignright) {
+  &:not(.alignleft):not(.alignright) {
     @include spacer(top, 2);
     @include spacer(bottom, 2);
   }
@@ -54,7 +54,7 @@ $layouts: (6, 8, 10);
 }
 
 .alignleft {
-  @include breakpoint(sm) {
+  @include breakpoint(md) {
     float: left;
     margin-right: $base-spacing;
     text-align: left;
@@ -70,7 +70,7 @@ $layouts: (6, 8, 10);
 }
 
 .alignright {
-  @include breakpoint(sm) {
+  @include breakpoint(md) {
     float: right;
     margin-left: $base-spacing;
     text-align: right;
@@ -87,7 +87,7 @@ $layouts: (6, 8, 10);
 
 .alignleft,
 .alignright {
-  @include breakpoint(sm) {
+  @include breakpoint(md) {
     max-width: 50%;
   }
 

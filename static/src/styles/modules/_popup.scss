@@ -78,7 +78,9 @@
 
   .form {
     @include breakpoint(md) {
-      margin-top: $separator * 2;
+      &:not(:first-child) {
+        margin-top: $separator * 2;
+      }
     }
   }
 }

@@ -21,4 +21,12 @@
   &--secondary-outline {
     @extend %button-secondary-outline;
   }
+
+  &--white {
+    @extend %button-white;
+  }
+
+  &--white-outline {
+    @extend %button-white-outline;
+  }
 }

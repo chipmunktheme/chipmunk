@@ -18,7 +18,7 @@
 			</div>
 
 			<div class="row">
-				<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="form form--compact column column--sm-4 column--sm-offset-1 column--md-4 column--md-offset-1 column--lg-6 column--lg-offset-3" target="_blank" novalidate data-validate>
+				<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="form form--compact column column--md-4 column--md-offset-1 column--lg-6 column--lg-offset-3 mt-sm-2" target="_blank" novalidate data-validate>
 					<div class="form__field">
 						<input type="email" name="<?php echo $email_field; ?>" placeholder="<?php esc_html_e( 'Email address', 'chipmunk' ); ?>" class="form__input" required>
 					</div>
@@ -30,7 +30,7 @@
 					<?php endif; ?>
 
 					<div class="form__field form__field--center">
-						<button type="submit" class="button button--primary-outline"><?php esc_html_e( 'Join now', 'chipmunk' ); ?></button>
+						<button type="submit" class="button button--white-outline"><?php esc_html_e( 'Join now', 'chipmunk' ); ?></button>
 					</div>
 				</form>
 			</div>

@@ -9,6 +9,10 @@
   small {
     color: $color-gray;
   }
+
+  .section--theme-primary & {
+    color: inherit;
+  }
 }
 
 %heading-sm {

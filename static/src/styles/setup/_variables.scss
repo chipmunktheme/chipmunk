@@ -53,22 +53,32 @@ $transition-duration:   0.25s !default;
 $base-path:             '..' !default;
 $base-spacing:          1.75em !default;
 
+// Spacing
+$spacers:               (
+  1:                      $separator,
+  2:                      ($separator * 1.5),
+  3:                      ($separator * 2)
+) !default;
+
+// Responsive display values
+$display-values:        (
+  inline,
+  inline-block,
+  block,
+  flex,
+) !default;
+
 // Grid container
 $grid-column-gutter:    2.4rem !default;
 $grid-container-gutter: 2.4rem !default;
 
 // Grid definitions
 $grid-breakpoints: (
-  xs: (
+  sm: (
     min-width: 0,
     container: 450px,
     gutter: $grid-column-gutter,
     columns: 4
-  ),
-  sm: (
-    min-width: 490px,
-    gutter: $grid-column-gutter,
-    columns: 6
   ),
   md: (
     min-width: 680px,

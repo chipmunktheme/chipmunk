@@ -55,9 +55,7 @@
 									<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'dashboard' ) ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Dashboard', 'chipmunk' ); ?></a></li>
 									<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'profile' ) ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Profile', 'chipmunk' ); ?></a></li>
 									<li class="nav-secondary__item dropdown__item">
-										<button type="button" class="nav-secondary__link dropdown__link" data-popup="#submit">
-											<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
-										</button>
+										<?php chipmunk_get_template( 'partials/submit-button', array( 'class' => 'nav-secondary__link dropdown__link' ) ); ?>
 									</li>
 									<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( wp_logout_url() ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Logout', 'chipmunk' ); ?></a></li>
 								</ul>
@@ -76,9 +74,7 @@
 					<?php endif; ?>
 				<?php else : ?>
 					<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
-						<button type="button" class="button button--primary-outline visible-lg-block" data-popup="#submit">
-							<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
-						</button>
+						<?php chipmunk_get_template( 'partials/submit-button', array( 'class' => 'button button--primary-outline visible-lg-block' ) ); ?>
 					<?php endif; ?>
 				<?php endif; ?>
 

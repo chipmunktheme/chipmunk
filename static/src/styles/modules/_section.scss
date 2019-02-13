@@ -36,23 +36,6 @@
   &--theme-primary {
     background-color: $color-accent;
     color: $color-white;
-
-    .heading,
-    .button--secondary,
-    input[type="text"],
-    input[type="email"],
-    input[type="url"],
-    textarea {
-      &,
-      &::placeholder {
-        color: $color-white;
-      }
-    }
-
-    .button--secondary:hover {
-      background-color: $color-white !important;
-      color: $color-accent;
-    }
   }
 }
 

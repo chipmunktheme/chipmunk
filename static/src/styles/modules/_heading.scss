@@ -35,12 +35,9 @@
   transition-property: color, border-color;
   transition-duration: $transition-duration;
 
-  @include breakpoint(sm) {
-    font-size: 1em;
-  }
-
   @include breakpoint(md) {
     margin-left: ($separator * 1.5);
+    font-size: 1em;
   }
 
   &:first-child {

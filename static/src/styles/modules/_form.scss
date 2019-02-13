@@ -3,10 +3,12 @@
 ** -----------------------------------------------------------------------------*/
 
 .form {
-  margin-top: $separator;
+  &:not(:first-child) {
+    margin-top: $separator;
 
-  @include breakpoint(md) {
-    margin-top: ($separator * 1.5);
+    @include breakpoint(md) {
+      margin-top: ($separator * 1.5);
+    }
   }
 
   &--compact {
@@ -52,7 +54,7 @@
   background-color: transparent;
   border-bottom: 2px solid currentColor;
   border-radius: 0;
-  color: $color-black;
+  color: inherit;
   font-size: 1.8rem;
   line-height: 1.6;
   resize: none;
@@ -69,7 +71,7 @@
   }
 
   &::placeholder {
-    color: $color-black;
+    color: inherit;
   }
 
   &:focus {
@@ -100,10 +102,6 @@
     }
   }
 
-  &:last-child {
-    align-items: center;
-  }
-
   .form_compact &:not(:first-child) {
     margin-top: $separator;
   }
@@ -116,6 +114,18 @@
 
   &--center {
     justify-content: center;
+  }
+
+  &--cta {
+    align-items: center;
+
+    &:not(:first-child) {
+      margin-top: $separator * 1.5;
+
+      @include breakpoint(md) {
+        margin-top: $separator * 2;
+      }
+    }
   }
 }
 

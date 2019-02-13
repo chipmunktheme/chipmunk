@@ -382,6 +382,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => false,
 						),
 						array(
+							'name'        => 'submit_page',
+							'type'        => 'dropdown-pages',
+							'label'       => esc_html__( 'Submit form page', 'chipmunk' ),
+							'description' => esc_html__( 'Select one if you want to display the submit form on a standard page instead of in a popup. Make sure to put [chipmunk-submit] shortode on the page.', 'chipmunk' ),
+						),
+						array(
 							'name'        => 'submit_tagline',
 							'type'        => 'textarea',
 							'label'       => esc_html__( 'Submission tagline', 'chipmunk' ),

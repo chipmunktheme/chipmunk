@@ -1,10 +1,11 @@
 <?php $action = 'submit_resource'; ?>
+<?php $alignment = isset( $popup ) ? 'center' : 'left'; ?>
 
-<?php if ( ! empty( $title ) ) : ?>
-	<h4 class="heading heading--xl text--center"><?php echo esc_html( $title ); ?></h4>
-<?php endif; ?>
+<form action="#" class="form loader <?php echo esc_attr( ! empty( $align ) ? 'align' . $align : '' ); ?>" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
+	<?php if ( ! empty( $title ) ) : ?>
+		<h4 class="heading heading--xl text--<?php echo esc_attr( $alignment ); ?>"><?php echo esc_html( $title ); ?></h4>
+	<?php endif; ?>
 
-<form action="#" class="form loader" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
 	<p class="form__message heading heading--thin" data-action-message="<?php echo $action; ?>"></p>
 
 	<input type="hidden" name="filter" value="">
@@ -58,7 +59,7 @@
 		<?php endif; ?>
 
 		<?php if ( ! empty( chipmunk_theme_option( 'submission_consent' ) ) ) : ?>
-			<div class="form__field form__field--center form__field--separated">
+			<div class="form__field form__field--<?php echo esc_attr( $alignment ); ?> form__field--separated">
 				<div class="form__child">
 					<?php chipmunk_get_template( 'partials/checkbox', array( 'name' => 'consent', 'label' => chipmunk_theme_option( 'submission_consent' ), 'required' => true ) ); ?>
 				</div>
@@ -66,12 +67,12 @@
 		<?php endif; ?>
 
 		<?php if ( ! empty( chipmunk_theme_option( 'recaptcha_enabled' ) ) and ! is_user_logged_in() ) : ?>
-			<div class="form__field form__field--center">
+			<div class="form__field form__field--<?php echo esc_attr( $alignment ); ?>">
 				<div class="g-recaptcha" id="submit-recaptcha"></div>
 			</div>
 		<?php endif; ?>
 
-		<div class="form__field form__field--center">
+		<div class="form__field form__field--cta form__field--<?php echo esc_attr( $alignment ); ?>">
 			<button type="submit" class="button button--primary-outline"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></button>
 		</div>
 	</div>

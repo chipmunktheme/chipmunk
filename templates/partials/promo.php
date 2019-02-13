@@ -16,11 +16,11 @@ $has_content = ( $has_image or $ad_code = chipmunk_theme_option( 'ad_code' ) );
 				<?php if ( $has_image and $ad_link = chipmunk_theme_option( 'ad_link' ) ) : ?>
 					<a href="<?php echo $ad_link; ?>" target="_blank">
 						<?php if ( $ad_image_lg ) : ?>
-							<img src="<?php echo esc_url( $ad_image_lg ); ?>" alt="" class="visible-<?php echo ( $ad_image_md ? 'lg' : ( $ad_image_sm ? 'md' : 'xs' ) ); ?>-block">
+							<img src="<?php echo esc_url( $ad_image_lg ); ?>" alt="" class="visible-<?php echo ( $ad_image_md ? 'lg' : ( $ad_image_sm ? 'md' : 'sm' ) ); ?>-block">
 						<?php endif; ?>
 
 						<?php if ( $ad_image_md ) : ?>
-							<img src="<?php echo esc_url( $ad_image_md ); ?>" alt="" class="visible-<?php echo ( $ad_image_sm ? 'md' : 'xs' ); ?>-block hidden-<?php echo ( $ad_image_lg ? 'lg' : 'xl' ); ?>">
+							<img src="<?php echo esc_url( $ad_image_md ); ?>" alt="" class="visible-<?php echo ( $ad_image_sm ? 'md' : 'sm' ); ?>-block hidden-<?php echo ( $ad_image_lg ? 'lg' : 'xl' ); ?>">
 						<?php endif; ?>
 
 						<?php if ( $ad_image_sm ) : ?>
