@@ -1,0 +1,24 @@
+/*
+** Blocks / Image
+** -----------------------------------------------------------------------------*/
+
+.wp-block-image {
+  position: relative;
+
+  img {
+    @include breakpoint(md) {
+      width: 100%;
+      height: 100%;
+      flex: 1;
+      object-fit: cover;
+      background-color: rgba($color-black, 0.8);
+      transition: opacity $transition-duration;
+      backface-visibility: hidden;
+    }
+  }
+
+  figcaption {
+    @extend %caption-text;
+    @extend %caption-block;
+  }
+}

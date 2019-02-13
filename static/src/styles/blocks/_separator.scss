@@ -1,0 +1,29 @@
+/*
+** Blocks / Separator
+** -----------------------------------------------------------------------------*/
+
+.wp-block-separator {
+  width: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid $color-gray-light;
+
+  &.is-style-wide {
+    width: 100%;
+    border-bottom-width: 1px;
+  }
+
+  &.is-style-dots {
+    height: 8px;
+    border-bottom: 0;
+    line-height: 0.25;
+    text-align: center;
+    white-space: nowrap;
+
+    &::before {
+      content: "\2022\2022\2022";
+      color: $color-gray-light;
+      letter-spacing: 1.5em;
+    }
+  }
+}

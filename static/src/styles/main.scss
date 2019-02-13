@@ -12,9 +12,9 @@
 
 @import 'setup/mixins';
 @import 'setup/animations';
-@import 'setup/placeholders';
 @import 'setup/normalize';
 
+@import 'placeholders/*';
 @import 'common/*';
 @import 'vendor/*';
 @import 'utils/*';

@@ -1,0 +1,48 @@
+/*
+** Blocks / Columns
+** -----------------------------------------------------------------------------*/
+
+.wp-block-columns {
+  display: grid;
+  grid-gap: $grid-column-gutter;
+  grid-template-columns: repeat(1, 1fr);
+
+  @include breakpoint(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @for $i from 2 through 6 {
+    $mobile: ceil($i / 2);
+    $tablet: ceil($i / 1.5);
+    $desktop: ceil($i / 1);
+
+    &.has-#{$i}-columns {
+      grid-template-columns: repeat($mobile, 1fr);
+
+      @include breakpoint(md) {
+        grid-template-columns: repeat($tablet, 1fr);
+      }
+
+      @include breakpoint(lg) {
+        grid-template-columns: repeat($desktop, 1fr);
+      }
+    }
+  }
+}
+
+.wp-block-column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  // Normalize the margins
+  > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+
+    &:not(:first-child) {
+      margin-top: $base-spacing !important;
+    }
+  }
+}

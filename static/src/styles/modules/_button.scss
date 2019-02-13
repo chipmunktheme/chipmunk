@@ -3,45 +3,22 @@
 ** -----------------------------------------------------------------------------*/
 
 .button {
-  display: inline-block;
-  padding: 8px 25px;
-  border: 1px solid transparent;
-  border-radius: 1.1em;
-  font-size: 1.4rem;
-  line-height: 1;
+  @extend %button;
+  @extend %button-rounded;
 
   &--primary {
-    background-color: $color-primary;
-    color: $color-white;
+    @extend %button-primary;
+  }
 
-    &:not([disabled]):hover {
-      background-color: transparent;
-      border-color: currentColor;
-      color: $color-primary;
-    }
+  &--primary-outline {
+    @extend %button-primary-outline;
   }
 
   &--secondary {
-    background-color: transparent;
-    border-color: currentColor;
-    color: $color-primary;
-
-    &:not([disabled]):hover {
-      background-color: $color-primary;
-      border-color: transparent;
-      color: $color-white;
-    }
+    @extend %button-secondary;
   }
 
-  &--tertiary {
-    background-color: transparent;
-    border-color: $color-gray;
-    color: $color-gray;
-
-    &:not([disabled]):hover {
-      background-color: $color-gray;
-      border-color: transparent;
-      color: $color-white;
-    }
+  &--secondary-outline {
+    @extend %button-secondary-outline;
   }
 }

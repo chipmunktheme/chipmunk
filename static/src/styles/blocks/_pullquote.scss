@@ -1,0 +1,46 @@
+/*
+** Blocks / Pullquote
+** -----------------------------------------------------------------------------*/
+
+.wp-block-pullquote {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  border-top: 4px solid $color-gray;
+  border-bottom: 4px solid $color-gray;
+  text-align: center;
+
+  @include breakpoint(md) {
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+
+  @include breakpoint(lg) {
+    padding-top: 3em;
+    padding-bottom: 3em;
+  }
+
+  p {
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+
+  cite,
+  footer {
+    @extend %caption-text;
+    @extend %caption-quote;
+  }
+
+  &.is-style-solid-color {
+    padding: 0;
+    border: 0;
+
+    &[class*='background'],
+    &[style*='background'] {
+      padding: 0.75em 1em;
+
+      @include breakpoint(lg) {
+        padding: 1em 1.25em;
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+/*
+** Blocks / Button
+** -----------------------------------------------------------------------------*/
+
+.wp-block-button__link {
+  @extend %button;
+
+  &:not(.has-background) {
+    @extend %button-primary;
+
+    .is-style-outline & {
+      @extend %button-primary-outline;
+    }
+  }
+
+  .is-style-default &,
+  .is-style-outline & {
+    @extend %button-rounded;
+  }
+
+  .is-style-squared & {
+    @extend %button-squared;
+  }
+}

@@ -66,6 +66,62 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
 			),
 		) );
 
+		/**
+		 * Adds support for editor color palette.
+		 *
+		 * @see https://developer.wordpress.org/reference/functions/add_theme_support/#editor-color-palette
+		 */
+		add_theme_support( 'editor-color-palette', array(
+			array(
+				'name'  => __( 'Black', 'chipmunk' ),
+				'slug'  => 'black',
+				'color'	=> '#000000',
+			),
+			array(
+				'name'  => __( 'Gray', 'chipmunk' ),
+				'slug'  => 'gray',
+				'color' => '#666',
+			),
+			array(
+				'name'  => __( 'White', 'chipmunk' ),
+				'slug'  => 'white',
+				'color' => '#FFF',
+			),
+		) );
+
+		/**
+		 * Adds support for editor font sizes.
+		 *
+		 * @see https://developer.wordpress.org/reference/functions/add_theme_support/#editor-color-palette
+		 */
+		add_theme_support( 'editor-font-sizes', array(
+			array(
+				'name'      => __( 'Small', 'chipmunk' ),
+				'size'      => 16,
+				'slug'      => 'small'
+			),
+			array(
+				'name'      => __( 'Normal', 'chipmunk' ),
+				'size'      => 21,
+				'slug'      => 'normal'
+			),
+			array(
+				'name'      => __( 'Medium', 'chipmunk' ),
+				'size'      => 24,
+				'slug'      => 'medium'
+			),
+			array(
+				'name'      => __( 'Large', 'chipmunk' ),
+				'size'      => 36,
+				'slug'      => 'large'
+			),
+			array(
+				'name'      => __( 'Huge', 'chipmunk' ),
+				'size'      => 48,
+				'slug'      => 'huge'
+			)
+		) );
+
 		add_theme_support( 'custom-post', array(
 			'resource' => array(
 				'singular'              => esc_html__( 'Resource', 'chipmunk' ),

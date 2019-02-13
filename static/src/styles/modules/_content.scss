@@ -5,7 +5,6 @@
 .content {
   color: $color-black;
   font-size: 1.8rem;
-  line-height: 1.85;
 
   @include breakpoint(md) {
     font-size: 2.1rem;
@@ -58,38 +57,29 @@
     }
   }
 
-  > p,
-  > blockquote,
-  > table,
-  > ul,
-  > ol,
-  > hr {
-    clear: both;
-
-    &:not([class^="wp-block-"]) {
+  > p, > ul, > ol, > blockquote, > table, > pre, > code, > iframe,
+  .wp-caption {
+    &:not([class*='block']) {
       @include spacer(top);
     }
+  }
 
-    > [src] {
-      margin-top: 1em;
-      margin-bottom: 1em;
+  > ul:not([class*='block']) {
+    list-style: disc;
+    list-style-position: inside;
+
+    li:not(:first-child) {
+      margin-top: $base-spacing / 4;
     }
   }
 
-  > ol {
-    list-style: decimal inside;
+  > ol:not([class*='block']) {
+    list-style: decimal;
+    list-style-position: inside;
 
-    li {
-      padding-left: 0.15em;
+    li:not(:first-child) {
+      margin-top: $base-spacing / 4;
     }
-  }
-
-  > ul {
-    list-style: disc inside;
-  }
-
-  &:not([class^="wp-block-"]):first-child {
-    padding-top: 0.25em;
   }
 
   a:not([class]) {
@@ -102,6 +92,7 @@
 
   img {
     width: auto;
+    max-width: 100%;
     height: auto;
   }
 
@@ -112,26 +103,14 @@
   }
 
   blockquote {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    padding-left: 1em;
-    border-left: 2px solid $color-gray-light;
-
-    @include breakpoint(md) {
-      padding-left: 2em;
-      border-left-width: 3px;
-    }
-
     p {
       font-size: 1.2em;
+      line-height: 1.6;
     }
 
     cite {
-      @extend %caption;
-
-      &::before {
-        content: '– ';
-      }
+      @extend %caption-text;
+      @extend %caption-quote;
     }
   }
 
@@ -164,17 +143,13 @@
     }
   }
 
-  hr {
-    border-bottom: 2px solid $color-gray-light;
-
-    @include breakpoint(md) {
-      border-bottom-width: 3px;
-    }
+  hr:not([class]) {
+    border-bottom: 2px solid $color-gray-lighter;
   }
 
   code {
     width: 100%;
-    font-family: $font-monospace;
+    font-family: $font-mono;
   }
 
   form {
@@ -192,6 +167,34 @@
   input[type="submit"] {
     @extend .button;
     @extend .button--primary;
+  }
+
+  .wp-caption {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+
+    &:not(:first-child) {
+      @include breakpoint(md) {
+        margin-top: $base-spacing;
+      }
+    }
+
+    &:not(:last-child) {
+      @include breakpoint(md) {
+        margin-bottom: $base-spacing;
+      }
+    }
+
+    a:not(.button) {
+      display: block;
+      border: 0;
+    }
+  }
+
+  .wp-caption-text {
+    @extend %caption-text;
+    @extend %caption-block;
   }
 }
 

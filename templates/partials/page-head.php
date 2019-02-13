@@ -4,6 +4,7 @@
 			<?php $logo = chipmunk_theme_option( 'logo' ); ?>
 
 			<?php ob_start(); ?>
+
 			<a href="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>" rel="index">
 				<?php if ( $logo ) : ?>
 					<span class="sr-only"><?php bloginfo( 'name' ); ?></span>
@@ -12,9 +13,8 @@
 					<?php bloginfo( 'name' ); ?>
 				<?php endif; ?>
 			</a>
-			<?php $content = ob_get_clean(); ?>
 
-			<?php echo chipmunk_conditional_markup( is_front_page(), 'h1', 'div', 'page-head__logo', $content ); ?>
+			<?php echo chipmunk_conditional_markup( is_front_page(), 'h1', 'div', 'page-head__logo', ob_get_clean() ); ?>
 
 			<nav class="nav-primary">
 				<div class="nav-primary__inner">

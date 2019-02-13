@@ -29,7 +29,8 @@ $layer-popup:           25 !default;
 
 // Font definitions
 $font-poppins:          'Poppins', 'Arial', 'Helvetica Neue', Helvetica, sans-serif !default;
-$font-monospace:        "Lucida Console", 'Monaco', monospace !default;
+$font-menlo:            Menlo, Consolas, monaco, monospace !default;
+$font-mono:             $font-menlo !default;
 
 $font-color:            $color-gray !default;
 $font-family:           $font-poppins !default;
@@ -45,33 +46,35 @@ $transition-duration:   0.25s !default;
 
 // Base path for assets
 $base-path:             '..' !default;
+$base-spacing:          1.75em !default;
 
 // Grid container
-$grid-container-gutter: 1.5em !default;
+$grid-column-gutter:    2.4rem !default;
+$grid-container-gutter: 2.4rem !default;
 
 // Grid definitions
 $grid-breakpoints: (
   xs: (
     min-width: 0,
     container: 450px,
-    gutter: 1.5em,
+    gutter: $grid-column-gutter,
     columns: 4
   ),
   sm: (
     min-width: 490px,
-    gutter: 1.5em,
+    gutter: $grid-column-gutter,
     columns: 6
   ),
   md: (
     min-width: 680px,
     container: 640px,
-    gutter: 1.5em,
+    gutter: $grid-column-gutter,
     columns: 6
   ),
   lg: (
     min-width: 980px,
     container: 940px,
-    gutter: 1.5em,
+    gutter: $grid-column-gutter,
     columns: 12
   )
 ) !default;

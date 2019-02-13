@@ -1,6 +1,6 @@
 /*
-** Setup - Placeholders
-** ----------------------------------------------------------------------------- */
+** Placeholders - Heading
+** -----------------------------------------------------------------------------*/
 
 %heading {
   color: $color-black;
@@ -55,16 +55,4 @@
   @include breakpoint(md) {
     font-size: 2.2rem;
   }
-}
-
-%link-transition {
-  cursor: pointer;
-  transition-duration: $transition-duration;
-  transition-property: color, background-color, border, opacity, transform;
-}
-
-%caption {
-  margin-top: 0.5em;
-  color: $color-gray;
-  font-size: 0.75em;
 }

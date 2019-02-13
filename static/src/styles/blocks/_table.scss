@@ -1,0 +1,45 @@
+/*
+** Blocks / Table
+** -----------------------------------------------------------------------------*/
+
+.wp-block-table {
+  width: 100%;
+  border: 1px solid $color-gray-light;
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  @include breakpoint(md) {
+    border-width: 2px;
+  }
+
+  thead {
+    font-weight: bold;
+    text-align: left;
+  }
+
+  td, th {
+    padding: 0.5em 1em;
+    border: 1px solid $color-gray-light;
+    vertical-align: top;
+
+    @include breakpoint(md) {
+      border-width: 2px;
+    }
+  }
+
+  &.is-style-stripes {
+    border: 0;
+
+    tr:nth-child(odd) {
+      background-color: lighten($color-gray-light, 2.5%);
+    }
+
+    td, th {
+      border: 0;
+    }
+  }
+
+  &.has-fixed-layout {
+    table-layout: fixed;
+  }
+}

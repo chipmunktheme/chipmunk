@@ -1,135 +1,133 @@
 /*
-** Module - Gutenberg blocks
+** Blocks / Common
 ** -----------------------------------------------------------------------------*/
 
 .wp-block-button,
 .wp-block-code,
-.wp-block-table,
-.wp-block-latest-posts
-.wp-block-subhead,
-.wp-block-categories,
-.wp-block-verse,
 .wp-block-preformatted,
-.wp-block-text-columns {
-  @include spacer(top);
-  margin-bottom: 0;
-  padding: 0;
+.wp-block-categories {
+  &:not(:first-child) {
+    margin-top: $base-spacing;
+  }
+}
+
+// Separators
+.wp-block-table,
+.wp-block-audio,
+.wp-block-video,
+.wp-block-embed,
+.wp-block-separator {
+  &:not(.align-left):not(.alignright) {
+    @include spacer(top);
+    @include spacer(bottom);
+  }
 }
 
 // Media
 .wp-block-image,
 .wp-block-cover,
 .wp-block-gallery,
-.wp-block-embed,
+.wp-block-columns,
 .wp-block-quote,
-.wp-block-pullquote {
-  @include spacer(top, 1.5);
-  @include spacer(bottom, 1.5);
-  padding: 0;
-
-  figcaption {
-    @extend %caption;
+.wp-block-pullquote,
+.wp-block-verse {
+  &:not(.align-left):not(.alignright) {
+    @include spacer(top, 2);
+    @include spacer(bottom, 2);
   }
-
-  li {
-    padding: 0;
-    list-style: none;
-  }
-}
-
-.wp-block-cover-text {
-  @extend %heading;
-  @extend %heading-lg;
-  color: $color-white;
-}
-
-.wp-block-button__link {
-  @extend .button;
-  @extend .button--tertiary;
-}
-
-.wp-block-spacer {
-  @include spacer(top, 1.5, padding);
-  @include spacer(bottom, 1.5, padding);
-  height: auto !important;
 }
 
 // Alignments
 .alignnone,
 .aligncenter,
-.alignright,
-.alignleft {
-  @include spacer(top);
-  max-width: 100%;
-  clear: both;
-}
-
+.alignleft,
 .alignright {
-  float: right;
-  margin-left: 1em;
-}
-
-.alignleft {
-  float: left;
-  margin-right: 1em;
+  max-width: 100%;
 }
 
 .aligncenter {
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
-.alignwide {
-  max-width: none;
-  width: 100% !important;
+.alignleft {
+  @include breakpoint(sm) {
+    float: left;
+    margin-right: $base-spacing;
+    text-align: left;
+  }
 
   @include breakpoint(lg) {
     .column--lg-8[class*="offset"] & {
-      margin-left: -25.85%;
-      margin-right: -25.85%;
+      margin-left: column(2/8, true);
     }
 
     .column--lg-10[class*="offset"] & {
-      margin-left: -10.2%;
-      margin-right: -10.2%;
-    }
-
-    [class*="offset"] & {
-      width: 151.7% !important;
+      margin-left: column(1/10, true);
     }
   }
 }
 
-// Captions
-.wp-caption {
-  margin-top: 2em;
-  margin-bottom: 1em;
-
-  @include breakpoint(md) {
-    margin-top: 3em;
-    margin-bottom: 2em;
+.alignright {
+  @include breakpoint(sm) {
+    float: right;
+    margin-left: $base-spacing;
+    text-align: right;
   }
 
   @include breakpoint(lg) {
-    margin-top: 4em;
-    margin-bottom: 3.5em;
-  }
-
-  a {
-    display: block;
-
-    img {
-      backface-visibility: hidden;
-      transform: translateZ(0) scale(1, 1);
-      transition: opacity $transition-duration;
+    .column--lg-8[class*="offset"] & {
+      margin-right: column(2/8, true);
     }
 
-    &:hover img {
-      opacity: 0.9;
+    .column--lg-10[class*="offset"] & {
+      margin-right: column(1/10, true);
+    }
+  }
+}
+
+.alignleft,
+.alignright {
+  @include breakpoint(sm) {
+    max-width: 50%;
+  }
+
+  @include breakpoint(lg) {
+    .column--lg-8[class*="offset"] & {
+      max-width: column(2/8, false, 50%);
+    }
+
+    .column--lg-10[class*="offset"] & {
+      max-width: column(1/10, false, 50%);
     }
   }
 
-  .wp-caption-text {
-    @extend %caption;
+  &:not(:first-child) {
+    margin-top: $base-spacing;
+    margin-bottom: $base-spacing;
+  }
+}
+
+.alignwide {
+  @include breakpoint(lg) {
+    .column--lg-8[class*="offset"] & {
+      margin-left: column(2/8, true);
+      margin-right: column(2/8, true);
+    }
+
+    .column--lg-10[class*="offset"] & {
+      margin-left: column(1/10, true);
+      margin-right: column(1/10, true);
+    }
+  }
+}
+
+.alignfull {
+  .column--lg-8[class*="offset"] &,
+  .column--lg-10[class*="offset"] & {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
   }
 }

@@ -1,0 +1,18 @@
+/*
+** Blocks / Quote
+** -----------------------------------------------------------------------------*/
+
+.wp-block-quote {
+  cite,
+  footer {
+    @extend %caption-text;
+    @extend %caption-quote;
+  }
+
+  &.is-style-large {
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+  }
+}

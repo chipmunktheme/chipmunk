@@ -1,0 +1,10 @@
+/*
+** Placeholders - Link
+** -----------------------------------------------------------------------------*/
+
+%link-transition {
+  cursor: pointer;
+  -webkit-user-drag: none;
+  transition-duration: $transition-duration;
+  transition-property: color, background, border, opacity, transform;
+}

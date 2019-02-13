@@ -1,0 +1,142 @@
+/*
+** Blocks / Gallery
+** -----------------------------------------------------------------------------*/
+
+.wp-block-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+
+  &.flickity-enabled {
+    display: block;
+    max-height: 112.5rem * 0.75;
+    list-style: none;
+    overflow: hidden;
+
+    .flickity-viewport {
+      padding-bottom: 56.25%;
+    }
+  }
+}
+
+.blocks-gallery-item {
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+
+  @for $i from 2 through 6 {
+    $mobile: ceil($i / 2);
+    $tablet: ceil($i / 1.5);
+    $desktop: ceil($i / 1);
+
+    .columns-#{$i} & {
+      flex-basis: calc(100% / #{$mobile} - #{$grid-column-gutter});
+
+      &:nth-child(1n) {
+        margin-right: $grid-column-gutter;
+        margin-bottom: $grid-column-gutter;
+      }
+
+      &:last-child,
+      &:nth-child(#{$mobile}n) {
+        margin-right: 0;
+      }
+
+      @include breakpoint(md) {
+        flex-basis: calc(100% / #{$tablet} - #{$grid-column-gutter});
+
+        &:nth-child(1n) {
+          margin-right: $grid-column-gutter;
+          margin-bottom: $grid-column-gutter;
+        }
+
+        &:last-child,
+        &:nth-child(#{$tablet}n) {
+          margin-right: 0;
+        }
+      }
+
+      @include breakpoint(lg) {
+        flex-basis: calc(100% / #{$desktop} - #{$grid-column-gutter});
+
+        &:nth-child(1n) {
+          margin-right: $grid-column-gutter;
+          margin-bottom: $grid-column-gutter;
+        }
+
+        &:last-child,
+        &:nth-child(#{$desktop}n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  figure {
+    position: relative;
+    width: 100%;
+  }
+
+  figcaption {
+    @extend %caption;
+    display: none;
+
+    @include breakpoint(md) {
+      display: flex;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    -webkit-user-drag: none;
+    object-fit: cover;
+  }
+
+  .is-cropped & {
+    align-items: stretch;
+  }
+
+  .flickity-enabled & {
+    flex: none;
+    height: 100%;
+    width: 85%;
+    max-height: 112.5rem * 0.75;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+
+    @include breakpoint(md) {
+      width: 90%;
+    }
+
+    @include breakpoint(lg) {
+      max-width: 112.5rem;
+    }
+
+    figure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background-color: $color-black;
+    }
+
+    img {
+      &.is-loaded {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+      }
+
+      &.is-fit-cover {
+        object-fit: cover;
+      }
+
+      &.is-fit-contain {
+        object-fit: contain;
+      }
+    }
+  }
+}
