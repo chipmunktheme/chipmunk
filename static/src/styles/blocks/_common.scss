@@ -12,10 +12,6 @@
 }
 
 // Separators
-.wp-block-table,
-.wp-block-audio,
-.wp-block-video,
-.wp-block-embed,
 .wp-block-separator {
   &:not(.align-left):not(.alignright) {
     @include spacer(top);
@@ -24,6 +20,10 @@
 }
 
 // Media
+.wp-block-table,
+.wp-block-audio,
+.wp-block-video,
+.wp-block-embed,
 .wp-block-image,
 .wp-block-cover,
 .wp-block-gallery,

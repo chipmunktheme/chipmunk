@@ -34,7 +34,7 @@
 			</ul>
 		<?php endif; ?>
 
-		<a href="<?php the_permalink(); ?>" class="tile__button button button--secondary visible-lg-block">
+		<a href="<?php the_permalink(); ?>" class="tile__button button button--primary-outline visible-lg-block">
 			<?php esc_html_e( 'Read more', 'chipmunk' ); ?>
 		</a>
 	</div>

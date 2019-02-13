@@ -62,7 +62,13 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 
 		if ( $primary_color and $primary_color != '#F38181' ) {
 			$custom_style .= "
-				.button--primary:not([disabled]):hover,
+				:root {
+					--color-accent: $primary_color;
+					--color-background: $background_color;
+					--color-section: $section_color;
+				}
+
+				/*.button--primary:not([disabled]):hover,
 				.button--secondary,
 				.content a:not([class]):hover,
 				.nav-primary__close:hover,
@@ -93,7 +99,7 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 				.nav-socials__link:hover,
 				.stats__button:not(.is-active):hover {
 					border-color: $primary_color;
-				}
+				}*/
 
 				body,
 				.filter__select ~ .select2-container .select2-dropdown {

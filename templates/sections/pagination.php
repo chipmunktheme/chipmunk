@@ -13,7 +13,7 @@ $paged = chipmunk_get_current_page();
 		<div class="container">
 			<?php if ( chipmunk_theme_option( 'pagination_type' ) == 'load_more' or chipmunk_theme_option( 'pagination_type' ) == 'infinite' ) : ?>
 				<div class="text--center">
-					<button class="button button--secondary loader" data-action="load_posts" data-query-vars="<?php echo esc_attr( json_encode( $query->query ) ); ?>" data-page="<?php echo $paged + 1; ?>"<?php echo chipmunk_theme_option( 'pagination_type' ) == 'infinite' ? ' data-view-trigger="click"' : ''; ?>>
+					<button class="button button--primary-outline loader" data-action="load_posts" data-query-vars="<?php echo esc_attr( json_encode( $query->query ) ); ?>" data-page="<?php echo $paged + 1; ?>"<?php echo chipmunk_theme_option( 'pagination_type' ) == 'infinite' ? ' data-view-trigger="click"' : ''; ?>>
 						<span><?php esc_html_e( 'Load more', 'chipmunk' ); ?></span>
 					</button>
 				</div>

@@ -61,15 +61,15 @@
 	<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
 		<li class="nav-primary__item nav-primary__item--condensed hidden-lg">
 			<?php if ( is_user_logged_in() ) : ?>
-				<button type="button" class="button button--secondary" data-popup="#submit">
+				<button type="button" class="button button--primary-outline" data-popup="#submit">
 					<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
 				</button>
 			<?php else : ?>
-				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'login' ) ); ?>" class="button button--secondary">
+				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'login' ) ); ?>" class="button button--primary-outline">
 					<?php esc_html_e( 'Login', 'chipmunk' ); ?>
 				</a>
 
-				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'register' ) ); ?>" class="button button--secondary">
+				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'register' ) ); ?>" class="button button--primary-outline">
 					<?php esc_html_e( 'Register', 'chipmunk' ); ?>
 				</a>
 			<?php endif; ?>
@@ -77,7 +77,7 @@
 	<?php else : ?>
 		<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 			<li class="nav-primary__item nav-primary__item--condensed hidden-lg">
-				<button type="button" class="button button--secondary" data-popup="#submit">
+				<button type="button" class="button button--primary-outline" data-popup="#submit">
 					<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
 				</button>
 			</li>

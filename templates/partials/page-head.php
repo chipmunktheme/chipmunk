@@ -64,25 +64,25 @@
 							</div>
 						</div>
 					<?php else : ?>
-						<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'login' ) ); ?>" class="button button--secondary visible-lg-block">
+						<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'login' ) ); ?>" class="button button--primary-outline visible-lg-block">
 							<?php esc_html_e( 'Login', 'chipmunk' ); ?>
 						</a>
 
 						<?php if ( get_option( 'users_can_register' ) ) : ?>
-							<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'register' ) ); ?>" class="button button--secondary visible-lg-block">
+							<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'register' ) ); ?>" class="button button--primary-outline visible-lg-block">
 								<?php esc_html_e( 'Register', 'chipmunk' ); ?>
 							</a>
 						<?php endif; ?>
 					<?php endif; ?>
 				<?php else : ?>
 					<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
-						<button type="button" class="button button--secondary visible-lg-block" data-popup="#submit">
+						<button type="button" class="button button--primary-outline visible-lg-block" data-popup="#submit">
 							<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
 						</button>
 					<?php endif; ?>
 				<?php endif; ?>
 
-				<button type="button" class="page-head__trigger button button--secondary hidden-lg" data-toggle="nav">
+				<button type="button" class="page-head__trigger button button--primary-outline hidden-lg" data-toggle="nav">
 					<?php esc_html_e( 'Menu', 'chipmunk' ); ?>
 				</button>
 			</div>

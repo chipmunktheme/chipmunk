@@ -30,7 +30,7 @@
 					<?php endif; ?>
 
 					<div class="form__field form__field--center">
-						<button type="submit" class="button button--secondary"><?php esc_html_e( 'Join now', 'chipmunk' ); ?></button>
+						<button type="submit" class="button button--primary-outline"><?php esc_html_e( 'Join now', 'chipmunk' ); ?></button>
 					</div>
 				</form>
 			</div>

@@ -82,12 +82,8 @@
     }
   }
 
-  a:not([class]) {
-    color: $color-gray;
-
-    &:hover {
-      color: $color-primary;
-    }
+  a {
+    @extend %link;
   }
 
   img {

@@ -2,6 +2,17 @@
 ** Placeholders - Link
 ** -----------------------------------------------------------------------------*/
 
+%link {
+  &:not([class]) {
+    color: $color-gray;
+
+    &:hover,
+    &:focus {
+      color: $color-accent;
+    }
+  }
+}
+
 %link-transition {
   cursor: pointer;
   -webkit-user-drag: none;

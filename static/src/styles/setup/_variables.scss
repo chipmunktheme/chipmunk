@@ -17,6 +17,11 @@ $color-status-warning:  #9F6000 !default;
 $color-status-info:     #00529B !default;
 $color-status-error:    #F74444 !default;
 
+// Customizable colors
+$color-accent:          var(--color-accent, #{$color-primary}) !default;
+$color-background:      var(--color-background, #{$color-gray-lightest}) !default;
+$color-section:         var(--color-section, #{$color-white}) !default;
+
 // Z-indexes
 $layer-negative:        -1 !default;
 $layer-neutral:         0 !default;

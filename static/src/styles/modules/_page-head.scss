@@ -54,7 +54,7 @@
 
 .page-head__logo {
   margin-right: $separator;
-  color: $color-primary;
+  color: $color-accent;
   font-weight: bold;
 
   @include breakpoint(lg) {

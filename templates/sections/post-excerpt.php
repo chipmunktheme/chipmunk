@@ -19,7 +19,7 @@
 			<!-- /.entry__content -->
 		<?php endif; ?>
 
-		<a href="<?php the_permalink(); ?>" class="entry__button button button--secondary">
+		<a href="<?php the_permalink(); ?>" class="entry__button button button--primary-outline">
 			<?php esc_html_e( 'Read more', 'chipmunk' ); ?>
 		</a>
 	</div>

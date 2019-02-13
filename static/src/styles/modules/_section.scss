@@ -34,7 +34,7 @@
   }
 
   &--theme-primary {
-    background-color: $color-primary;
+    background-color: $color-accent;
     color: $color-white;
 
     .heading,
@@ -51,7 +51,7 @@
 
     .button--secondary:hover {
       background-color: $color-white !important;
-      color: $color-primary;
+      color: $color-accent;
     }
   }
 }
