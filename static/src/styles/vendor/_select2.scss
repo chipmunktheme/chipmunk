@@ -3,6 +3,7 @@
 ** -----------------------------------------------------------------------------*/
 
 .select2-container {
+  z-index: $layer-utils;
   width: 100% !important;
   color: $color-black;
   font-size: 1.8rem;

@@ -5,7 +5,6 @@
 .section {
   padding-top: $separator * 2;
   padding-bottom: $separator * 2;
-  overflow: hidden;
 
   @include breakpoint(md) {
     padding-top: $separator * 4;

@@ -90,6 +90,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   &:not(:first-child) {
     margin-top: $separator;
@@ -170,14 +171,12 @@
 }
 
 .form__message {
-  margin-top: $separator;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+  &:not(:first-child) {
+    margin-top: $separator;
 
-  @include breakpoint(md) {
-    margin-top: $separator * 2;
+    @include breakpoint(md) {
+      margin-top: $separator * 2;
+    }
   }
 
   &[data-status='success'] {
@@ -187,6 +186,13 @@
   &[data-status='error'] {
     margin-bottom: 2rem;
     color: $color-status-error;
+  }
+
+  .popup & {
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 }
 

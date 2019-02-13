@@ -13,7 +13,8 @@
 
 .nav-secondary__link {
   &[href]:hover,
-  &[title]:hover {
+  &[title]:hover,
+  &[type]:hover {
     color: $color-black;
   }
 }

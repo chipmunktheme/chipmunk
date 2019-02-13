@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="popup__content">
 			<div class="popup__inner">
-				<?php get_template_part( 'templates/sections/submit' ); ?>
+				<?php chipmunk_get_template( 'sections/submit', array( 'title' => esc_html__( 'Submit', 'chipmunk' ) ) ); ?>
 			</div>
 
 			<button class="popup__close" onclick="closePanels()">

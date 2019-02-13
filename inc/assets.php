@@ -143,6 +143,19 @@ endif;
 add_action( 'admin_enqueue_scripts', 'chipmunk_admin_scripts' );
 
 
+if ( ! function_exists( 'chipmunk_deregister_block_styles' ) ) :
+	/**
+	 * Deregisters theme Gutenberg Block assets.
+	 *
+	 * @return void
+	 */
+	function chipmunk_deregister_block_styles() {
+		wp_dequeue_style( 'wp-block-library' );
+	}
+endif;
+add_action( 'wp_enqueue_scripts', 'chipmunk_deregister_block_styles' );
+
+
 if ( ! function_exists( 'chipmunk_google_fonts' ) ) :
 	/**
 	 * Enqueue Google Fonts styles

@@ -1,6 +1,8 @@
 <?php $action = 'submit_resource'; ?>
 
-<h4 class="heading heading--xl text--center"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></h4>
+<?php if ( ! empty( $title ) ) : ?>
+	<h4 class="heading heading--xl text--center"><?php echo esc_html( $title ); ?></h4>
+<?php endif; ?>
 
 <form action="#" class="form loader" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
 	<p class="form__message heading heading--thin" data-action-message="<?php echo $action; ?>"></p>

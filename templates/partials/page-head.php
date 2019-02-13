@@ -54,6 +54,11 @@
 								<ul class="nav-secondary">
 									<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'dashboard' ) ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Dashboard', 'chipmunk' ); ?></a></li>
 									<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'profile' ) ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Profile', 'chipmunk' ); ?></a></li>
+									<li class="nav-secondary__item dropdown__item">
+										<button type="button" class="nav-secondary__link dropdown__link" data-popup="#submit">
+											<?php esc_html_e( 'Submit', 'chipmunk' ); ?>
+										</button>
+									</li>
 									<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( wp_logout_url() ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Logout', 'chipmunk' ); ?></a></li>
 								</ul>
 							</div>
