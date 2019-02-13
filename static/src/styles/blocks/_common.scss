@@ -77,6 +77,10 @@
   }
 
   @include breakpoint(lg) {
+    .column--lg-6[class*="offset"] & {
+      margin-right: column(3/6, true);
+    }
+
     .column--lg-8[class*="offset"] & {
       margin-right: column(2/8, true);
     }
@@ -94,6 +98,10 @@
   }
 
   @include breakpoint(lg) {
+    .column--lg-6[class*="offset"] & {
+      max-width: column(3/6, false, 50%);
+    }
+
     .column--lg-8[class*="offset"] & {
       max-width: column(2/8, false, 50%);
     }
@@ -111,6 +119,11 @@
 
 .alignwide {
   @include breakpoint(lg) {
+    .column--lg-6[class*="offset"] & {
+      margin-left: column(3/6, true);
+      margin-right: column(3/6, true);
+    }
+
     .column--lg-8[class*="offset"] & {
       margin-left: column(2/8, true);
       margin-right: column(2/8, true);
@@ -124,8 +137,7 @@
 }
 
 .alignfull {
-  .column--lg-8[class*="offset"] &,
-  .column--lg-10[class*="offset"] & {
+  [class*="offset"] & {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);

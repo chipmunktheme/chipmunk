@@ -5,6 +5,9 @@ switch ( $template ) {
 	case 'page-full-width.php':
 		$columns = 12;
 		break;
+	case 'page-wide-width.php':
+		$columns = 10;
+		break;
 	case 'page-narrow-width.php':
 		$columns = 6;
 		break;
@@ -14,7 +17,7 @@ switch ( $template ) {
 ?>
 
 <div class="row">
-	<div class="column<?php echo $template == 'page-narrow-width.php' ? ' column--md-4 column--md-offset-1' : ''; ?> column--lg-<?php echo $columns; ?> column--lg-offset-<?php echo ( 12 - $columns ) / 2; ?>">
+	<div class="column<?php echo $columns < 8 ? ' column--md-4 column--md-offset-1' : ''; ?> column--lg-<?php echo $columns; ?> column--lg-offset-<?php echo ( 12 - $columns ) / 2; ?>">
 		<h1 class="heading heading--lg"><?php the_title(); ?></h1>
 
 		<div class="entry__content content">
