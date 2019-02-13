@@ -4750,6 +4750,9 @@ p.has-background {
   }
 }
 @media (min-width: 980px) {
+  .column--lg-6[class*="offset"] .alignleft {
+    margin-left: calc((0.5 * (100% + 2.4rem) * -1) + 0px);
+  }
   .column--lg-8[class*="offset"] .alignleft {
     margin-left: calc((0.25 * (100% + 2.4rem) * -1) + 0px);
   }
@@ -4814,7 +4817,7 @@ p.has-background {
     margin-right: calc((0.1 * (100% + 2.4rem) * -1) + 0px);
   }
 }
-[class*="offset"] .alignfull {
+.column[class*="offset"] .alignfull {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
