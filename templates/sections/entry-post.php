@@ -35,7 +35,7 @@
 			<?php endif; ?>
 
 			<div class="row">
-				<div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? 'column--lg-8 column--lg-offset-2' : ''; ?>">
+				<div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ) : ''; ?>">
 					<div class="entry__head">
 						<?php chipmunk_get_template( 'partials/post-head', array( 'collections' => array( 'display' => true ) ) ); ?>
 					</div>
@@ -44,7 +44,7 @@
 		<?php endif; ?>
 
 		<div class="row row_separated">
-			<div class="column column--lg-8 <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? 'column--lg-offset-2' : ''; ?>">
+			<div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ) : 'column--lg-8'; ?>">
 				<div class="entry__content content">
 					<?php the_content(); ?>
 				</div>

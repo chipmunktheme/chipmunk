@@ -108,6 +108,25 @@ if ( ! function_exists( 'chipmunk_check_requirements' ) ) :
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_columns' ) ) :
+	/**
+	 * Get proper column class
+	 */
+	function chipmunk_get_columns( $columns, $total = 12 ) {
+		$class = '';
+		$offset = round( ( $total - $columns ) / 2 );
+
+		if ( $columns < 8 ) {
+			$class .= 'column--md-4 column--md-offset-1 ';
+		}
+
+		$class .= "column--lg-$columns column--lg-offset-$offset";
+
+		return $class;
+	}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_socials' ) ) :
 	/**
 	 * Get posts

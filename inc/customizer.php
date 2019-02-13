@@ -132,7 +132,20 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'type'        => 'text',
 							'label'       => esc_html__( 'Content Size', 'chipmunk' ),
 							'default'     => '2.1rem',
-							'description' => esc_html__( 'You can use any CSS unit here (eg. px, em, rem, vw)', 'chipmunk' )
+							'description' => esc_html__( 'You can use any CSS unit here (eg. px, em, rem, vw)', 'chipmunk' ),
+						),
+						array(
+							'name'        => 'content_width',
+							'type'        => 'radio',
+							'label'       => esc_html__( 'Content Width', 'chipmunk' ),
+							'default'     => '8',
+							'description' => esc_html__( 'You can can still overwrite it by setting page templates.', 'chipmunk' ),
+							'choices'     => array(
+								'6'           => esc_html__( 'Narrow', 'chipmunk' ),
+								'8'           => esc_html__( 'Normal', 'chipmunk' ),
+								'10'  	      => esc_html__( 'Wide', 'chipmunk' ),
+								'12'          => esc_html__( 'Full', 'chipmunk' ),
+							),
 						),
 						array(
 							'name'        => 'sticky_header',

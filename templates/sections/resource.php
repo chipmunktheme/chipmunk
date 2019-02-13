@@ -87,7 +87,7 @@
 		<div class="section">
 			<div class="container">
 				<div class="row">
-					<div class="column column--lg-8 column--lg-offset-2">
+					<div class="column <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
 						<div class="entry__content content">
 							<?php the_content(); ?>
 						</div>
