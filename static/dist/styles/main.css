@@ -4407,7 +4407,7 @@ input:checked + .u-checkbox__mark .icon {
 .tile__image video,
 .tile__image audio,
 .tile__image iframe {
-  box-shadow: -2px 0 10px 0 rgba(51, 51, 51, 0.5);
+  box-shadow: -2px 0 10px 0 rgba(51, 51, 51, 0.25);
   transition: -webkit-transform 0.25s ease-in-out 0.05s;
   transition: transform 0.25s ease-in-out 0.05s;
   transition: transform 0.25s ease-in-out 0.05s, -webkit-transform 0.25s ease-in-out 0.05s;

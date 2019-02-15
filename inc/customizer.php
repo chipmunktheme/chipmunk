@@ -286,12 +286,6 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => false,
 						),
 						array(
-							'name'        => 'disable_collection_thumbs',
-							'type'        => 'checkbox',
-							'label'       => esc_html__( 'Disable collection thumbs', 'chipmunk' ),
-							'default'     => false,
-						),
-						array(
 							'name'        => 'disable_website_button',
 							'type'        => 'checkbox',
 							'label'       => esc_html__( 'Disable website button', 'chipmunk' ),
@@ -362,6 +356,30 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 								'asc'         => esc_html__( 'Ascending', 'chipmunk' ),
 								'desc'        => esc_html__( 'Descending', 'chipmunk' ),
 							),
+						),
+					),
+				),
+
+				array(
+					'title'         => esc_html__( 'Collections', 'chipmunk' ),
+					'slug'          => 'collections_section',
+					'fields'        => array(
+						array(
+							'name'        => 'display_collection_as',
+							'type'        => 'select',
+							'label'       => esc_html__( 'Display collections as', 'chipmunk' ),
+							'default'     => 'tile',
+							'choices'     => array(
+								'tile'        => esc_html__( 'Tile', 'chipmunk' ),
+								'card'        => esc_html__( 'Card', 'chipmunk' ),
+								'card_blank'  => esc_html__( 'Card (blank)', 'chipmunk' ),
+							),
+						),
+						array(
+							'name'        => 'disable_collection_thumbs',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Disable collection thumbs', 'chipmunk' ),
+							'default'     => false,
 						),
 					),
 				),

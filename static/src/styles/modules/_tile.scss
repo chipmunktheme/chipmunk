@@ -110,7 +110,7 @@
   video,
   audio,
   iframe {
-    box-shadow: -2px 0 10px 0 rgba($color-black, 0.5);
+    box-shadow: -2px 0 10px 0 rgba($color-black, 0.25);
     transition: transform $transition-duration ease-in-out 0.05s;
 
     &:nth-child(2) {

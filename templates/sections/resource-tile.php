@@ -9,7 +9,7 @@
 	);
 ?>
 
-<<?php echo get_post_status() == 'publish' ? 'a href="' . get_the_permalink() . '"' : 'article'; ?> class="<?php echo $tile_classes[chipmunk_theme_option( 'display_resource_as' )]; ?><?php echo $is_column ? ' column column--md-3 column--lg-4' : ''; ?>">
+<<?php echo get_post_status() == 'publish' ? 'a href="' . get_the_permalink() . '"' : 'article'; ?> class="<?php echo esc_attr( $tile_classes[ chipmunk_theme_option( 'display_resource_as' ) ] ); ?><?php echo $is_column ? ' column column--md-3 column--lg-4' : ''; ?>">
 	<?php if ( ! chipmunk_theme_option( 'disable_resource_thumbs' ) || chipmunk_theme_option( 'display_resource_as' ) == 'tile' ) : ?>
 		<div class="tile__image <?php echo ( isset( $display_status ) and chipmunk_theme_option( 'display_resource_as' ) != 'tile' ) ? 'tile__image--with-status' : ''; ?>">
 			<?php if ( ! chipmunk_theme_option( 'disable_resource_thumbs' ) && has_post_thumbnail() ) : ?>
