@@ -42,7 +42,10 @@ if ( ! function_exists( 'chipmunk_set_views' ) ) :
 			if ( ! isset( $_COOKIE[$db_key . '-' . $id] ) ) {
 				$count++;
 				update_post_meta( $id, $db_key, $count );
-				setcookie( $db_key . '-' . $id, true );
+
+				if ( ! chipmunk_theme_option( 'disable_cookies' ) ) {
+					setcookie( $db_key . '-' . $id, true );
+				}
 			}
 		}
 	}
