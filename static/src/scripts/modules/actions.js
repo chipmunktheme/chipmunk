@@ -19,10 +19,15 @@ const Actions = {
 
     if (this.triggers.length) {
       [].forEach.call(this.triggers, (trigger) => {
-        if (trigger.hasAttribute('action')) {
-          trigger.addEventListener('submit', this.handleEvent.bind(this));
-        } else {
-          trigger.addEventListener('click', this.handleEvent.bind(this));
+        if (!trigger.dataset.listening) {
+          if (trigger.hasAttribute('action')) {
+            trigger.addEventListener('submit', this.handleEvent.bind(this));
+          } else {
+            trigger.addEventListener('click', this.handleEvent.bind(this));
+          }
+
+          // Only bind the event once on this element
+          trigger.dataset.listening = true;
         }
       });
     }
