@@ -10,19 +10,21 @@
 ?>
 
 <<?php echo get_post_status() == 'publish' ? 'a href="' . get_the_permalink() . '"' : 'article'; ?> class="<?php echo $tile_classes[chipmunk_theme_option( 'display_resource_as' )]; ?><?php echo $is_column ? ' column column--md-3 column--lg-4' : ''; ?>">
-	<div class="tile__image <?php echo ( isset( $display_status ) and chipmunk_theme_option( 'display_resource_as' ) != 'tile' ) ? 'tile__image--with-status' : ''; ?>">
-		<?php if ( has_post_thumbnail() ) : ?>
-			<?php the_post_thumbnail( '600x420' ); ?>
-		<?php endif; ?>
+	<?php if ( ! chipmunk_theme_option( 'disable_resource_thumbs' ) || chipmunk_theme_option( 'display_resource_as' ) == 'tile' ) : ?>
+		<div class="tile__image <?php echo ( isset( $display_status ) and chipmunk_theme_option( 'display_resource_as' ) != 'tile' ) ? 'tile__image--with-status' : ''; ?>">
+			<?php if ( ! chipmunk_theme_option( 'disable_resource_thumbs' ) && has_post_thumbnail() ) : ?>
+				<?php the_post_thumbnail( '600x420' ); ?>
+			<?php endif; ?>
 
-		<?php if ( isset( $display_status ) and chipmunk_theme_option( 'display_resource_as' ) != 'tile' ) : ?>
-			<span class="tile__status tile__status--<?php echo esc_attr( get_post_status() ); ?>">
-				<?php echo esc_html( ucfirst( get_post_status() ) ); ?>
-			</span>
-		<?php endif; ?>
-	</div>
+			<?php if ( isset( $display_status ) and chipmunk_theme_option( 'display_resource_as' ) != 'tile' ) : ?>
+				<span class="tile__status tile__status--<?php echo esc_attr( get_post_status() ); ?>">
+					<?php echo esc_html( ucfirst( get_post_status() ) ); ?>
+				</span>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
 
-	<div class="tile__content<?php echo ( chipmunk_theme_option( 'display_resource_as' ) == 'tile' ? ( chipmunk_theme_option( 'disable_resource_thumbs' ) ? ' tile__content--primary' : ' tile__content--dimmed' ) : '' ); ?>">
+	<div class="tile__content<?php echo ( chipmunk_theme_option( 'display_resource_as' ) == 'tile' ? ( chipmunk_theme_option( 'disable_resource_thumbs' ) || ! has_post_thumbnail() ? ' tile__content--primary' : ' tile__content--dimmed' ) : '' ); ?>">
 		<div class="tile__info">
 			<div class="tile__head">
 				<?php echo chipmunk_conditional_markup( is_front_page() or is_single(), 'h3', 'h2', 'tile__title', chipmunk_theme_option( 'display_resource_as' ) == 'tile' ? esc_html( chipmunk_truncate_string( get_the_title(), 60 ) ) : get_the_title() ); ?>

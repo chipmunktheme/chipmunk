@@ -1,30 +1,32 @@
 <a href="<?php echo esc_url( get_term_link( $collection ) ); ?>" class="tile column column--md-3 column--lg-4">
 	<div class="tile__image">
 		<?php if ( ! chipmunk_theme_option( 'disable_collection_thumbs' ) ) : ?>
-			<?php
-			$resources = new WP_Query( array(
-				'posts_per_archive_page' => 3,
-				'post_type'       => 'resource',
-				'tax_query'       => array(
-					array(
-						'taxonomy'    => 'resource-collection',
-						'field'       => 'term_id',
-						'terms'       => $collection->term_id,
+			<?php if ( ! empty( $collection->term_image ) ) : ?>
+				<?php echo wp_get_attachment_image( $collection->term_image, '600x420' ); ?>
+			<?php else : ?>
+				<?php
+				$resources = new WP_Query( array(
+					'posts_per_archive_page' => 3,
+					'post_type'       => 'resource',
+					'tax_query'       => array(
+						array(
+							'taxonomy'    => 'resource-collection',
+							'field'       => 'term_id',
+							'terms'       => $collection->term_id,
+						),
 					),
-				),
-			) );
+				) );
+				?>
 
-			$resources->posts = array_reverse( $resources->posts );
-			?>
+				<?php if ( $resources->have_posts() ) : ?>
+					<?php while ( $resources->have_posts() ) : $resources->the_post(); ?>
 
-			<?php if ( $resources->have_posts() ) : ?>
-				<?php while ( $resources->have_posts() ) : $resources->the_post(); ?>
+						<?php if ( has_post_thumbnail() ) : ?>
+							<?php the_post_thumbnail( '600x420' ); ?>
+						<?php endif; ?>
 
-					<?php if ( has_post_thumbnail() ) : ?>
-						<?php the_post_thumbnail( '600x420' ); ?>
-					<?php endif; ?>
-
-				<?php endwhile; wp_reset_postdata(); ?>
+					<?php endwhile; wp_reset_postdata(); ?>
+				<?php endif; ?>
 			<?php endif; ?>
 		<?php endif; ?>
 	</div>

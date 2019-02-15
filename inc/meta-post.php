@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom meta boxes
+ * Custom Post meta
  *
  * @package WordPress
  * @subpackage Chipmunk
@@ -24,7 +24,7 @@ if ( ! function_exists( 'chipmunk_add_meta_boxes' ) ) :
 			}
 		}
 	}
-	endif;
+endif;
 add_action( 'add_meta_boxes', 'chipmunk_add_meta_boxes' );
 
 
@@ -36,7 +36,7 @@ if ( ! function_exists( 'chipmunk_save_meta_boxes_resource' ) ) :
 	 */
 	function chipmunk_save_meta_boxes_resource( $post_id ) {
 		// Verify permissions
-		if ( ! chipmunk_verify_permissions( $post_id ) ) {
+		if ( ! chipmunk_verify_post_permissions( $post_id ) ) {
 			return false;
 		}
 
@@ -54,7 +54,7 @@ if ( ! function_exists( 'chipmunk_save_meta_boxes_resource' ) ) :
 			}
 		}
 	}
-	endif;
+endif;
 add_action( 'save_post_resource', 'chipmunk_save_meta_boxes_resource' );
 
 
@@ -126,11 +126,11 @@ if ( ! function_exists( 'chipmunk_add_meta_box' ) ) :
 endif;
 
 
-if ( ! function_exists( 'chipmunk_verify_permissions' ) ) :
+if ( ! function_exists( 'chipmunk_verify_post_permissions' ) ) :
 	/**
 	 * Custom wrapper for add_meta_box function.
 	 */
-	function chipmunk_verify_permissions( $post_id ) {
+	function chipmunk_verify_post_permissions( $post_id ) {
 		// verify taxonomies meta box nonce
 		if ( ! isset( $_POST[THEME_SLUG . '_nonce'] ) || ! wp_verify_nonce( $_POST[THEME_SLUG . '_nonce'], basename( __FILE__ ) ) ) {
 			return false;
@@ -142,7 +142,7 @@ if ( ! function_exists( 'chipmunk_verify_permissions' ) ) :
 		}
 
 		// Check the user's permissions.
-		if ( !current_user_can( 'edit_post', $post_id ) ) {
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return false;
 		}
 

@@ -88,7 +88,7 @@ if ( ! function_exists( 'chipmunk_admin_scripts' ) ) :
 	 */
 	function chipmunk_admin_scripts() {
 		// Load Chipmunk admin stylesheet
-		wp_enqueue_style( 'chipmunk-admin-styles', THEME_TEMPLATE_URI . '/admin.css', array(), THEME_VERSION );
+		wp_enqueue_style( 'chipmunk-admin-styles', THEME_TEMPLATE_URI . '/admin/admin.css', array(), THEME_VERSION );
 	}
 endif;
 add_action( 'admin_enqueue_scripts', 'chipmunk_admin_scripts' );
