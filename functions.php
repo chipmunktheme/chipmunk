@@ -27,6 +27,7 @@ require_once THEME_TEMPLATE_DIR . '/inc/ajax.php';
 require_once THEME_TEMPLATE_DIR . '/inc/submission.php';
 require_once THEME_TEMPLATE_DIR . '/inc/upvotes.php';
 require_once THEME_TEMPLATE_DIR . '/inc/bookmarks.php';
+require_once THEME_TEMPLATE_DIR . '/inc/open-graph.php';
 
 
 if ( ! function_exists( 'chipmunk_setup' ) ) :

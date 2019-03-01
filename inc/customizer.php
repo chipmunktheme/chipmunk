@@ -407,6 +407,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => false,
 						),
 						array(
+							'name'        => 'disable_submission_image_fetch',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Disable image auto-fetching', 'chipmunk' ),
+							'default'     => false,
+						),
+						array(
 							'name'        => 'submit_page',
 							'type'        => 'dropdown-pages',
 							'label'       => esc_html__( 'Submit form page', 'chipmunk' ),

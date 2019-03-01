@@ -78,6 +78,27 @@ if ( ! class_exists( 'SubmissionForm' ) ) :
 		}
 
 		/**
+		 * Attach post thumbnail
+		 *
+		 * @param  integer $post_id
+		 * @param  string $website
+		 * @return integer
+		 */
+		private function attach_post_thumbnail( $post_id, $website ) {
+			if ( ! empty( $website ) ) {
+				$og_data = OpenGraph::fetch( $website );
+
+				if ( ! empty( $og_data ) && ! empty( $og_data->image ) ) {
+					if ( $attachment_id = chipmunk_upload_attachment( $og_data->image ) ) {
+						return set_post_thumbnail( $post_id, $attachment_id );
+					}
+				}
+			}
+
+			return false;
+		}
+
+		/**
 		 * Submit an post into the database
 		 *
 		 * @return void
@@ -115,6 +136,11 @@ if ( ! class_exists( 'SubmissionForm' ) ) :
 			if ( $post_id = wp_insert_post( $post_object) ) {
 				// Insert taxonomy information
 				wp_set_object_terms( $post_id, (int) $collection, 'resource-collection' );
+
+				// Attach post thumbnail
+				if ( ! chipmunk_theme_option( 'disable_submission_image_fetch' ) ) {
+					$this->attach_post_thumbnail( $post_id, $website );
+				}
 
 				// Send email to website admin
 				if ( chipmunk_theme_option( 'inform_about_submissions' ) ) {

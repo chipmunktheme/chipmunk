@@ -752,6 +752,59 @@ if ( ! function_exists( 'chipmunk_get_fonts_url' ) ) :
 endif;
 
 
+if ( ! function_exists( 'chipmunk_upload_attachment' ) ) :
+	/**
+	 * Upload attachment image from URL
+	 */
+	function chipmunk_upload_attachment( $url ) {
+		require_once ABSPATH . 'wp-admin/includes/image.php';
+
+		if ( ! class_exists( 'WP_Http' ) ) {
+			include_once( ABSPATH . WPINC . '/class-http.php' );
+		}
+
+		$http = new WP_Http();
+		$response = $http->request( $url );
+		$wp_upload_dir = wp_upload_dir();
+
+		if ( $response['response']['code'] != 200 ) {
+			return false;
+		}
+
+		$upload = wp_upload_bits( basename( $url ), null, $response['body'] );
+
+		if ( ! empty( $upload['error'] ) ) {
+			return false;
+		}
+
+		$file_path = $upload['file'];
+		$file_name = basename( $file_path );
+		$file_type = wp_check_filetype( $file_name, null );
+		$attachment_title = sanitize_file_name( pathinfo( $file_name, PATHINFO_FILENAME ) );
+
+		// Set up our images post data
+		$attachment_info = array(
+			'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
+			'post_mime_type' => $file_type['type'],
+			'post_title'     => $attachment_title,
+			'post_content'   => '',
+			'post_status'    => 'inherit',
+		);
+
+		// Attach/upload image
+		$attachment_id = wp_insert_attachment( $attachment_info, $file_path );
+
+		// Generate the necessary attachment data, filesize, height, width etc.
+		$attachment_data = wp_generate_attachment_metadata( $attachment_id, $file_path );
+
+		// Add the above meta data data to our new image post
+		wp_update_attachment_metadata( $attachment_id,  $attachment_data );
+
+		return $attachment_id;
+	}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_ip' ) ) :
 	/**
 	 * Utility to retrieve IP address
