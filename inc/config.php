@@ -191,7 +191,7 @@ if ( ! function_exists( 'chipmunk_add_og_tags' ) ) :
 			return;
 		}
 
-		$site_image = ( $logo = chipmunk_theme_option( 'og_image' ) ) ? $logo : THEME_TEMPLATE_URI . '/static/dist/images/chipmunk-og.png';
+		$site_image = chipmunk_theme_option( 'og_image' );
 
 		if ( is_front_page() ) {
 			?>
