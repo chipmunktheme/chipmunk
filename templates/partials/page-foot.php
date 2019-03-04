@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="page-foot__inner">
 			<p class="page-foot__copy">
-				<?php printf( esc_html__( '&copy; %1$s %2$s.', 'chipmunk' ), get_bloginfo( 'name' ), date_i18n( 'Y' ) ); ?>
+				<?php echo do_shortcode( wp_kses_post( chipmunk_theme_option( 'copyright_text' ) ) ); ?>
 			</p>
 
 			<?php if ( ! chipmunk_theme_option( 'disable_credits' ) ) : ?>

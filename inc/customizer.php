@@ -653,6 +653,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => get_bloginfo( 'description' ),
 							'description' => esc_html__( 'Enter your site\'s description displayed in the footer section. You can use basic HTML tags here (<p>, <a>, <strong>, <i>).', 'chipmunk' ),
 						),
+						array(
+							'name'        => 'copyright_text',
+							'type'        => 'textarea',
+							'label'       => esc_html__( 'Copyright text', 'chipmunk' ),
+							'default'     => sprintf( esc_html__( '&copy; %1$s %2$s', 'chipmunk' ), get_bloginfo( 'name' ), date_i18n( 'Y' ) ),
+						),
 					),
 				),
 			);
