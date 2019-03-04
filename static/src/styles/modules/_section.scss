@@ -40,23 +40,27 @@
 }
 
 .section__separator {
-  margin-top: $separator * 2;
+  display: block;
 
-  @include breakpoint(md) {
-    margin-top: $separator * 4;
-  }
-
-  .section_compact & {
-    margin-top: $separator;
+  &:not(:first-child) {
+    margin-top: $separator * 2;
 
     @include breakpoint(md) {
-      margin-top: $separator * 2;
+      margin-top: $separator * 4;
     }
-  }
 
-  .section_double & {
-    @include breakpoint(lg) {
-      margin-top: $separator * 8;
+    .section--compact & {
+      margin-top: $separator;
+
+      @include breakpoint(md) {
+        margin-top: $separator * 2;
+      }
+    }
+
+    .section--double & {
+      @include breakpoint(lg) {
+        margin-top: $separator * 8;
+      }
     }
   }
 }
@@ -64,13 +68,5 @@
 .section__title {
   @include breakpoint(lg) {
     font-size: 5.2rem;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: $separator * 2;
-
-    @include breakpoint(md) {
-      margin-bottom: $separator * 4;
-    }
   }
 }
