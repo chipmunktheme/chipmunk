@@ -39,6 +39,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 			'Google',
 			'Instagram',
 			'LinkedIn',
+			'VK',
 			'Pinterest',
 			'Flickr',
 			'Vimeo',
