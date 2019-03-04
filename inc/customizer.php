@@ -602,7 +602,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'name'        => 'newsletter_action',
 							'type'        => 'text',
 							'label'       => esc_html__( 'Form action URL', 'chipmunk' ),
-							'description' => sprintf( wp_kses( __( 'We support Mailchimp and ConvertKit. Find your URL for <a href="%1$s" target="_blank">Mailchimp</a> or <a href="%2$s" target="_blank">ConvertKit</a>', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'http://chipmunktheme.com/mailchimp-url' ), esc_url( 'http://chipmunktheme.com/convertkit-url' ) ),
+							'description' => sprintf( wp_kses( __( 'We support Mailchimp, ConvertKit and AWeber. Find your URL for <a href="%1$s" target="_blank">Mailchimp</a>, <a href="%2$s" target="_blank">ConvertKit</a> or <a href="%3$s" target="_blank">AWeber</a>.', 'chipmunk' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://chipmunktheme.com/mailchimp-url' ), esc_url( 'https://chipmunktheme.com/convertkit-url' ), esc_url( 'https://chipmunktheme.com/aweber-url/' ) ),
 						),
 						array(
 							'name'        => 'newsletter_tagline',

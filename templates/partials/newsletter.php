@@ -1,5 +1,6 @@
 <?php $action = esc_url( chipmunk_theme_option( 'newsletter_action' ) ); ?>
 <?php $email_field = 'email'; ?>
+<?php $args = array(); ?>
 
 <?php if ( strpos( $action, 'list-manage.com' ) ) : ?>
 	<?php $email_field = 'EMAIL'; ?>
@@ -7,6 +8,12 @@
 
 <?php if ( strpos( $action, 'convertkit.com' ) ) : ?>
 	<?php $email_field = 'email_address'; ?>
+<?php endif; ?>
+
+<?php if ( strpos( $action, 'aweber.com' ) ) : ?>
+	<?php $args = wp_parse_args( wp_parse_url( $action )['query'] ); ?>
+	<?php $args['meta_required'] = 'email'; ?>
+	<?php $args['redirect'] = ''; ?>
 <?php endif; ?>
 
 <?php if ( ! chipmunk_theme_option( 'disable_newsletter' ) and ! empty( $action ) ) : ?>
@@ -32,6 +39,12 @@
 					<div class="form__field form__field--center">
 						<button type="submit" class="button button--white-outline"><?php esc_html_e( 'Join now', 'chipmunk' ); ?></button>
 					</div>
+
+					<?php if ( ! empty( $args ) ) : ?>
+						<?php foreach ( $args as $key => $value ) : ?>
+							<input type="hidden" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $value ); ?>">
+						<?php endforeach; ?>
+					<?php endif; ?>
 				</form>
 			</div>
 		</div>
