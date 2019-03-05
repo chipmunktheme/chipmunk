@@ -6,14 +6,13 @@
   position: relative;
 
   img {
-    @include breakpoint(md) {
+    background-color: rgba($color-black, 0.8);
+  }
+
+  &.alignwide,
+  &.alignfull {
+    img {
       width: 100%;
-      height: 100%;
-      flex: 1;
-      object-fit: cover;
-      background-color: rgba($color-black, 0.8);
-      transition: opacity $transition-duration;
-      backface-visibility: hidden;
     }
   }
 

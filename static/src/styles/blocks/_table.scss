@@ -3,7 +3,7 @@
 ** -----------------------------------------------------------------------------*/
 
 .wp-block-table {
-  width: 100%;
+  min-width: 100%;
   border: 1px solid $color-gray-light;
   border-spacing: 0;
   border-collapse: collapse;

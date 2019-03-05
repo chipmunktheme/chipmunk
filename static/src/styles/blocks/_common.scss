@@ -12,14 +12,6 @@
 }
 
 // Separators
-.wp-block-separator {
-  &:not(.alignleft):not(.alignright) {
-    @include spacer(top);
-    @include spacer(bottom);
-  }
-}
-
-// Media
 .wp-block-table,
 .wp-block-audio,
 .wp-block-video,
@@ -27,7 +19,19 @@
 .wp-block-image,
 .wp-block-cover,
 .wp-block-gallery,
-.wp-block-columns,
+.wp-block-columns {
+  &:not(.alignleft):not(.alignright) {
+    @include spacer(top);
+    @include spacer(bottom);
+
+    &.alignwide,
+    &.alignfull {
+      @include spacer(top, 2);
+      @include spacer(bottom, 2);
+    }
+  }
+}
+
 .wp-block-quote,
 .wp-block-pullquote,
 .wp-block-verse {
@@ -51,6 +55,11 @@ $layouts: (6, 8, 10);
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+
+  > * {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .alignleft {
