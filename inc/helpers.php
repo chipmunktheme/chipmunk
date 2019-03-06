@@ -846,6 +846,20 @@ if ( ! function_exists( 'chipmunk_get_ip' ) ) :
 endif;
 
 
+if ( ! function_exists( 'chipmunk_ping' ) ) :
+	/**
+	 * Utility to ping a host with given args
+	 */
+	function chipmunk_ping( $host, $args = array() ) {
+		if ( ! empty( $args ) ) {
+			$host = add_query_arg( $args, $host );
+		}
+
+		exec( sprintf( 'ping -c 1 -W 5 %s', escapeshellarg( $host ) ) );
+	}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_current_page' ) ) :
 	/**
 	 * Get current page attribute

@@ -182,6 +182,35 @@ endif;
 add_action( 'wp_insert_post', 'chipmunk_set_default_meta' );
 
 
+if ( ! function_exists( 'chipmunk_activation_hook' ) ) :
+	/**
+	 * Theme activation hook
+	 */
+	function chipmunk_activation_hook( $old_name, $old_theme ) {
+		// chipmunk_ping( 'https://chipmunktheme.com/activations', array(
+		// 	'active'    => true,
+		// 	'website'   => get_site_url(),
+		// 	'version'   => THEME_VERSION,
+		// ) );
+	}
+endif;
+add_action( 'after_switch_theme', 'chipmunk_activation_hook' );
+
+
+if ( ! function_exists( 'chipmunk_deactivation_hook' ) ) :
+	/**
+	 * Theme deactivation hook
+	 */
+	function chipmunk_deactivation_hook( $new_name, $new_theme, $old_theme ) {
+		// chipmunk_ping( 'https://chipmunktheme.com/activations', array(
+		// 	'active'    => false,
+		// 	'website'   => get_site_url(),
+		// ) );
+	}
+endif;
+add_action( 'switch_theme', 'chipmunk_deactivation_hook' );
+
+
 if ( ! function_exists( 'chipmunk_add_og_tags' ) ) :
 	/**
 	 * Add facebook's Open Graph tags
