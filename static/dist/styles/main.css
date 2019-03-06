@@ -3337,19 +3337,18 @@ input:checked + .u-checkbox__mark .icon {
 }
 .nav-primary__inner {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
   height: 100%;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 6rem 2rem;
+  overflow: scroll;
+  -ms-scroll-chaining: none;
+      overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   text-align: center;
 }
 @media (min-width: 980px) {
   .nav-primary__inner {
-    display: block;
     height: auto;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
     text-align: left;
   }
 }
@@ -3357,6 +3356,7 @@ input:checked + .u-checkbox__mark .icon {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  margin: auto;
 }
 @media (min-width: 980px) {
   .nav-primary__list {

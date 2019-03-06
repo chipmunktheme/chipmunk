@@ -45,18 +45,16 @@
 
 .nav-primary__inner {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
   height: 100%;
-  padding-left: $separator;
-  padding-right: $separator;
+  padding: ($separator * 3) $separator;
+  overflow: scroll;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   text-align: center;
 
   @include breakpoint(lg) {
-    display: block;
     height: auto;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0;
     text-align: left;
   }
 }
@@ -65,6 +63,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  margin: auto;
 
   @include breakpoint(lg) {
     flex-direction: row;
