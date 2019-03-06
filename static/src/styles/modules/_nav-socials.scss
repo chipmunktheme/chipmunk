@@ -17,10 +17,8 @@
 }
 
 .nav-socials__item {
-  margin-left: 1rem;
-
-  &:first-child {
-    margin-left: 0;
+  &:not(:first-child) {
+    margin-left: ($separator / 2);
   }
 }
 

@@ -1,6 +1,8 @@
 <ul class="nav-primary__list">
 	<?php $menu_items = chipmunk_get_menu_items( 'nav-primary' ); ?>
 
+	<?php $menu_items = array_merge( $menu_items, $menu_items, $menu_items ); ?>
+
 	<?php if ( ! empty( $menu_items ) ) : ?>
 		<?php foreach ( $menu_items as $menu_item ) : ?>
 			<?php if ( $menu_item->menu_item_parent == 0 ) : ?>

@@ -1,0 +1,8 @@
+/*
+** Utils - Hamburger
+** ----------------------------------------------------------------------------- */
+
+.u-hamburger {
+  @include u-hamburger(2em, 1.65em, 2px, currentColor, $transition-duration, 'none');
+  margin: -0.125em -0.25em;
+}

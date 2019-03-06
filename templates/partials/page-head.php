@@ -47,7 +47,9 @@
 									<?php echo get_avatar( $current_user->ID, 64 ); ?>
 								</div>
 
-								<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-down', 'size' => 'sm' ) ); ?>
+								<span class="visible-lg-inline-block">
+									<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-down', 'size' => 'sm' ) ); ?>
+								</span>
 							</button>
 
 							<div class="dropdown dropdown--right">
@@ -78,8 +80,8 @@
 					<?php endif; ?>
 				<?php endif; ?>
 
-				<button type="button" class="page-head__trigger button button--primary-outline hidden-lg" data-toggle="nav">
-					<?php esc_html_e( 'Menu', 'chipmunk' ); ?>
+				<button class="page-head__hamburger u-hamburger hidden-lg" data-toggle="nav">
+					<span></span>
 				</button>
 			</div>
 			<!-- /.page-head__cta -->
