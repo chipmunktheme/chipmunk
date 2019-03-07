@@ -1,15 +1,15 @@
 <?php $paged = chipmunk_get_current_page(); ?>
 
-<?php if ( is_single() ) : ?>
+<?php if ( is_singular( 'resource' ) ) : ?>
 	<?php $query = chipmunk_get_related( get_the_ID() ); ?>
 <?php else : ?>
 	<?php $query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged ); ?>
 <?php endif; ?>
 
-<?php if ( $query->have_posts() or ! is_single() ) : ?>
+<?php if ( $query->have_posts() or ! is_singular( 'resource' ) ) : ?>
 	<div class="section">
 		<div class="container">
-			<?php if ( is_single() ) : ?>
+			<?php if ( is_singular( 'resource' ) ) : ?>
 				<h2 class="heading heading--md"><?php esc_html_e( 'Related', 'chipmunk' ); ?></h2>
 			<?php else : ?>
 				<?php if ( $query->have_posts() ) : ?>
