@@ -6,9 +6,19 @@
 ** Calculates column fraction width
 **
 ** @param {Number} $fraction  - Size of the column
+** @param {Number} $columns   - Number of the columns
+** @param {Boolean} $negative - Is value returned negative
+** @param {Unit} $addition    - Extra space to add to the value
 **/
-@function column($fraction, $negative: false, $addition: 0px) {
-  @return calc((#{$fraction} * (100% + #{$grid-column-gutter}) * #{if($negative, -1, 1)}) + #{$addition});
+@function column($fraction, $columns, $negative: false, $addition: 0px) {
+  $gutters: (6: 1, 8: 0.5, 10: 0.25);
+
+  @if $fraction > 1 {
+    @return calc(#{$fraction} * 100% + #{$grid-column-gutter * map-get($gutters, $columns)});
+  }
+  @else {
+    @return calc(((#{$fraction} * (100% + #{$grid-column-gutter})) * #{if($negative, -1, 1)}) + #{$addition});
+  }
 }
 
 /*

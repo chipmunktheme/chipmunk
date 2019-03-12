@@ -19,7 +19,8 @@
 .wp-block-image,
 .wp-block-cover,
 .wp-block-gallery,
-.wp-block-columns {
+.wp-block-columns,
+.wp-block-separator {
   &:not(.alignleft):not(.alignright) {
     @include spacer(top);
     @include spacer(bottom);
@@ -72,7 +73,7 @@ $layouts: (6, 8, 10);
   @include breakpoint(lg) {
     @each $layout in $layouts {
       .column--lg-#{$layout}[class*="offset"] & {
-        margin-left: column(((12 - $layout) / 2)/$layout, true);
+        margin-left: column(((12 - $layout) / 2) / $layout, $layout, true);
       }
     }
   }
@@ -88,7 +89,7 @@ $layouts: (6, 8, 10);
   @include breakpoint(lg) {
     @each $layout in $layouts {
       .column--lg-#{$layout}[class*="offset"] & {
-        margin-right: column(((12 - $layout) / 2)/$layout, true);
+        margin-right: column(((12 - $layout) / 2) / $layout, $layout, true);
       }
     }
   }
@@ -103,7 +104,7 @@ $layouts: (6, 8, 10);
   @include breakpoint(lg) {
     @each $layout in $layouts {
       .column--lg-#{$layout}[class*="offset"] & {
-        max-width: column(((12 - $layout) / 2)/$layout, false, 50%);
+        max-width: column(((12 - $layout) / 2) / $layout, $layout, false, 50%);
       }
     }
   }
@@ -118,8 +119,9 @@ $layouts: (6, 8, 10);
   @include breakpoint(lg) {
     @each $layout in $layouts {
       .column--lg-#{$layout}[class*="offset"] & {
-        margin-left: column(((12 - $layout) / 2)/$layout, true);
-        margin-right: column(((12 - $layout) / 2)/$layout, true);
+        width: column(12 / $layout, $layout, false);
+        margin-left: column(((12 - $layout) / 2) / $layout, $layout, true);
+        margin-right: column(((12 - $layout) / 2) / $layout, $layout, true);
       }
     }
   }
