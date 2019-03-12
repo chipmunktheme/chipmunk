@@ -20,11 +20,11 @@ $paged = chipmunk_get_current_page();
 			<?php else : ?>
 				<ul class="pagination__nav">
 					<?php
-						$previous_link = chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-left' ), false ) . '<span class="visible-md-inline">' . esc_html__( 'Previous', 'chipmunk' ) . '</span>';
-						$previous_link = get_previous_posts_link( $previous_content );
+						$previous_content = chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-left' ), false ) . '<span class="visible-md-inline">' . esc_html__( 'Previous', 'chipmunk' ) . '</span>';
+						$previous_link = get_previous_posts_link( $previous_content, $query->max_num_pages );
 
-						$next_link = '<span class="visible-md-inline">' . esc_html__( 'Next', 'chipmunk' ) . '</span>' . chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-right' ), false );
-						$next_link = get_next_posts_link( $next_content );
+						$next_content = '<span class="visible-md-inline">' . esc_html__( 'Next', 'chipmunk' ) . '</span>' . chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-right' ), false );
+						$next_link = get_next_posts_link( $next_content, $query->max_num_pages );
 					?>
 
 					<li class="pagination__item<?php echo empty( $previous_link ) ? ' pagination__item--disabled' : ''; ?>">
