@@ -42,7 +42,7 @@
 			</div>
 
 			<div class="form__child">
-				<input type="text" name="content" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>" class="form__input">
+				<textarea rows="1" name="content" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>" class="form__input" data-dynamic-rows></textarea>
 			</div>
 		</div>
 
