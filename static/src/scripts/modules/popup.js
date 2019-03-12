@@ -30,11 +30,35 @@ const Popup = {
   closePopup() {
     // Remove location hash
     history.pushState(null, null, location.pathname + location.search);
+
+    // Clear form
+    setTimeout(() => this.clearForm(), 500);
   },
 
   hashHandler() {
     if (location.hash === "#submit") {
       this.openPopup();
+    }
+  },
+
+  clearForm() {
+    const popup = document.querySelector('[data-popup-content]');
+
+    if (popup) {
+      const form = popup.querySelector('[data-action]');
+      const element = popup.querySelector('[data-action-element]');
+      const message = popup.querySelector('[data-action-message]');
+
+      if (form && element && message && message.innerHTML) {
+        // Clear form
+        form.reset();
+
+        // Show form fields
+        element.style.display = 'block';
+
+        // Clear message
+        message.innerHTML = '';
+      }
     }
   },
 };
