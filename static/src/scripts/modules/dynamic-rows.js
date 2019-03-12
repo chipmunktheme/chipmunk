@@ -19,14 +19,11 @@ const DynamicRows = {
     const style = window.getComputedStyle(input);
     const lineHeight = parseInt(style.getPropertyValue('line-height'));
     const padding = parseInt(style.getPropertyValue('padding-top')) + parseInt(style.getPropertyValue('padding-bottom'));
+    const rowLimit = parseInt(input.dataset.dynamicRows ? input.dataset.dynamicRows : this.options.rows);
 
     let rows = parseInt((input.scrollHeight - padding) / lineHeight);
 
-    if (rows > this.options.rows) {
-      rows = this.options.rows;
-    }
-
-    input.setAttribute('rows', rows);
+    input.setAttribute('rows', rows > rowLimit ? rowLimit : rows);
   }
 };
 

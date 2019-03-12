@@ -147,19 +147,6 @@
     font-family: $font-mono;
   }
 
-  form {
-    @extend .form;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  input[type="submit"] {
-    @extend .button;
-    @extend .button--primary;
-  }
-
   .wp-caption {
     position: relative;
     max-width: 100%;
@@ -186,6 +173,44 @@
   .wp-caption-text {
     @extend %caption-text;
     @extend %caption-block;
+  }
+
+  // Custom Forms
+  > div[class*="contact"],
+  > div[id*="contact"],
+  > form:not(.form) {
+    @include spacer(top);
+
+    div[class*="wrap"], p {
+      &:not(.form__field) {
+        @extend .form__field;
+      }
+    }
+
+    label[for] {
+      &:not(.form__label) {
+        @extend .form__label;
+      }
+    }
+
+    label {
+      width: 100%;
+    }
+
+    input:not([type="submit"]):not([type="radio"]):not([type="checkbox"]),
+    textarea {
+      &:not(.form__input) {
+        @extend .form__input;
+      }
+    }
+
+    input[type="submit"],
+    button[type="submit"] {
+      &:not(.button--primary) {
+        @extend .button;
+        @extend .button--primary;
+      }
+    }
   }
 }
 
