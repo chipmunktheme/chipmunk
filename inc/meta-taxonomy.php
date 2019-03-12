@@ -47,10 +47,10 @@ if ( ! class_exists( 'ChipmunkTaxonomyImageMeta' ) ) :
 				'fieldTitle'       => __( 'Image', 'chipmunk' ),
 				'fieldDescription' => __( 'Select which image should represent this collection.', 'chipmunk' ),
 
-				'imageButton'      => __( 'Media Library' ),
-				'removeButton'     => __( 'Remove' ),
-				'modalTitle'       => __( 'Select or Upload Media' ),
-				'modalButton'      => __( 'Select' ),
+				'imageButton'      => __( 'Media Library', 'chipmunk' ),
+				'removeButton'     => __( 'Remove', 'chipmunk' ),
+				'modalTitle'       => __( 'Select or Upload Media', 'chipmunk' ),
+				'modalButton'      => __( 'Select', 'chipmunk' ),
 			);
 
 			// hook into WordPress

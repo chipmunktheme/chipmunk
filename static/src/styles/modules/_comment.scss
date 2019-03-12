@@ -46,17 +46,17 @@
 }
 
 .comment__date {
-  display: none;
+  display: inline-block;
+  color: $color-gray;
+  font-size: 0.9em;
+  transition: color $transition-duration;
+  vertical-align: middle;
 
-  @include breakpoint(md) {
-    display: inline-block;
+  @include breakpoint(lg) {
     color: $color-gray-light;
-    opacity: 0;
-    transition: opacity $transition-duration;
-    vertical-align: middle;
 
     .comment:hover & {
-      opacity: 1;
+      color: $color-gray;
     }
   }
 }

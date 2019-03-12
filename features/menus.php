@@ -15,5 +15,4 @@ if ( current_theme_supports( 'menus' ) ) {
 	}
 
 	register_nav_menus( $menus );
-	add_theme_support( 'menus' );
 }

@@ -2463,18 +2463,18 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .comment__date {
-  display: none;
+  display: inline-block;
+  color: #808080;
+  font-size: 0.9em;
+  transition: color 0.25s;
+  vertical-align: middle;
 }
-@media (min-width: 680px) {
+@media (min-width: 980px) {
   .comment__date {
-    display: inline-block;
     color: #CDCDCD;
-    opacity: 0;
-    transition: opacity 0.25s;
-    vertical-align: middle;
   }
   .comment:hover .comment__date {
-    opacity: 1;
+    color: #808080;
   }
 }
 @media (min-width: 680px) {

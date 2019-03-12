@@ -30,7 +30,7 @@ endif;
 	 */
 	?>
 	<?php if ( have_comments() ) : ?>
-		<h3 class="heading heading--md"><?php esc_html( printf( _n( '%s Comment', '%s Comments', get_comments_number() ), number_format_i18n( get_comments_number() ) ) ); ?></h3>
+		<h3 class="heading heading--md"><?php esc_html( printf( _n( '%s Comment', '%s Comments', get_comments_number(), 'chipmunk' ), number_format_i18n( get_comments_number() ) ) ); ?></h3>
 
 		<ul>
 			<?php
@@ -45,6 +45,13 @@ endif;
 			) );
 			?>
 		</ul>
+
+		<?php
+		/*
+		 * Displays a paginated navigation to next/previous set of comments
+		 */
+		chipmunk_get_template( 'sections/comment-pagination' );
+		?>
 	<?php endif; ?>
 
 	<?php if ( comments_open() ) : ?>
