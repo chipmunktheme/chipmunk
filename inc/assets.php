@@ -34,6 +34,7 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 		$heading_font      = chipmunk_theme_option( 'heading_font' );
 
 		$primary_color     = chipmunk_theme_option( 'primary_color' );
+		$link_color        = chipmunk_theme_option( 'link_color' );
 		$background_color  = chipmunk_theme_option( 'background_color' );
 		$section_color     = chipmunk_theme_option( 'section_color' );
 
@@ -55,6 +56,7 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 
 					/* Colors */
 					--color-primary: $primary_color;
+					--color-link: $link_color;
 					--color-background: $background_color;
 					--color-section: $section_color;
 

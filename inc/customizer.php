@@ -102,6 +102,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => '#F38181',
 						),
 						array(
+							'name'        => 'link_color',
+							'type'        => 'color',
+							'label'       => esc_html__( 'Link Color', 'chipmunk' ),
+							'default'     => '#F38181',
+						),
+						array(
 							'name'        => 'background_color',
 							'type'        => 'color',
 							'label'       => esc_html__( 'Background Color', 'chipmunk' ),

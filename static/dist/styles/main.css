@@ -1741,10 +1741,10 @@ sub {
 ** Placeholders - Link
 ** -----------------------------------------------------------------------------*/
 .content a:not([class]) {
-  color: #808080;
+  color: var(--color-link, #F38181);
 }
 .content a:not([class]):hover, .content a:not([class]):focus {
-  color: var(--color-primary, #F38181);
+  opacity: 0.8;
 }
 a,
 button, .button, .content > div[class*="contact"] input[type="submit"]:not(.button--primary),

@@ -4,11 +4,11 @@
 
 %link {
   &:not([class]) {
-    color: $color-gray;
+    color: $color-link;
 
     &:hover,
     &:focus {
-      color: $color-primary;
+      opacity: 0.8;
     }
   }
 }

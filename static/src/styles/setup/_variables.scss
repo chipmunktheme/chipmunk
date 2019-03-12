@@ -91,6 +91,7 @@ $grid-breakpoints: (
 
 // Customizable colors
 $color-primary:         var(--color-primary, #{$color-accent}) !default;
+$color-link:            var(--color-link, #{$color-accent}) !default;
 $color-background:      var(--color-background, #{$color-gray-lightest}) !default;
 $color-section:         var(--color-section, #{$color-white}) !default;
 
