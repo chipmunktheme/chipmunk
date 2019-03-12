@@ -3,7 +3,7 @@
 	$resource_website = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_resource_website', true );
 	$tile_classes = array(
 		''           => 'tile tile--card',
-		'tile'       => 'tile',
+		'tile'       => 'tile tile--tile',
 		'card'       => 'tile tile--card',
 		'card_blank' => 'tile tile--card tile--blank',
 	);

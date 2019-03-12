@@ -4397,7 +4397,7 @@ input:checked + .u-checkbox__mark .icon {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   line-height: 1.4;
   margin-top: -1rem;
 }

@@ -1,7 +1,7 @@
 <?php
 	$tile_classes = array(
 		''           => 'tile tile--card',
-		'tile'       => 'tile',
+		'tile'       => 'tile tile--tile',
 		'card'       => 'tile tile--card',
 		'card_blank' => 'tile tile--card tile--blank',
 	);
