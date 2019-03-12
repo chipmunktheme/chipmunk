@@ -3,7 +3,7 @@
  * Sidebars
  *
  * @package WordPress
- * @subpackage Murisor
+ * @subpackage Chipmunk
  */
 
 if ( current_theme_supports( 'sidebars' ) ) {

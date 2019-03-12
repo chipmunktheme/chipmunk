@@ -1801,6 +1801,11 @@ input[type="submit"]:focus {
   padding-left: 0;
   padding-right: 0;
 }
+.sticky,
+.gallery-caption,
+.bypostauthor {
+  visibility: visible;
+}
 /*
 ** Vendor - Parsley
 ** -----------------------------------------------------------------------------*/
