@@ -48,7 +48,7 @@ if ( ! class_exists( 'ChipmunkBookmarks' ) ) :
 				$title = esc_html__( 'Bookmark', 'chipmunk' );
 			}
 
-			$button = "<button type='button' class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$content</button>";
+			$button = "<span class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$content</span>";
 			return $button;
 		}
 

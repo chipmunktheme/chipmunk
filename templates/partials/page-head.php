@@ -1,4 +1,4 @@
-<header class="page-head"<?php echo chipmunk_theme_option( 'sticky_header' ) ? 'data-sticky="#head-trigger"' : ''; ?>>
+<header class="page-head"<?php echo chipmunk_theme_option( 'sticky_header' ) ? ' data-sticky="#head-trigger"' : ''; ?>>
 	<div class="container">
 		<div class="page-head__inner">
 			<?php $logo = chipmunk_theme_option( 'logo' ); ?>

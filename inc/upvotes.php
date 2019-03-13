@@ -50,7 +50,7 @@ if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
 				$title = esc_html__( 'Upvote', 'chipmunk' );
 			}
 
-			$button = "<button type='button' class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$content</button>";
+			$button = "<span class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$content</span>";
 			return $button;
 		}
 

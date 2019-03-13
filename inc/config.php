@@ -239,3 +239,15 @@ if ( ! function_exists( 'chipmunk_add_og_tags' ) ) :
 	}
 endif;
 add_action( 'wp_head', 'chipmunk_add_og_tags' );
+
+
+if ( ! function_exists( 'chipmunk_remove_type_attr' ) ) :
+	/**
+	 * Remove type attribute for Javascript and style
+	 */
+	function chipmunk_remove_type_attr($tag, $handle) {
+		return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", '', $tag );
+	}
+endif;
+add_filter( 'style_loader_tag', 'chipmunk_remove_type_attr', 10, 2 );
+add_filter( 'script_loader_tag', 'chipmunk_remove_type_attr', 10, 2 );

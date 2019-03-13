@@ -69,16 +69,6 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 			";
 		}
 
-		// if ( ! empty( $disable_borders ) ) {
-		// 	$custom_style .= "
-		// 		.page-head,
-		// 		.search-bar,
-		// 		.section--theme-light {
-		// 			box-shadow: none;
-		// 		}
-		// 	";
-		// }
-
 		wp_add_inline_style( 'chipmunk-styles', $custom_style );
 	}
 endif;
