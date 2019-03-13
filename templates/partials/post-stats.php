@@ -10,15 +10,15 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 	</li>
 <?php endif; ?>
 
-<?php if ( ! chipmunk_theme_option( 'disable_resource_date' ) ) : ?>
+<?php if ( ( ! chipmunk_theme_option( 'disable_resource_date' ) && get_post_type() == 'resource' ) || ( ! chipmunk_theme_option( 'disable_post_date' ) && get_post_type() == 'post' ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Published', 'chipmunk' ); ?>: <?php echo get_the_date( 'j F Y' ); ?>">
 		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'clock' ) ); ?>
 
-		<time datetime="<?php echo get_the_date( 'c' ); ?>"><?php echo get_the_date(); ?></time>
+		<time datetime="<?php echo get_the_date( 'c' ); ?>"><?php echo get_the_date( 'M j, Y' ); ?></time>
 	</li>
 <?php endif; ?>
 
-<?php if ( ! chipmunk_theme_option( 'disable_views' ) ) : ?>
+<?php if ( ( ! chipmunk_theme_option( 'disable_resource_views' ) && get_post_type() == 'resource' ) || ( ! chipmunk_theme_option( 'disable_post_views' ) && get_post_type() == 'post' ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Views', 'chipmunk' ); ?>">
 		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'eye' ) ); ?>
 
@@ -26,7 +26,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 	</li>
 <?php endif; ?>
 
-<?php if ( ! chipmunk_theme_option( 'disable_upvotes' ) && get_post_type() == 'resource' ) : ?>
+<?php if ( ! chipmunk_theme_option( 'disable_resource_upvotes' ) && get_post_type() == 'resource' ) : ?>
 	<?php $upvotes = new ChipmunkUpvotes( get_the_ID() ); ?>
 	<?php $upvote_button = $upvotes->get_button( 'toggle_upvote', 'stats__button' ); ?>
 	<?php $upvote_counter = $upvotes->get_content(); ?>

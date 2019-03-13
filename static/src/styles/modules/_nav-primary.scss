@@ -55,6 +55,7 @@
   @include breakpoint(lg) {
     height: auto;
     padding: 0;
+    overflow: visible;
     text-align: left;
   }
 }

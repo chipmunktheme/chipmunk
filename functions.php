@@ -153,7 +153,7 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
 				'singular'              => esc_html__( 'Collection', 'chipmunk' ),
 				'plural'                => esc_html__( 'Collections', 'chipmunk' ),
 				'posts'                 => array( 'resource' ),
-				'rewrite'               => array( 'slug' => ( ! empty( get_option( 'chipmunk_collection_cpt_base' ) ) ? get_option( 'chipmunk_collection_cpt_base' ) : lcfirst( esc_html__( 'Collection', 'chipmunk' ) ) ), 'with_front' => false, 'hierarchical' => true ),
+				'rewrite'               => array( 'slug' => ( ! empty( get_option( 'chipmunk_collection_cpt_base' ) ) ? get_option( 'chipmunk_collection_cpt_base' ) : sanitize_title( esc_html__( 'Collection', 'chipmunk' ) ) ), 'with_front' => false, 'hierarchical' => true ),
 				'rest_base'             => 'collections',
 				'rest_controller_class' => 'WP_REST_Terms_Controller',
 				'labels'                => array(
@@ -172,7 +172,7 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
 				'singular'              => esc_html__( 'Tag', 'chipmunk' ),
 				'plural'                => esc_html__( 'Tags', 'chipmunk' ),
 				'posts'                 => array( 'resource' ),
-				'rewrite'               => array( 'slug' => ( ! empty( get_option( 'chipmunk_tag_cpt_base' ) ) ? get_option( 'chipmunk_tag_cpt_base' ) : lcfirst( esc_html__( 'Tag', 'chipmunk' ) ) ), 'with_front' => false, 'hierarchical' => true ),
+				'rewrite'               => array( 'slug' => ( ! empty( get_option( 'chipmunk_tag_cpt_base' ) ) ? get_option( 'chipmunk_tag_cpt_base' ) : sanitize_title( esc_html__( 'Resource Tag', 'chipmunk' ) ) ), 'with_front' => false, 'hierarchical' => true ),
 				'hierarchical'          => false,
 				'labels'                => array(
 					'add_new_item'        => esc_html__( 'Add Tag', 'chipmunk' ),

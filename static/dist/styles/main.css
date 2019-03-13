@@ -3483,6 +3483,7 @@ input:checked + .u-checkbox__mark .icon {
   .nav-primary__inner {
     height: auto;
     padding: 0;
+    overflow: visible;
     text-align: left;
   }
 }

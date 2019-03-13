@@ -56,7 +56,7 @@
 							<?php get_template_part( 'templates/partials/share-box' ); ?>
 						<?php endif; ?>
 
-						<?php if ( get_post_type() == 'post' and ! chipmunk_theme_option( 'blog_disable_sharing' ) ) : ?>
+						<?php if ( get_post_type() == 'post' and ! chipmunk_theme_option( 'disable_post_sharing' ) ) : ?>
 							<?php get_template_part( 'templates/partials/share-box' ); ?>
 						<?php endif; ?>
 					<?php endif; ?>

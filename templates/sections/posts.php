@@ -17,6 +17,9 @@
 <?php elseif ( is_category() ) : ?>
 	<?php $title = sprintf( esc_html__( '%s Category', 'chipmunk' ), $tax->name ); ?>
 	<?php $query = chipmunk_get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ), $tax ); ?>
+<?php elseif ( is_tag() ) : ?>
+	<?php $title = sprintf( esc_html__( '%s Tag', 'chipmunk' ), $tax->name ); ?>
+	<?php $query = chipmunk_get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ), $tax ); ?>
 <?php else : ?>
 	<?php $title = esc_html__( 'Blog', 'chipmunk' ); ?>
 	<?php $query = chipmunk_get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ) ); ?>

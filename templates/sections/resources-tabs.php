@@ -14,7 +14,7 @@
 		),
 		'popular'   => array(
 			'label'     => esc_html__( 'Popular', 'chipmunk' ),
-			'results'   => chipmunk_theme_option( 'disable_views' ) ? new WP_Query : chipmunk_get_popular_resources( $resources_count ),
+			'results'   => chipmunk_theme_option( 'disable_resource_views' ) ? new WP_Query : chipmunk_get_popular_resources( $resources_count ),
 		),
 	);
 

@@ -20,7 +20,7 @@
 			<?php endif; ?>
 		</div>
 
-		<?php if ( ! chipmunk_theme_option( 'disable_resource_date' ) or ! chipmunk_theme_option( 'disable_views' ) or ! chipmunk_theme_option( 'disable_upvotes' ) ) : ?>
+		<?php if ( ! chipmunk_theme_option( 'disable_resource_date' ) or ! chipmunk_theme_option( 'disable_resource_views' ) or ! chipmunk_theme_option( 'disable_resource_upvotes' ) ) : ?>
 			<ul class="tile__stats stats">
 				<?php
 					$collections_args = array(
