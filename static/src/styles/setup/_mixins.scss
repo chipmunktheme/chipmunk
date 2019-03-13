@@ -22,16 +22,6 @@
 }
 
 /*
-** Bordered box
-**/
-@mixin bordered-box() {
-  position: relative;
-  z-index: $layer-base;
-  box-shadow: 0 1px 0 0 rgba($color-black, 0.075),
-              0 -1px 0 0 rgba($color-black, 0.075);
-}
-
-/*
 ** Dropdown
 **/
 @mixin dropdown() {
@@ -66,6 +56,7 @@
     text-align: right;
   }
 }
+
 /*
 ** Dropdown open
 **/

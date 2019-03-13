@@ -3,7 +3,7 @@
 ** -----------------------------------------------------------------------------*/
 
 .page-head {
-  @include bordered-box;
+  @extend %bordered-box;
   z-index: $layer-head;
   margin-bottom: -1px;
   padding-top: $separator * 0.5;

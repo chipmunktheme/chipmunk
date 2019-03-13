@@ -102,3 +102,6 @@ $font-mono:             var(--font-mono, #{$font-menlo}) !default;
 
 // Customizable sizes
 $size-content:          var(--size-content, #{$font-size-content}) !default;
+
+// Customizable variables
+$border-opacity:        var(--border-opacity, 0.075) !default;

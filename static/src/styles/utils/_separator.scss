@@ -3,9 +3,12 @@
 ** -----------------------------------------------------------------------------*/
 
 .separator {
-  margin-top: $separator * 2;
+  padding-top: $separator;
+  margin-top: $separator;
+  border-top: 1px solid rgba($color-black, $border-opacity);
 
   @include breakpoint(md) {
-    margin-top: $separator * 4;
+    padding-top: $separator * 2;
+    margin-top: $separator * 2;
   }
 }

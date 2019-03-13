@@ -62,19 +62,22 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 
 					/* Sizes */
 					--size-content: $content_size;
+
+					/* Borders */
+					--border-opacity: " . ( empty( $disable_borders ) ? "0.075" : "0" ) . ";
 				}
 			";
 		}
 
-		if ( ! empty( $disable_borders ) ) {
-			$custom_style .= "
-				.page-head,
-				.search-bar,
-				.section--theme-light {
-					box-shadow: none;
-				}
-			";
-		}
+		// if ( ! empty( $disable_borders ) ) {
+		// 	$custom_style .= "
+		// 		.page-head,
+		// 		.search-bar,
+		// 		.section--theme-light {
+		// 			box-shadow: none;
+		// 		}
+		// 	";
+		// }
 
 		wp_add_inline_style( 'chipmunk-styles', $custom_style );
 	}

@@ -1363,9 +1363,6 @@
 ** @param {Unit} $addition    - Extra space to add to the value
 **/
 /*
-** Bordered box
-**/
-/*
 ** Dropdown
 **/
 /*
@@ -1473,6 +1470,14 @@ sup {
 }
 sub {
   bottom: -0.4em;
+}
+/*
+** Placeholders - Box
+** -----------------------------------------------------------------------------*/
+.page-head, .search-bar, .section--theme-light, .section:not([class*="theme"]) + .section:not([class*="theme"]) {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 1px 0 0 rgba(51, 51, 51, var(--border-opacity, 0.075)), 0 -1px 0 0 rgba(51, 51, 51, var(--border-opacity, 0.075));
 }
 /*
 ** Placeholders - Button
@@ -2358,11 +2363,14 @@ input:checked + .u-checkbox__mark .icon {
 ** Utils - Separator
 ** -----------------------------------------------------------------------------*/
 .separator {
-  margin-top: 4rem;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(51, 51, 51, var(--border-opacity, 0.075));
 }
 @media (min-width: 680px) {
   .separator {
-    margin-top: 8rem;
+    padding-top: 4rem;
+    margin-top: 4rem;
   }
 }
 /*
@@ -3750,9 +3758,6 @@ input:checked + .u-checkbox__mark .icon {
 ** Module - Page head
 ** -----------------------------------------------------------------------------*/
 .page-head {
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 1px 0 0 rgba(51, 51, 51, 0.075), 0 -1px 0 0 rgba(51, 51, 51, 0.075);
   z-index: 10;
   margin-bottom: -1px;
   padding-top: 1rem;
@@ -4185,9 +4190,6 @@ input:checked + .u-checkbox__mark .icon {
 ** Module - Search-bar
 ** -----------------------------------------------------------------------------*/
 .search-bar {
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 1px 0 0 rgba(51, 51, 51, 0.075), 0 -1px 0 0 rgba(51, 51, 51, 0.075);
   position: absolute;
   top: 0;
   left: 0;
@@ -4352,9 +4354,6 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .section--theme-light {
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 1px 0 0 rgba(51, 51, 51, 0.075), 0 -1px 0 0 rgba(51, 51, 51, 0.075);
   background-color: var(--color-section, #FAFAFA);
 }
 .section--theme-primary {
