@@ -40,10 +40,16 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
 	 */
 	function chipmunk_setup() {
 		/*
-		* Makes theme available for translation.
-		* Translations can be filed in the /languages/ directory.
-		*/
+		 * Makes theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 */
 		load_theme_textdomain( THEME_SLUG, THEME_TEMPLATE_DIR . '/languages' );
+
+		/*
+		 * Automatic update implementation
+		 * Using Easy Digital Downloads
+		 */
+		require_once THEME_TEMPLATE_DIR . '/updater/theme-updater.php';
 
 		// Theme Support
 		add_theme_support( 'title-tag' );

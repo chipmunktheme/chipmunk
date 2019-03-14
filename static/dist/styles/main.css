@@ -4438,7 +4438,6 @@ input:checked + .u-checkbox__mark .icon {
   font-size: 1.4rem;
   line-height: 1;
   cursor: pointer;
-  font-variant-numeric: tabular-nums;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
