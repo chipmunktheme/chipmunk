@@ -16,7 +16,7 @@ get_header(); ?>
 		<div class="container">
 			<?php $title = ucfirst( single_term_title( null, false ) ); ?>
 
-			<?php if ( ! chipmunk_theme_option( 'disable_sorting' ) and $query->have_posts() ) : ?>
+			<?php if ( ! chipmunk_theme_option( 'disable_resource_sorting' ) and $query->have_posts() ) : ?>
 				<div class="row">
 					<div class="column column--md-4 column--lg-4">
 						<h1 class="heading heading--md"><?php echo esc_html( $title ); ?></h1>

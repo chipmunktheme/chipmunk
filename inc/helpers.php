@@ -441,7 +441,7 @@ if ( ! function_exists( 'chipmunk_get_resources' ) ) :
 		$tax_query = array();
 
 		// Apply sorting options
-		if ( isset( $_GET['sort'] ) and ! empty( $_GET['sort'] ) and ! chipmunk_theme_option( 'disable_sorting' ) ) {
+		if ( isset( $_GET['sort'] ) and ! empty( $_GET['sort'] ) and ! chipmunk_theme_option( 'disable_resource_sorting' ) ) {
 			$sort_params = explode( '-', $_GET['sort'] );
 			$sort_orderby = $sort_params[0];
 			$sort_order = $sort_params[1];
@@ -489,7 +489,7 @@ if ( ! function_exists( 'chipmunk_get_resources' ) ) :
 		}
 
 		// Apply tag filters
-		if ( isset( $_GET['tag'] ) and ! empty( $_GET['tag'] ) and ! chipmunk_theme_option( 'disable_filters' ) ) {
+		if ( isset( $_GET['tag'] ) and ! empty( $_GET['tag'] ) and ! chipmunk_theme_option( 'disable_resource_filters' ) ) {
 			$tax_query[] = array(
 				'taxonomy'          => 'resource-tag',
 				'field'             => 'slug',
@@ -651,6 +651,16 @@ if ( ! function_exists( 'chipmunk_external_link' ) ) :
 		}
 
 		return $url;
+	}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_is_feature_enabled' ) ) :
+	/**
+	 * Check if feature is enabled in customizer
+	 */
+	function chipmunk_is_feature_enabled( $feature, $post_type ) {
+		return ! chipmunk_theme_option( "disable_{$post_type}_{$feature}" ) && get_post_type() == $post_type;
 	}
 endif;
 

@@ -52,11 +52,11 @@
 					<?php endif; ?>
 
 					<?php if ( ! is_search() ) : ?>
-						<?php if ( get_post_type() == 'resource' and ! chipmunk_theme_option( 'resources_disable_sharing' ) ) : ?>
+						<?php if ( chipmunk_is_feature_enabled( 'sharing', 'resource' ) ) : ?>
 							<?php get_template_part( 'templates/partials/share-box' ); ?>
 						<?php endif; ?>
 
-						<?php if ( get_post_type() == 'post' and ! chipmunk_theme_option( 'disable_post_sharing' ) ) : ?>
+						<?php if ( chipmunk_is_feature_enabled( 'sharing', 'post' ) ) : ?>
 							<?php get_template_part( 'templates/partials/share-box' ); ?>
 						<?php endif; ?>
 					<?php endif; ?>

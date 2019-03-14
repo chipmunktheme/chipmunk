@@ -10,7 +10,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 	</li>
 <?php endif; ?>
 
-<?php if ( ( ! chipmunk_theme_option( 'disable_resource_date' ) && get_post_type() == 'resource' ) || ( ! chipmunk_theme_option( 'disable_post_date' ) && get_post_type() == 'post' ) ) : ?>
+<?php if ( chipmunk_is_feature_enabled( 'date', 'resource' ) || chipmunk_is_feature_enabled( 'date', 'post' ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Published', 'chipmunk' ); ?>: <?php echo get_the_date( 'j F Y' ); ?>">
 		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'clock' ) ); ?>
 
@@ -18,7 +18,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 	</li>
 <?php endif; ?>
 
-<?php if ( ( ! chipmunk_theme_option( 'disable_resource_views' ) && get_post_type() == 'resource' ) || ( ! chipmunk_theme_option( 'disable_post_views' ) && get_post_type() == 'post' ) ) : ?>
+<?php if ( chipmunk_is_feature_enabled( 'views', 'resource' ) || chipmunk_is_feature_enabled( 'views', 'post' ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Views', 'chipmunk' ); ?>">
 		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'eye' ) ); ?>
 
@@ -26,7 +26,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 	</li>
 <?php endif; ?>
 
-<?php if ( ! chipmunk_theme_option( 'disable_resource_upvotes' ) && get_post_type() == 'resource' ) : ?>
+<?php if ( chipmunk_is_feature_enabled( 'upvotes', 'resource' ) ) : ?>
 	<?php $upvotes = new ChipmunkUpvotes( get_the_ID() ); ?>
 	<?php $upvote_button = $upvotes->get_button( 'toggle_upvote', 'stats__button' ); ?>
 	<?php $upvote_counter = $upvotes->get_content(); ?>
@@ -42,7 +42,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 	<?php endif; ?>
 <?php endif; ?>
 
-<?php if ( chipmunk_has_plugin( 'members' ) && ! chipmunk_theme_option( 'disable_bookmarks' ) && get_post_type() == 'resource' ) : ?>
+<?php if ( chipmunk_has_plugin( 'members' ) && chipmunk_is_feature_enabled( 'bookmarks', 'resource' ) ) : ?>
 	<?php if ( ( is_singular( 'resource' ) && $wp_query->current_post == 0 ) or is_search() ) : ?>
 		<li class="stats__item">
 			<?php echo ( new ChipmunkBookmarks( get_the_ID() ) )->get_button( 'toggle_bookmark', 'stats__button' ); ?>

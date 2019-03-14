@@ -1,5 +1,5 @@
 <div class="filter__group column column--md-2 column--lg-8">
-	<?php if ( ! chipmunk_theme_option( 'disable_filters' ) and ! is_tax() ) : ?>
+	<?php if ( ! chipmunk_theme_option( 'disable_resource_filters' ) and ! is_tax() ) : ?>
 		<?php
 			$tags = get_terms( array(
 				'taxonomy'    => 'resource-tag',
@@ -26,7 +26,7 @@
 		<?php endif; ?>
 	<?php endif; ?>
 
-	<?php if ( ! chipmunk_theme_option( 'disable_sorting' ) ) : ?>
+	<?php if ( ! chipmunk_theme_option( 'disable_resource_sorting' ) ) : ?>
 		<div class="filter">
 			<h4 class="filter__title visible-lg-inline-block"><?php esc_html_e( 'Sort by', 'chipmunk' ); ?>:</h4>
 
