@@ -1,4 +1,4 @@
-<?php $content_separated = ( strlen( get_the_content() ) > 500 or chipmunk_theme_option( 'display_resource_content_separated' ) ); ?>
+<?php $content_separated = ( strlen( strip_tags( get_the_content() ) ) > 500 or chipmunk_theme_option( 'display_resource_content_separated' ) ); ?>
 <?php $resource_website = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_resource_website', true ); ?>
 <?php $description = ''; ?>
 <?php $excerpt = chipmunk_truncate_string( get_the_excerpt(), 120 ); ?>
