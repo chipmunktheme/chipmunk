@@ -45,7 +45,7 @@ if ( ! function_exists( 'chipmunk_update_search_query' ) ) :
 	 * Update search query
 	 */
 	function chipmunk_update_search_query( $query ) {
-		if ( $query->is_search ) {
+		if ( ! is_admin() && $query->is_search ) {
 			// Use custom value for posts per page
 			$query->set( 'posts_per_page', chipmunk_theme_option( 'results_per_page' ) );
 
@@ -67,7 +67,7 @@ if ( ! function_exists( 'chipmunk_update_main_query' ) ) :
 	 * Update main query
 	 */
 	function chipmunk_update_main_query( $query ) {
-		if ( $query->is_tax and is_tax() ) {
+		if ( ! is_admin() && $query->is_tax and is_tax() ) {
 			$query->set( 'posts_per_page', chipmunk_theme_option( 'posts_per_page' ) );
 		}
 
@@ -82,7 +82,7 @@ if ( ! function_exists( 'chipmunk_exclude_tax_children' ) ) :
 	 * Exclude children from taxonomy listing
 	 */
 	function chipmunk_exclude_tax_children( $query ) {
-		if ( isset( $query->query_vars['resource-collection'] ) ) {
+		if ( ! is_admin() && isset( $query->query_vars['resource-collection'] ) ) {
 			$query->set( 'tax_query', array( array(
 				'taxonomy'          => 'resource-collection',
 				'field'             => 'slug',
