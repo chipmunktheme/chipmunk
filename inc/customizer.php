@@ -262,7 +262,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'name'        => 'display_resource_as',
 							'type'        => 'select',
 							'label'       => esc_html__( 'Display resources as', 'chipmunk' ),
-							'default'     => 'tile',
+							'default'     => 'card',
 							'choices'     => array(
 								'tile'        => esc_html__( 'Tile', 'chipmunk' ),
 								'card'        => esc_html__( 'Card', 'chipmunk' ),
