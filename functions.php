@@ -49,7 +49,11 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
 		 * Automatic update implementation
 		 * Using Easy Digital Downloads
 		 */
-		require_once THEME_TEMPLATE_DIR . '/updater/theme-updater.php';
+		require_once THEME_TEMPLATE_DIR . '/inc/updater/theme-updater.php';
+
+		require_once THEME_TEMPLATE_DIR . '/inc/merlin/vendor/autoload.php';
+		require_once THEME_TEMPLATE_DIR . '/inc/merlin/class-merlin.php';
+		require_once THEME_TEMPLATE_DIR . '/inc/merlin-config.php';
 
 		// Theme Support
 		add_theme_support( 'title-tag' );
