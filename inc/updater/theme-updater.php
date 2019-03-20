@@ -16,7 +16,7 @@ $updater = new EDD_Theme_Updater_Admin(
 
 	// Config settings
 	$config = array(
-		'remote_api_url' => 'https://chipmunktheme.com',
+		'remote_api_url' => THEME_API_URL,
 		'item_name'      => THEME_TITLE,
 		'theme_slug'     => THEME_SLUG,
 		'version'        => THEME_VERSION,

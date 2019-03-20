@@ -15,12 +15,12 @@ if ( class_exists( 'Merlin' ) ) :
 			'capability'           => 'manage_options', // The capability required for this menu to be displayed to the user.
 			'child_action_btn_url' => 'https://codex.wordpress.org/child_themes', // URL for the 'child-action-link'.
 			'dev_mode'             => true, // Enable development mode for testing.
-			'license_step'         => false, // EDD license activation step.
-			'license_required'     => false, // Require the license activation step.
+			'license_step'         => true, // EDD license activation step.
+			'license_required'     => true, // Require the license activation step.
 			'license_help_url'     => '', // URL for the 'license-tooltip'.
-			'edd_remote_api_url'   => '', // EDD_Theme_Updater_Admin remote_api_url.
-			'edd_item_name'        => '', // EDD_Theme_Updater_Admin item_name.
-			'edd_theme_slug'       => '', // EDD_Theme_Updater_Admin item_slug.
+			'edd_remote_api_url'   => THEME_API_URL, // EDD_Theme_Updater_Admin remote_api_url.
+			'edd_item_name'        => THEME_TITLE, // EDD_Theme_Updater_Admin item_name.
+			'edd_theme_slug'       => THEME_SLUG, // EDD_Theme_Updater_Admin item_slug.
 			'ready_big_button_url' => '', // Link for the big button on the ready step.
 		),
 		$strings = array(

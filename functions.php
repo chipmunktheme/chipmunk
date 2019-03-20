@@ -12,6 +12,7 @@
 define( 'THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 define( 'THEME_TEMPLATE_URI', get_template_directory_uri() );
 define( 'THEME_TEMPLATE_DIR', get_template_directory() );
+define( 'THEME_API_URL', 'https://staging.chipmunktheme.com' );
 define( 'THEME_TITLE', 'Chipmunk' );
 define( 'THEME_SLUG', 'chipmunk' );
 
