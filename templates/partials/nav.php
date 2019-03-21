@@ -49,7 +49,7 @@
 					<?php if ( ! empty( $children ) ) : ?>
 						<ul class="dropdown">
 							<?php foreach ( $children as $item ) : ?>
-								<li class="dropdown__item<?php echo esc_attr( $is_active ? ' dropdown__item--active' : '' ); ?>">
+								<li class="dropdown__item<?php echo esc_attr( is_page( $item->object_id ) ? ' dropdown__item--active' : '' ); ?>">
 									<a href="<?php echo esc_url( $item->url ); ?>"<?php echo ( ! empty( $item->target ) ? ' target="' . $item->target . '"' : ''); ?> class="dropdown__link">
 										<?php echo $item->title; ?>
 									</a>

@@ -2209,7 +2209,7 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .dropdown__item--active {
-  color: #808080;
+  color: #333333;
 }
 /*
 ** Utils - Hamburger
