@@ -75,23 +75,23 @@ if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
 		 */
 		private function toggle_upvote() {
 			$upvoted = $this->is_upvoted();
-
-			// wp_send_json_success( $this->user_id );
+			$current_counter = (int) get_post_meta( $this->post_id, self::$db_key_count, true );
 
 			// Remove upvote from the post
 			if ( $upvoted ) {
 				delete_post_meta( $this->post_id, self::$db_key, $this->user_id );
+				update_post_meta( $this->post_id, self::$db_key_count, ( $current_counter == 0 ? 0 : $current_counter - 1 ) );
+
 				$response['status'] = 'remove';
 			}
 
 			// Upvote the post
 			else {
 				add_post_meta( $this->post_id, self::$db_key, $this->user_id );
+				update_post_meta( $this->post_id, self::$db_key_count, ( $current_counter + 1 ) );
+
 				$response['status'] = 'add';
 			}
-
-			// Update upvote counter
-			update_post_meta( $this->post_id, self::$db_key_count, count( get_post_meta( $this->post_id, self::$db_key ) ) );
 
 			// Set proper resounse params
 			$response['post'] = $this->post_id;
