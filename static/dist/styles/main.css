@@ -2208,6 +2208,9 @@ input:checked + .u-checkbox__mark .icon {
     white-space: nowrap;
   }
 }
+.dropdown__item--active {
+  color: #808080;
+}
 /*
 ** Utils - Hamburger
 ** ----------------------------------------------------------------------------- */
@@ -3558,7 +3561,7 @@ input:checked + .u-checkbox__mark .icon {
 .nav-primary__item strong {
   font-weight: bold;
 }
-.nav-primary__item--active {
+.nav-primary__item--active > a {
   color: #333333;
 }
 .nav-primary__item--condensed {

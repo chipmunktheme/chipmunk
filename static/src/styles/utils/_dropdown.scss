@@ -36,4 +36,8 @@
   @include breakpoint(lg) {
     white-space: nowrap;
   }
+
+  &--active {
+    color: $color-gray;
+  }
 }
