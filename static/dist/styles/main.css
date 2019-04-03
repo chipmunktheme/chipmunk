@@ -3278,6 +3278,7 @@ input:checked + .u-checkbox__mark .icon {
   justify-content: center;
 }
 .form__field--cta {
+  justify-content: space-between;
   align-items: center;
 }
 .form__field--cta:not(:first-child) {
