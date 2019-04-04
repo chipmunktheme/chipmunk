@@ -97,7 +97,7 @@ class Chipmunk_Theme_Updater_Admin {
 	function license_settings() {
 		?>
 		<div class="wrap">
-			<h1><?php echo $this->strings['licenses']; ?></h1>
+			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<hr>
 
 			<?php settings_errors(); ?>
