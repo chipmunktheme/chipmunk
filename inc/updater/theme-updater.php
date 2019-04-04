@@ -7,26 +7,31 @@
  */
 
 // Includes the files needed for the theme updater
-if ( !class_exists( 'EDD_Theme_Updater_Admin' ) ) {
-	include( dirname( __FILE__ ) . '/theme-updater-admin.php' );
+if ( ! class_exists( 'Chipmunk_Theme_Updater_Admin' ) ) {
+	require_once dirname( __FILE__ ) . '/theme-updater-admin.php';
+}
+
+if ( ! class_exists( 'Chipmunk_Licenser' ) ) {
+	require_once dirname( __FILE__ ) . '/theme-licenser.php';
 }
 
 // Loads the updater classes
-$updater = new EDD_Theme_Updater_Admin(
+new Chipmunk_Theme_Updater_Admin(
 
 	// Config settings
-	$config = array(
+	array(
+		'menu_url'       => admin_url( 'admin.php?page=' . THEME_SLUG ),
 		'remote_api_url' => THEME_URL,
+		'item_slug'      => THEME_SLUG,
 		'item_name'      => THEME_TITLE,
-		'theme_slug'     => THEME_SLUG,
 		'version'        => THEME_VERSION,
 		'author'         => 'Made by Less',
 	),
 
 	// Strings
-	$strings = array(
-		'theme-license'             => __( 'Theme License', 'chipmunk' ),
-		'enter-key'                 => __( 'Enter your theme license key.', 'chipmunk' ),
+	array(
+		'licenses'                  => __( 'Licenses', 'chipmunk' ),
+		'enter-key'                 => __( 'Enter your license key.', 'chipmunk' ),
 		'license-key'               => __( 'License Key', 'chipmunk' ),
 		'license-action'            => __( 'License Action', 'chipmunk' ),
 		'deactivate-license'        => __( 'Deactivate License', 'chipmunk' ),

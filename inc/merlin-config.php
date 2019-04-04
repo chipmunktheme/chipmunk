@@ -8,7 +8,9 @@
 
 if ( class_exists( 'Merlin' ) ) :
 	$wizard = new Merlin(
-		$config = array(
+
+		// Config settings
+		array(
 			'directory'            => 'inc/merlin', // Location / directory where Merlin WP is placed in your theme.
 			'merlin_url'           => 'merlin', // The wp-admin page slug where Merlin WP loads.
 			'parent_slug'          => 'themes.php', // The wp-admin parent page slug for the admin menu item.
@@ -23,7 +25,9 @@ if ( class_exists( 'Merlin' ) ) :
 			'edd_theme_slug'       => THEME_SLUG, // EDD_Theme_Updater_Admin item_slug.
 			'ready_big_button_url' => esc_url( home_url( '/', 'relative' ) ), // Link for the big button on the ready step.
 		),
-		$strings = array(
+
+		// Strings
+		array(
 			'admin-menu'               => esc_html__( 'Theme Setup', 'chipmunk' ),
 
 			/* translators: 1: Title Tag 2: Theme Name 3: Closing Title Tag */

@@ -7,47 +7,26 @@
  * @version 1.0.3
  */
 
-class EDD_Theme_Updater {
-
-	private $remote_api_url;
-	private $request_data;
-	private $response_key;
-	private $theme_slug;
-	private $license_key;
-	private $version;
-	private $author;
-	protected $strings = null;
-
-
+class Chipmunk_Theme_Updater {
 	/**
 	 * Initiate the Theme updater
 	 *
-	 * @param array $args    Array of arguments from the theme requesting an update check
+	 * @param array $config    Array of arguments from the theme requesting an update check
 	 * @param array $strings Strings for the update process
 	 */
-	function __construct( $args = array(), $strings = array() ) {
-
-		$defaults = array(
-			'remote_api_url' => 'http://easydigitaldownloads.com',
+	function __construct( $config = array(), $strings = array() ) {
+		$config = wp_parse_args( $config, array(
 			'request_data'   => array(),
-			'theme_slug'     => get_template(), // use get_stylesheet() for child theme updates
-			'item_name'      => '',
-			'license'        => '',
-			'version'        => '',
-			'author'         => '',
-			'beta'           => false,
-		);
+		) );
 
-		$args = wp_parse_args( $args, $defaults );
-
-		$this->license        = $args['license'];
-		$this->item_name      = $args['item_name'];
-		$this->version        = $args['version'];
-		$this->theme_slug     = sanitize_key( $args['theme_slug'] );
-		$this->author         = $args['author'];
-		$this->beta           = $args['beta'];
-		$this->remote_api_url = $args['remote_api_url'];
-		$this->response_key   = $this->theme_slug . '-' . $this->beta . '-update-response';
+		$this->license        = $config['license'];
+		$this->item_name      = $config['item_name'];
+		$this->version        = $config['version'];
+		$this->item_slug      = sanitize_key( $config['item_slug'] );
+		$this->author         = $config['author'];
+		$this->beta           = $config['beta'];
+		$this->remote_api_url = $config['remote_api_url'];
+		$this->response_key   = $this->item_slug . '-' . $this->beta . '-update-response';
 		$this->strings        = $strings;
 
 		add_filter( 'site_transient_update_themes',        array( $this, 'theme_update_transient' ) );
@@ -73,16 +52,15 @@ class EDD_Theme_Updater {
 	 * @return void
 	 */
 	function update_nag() {
-
 		$strings      = $this->strings;
-		$theme        = wp_get_theme( $this->theme_slug );
+		$theme        = wp_get_theme( $this->item_slug );
 		$api_response = get_transient( $this->response_key );
 
 		if ( false === $api_response ) {
 			return;
 		}
 
-		$update_url     = wp_nonce_url( 'update.php?action=upgrade-theme&amp;theme=' . urlencode( $this->theme_slug ), 'upgrade-theme_' . $this->theme_slug );
+		$update_url     = wp_nonce_url( 'update.php?action=upgrade-theme&amp;theme=' . urlencode( $this->item_slug ), 'upgrade-theme_' . $this->item_slug );
 		$update_onclick = ' onclick="if ( confirm(\'' . esc_js( $strings['update-notice'] ) . '\') ) {return true;}return false;"';
 
 		if ( version_compare( $this->version, $api_response->new_version, '<' ) ) {
@@ -92,13 +70,13 @@ class EDD_Theme_Updater {
 				$strings['update-available'],
 				$theme->get( 'Name' ),
 				$api_response->new_version,
-				'#TB_inline?width=640&amp;inlineId=' . $this->theme_slug . '_changelog',
+				'#TB_inline?width=640&amp;inlineId=' . $this->item_slug . '_changelog',
 				$theme->get( 'Name' ),
 				$update_url,
 				$update_onclick
 			);
 			echo '</div>';
-			echo '<div id="' . $this->theme_slug . '_' . 'changelog" style="display:none;">';
+			echo '<div id="' . $this->item_slug . '_' . 'changelog" style="display:none;">';
 			echo wpautop( $api_response->sections['changelog'] );
 			echo '</div>';
 		}
@@ -112,14 +90,13 @@ class EDD_Theme_Updater {
 	 *                        the request fails returns false.
 	 */
 	function theme_update_transient( $value ) {
-		$update_data = $this->check_for_update();
-		if ( $update_data ) {
-
+		if ( $update_data = $this->check_for_update() ) {
 			// Make sure the theme property is set. See issue 1463 on Github in the Software Licensing Repo.
-			$update_data['theme'] = $this->theme_slug;
+			$update_data['theme'] = $this->item_slug;
 
-			$value->response[ $this->theme_slug ] = $update_data;
+			$value->response[ $this->item_slug ] = $update_data;
 		}
+
 		return $value;
 	}
 
@@ -149,7 +126,7 @@ class EDD_Theme_Updater {
 				'edd_action' => 'get_version',
 				'license'    => $this->license,
 				'name'       => $this->item_name,
-				'slug'       => $this->theme_slug,
+				'slug'       => $this->item_slug,
 				'version'    => $this->version,
 				'author'     => $this->author,
 				'beta'       => $this->beta

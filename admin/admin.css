@@ -39,3 +39,7 @@
 .chipmunk-field .chipmunk-input {
   vertical-align: top;
 }
+
+.description:not(:last-child) {
+  margin-bottom: 1em;
+}

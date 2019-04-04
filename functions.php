@@ -31,6 +31,20 @@ require_once THEME_TEMPLATE_DIR . '/inc/upvotes.php';
 require_once THEME_TEMPLATE_DIR . '/inc/bookmarks.php';
 require_once THEME_TEMPLATE_DIR . '/inc/open-graph.php';
 
+/*
+ * Automatic update implementation
+ * Using Easy Digital Downloads
+ */
+require_once THEME_TEMPLATE_DIR . '/inc/updater/theme-updater.php';
+
+/*
+ * Theme onboarding
+ * Using Merlin WP
+ */
+require_once THEME_TEMPLATE_DIR . '/inc/merlin/vendor/autoload.php';
+require_once THEME_TEMPLATE_DIR . '/inc/merlin/class-merlin.php';
+require_once THEME_TEMPLATE_DIR . '/inc/merlin-config.php';
+
 
 if ( ! function_exists( 'chipmunk_setup' ) ) :
 	/**
@@ -46,16 +60,6 @@ if ( ! function_exists( 'chipmunk_setup' ) ) :
 		 * Translations can be filed in the /languages/ directory.
 		 */
 		load_theme_textdomain( THEME_SLUG, THEME_TEMPLATE_DIR . '/languages' );
-
-		/*
-		 * Automatic update implementation
-		 * Using Easy Digital Downloads
-		 */
-		require_once THEME_TEMPLATE_DIR . '/inc/updater/theme-updater.php';
-
-		require_once THEME_TEMPLATE_DIR . '/inc/merlin/vendor/autoload.php';
-		require_once THEME_TEMPLATE_DIR . '/inc/merlin/class-merlin.php';
-		require_once THEME_TEMPLATE_DIR . '/inc/merlin-config.php';
 
 		// Theme Support
 		add_theme_support( 'title-tag' );
