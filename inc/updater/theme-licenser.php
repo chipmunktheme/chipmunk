@@ -83,15 +83,14 @@ class Chipmunk_Licenser {
 
 	/**
 	 * Activates the license key.
-	 *
-	 * @param string $license License key
 	 */
-	private function activate_license( $license ) {
+	public function activate_license() {
+		$license = get_option( $this->item_slug . '_license_key' );
 		$api_params = $this->get_api_params( 'activate_license', $license );
 		$response = $this->get_api_response( $api_params );
 
 		// Make sure the response came back okay
-		if ( $this->is_valid_response( $response ) ) {
+		if ( ! $this->is_valid_response( $response ) ) {
 			$this->redirect_with_error( $this->errors['license-unknown'] );
 		}
 
@@ -152,15 +151,14 @@ class Chipmunk_Licenser {
 
 	/**
 	 * Deactivates the license key.
-	 *
-	 * @param string $license License key
 	 */
-	private function deactivate_license( $license ) {
+	private function deactivate_license() {
+		$license = get_option( $this->item_slug . '_license_key' );
 		$api_params = $this->get_api_params( 'deactivate_license', $license );
 		$response = $this->get_api_response( $api_params );
 
 		// Make sure the response came back okay
-		if ( $this->is_valid_response( $response ) ) {
+		if ( ! $this->is_valid_response( $response ) ) {
 			$this->redirect_with_error( $this->errors['license-unknown'] );
 		}
 
@@ -179,16 +177,15 @@ class Chipmunk_Licenser {
 	/**
 	 * Checks if license is valid and gets expire date.
 	 *
-	 * @param string $license License key
-	 *
 	 * @return string $message License status message.
 	 */
-	private function check_license( $license ) {
+	private function check_license() {
+		$license = get_option( $this->item_slug . '_license_key' );
 		$api_params = $this->get_api_params( 'check_license', $license );
 		$response = $this->get_api_response( $api_params );
 
 		// Make sure the response came back okay
-		if ( $this->is_valid_response( $response ) ) {
+		if ( ! $this->is_valid_response( $response ) ) {
 			$this->redirect_with_error( $this->strings['license-status-unknown'] );
 		}
 
@@ -320,7 +317,7 @@ class Chipmunk_Licenser {
 	 * @return boolean
 	 */
 	private function is_valid_response( $response ) {
-		return is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response );
+		return ! is_wp_error( $response ) && 200 == wp_remote_retrieve_response_code( $response );
 	}
 
 	/**
@@ -380,7 +377,7 @@ class Chipmunk_Licenser {
 		}
 
 		if ( ! get_transient( $this->item_slug . '_license_status', false ) ) {
-			set_transient( $this->item_slug . '_license_status', $this->check_license( $license ), ( 60 * 60 * 24 ) );
+			set_transient( $this->item_slug . '_license_status', $this->check_license( $license ), DAY_IN_SECONDS );
 		}
 
 		return get_transient( $this->item_slug . '_license_status' );
@@ -417,14 +414,12 @@ class Chipmunk_Licenser {
 	 * Checks if a license action was submitted.
 	 */
 	public function license_action() {
-		$license = get_option( $this->item_slug . '_license_key' );
-
 		if ( isset( $_POST[ $this->item_slug . '_license_activate' ] ) ) {
-			$this->activate_license( $license );
+			$this->activate_license();
 		}
 
 		if ( isset( $_POST[$this->item_slug . '_license_deactivate'] ) ) {
-			$this->deactivate_license( $license );
+			$this->deactivate_license();
 		}
 	}
 
@@ -462,9 +457,9 @@ class Chipmunk_Licenser {
 
 				<?php if ( ! empty( $license ) ) : ?>
 					<?php if ( 'valid' == $key_status ) : ?>
-						<input type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_deactivate" value="<?php echo esc_attr( $this->strings['deactivate-license'] ); ?>" />
+						<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
 					<?php else : ?>
-						<input type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_activate" value="<?php echo esc_attr( $this->strings['activate-license'] ); ?>" />
+						<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
 					<?php endif; ?>
 				<?php endif; ?>
 			</td>
