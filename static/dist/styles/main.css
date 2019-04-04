@@ -3178,14 +3178,6 @@ input:checked + .u-checkbox__mark .icon {
 .content > form:not(.form) textarea:not(.form__input)::-webkit-input-placeholder, .widget_search .search-field::-webkit-input-placeholder {
   color: inherit;
 }
-.form__input:-ms-input-placeholder, .content > div[class*="contact"] input:not(.form__input):not([type="checkbox"]):not([type="radio"]):not([type="submit"]):-ms-input-placeholder,
-.content > div[class*="contact"] textarea:not(.form__input):-ms-input-placeholder,
-.content > div[id*="contact"] input:not(.form__input):not([type="checkbox"]):not([type="radio"]):not([type="submit"]):-ms-input-placeholder,
-.content > div[id*="contact"] textarea:not(.form__input):-ms-input-placeholder,
-.content > form:not(.form) input:not(.form__input):not([type="checkbox"]):not([type="radio"]):not([type="submit"]):-ms-input-placeholder,
-.content > form:not(.form) textarea:not(.form__input):-ms-input-placeholder, .widget_search .search-field:-ms-input-placeholder {
-  color: inherit;
-}
 .form__input::-ms-input-placeholder, .content > div[class*="contact"] input:not(.form__input):not([type="checkbox"]):not([type="radio"]):not([type="submit"])::-ms-input-placeholder,
 .content > div[class*="contact"] textarea:not(.form__input)::-ms-input-placeholder,
 .content > div[id*="contact"] input:not(.form__input):not([type="checkbox"]):not([type="radio"]):not([type="submit"])::-ms-input-placeholder,
@@ -4281,9 +4273,6 @@ input:checked + .u-checkbox__mark .icon {
   -webkit-appearance: none;
 }
 .search-bar__form input::-webkit-input-placeholder {
-  color: #808080;
-}
-.search-bar__form input:-ms-input-placeholder {
   color: #808080;
 }
 .search-bar__form input::-ms-input-placeholder {
@@ -5961,13 +5950,6 @@ p.has-background {
 .members__form input[type="url"]::-webkit-input-placeholder,
 .members__form input[type="password"]::-webkit-input-placeholder,
 .members__form textarea::-webkit-input-placeholder {
-  color: #333333;
-}
-.members__form input[type="text"]:-ms-input-placeholder,
-.members__form input[type="email"]:-ms-input-placeholder,
-.members__form input[type="url"]:-ms-input-placeholder,
-.members__form input[type="password"]:-ms-input-placeholder,
-.members__form textarea:-ms-input-placeholder {
   color: #333333;
 }
 .members__form input[type="text"]::-ms-input-placeholder,

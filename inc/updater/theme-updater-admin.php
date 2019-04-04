@@ -82,11 +82,11 @@ class Chipmunk_Theme_Updater_Admin {
 	 */
 	function license_menu() {
 		add_submenu_page(
-			$this->item_slug,
+			THEME_SLUG,
 			$this->strings['licenses'],
 			$this->strings['licenses'],
 			'manage_options',
-			$this->item_slug,
+			THEME_SLUG . '_licenses',
 			array( $this, 'license_settings' )
 		);
 	}
@@ -105,7 +105,7 @@ class Chipmunk_Theme_Updater_Admin {
 			<form method="post" action="options.php">
 				<table class="form-table">
 					<tbody>
-						<?php do_action( 'chipmunk_licenses_after_content' ); ?>
+						<?php do_action( 'chipmunk_licenses_content' ); ?>
 					</tbody>
 				</table>
 

@@ -20,6 +20,7 @@ define( 'THEME_SLUG', 'chipmunk' );
 require_once THEME_TEMPLATE_DIR . '/inc/customizer.php';
 require_once THEME_TEMPLATE_DIR . '/inc/helpers.php';
 require_once THEME_TEMPLATE_DIR . '/inc/config.php';
+require_once THEME_TEMPLATE_DIR . '/inc/settings.php';
 require_once THEME_TEMPLATE_DIR . '/inc/assets.php';
 require_once THEME_TEMPLATE_DIR . '/inc/meta-post.php';
 require_once THEME_TEMPLATE_DIR . '/inc/meta-taxonomy.php';

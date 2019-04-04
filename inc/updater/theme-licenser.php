@@ -31,7 +31,6 @@ class Chipmunk_Licenser {
 			'licenses'                  => __( 'Licenses' ),
 			'enter-key'                 => __( 'Enter your license key.' ),
 			'license-key'               => __( 'License Key' ),
-			'license-action'            => __( 'License Action' ),
 			'deactivate-license'        => __( 'Deactivate License' ),
 			'activate-license'          => __( 'Activate License' ),
 			'status-unknown'            => __( 'License status is unknown.' ),
@@ -75,7 +74,7 @@ class Chipmunk_Licenser {
 		add_action( 'update_option_' . $this->item_slug . '_license_key', array( $this, 'activate_license' ), 10, 2 );
 
 		// Output license settings
-		add_action( 'chipmunk_licenses_after_content', array( $this, 'license_settings' ) );
+		add_action( 'chipmunk_licenses_content', array( $this, 'license_settings' ) );
 
 		// Admin notices
 		add_filter( 'chipmunk_admin_notices', array( $this, 'license_admin_notices' ) );
@@ -96,10 +95,8 @@ class Chipmunk_Licenser {
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-		if ( false === $license_data->success ) {
-
+		if ( ! $license_data->success ) {
 			switch ( $license_data->error ) {
-
 				case 'expired':
 					$message = sprintf( $this->errors['license-expired'], date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) ) );
 					break;
@@ -302,9 +299,14 @@ class Chipmunk_Licenser {
 	 * @return array $response decoded JSON response.
 	 */
 	private function get_api_response( $api_params ) {
-		// Call the custom API.
 		$verify_ssl = (bool) apply_filters( 'edd_sl_api_request_verify_ssl', true );
-		$response   = wp_remote_post( $this->remote_api_url, array( 'timeout' => 15, 'sslverify' => $verify_ssl, 'body' => $api_params ) );
+
+		// Call the custom API.
+		$response = wp_remote_post( $this->remote_api_url, array(
+			'timeout'   => 15,
+			'sslverify' => $verify_ssl,
+			'body'      => $api_params,
+		) );
 
 		return $response;
 	}
@@ -451,7 +453,7 @@ class Chipmunk_Licenser {
 			<td>
 				<?php settings_fields( $this->item_slug . '_license' ); ?>
 
-				<input id="<?php echo $this->item_slug; ?>_license_key" name="<?php echo $this->item_slug; ?>_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" />
+				<input id="<?php echo $this->item_slug; ?>_license_key" name="<?php echo $this->item_slug; ?>_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
 
 				<p class="description"><?php echo $status; ?></p>
 
