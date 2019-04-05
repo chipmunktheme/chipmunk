@@ -20,7 +20,7 @@ if ( class_exists( 'Merlin' ) ) :
 			'license_step'         => true, // EDD license activation step.
 			'license_required'     => true, // Require the license activation step.
 			'license_help_url'     => '', // URL for the 'license-tooltip'.
-			'edd_remote_api_url'   => THEME_URL, // EDD_Theme_Updater_Admin remote_api_url.
+			'edd_remote_api_url'   => THEME_SHOP_URL, // EDD_Theme_Updater_Admin remote_api_url.
 			'edd_item_name'        => THEME_TITLE, // EDD_Theme_Updater_Admin item_name.
 			'edd_theme_slug'       => THEME_SLUG, // EDD_Theme_Updater_Admin item_slug.
 			'ready_big_button_url' => esc_url( home_url( '/', 'relative' ) ), // Link for the big button on the ready step.
@@ -94,8 +94,8 @@ if ( class_exists( 'Merlin' ) ) :
 		return array(
 			array(
 				'import_file_name'           => __( 'Demo Import', 'chipmunk' ),
-				'import_file_url'            => THEME_URL . '/wp-content/uploads/chipmunk-theme-demo-content.xml',
-				'import_customizer_file_url' => THEME_URL . '/wp-content/uploads/chipmunk-theme-customizer.dat',
+				'import_file_url'            => THEME_SHOP_URL . '/wp-content/uploads/chipmunk-theme-demo-content.xml',
+				'import_customizer_file_url' => THEME_SHOP_URL . '/wp-content/uploads/chipmunk-theme-customizer.dat',
 				'import_notice'              => __( 'A special note for this import.', 'chipmunk' ),
 				'preview_url'                => THEME_DEMO_URL,
 			),

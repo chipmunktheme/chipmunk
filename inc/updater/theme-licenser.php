@@ -17,8 +17,9 @@ class Chipmunk_Licenser {
 		$config = wp_parse_args( $config, array(
 			'menu_url'          => '',
 			'remote_api_url'    => '',
-			'item_slug'         => '',
+			'item_id'           => '',
 			'item_name'         => '',
+			'item_slug'         => '',
 			'version'           => '',
 			'author'            => '',
 			'download_id'       => '',
@@ -27,38 +28,10 @@ class Chipmunk_Licenser {
 		) );
 
 		// Set string defaults
-		$this->strings = wp_parse_args( $strings, array(
-			'licenses'                  => __( 'Licenses' ),
-			'enter-key'                 => __( 'Enter your license key.' ),
-			'license-key'               => __( 'License Key' ),
-			'deactivate-license'        => __( 'Deactivate License' ),
-			'activate-license'          => __( 'Activate License' ),
-			'status-unknown'            => __( 'License status is unknown.' ),
-			'renew'                     => __( 'Renew?' ),
-			'unlimited'                 => __( 'unlimited' ),
-			'license-key-is-active'     => __( 'License key is active.' ),
-			'expires%s'                 => __( 'Expires %s.' ),
-			'expires-never'             => __( 'Lifetime License.' ),
-			'%1$s/%2$-sites'            => __( 'You have %1$s / %2$s sites activated.' ),
-			'license-key-expired-%s'    => __( 'License key expired %s.' ),
-			'license-key-expired'       => __( 'License key has expired.' ),
-			'license-is-invalid'        => __( 'License is invalid.' ),
-			'license-is-inactive'       => __( 'License is inactive.' ),
-			'license-key-is-disabled'   => __( 'License key is disabled.' ),
-			'site-is-inactive'          => __( 'Site is inactive.' ),
-			'license-status-unknown'    => __( 'License status is unknown.' ),
-		) );
+		$this->strings = $strings;
 
 		// Set error defaults
-		$this->errors = wp_parse_args( $errors, array(
-			'license-expired'           => __( 'Your license key expired on %s.' ),
-			'license-disabled'          => __( 'Your license key has been disabled.' ),
-			'license-missing'           => __( 'Invalid license.' ),
-			'license-invalid'           => __( 'Your license is not active for this URL.' ),
-			'license-name-mismatch'     => __( 'This appears to be an invalid license key for %s.' ),
-			'license-exceeded'          => __( 'Your license key has reached its activation limit.' ),
-			'license-unknown'           => __( 'An error occurred, please try again.' ),
-		) );
+		$this->errors = $errors;
 
 		// Set config arguments
 		foreach ( $config as $key => $value ) {
@@ -287,7 +260,7 @@ class Chipmunk_Licenser {
 		return array(
 			'edd_action' => $action,
 			'license'    => $license,
-			'item_name'  => urlencode( $this->item_name ),
+			'item_id'    => $this->item_id,
 			'url'        => home_url(),
 		);
 	}
@@ -299,7 +272,7 @@ class Chipmunk_Licenser {
 	 * @return array $response decoded JSON response.
 	 */
 	private function get_api_response( $api_params ) {
-		$verify_ssl = (bool) apply_filters( 'edd_sl_api_request_verify_ssl', true );
+		$verify_ssl = (bool) apply_filters( 'chipmunk_api_request_verify_ssl', true );
 
 		// Call the custom API.
 		$response = wp_remote_post( $this->remote_api_url, array(

@@ -14,10 +14,10 @@ class Chipmunk_Theme_Updater_Admin {
 	 */
 	function __construct( $config = array(), $strings = array() ) {
 		$config = wp_parse_args( $config, array(
-			'menu_url'          => '',
 			'remote_api_url'    => '',
-			'item_slug'         => '',
+			'item_id'           => '',
 			'item_name'         => '',
+			'item_slug'         => '',
 			'version'           => '',
 			'author'            => '',
 			'download_id'       => '',
@@ -25,23 +25,17 @@ class Chipmunk_Theme_Updater_Admin {
 			'beta'              => false,
 		) );
 
+		// Strings passed in from the updater config
+		$this->strings = $strings;
+
 		// Set config arguments
 		foreach ( $config as $key => $value ) {
 			$this->$key = $value;
 		}
 
-		// Strings passed in from the updater config
-		$this->strings = $strings;
-
-		// Initialize theme licenser
-		$this->licenser = new Chipmunk_Licenser( $config, $strings );
-
 		// Updater
 		add_action( 'init', array( $this, 'updater' ) );
 		add_filter( 'http_request_args', array( $this, 'disable_wporg_request' ), 5, 2 );
-
-		// Licenser
-		add_action( 'admin_menu', array( $this, 'license_menu' ) );
 	}
 
 	/**
@@ -67,6 +61,7 @@ class Chipmunk_Theme_Updater_Admin {
 				'remote_api_url'    => $this->remote_api_url,
 				'version'           => $this->version,
 				'license'           => get_option( $this->item_slug . '_license_key' ),
+				'item_id'           => $this->item_id,
 				'item_name'         => $this->item_name,
 				'item_slug'         => $this->item_slug,
 				'author'            => $this->author,
@@ -75,43 +70,6 @@ class Chipmunk_Theme_Updater_Admin {
 
 			$this->strings
 		);
-	}
-
-	/**
-	 * Adds a menu item for the theme license under the appearance menu.
-	 */
-	function license_menu() {
-		add_submenu_page(
-			THEME_SLUG,
-			$this->strings['licenses'],
-			$this->strings['licenses'],
-			'manage_options',
-			THEME_SLUG . '_licenses',
-			array( $this, 'license_settings' )
-		);
-	}
-
-	/**
-	 * Outputs the markup used on the theme license page.
-	 */
-	function license_settings() {
-		?>
-		<div class="wrap">
-			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<hr>
-
-			<?php settings_errors(); ?>
-
-			<form method="post" action="options.php">
-				<table class="form-table">
-					<tbody>
-						<?php do_action( 'chipmunk_licenses_content' ); ?>
-					</tbody>
-				</table>
-
-				<?php submit_button(); ?>
-			</form>
-		<?php
 	}
 
 	/**

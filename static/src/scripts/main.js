@@ -1,7 +1,8 @@
 /*!
-** Project: Chipmunk Theme
-** Author: Piotr Kulpinski, Jan Wennesland
-** --------------------------------
+** Project:      Chipmunk Theme
+** Author:       Made by Less
+** Author URI:   https://madebyless.com
+** ------------------------------------
 **/
 
 import 'custom-event-polyfill';

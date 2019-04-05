@@ -29,6 +29,24 @@ endif;
 add_action( 'admin_menu', 'chipmunk_add_menu_page' );
 
 
+if ( ! function_exists( 'chipmunk_add_licenses_menu_page' ) ) :
+	/**
+	 * Adds a menu item for the theme license under the appearance menu.
+	 */
+	function chipmunk_add_licenses_menu_page() {
+		add_submenu_page(
+			THEME_SLUG,
+			__( 'Licenses', 'chipmunk' ),
+			__( 'Licenses', 'chipmunk' ),
+			'manage_options',
+			THEME_SLUG . '_licenses',
+			'chipmunk_admin_licenses'
+		);
+	}
+endif;
+add_action( 'admin_menu', 'chipmunk_add_licenses_menu_page' );
+
+
 if ( ! function_exists( 'chipmunk_admin_settings' ) ) :
 	/**
 	 * Outputs the markup used on the theme settings page.
@@ -41,6 +59,32 @@ if ( ! function_exists( 'chipmunk_admin_settings' ) ) :
 
 			<?php do_action( 'chipmunk_settings_content' ); ?>
 		</div>
+		<?php
+	}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_admin_licenses' ) ) :
+	/**
+	 * Outputs the markup used on the theme license page.
+	 */
+	function chipmunk_admin_licenses() {
+		?>
+		<div class="wrap">
+			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+			<hr>
+
+			<?php settings_errors(); ?>
+
+			<form method="post" action="options.php">
+				<table class="form-table">
+					<tbody>
+						<?php do_action( 'chipmunk_licenses_content' ); ?>
+					</tbody>
+				</table>
+
+				<?php submit_button(); ?>
+			</form>
 		<?php
 	}
 endif;
@@ -60,8 +104,8 @@ if ( ! function_exists( 'chipmunk_faker_settings' ) ) :
 					<th><?php esc_html_e( 'Fake upvotes', 'chipmunk' ); ?></th>
 
 					<td>
-						<input type="number" class="small-text" name="" value="" placeholder="<?php esc_attr_e( 'Start', 'chipmunk' ); ?>" />
-						<input type="number" class="small-text" name="" value="" placeholder="<?php esc_attr_e( 'End', 'chipmunk' ); ?>" />
+						<input type="number" class="small-text" name="" value="" min="0" placeholder="<?php esc_attr_e( 'Start', 'chipmunk' ); ?>" />
+						<input type="number" class="small-text" name="" value="" min="0" placeholder="<?php esc_attr_e( 'End', 'chipmunk' ); ?>" />
 						<button class="button-primary"><?php esc_html_e( 'Generate', 'chipmunk' ); ?></button>
 
 						<p class="description">

@@ -2,21 +2,26 @@
 /**
  * Chipmunk: Theme specific functionalities
  *
- * Author: Piotr Kulpinski
- * URL: https://chipmunktheme.com
+ * Author:       Made by Less
+ * Author URI:   https://madebyless.com
  *
  * @package WordPress
  * @subpackage Chipmunk
  */
 
-define( 'THEME_VERSION', wp_get_theme()->get( 'Version' ) );
-define( 'THEME_TEMPLATE_URI', get_template_directory_uri() );
-define( 'THEME_TEMPLATE_DIR', get_template_directory() );
-define( 'THEME_URL', 'https://staging.chipmunktheme.com' );
-define( 'THEME_DEMO_URL', 'https://demo.chipmunktheme.com' );
-define( 'THEME_TITLE', 'Chipmunk' );
-define( 'THEME_SLUG', 'chipmunk' );
+define( 'THEME_TITLE',          'Chipmunk' );
+define( 'THEME_SLUG',           'chipmunk' );
+define( 'THEME_VERSION',        wp_get_theme()->get( 'Version' ) );
+define( 'THEME_AUTHOR',         wp_get_theme()->get( 'Author' ) );
+define( 'THEME_TEMPLATE_URI',   get_template_directory_uri() );
+define( 'THEME_TEMPLATE_DIR',   get_template_directory() );
+define( 'THEME_DEMO_URL',       'https://demo.chipmunktheme.com' );
+define( 'THEME_SHOP_URL',       'https://staging.chipmunktheme.com' );
+define( 'THEME_ITEM_ID',        '893' );
 
+/*
+ * Require theme components
+ */
 require_once THEME_TEMPLATE_DIR . '/inc/customizer.php';
 require_once THEME_TEMPLATE_DIR . '/inc/helpers.php';
 require_once THEME_TEMPLATE_DIR . '/inc/config.php';
