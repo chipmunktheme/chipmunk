@@ -43,8 +43,8 @@ class Chipmunk_Licenser {
 		add_action( 'admin_init', array( $this, 'license_action' ) );
 
 		// License updating hooks
-		add_action( 'pre_update_option_' . $this->item_slug . '_license_key', array( $this, 'trim_value' ), 10, 2 );
-		add_action( 'update_option_' . $this->item_slug . '_license_key', array( $this, 'activate_license' ), 10, 2 );
+		add_action( 'pre_update_option_' . $this->item_slug . '_license_key', array( $this, 'trim_value' ), 10, 1 );
+		add_action( 'update_option_' . $this->item_slug . '_license_key', array( $this, 'activate_license' ), 10, 0 );
 
 		// Output license settings
 		add_action( 'chipmunk_licenses_content', array( $this, 'license_settings' ) );
@@ -56,10 +56,12 @@ class Chipmunk_Licenser {
 	/**
 	 * Activates the license key.
 	 */
-	public function activate_license() {
-		$license = get_option( $this->item_slug . '_license_key' );
+	public function activate_license( $license = null ) {
+		$license = isset( $license ) ? $license : get_option( $this->item_slug . '_license_key' );
 		$api_params = $this->get_api_params( 'activate_license', $license );
 		$response = $this->get_api_response( $api_params );
+
+		error_log($license);
 
 		// Make sure the response came back okay
 		if ( ! $this->is_valid_response( $response ) ) {
@@ -104,6 +106,7 @@ class Chipmunk_Licenser {
 			if ( ! empty( $message ) ) {
 				$redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $this->menu_url );
 
+				// Redirect to the menu_url
 				wp_safe_redirect( $redirect );
 				exit();
 			}
@@ -114,16 +117,13 @@ class Chipmunk_Licenser {
 			update_option( $this->item_slug . '_license_key_status', $license_data->license );
 			delete_transient( $this->item_slug . '_license_status' );
 		}
-
-		wp_safe_redirect( $this->menu_url );
-		exit();
 	}
 
 	/**
 	 * Deactivates the license key.
 	 */
-	private function deactivate_license() {
-		$license = get_option( $this->item_slug . '_license_key' );
+	private function deactivate_license( $license = null ) {
+		$license = isset( $license ) ? $license : get_option( $this->item_slug . '_license_key' );
 		$api_params = $this->get_api_params( 'deactivate_license', $license );
 		$response = $this->get_api_response( $api_params );
 
@@ -139,9 +139,6 @@ class Chipmunk_Licenser {
 			delete_option( $this->item_slug . '_license_key_status' );
 			delete_transient( $this->item_slug . '_license_status' );
 		}
-
-		wp_safe_redirect( $this->menu_url );
-		exit();
 	}
 
 	/**
@@ -389,12 +386,12 @@ class Chipmunk_Licenser {
 	 * Checks if a license action was submitted.
 	 */
 	public function license_action() {
-		if ( isset( $_POST[ $this->item_slug . '_license_activate' ] ) ) {
-			$this->activate_license();
+		if ( isset( $_POST[$this->item_slug . '_license_activate'] ) ) {
+			$this->activate_license( $_POST[$this->item_slug . '_license_key'] );
 		}
 
 		if ( isset( $_POST[$this->item_slug . '_license_deactivate'] ) ) {
-			$this->deactivate_license();
+			$this->deactivate_license( $_POST[$this->item_slug . '_license_key'] );
 		}
 	}
 
