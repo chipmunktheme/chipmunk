@@ -17,7 +17,7 @@
 <div class="section<?php echo ( ! $wp_query->current_post or $wp_query->current_post % 2 == 0 ) ? ' section--theme-light' : ''; ?>">
 	<div class="container">
 		<article class="resource row">
-			<div class="resource__content column column--lg-6">
+			<div class="resource__content column column--lg-<?php echo has_post_thumbnail() ? '6' : '12'; ?>">
 				<ul class="resource__stats stats">
 					<?php
 						$collections_args = array(
