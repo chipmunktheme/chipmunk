@@ -5,6 +5,7 @@
 ** ------------------------------------
 **/
 
+import 'intersection-observer';
 import 'custom-event-polyfill';
 
 import toggle from './modules/toggle';

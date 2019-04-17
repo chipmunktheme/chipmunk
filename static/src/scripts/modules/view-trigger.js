@@ -2,7 +2,7 @@ const ViewTrigger = {
   options: { threshold: [1] },
 
   init(element = document) {
-    if ('IntersectionObserver' in window && 'IntersectionObserverEntry' in window && 'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+    if ('IntersectionObserver' in window) {
       // Create an intersection observers
       this.observeIntersections(element);
     }
