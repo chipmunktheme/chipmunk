@@ -70,7 +70,7 @@ if ( ! function_exists( 'chipmunk_admin_licenses' ) ) :
 	 */
 	function chipmunk_admin_licenses() {
 		?>
-		<div class="wrap">
+		<div class="wrap chipmunk-wrap-licenses">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<hr>
 

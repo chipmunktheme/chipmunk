@@ -46,13 +46,11 @@ new Chipmunk_Licenser(
 		'item_id'        => THEME_ITEM_ID,
 		'item_name'      => THEME_TITLE,
 		'item_slug'      => THEME_SLUG,
-		'version'        => THEME_VERSION,
-		'author'         => THEME_AUTHOR,
 	),
 
 	// Strings
 	array(
-		'enter-key'                 => __( 'Enter your license key.', 'chipmunk' ),
+		'enter-key'                 => __( 'To receive updates, please enter your valid license key.', 'chipmunk' ),
 		'license-key'               => __( 'License Key', 'chipmunk' ),
 		'license-action'            => __( 'License Action', 'chipmunk' ),
 		'deactivate-license'        => __( 'Deactivate License', 'chipmunk' ),
@@ -76,12 +74,12 @@ new Chipmunk_Licenser(
 
 	// Errors
 	array(
-		'license-expired'           => __( 'Your license key expired on %s.' ),
-		'license-disabled'          => __( 'Your license key has been disabled.' ),
-		'license-missing'           => __( 'Your license is invalid.' ),
-		'license-invalid'           => __( 'Your license is not active for this URL.' ),
-		'license-name-mismatch'     => __( 'This appears to be an invalid license key for %s.' ),
-		'license-exceeded'          => __( 'Your license key has reached its activation limit.' ),
-		'license-unknown'           => __( 'An error occurred, please try again.' ),
+		'license-expired'           => __( 'Your license key expired on %s.', 'chipmunk' ),
+		'license-disabled'          => __( 'Your license key has been disabled.', 'chipmunk' ),
+		'license-missing'           => __( 'Your license is invalid.', 'chipmunk' ),
+		'license-invalid'           => __( 'Your license is not active for this URL.', 'chipmunk' ),
+		'license-name-mismatch'     => __( 'This appears to be an invalid license key for %s.', 'chipmunk' ),
+		'license-exceeded'          => __( 'Your license key has reached its activation limit.', 'chipmunk' ),
+		'license-unknown'           => __( 'An error occurred, please try again.', 'chipmunk' ),
 	)
 );

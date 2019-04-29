@@ -20,11 +20,8 @@ class Chipmunk_Licenser {
 			'item_id'           => '',
 			'item_name'         => '',
 			'item_slug'         => '',
-			'version'           => '',
-			'author'            => '',
 			'download_id'       => '',
 			'renew_url'         => '',
-			'beta'              => false,
 		) );
 
 		// Set string defaults
@@ -48,9 +45,6 @@ class Chipmunk_Licenser {
 
 		// Output license settings
 		add_action( 'chipmunk_licenses_content', array( $this, 'license_settings' ) );
-
-		// Admin notices
-		add_filter( 'chipmunk_admin_notices', array( $this, 'license_admin_notices' ) );
 	}
 
 	/**
@@ -60,8 +54,6 @@ class Chipmunk_Licenser {
 		$license = isset( $license ) ? $license : get_option( $this->item_slug . '_license_key' );
 		$api_params = $this->get_api_params( 'activate_license', $license );
 		$response = $this->get_api_response( $api_params );
-
-		error_log($license);
 
 		// Make sure the response came back okay
 		if ( ! $this->is_valid_response( $response ) ) {
@@ -146,8 +138,8 @@ class Chipmunk_Licenser {
 	 *
 	 * @return string $message License status message.
 	 */
-	private function check_license() {
-		$license = get_option( $this->item_slug . '_license_key' );
+	private function check_license( $license = null ) {
+		$license = isset( $license ) ? $license : get_option( $this->item_slug . '_license_key' );
 		$api_params = $this->get_api_params( 'check_license', $license );
 		$response = $this->get_api_response( $api_params );
 
@@ -421,34 +413,39 @@ class Chipmunk_Licenser {
 			</th>
 
 			<td>
-				<?php settings_fields( $this->item_slug . '_license' ); ?>
+				<div class="chipmunk-license">
+					<?php settings_fields( $this->item_slug . '_license' ); ?>
 
-				<input id="<?php echo $this->item_slug; ?>_license_key" name="<?php echo $this->item_slug; ?>_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
+					<input id="<?php echo $this->item_slug; ?>_license_key" name="<?php echo $this->item_slug; ?>_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
 
-				<p class="description"><?php echo $status; ?></p>
-
-				<?php if ( ! empty( $license ) ) : ?>
-					<?php if ( 'valid' == $key_status ) : ?>
-						<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
-					<?php else : ?>
-						<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
+					<?php if ( ! empty( $license ) ) : ?>
+						<?php if ( 'valid' == $key_status ) : ?>
+							<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
+						<?php else : ?>
+							<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
+						<?php endif; ?>
 					<?php endif; ?>
-				<?php endif; ?>
+				</div>
+
+				<div class="chipmunk-license-data license-<?php echo $key_status; ?>-notice">
+					<p class="description"><?php echo $status; ?></p>
+				</div>
 			</td>
 		</tr>
 		<?php
 	}
-
-	/**
-	 * Catches errors from the activation method above and displyaing it to the customer
-	 */
-	public function license_admin_notices( $errors ) {
-		if ( isset( $_GET['sl_activation'] ) && ! empty( $_GET['message'] ) ) {
-			if ( $_GET['sl_activation'] == 'false') {
-				$errors[] = urldecode( $_GET['message'] );
-			}
-		}
-
-		return $errors;
-	}
 }
+
+/**
+ * Catches errors from the activation method above and displyaing it to the customer
+ */
+function chipmunk_license_admin_notices( $errors ) {
+	if ( isset( $_GET['sl_activation'] ) && ! empty( $_GET['message'] ) ) {
+		if ( $_GET['sl_activation'] == 'false') {
+			$errors[] = urldecode( $_GET['message'] );
+		}
+	}
+
+	return $errors;
+}
+add_filter( 'chipmunk_admin_notices', 'chipmunk_license_admin_notices' );
