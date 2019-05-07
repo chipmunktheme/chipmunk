@@ -57,7 +57,7 @@ class Chipmunk_Licenser {
 
 		// Make sure the response came back okay
 		if ( ! $this->is_valid_response( $response ) ) {
-			$this->redirect_with_error( $this->errors['license-unknown'] );
+			$this->display_serttings_error( $this->errors['license-unknown'] );
 		}
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
@@ -96,11 +96,7 @@ class Chipmunk_Licenser {
 			}
 
 			if ( ! empty( $message ) ) {
-				$redirect = add_query_arg( array( 'sl_activation' => 'false', 'message' => urlencode( $message ) ), $this->menu_url );
-
-				// Redirect to the menu_url
-				wp_safe_redirect( $redirect );
-				exit();
+				$this->display_serttings_error( null, $message );
 			}
 		}
 
@@ -121,7 +117,7 @@ class Chipmunk_Licenser {
 
 		// Make sure the response came back okay
 		if ( ! $this->is_valid_response( $response ) ) {
-			$this->redirect_with_error( $this->errors['license-unknown'] );
+			$this->display_serttings_error( $this->errors['license-unknown'] );
 		}
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
@@ -145,7 +141,7 @@ class Chipmunk_Licenser {
 
 		// Make sure the response came back okay
 		if ( ! $this->is_valid_response( $response ) ) {
-			$this->redirect_with_error( $this->strings['license-status-unknown'] );
+			$this->display_serttings_error( $this->strings['license-status-unknown'] );
 		}
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
@@ -285,21 +281,16 @@ class Chipmunk_Licenser {
 	}
 
 	/**
-	 * Redirects to the current page with error message
+	 * Displays the error on the page
 	 *
 	 * @param object $response Remote API response object
 	 * @param string $error Fallback error message
 	 */
-	private function redirect_with_error( $response, $error = '' ) {
+	private function display_serttings_error( $response, $error = '' ) {
 		$message = is_wp_error( $response ) ? $response->get_error_message() : $error;
 
-		$redirect = add_query_arg( array(
-			'sl_activation'     => 'false',
-			'message'           => urlencode( $message ),
-		), $this->menu_url );
-
-		wp_safe_redirect( $redirect );
-		exit();
+		// Add proper error message
+		$this->add_settings_error( $message );
 	}
 
 	/**
@@ -326,6 +317,16 @@ class Chipmunk_Licenser {
 
 		// Otherwise return the remote_api_url
 		return esc_url( $this->remote_api_url );
+	}
+
+	/**
+	 * Adds setting error using Settings API
+	 *
+	 * @param string $message Error message
+	 * @param string $type Error type
+	 */
+	private function add_settings_error( $message, $type = 'error' ) {
+		add_settings_error( $this->item_slug . '_license', 'license_error', $message, $type );
 	}
 
 	/**
@@ -435,17 +436,3 @@ class Chipmunk_Licenser {
 		<?php
 	}
 }
-
-/**
- * Catches errors from the activation method above and displyaing it to the customer
- */
-function chipmunk_license_admin_notices( $errors ) {
-	if ( isset( $_GET['sl_activation'] ) && ! empty( $_GET['message'] ) ) {
-		if ( $_GET['sl_activation'] == 'false') {
-			$errors[] = urldecode( $_GET['message'] );
-		}
-	}
-
-	return $errors;
-}
-add_filter( 'chipmunk_admin_notices', 'chipmunk_license_admin_notices' );
