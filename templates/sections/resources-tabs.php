@@ -27,7 +27,9 @@
 	<div class="section">
 		<div class="container">
 			<?php if ( ! empty( $intro_text ) ) : ?>
-				<h2 class="section__title section__separator heading heading--xl"><?php echo $intro_text; ?></h2>
+				<h2 class="section__title section__separator heading heading--xl">
+					<?php echo do_shortcode( wp_kses_post( $intro_text ) ); ?>
+				</h2>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $sections ) ) : ?>
