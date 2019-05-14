@@ -572,6 +572,18 @@ if ( ! function_exists( 'chipmunk_get_popular_resources' ) ) :
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_post_count' ) ) :
+	/**
+	 * Get post counter
+	 */
+	function chipmunk_get_post_count( $post_type, $post_status ) {
+		$counter = wp_count_posts( $post_type );
+
+		return $counter->$post_status;
+	}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_users' ) ) :
 	/**
 	 * Get users
