@@ -42,7 +42,7 @@ class Chipmunk_Theme_Updater_Admin {
 	 * Creates the updater class.
 	 */
 	function updater() {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( 'update_themes' ) ) {
 			return;
 		}
 

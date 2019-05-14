@@ -14,10 +14,8 @@ class Chipmunk_Theme_Updater {
 	 * @param array $config    Array of arguments from the theme requesting an update check
 	 * @param array $strings Strings for the update process
 	 */
-	function __construct( $config = array(), $strings = array() ) {
-		$config = wp_parse_args( $config, array(
-			'request_data'   => array(),
-		) );
+	public function __construct( $config = array(), $strings = array() ) {
+		$config = wp_parse_args( $config, array() );
 
 		$this->license        = $config['license'];
 		$this->item_name      = $config['item_name'];
@@ -29,57 +27,11 @@ class Chipmunk_Theme_Updater {
 		$this->response_key   = $this->item_slug . '-' . $this->beta . '-update-response';
 		$this->strings        = $strings;
 
-		add_filter( 'site_transient_update_themes',        array( $this, 'theme_update_transient' ) );
-		add_filter( 'delete_site_transient_update_themes', array( $this, 'delete_theme_update_transient' ) );
-		add_action( 'load-update-core.php',                array( $this, 'delete_theme_update_transient' ) );
-		add_action( 'load-themes.php',                     array( $this, 'delete_theme_update_transient' ) );
-		add_action( 'load-themes.php',                     array( $this, 'load_themes_screen' ) );
-	}
-
-	/**
-	 * Show the update notification when neecessary
-	 *
-	 * @return void
-	 */
-	function load_themes_screen() {
-		add_thickbox();
-		add_action( 'admin_notices', array( $this, 'update_nag' ) );
-	}
-
-	/**
-	 * Display the update notifications
-	 *
-	 * @return void
-	 */
-	function update_nag() {
-		$strings      = $this->strings;
-		$theme        = wp_get_theme( $this->item_slug );
-		$api_response = get_transient( $this->response_key );
-
-		if ( false === $api_response ) {
-			return;
-		}
-
-		$update_url     = wp_nonce_url( 'update.php?action=upgrade-theme&amp;theme=' . urlencode( $this->item_slug ), 'upgrade-theme_' . $this->item_slug );
-		$update_onclick = ' onclick="if ( confirm(\'' . esc_js( $strings['update-notice'] ) . '\') ) {return true;}return false;"';
-
-		if ( version_compare( $this->version, $api_response->new_version, '<' ) ) {
-
-			echo '<div id="update-nag">';
-			printf(
-				$strings['update-available'],
-				$theme->get( 'Name' ),
-				$api_response->new_version,
-				'#TB_inline?width=640&amp;inlineId=' . $this->item_slug . '_changelog',
-				$theme->get( 'Name' ),
-				$update_url,
-				$update_onclick
-			);
-			echo '</div>';
-			echo '<div id="' . $this->item_slug . '_' . 'changelog" style="display:none;">';
-			echo wpautop( $api_response->sections['changelog'] );
-			echo '</div>';
-		}
+		// Theme Version Checker
+		add_filter( 'pre_set_site_transient_update_themes', array( $this, 'theme_update_transient' ), 10, 2 );
+		add_filter( 'delete_site_transient_update_themes',  array( $this, 'delete_theme_update_transient' ) );
+		add_action( 'load-update-core.php',                 array( $this, 'delete_theme_update_transient' ) );
+		add_action( 'load-themes.php',                      array( $this, 'delete_theme_update_transient' ) );
 	}
 
 	/**
@@ -89,12 +41,18 @@ class Chipmunk_Theme_Updater {
 	 * @return array|boolean  If an update is available, returns the update parameters, if no update is needed returns false, if
 	 *                        the request fails returns false.
 	 */
-	function theme_update_transient( $value ) {
-		if ( $update_data = $this->check_for_update() ) {
-			// Make sure the theme property is set. See issue 1463 on Github in the Software Licensing Repo.
-			$update_data['theme'] = $this->item_slug;
+	public function theme_update_transient( $value ) {
+		if ( isset( $value->response ) && empty( $value->checked[ $this->item_slug ] ) ) {
+			return $value;
+		}
 
-			$value->response[ $this->item_slug ] = $update_data;
+		if ( $data = $this->check_for_update() ) {
+			$value->response[ $this->item_slug ] = array(
+				'theme'         => $this->item_slug,
+				'new_version'   => $data['new_version'],
+				'url'           => $data['url'],
+				'package'       => $data['package'],
+			);
 		}
 
 		return $value;
@@ -105,7 +63,7 @@ class Chipmunk_Theme_Updater {
 	 *
 	 * @return void
 	 */
-	function delete_theme_update_transient() {
+	public function delete_theme_update_transient() {
 		delete_transient( $this->response_key );
 	}
 
@@ -115,24 +73,24 @@ class Chipmunk_Theme_Updater {
 	 * @return array|boolean  If an update is available, returns the update parameters, if no update is needed returns false, if
 	 *                        the request fails returns false.
 	 */
-	function check_for_update() {
-
+	private function check_for_update() {
 		$update_data = get_transient( $this->response_key );
 
 		if ( false === $update_data ) {
 			$failed = false;
 
-			$api_params = array(
-				'edd_action' => 'get_version',
-				'license'    => $this->license,
-				'name'       => $this->item_name,
-				'slug'       => $this->item_slug,
-				'version'    => $this->version,
-				'author'     => $this->author,
-				'beta'       => $this->beta
-			);
-
-			$response = wp_remote_post( $this->remote_api_url, array( 'timeout' => 15, 'body' => $api_params ) );
+			$response = wp_remote_post( $this->remote_api_url, array(
+				'timeout'   => 15,
+				'body'      => array(
+					'edd_action' => 'get_version',
+					'license'    => $this->license,
+					'name'       => $this->item_name,
+					'slug'       => $this->item_slug,
+					'version'    => $this->version,
+					'author'     => $this->author,
+					'beta'       => $this->beta,
+				),
+			) );
 
 			// Make sure the response was successful
 			if ( is_wp_error( $response ) || 200 != wp_remote_retrieve_response_code( $response ) ) {
@@ -153,18 +111,14 @@ class Chipmunk_Theme_Updater {
 				return false;
 			}
 
-			// If the status is 'ok', return the update arguments
-			if ( ! $failed ) {
+			else {
 				$update_data->sections = maybe_unserialize( $update_data->sections );
 				set_transient( $this->response_key, $update_data, strtotime( '+12 hours', time() ) );
 			}
 		}
 
-		if ( version_compare( $this->version, $update_data->new_version, '>=' ) ) {
-			return false;
+		if ( version_compare( $this->version, $update_data->new_version, '<' ) ) {
+			return (array) $update_data;
 		}
-
-		return (array) $update_data;
 	}
-
 }

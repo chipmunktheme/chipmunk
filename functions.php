@@ -10,7 +10,7 @@
  */
 
 define( 'THEME_TITLE',          'Chipmunk' );
-define( 'THEME_SLUG',           'chipmunk' );
+define( 'THEME_SLUG',           'chipmunk-theme' );
 define( 'THEME_VERSION',        wp_get_theme()->get( 'Version' ) );
 define( 'THEME_AUTHOR',         wp_get_theme()->get( 'Author' ) );
 define( 'THEME_TEMPLATE_URI',   get_template_directory_uri() );
