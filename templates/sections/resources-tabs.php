@@ -18,12 +18,17 @@
 		),
 	);
 
-	$sections = array_filter( $sections, function( $section ) {
-		return $section['results']->have_posts();
-	});
+	// Get the proper tab order
+	$tabs = apply_filters( 'chipmunk_resource_tabs', ['featured', 'latest', 'popular'] );
+
+	// Filter out empty resource tabs
+	$tabs = array_filter( $tabs, function ( $tab ) use ( $sections ) {
+		return $sections[ $tab ]['results']->have_posts();
+	} );
+
 ?>
 
-<?php if ( ! empty( $sections ) or ! empty( $intro_text ) ) : ?>
+<?php if ( ! empty( $tabs ) or ! empty( $intro_text ) ) : ?>
 	<div class="section">
 		<div class="container">
 			<?php if ( ! empty( $intro_text ) ) : ?>
@@ -32,25 +37,25 @@
 				</h2>
 			<?php endif; ?>
 
-			<?php if ( ! empty( $sections ) ) : ?>
+			<?php if ( ! empty( $tabs ) ) : ?>
 				<div class="tabs section__separator" data-tabs role="tablist">
-					<?php if ( count( $sections ) > 1 ) : ?>
+					<?php if ( count( $tabs ) > 1 ) : ?>
 						<div class="tabs__title heading heading--md">
-							<?php foreach ( array_keys( $sections ) as $index => $key ) : ?>
+							<?php foreach ( array_values( $tabs ) as $index => $key ) : ?>
 
 								<strong class="heading__link<?php echo $index == 0 ? ' active' : ''; ?>" data-tabs-toggle role="tab">
-									<?php echo $sections[$key]['label']; ?>
+									<?php echo esc_html( $sections[ $key ]['label'] ); ?>
 								</strong>
 
 							<?php endforeach; ?>
 						</div>
 					<?php endif; ?>
 
-					<?php foreach ( array_keys( $sections ) as $index => $key ) : ?>
+					<?php foreach ( array_values( $tabs ) as $index => $key ) : ?>
 
 						<div class="tabs__item<?php echo $index == 0 ? ' active' : ''; ?>" data-tabs-panel role="tabpanel">
 							<div class="tile__list"<?php echo $disable_sliders ? '' : ' data-carousel'; ?>>
-								<?php while ( $sections[$key]['results']->have_posts() ) : $sections[$key]['results']->the_post(); ?>
+								<?php while ( $sections[ $key ]['results']->have_posts() ) : $sections[ $key ]['results']->the_post(); ?>
 
 									<div class="tile__slider">
 										<?php get_template_part( 'templates/sections/resource-tile' ); ?>

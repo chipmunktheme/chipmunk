@@ -47,7 +47,9 @@
 			<?php $content = get_the_excerpt(); ?>
 
 			<?php if ( ! chipmunk_theme_option( 'disable_resource_desc' ) and ! empty( $content ) ) : ?>
-				<p class="tile__copy"><?php echo esc_html( chipmunk_truncate_string( $content, apply_filters( 'chipmunk_excerpt_length', ( chipmunk_theme_option( 'display_resource_as' ) == 'card_blank' ? 80 : 60 ) ) ) ); ?><span>&nbsp;<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'arrow-right' ) ); ?></span></p>
+				<p class="tile__copy">
+					<?php echo esc_html( chipmunk_truncate_string( $content, apply_filters( 'chipmunk_resource_excerpt_length', ( chipmunk_theme_option( 'display_resource_as' ) == 'card_blank' ? 80 : 60 ) ) ) ); ?><span>&nbsp;<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'arrow-right' ) ); ?></span>
+				</p>
 			<?php endif; ?>
 
 			<?php if ( isset( $display_status ) and chipmunk_theme_option( 'display_resource_as' ) == 'tile' ) : ?>

@@ -53,7 +53,7 @@
 					<?php if ( chipmunk_theme_option( 'display_collection_as' ) == 'tile' ) : ?>
 						<?php esc_html_e( 'View this collection', 'chipmunk' ); ?><span>&nbsp;<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'arrow-right' ) ); ?></span>
 					<?php else : ?>
-						<?php echo esc_html( chipmunk_truncate_string( $collection->description, ( chipmunk_theme_option( 'display_collection_as' ) == 'card_blank' ? 80 : 60 ) ) ); ?>
+						<?php echo esc_html( chipmunk_truncate_string( $collection->description, apply_filters( 'chipmunk_collection_excerpt_length', ( chipmunk_theme_option( 'display_collection_as' ) == 'card_blank' ? 80 : 60 ) ) ) ); ?>
 					<?php endif; ?>
 				</p>
 			<?php endif; ?>
