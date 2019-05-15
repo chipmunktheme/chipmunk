@@ -134,10 +134,6 @@
     }
   }
 
-  &--center {
-    justify-content: center;
-  }
-
   &--cta {
     justify-content: space-between;
     align-items: center;
@@ -149,6 +145,10 @@
         margin-top: $separator * 2;
       }
     }
+  }
+
+  &--center {
+    justify-content: center;
   }
 }
 

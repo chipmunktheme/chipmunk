@@ -3275,9 +3275,6 @@ input:checked + .u-checkbox__mark .icon {
     margin-top: 6rem;
   }
 }
-.form__field--center {
-  justify-content: center;
-}
 .form__field--cta {
   justify-content: space-between;
   align-items: center;
@@ -3289,6 +3286,9 @@ input:checked + .u-checkbox__mark .icon {
   .form__field--cta:not(:first-child) {
     margin-top: 4rem;
   }
+}
+.form__field--center {
+  justify-content: center;
 }
 .form__child {
   align-self: flex-start;
