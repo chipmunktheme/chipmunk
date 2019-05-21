@@ -23,7 +23,7 @@ new Chipmunk_Theme_Updater_Admin(
 		'remote_api_url' => THEME_SHOP_URL,
 		'item_id'        => THEME_ITEM_ID,
 		'item_name'      => THEME_TITLE,
-		'item_slug'      => THEME_SLUG,
+		'item_slug'      => THEME_ITEM_SLUG,
 		'version'        => THEME_VERSION,
 		'author'         => THEME_AUTHOR,
 	),
@@ -45,7 +45,7 @@ new Chipmunk_Licenser(
 		'remote_api_url' => THEME_SHOP_URL,
 		'item_id'        => THEME_ITEM_ID,
 		'item_name'      => THEME_TITLE,
-		'item_slug'      => THEME_SLUG,
+		'item_slug'      => THEME_ITEM_SLUG,
 	),
 
 	// Strings
