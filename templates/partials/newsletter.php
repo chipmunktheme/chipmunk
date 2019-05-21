@@ -10,6 +10,10 @@
 	<?php $email_field = 'email_address'; ?>
 <?php endif; ?>
 
+<?php if ( strpos( $action, 'getrevue.co' ) ) : ?>
+	<?php $email_field = 'member[email]'; ?>
+<?php endif; ?>
+
 <?php if ( strpos( $action, 'aweber.com' ) ) : ?>
 	<?php $args = wp_parse_args( wp_parse_url( $action )['query'] ); ?>
 	<?php $args['meta_required'] = 'email'; ?>
