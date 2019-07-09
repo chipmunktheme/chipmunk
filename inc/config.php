@@ -86,7 +86,7 @@ if ( ! function_exists( 'chipmunk_resource_field' ) ) :
 	*/
 	function chipmunk_resource_field() {
 		if ( isset( $_POST['chipmunk_resource_cpt_base'] ) ) {
-			update_option( 'chipmunk_resource_cpt_base', sanitize_title_with_dashes( $_POST['chipmunk_resource_cpt_base'] ) );
+			update_option( 'chipmunk_resource_cpt_base', $_POST['chipmunk_resource_cpt_base'] );
 		}
 
 		add_settings_field(
@@ -112,7 +112,7 @@ if ( ! function_exists( 'chipmunk_collection_field' ) ) :
 	*/
 	function chipmunk_collection_field() {
 		if ( isset( $_POST['chipmunk_collection_cpt_base'] ) ) {
-			update_option( 'chipmunk_collection_cpt_base', sanitize_title_with_dashes( $_POST['chipmunk_collection_cpt_base'] ) );
+			update_option( 'chipmunk_collection_cpt_base', $_POST['chipmunk_collection_cpt_base'] );
 		}
 
 		add_settings_field(
@@ -138,7 +138,7 @@ if ( ! function_exists( 'chipmunk_tag_field' ) ) :
 	*/
 	function chipmunk_tag_field() {
 		if ( isset( $_POST['chipmunk_tag_cpt_base'] ) ) {
-			update_option( 'chipmunk_tag_cpt_base', sanitize_title_with_dashes( $_POST['chipmunk_tag_cpt_base'] ) );
+			update_option( 'chipmunk_tag_cpt_base', $_POST['chipmunk_tag_cpt_base'] );
 		}
 
 		add_settings_field(
