@@ -6,7 +6,7 @@
 
 <?php if ( is_search() ) : ?>
 	<?php $description = $excerpt; ?>
-<?php elseif ( $content_separated ) : ?>
+<?php elseif ( $content_separated or empty( get_the_content() ) ) : ?>
 	<?php if ( has_excerpt() and ( get_the_content() != get_the_excerpt() ) ) : ?>
 		<?php $description = $excerpt; ?>
 	<?php endif; ?>
