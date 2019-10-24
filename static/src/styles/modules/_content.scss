@@ -64,6 +64,11 @@
     }
   }
 
+  > ul,
+  > ol {
+    margin-left: $base-spacing;
+  }
+
   > ul:not([class*='block']) {
     list-style: disc;
     list-style-position: inside;
