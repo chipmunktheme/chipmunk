@@ -1,7 +1,10 @@
 <?php
-	$intro_text      = chipmunk_theme_option( 'intro_text' );
-	$resources_count = chipmunk_theme_option( 'resources_count', 9 );
-	$disable_sliders = chipmunk_theme_option( 'disable_homepage_listings_sliders' );
+	$intro_text         = chipmunk_theme_option( 'intro_text' );
+	$resources_count    = chipmunk_theme_option( 'resources_count', 9 );
+	$disable_sliders    = chipmunk_theme_option( 'disable_homepage_listings_sliders' );
+	$infinite_sliders   = chipmunk_theme_option( 'infinite_sliders' );
+
+	echo $infinite_sliders;
 
 	$sections = array(
 		'featured'  => array(
@@ -54,7 +57,7 @@
 					<?php foreach ( array_values( $tabs ) as $index => $key ) : ?>
 
 						<div class="tabs__item<?php echo $index == 0 ? ' active' : ''; ?>" data-tabs-panel role="tabpanel">
-							<div class="tile__list"<?php echo $disable_sliders ? '' : ' data-carousel'; ?>>
+							<div class="tile__list"<?php echo $disable_sliders ? '' : ' data-carousel data-carousel-infinite="' . $infinite_sliders . '"'; ?>>
 								<?php while ( $sections[ $key ]['results']->have_posts() ) : $sections[ $key ]['results']->the_post(); ?>
 
 									<div class="tile__slider">

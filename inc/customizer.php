@@ -228,6 +228,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => false,
 						),
 						array(
+							'name'        => 'infinite_sliders',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Make resource sliders infinite', 'chipmunk' ),
+							'default'     => false,
+						),
+						array(
 							'name'        => 'disable_homepage_collections',
 							'type'        => 'checkbox',
 							'label'       => esc_html__( 'Disable collections', 'chipmunk' ),

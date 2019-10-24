@@ -7,8 +7,10 @@ const Carousel = {
   init() {
     if (this.triggers.length) {
       [].forEach.call(this.triggers, trigger => {
+        let infinite = (trigger.dataset.carouselInfinite == '1');
+
         $(trigger).slick({
-          infinite: false,
+          infinite: infinite,
           rows: 0,
           slidesToShow: 3,
           slidesToScroll: 3,
