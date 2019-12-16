@@ -4698,6 +4698,12 @@ input:checked + .u-checkbox__mark .icon {
 .tile__title a:hover {
   color: #666666;
 }
+.tile--tile .tile__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 .tile__icon {
   margin-left: 1rem;
   margin-top: 0.1em;

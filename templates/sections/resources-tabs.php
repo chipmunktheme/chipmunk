@@ -4,8 +4,6 @@
 	$disable_sliders    = chipmunk_theme_option( 'disable_homepage_listings_sliders' );
 	$infinite_sliders   = chipmunk_theme_option( 'infinite_sliders' );
 
-	echo $infinite_sliders;
-
 	$sections = array(
 		'featured'  => array(
 			'label'     => esc_html__( 'Featured', 'chipmunk' ),

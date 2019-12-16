@@ -220,6 +220,13 @@
       color: $color-gray-dark;
     }
   }
+
+  .tile--tile & {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 .tile__icon {
