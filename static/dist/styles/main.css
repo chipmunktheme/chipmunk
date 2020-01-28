@@ -4370,11 +4370,14 @@ input:checked + .u-checkbox__mark .icon {
   line-height: 1.4;
   margin-top: -1rem;
 }
+.tile .stats {
+  font-size: 1.2rem;
+}
 .stats__item {
   margin-top: 1rem;
 }
 .stats__item:not(:last-child) {
-  margin-right: 1.5rem;
+  margin-right: 1em;
 }
 .stats__item a:hover {
   opacity: 0.8;
