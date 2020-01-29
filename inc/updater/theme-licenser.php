@@ -15,6 +15,7 @@ class Chipmunk_Licenser {
 	function __construct( $config = array(), $strings = array(), $errors = array() ) {
 		// Set config defaults
 		$config = wp_parse_args( $config, array(
+			'theme_slug'		=> THEME_SLUG,
 			'menu_url'          => '',
 			'remote_api_url'    => '',
 			'item_id'           => '',
@@ -22,6 +23,7 @@ class Chipmunk_Licenser {
 			'item_slug'         => '',
 			'download_id'       => '',
 			'renew_url'         => '',
+			'item_priority'     => 10,
 		) );
 
 		// Set string defaults
@@ -36,15 +38,15 @@ class Chipmunk_Licenser {
 		}
 
 		// Licensing hooks
-		add_action( 'admin_init', array( $this, 'register_option' ) );
-		add_action( 'admin_init', array( $this, 'license_action' ) );
+		add_action( 'admin_init', array( $this, 'register_option' ), $this->item_priority );
+		add_action( 'admin_init', array( $this, 'license_action' ), $this->item_priority );
 
 		// License updating hooks
-		add_action( 'pre_update_option_' . $this->item_slug . '_license_key', array( $this, 'trim_value' ), 10, 1 );
-		add_action( 'update_option_' . $this->item_slug . '_license_key', array( $this, 'activate_license' ), 10, 0 );
+		add_action( 'pre_update_option_' . $this->item_slug . '_license_key', array( $this, 'trim_value' ), $this->item_priority, 1 );
+		// add_action( 'update_option_' . $this->item_slug . '_license_key', array( $this, 'activate_license' ), $this->item_priority, 2 );
 
 		// Output license settings
-		add_action( 'chipmunk_licenses_content', array( $this, 'license_settings' ) );
+		add_action( 'chipmunk_licenses_content', array( $this, 'license_settings' ), $this->item_priority );
 	}
 
 	/**
@@ -290,7 +292,9 @@ class Chipmunk_Licenser {
 		$message = is_wp_error( $response ) ? $response->get_error_message() : $error;
 
 		// Add proper error message
-		$this->add_settings_error( $message );
+		if ( ! isset( $_POST['submit'] ) ) {
+			$this->add_settings_error( $message );
+		}
 	}
 
 	/**
@@ -326,7 +330,11 @@ class Chipmunk_Licenser {
 	 * @param string $type Error type
 	 */
 	private function add_settings_error( $message, $type = 'error' ) {
-		add_settings_error( $this->item_slug . '_license', 'license_error', $message, $type );
+		$old_errors = get_settings_errors( $this->theme_slug . '_licenses' );
+
+		if ( ! chipmunk_find_key_value( $old_errors, 'code', 'license_error' ) ) {
+			add_settings_error( $this->theme_slug . '_licenses', 'license_error', $message, $type );
+		}
 	}
 
 	/**
@@ -341,11 +349,7 @@ class Chipmunk_Licenser {
 			return $this->strings['enter-key'];
 		}
 
-		if ( ! get_transient( $this->item_slug . '_license_status', false ) ) {
-			set_transient( $this->item_slug . '_license_status', $this->check_license( $license ), DAY_IN_SECONDS );
-		}
-
-		return get_transient( $this->item_slug . '_license_status' );
+		return $this->check_license( $license );
 	}
 
 	/**
@@ -379,6 +383,15 @@ class Chipmunk_Licenser {
 	 * Checks if a license action was submitted.
 	 */
 	public function license_action() {
+		if ( isset ( $_POST['submit'] )) {
+			if ( ! empty ( $_POST[$this->item_slug . '_license_key'] ) ) {
+				$this->activate_license( $_POST[$this->item_slug . '_license_key'] );
+			}
+			else {
+				$this->deactivate_license( $_POST[$this->item_slug . '_license_key'] );
+			}
+		}
+
 		if ( isset( $_POST[$this->item_slug . '_license_activate'] ) ) {
 			$this->activate_license( $_POST[$this->item_slug . '_license_key'] );
 		}
@@ -393,7 +406,7 @@ class Chipmunk_Licenser {
 	 */
 	public function register_option() {
 		register_setting(
-			$this->item_slug . '_license',
+			$this->theme_slug . '_licenses',
 			$this->item_slug . '_license_key',
 			array( 'sanitize_callback' => array( $this, 'sanitize_license' ) )
 		);
@@ -404,8 +417,8 @@ class Chipmunk_Licenser {
 	 */
 	public function license_settings() {
 		$license    = get_option( $this->item_slug . '_license_key' );
-		$key_status = get_option( $this->item_slug . '_license_key_status', false );
 		$status     = $this->get_license_status( $license );
+		$key_status = get_option( $this->item_slug . '_license_key_status', false );
 
 		?>
 		<tr valign="top">
@@ -415,7 +428,7 @@ class Chipmunk_Licenser {
 
 			<td>
 				<div class="chipmunk-license">
-					<?php settings_fields( $this->item_slug . '_license' ); ?>
+					<?php settings_fields( $this->theme_slug . '_licenses' ); ?>
 
 					<input id="<?php echo $this->item_slug; ?>_license_key" name="<?php echo $this->item_slug; ?>_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
 

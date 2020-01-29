@@ -846,6 +846,26 @@ if ( ! function_exists( 'chipmunk_upload_attachment' ) ) :
 endif;
 
 
+if ( ! function_exists( 'chipmunk_find_key_value' ) ) :
+	/**
+	 * Utility to find if key/value pair exists in array
+	 */
+	function chipmunk_find_key_value( $array, $key, $val ) {
+		foreach ( $array as $item ) {
+			if ( is_array( $item ) && chipmunk_find_key_value( $item, $key, $val ) ) {
+				return true;
+			}
+
+			if ( isset( $item[$key] ) && $item[$key] == $val ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_get_ip' ) ) :
 	/**
 	 * Utility to retrieve IP address
