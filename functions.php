@@ -18,7 +18,7 @@ define( 'THEME_TEMPLATE_DIR',   get_template_directory() );
 define( 'THEME_DEMO_URL',       'https://demo.chipmunktheme.com' );
 define( 'THEME_SHOP_URL',       'https://chipmunktheme.com' );
 define( 'THEME_ITEM_ID',        '893' );
-define( 'THEME_ITEM_SLUG',      'chipmunk-theme' );
+define( 'THEME_ITEM_SLUG',      'chipmunk' );
 
 /*
  * Require theme components
