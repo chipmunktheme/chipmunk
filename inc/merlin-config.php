@@ -127,6 +127,10 @@ if ( class_exists( 'Merlin' ) ) :
 			.merlin__button:focus {
 				box-shadow: none;
 			}
+
+			.merlin__content .icon svg {
+				width: auto !important;
+			}
 		</style>';
 	}
 	add_action( 'admin_head', 'chipmunk_add_merlin_styles' );
