@@ -273,6 +273,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 								'tile'        => esc_html__( 'Tile', 'chipmunk' ),
 								'card'        => esc_html__( 'Card', 'chipmunk' ),
 								'card_blank'  => esc_html__( 'Card (blank)', 'chipmunk' ),
+								'card_wide'   => esc_html__( 'List', 'chipmunk' ),
 							),
 						),
 						array(

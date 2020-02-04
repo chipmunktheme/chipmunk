@@ -5,12 +5,12 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 ?>
 
 <?php if ( isset( $args ) && $args['display'] && $collections ) : ?>
-	<li class="stats__item">
+	<li class="stats__item <?php echo $args['desktop_only'] ? 'visible-lg-block' : ''; ?>">
 		<?php chipmunk_get_template( 'partials/post-terms', array( 'terms' => $collections, 'args' => $args ) ); ?>
 	</li>
 <?php endif; ?>
 
-<?php if ( chipmunk_is_feature_enabled( 'date', 'resource' ) || chipmunk_is_feature_enabled( 'date', 'post' ) ) : ?>
+<?php if ( chipmunk_is_feature_enabled( 'date', get_post_type() ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Published', 'chipmunk' ); ?>: <?php echo get_the_date( 'j F Y' ); ?>">
 		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'clock' ) ); ?>
 
@@ -18,7 +18,7 @@ $collections = wp_get_post_terms( get_the_ID(), ( get_post_type() == 'post' ? 'c
 	</li>
 <?php endif; ?>
 
-<?php if ( chipmunk_is_feature_enabled( 'views', 'resource' ) || chipmunk_is_feature_enabled( 'views', 'post' ) ) : ?>
+<?php if ( chipmunk_is_feature_enabled( 'views', get_post_type() ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Views', 'chipmunk' ); ?>">
 		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'eye' ) ); ?>
 

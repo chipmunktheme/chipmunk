@@ -4370,9 +4370,6 @@ input:checked + .u-checkbox__mark .icon {
   line-height: 1.4;
   margin-top: -1rem;
 }
-.tile .stats {
-  font-size: 1.2rem;
-}
 .stats__item {
   margin-top: 1rem;
 }
@@ -4495,7 +4492,7 @@ input:checked + .u-checkbox__mark .icon {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 1.5em;
+  margin-top: 2.4rem;
   overflow: hidden;
 }
 .tile[href]:hover .tile__copy .icon {
@@ -4508,7 +4505,6 @@ input:checked + .u-checkbox__mark .icon {
   transform: translateX(66.6%);
 }
 .tile--card {
-  margin-bottom: 2rem;
   background-color: var(--color-section, #FAFAFA);
   box-shadow: 0 1px 2px 1px rgba(51, 51, 51, 0.1);
   overflow: visible;
@@ -4522,13 +4518,18 @@ input:checked + .u-checkbox__mark .icon {
 .slick-slide .tile--card {
   margin-bottom: 5px;
 }
+@media (min-width: 680px) {
+  .tile--wide {
+    flex-direction: row;
+  }
+}
 .tile--blank {
   background-color: transparent;
   box-shadow: none;
 }
 @media (min-width: 680px) {
   .tile--blank {
-    margin-bottom: 4rem;
+    margin-bottom: 4.8rem;
   }
 }
 .tile--blank[href]:hover {
@@ -4560,6 +4561,9 @@ input:checked + .u-checkbox__mark .icon {
   .tile__slider {
     width: 33.3%;
   }
+}
+.tile__slider--wide {
+  width: 100%;
 }
 .tile__slider:focus {
   outline: none;
@@ -4623,6 +4627,18 @@ input:checked + .u-checkbox__mark .icon {
   position: relative;
   margin-bottom: 2rem;
 }
+@media (min-width: 680px) {
+  .tile--wide .tile__image {
+    margin-bottom: 0;
+    width: 40%;
+    box-shadow: 0 1px 2px 1px rgba(51, 51, 51, 0.1);
+  }
+}
+@media (min-width: 980px) {
+  .tile--wide .tile__image {
+    width: 25%;
+  }
+}
 .tile__image--with-status::after {
   content: '';
   position: absolute;
@@ -4643,7 +4659,7 @@ input:checked + .u-checkbox__mark .icon {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
+  flex: 1;
   padding: 2rem;
   color: #333333;
 }
@@ -4665,6 +4681,11 @@ input:checked + .u-checkbox__mark .icon {
 }
 .tile--card:not(.tile--blank) .tile__content:not(:first-child) {
   padding: 0 2rem 2rem;
+}
+@media (min-width: 680px) {
+  .tile--card.tile--wide .tile__content:not(:first-child) {
+    padding: 3rem;
+  }
 }
 .tile--blank .tile__content {
   padding: 0;

@@ -58,7 +58,7 @@
 							<div class="tile__list"<?php echo $disable_sliders ? '' : ' data-carousel data-carousel-infinite="' . $infinite_sliders . '"'; ?>>
 								<?php while ( $sections[ $key ]['results']->have_posts() ) : $sections[ $key ]['results']->the_post(); ?>
 
-									<div class="tile__slider">
+									<div class="tile__slider <?php echo ( chipmunk_theme_option( 'display_resource_as' ) == 'card_wide' ? 'tile__slider--wide' : '' ); ?>">
 										<?php get_template_part( 'templates/sections/resource-tile' ); ?>
 									</div>
 

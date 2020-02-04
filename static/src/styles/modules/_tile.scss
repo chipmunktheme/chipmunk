@@ -6,7 +6,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 1.5em;
+  margin-top: $grid-column-gutter;
   overflow: hidden;
 
   &[href]:hover {
@@ -26,7 +26,6 @@
   }
 
   &--card {
-    margin-bottom: $separator;
     background-color: $color-section;
     box-shadow: 0 1px 2px 1px rgba($color-black, 0.1);
     overflow: visible;
@@ -44,12 +43,18 @@
     }
   }
 
+  &--wide {
+    @include breakpoint(md) {
+      flex-direction: row;
+    }
+  }
+
   &--blank {
     background-color: transparent;
     box-shadow: none;
 
     @include breakpoint(md) {
-      margin-bottom: $separator * 2;
+      margin-bottom: $grid-column-gutter * 2;
     }
 
     &[href]:hover {
@@ -84,6 +89,10 @@
 
   @include breakpoint(lg) {
     width: 33.3%;
+  }
+
+  &--wide {
+    width: 100%;
   }
 
   &:focus {
@@ -127,6 +136,18 @@
     margin-bottom: $separator;
   }
 
+  .tile--wide & {
+    @include breakpoint(md) {
+      margin-bottom: 0;
+      width: 40%;
+      box-shadow: 0 1px 2px 1px rgba($color-black, 0.1);
+    }
+
+    @include breakpoint(lg) {
+      width: 25%;
+    }
+  }
+
   &--with-status {
     &::after {
       content: '';
@@ -150,7 +171,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
+  flex: 1;
   padding: $separator;
   color: $color-black;
 
@@ -172,9 +193,13 @@
     position: relative;
   }
 
-  .tile--card:not(.tile--blank) & {
-    &:not(:first-child) {
-      padding: 0 $separator $separator;
+  .tile--card:not(.tile--blank) &:not(:first-child) {
+    padding: 0 $separator $separator;
+  }
+
+  .tile--card.tile--wide &:not(:first-child) {
+    @include breakpoint(md) {
+      padding: $separator * 1.5;
     }
   }
 
