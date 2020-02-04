@@ -846,6 +846,16 @@ if ( ! function_exists( 'chipmunk_upload_attachment' ) ) :
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_salt' ) ) :
+	/**
+	 * Geneterates random string
+	 */
+	function chipmunk_get_salt( $length = 5 ) {
+		return substr( md5( rand() ), 0, $length );
+	}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_find_key_value' ) ) :
 	/**
 	 * Utility to find if key/value pair exists in array

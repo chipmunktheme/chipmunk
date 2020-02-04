@@ -1,4 +1,5 @@
 <?php $action = 'submit_resource'; ?>
+<?php $salt = chipmunk_get_salt( 5 ); ?>
 <?php $alignment = isset( $popup ) ? 'center' : 'left'; ?>
 
 <form action="#" class="form loader <?php echo esc_attr( ! empty( $align ) ? 'align' . $align : '' ); ?>" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
@@ -19,7 +20,7 @@
 			</div>
 
 			<div class="form__child">
-				<select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors" data-parsley-group="select" class="form__input custom-select" required>
+				<select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors-<?php echo $salt; ?>" data-parsley-group="select" class="form__input custom-select" required>
 					<option value=""><?php esc_html_e( 'Collection', 'chipmunk' ); ?></option>
 					<?php
 						$collections = chipmunk_get_taxonomy_hierarchy( 'resource-collection', array(
@@ -32,7 +33,7 @@
 					<?php endif; ?>
 				</select>
 
-				<div class="collection-errors"></div>
+				<div class="collection-errors-<?php echo $salt; ?>"></div>
 			</div>
 		</div>
 
