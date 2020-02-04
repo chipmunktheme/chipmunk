@@ -25,7 +25,7 @@
 		<?php get_template_part( 'templates/partials/search-bar' ); ?>
 	<?php endif; ?>
 
-	<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
+	<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) && empty( chipmunk_theme_option( 'submit_page' ) ) ) : ?>
 		<?php get_template_part( 'templates/partials/popup' ); ?>
 	<?php endif; ?>
 
