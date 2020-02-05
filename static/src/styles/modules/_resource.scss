@@ -30,10 +30,6 @@
 
 .resource__info {
   margin: $separator 0;
-
-  @include breakpoint(lg) {
-    margin: $separator 0;
-  }
 }
 
 .resource__stats {

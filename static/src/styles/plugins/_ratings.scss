@@ -1,0 +1,132 @@
+/*
+** Plugin - Ratings
+** -----------------------------------------------------------------------------*/
+
+.ratings {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+
+  &:not(:last-child) {
+    margin-bottom: $separator;
+  }
+}
+
+.ratings__title {
+  // font-weight: bold;
+}
+
+.ratings__form {
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+
+  &:not(:first-child) {
+    margin-left: 0.75em;
+  }
+
+  > input {
+    position: absolute;
+    left: -9999em;
+    opacity: 0;
+  }
+}
+
+// .ratings__button {
+//   color: $color-gray-light;
+//   padding: 0.1em;
+//   cursor: pointer;
+//   transition: color $transition-duration;
+
+//   .ratings__form:hover input[disabled]:not(:checked) ~ & {
+//     color: $color-gray-light;
+
+//     .ratings__icon {
+//       fill: none;
+//     }
+//   }
+
+//   .ratings__form input[disabled]:checked ~ &:hover,
+//   .ratings__form input[disabled]:checked ~ &:hover ~ &,
+//   .ratings__form input[disabled]:not(:checked) ~ input:checked ~ &,
+//   .ratings__form input[disabled]:not(:checked) ~ &:hover,
+//   .ratings__form input[disabled]:not(:checked) ~ &:hover ~ & {
+//     color: $color-primary;
+
+//     .ratings__icon {
+//       fill: currentColor;
+//     }
+//   }
+
+//   .ratings__form:not(:hover) input[disabled]:checked ~ .active ~ & {
+//     color: $color-gray;
+
+//     .ratings__icon {
+//       fill: currentColor;
+//     }
+//   }
+// }
+
+.ratings__button {
+  color: $color-gray-light;
+  padding: 0.1em;
+  cursor: pointer;
+  transition: color $transition-duration;
+
+  :not(.is-active) > &.is-selected,
+  :not(.is-active) > &.is-selected ~ & {
+    color: $color-gray;
+
+    .ratings__icon {
+      fill: currentColor;
+    }
+  }
+
+  &.is-active,
+  &.is-active ~ & {
+    color: $color-primary;
+
+    .ratings__icon {
+      fill: currentColor;
+    }
+  }
+
+  :hover > &,
+  :hover > & ~ & {
+    color: $color-gray-light;
+
+    .ratings__icon {
+      fill: none;
+    }
+  }
+
+  :hover > &:hover,
+  :hover > &:hover ~ & {
+    color: $color-primary;
+
+    .ratings__icon {
+      fill: currentColor;
+    }
+  }
+}
+
+.ratings__icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.ratings__result {
+  &:not(:first-child) {
+    margin-left: 1em;
+  }
+
+  strong {
+    color: $color-gray-dark;
+  }
+
+  small {
+    margin-left: 0.5em;
+    opacity: 0.5;
+  }
+}

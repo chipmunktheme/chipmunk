@@ -26,6 +26,41 @@ class Chipmunk_Licenser {
 			'item_priority'     => 10,
 		) );
 
+		// Set default strings
+		$strings = wp_parse_args( $strings, array(
+			'enter-key'                 => __( 'To receive updates, please enter your valid license key.', 'chipmunk' ),
+			'license-key'               => __( 'License Key', 'chipmunk' ),
+			'license-action'            => __( 'License Action', 'chipmunk' ),
+			'deactivate-license'        => __( 'Deactivate License', 'chipmunk' ),
+			'activate-license'          => __( 'Activate License', 'chipmunk' ),
+			'status-unknown'            => __( 'License status is unknown.', 'chipmunk' ),
+			'renew'                     => __( 'Renew?', 'chipmunk' ),
+			'unlimited'                 => __( 'unlimited', 'chipmunk' ),
+			'license-key-is-active'     => __( 'License key is active.', 'chipmunk' ),
+			'expires%s'                 => __( 'Expires %s.', 'chipmunk' ),
+			'expires-never'             => __( 'Lifetime License.', 'chipmunk' ),
+			'%1$s/%2$-sites'            => __( 'You have %1$s / %2$s sites activated.', 'chipmunk' ),
+			'license-key-expired-%s'    => __( 'License key expired %s.', 'chipmunk' ),
+			'license-key-expired'       => __( 'License key has expired.', 'chipmunk' ),
+			'license-keys-do-not-match' => __( 'License keys do not match.', 'chipmunk' ),
+			'license-is-invalid'        => __( 'License is invalid.', 'chipmunk' ),
+			'license-is-inactive'       => __( 'License is inactive.', 'chipmunk' ),
+			'license-key-is-disabled'   => __( 'License key is disabled.', 'chipmunk' ),
+			'site-is-inactive'          => __( 'Site is inactive.', 'chipmunk' ),
+			'license-status-unknown'    => __( 'License status is unknown.', 'chipmunk' ),
+		) );
+
+		// Set default errors
+		$errors = wp_parse_args( $errors, array(
+			'license-expired'           => __( 'Your license key expired on %s.', 'chipmunk' ),
+			'license-disabled'          => __( 'Your license key has been disabled.', 'chipmunk' ),
+			'license-missing'           => __( 'Your license is invalid.', 'chipmunk' ),
+			'license-invalid'           => __( 'Your license is not active for this URL.', 'chipmunk' ),
+			'license-name-mismatch'     => __( 'This appears to be an invalid license key for %s.', 'chipmunk' ),
+			'license-exceeded'          => __( 'Your license key has reached its activation limit.', 'chipmunk' ),
+			'license-unknown'           => __( 'An error occurred, please try again.', 'chipmunk' ),
+		) );
+
 		// Set string defaults
 		$this->strings = $strings;
 

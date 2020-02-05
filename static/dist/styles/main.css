@@ -4075,11 +4075,6 @@ input:checked + .u-checkbox__mark .icon {
 .resource__info {
   margin: 2rem 0;
 }
-@media (min-width: 980px) {
-  .resource__info {
-    margin: 2rem 0;
-  }
-}
 .resource__stats {
   color: #808080;
 }
@@ -5991,4 +5986,81 @@ p.has-background {
   display: inline-block;
   margin-top: 2rem;
   font-size: 1.6rem;
+}
+/*
+** Plugin - Ratings
+** -----------------------------------------------------------------------------*/
+.ratings {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+.ratings:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.ratings__form {
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+}
+.ratings__form:not(:first-child) {
+  margin-left: 0.75em;
+}
+.ratings__form > input {
+  position: absolute;
+  left: -9999em;
+  opacity: 0;
+}
+.ratings__button {
+  color: #CDCDCD;
+  padding: 0.1em;
+  cursor: pointer;
+  transition: color 0.25s;
+}
+:not(.is-active) > .ratings__button.is-selected,
+:not(.is-active) > .ratings__button.is-selected ~ .ratings__button {
+  color: #808080;
+}
+:not(.is-active) > .ratings__button.is-selected .ratings__icon,
+:not(.is-active) > .ratings__button.is-selected ~ .ratings__button .ratings__icon {
+  fill: currentColor;
+}
+.ratings__button.is-active,
+.ratings__button.is-active ~ .ratings__button {
+  color: var(--color-primary, #F38181);
+}
+.ratings__button.is-active .ratings__icon,
+.ratings__button.is-active ~ .ratings__button .ratings__icon {
+  fill: currentColor;
+}
+:hover > .ratings__button,
+:hover > .ratings__button ~ .ratings__button {
+  color: #CDCDCD;
+}
+:hover > .ratings__button .ratings__icon,
+:hover > .ratings__button ~ .ratings__button .ratings__icon {
+  fill: none;
+}
+:hover > .ratings__button:hover,
+:hover > .ratings__button:hover ~ .ratings__button {
+  color: var(--color-primary, #F38181);
+}
+:hover > .ratings__button:hover .ratings__icon,
+:hover > .ratings__button:hover ~ .ratings__button .ratings__icon {
+  fill: currentColor;
+}
+.ratings__icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+.ratings__result:not(:first-child) {
+  margin-left: 1em;
+}
+.ratings__result strong {
+  color: #666666;
+}
+.ratings__result small {
+  margin-left: 0.5em;
+  opacity: 0.5;
 }

@@ -45,10 +45,15 @@
 
 		<div class="row row_separated">
 			<div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ) : 'column--lg-8'; ?>">
+				<?php do_action( 'chipmunk_before_post_content' ); ?>
+
 				<div class="entry__content content">
 					<?php the_content(); ?>
 				</div>
 				<!-- /.entry -->
+
+				<?php do_action( 'chipmunk_after_post_content' ); ?>
+				<?php do_action( 'chipmunk_before_post_footer' ); ?>
 
 				<?php if ( ! chipmunk_theme_option( 'disable_post_sharing' ) and ! chipmunk_theme_option( 'disable_post_tags' ) ) : ?>
 					<div class="entry__footer">
@@ -63,6 +68,8 @@
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
+
+				<?php do_action( 'chipmunk_after_post_footer' ); ?>
 			</div>
 
 			<?php if ( is_active_sidebar( 'blog-sidebar' ) ) : ?>

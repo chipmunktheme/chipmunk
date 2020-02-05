@@ -18,6 +18,8 @@
 	<div class="container">
 		<article class="resource row">
 			<div class="resource__content column column--lg-<?php echo esc_attr( has_post_thumbnail() ? '6' : '12' ); ?>">
+				<?php do_action( 'chipmunk_before_resource_stats' ); ?>
+
 				<ul class="resource__stats stats">
 					<?php
 						$collections_args = array(
@@ -30,12 +32,15 @@
 					?>
 				</ul>
 
+				<?php do_action( 'chipmunk_after_resource_stats' ); ?>
+				<?php do_action( 'chipmunk_before_resource_info' ); ?>
+
 				<div class="resource__info">
 					<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading--lg', is_single() ? get_the_title() : '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_title() . '</a>' ); ?>
 
 					<?php if ( ! empty( $description ) ) : ?>
 						<div class="resource__description">
-							<?php echo wp_kses_post( wpautop( do_shortcode( $description ) ) ); ?>
+							<?php echo wp_kses_post( apply_filters( 'the_content', $description ) ); ?>
 						</div>
 					<?php endif; ?>
 
@@ -45,6 +50,9 @@
 						</div>
 					<?php endif; ?>
 				</div>
+
+				<?php do_action( 'chipmunk_after_resource_info' ); ?>
+				<?php do_action( 'chipmunk_before_resource_actions' ); ?>
 
 				<div class="resource__actions">
 					<?php if ( ! empty( $resource_website ) ) : ?>
@@ -61,6 +69,8 @@
 						<?php endif; ?>
 					<?php endif; ?>
 				</div>
+
+				<?php do_action( 'chipmunk_after_resource_actions' ); ?>
 			</div>
 
 			<?php if ( has_post_thumbnail() ) : ?>
