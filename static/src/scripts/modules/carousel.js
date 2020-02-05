@@ -12,24 +12,24 @@ const Carousel = {
         $(trigger).slick({
           infinite: infinite,
           rows: 0,
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          responsive: [
-            {
-              breakpoint: 980,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-              },
-            },
-            {
-              breakpoint: 680,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              },
-            },
-          ],
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          // responsive: [
+          //   {
+          //     breakpoint: 980,
+          //     settings: {
+          //       slidesToShow: 2,
+          //       slidesToScroll: 2,
+          //     },
+          //   },
+          //   {
+          //     breakpoint: 680,
+          //     settings: {
+          //       slidesToShow: 1,
+          //       slidesToScroll: 1,
+          //     },
+          //   },
+          // ],
         });
 
         window.addEventListener('tabs:show', () => {

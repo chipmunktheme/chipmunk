@@ -4542,35 +4542,18 @@ input:checked + .u-checkbox__mark .icon {
 .tile__list {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   margin: 0 -0.75em;
 }
 .tile__list.slick-slider {
   display: block;
 }
 .tile__slider {
-  display: flex;
   padding: 0 0.75em;
-  width: 100%;
-}
-@media (min-width: 680px) {
-  .tile__slider {
-    width: 50%;
-  }
-}
-@media (min-width: 980px) {
-  .tile__slider {
-    width: 33.3%;
-  }
-}
-.tile__slider--wide {
   width: 100%;
 }
 .tile__slider:focus {
   outline: none;
-}
-.tile__slider .tile {
-  flex-grow: 1;
-  width: 100%;
 }
 .tile__image {
   position: relative;

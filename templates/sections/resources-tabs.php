@@ -55,16 +55,32 @@
 					<?php foreach ( array_values( $tabs ) as $index => $key ) : ?>
 
 						<div class="tabs__item<?php echo $index == 0 ? ' active' : ''; ?>" data-tabs-panel role="tabpanel">
-							<div class="tile__list"<?php echo $disable_sliders ? '' : ' data-carousel data-carousel-infinite="' . $infinite_sliders . '"'; ?>>
-								<?php while ( $sections[ $key ]['results']->have_posts() ) : $sections[ $key ]['results']->the_post(); ?>
+							<?php $breakpoints = array( 'sm', 'md', 'lg' ); ?>
 
-									<div class="tile__slider <?php echo ( chipmunk_theme_option( 'display_resource_as' ) == 'card_wide' ? 'tile__slider--wide' : '' ); ?>">
-										<?php get_template_part( 'templates/sections/resource-tile' ); ?>
+							<?php foreach ( $breakpoints as $breakpoint_index => $breakpoint ) : ?>
+								<div class="tile__wrapper visible-<?php echo esc_attr( $breakpoint ); ?>-flex <?php echo ( isset( $breakpoints[ $breakpoint_index + 1 ] ) ? 'hidden-' . $breakpoints[ $breakpoint_index + 1 ] : '' ); ?>">
+									<div class="tile__list"<?php echo $disable_sliders ? '' : ' data-carousel data-carousel-infinite="' . $infinite_sliders . '"'; ?>>
+										<?php $index = 1; ?>
+
+										<div class="tile__slider">
+											<div class="row">
+												<?php while ( $sections[ $key ]['results']->have_posts() ) : $sections[ $key ]['results']->the_post(); ?>
+
+													<?php get_template_part( 'templates/sections/resource-tile' ); ?>
+
+													<?php if ( $index % ( $breakpoint_index + 1 ) == 0 && $index != $sections[ $key ]['results']->post_count ) : ?>
+														</div></div><div class="tile__slider"><div class="row">
+													<?php endif; ?>
+
+													<?php $index++; ?>
+
+												<?php endwhile; wp_reset_postdata(); ?>
+											</div>
+										</div>
 									</div>
-
-								<?php endwhile; wp_reset_postdata(); ?>
-							</div>
-							<!-- /.tile__list -->
+									<!-- /.tile__list -->
+								</div>
+							<?php endforeach; ?>
 						</div>
 						<!-- /.tabs__item -->
 
