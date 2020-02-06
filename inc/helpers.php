@@ -863,11 +863,11 @@ if ( ! function_exists( 'chipmunk_find_key_value' ) ) :
 	function chipmunk_find_key_value( $array, $key, $val ) {
 		foreach ( $array as $item ) {
 			if ( is_array( $item ) && chipmunk_find_key_value( $item, $key, $val ) ) {
-				return true;
+				return $item;
 			}
 
-			if ( isset( $item[$key] ) && $item[$key] == $val ) {
-				return true;
+			if ( isset( $item[ $key ] ) && $item[ $key ] == $val ) {
+				return $item;
 			}
 		}
 

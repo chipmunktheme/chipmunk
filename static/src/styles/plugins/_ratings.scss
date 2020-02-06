@@ -32,41 +32,6 @@
   }
 }
 
-// .ratings__button {
-//   color: $color-gray-light;
-//   padding: 0.1em;
-//   cursor: pointer;
-//   transition: color $transition-duration;
-
-//   .ratings__form:hover input[disabled]:not(:checked) ~ & {
-//     color: $color-gray-light;
-
-//     .ratings__icon {
-//       fill: none;
-//     }
-//   }
-
-//   .ratings__form input[disabled]:checked ~ &:hover,
-//   .ratings__form input[disabled]:checked ~ &:hover ~ &,
-//   .ratings__form input[disabled]:not(:checked) ~ input:checked ~ &,
-//   .ratings__form input[disabled]:not(:checked) ~ &:hover,
-//   .ratings__form input[disabled]:not(:checked) ~ &:hover ~ & {
-//     color: $color-primary;
-
-//     .ratings__icon {
-//       fill: currentColor;
-//     }
-//   }
-
-//   .ratings__form:not(:hover) input[disabled]:checked ~ .active ~ & {
-//     color: $color-gray;
-
-//     .ratings__icon {
-//       fill: currentColor;
-//     }
-//   }
-// }
-
 .ratings__button {
   color: $color-gray-light;
   padding: 0.1em;
@@ -91,8 +56,8 @@
     }
   }
 
-  :hover > &,
-  :hover > & ~ & {
+  [class]:hover > &,
+  [class]:hover > & ~ & {
     color: $color-gray-light;
 
     .ratings__icon {
@@ -100,13 +65,19 @@
     }
   }
 
-  :hover > &:hover,
-  :hover > &:hover ~ & {
+  [class]:hover > &:hover,
+  [class]:hover > &:hover ~ & {
     color: $color-primary;
 
     .ratings__icon {
       fill: currentColor;
     }
+  }
+
+  &.is-active {
+    animation-name: grow;
+    animation-timing-function: ease-in-out;
+    animation-duration: $transition-duration * 2;
   }
 }
 

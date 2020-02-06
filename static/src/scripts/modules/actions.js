@@ -149,6 +149,18 @@ const Actions = {
     toggle_upvote: (trigger, response, action) => {
       Actions.handlers.toggle(trigger, response, action);
     },
+
+    submit_rating: (trigger, { success, data }, action) => {
+      if (success) {
+        for (const item in data) {
+          const element = document.querySelector(`[data-action-rating-${item}="${data.post}"]`);
+
+          if (element) {
+            element.innerHTML = data[item];
+          }
+        }
+      }
+    },
   },
 };
 

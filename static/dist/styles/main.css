@@ -1394,6 +1394,22 @@
     transform: rotate(360deg);
   }
 }
+@-webkit-keyframes grow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 0, 0) scale(1.5);
+  }
+}
+@keyframes grow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 0, 0) scale(1.5);
+  }
+}
 /*
 ** Setup - Normalize
 ** -----------------------------------------------------------------------------*/
@@ -6033,21 +6049,29 @@ p.has-background {
 .ratings__button.is-active ~ .ratings__button .ratings__icon {
   fill: currentColor;
 }
-:hover > .ratings__button,
-:hover > .ratings__button ~ .ratings__button {
+[class]:hover > .ratings__button,
+[class]:hover > .ratings__button ~ .ratings__button {
   color: #CDCDCD;
 }
-:hover > .ratings__button .ratings__icon,
-:hover > .ratings__button ~ .ratings__button .ratings__icon {
+[class]:hover > .ratings__button .ratings__icon,
+[class]:hover > .ratings__button ~ .ratings__button .ratings__icon {
   fill: none;
 }
-:hover > .ratings__button:hover,
-:hover > .ratings__button:hover ~ .ratings__button {
+[class]:hover > .ratings__button:hover,
+[class]:hover > .ratings__button:hover ~ .ratings__button {
   color: var(--color-primary, #F38181);
 }
-:hover > .ratings__button:hover .ratings__icon,
-:hover > .ratings__button:hover ~ .ratings__button .ratings__icon {
+[class]:hover > .ratings__button:hover .ratings__icon,
+[class]:hover > .ratings__button:hover ~ .ratings__button .ratings__icon {
   fill: currentColor;
+}
+.ratings__button.is-active {
+  -webkit-animation-name: grow;
+          animation-name: grow;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 .ratings__icon {
   display: block;
