@@ -151,13 +151,11 @@ const Actions = {
     },
 
     submit_rating: (trigger, { success, data }, action) => {
-      if (success) {
-        for (const item in data) {
-          const element = document.querySelector(`[data-action-rating-${item}="${data.post}"]`);
+      const element = document.querySelector(`[data-action-rating="${data.post}"]`);
 
-          if (element) {
-            element.innerHTML = data[item];
-          }
+      if (element) {
+        if (success) {
+          element.innerHTML = data.content;
         }
       }
     },

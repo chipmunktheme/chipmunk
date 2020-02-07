@@ -168,6 +168,14 @@ if ( ! function_exists( 'chipmunk_set_default_meta' ) ) :
 			'_' . THEME_SLUG . '_upvote_count'      => 0,
 		);
 
+		if ( chipmunk_has_plugin( 'ratings' ) ) {
+			$defaut_values = array_merge( $defaut_values, array(
+				'_' . THEME_SLUG . '_rating_count'   => 0,
+				'_' . THEME_SLUG . '_rating_average' => 0,
+				'_' . THEME_SLUG . '_rating_rank'    => 0,
+			) );
+		}
+
 		foreach ( $defaut_values as $meta => $value ) {
 			$current_value = get_post_meta( $post_ID, $meta );
 

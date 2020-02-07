@@ -474,6 +474,12 @@ if ( ! function_exists( 'chipmunk_get_resources' ) ) :
 					'meta_key'  => '_' . THEME_SLUG . '_upvote_count',
 				);
 				break;
+			case 'ratings':
+				$sort_args = array(
+					'orderby'   => 'meta_value_num date',
+					'meta_key'  => '_' . THEME_SLUG . '_rating_rank',
+				);
+				break;
 		}
 
 		$sort_args['order'] = $sort_order;

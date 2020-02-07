@@ -344,6 +344,13 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'restrict'    => 'members',
 						),
 						array(
+							'name'        => 'disable_resource_ratings',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Disable ratings', 'chipmunk' ),
+							'default'     => false,
+							'restrict'    => 'ratings',
+						),
+						array(
 							'name'        => 'disable_resource_sorting',
 							'type'        => 'checkbox',
 							'label'       => esc_html__( 'Disable sorting', 'chipmunk' ),
@@ -372,6 +379,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 								'name'        => esc_html__( 'Name', 'chipmunk' ),
 								'views'       => esc_html__( 'Views', 'chipmunk' ),
 								'upvotes'     => esc_html__( 'Upvotes', 'chipmunk' ),
+								'ratings'     => chipmunk_has_plugin( 'ratings' ) ? esc_html__( 'Ratings', 'chipmunk' ) : null,
 							),
 						),
 						array(
@@ -805,7 +813,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 
 			$this->customize->add_setting( $this->settings_name . '[' . $social_slug . ']', array(
 				'capability'  => $this->capability,
-				'type'        => 'option'
+				'type'        => 'option',
 			) );
 
 			$this->customize->add_control( $social_slug, array(
@@ -837,7 +845,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 				'section'     => $section['slug'],
 				'settings'    => $this->settings_name . '[' . $field['name'] . ']',
 				'description' => ! empty( $field['description'] ) ? $field['description'] : null,
-				'choices'     => ! empty( $field['choices'] ) ? $field['choices'] : null,
+				'choices'     => ! empty( $field['choices'] ) ? array_filter( $field['choices'] ) : null,
 			);
 
 			$this->customize->add_setting( $this->settings_name . '[' . $field['name'] . ']', $setting_args );

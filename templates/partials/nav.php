@@ -62,7 +62,7 @@
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-	<?php if ( chipmunk_has_plugin( 'Members' ) ) : ?>
+	<?php if ( chipmunk_has_plugin( 'members' ) ) : ?>
 		<li class="nav-primary__item nav-primary__item--condensed hidden-lg">
 			<?php if ( is_user_logged_in() ) : ?>
 				<?php chipmunk_get_template( 'partials/submit-button', array( 'class' => 'button button--primary-outline' ) ); ?>

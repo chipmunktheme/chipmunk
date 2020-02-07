@@ -41,13 +41,15 @@
 				<option value="name-asc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'name-asc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'name' and $default_order == 'asc' ) ) echo 'selected'; ?>><?php esc_html_e( 'Name', 'chipmunk' ); ?> &uarr;</option>
 
 				<?php if ( ! chipmunk_theme_option( 'disable_resource_views' ) ) : ?>
-					<option value="views-desc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'views-desc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'views' and $default_order == 'desc' ) ) echo 'selected'; ?>><?php esc_html_e( 'Views', 'chipmunk' ); ?> &darr;</option>
-					<option value="views-asc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'views-asc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'views' and $default_order == 'asc' ) ) echo 'selected'; ?>><?php esc_html_e( 'Views', 'chipmunk' ); ?> &uarr;</option>
+					<option value="views-desc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'views-desc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'views' ) ) echo 'selected'; ?>><?php esc_html_e( 'Views', 'chipmunk' ); ?></option>
 				<?php endif; ?>
 
 				<?php if ( ! chipmunk_theme_option( 'disable_resource_upvotes' ) ) : ?>
-					<option value="upvotes-desc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'upvotes-desc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'upvotes' and $default_order == 'desc' ) ) echo 'selected'; ?>><?php esc_html_e( 'Upvotes', 'chipmunk' ); ?> &darr;</option>
-					<option value="upvotes-asc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'upvotes-asc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'upvotes' and $default_order == 'asc' ) ) echo 'selected'; ?>><?php esc_html_e( 'Upvotes', 'chipmunk' ); ?> &uarr;</option>
+					<option value="upvotes-desc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'upvotes-desc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'upvotes' ) ) echo 'selected'; ?>><?php esc_html_e( 'Upvotes', 'chipmunk' ); ?></option>
+				<?php endif; ?>
+
+				<?php if ( chipmunk_has_plugin( 'ratings' ) ) : ?>
+					<option value="ratings-desc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'ratings-desc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'ratings' ) ) echo 'selected'; ?>><?php esc_html_e( 'Ratings', 'chipmunk' ); ?></option>
 				<?php endif; ?>
 			</select>
 		</div>
