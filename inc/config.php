@@ -162,7 +162,7 @@ if ( ! function_exists( 'chipmunk_set_default_meta' ) ) :
 	/**
 	 * Set default meta values for likes and upvotes
 	 */
-	function chipmunk_set_default_meta( $post_ID ) {
+	function chipmunk_add_default_meta( $post_ID ) {
 		$defaut_values = array(
 			'_' . THEME_SLUG . '_post_view_count'   => 0,
 			'_' . THEME_SLUG . '_upvote_count'      => 0,
@@ -176,18 +176,10 @@ if ( ! function_exists( 'chipmunk_set_default_meta' ) ) :
 			) );
 		}
 
-		foreach ( $defaut_values as $meta => $value ) {
-			$current_value = get_post_meta( $post_ID, $meta );
-
-			if ( empty( $current_value ) && ! wp_is_post_revision( $post_ID ) ) {
-				add_post_meta( $post_ID, $meta, $value );
-			}
-		}
-
-		return $post_ID;
+		return chipmunk_add_post_meta( $post_ID, $defaut_values, array( 'post', 'resource' ) );
 	}
 endif;
-add_action( 'wp_insert_post', 'chipmunk_set_default_meta' );
+add_action( 'wp_insert_post', 'chipmunk_add_default_meta' );
 
 
 if ( ! function_exists( 'chipmunk_add_og_tags' ) ) :

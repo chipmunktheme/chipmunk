@@ -703,6 +703,24 @@ if ( ! function_exists( 'chipmunk_get_term_name' ) ) :
 endif;
 
 
+if ( ! function_exists( 'chipmunk_add_post_meta' ) ) :
+	/**
+	 * Add post meta from the array
+	 */
+	function chipmunk_add_post_meta( $post_ID, $meta_values, $allowed_types, $unique = true ) {
+		if ( ! in_array( get_post_type( $post_ID ), $allowed_types ) ) {
+			return $post_ID;
+		}
+
+		foreach ( $meta_values as $meta => $value ) {
+			add_post_meta( $post_ID, $meta, $value, $unique );
+		}
+
+		return $post_ID;
+	}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_truncate_string' ) ) :
 	/**
 	 * Truncate long strings

@@ -148,11 +148,11 @@ if ( ! function_exists( 'chipmunk_faker_action' ) ) :
 	 */
 	function chipmunk_faker_action() {
 		if ( isset( $_POST[THEME_SLUG . '_generator_upvote'] ) ) {
-			chipmunk_faker_generate( 'upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'] );
+			chipmunk_faker_generate( 'upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'], array( 'resource' ) );
 		}
 
 		if ( isset( $_POST[THEME_SLUG . '_generator_view'] ) ) {
-			chipmunk_faker_generate( 'post_view', (int) $_POST[THEME_SLUG . '_generator_view_start'], (int) $_POST[THEME_SLUG . '_generator_view_end'] );
+			chipmunk_faker_generate( 'post_view', (int) $_POST[THEME_SLUG . '_generator_view_start'], (int) $_POST[THEME_SLUG . '_generator_view_end'], array( 'post', 'resource' ) );
 		}
 	}
 endif;
@@ -163,7 +163,7 @@ if ( ! function_exists( 'chipmunk_faker_generate' ) ) :
 	/**
 	 * Generate fake values for upvote and view counters
 	 */
-	function chipmunk_faker_generate( $type, $start, $end ) {
+	function chipmunk_faker_generate( $type, $start, $end, $post_types ) {
 		if ( empty( $start ) && empty( $end ) ) {
 			return;
 		}
@@ -171,7 +171,7 @@ if ( ! function_exists( 'chipmunk_faker_generate' ) ) :
 		$db_key = '_' . THEME_SLUG . '_' . $type . '_count';
 
 		$posts = get_posts( array(
-			'post_type'         => array( 'post', 'resource' ),
+			'post_type'         => $post_types,
 			'post_status'       => 'any',
 			'posts_per_page'    => -1,
 		) );
