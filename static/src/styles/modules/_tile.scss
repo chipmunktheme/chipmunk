@@ -71,7 +71,7 @@
 .tile__list {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: calc(100% + 1.5em);
   margin: 0 -0.75em;
 
   &.slick-slider {
@@ -85,6 +85,10 @@
 
   &:focus {
     outline: none;
+  }
+
+  .row {
+    height: 100%;
   }
 }
 

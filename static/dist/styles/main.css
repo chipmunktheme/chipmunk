@@ -4553,7 +4553,7 @@ input:checked + .u-checkbox__mark .icon {
 .tile__list {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: calc(100% + 1.5em);
   margin: 0 -0.75em;
 }
 .tile__list.slick-slider {
@@ -4565,6 +4565,9 @@ input:checked + .u-checkbox__mark .icon {
 }
 .tile__slider:focus {
   outline: none;
+}
+.tile__slider .row {
+  height: 100%;
 }
 .tile__image {
   position: relative;
@@ -5501,18 +5504,21 @@ p.has-background {
 /*
 ** Blocks / Gallery
 ** -----------------------------------------------------------------------------*/
-.wp-block-gallery {
+.wp-block-gallery,
+.blocks-gallery-grid {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
 }
-.wp-block-gallery.flickity-enabled {
+.wp-block-gallery.flickity-enabled,
+.blocks-gallery-grid.flickity-enabled {
   display: block;
   max-height: 84.375rem;
   list-style: none;
   overflow: hidden;
 }
-.wp-block-gallery.flickity-enabled .flickity-viewport {
+.wp-block-gallery.flickity-enabled .flickity-viewport,
+.blocks-gallery-grid.flickity-enabled .flickity-viewport {
   padding-bottom: 56.25%;
 }
 .blocks-gallery-item {

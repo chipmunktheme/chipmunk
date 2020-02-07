@@ -2,7 +2,8 @@
 ** Blocks / Gallery
 ** -----------------------------------------------------------------------------*/
 
-.wp-block-gallery {
+.wp-block-gallery,
+.blocks-gallery-grid {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
