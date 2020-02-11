@@ -59,6 +59,14 @@
 						<a href="<?php echo esc_url( chipmunk_external_link( $resource_website ) ); ?>" class="button button--primary-outline" target="_blank" rel="nofollow"><?php esc_html_e( 'Visit website', 'chipmunk' ); ?></a>
 					<?php endif; ?>
 
+					<?php if ( have_rows( '_' . THEME_SLUG . '_resource_links' ) ) : ?>
+						<?php while ( have_rows( '_' . THEME_SLUG . '_resource_links' ) ) : the_row(); ?>
+
+							<?php chipmunk_get_template( 'partials/button', array( 'link' => get_sub_field( 'link' ), 'class' => 'button button--primary-outline' ) ); ?>
+
+						<?php endwhile; ?>
+					<?php endif; ?>
+
 					<?php if ( ! is_search() ) : ?>
 						<?php if ( chipmunk_is_feature_enabled( 'sharing', 'resource' ) ) : ?>
 							<?php get_template_part( 'templates/partials/share-box' ); ?>
