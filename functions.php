@@ -52,6 +52,15 @@ require_once THEME_TEMPLATE_DIR . '/inc/merlin/vendor/autoload.php';
 require_once THEME_TEMPLATE_DIR . '/inc/merlin/class-merlin.php';
 require_once THEME_TEMPLATE_DIR . '/inc/merlin-config.php';
 
+/*
+ * Advanced Custom Fields PRO plugin
+ */
+define( 'CHIPMUNK_ACF_PATH', THEME_TEMPLATE_DIR . '/inc/acf/' );
+define( 'CHIPMUNK_ACF_URL', THEME_TEMPLATE_URI . '/inc/acf/' );
+
+require_once THEME_TEMPLATE_DIR . '/inc/acf/acf.php';
+require_once THEME_TEMPLATE_DIR . '/inc/acf-config.php';
+
 
 if ( ! function_exists( 'chipmunk_setup' ) ) :
 	/**
