@@ -2,6 +2,42 @@
 ** Module - Resource
 ** -----------------------------------------------------------------------------*/
 
+.resource {
+  display: flex;
+  flex-direction: column;
+  margin-top: -($separator / 2);
+  margin-bottom: -($separator / 2);
+
+  @include breakpoint(md) {
+    margin-top: -($separator);
+    margin-bottom: -($separator);
+  }
+}
+
+.resource__head,
+.resource__main,
+.resource__foot {
+  margin-top: $separator / 2;
+  margin-bottom: $separator / 2;
+
+  @include breakpoint(md) {
+    margin-top: $separator;
+    margin-bottom: $separator;
+  }
+}
+
+.resource__head {
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint(lg) {
+    order: -1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
 .resource__content {
   display: flex;
   flex-direction: column;
@@ -28,21 +64,20 @@
   }
 }
 
-.resource__info {
-  margin: $separator 0;
+.resource__info,
+.resource__extras,
+.resource__actions {
+  &:not(:first-child):not(:empty) {
+    margin-top: $separator;
+  }
 }
 
-.resource__stats {
-  color: $color-gray;
-
-  a:hover {
-    color: $color-black;
-  }
+.resource__info {
+  margin-bottom: auto;
 }
 
 .resource__title {
   margin-bottom: 1rem;
-  line-height: 1.4;
 
   a:hover {
     color: $color-gray-dark;
@@ -89,6 +124,24 @@
   }
 }
 
+.resource__stats {
+  color: $color-gray;
+
+  a:hover {
+    color: $color-black;
+  }
+}
+
+.resource__share {
+  &:not(:first-child) {
+    margin-top: $separator * 2;
+
+    @include breakpoint(lg) {
+      margin-top: 0;
+    }
+  }
+}
+
 .resource__actions {
   display: flex;
   align-items: center;
@@ -98,12 +151,10 @@
   @include breakpoint(lg) {
     justify-content: flex-start;
   }
+}
 
-  .button {
-    margin-right: $separator;
-
-    @include breakpoint(lg) {
-      margin-right: $separator * 2;
-    }
+.resource__button {
+  &:not(:first-child) {
+    margin-left: $separator;
   }
 }

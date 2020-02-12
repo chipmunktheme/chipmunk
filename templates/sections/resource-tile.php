@@ -12,7 +12,7 @@
 	);
 
 	// Resource website - custom post meta
-	$website = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_resource_website', true );
+	$website = chipmunk_get_resource_website( get_the_ID() );
 
 	// Resource tile classes
 	$classes = array(
@@ -64,7 +64,7 @@
 						}
 					</script>
 
-					<div onclick="openURL(event, '<?php echo esc_url( chipmunk_external_link( $website ) ); ?>');" class="tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'external-link' ) ); ?></div>
+					<div onclick="openURL(event, '<?php echo chipmunk_external_link( $website ); ?>');" class="tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'external-link' ) ); ?></div>
 				<?php endif; ?>
 			</div>
 

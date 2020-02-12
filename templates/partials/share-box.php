@@ -18,7 +18,8 @@
 ); ?>
 
 <nav class="nav-socials">
-	<h5 class="nav-socials__title visible-md-block"><?php esc_html_e( 'Share', 'chipmunk' ); ?></h5>
+	<h5 class="nav-socials__title"><?php esc_html_e( 'Share', 'chipmunk' ); ?></h5>
+
 	<ul>
 		<?php foreach ( $providers as $provider ) : ?>
 			<li class="nav-socials__item">

@@ -73,13 +73,14 @@ if ( ! function_exists( 'chipmunk_acf_register_fields' ) ) :
 						'label' => __( 'Website', 'chipmunk' ),
 						'type' => 'text',
 						'width' => '50',
-						'readonly' => 1,
+						'instructions' => __( 'Deprecated. Please use "Links" functionality above.', 'chipmunk' ),
 					),
 					array(
 						'key' => 'submitter',
 						'label' => __( 'Submitter', 'chipmunk' ),
 						'type' => 'text',
 						'width' => '50',
+						'instructions' => __( 'Read only, will contain the email of resource submitter.', 'chipmunk' ),
 						'readonly' => 1,
 					),
 				),
@@ -88,16 +89,16 @@ if ( ! function_exists( 'chipmunk_acf_register_fields' ) ) :
 
 		foreach ( $groups as $key => $group ) {
 			// Normalize group fields
-			array_walk( $group['fields'], 'chipmunk_acf_normalize_fields', $group );
+			array_walk( $group['fields'], 'chipmunk_acf_normalize_fields', array( 'group' => $group, 'prefix_key' => true ) );
 
 			// Register ACF Group
 			acf_add_local_field_group( $group );
 		}
 	}
 
-	function chipmunk_acf_normalize_fields( &$field, $key, $group ) {
+	function chipmunk_acf_normalize_fields( &$field, $key, $params ) {
 		// Generate proper field key
-		$key = '_' . THEME_SLUG . '_' . $group['key'] . '_' . $field['key'];
+		$key = ( isset( $params['prefix_key'] ) && isset( $params['group'] ) ? '_' . THEME_SLUG . '_' . $params['group']['key'] . '_' : '' ) . $field['key'];
 
 		// Normalized field
 		$norm_field = array(
@@ -113,6 +114,10 @@ if ( ! function_exists( 'chipmunk_acf_register_fields' ) ) :
 
 		if ( isset( $field['readonly'] ) ) {
 			$norm_field['readonly'] = $field['readonly'];
+		}
+
+		if ( isset( $field['instructions'] ) ) {
+			$norm_field['instructions'] = $field['instructions'];
 		}
 
 		if ( isset( $field['ui'] ) ) {
@@ -133,7 +138,7 @@ if ( ! function_exists( 'chipmunk_acf_register_fields' ) ) :
 
 		if ( isset( $field['sub_fields'] ) ) {
 			// Normalize sub-fields
-			array_walk( $field['sub_fields'], 'chipmunk_acf_normalize_fields', $group );
+			array_walk( $field['sub_fields'], 'chipmunk_acf_normalize_fields', array( 'group' => $params['group'] ) );
 
 			$norm_field['sub_fields'] = $field['sub_fields'];
 		}

@@ -689,6 +689,25 @@ if ( ! function_exists( 'chipmunk_display_term_list' ) ) :
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_resource_website' ) ) :
+	/**
+	 * Get primary resource website link
+	 */
+	function chipmunk_get_resource_website( $resource_id ) {
+		$key_prefix = '_' . THEME_SLUG . '_resource_';
+
+		$website = get_post_meta( $resource_id, $key_prefix . 'website', true );
+		$links = get_field( $key_prefix . 'links', $resource_id );
+
+		if ( ! empty( $website ) ) {
+			return esc_url( $website );
+		}
+
+		return esc_url( $links[0]['link']['url'] );
+	}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_external_link' ) ) :
 	/**
 	 * Create external links
@@ -701,7 +720,7 @@ if ( ! function_exists( 'chipmunk_external_link' ) ) :
 			return $url . $prefix . $title;
 		}
 
-		return $url;
+		return esc_url( $url );
 	}
 endif;
 
