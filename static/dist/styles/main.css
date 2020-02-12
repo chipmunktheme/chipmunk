@@ -4135,15 +4135,13 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 .resource__head,
-.resource__main,
-.resource__foot {
+.resource__main {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 @media (min-width: 680px) {
   .resource__head,
-  .resource__main,
-  .resource__foot {
+  .resource__main {
     margin-top: 2rem;
     margin-bottom: 2rem;
   }

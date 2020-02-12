@@ -42,7 +42,9 @@
 
 					<?php do_action( 'chipmunk_after_resource_info' ); ?>
 
-					<div class="resource__extras"><?php do_action( 'chipmunk_resource_extras' ); ?></div>
+					<?php if ( ! is_search() ) : ?>
+						<div class="resource__extras"><?php do_action( 'chipmunk_resource_extras' ); ?></div>
+					<?php endif; ?>
 
 					<?php do_action( 'chipmunk_before_resource_actions' ); ?>
 
@@ -105,12 +107,6 @@
 					<?php endif; ?>
 
 					<?php do_action( 'chipmunk_after_resource_stats' ); ?>
-				</div>
-
-				<div class="resource__foot">
-					<?php do_action( 'chipmunk_before_resource_foot' ); ?>
-
-					<?php do_action( 'chipmunk_before_resource_head' ); ?>
 				</div>
 			<?php endif; ?>
 		</article>
