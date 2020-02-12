@@ -34,6 +34,8 @@ if ( ! function_exists( 'chipmunk_acf_register_fields' ) ) :
 	 */
 	function chipmunk_acf_register_fields() {
 		$groups = array(
+
+			// Resource
 			array(
 				'key'      => 'resource',
 				'title'     => __( 'Resource', 'chipmunk' ),
@@ -85,6 +87,27 @@ if ( ! function_exists( 'chipmunk_acf_register_fields' ) ) :
 					),
 				),
 			),
+
+			// Collection
+			array(
+				'key'      => 'collection',
+				'title'     => __( 'Collection', 'chipmunk' ),
+
+				'location' => array( array( array(
+					'param'     => 'taxonomy',
+					'operator'  => '==',
+					'value'     => 'resource-collection',
+				) ) ),
+
+				'fields'   => array (
+					array(
+						'key' => 'image',
+						'label' => __( 'Image', 'chipmunk' ),
+						'type' => 'image',
+						'return_format' => 'id',
+					),
+				),
+			),
 		);
 
 		foreach ( $groups as $key => $group ) {
@@ -108,32 +131,25 @@ if ( ! function_exists( 'chipmunk_acf_register_fields' ) ) :
 			'type' => $field['type'],
 		);
 
-		if ( isset( $field['required'] ) ) {
-			$norm_field['required'] = $field['required'];
-		}
+		$optional_values = array(
+			'required',
+			'readonly',
+			'instructions',
+			'ui',
+			'layout',
+			'button_label',
+			'return_format',
+			'preview_size',
+		);
 
-		if ( isset( $field['readonly'] ) ) {
-			$norm_field['readonly'] = $field['readonly'];
-		}
-
-		if ( isset( $field['instructions'] ) ) {
-			$norm_field['instructions'] = $field['instructions'];
-		}
-
-		if ( isset( $field['ui'] ) ) {
-			$norm_field['ui'] = $field['ui'];
+		foreach ( $optional_values as $value ) {
+			if ( isset( $field[ $value ] ) ) {
+				$norm_field[ $value ] = $field[ $value ];
+			}
 		}
 
 		if ( isset( $field['width'] ) ) {
 			$norm_field['wrapper'] = array( 'width' => $field['width'] );
-		}
-
-		if ( isset( $field['layout'] ) ) {
-			$norm_field['layout'] = $field['layout'];
-		}
-
-		if ( isset( $field['button_label'] ) ) {
-			$norm_field['button_label'] = $field['button_label'];
 		}
 
 		if ( isset( $field['sub_fields'] ) ) {

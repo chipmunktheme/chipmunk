@@ -28,7 +28,6 @@ require_once THEME_TEMPLATE_DIR . '/inc/helpers.php';
 require_once THEME_TEMPLATE_DIR . '/inc/config.php';
 require_once THEME_TEMPLATE_DIR . '/inc/settings.php';
 require_once THEME_TEMPLATE_DIR . '/inc/assets.php';
-require_once THEME_TEMPLATE_DIR . '/inc/meta-taxonomy.php';
 require_once THEME_TEMPLATE_DIR . '/inc/views.php';
 require_once THEME_TEMPLATE_DIR . '/inc/shortcodes.php';
 require_once THEME_TEMPLATE_DIR . '/inc/ajax.php';

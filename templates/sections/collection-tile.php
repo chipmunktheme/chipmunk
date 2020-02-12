@@ -11,8 +11,10 @@
 	<?php if ( ! chipmunk_theme_option( 'disable_collection_thumbs' ) || chipmunk_theme_option( 'display_collection_as' ) == 'tile' ) : ?>
 		<div class="tile__image">
 			<?php if ( ! chipmunk_theme_option( 'disable_collection_thumbs' ) ) : ?>
-				<?php if ( ! empty( $collection->term_image ) ) : ?>
-					<?php echo wp_get_attachment_image( $collection->term_image, '600x420' ); ?>
+				<?php $collection_image = get_field( '_' . THEME_SLUG . '_collection_image', $collection ); ?>
+
+				<?php if ( ! empty( $collection_image ) ) : ?>
+					<?php echo wp_get_attachment_image( $collection_image, '600x420' ); ?>
 				<?php else : ?>
 					<?php
 					$resources = new WP_Query( array(
