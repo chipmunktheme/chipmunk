@@ -158,10 +158,11 @@
 }
 
 .entry__content,
+.entry__extras,
 .entry__footer {
   transition: opacity $transition-duration;
 
-  &:not(:first-child) {
+  &:not(:first-child):not(:empty) {
     margin-top: $separator;
 
     @include breakpoint(md) {

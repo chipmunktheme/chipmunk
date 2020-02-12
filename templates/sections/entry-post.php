@@ -53,6 +53,9 @@
 				<!-- /.entry -->
 
 				<?php do_action( 'chipmunk_after_post_content' ); ?>
+
+				<div class="entry__extras"><?php do_action( 'chipmunk_post_extras' ); ?></div>
+
 				<?php do_action( 'chipmunk_before_post_footer' ); ?>
 
 				<?php if ( ! chipmunk_theme_option( 'disable_post_sharing' ) and ! chipmunk_theme_option( 'disable_post_tags' ) ) : ?>
