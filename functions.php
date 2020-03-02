@@ -11,14 +11,14 @@
 
 define( 'THEME_TITLE',          'Chipmunk' );
 define( 'THEME_SLUG',           'chipmunk' );
-define( 'THEME_VERSION',        wp_get_theme()->get( 'Version' ) );
-define( 'THEME_AUTHOR',         wp_get_theme()->get( 'Author' ) );
+define( 'THEME_VERSION',        '1.12.0' );
+define( 'THEME_AUTHOR',         'Made by Less' );
 define( 'THEME_TEMPLATE_URI',   get_template_directory_uri() );
 define( 'THEME_TEMPLATE_DIR',   get_template_directory() );
 define( 'THEME_DEMO_URL',       'https://demo.chipmunktheme.com' );
 define( 'THEME_SHOP_URL',       'https://chipmunktheme.com' );
 define( 'THEME_ITEM_ID',        '893' );
-define( 'THEME_ITEM_SLUG',      'chipmunk' );
+define( 'THEME_ITEM_SLUG',      'chipmunk-theme' );
 
 /*
  * Require theme components
