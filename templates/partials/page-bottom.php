@@ -13,27 +13,29 @@
 				<?php endif; ?>
 			</div>
 
-			<div class="column column--md-2 column--md-offset-1 column--lg-2 column--lg-offset-<?php echo empty( $socials ) ? '5 text-right' : '3'; ?>">
-				<h5 class="page-foot__heading heading heading--sm"><?php esc_html_e( 'Navigation', 'chipmunk' ); ?></h5>
+			<?php $menu_items = chipmunk_get_menu_items( 'nav-secondary' ); ?>
 
-				<ul class="nav-secondary">
-					<?php $menu_items = chipmunk_get_menu_items( 'nav-secondary' ); ?>
+			<?php if ( ! empty( $menu_items ) || ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
+				<div class="column column--md-2 column--md-offset-1 column--lg-2 column--lg-offset-<?php echo empty( $socials ) ? '5 text-right' : '3'; ?>">
+					<h5 class="page-foot__heading heading heading--sm"><?php esc_html_e( 'Navigation', 'chipmunk' ); ?></h5>
 
-					<?php if ( ! empty( $menu_items ) ) : ?>
-						<?php foreach ( $menu_items as $menu_item ) : ?>
+					<ul class="nav-secondary">
+						<?php if ( ! empty( $menu_items ) ) : ?>
+							<?php foreach ( $menu_items as $menu_item ) : ?>
+								<li class="nav-secondary__item">
+									<a href="<?php echo $menu_item->url; ?>"<?php echo ( ! empty( $menu_item->target ) ? ' target="' . $menu_item->target . '"' : ''); ?>><?php echo $menu_item->title; ?></a>
+								</li>
+							<?php endforeach; ?>
+						<?php endif; ?>
+
+						<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 							<li class="nav-secondary__item">
-								<a href="<?php echo $menu_item->url; ?>"<?php echo ( ! empty( $menu_item->target ) ? ' target="' . $menu_item->target . '"' : ''); ?>><?php echo $menu_item->title; ?></a>
+								<?php chipmunk_get_template( 'partials/submit-button' ); ?>
 							</li>
-						<?php endforeach; ?>
-					<?php endif; ?>
-
-					<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
-						<li class="nav-secondary__item">
-							<?php chipmunk_get_template( 'partials/submit-button' ); ?>
-						</li>
-					<?php endif; ?>
-				</ul>
-			</div>
+						<?php endif; ?>
+					</ul>
+				</div>
+			<?php endif; ?>
 
 			<?php if ( ! empty( $socials ) ) : ?>
 				<div class="column column--lg-2 visible-lg-block">
