@@ -20,7 +20,7 @@
     width: 100%;
     padding: 5px 0;
     background-color: transparent;
-    border-bottom: 2px solid currentColor;
+    border-bottom: 1px solid currentColor;
     border-radius: 0;
     color: $color-black;
     font-size: calc(#{$size-content} * 0.9);
@@ -33,11 +33,12 @@
     }
 
     @include breakpoint(lg) {
-      border-bottom-width: 3px;
+      border-bottom-width: 2px;
     }
 
     &::placeholder {
       color: $color-black;
+      opacity: 0.5;
     }
 
     &:focus {

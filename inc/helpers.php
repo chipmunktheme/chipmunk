@@ -425,20 +425,12 @@ if ( ! function_exists( 'chipmunk_get_posts' ) ) :
 endif;
 
 
-if ( ! function_exists( 'chipmunk_get_resources' ) ) :
+if ( ! function_exists( 'chipmunk_get_resources_sort_args' ) ) :
 	/**
-	 * Get resources
+	 * Get resources sort WP_Query arguments
 	 */
-	function chipmunk_get_resources( $limit = -1, $paged = false, $term = null ) {
-		$args = array(
-			'post_type'         => 'resource',
-			'post_status'       => 'publish',
-			'posts_per_page'    => $limit,
-			'paged'             => $paged,
-		);
-
+	function chipmunk_get_resources_sort_args() {
 		$sort_args = array();
-		$tax_query = array();
 
 		// Apply sorting options
 		if ( isset( $_GET['sort'] ) and ! empty( $_GET['sort'] ) and ! chipmunk_theme_option( 'disable_resource_sorting' ) ) {
@@ -484,9 +476,23 @@ if ( ! function_exists( 'chipmunk_get_resources' ) ) :
 
 		$sort_args['order'] = $sort_order;
 
+		return $sort_args;
+	}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_resources_tax_args' ) ) :
+	/**
+	 * Get resources tax WP_Query arguments
+	 */
+	function chipmunk_get_resources_tax_args( $term = null ) {
+		$tax_args = array(
+			'tax_query' => array(),
+		);
+
 		// Apply taxonomy options
 		if ( is_tax() and isset( $term ) ) {
-			$tax_query[] = array(
+			$tax_args['tax_query'][] = array(
 				'taxonomy'          => $term->taxonomy,
 				'field'             => 'id',
 				'terms'             => $term->term_id,
@@ -496,18 +502,45 @@ if ( ! function_exists( 'chipmunk_get_resources' ) ) :
 
 		// Apply tag filters
 		if ( isset( $_GET['tag'] ) and ! empty( $_GET['tag'] ) and ! chipmunk_theme_option( 'disable_resource_filters' ) ) {
-			$tax_query[] = array(
+			$tax_args['tax_query'][] = array(
 				'taxonomy'          => 'resource-tag',
 				'field'             => 'slug',
 				'terms'             => $_GET['tag'],
 			);
 		}
 
-		if ( count( $tax_query ) > 1 ) {
-			$tax_query['relation'] = 'AND';
+		if ( count( $tax_args['tax_query'] ) > 1 ) {
+			$tax_args['tax_query']['relation'] = 'AND';
 		}
 
-		return new WP_Query( array_merge( $args, $sort_args, array( 'tax_query' => $tax_query ) ) );
+		return $tax_args;
+	}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_resources' ) ) :
+	/**
+	 * Get resources
+	 */
+	function chipmunk_get_resources( $limit = -1, $paged = false, $term = null, $author = null ) {
+		$args = array(
+			'post_type'         => 'resource',
+			'post_status'       => 'publish',
+			'posts_per_page'    => $limit,
+			'paged'             => $paged,
+		);
+
+		// Apply taxonomy options
+		if ( is_author() and isset( $author ) ) {
+			$args[] = array(
+				'author_name'   => $author,
+			);
+		}
+
+		$sort_args = chipmunk_get_resources_sort_args();
+		$tax_args = chipmunk_get_resources_tax_args( $term );
+
+		return new WP_Query( array_merge( $args, $sort_args, $tax_args ) );
 	}
 endif;
 

@@ -1,0 +1,41 @@
+/*
+** Module - Profile
+** -----------------------------------------------------------------------------*/
+
+.profile {
+  display: flex;
+  align-items: flex-start;
+
+  &:not(:first-child) {
+    margin-top: $separator;
+  }
+}
+
+.profile__avatar {
+  max-width: 10rem;
+  margin-right: $separator;
+
+  @include breakpoint(md) {
+    max-width: 12.8rem;
+  }
+
+  img {
+    height: auto;
+  }
+}
+
+.profile__content {
+  flex: 1;
+}
+
+.profile__description {
+  &:not(:first-child) {
+    margin-top: $separator / 2;
+  }
+}
+
+.profile__socials {
+  &:not(:first-child) {
+    margin-top: $separator;
+  }
+}

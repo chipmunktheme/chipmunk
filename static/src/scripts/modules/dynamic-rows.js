@@ -31,6 +31,8 @@ const DynamicRows = {
     const padding = parseInt(style.getPropertyValue('padding-top')) + parseInt(style.getPropertyValue('padding-bottom'));
     const rowLimit = parseInt(input.dataset.dynamicRows ? input.dataset.dynamicRows : this.options.rows);
 
+    console.log(rowLimit);
+
     let rows = parseInt((input.scrollHeight - padding) / lineHeight);
 
     input.setAttribute('rows', rows > rowLimit ? rowLimit : rows);

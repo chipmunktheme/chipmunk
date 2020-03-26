@@ -50,10 +50,10 @@
 .form__input {
   display: inline-block;
   width: 100%;
-  max-height: calc(5 * 1.6em + 1rem);
+  // max-height: calc(5 * 1.6em + 1rem);
   padding: 0.5rem 0;
   background-color: transparent;
-  border-bottom: 2px solid currentColor;
+  border-bottom: 1px solid currentColor;
   border-radius: 0;
   color: inherit;
   font-size: calc(#{$size-content} * 0.9);
@@ -68,7 +68,7 @@
   }
 
   @include breakpoint(lg) {
-    border-bottom-width: 3px;
+    border-bottom-width: 2px;
   }
 
   &:not([rows]) {
@@ -77,6 +77,7 @@
 
   &::placeholder {
     color: inherit;
+    opacity: 0.5;
   }
 
   &:focus {
@@ -174,7 +175,15 @@
   }
 }
 
+.form__group {
+  &:not(:first-child) {
+    margin-top: $separator * 1.5;
 
+    @include breakpoint(md) {
+      margin-top: $separator * 2;
+    }
+  }
+}
 
 .form__checkbox {
   flex-grow: 1;

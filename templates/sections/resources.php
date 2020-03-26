@@ -2,6 +2,12 @@
 
 <?php if ( is_singular( 'resource' ) ) : ?>
 	<?php $query = chipmunk_get_related( get_the_ID() ); ?>
+<?php elseif ( is_author() && get_query_var( 'author_name' ) ) : ?>
+	<?php if ( chipmunk_has_plugin( 'members' ) ) : ?>
+        <?php $query = ChipmunkMembers\Helpers::get_bookmarked_resources( chipmunk_theme_option( 'posts_per_page' ), get_query_var( 'author_name' ) ); ?>
+    <?php else : ?>
+        <?php $query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged, null, get_query_var( 'author_name' ) ); ?>
+    <?php endif; ?>
 <?php else : ?>
 	<?php $query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged ); ?>
 <?php endif; ?>
