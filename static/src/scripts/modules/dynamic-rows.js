@@ -12,10 +12,20 @@ const DynamicRows = {
       [].forEach.call(this.inputs, input => {
         input.addEventListener('keyup', this.updateRows.bind(this, input));
       });
+
+      window.addEventListener('load', () => {
+        [].forEach.call(this.inputs, input => {
+          this.updateRows(input);
+        });
+      });
     }
   },
 
   updateRows(input) {
+    if (!input.value) {
+      return;
+    }
+
     const style = window.getComputedStyle(input);
     const lineHeight = parseInt(style.getPropertyValue('line-height'));
     const padding = parseInt(style.getPropertyValue('padding-top')) + parseInt(style.getPropertyValue('padding-bottom'));
