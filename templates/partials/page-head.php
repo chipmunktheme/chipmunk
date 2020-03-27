@@ -55,10 +55,11 @@
 							<div class="dropdown dropdown--right">
 								<ul class="nav-secondary">
 									<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'dashboard' ) ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Dashboard', 'chipmunk' ); ?></a></li>
-									<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'profile' ) ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Profile', 'chipmunk' ); ?></a></li>
-									<li class="nav-secondary__item dropdown__item">
-										<?php chipmunk_get_template( 'partials/submit-button', array( 'class' => 'nav-secondary__link dropdown__link' ) ); ?>
-									</li>
+									<?php if ( apply_filters( 'chipmunk_enable_user_profiles', false ) ) : ?>
+										<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( get_author_posts_url( $current_user->ID ) ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Profile', 'chipmunk' ); ?></a></li>
+									<?php endif; ?>
+									<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'profile' ) ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Edit Profile', 'chipmunk' ); ?></a></li>
+									<li class="nav-secondary__item dropdown__item"><?php chipmunk_get_template( 'partials/submit-button', array( 'class' => 'nav-secondary__link dropdown__link' ) ); ?></li>
 									<li class="nav-secondary__item dropdown__item"><a href="<?php echo esc_url( wp_logout_url() ); ?>" class="nav-secondary__link dropdown__link"><?php esc_html_e( 'Logout', 'chipmunk' ); ?></a></li>
 								</ul>
 							</div>

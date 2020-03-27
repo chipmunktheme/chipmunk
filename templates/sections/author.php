@@ -13,7 +13,7 @@
 
 					<div class="profile">
 						<div class="profile__avatar">
-							<?php echo get_avatar( $user->user_email, 128 ); ?>
+							<?php echo get_avatar( $user->ID, 128 ); ?>
 						</div>
 
 						<div class="profile__content">
