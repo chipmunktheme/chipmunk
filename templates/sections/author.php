@@ -6,7 +6,7 @@
 	<?php $user_meta = array_map( function( $a ) { return $a[0]; }, get_user_meta( $user->ID ) ); ?>
 	<?php $user_socials = wp_get_user_contact_methods(); ?>
 	<?php $verified_users = get_field( 'chipmunk_up_verified_users', 'option' ); ?>
-	<?php $is_verified = array_search( $user->ID, array_column( $verified_users, 'ID' ) ) !== false; ?>
+	<?php $is_verified = ! empty( $verified_users ) ? ( array_search( $user->ID, array_column( $verified_users, 'ID' ) ) !== false ) : false; ?>
 
 	<div class="section section--theme-light section--compact" id="author-profile">
 		<div class="container">
