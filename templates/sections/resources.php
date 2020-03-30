@@ -4,7 +4,8 @@
 	<?php $query = chipmunk_get_related( get_the_ID() ); ?>
 <?php elseif ( is_author() && get_query_var( 'author_name' ) ) : ?>
 	<?php if ( chipmunk_has_plugin( 'members' ) ) : ?>
-        <?php $query = ChipmunkMembers\Helpers::get_bookmarked_resources( chipmunk_theme_option( 'posts_per_page' ), get_query_var( 'author_name' ) ); ?>
+		<?php $author = ( get_query_var( 'author_name' ) ) ? get_user_by( 'slug', get_query_var( 'author_name' ) ) : get_userdata( get_query_var( 'author' ) ); ?>
+        <?php $query = ChipmunkMembers\Helpers::get_bookmarked_resources( chipmunk_theme_option( 'posts_per_page' ), $author ); ?>
     <?php else : ?>
         <?php $query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged, null, get_query_var( 'author_name' ) ); ?>
     <?php endif; ?>

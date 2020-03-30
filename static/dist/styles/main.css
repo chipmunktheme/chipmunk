@@ -2445,6 +2445,24 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 /*
+** Utils - Verifiable
+** -----------------------------------------------------------------------------*/
+.u-verifiable {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.u-verifiable > span {
+  display: block;
+  margin-left: 0.5em;
+  font-size: 0.9em;
+  color: #369BF8;
+  line-height: 1;
+}
+.u-verifiable > span svg {
+  display: block;
+}
+/*
 ** Module - Button
 ** -----------------------------------------------------------------------------*/
 /*
@@ -4117,8 +4135,22 @@ input:checked + .u-checkbox__mark .icon {
 .profile__description:not(:first-child) {
   margin-top: 1rem;
 }
-.profile__socials:not(:first-child) {
+.profile__description a {
+  color: var(--color-primary, #F38181);
+}
+.profile__description a[href]:hover {
+  color: currentColor;
+}
+.profile__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.profile__meta:not(:first-child) {
   margin-top: 2rem;
+}
+.profile__stats:not(:first-child) {
+  margin-left: 2em;
 }
 /*
 ** Module - Resource

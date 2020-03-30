@@ -32,10 +32,28 @@
   &:not(:first-child) {
     margin-top: $separator / 2;
   }
+
+  a {
+    color: $color-primary;
+
+    &[href]:hover {
+      color: currentColor;
+    }
+  }
 }
 
-.profile__socials {
+.profile__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
   &:not(:first-child) {
     margin-top: $separator;
+  }
+}
+
+.profile__stats {
+  &:not(:first-child) {
+    margin-left: 2em;
   }
 }
