@@ -38,7 +38,11 @@
     color: $color-white;
   }
 
-  &:not([class*="theme"]) + &:not([class*="theme"]) {
+  &--intro + & {
+    padding-top: 0;
+  }
+
+  &:not([class*="theme"]):not([class*="intro"]) + &:not([class*="theme"]) {
     @extend %bordered-box;
   }
 }

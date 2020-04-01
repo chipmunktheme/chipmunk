@@ -1,5 +1,4 @@
 <?php
-	$intro_text         = chipmunk_theme_option( 'intro_text' );
 	$resources_count    = chipmunk_theme_option( 'resources_count', 9 );
 	$disable_sliders    = chipmunk_theme_option( 'disable_homepage_listings_sliders' );
 	$infinite_sliders   = chipmunk_theme_option( 'infinite_sliders' );
@@ -26,18 +25,11 @@
 	$tabs = array_filter( $tabs, function ( $tab ) use ( $sections ) {
 		return $sections[ $tab ]['results']->have_posts();
 	} );
-
 ?>
 
 <?php if ( ! empty( $tabs ) or ! empty( $intro_text ) ) : ?>
 	<div class="section">
 		<div class="container">
-			<?php if ( ! empty( $intro_text ) ) : ?>
-				<h2 class="section__title section__separator heading heading--xl">
-					<?php echo do_shortcode( wp_kses_post( $intro_text ) ); ?>
-				</h2>
-			<?php endif; ?>
-
 			<?php if ( ! empty( $tabs ) ) : ?>
 				<div class="tabs section__separator" data-tabs role="tablist">
 					<?php if ( count( $tabs ) > 1 ) : ?>

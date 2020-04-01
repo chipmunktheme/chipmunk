@@ -1495,7 +1495,7 @@ sub {
 /*
 ** Placeholders - Box
 ** -----------------------------------------------------------------------------*/
-.page-head, .search-bar, .section--theme-light, .section:not([class*="theme"]) + .section:not([class*="theme"]) {
+.page-head, .search-bar, .section--theme-light, .section:not([class*="theme"]):not([class*="intro"]) + .section:not([class*="theme"]) {
   position: relative;
   z-index: 1;
   box-shadow: 0 1px 0 0 rgba(51, 51, 51, var(--border-opacity, 0.075)), 0 -1px 0 0 rgba(51, 51, 51, var(--border-opacity, 0.075));
@@ -4447,6 +4447,9 @@ input:checked + .u-checkbox__mark .icon {
 .section--theme-primary {
   background-color: var(--color-primary, #F38181);
   color: #FAFAFA;
+}
+.section--intro + .section {
+  padding-top: 0;
 }
 .section__separator {
   display: block;
