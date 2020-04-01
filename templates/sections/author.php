@@ -39,20 +39,30 @@
 							<?php endif; ?>
 
 							<div class="profile__meta">
-								<nav class="profile__socials nav-socials">
-									<ul>
-										<?php foreach ( $user_socials as $social_key => $social_value ) : ?>
-											<?php if ( ! empty( $user_meta[ $social_key ] ) ) : ?>
-												<li class="nav-socials__item">
-													<a href="<?php echo esc_url( $user_meta[ $social_key ] ); ?>" class="nav-socials__link" title="<?php echo $social_value; ?>" target="_blank">
-														<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'social-' . $social_key ) ); ?>
-														<span class="sr-only"><?php echo $social_value; ?></span>
-													</a>
-												</li>
-											<?php endif; ?>
-										<?php endforeach; ?>
-									</ul>
-								</nav>
+								<?php $socials_empty = true; ?>
+
+								<?php foreach ( $user_socials as $social_key => $social_value ) : ?>
+									<?php if ( ! empty( $user_meta[ $social_key ] ) ) : ?>
+										<?php $socials_empty = false; ?>
+									<?php endif; ?>
+								<?php endforeach; ?>
+
+								<?php if ( ! $socials_empty ) : ?>
+									<nav class="profile__socials nav-socials">
+										<ul>
+											<?php foreach ( $user_socials as $social_key => $social_value ) : ?>
+												<?php if ( ! empty( $user_meta[ $social_key ] ) ) : ?>
+													<li class="nav-socials__item">
+														<a href="<?php echo esc_url( $user_meta[ $social_key ] ); ?>" class="nav-socials__link" title="<?php echo $social_value; ?>" target="_blank">
+															<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'social-' . $social_key ) ); ?>
+															<span class="sr-only"><?php echo $social_value; ?></span>
+														</a>
+													</li>
+												<?php endif; ?>
+											<?php endforeach; ?>
+										</ul>
+									</nav>
+								<?php endif; ?>
 
 								<ul class="profile__stats stats">
 									<?php $registered = strtotime( $user->user_registered ); ?>
