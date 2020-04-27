@@ -57,7 +57,9 @@
 							<?php if ( have_rows( '_' . THEME_SLUG . '_resource_links' ) ) : ?>
 								<?php while ( have_rows( '_' . THEME_SLUG . '_resource_links' ) ) : the_row(); ?>
 
-									<?php chipmunk_get_template( 'partials/button', array( 'link' => get_sub_field( 'link' ), 'class' => 'resource__button button button--primary-outline' ) ); ?>
+									<?php if ( ! empty( get_sub_field( 'link' ) ) ) : ?>
+										<?php chipmunk_get_template( 'partials/button', array( 'link' => get_sub_field( 'link' ), 'class' => 'resource__button button button--primary-outline' ) ); ?>
+									<?php endif; ?>
 
 								<?php endwhile; ?>
 							<?php endif; ?>
