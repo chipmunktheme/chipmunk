@@ -72,7 +72,7 @@
 									<li class="stats__item" title="<?php esc_attr_e( 'Registered', 'chipmunk' ); ?>: <?php echo date( 'j F Y', $registered ); ?>">
 										<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'clock' ) ); ?>
 
-										<time datetime="<?php echo date( 'c', $registered ); ?>"><?php echo date( 'M j, Y', $registered ); ?></time>
+										<time datetime="<?php echo date( 'c', $registered ); ?>"><?php echo date( ( chipmunk_theme_option( 'use_system_date_format' ) ? get_option( 'date_format' ) : 'M j, Y' ), $registered ); ?></time>
 									</li>
 
 									<?php do_action( 'chipmunk_user_profile_stats_after', $user->ID ); ?>

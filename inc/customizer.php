@@ -693,6 +693,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => false,
 						),
 						array(
+							'name'        => 'use_system_date_format',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Use system date format', 'chipmunk' ),
+							'default'     => false,
+						),
+						array(
 							'name'        => 'about_copy',
 							'type'        => 'textarea',
 							'label'       => esc_html__( 'About copy (footer)', 'chipmunk' ),
