@@ -5344,6 +5344,12 @@ p.has-background {
 .alignright {
   max-width: 100%;
 }
+.alignnone a,
+.aligncenter a,
+.alignleft a,
+.alignright a {
+  display: inline-block;
+}
 .aligncenter {
   margin-left: auto;
   margin-right: auto;
