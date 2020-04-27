@@ -703,7 +703,11 @@ if ( ! function_exists( 'chipmunk_get_resource_website' ) ) :
 			return esc_url( $website );
 		}
 
-		return esc_url( $links[0]['link']['url'] );
+		if ( ! empty( $links ) ) {
+			return esc_url( $links[0]['link']['url'] );
+		}
+
+		return false;
 	}
 endif;
 
