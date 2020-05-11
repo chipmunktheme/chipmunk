@@ -1,11 +1,13 @@
 const axios = require('axios');
 
-axios.interceptors.request.use(config => {
-  // Prefix the action name
-  config.data.set('action', 'chipmunk_' + config.data.get('action'));
+const axiosInstance = axios.create({
+  transformRequest: [(data) => {
+    // Prefix the action name
+    data.set('action', 'chipmunk_' + data.get('action'));
 
-  return config;
-}, error => Promise.reject(error));
+    return config;
+  }],
+});
 
 const Actions = {
   triggers: [],
@@ -69,7 +71,7 @@ const Actions = {
         action.callback = action.callback || this.callbacks[action.data.action] || (() => {});
 
         // Assign new request
-        requests.push(axios.post(document.body.dataset.ajaxSource, formData));
+        requests.push(axiosInstance.post(document.body.dataset.ajaxSource, formData));
       });
 
       // Run concurrent action
