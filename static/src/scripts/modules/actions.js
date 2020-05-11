@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
     // Prefix the action name
     data.set('action', 'chipmunk_' + data.get('action'));
 
-    return config;
+    return data;
   }],
 });
 

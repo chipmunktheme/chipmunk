@@ -1,6 +1,7 @@
 <?php $action = 'submit_resource'; ?>
 <?php $salt = chipmunk_get_salt( 5 ); ?>
 <?php $alignment = isset( $popup ) ? 'center' : 'left'; ?>
+<?php $required_fields = apply_filters( 'chipmunk_submission_required_fields', array( 'name', 'collection', 'website' ) ); ?>
 
 <form action="#" class="form loader <?php echo esc_attr( ! empty( $align ) ? 'align' . $align : '' ); ?>" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
 	<?php if ( ! empty( $title ) ) : ?>
@@ -16,11 +17,11 @@
 	<div class="form__content" data-action-element="<?php echo $action; ?>">
 		<div class="form__field">
 			<div class="form__child">
-				<input type="text" name="name" placeholder="<?php esc_attr_e( 'Resource name', 'chipmunk' ); ?>" class="form__input" required>
+				<input type="text" name="name" placeholder="<?php esc_attr_e( 'Resource name', 'chipmunk' ); ?>" class="form__input" <?php echo in_array( 'name', $required_fields ) ? 'required' : ''; ?>>
 			</div>
 
 			<div class="form__child">
-				<select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors-<?php echo $salt; ?>" data-parsley-group="select" class="form__input custom-select" required>
+				<select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors-<?php echo $salt; ?>" data-parsley-group="select" class="form__input custom-select" <?php echo in_array( 'collection', $required_fields ) ? 'required' : ''; ?>>
 					<option value=""><?php esc_html_e( 'Collection', 'chipmunk' ); ?></option>
 					<?php
 						$collections = chipmunk_get_taxonomy_hierarchy( 'resource-collection', array(
@@ -39,11 +40,11 @@
 
 		<div class="form__field">
 			<div class="form__child">
-				<input type="url" name="website" placeholder="<?php esc_attr_e( 'Website URL', 'chipmunk' ); ?>" class="form__input" required>
+				<input type="url" name="website" placeholder="<?php esc_attr_e( 'Website URL', 'chipmunk' ); ?>" class="form__input" <?php echo in_array( 'website', $required_fields ) ? 'required' : ''; ?>>
 			</div>
 
 			<div class="form__child">
-				<textarea rows="1" name="content" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>" class="form__input" data-dynamic-rows></textarea>
+				<textarea rows="1" name="content" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>" class="form__input" <?php echo in_array( 'content', $required_fields ) ? 'required' : ''; ?> data-dynamic-rows></textarea>
 			</div>
 		</div>
 

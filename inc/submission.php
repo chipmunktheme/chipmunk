@@ -42,14 +42,14 @@ if ( ! class_exists( 'SubmissionForm' ) ) :
 				throw new Exception( esc_html__( 'Please verify that you are not a robot.', 'chipmunk' ) );
 			}
 
-			foreach( $this->required as $field ) {
+			foreach ( apply_filters( 'chipmunk_submission_required_fields', $this->required ) as $field ) {
 				if ( empty( $this->data[$field] ) ) {
 					throw new Exception( esc_html__( 'Please fill out required fields.', 'chipmunk' ) );
 					return false;
 				}
 			}
 
-			foreach( $this->required_empty as $field ) {
+			foreach ( $this->required_empty as $field ) {
 				if ( ! empty( $this->data[$field] ) ) {
 					throw new Exception( esc_html__( 'Your request could not be processed.', 'chipmunk' ) );
 					return false;
