@@ -4721,18 +4721,18 @@ input:checked + .u-checkbox__mark .icon {
   box-shadow: -2px 0 10px 0 rgba(51, 51, 51, 0.25);
   transition: transform 0.25s ease-in-out 0.05s;
 }
-.tile__image img:nth-child(2),
-.tile__image svg:nth-child(2),
-.tile__image video:nth-child(2),
-.tile__image audio:nth-child(2),
-.tile__image iframe:nth-child(2) {
+.tile__image img:nth-of-type(2),
+.tile__image svg:nth-of-type(2),
+.tile__image video:nth-of-type(2),
+.tile__image audio:nth-of-type(2),
+.tile__image iframe:nth-of-type(2) {
   transform: translateX(25%);
 }
-.tile__image img:nth-child(3),
-.tile__image svg:nth-child(3),
-.tile__image video:nth-child(3),
-.tile__image audio:nth-child(3),
-.tile__image iframe:nth-child(3) {
+.tile__image img:nth-of-type(3),
+.tile__image svg:nth-of-type(3),
+.tile__image video:nth-of-type(3),
+.tile__image audio:nth-of-type(3),
+.tile__image iframe:nth-of-type(3) {
   transform: translateX(50%);
 }
 .tile--card .tile__image {

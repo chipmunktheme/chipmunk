@@ -109,11 +109,11 @@
     box-shadow: -2px 0 10px 0 rgba($color-black, 0.25);
     transition: transform $transition-duration ease-in-out 0.05s;
 
-    &:nth-child(2) {
+    &:nth-of-type(2) {
       transform: translateX(25%);
     }
 
-    &:nth-child(3) {
+    &:nth-of-type(3) {
       transform: translateX(50%);
     }
   }
