@@ -1,16 +1,8 @@
 const axios = require('axios');
 
-const axiosInstance = axios.create({
-  transformRequest: [(data) => {
-    // Prefix the action name
-    data.set('action', 'chipmunk_' + data.get('action'));
-
-    return data;
-  }],
-});
-
 const Actions = {
   triggers: [],
+  http: null,
 
   init(element = document) {
     const triggers = element.querySelectorAll('[data-action]');
@@ -20,6 +12,15 @@ const Actions = {
     }
 
     if (this.triggers.length) {
+      this.http = axios.create({
+        transformRequest: [(data) => {
+          // Prefix the action name
+          data.set('action', 'chipmunk_' + data.get('action'));
+
+          return data;
+        }],
+      });
+
       [].forEach.call(this.triggers, (trigger) => {
         if (!trigger.dataset.listening) {
           if (trigger.hasAttribute('action')) {
@@ -71,7 +72,7 @@ const Actions = {
         action.callback = action.callback || this.callbacks[action.data.action] || (() => {});
 
         // Assign new request
-        requests.push(axiosInstance.post(document.body.dataset.ajaxSource, formData));
+        requests.push(this.http.post(document.body.dataset.ajaxSource, formData));
       });
 
       // Run concurrent action
