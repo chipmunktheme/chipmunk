@@ -15,7 +15,9 @@ const Actions = {
       this.http = axios.create({
         transformRequest: [(data) => {
           // Prefix the action name
-          data.set('action', 'chipmunk_' + data.get('action'));
+          if (!data.get('type')) {
+            data.set('action', 'chipmunk_' + data.get('action'));
+          }
 
           return data;
         }],
