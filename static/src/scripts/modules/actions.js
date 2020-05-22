@@ -5,7 +5,7 @@ const Actions = {
   http: null,
 
   init(element = document) {
-    const triggers = element.querySelectorAll('[data-action]');
+    const triggers = element.querySelectorAll('[data-action]:not([data-type])');
 
     if (triggers.length) {
       this.triggers = triggers;
@@ -15,9 +15,7 @@ const Actions = {
       this.http = axios.create({
         transformRequest: [(data) => {
           // Prefix the action name
-          if (!data.get('type')) {
-            data.set('action', 'chipmunk_' + data.get('action'));
-          }
+          data.set('action', 'chipmunk_' + data.get('action'));
 
           return data;
         }],
