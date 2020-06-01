@@ -4684,6 +4684,9 @@ input:checked + .u-checkbox__mark .icon {
 .tile__slider .row {
   height: 100%;
 }
+.tile__slider .tile--wide:only-child {
+  align-self: flex-start;
+}
 .tile__image {
   position: relative;
   overflow: hidden;

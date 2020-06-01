@@ -577,7 +577,8 @@ if ( ! function_exists( 'chipmunk_get_featured_resources' ) ) :
 			'meta_query'        => array(
 				'featured'          => array(
 					'key'               => '_' . THEME_SLUG . '_resource_is_featured',
-					'value'             => 'on',
+					'value'             => array( '1', 'on' ),
+					'compare'           => 'IN',
 				),
 				'views'             => array(
 					'key'               => '_' . THEME_SLUG . '_post_view_count',

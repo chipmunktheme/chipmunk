@@ -90,6 +90,10 @@
   .row {
     height: 100%;
   }
+
+  .tile--wide:only-child {
+    align-self: flex-start;
+  }
 }
 
 .tile__image {
