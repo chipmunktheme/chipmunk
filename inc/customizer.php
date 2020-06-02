@@ -687,6 +687,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => false,
 						),
 						array(
+							'name'        => 'disable_nofollow',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Disable "nofollow" attribute', 'chipmunk' ),
+							'default'     => false,
+						),
+						array(
 							'name'        => 'disable_cookies',
 							'type'        => 'checkbox',
 							'label'       => esc_html__( 'Disable cookies', 'chipmunk' ),

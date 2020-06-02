@@ -38,7 +38,7 @@
     color: $color-white;
   }
 
-  &--intro + & {
+  &--intro + &:not([class*="theme"]) {
     padding-top: 0;
   }
 

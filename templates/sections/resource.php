@@ -51,7 +51,7 @@
 					<div class="resource__actions">
 						<?php if ( ! is_search() ) : ?>
 							<?php if ( ! empty( $website ) ) : ?>
-								<a href="<?php echo esc_url( chipmunk_external_link( $website ) ); ?>" class="resource__button button button--primary-outline" target="_blank" rel="nofollow"><?php esc_html_e( 'Visit website', 'chipmunk' ); ?></a>
+								<a href="<?php echo esc_url( chipmunk_external_link( $website ) ); ?>" class="resource__button button button--primary-outline" target="_blank"<?php echo chipmunk_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php esc_html_e( 'Visit website', 'chipmunk' ); ?></a>
 							<?php endif; ?>
 
 							<?php if ( have_rows( '_' . THEME_SLUG . '_resource_links' ) ) : ?>
@@ -75,7 +75,7 @@
 					<aside class="resource__image column column--lg-6">
 						<?php if ( is_single() ) : ?>
 							<?php if ( ! empty( $primary_website ) ) : ?>
-								<a href="<?php echo chipmunk_external_link( $primary_website ); ?>" class="resource__media" target="_blank" rel="nofollow"><?php the_post_thumbnail( '1280x960' ); ?></a>
+								<a href="<?php echo chipmunk_external_link( $primary_website ); ?>" class="resource__media" target="_blank"<?php echo chipmunk_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail( '1280x960' ); ?></a>
 							<?php else : ?>
 								<span class="resource__media"><?php the_post_thumbnail( '1280x960' ); ?></span>
 							<?php endif; ?>
