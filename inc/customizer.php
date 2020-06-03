@@ -116,15 +116,14 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 						array(
 							'name'        => 'section_color',
 							'type'        => 'color',
-							'label'       => esc_html__( 'Section background Color', 'chipmunk' ),
+							'label'       => esc_html__( 'Section Background Color', 'chipmunk' ),
 							'default'     => '#FAFAFA',
 						),
 						array(
-							'name'        => 'primary_font',
-							'type'        => 'select',
-							'label'       => esc_html__( 'Primary Font', 'chipmunk' ),
-							'default'     => 'System',
-							'choices'     => array_merge( array( 'System' => esc_html__( 'System font', 'chipmunk' ) ), $this->get_google_fonts() ),
+							'name'        => 'section_color',
+							'type'        => 'color',
+							'label'       => esc_html__( 'Section Border Color', 'chipmunk' ),
+							'default'     => '#E8E8E8',
 						),
 						array(
 							'name'        => 'heading_font',
@@ -414,6 +413,12 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'name'        => 'disable_collection_thumbs',
 							'type'        => 'checkbox',
 							'label'       => esc_html__( 'Disable collection thumbs', 'chipmunk' ),
+							'default'     => false,
+						),
+						array(
+							'name'        => 'disable_collection_stats',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Disable collection stats', 'chipmunk' ),
 							'default'     => false,
 						),
 					),

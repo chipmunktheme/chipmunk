@@ -61,18 +61,20 @@
 			<?php endif; ?>
 		</div>
 
-		<ul class="tile__stats stats">
-			<?php if ( $term_children = wp_count_terms( 'resource-collection', array( 'parent' => $collection->term_id, 'hide_empty' => true ) ) ) : ?>
-				<li class="stats__item" title="<?php esc_attr_e( 'Sub collections', 'chipmunk' ); ?>">
-					<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'collections' ) ); ?>
-					<?php echo $term_children; ?>
-				</li>
-			<?php endif; ?>
+		<?php if ( ! chipmunk_theme_option( 'disable_collection_stats' ) ) : ?>
+			<ul class="tile__stats stats">
+				<?php if ( $term_children = wp_count_terms( 'resource-collection', array( 'parent' => $collection->term_id, 'hide_empty' => true ) ) ) : ?>
+					<li class="stats__item" title="<?php esc_attr_e( 'Sub collections', 'chipmunk' ); ?>">
+						<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'collections' ) ); ?>
+						<?php echo $term_children; ?>
+					</li>
+				<?php endif; ?>
 
-			<li class="stats__item" title="<?php esc_attr_e( 'Resources', 'chipmunk' ); ?>">
-				<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'link' ) ); ?>
-				<?php echo $collection->count; ?>
-			</li>
-		</ul>
+				<li class="stats__item" title="<?php esc_attr_e( 'Resources', 'chipmunk' ); ?>">
+					<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'link' ) ); ?>
+					<?php echo $collection->count; ?>
+				</li>
+			</ul>
+		<?php endif; ?>
 	</div>
 </a>
