@@ -13,6 +13,12 @@
 	<?php $query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged ); ?>
 <?php endif; ?>
 
+<?php if ( is_singular( 'page' ) ) : ?>
+	<?php $resources_title = get_the_title(); ?>
+<?php else : ?>
+	<?php $resources_title = __( 'Resources', 'chipmunk' ); ?>
+<?php endif; ?>
+
 <?php if ( $query->have_posts() or ! is_singular( 'resource' ) ) : ?>
 	<div class="section">
 		<div class="container">
@@ -22,13 +28,13 @@
 				<?php if ( $query->have_posts() ) : ?>
 					<div class="row">
 						<div class="column column--md-4 column--lg-4">
-							<h1 class="heading heading--md"><?php esc_html_e( 'Resources', 'chipmunk' ); ?></h1>
+							<h1 class="heading heading--md"><?php echo esc_html( $resources_title ); ?></h1>
 						</div>
 
 						<?php get_template_part( 'templates/partials/filters' ); ?>
 					</div>
 				<?php else : ?>
-					<h1 class="heading heading--md"><?php esc_html_e( 'Resources', 'chipmunk' ); ?></h1>
+					<h1 class="heading heading--md"><?php echo esc_html( $resources_title ); ?></h1>
 				<?php endif; ?>
 			<?php endif; ?>
 
