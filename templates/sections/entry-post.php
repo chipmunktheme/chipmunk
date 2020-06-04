@@ -11,7 +11,7 @@
 		<div class="entry__details section">
 			<div class="container">
 				<div class="row">
-					<div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? 'column--lg-8 column--lg-offset-2' : ''; ?>">
+					<div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ) : ''; ?>">
 						<?php chipmunk_get_template( 'partials/post-head', array( 'collections' => array(
 							'display'  => true,
 							'type'     => 'link',
