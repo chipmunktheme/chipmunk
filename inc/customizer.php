@@ -126,6 +126,13 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'default'     => '#E8E8E8',
 						),
 						array(
+							'name'        => 'primary_font',
+							'type'        => 'select',
+							'label'       => esc_html__( 'Primary Font', 'chipmunk' ),
+							'default'     => 'System',
+							'choices'     => array_merge( array( 'System' => esc_html__( 'System font', 'chipmunk' ) ), $this->get_google_fonts() ),
+						),
+						array(
 							'name'        => 'heading_font',
 							'type'        => 'select',
 							'label'       => esc_html__( 'Heading Font', 'chipmunk' ),
