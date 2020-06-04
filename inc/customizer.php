@@ -61,6 +61,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 			'Poppins'         => 'Poppins',
 			'Roboto'          => 'Roboto',
 			'Open Sans'       => 'Open Sans',
+			'Work Sans'       => 'Work Sans',
 			'Lato'            => 'Lato',
 			'Source Sans Pro' => 'Source Sans Pro',
 			'Montserrat'      => 'Montserrat',
@@ -71,6 +72,8 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 			'Ubuntu'          => 'Ubuntu',
 			'Droid Sans'      => 'Droid Sans',
 			'Nunito Sans'     => 'Nunito Sans',
+			'Inconsolata'     => 'Inconsolata',
+			'Cousine'         => 'Cousine',
 		);
 
 		/**
