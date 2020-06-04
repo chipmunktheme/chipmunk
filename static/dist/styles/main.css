@@ -5440,9 +5440,9 @@ p.has-background {
   }
 }
 .column[class*="offset"] .alignfull {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: calc(100vw - 4.8rem);
+  margin-left: calc(50% - (50vw - 2.4rem));
+  margin-right: calc(50% - (50vw - 2.4rem));
 }
 /*
 ** Blocks / Cover

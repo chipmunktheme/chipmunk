@@ -133,8 +133,8 @@ $layouts: (6, 8, 10);
 
 .alignfull {
   .column[class*="offset"] & {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+    width: calc(100vw - #{$grid-container-gutter * 2});
+    margin-left: calc(50% - (50vw - #{$grid-container-gutter}));
+    margin-right: calc(50% - (50vw - #{$grid-container-gutter}));
   }
 }
