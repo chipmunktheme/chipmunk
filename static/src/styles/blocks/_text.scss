@@ -1,0 +1,12 @@
+/*
+** Blocks / Text
+** -----------------------------------------------------------------------------*/
+
+p.has-drop-cap:first-letter {
+  color: $color-black;
+  float: left;
+  font-family: Georgia;
+  font-size: 4em;
+  line-height: 0.75em;
+  padding-right: 0.075em;
+}

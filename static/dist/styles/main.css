@@ -6011,6 +6011,17 @@ p.has-background {
   table-layout: fixed;
 }
 /*
+** Blocks / Text
+** -----------------------------------------------------------------------------*/
+p.has-drop-cap:first-letter {
+  color: #333333;
+  float: left;
+  font-family: Georgia;
+  font-size: 4em;
+  line-height: 0.75em;
+  padding-right: 0.075em;
+}
+/*
 ** Blocks / Verse
 ** -----------------------------------------------------------------------------*/
 .wp-block-verse {

@@ -58,15 +58,15 @@
 
 				<?php do_action( 'chipmunk_before_post_footer' ); ?>
 
-				<?php if ( ! chipmunk_theme_option( 'disable_post_sharing' ) and ! chipmunk_theme_option( 'disable_post_tags' ) ) : ?>
+				<?php if ( chipmunk_is_feature_enabled( 'sharing', 'post' ) or chipmunk_is_feature_enabled( 'tags', 'post' ) ) : ?>
 					<div class="entry__footer">
-						<?php if ( ! empty( $tags ) and ! chipmunk_theme_option( 'disable_post_tags' ) ) : ?>
+						<?php if ( ! empty( $tags ) and chipmunk_is_feature_enabled( 'tags', 'post' ) ) : ?>
 							<div class="tag__list">
 								<?php chipmunk_get_template( 'partials/post-terms', array( 'terms' => $tags, 'args' => array( 'quantity' => 5 ) ) ); ?>
 							</div>
 						<?php endif; ?>
 
-						<?php if ( ! chipmunk_theme_option( 'disable_post_tags' ) ) : ?>
+						<?php if ( chipmunk_is_feature_enabled( 'sharing', 'post' ) ) : ?>
 							<?php get_template_part( 'templates/partials/share-box' ); ?>
 						<?php endif; ?>
 					</div>
