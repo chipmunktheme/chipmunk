@@ -5632,20 +5632,18 @@ p.has-background {
 /*
 ** Blocks / Gallery
 ** -----------------------------------------------------------------------------*/
-.wp-block-gallery,
 .blocks-gallery-grid {
   display: flex;
   flex-wrap: wrap;
-  list-style: none;
+  width: 100%;
+  margin-top: -2.4rem;
 }
-.wp-block-gallery.flickity-enabled,
 .blocks-gallery-grid.flickity-enabled {
   display: block;
   max-height: 84.375rem;
   list-style: none;
   overflow: hidden;
 }
-.wp-block-gallery.flickity-enabled .flickity-viewport,
 .blocks-gallery-grid.flickity-enabled .flickity-viewport {
   padding-bottom: 56.25%;
 }
@@ -5653,13 +5651,13 @@ p.has-background {
   display: flex;
   align-items: flex-end;
   flex: 1;
+  margin-top: 2.4rem;
 }
 .columns-2 .blocks-gallery-item {
   flex-basis: calc(100% / 1 - 2.4rem);
 }
 .columns-2 .blocks-gallery-item:nth-child(1n) {
   margin-right: 2.4rem;
-  margin-bottom: 2.4rem;
 }
 .columns-2 .blocks-gallery-item:last-child, .columns-2 .blocks-gallery-item:nth-child(1n) {
   margin-right: 0;
@@ -5670,7 +5668,6 @@ p.has-background {
   }
   .columns-2 .blocks-gallery-item:nth-child(1n) {
     margin-right: 2.4rem;
-    margin-bottom: 2.4rem;
   }
   .columns-2 .blocks-gallery-item:last-child, .columns-2 .blocks-gallery-item:nth-child(2n) {
     margin-right: 0;
@@ -5682,7 +5679,6 @@ p.has-background {
   }
   .columns-2 .blocks-gallery-item:nth-child(1n) {
     margin-right: 2.4rem;
-    margin-bottom: 2.4rem;
   }
   .columns-2 .blocks-gallery-item:last-child, .columns-2 .blocks-gallery-item:nth-child(2n) {
     margin-right: 0;
@@ -5693,7 +5689,6 @@ p.has-background {
 }
 .columns-3 .blocks-gallery-item:nth-child(1n) {
   margin-right: 2.4rem;
-  margin-bottom: 2.4rem;
 }
 .columns-3 .blocks-gallery-item:last-child, .columns-3 .blocks-gallery-item:nth-child(2n) {
   margin-right: 0;
@@ -5704,7 +5699,6 @@ p.has-background {
   }
   .columns-3 .blocks-gallery-item:nth-child(1n) {
     margin-right: 2.4rem;
-    margin-bottom: 2.4rem;
   }
   .columns-3 .blocks-gallery-item:last-child, .columns-3 .blocks-gallery-item:nth-child(2n) {
     margin-right: 0;
@@ -5716,7 +5710,6 @@ p.has-background {
   }
   .columns-3 .blocks-gallery-item:nth-child(1n) {
     margin-right: 2.4rem;
-    margin-bottom: 2.4rem;
   }
   .columns-3 .blocks-gallery-item:last-child, .columns-3 .blocks-gallery-item:nth-child(3n) {
     margin-right: 0;
@@ -5727,7 +5720,6 @@ p.has-background {
 }
 .columns-4 .blocks-gallery-item:nth-child(1n) {
   margin-right: 2.4rem;
-  margin-bottom: 2.4rem;
 }
 .columns-4 .blocks-gallery-item:last-child, .columns-4 .blocks-gallery-item:nth-child(2n) {
   margin-right: 0;
@@ -5738,7 +5730,6 @@ p.has-background {
   }
   .columns-4 .blocks-gallery-item:nth-child(1n) {
     margin-right: 2.4rem;
-    margin-bottom: 2.4rem;
   }
   .columns-4 .blocks-gallery-item:last-child, .columns-4 .blocks-gallery-item:nth-child(3n) {
     margin-right: 0;
@@ -5750,7 +5741,6 @@ p.has-background {
   }
   .columns-4 .blocks-gallery-item:nth-child(1n) {
     margin-right: 2.4rem;
-    margin-bottom: 2.4rem;
   }
   .columns-4 .blocks-gallery-item:last-child, .columns-4 .blocks-gallery-item:nth-child(4n) {
     margin-right: 0;
@@ -5761,7 +5751,6 @@ p.has-background {
 }
 .columns-5 .blocks-gallery-item:nth-child(1n) {
   margin-right: 2.4rem;
-  margin-bottom: 2.4rem;
 }
 .columns-5 .blocks-gallery-item:last-child, .columns-5 .blocks-gallery-item:nth-child(3n) {
   margin-right: 0;
@@ -5772,7 +5761,6 @@ p.has-background {
   }
   .columns-5 .blocks-gallery-item:nth-child(1n) {
     margin-right: 2.4rem;
-    margin-bottom: 2.4rem;
   }
   .columns-5 .blocks-gallery-item:last-child, .columns-5 .blocks-gallery-item:nth-child(4n) {
     margin-right: 0;
@@ -5784,7 +5772,6 @@ p.has-background {
   }
   .columns-5 .blocks-gallery-item:nth-child(1n) {
     margin-right: 2.4rem;
-    margin-bottom: 2.4rem;
   }
   .columns-5 .blocks-gallery-item:last-child, .columns-5 .blocks-gallery-item:nth-child(5n) {
     margin-right: 0;
@@ -5795,7 +5782,6 @@ p.has-background {
 }
 .columns-6 .blocks-gallery-item:nth-child(1n) {
   margin-right: 2.4rem;
-  margin-bottom: 2.4rem;
 }
 .columns-6 .blocks-gallery-item:last-child, .columns-6 .blocks-gallery-item:nth-child(3n) {
   margin-right: 0;
@@ -5806,7 +5792,6 @@ p.has-background {
   }
   .columns-6 .blocks-gallery-item:nth-child(1n) {
     margin-right: 2.4rem;
-    margin-bottom: 2.4rem;
   }
   .columns-6 .blocks-gallery-item:last-child, .columns-6 .blocks-gallery-item:nth-child(4n) {
     margin-right: 0;
@@ -5818,7 +5803,6 @@ p.has-background {
   }
   .columns-6 .blocks-gallery-item:nth-child(1n) {
     margin-right: 2.4rem;
-    margin-bottom: 2.4rem;
   }
   .columns-6 .blocks-gallery-item:last-child, .columns-6 .blocks-gallery-item:nth-child(6n) {
     margin-right: 0;

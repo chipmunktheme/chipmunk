@@ -2,11 +2,11 @@
 ** Blocks / Gallery
 ** -----------------------------------------------------------------------------*/
 
-.wp-block-gallery,
 .blocks-gallery-grid {
   display: flex;
   flex-wrap: wrap;
-  list-style: none;
+  width: 100%;
+  margin-top: -$grid-column-gutter;
 
   &.flickity-enabled {
     display: block;
@@ -24,6 +24,7 @@
   display: flex;
   align-items: flex-end;
   flex: 1;
+  margin-top: $grid-column-gutter;
 
   @for $i from 2 through 6 {
     $mobile: ceil($i / 2);
@@ -35,7 +36,6 @@
 
       &:nth-child(1n) {
         margin-right: $grid-column-gutter;
-        margin-bottom: $grid-column-gutter;
       }
 
       &:last-child,
@@ -48,7 +48,6 @@
 
         &:nth-child(1n) {
           margin-right: $grid-column-gutter;
-          margin-bottom: $grid-column-gutter;
         }
 
         &:last-child,
@@ -62,7 +61,6 @@
 
         &:nth-child(1n) {
           margin-right: $grid-column-gutter;
-          margin-bottom: $grid-column-gutter;
         }
 
         &:last-child,
