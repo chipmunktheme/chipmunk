@@ -7,10 +7,10 @@
 
 <?php if ( is_single() ) : ?>
 	<?php $title = esc_html__( 'Related', 'chipmunk' ); ?>
-	<?php $query = chipmunk_get_related( get_the_ID() ); ?>
+	<?php $query = chipmunk_get_related( get_the_ID(), apply_filters( 'chipmunk_related_posts_count', 3 ) ); ?>
 <?php elseif ( is_front_page() ) : ?>
 	<?php $title = esc_html__( 'Latest Posts', 'chipmunk' ); ?>
-	<?php $query = chipmunk_get_posts( array( 'posts_per_page' => 3 ) ); ?>
+	<?php $query = chipmunk_get_posts( array( 'posts_per_page' => apply_filters( 'chipmunk_latest_posts_count', 3 ) ) ); ?>
 <?php elseif ( is_date() ) : ?>
 	<?php $title = date_i18n( 'F Y', strtotime( $year . '-' . $month ) ); ?>
 	<?php $query = chipmunk_get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ), null, array( 'year' => $year, 'month' => $month ) ); ?>

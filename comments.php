@@ -83,7 +83,8 @@ endif;
 			'comment_notes_after'  => '',
 			'title_reply_before'   => '<h3 class="heading heading--md">',
 			'title_reply_after'    => '</h3>',
-			'submit_button'        => '<span class="form__field form__field--cta"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></span>',
+			'submit_field'         => '%1$s %2$s',
+			'submit_button'        => '<div class="form__field form__field--cta"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></div>',
 			'fields'               => apply_filters( 'comment_form_fields', $fields ),
 			'comment_field'        => '<div class="form__field"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . esc_attr__( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '" class="form__input"' . $req . ' data-dynamic-rows></textarea></div>',
 		) );

@@ -1,7 +1,7 @@
 <?php $paged = chipmunk_get_current_page(); ?>
 
 <?php if ( is_singular( 'resource' ) ) : ?>
-	<?php $query = chipmunk_get_related( get_the_ID() ); ?>
+	<?php $query = chipmunk_get_related( get_the_ID(), apply_filters( 'chipmunk_related_resources_count', 3 ) ); ?>
 <?php elseif ( is_author() && get_query_var( 'author_name' ) ) : ?>
 	<?php if ( chipmunk_has_plugin( 'members' ) ) : ?>
 		<?php $author = ( get_query_var( 'author_name' ) ) ? get_user_by( 'slug', get_query_var( 'author_name' ) ) : get_userdata( get_query_var( 'author' ) ); ?>
