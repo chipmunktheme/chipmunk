@@ -27,45 +27,21 @@
   margin-top: $grid-column-gutter;
 
   @for $i from 2 through 6 {
-    $mobile: ceil($i / 2);
-    $tablet: ceil($i / 1.5);
-    $desktop: ceil($i / 1);
+    $gallery-breakpoints: (sm: ceil($i / 2), md: ceil($i / 1.5), lg: ceil($i / 1));
 
     .columns-#{$i} & {
-      flex-basis: calc(100% / #{$mobile} - #{$grid-column-gutter});
+      @each $breakpoint, $columns in $gallery-breakpoints {
+        @include breakpoint($breakpoint) {
+          flex-basis: calc(100% / #{$columns} - #{$grid-column-gutter});
 
-      &:nth-child(1n) {
-        margin-right: $grid-column-gutter;
-      }
+          &:nth-child(1n) {
+            margin-right: $grid-column-gutter;
+          }
 
-      &:last-child,
-      &:nth-child(#{$mobile}n) {
-        margin-right: 0;
-      }
-
-      @include breakpoint(md) {
-        flex-basis: calc(100% / #{$tablet} - #{$grid-column-gutter});
-
-        &:nth-child(1n) {
-          margin-right: $grid-column-gutter;
-        }
-
-        &:last-child,
-        &:nth-child(#{$tablet}n) {
-          margin-right: 0;
-        }
-      }
-
-      @include breakpoint(lg) {
-        flex-basis: calc(100% / #{$desktop} - #{$grid-column-gutter});
-
-        &:nth-child(1n) {
-          margin-right: $grid-column-gutter;
-        }
-
-        &:last-child,
-        &:nth-child(#{$desktop}n) {
-          margin-right: 0;
+          &:last-child,
+          &:nth-child(#{$columns}n) {
+            margin-right: 0;
+          }
         }
       }
     }

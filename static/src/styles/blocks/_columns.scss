@@ -3,46 +3,41 @@
 ** -----------------------------------------------------------------------------*/
 
 .wp-block-columns {
-  display: grid;
-  grid-gap: $grid-column-gutter;
-  grid-template-columns: repeat(1, 1fr);
+  display: flex;
+  flex-direction: column;
 
-  @include breakpoint(md) {
-    grid-template-columns: repeat(2, 1fr);
+  @include breakpoint(lg) {
+    flex-direction: row;
   }
 
-  @for $i from 2 through 6 {
-    $mobile: ceil($i / 2);
-    $tablet: ceil($i / 1.5);
-    $desktop: ceil($i / 1);
-
-    &.has-#{$i}-columns {
-      grid-template-columns: repeat($mobile, 1fr);
-
-      @include breakpoint(md) {
-        grid-template-columns: repeat($tablet, 1fr);
-      }
-
-      @include breakpoint(lg) {
-        grid-template-columns: repeat($desktop, 1fr);
-      }
+  &.alignfull {
+    @include breakpoint(md) {
+      flex-direction: row;
     }
   }
 }
 
 .wp-block-column {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-basis: 0;
+  flex-grow: 1;
 
-  // Normalize the margins
-  > * {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+  &[style] {
+    flex-grow: 0;
+  }
 
-    &:not(:first-child) {
-      margin-top: $base-spacing !important;
+  &:not(:first-child) {
+    margin-top: $grid-column-gutter;
+
+    @include breakpoint(lg) {
+      margin-top: 0;
+      margin-left: $grid-column-gutter;
+    }
+
+    .alignfull & {
+      @include breakpoint(md) {
+        margin-top: 0;
+        margin-left: $grid-column-gutter;
+      }
     }
   }
 }

@@ -5062,92 +5062,40 @@ p.has-background {
 ** Blocks / Columns
 ** -----------------------------------------------------------------------------*/
 .wp-block-columns {
-  display: grid;
-  grid-gap: 2.4rem;
-  grid-template-columns: repeat(1, 1fr);
+  display: flex;
+  flex-direction: column;
 }
-@media (min-width: 680px) {
+@media (min-width: 980px) {
   .wp-block-columns {
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: row;
   }
-}
-.wp-block-columns.has-2-columns {
-  grid-template-columns: repeat(1, 1fr);
 }
 @media (min-width: 680px) {
-  .wp-block-columns.has-2-columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (min-width: 980px) {
-  .wp-block-columns.has-2-columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-.wp-block-columns.has-3-columns {
-  grid-template-columns: repeat(2, 1fr);
-}
-@media (min-width: 680px) {
-  .wp-block-columns.has-3-columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (min-width: 980px) {
-  .wp-block-columns.has-3-columns {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-.wp-block-columns.has-4-columns {
-  grid-template-columns: repeat(2, 1fr);
-}
-@media (min-width: 680px) {
-  .wp-block-columns.has-4-columns {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (min-width: 980px) {
-  .wp-block-columns.has-4-columns {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-.wp-block-columns.has-5-columns {
-  grid-template-columns: repeat(3, 1fr);
-}
-@media (min-width: 680px) {
-  .wp-block-columns.has-5-columns {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-@media (min-width: 980px) {
-  .wp-block-columns.has-5-columns {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-.wp-block-columns.has-6-columns {
-  grid-template-columns: repeat(3, 1fr);
-}
-@media (min-width: 680px) {
-  .wp-block-columns.has-6-columns {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-@media (min-width: 980px) {
-  .wp-block-columns.has-6-columns {
-    grid-template-columns: repeat(6, 1fr);
+  .wp-block-columns.alignfull {
+    flex-direction: row;
   }
 }
 .wp-block-column {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-basis: 0;
+  flex-grow: 1;
 }
-.wp-block-column > * {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+.wp-block-column[style] {
+  flex-grow: 0;
 }
-.wp-block-column > *:not(:first-child) {
-  margin-top: 1.75em !important;
+.wp-block-column:not(:first-child) {
+  margin-top: 2.4rem;
+}
+@media (min-width: 980px) {
+  .wp-block-column:not(:first-child) {
+    margin-top: 0;
+    margin-left: 2.4rem;
+  }
+}
+@media (min-width: 680px) {
+  .alignfull .wp-block-column:not(:first-child) {
+    margin-top: 0;
+    margin-left: 2.4rem;
+  }
 }
 /*
 ** Blocks / Common
@@ -5653,14 +5601,16 @@ p.has-background {
   flex: 1;
   margin-top: 2.4rem;
 }
-.columns-2 .blocks-gallery-item {
-  flex-basis: calc(100% / 1 - 2.4rem);
-}
-.columns-2 .blocks-gallery-item:nth-child(1n) {
-  margin-right: 2.4rem;
-}
-.columns-2 .blocks-gallery-item:last-child, .columns-2 .blocks-gallery-item:nth-child(1n) {
-  margin-right: 0;
+@media (min-width: 0) {
+  .columns-2 .blocks-gallery-item {
+    flex-basis: calc(100% / 1 - 2.4rem);
+  }
+  .columns-2 .blocks-gallery-item:nth-child(1n) {
+    margin-right: 2.4rem;
+  }
+  .columns-2 .blocks-gallery-item:last-child, .columns-2 .blocks-gallery-item:nth-child(1n) {
+    margin-right: 0;
+  }
 }
 @media (min-width: 680px) {
   .columns-2 .blocks-gallery-item {
@@ -5684,14 +5634,16 @@ p.has-background {
     margin-right: 0;
   }
 }
-.columns-3 .blocks-gallery-item {
-  flex-basis: calc(100% / 2 - 2.4rem);
-}
-.columns-3 .blocks-gallery-item:nth-child(1n) {
-  margin-right: 2.4rem;
-}
-.columns-3 .blocks-gallery-item:last-child, .columns-3 .blocks-gallery-item:nth-child(2n) {
-  margin-right: 0;
+@media (min-width: 0) {
+  .columns-3 .blocks-gallery-item {
+    flex-basis: calc(100% / 2 - 2.4rem);
+  }
+  .columns-3 .blocks-gallery-item:nth-child(1n) {
+    margin-right: 2.4rem;
+  }
+  .columns-3 .blocks-gallery-item:last-child, .columns-3 .blocks-gallery-item:nth-child(2n) {
+    margin-right: 0;
+  }
 }
 @media (min-width: 680px) {
   .columns-3 .blocks-gallery-item {
@@ -5715,14 +5667,16 @@ p.has-background {
     margin-right: 0;
   }
 }
-.columns-4 .blocks-gallery-item {
-  flex-basis: calc(100% / 2 - 2.4rem);
-}
-.columns-4 .blocks-gallery-item:nth-child(1n) {
-  margin-right: 2.4rem;
-}
-.columns-4 .blocks-gallery-item:last-child, .columns-4 .blocks-gallery-item:nth-child(2n) {
-  margin-right: 0;
+@media (min-width: 0) {
+  .columns-4 .blocks-gallery-item {
+    flex-basis: calc(100% / 2 - 2.4rem);
+  }
+  .columns-4 .blocks-gallery-item:nth-child(1n) {
+    margin-right: 2.4rem;
+  }
+  .columns-4 .blocks-gallery-item:last-child, .columns-4 .blocks-gallery-item:nth-child(2n) {
+    margin-right: 0;
+  }
 }
 @media (min-width: 680px) {
   .columns-4 .blocks-gallery-item {
@@ -5746,14 +5700,16 @@ p.has-background {
     margin-right: 0;
   }
 }
-.columns-5 .blocks-gallery-item {
-  flex-basis: calc(100% / 3 - 2.4rem);
-}
-.columns-5 .blocks-gallery-item:nth-child(1n) {
-  margin-right: 2.4rem;
-}
-.columns-5 .blocks-gallery-item:last-child, .columns-5 .blocks-gallery-item:nth-child(3n) {
-  margin-right: 0;
+@media (min-width: 0) {
+  .columns-5 .blocks-gallery-item {
+    flex-basis: calc(100% / 3 - 2.4rem);
+  }
+  .columns-5 .blocks-gallery-item:nth-child(1n) {
+    margin-right: 2.4rem;
+  }
+  .columns-5 .blocks-gallery-item:last-child, .columns-5 .blocks-gallery-item:nth-child(3n) {
+    margin-right: 0;
+  }
 }
 @media (min-width: 680px) {
   .columns-5 .blocks-gallery-item {
@@ -5777,14 +5733,16 @@ p.has-background {
     margin-right: 0;
   }
 }
-.columns-6 .blocks-gallery-item {
-  flex-basis: calc(100% / 3 - 2.4rem);
-}
-.columns-6 .blocks-gallery-item:nth-child(1n) {
-  margin-right: 2.4rem;
-}
-.columns-6 .blocks-gallery-item:last-child, .columns-6 .blocks-gallery-item:nth-child(3n) {
-  margin-right: 0;
+@media (min-width: 0) {
+  .columns-6 .blocks-gallery-item {
+    flex-basis: calc(100% / 3 - 2.4rem);
+  }
+  .columns-6 .blocks-gallery-item:nth-child(1n) {
+    margin-right: 2.4rem;
+  }
+  .columns-6 .blocks-gallery-item:last-child, .columns-6 .blocks-gallery-item:nth-child(3n) {
+    margin-right: 0;
+  }
 }
 @media (min-width: 680px) {
   .columns-6 .blocks-gallery-item {
