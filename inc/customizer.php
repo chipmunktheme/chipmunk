@@ -139,7 +139,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							'name'        => 'heading_font',
 							'type'        => 'select',
 							'label'       => esc_html__( 'Heading Font', 'chipmunk' ),
-							'default'     => 'System',
+							'default'     => 'Poppins',
 							'choices'     => array_merge( array( 'System' => esc_html__( 'System font', 'chipmunk' ) ), $this->get_google_fonts() ),
 						),
 						array(

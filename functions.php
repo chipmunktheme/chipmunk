@@ -11,7 +11,7 @@
 
 define( 'THEME_TITLE',          'Chipmunk' );
 define( 'THEME_SLUG',           'chipmunk' );
-define( 'THEME_VERSION',        '1.14.1' );
+define( 'THEME_VERSION',        '1.14.2' );
 define( 'THEME_AUTHOR',         'Made by Less' );
 define( 'THEME_TEMPLATE_URI',   get_template_directory_uri() );
 define( 'THEME_TEMPLATE_DIR',   get_template_directory() );
