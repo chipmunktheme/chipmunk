@@ -26,7 +26,7 @@ get_header(); ?>
 
 					<?php if ( ! empty( $term->description ) ) : ?>
 						<div class="column column--md-4 column--lg-8">
-							<p class="text--content text--subtitle"><?php echo esc_html( $term->description ); ?></p>
+							<p class="text--content text--subtitle"><?php echo $term->description; ?></p>
 						</div>
 					<?php endif; ?>
 				</div>
@@ -36,7 +36,7 @@ get_header(); ?>
 						<h3 class="heading heading--md"><?php echo esc_html( $title ); ?></h3>
 
 						<?php if ( ! empty( $term->description ) ) : ?>
-							<p class="text--content text--subtitle"><?php echo esc_html( $term->description ); ?></p>
+							<p class="text--content text--subtitle"><?php echo $term->description; ?></p>
 						<?php endif; ?>
 					</div>
 				</div>
