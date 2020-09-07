@@ -19,7 +19,9 @@
 
 <div class="section<?php echo ( ! $wp_query->current_post or $wp_query->current_post % 2 == 0 ) ? ' section--theme-light' : ''; ?>">
 	<div class="container">
-		<article class="resource">
+		<article class="resource" itemscope itemtype="http://schema.org/Product">
+			<meta itemprop="name" content="<?php the_title(); ?>" />
+			
 			<div class="resource__main row">
 				<div class="resource__content column column--lg-<?php echo esc_attr( has_post_thumbnail() ? '6' : '12' ); ?>">
 					<?php do_action( 'chipmunk_before_resource_info' ); ?>
@@ -28,7 +30,7 @@
 						<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading--lg', is_single() ? get_the_title() : '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_title() . '</a>' ); ?>
 
 						<?php if ( ! empty( $description ) ) : ?>
-							<div class="resource__description">
+							<div class="resource__description" itemprop="description">
 								<?php echo wp_kses_post( apply_filters( 'the_content', $description ) ); ?>
 							</div>
 						<?php endif; ?>
@@ -75,12 +77,12 @@
 					<aside class="resource__image column column--lg-6">
 						<?php if ( is_single() ) : ?>
 							<?php if ( ! empty( $primary_website ) ) : ?>
-								<a href="<?php echo chipmunk_external_link( $primary_website ); ?>" class="resource__media" target="_blank"<?php echo chipmunk_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail( '1280x960' ); ?></a>
+								<a href="<?php echo chipmunk_external_link( $primary_website ); ?>" class="resource__media" target="_blank"<?php echo chipmunk_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
 							<?php else : ?>
-								<span class="resource__media"><?php the_post_thumbnail( '1280x960' ); ?></span>
+								<span class="resource__media"><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></span>
 							<?php endif; ?>
 						<?php else : ?>
-							<a href="<?php the_permalink(); ?>" class="resource__media"><?php the_post_thumbnail( '1280x960' ); ?></a>
+							<a href="<?php the_permalink(); ?>" class="resource__media"><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
 						<?php endif; ?>
 					</aside>
 				<?php endif; ?>
