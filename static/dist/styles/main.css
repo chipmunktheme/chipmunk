@@ -2438,24 +2438,6 @@ input:checked + .u-checkbox__mark .icon {
   }
 }
 /*
-** Utils - Verifiable
-** -----------------------------------------------------------------------------*/
-.u-verifiable {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.u-verifiable > span {
-  display: block;
-  margin-left: 0.5em;
-  font-size: 0.9em;
-  color: #369BF8;
-  line-height: 1;
-}
-.u-verifiable > span svg {
-  display: block;
-}
-/*
 ** Module - Button
 ** -----------------------------------------------------------------------------*/
 /*

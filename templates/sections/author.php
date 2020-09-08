@@ -5,8 +5,6 @@
 
 	<?php $user_meta = array_map( function( $a ) { return $a[0]; }, get_user_meta( $user->ID ) ); ?>
 	<?php $user_socials = wp_get_user_contact_methods(); ?>
-	<?php $verified_users = get_field( 'chipmunk_up_verified_users', 'option' ); ?>
-	<?php $is_verified = ! empty( $verified_users ) ? ( array_search( $user->ID, array_column( $verified_users, 'ID' ) ) !== false ) : false; ?>
 
 	<div class="section section--theme-light section--compact" id="author-profile">
 		<div class="container">
@@ -14,12 +12,6 @@
 				<div class="column column--lg-8">
 					<h1 class="profile__title heading heading--h4 u-verifiable">
 						<?php printf( apply_filters( 'chipmunk_author_title', esc_html__( '%s', 'chipmunk' ) ), $user->display_name ); ?>
-
-						<?php if ( $is_verified ) : ?>
-							<span title="<?php esc_attr_e( 'Verified', 'chipmunk' ); ?>">
-								<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'verified' ) ); ?>
-							</span>
-						<?php endif; ?>
 					</h1>
 
 					<div class="profile">
