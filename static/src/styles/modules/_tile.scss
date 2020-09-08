@@ -124,7 +124,7 @@
 
   .tile--card & {
     position: relative;
-    margin-bottom: $separator;
+    margin-bottom: $spacer;
   }
 
   .tile--wide & {
@@ -163,11 +163,11 @@
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  padding: $separator;
+  padding: $spacer;
   color: $color-black;
 
   @include breakpoint(md) {
-    padding: $separator * 1.5;
+    padding: $spacer * 1.5;
   }
 
   &--dimmed {
@@ -185,12 +185,12 @@
   }
 
   .tile--card:not(.tile--blank) &:not(:first-child) {
-    padding: 0 $separator $separator;
+    padding: 0 $spacer $spacer;
   }
 
   .tile--card.tile--wide &:not(:first-child) {
     @include breakpoint(md) {
-      padding: $separator * 1.5;
+      padding: $spacer * 1.5;
     }
   }
 

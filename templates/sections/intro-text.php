@@ -3,7 +3,7 @@
 <?php if ( ! empty( $intro_text ) ) : ?>
 	<div class="section section--intro">
 		<div class="container">
-			<h2 class="section__title section__separator heading heading--xl">
+			<h2 class="section__title section__separator heading heading--h1">
 				<?php echo do_shortcode( wp_kses_post( $intro_text ) ); ?>
 			</h2>
 		</div>

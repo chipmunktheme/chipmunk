@@ -2,17 +2,14 @@
 ** Blocks / Cover
 ** -----------------------------------------------------------------------------*/
 
-.wp-block-cover,
-.wp-block-cover-image {
+.wp-block-cover {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 0 1.5em 0;
   background-color: $color-black;
   background-size: cover;
-  background-position: center center;
-  text-align: center;
+  background-position: center;
   overflow: hidden;
 
   &:not(.alignwide):not(.alignfull) {
@@ -21,12 +18,10 @@
 
   &.has-left-content {
     justify-content: flex-start;
-    text-align: left;
   }
 
   &.has-right-content {
     justify-content: flex-end;
-    text-align: right;
   }
 
   &.has-background-dim {
@@ -56,26 +51,16 @@
   }
 }
 
-.wp-block-cover-image-text,
-.wp-block-cover-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.wp-block-cover__inner-container {
+  position: relative;
   z-index: $layer-base;
   max-width: 60rem;
   width: 90%;
   padding: 0.5em 1em;
   color: $color-white;
-  font-size: 2.6rem;
-  line-height: 1.2;
-  transform: translate3d(-50%, -50%, 0);
-
-  @include breakpoint(lg) {
-    font-size: 4rem;
-  }
 
   a:not([class]) {
-    color: inherit;
+    color: inherit !important;
 
     &:hover {
       color: inherit !important;

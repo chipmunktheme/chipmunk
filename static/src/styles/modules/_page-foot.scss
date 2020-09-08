@@ -10,7 +10,7 @@
   }
 
   .column {
-    margin-top: $separator;
+    margin-top: $spacer;
 
     &:first-child {
       margin-top: 0;
@@ -23,10 +23,10 @@
 }
 
 .page-foot__heading {
-  margin-bottom: $separator / 2;
+  margin-bottom: $spacer / 2;
 
   @include breakpoint(md) {
-    margin-bottom: $separator;
+    margin-bottom: $spacer;
   }
 }
 
@@ -73,7 +73,7 @@
   img {
     display: inline-block;
     margin-left: 1rem;
-    max-height: #{$font-line-height}em;
+    max-height: calc(#{map-get($body-type, line-height)} * 1em);
     vertical-align: middle;
     opacity: 0.5;
     transition: opacity $transition-duration;

@@ -1,6 +1,6 @@
 <div class="section">
 	<div class="container">
-		<?php echo chipmunk_conditional_markup( is_front_page(), 'h2', 'h1', 'heading heading--md', esc_html__( 'Collections', 'chipmunk' ) ); ?>
+		<?php echo chipmunk_conditional_markup( is_front_page(), 'h2', 'h1', 'heading heading--h4', esc_html__( 'Collections', 'chipmunk' ) ); ?>
 
 		<div class="row">
 			<?php

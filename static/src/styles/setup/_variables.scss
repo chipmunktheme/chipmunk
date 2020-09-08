@@ -28,20 +28,15 @@ $layer-dropdown:        20 !default;
 $layer-popup:           25 !default;
 
 // Font definitions
-$font-system:           -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !default;
+$font-serif:            Georgia,Times,"Times New Roman",serif !default;
+$font-sans-serif:       -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default;
 $font-poppins:          'Poppins', 'Arial', 'Helvetica Neue', Helvetica, sans-serif !default;
 $font-menlo:            Menlo, Consolas, monaco, monospace !default;
-
-$font-color:            $color-gray !default;
-$font-size:             1.6em !default;
-$font-size-content:     2.1rem !default;
-$font-line-height:      1.75 !default;
 
 // Dimensions
 $head-height:           4rem !default;
 
 // Others
-$separator:             2rem !default;
 $transition-duration:   0.25s !default;
 
 // Base path for assets
@@ -49,10 +44,11 @@ $base-path:             '..' !default;
 $base-spacing:          1.75em !default;
 
 // Spacing
+$spacer:                2rem !default;
 $spacers:               (
-  1:                      $separator,
-  2:                      ($separator * 1.5),
-  3:                      ($separator * 2)
+  1:                      ($spacer * 1),
+  2:                      ($spacer * 1.5),
+  3:                      ($spacer * 2)
 ) !default;
 
 // Responsive display values
@@ -63,7 +59,8 @@ $display-values:        (
   flex,
 ) !default;
 
-// Grid container
+// Grid settings
+$grid-layouts:          (6, 8, 10) !default;
 $grid-column-gutter:    2.4rem !default;
 $grid-container-gutter: 2.4rem !default;
 
@@ -72,36 +69,70 @@ $grid-breakpoints: (
   sm: (
     min-width: 0,
     container: 450px,
+    container-gutter: $grid-container-gutter,
     gutter: $grid-column-gutter,
     columns: 4
   ),
   md: (
     min-width: 680px,
     container: 640px,
+    container-gutter: $grid-container-gutter,
     gutter: $grid-column-gutter,
     columns: 6
   ),
   lg: (
     min-width: 980px,
-    container: 940px,
+    container: 1024px,
+    container-gutter: $grid-container-gutter,
     gutter: $grid-column-gutter,
     columns: 12
   )
 ) !default;
 
 // Customizable colors
-$color-primary:         var(--color-primary, #{$color-accent}) !default;
-$color-link:            var(--color-link, #{$color-accent}) !default;
-$color-background:      var(--color-background, #{$color-gray-lightest}) !default;
-$color-section:         var(--color-section, #{$color-white}) !default;
+$color-primary:           var(--chipmunk-color-primary, #{$color-accent}) !default;
+$color-link:              var(--chipmunk-color-link, #{$color-accent}) !default;
+$color-background:        var(--chipmunk-color-background, #{$color-gray-lightest}) !default;
+$color-section:           var(--chipmunk-color-section, #{$color-white}) !default;
 
 // Customizable fonts
-$font-primary:          var(--font-primary, #{$font-system}) !default;
-$font-heading:          var(--font-heading, #{$font-system}) !default;
-$font-mono:             var(--font-mono, #{$font-menlo}) !default;
+$font-primary:            var(--chipmunk-font-primary, #{$font-sans-serif}) !default;
+$font-heading:            var(--chipmunk-font-heading, #{$font-sans-serif}) !default;
+$font-mono:               var(--chipmunk-font-mono, #{$font-menlo}) !default;
 
-// Customizable sizes
-$size-content:          var(--size-content, #{$font-size-content}) !default;
+// Customizable type
+$body-type:               (
+  color:                    var(--chipmunk-body-color, #{$color-gray-dark}),
+  font-family:              var(--chipmunk-body-font-family, #{$font-sans-serif}),
+  font-size:                var(--chipmunk-body-font-size, 1.6rem),
+  line-height:              var(--chipmunk-body-line-height, 1.75),
+  letter-spacing:           var(--chipmunk-body-letter-spacing, 0px),
+  text-transform:           var(--chipmunk-body-text-transform, none),
+  font-weight:              var(--chipmunk-body-font-weight, 400),
+  font-style:               var(--chipmunk-body-font-style, normal)
+) !default;
+
+$heading-type:            (
+  color:                    var(--chipmunk-heading-color, #{$color-black}),
+  font-family:              var(--chipmunk-heading-font-family, #{$font-sans-serif}),
+  font-size:                var(--chipmunk-heading-font-size, 2.4rem),
+  line-height:              var(--chipmunk-heading-line-height, 1.4),
+  letter-spacing:           var(--chipmunk-heading-letter-spacing, 0px),
+  text-transform:           var(--chipmunk-heading-text-transform, none),
+  font-weight:              var(--chipmunk-heading-font-weight, 700),
+  font-style:               var(--chipmunk-heading-font-style, normal)
+) !default;
+
+$content-type:            (
+  color:                    var(--chipmunk-content-color, #{$color-black}),
+  font-family:              var(--chipmunk-content-font-family, #{$font-sans-serif}),
+  font-size:                var(--chipmunk-content-font-size, 2.1rem),
+  line-height:              var(--chipmunk-content-line-height, 1.75),
+  letter-spacing:           var(--chipmunk-content-letter-spacing, 0px),
+  text-transform:           var(--chipmunk-content-text-transform, none),
+  font-weight:              var(--chipmunk-content-font-weight, 400),
+  font-style:               var(--chipmunk-content-font-style, normal)
+) !default;
 
 // Customizable variables
-$border-opacity:        var(--border-opacity, 0.075) !default;
+$border-opacity:        var(--chipmunk-border-opacity, 0.075) !default;

@@ -19,7 +19,7 @@ get_header(); ?>
 			<?php if ( ! chipmunk_theme_option( 'disable_resource_sorting' ) and $query->have_posts() ) : ?>
 				<div class="row">
 					<div class="column column--md-4 column--lg-4">
-						<h1 class="heading heading--md"><?php echo esc_html( $title ); ?></h1>
+						<h1 class="heading heading--h4"><?php echo esc_html( $title ); ?></h1>
 					</div>
 
 					<?php get_template_part( 'templates/partials/filters' ); ?>
@@ -33,7 +33,7 @@ get_header(); ?>
 			<?php else : ?>
 				<div class="row">
 					<div class="column column--md-4 column--lg-8">
-						<h3 class="heading heading--md"><?php echo esc_html( $title ); ?></h3>
+						<h3 class="heading heading--h4"><?php echo esc_html( $title ); ?></h3>
 
 						<?php if ( ! empty( $term->description ) ) : ?>
 							<p class="text--content text--subtitle"><?php echo $term->description; ?></p>

@@ -23,18 +23,18 @@
 	<div class="section">
 		<div class="container">
 			<?php if ( is_singular( 'resource' ) ) : ?>
-				<h2 class="heading heading--md"><?php esc_html_e( 'Related', 'chipmunk' ); ?></h2>
+				<h2 class="heading heading--h4"><?php esc_html_e( 'Related', 'chipmunk' ); ?></h2>
 			<?php else : ?>
 				<?php if ( $query->have_posts() ) : ?>
 					<div class="row">
 						<div class="column column--md-4 column--lg-4">
-							<h1 class="heading heading--md"><?php echo esc_html( $resources_title ); ?></h1>
+							<h1 class="heading heading--h4"><?php echo esc_html( $resources_title ); ?></h1>
 						</div>
 
 						<?php get_template_part( 'templates/partials/filters' ); ?>
 					</div>
 				<?php else : ?>
-					<h1 class="heading heading--md"><?php echo esc_html( $resources_title ); ?></h1>
+					<h1 class="heading heading--h4"><?php echo esc_html( $resources_title ); ?></h1>
 				<?php endif; ?>
 			<?php endif; ?>
 

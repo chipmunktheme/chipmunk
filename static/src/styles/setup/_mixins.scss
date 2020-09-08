@@ -2,14 +2,12 @@
 ** Setup - Mixins
 ** -----------------------------------------------------------------------------*/
 
-/*
-** Calculates column fraction width
-**
-** @param {Number} $fraction  - Size of the column
-** @param {Number} $columns   - Number of the columns
-** @param {Boolean} $negative - Is value returned negative
-** @param {Unit} $addition    - Extra space to add to the value
-**/
+// Calculates column fraction width
+//
+// @param {Number} $fraction  - Size of the column
+// @param {Number} $columns   - Number of the columns
+// @param {Boolean} $negative - Is value returned negative
+// @param {Unit} $addition    - Extra space to add to the value
 @function column($fraction, $columns, $negative: false, $addition: 0px) {
   $gutters: (6: 1, 8: 0.5, 10: 0.25);
 
@@ -21,9 +19,41 @@
   }
 }
 
-/*
-** Dropdown
-**/
+
+// Adds negative margins to the element
+@mixin negative-margins($properties, $columns: 12, $breakpoint: lg) {
+  @include breakpoint($breakpoint) {
+    @each $layout in $grid-layouts {
+      .column--lg-#{$layout}[class*="offset"] & {
+        @if (index($properties, width)) {
+          width: column($columns / $layout, $layout, false);
+        }
+        @if (index($properties, max-width)) {
+          max-width: column((($columns - $layout) / 2) / $layout, $layout, false, 50%);
+        }
+        @if (index($properties, margin-left) or index($properties, margin)) {
+          margin-left: column((($columns - $layout) / 2) / $layout, $layout, true);
+        }
+        @if (index($properties, margin-right) or index($properties, margin)) {
+          margin-right: column((($columns - $layout) / 2) / $layout, $layout, true);
+        }
+      }
+    }
+  }
+}
+
+
+// Add negative spacing to make the element full width
+//
+// @param {Unit} $container  - Size of the container
+@mixin full-width($container: 0px) {
+  width: calc(100vw - #{$container * 2});
+  margin-left: calc(50% - (50vw - #{$container}));
+  margin-right: calc(50% - (50vw - #{$container}));
+}
+
+
+// Dropdown
 @mixin dropdown() {
   position: absolute;
   top: 100%;
@@ -57,9 +87,8 @@
   }
 }
 
-/*
-** Dropdown open
-**/
+
+// Dropdown open
 @mixin dropdown-open($center: false) {
   opacity: 1;
   pointer-events: all;
@@ -72,9 +101,8 @@
   }
 }
 
-/*
-** Add loading indicator
-**/
+
+// Loading indicator
 @mixin loader($size: 1em) {
   > span {
     transition: opacity $transition-duration;
@@ -107,37 +135,57 @@
   }
 }
 
-/*
-** Add spacing to the section
-**/
-@mixin spacer($direction, $size: 1, $property: 'margin') {
-  @if ($property == 'margin' and $size >= 0) {
-    &:not(:#{if($direction == top, first, last)}-child) {
-      #{$property}-#{$direction}: $base-spacing;
 
-      @if ($size > 1) {
-        @include breakpoint(md) {
-          #{$property}-#{$direction}: ($base-spacing * (($size + 1) / 2));
-        }
+// Gets typography properties
+@mixin typography-properties($typography, $excluded: null) {
+  $properties: color, font-family, font-size, font-weight, font-style, line-height, letter-spacing, text-transform;
 
-        @include breakpoint(lg) {
-          #{$property}-#{$direction}: ($base-spacing * $size);
-        }
+  @each $property in $properties {
+    @if map-has-key($typography, $property) and not index($excluded, $property) {
+      #{$property}: map-get($typography, $property);
+    }
+  }
+}
+
+
+// A helper for the spacing mixing
+@mixin _spacer($size, $direction, $property, $scale, $spacer) {
+  $spacer-breakpoints: (sm: 2, md: 1, lg: 0);
+
+  @if $scale >= 1 {
+    #{$property}-#{$direction}: calc(#{$spacer} * #{$size});
+  }
+  @else {
+    @each $breakpoint, $breakpoint-scale in $spacer-breakpoints {
+      @include breakpoint($breakpoint) {
+        #{$property}-#{$direction}: calc(#{$spacer} * #{$size * (1 - ($scale * $breakpoint-scale))});
       }
+    }
+  }
+}
+
+
+// Adds flexible spacer to the element
+@mixin spacer($size: 1, $direction: 'top', $property: 'margin', $scale: 0.25, $spacer: $spacer) {
+  @if ($property == 'margin' and $size > 0 and index(top bottom, $direction)) {
+    &:not(:#{if('top' == $direction, first, last)}-child) {
+      @include _spacer($size, $direction, $property, $scale, $spacer);
     }
   }
 
   @else {
-    #{$property}-#{$direction}: $base-spacing;
-
-    @if ($size > 1) {
-      @include breakpoint(md) {
-        #{$property}-#{$direction}: ($base-spacing * (($size + 1) / 2));
-      }
-
-      @include breakpoint(lg) {
-        #{$property}-#{$direction}: ($base-spacing * $size);
-      }
-    }
+    @include _spacer($size, $direction, $property, $scale, $spacer);
   }
+}
+
+
+// Adds font-size relative spacer to the element
+@mixin spacer-relative($size: 1, $direction: 'top', $property: 'margin', $scale: 1) {
+  @include spacer($size, $direction, $property, $scale, calc(#{map-get($content-type, line-height)} * 1em));
+}
+
+
+// Adds fixed spacer to the element
+@mixin spacer-fixed($size: 1, $direction: 'top', $property: 'margin') {
+  @include spacer($size, $direction, $property, 1);
 }

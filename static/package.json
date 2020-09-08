@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "axios": "^0.18.0",
-    "bespoke-toolkit": "^1.0.9",
+    "bespoke-toolkit": "^1.0.19",
     "custom-event-polyfill": "^0.3.0",
     "fitvids": "^2.0.0",
     "intersection-observer": "^0.5.1",

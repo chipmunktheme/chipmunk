@@ -1,9 +1,9 @@
 <?php if ( is_single() ) : ?>
-	<h1 class="entry__title heading heading--xl">
+	<h1 class="entry__title heading heading--h1">
 		<?php the_title(); ?>
 	</h1>
 <?php else : ?>
-	<h2 class="entry__title heading heading--lg">
+	<h2 class="entry__title heading heading--h3">
 		<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 	</h2>
 <?php endif; ?>

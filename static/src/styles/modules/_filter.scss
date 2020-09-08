@@ -8,7 +8,7 @@
 
   &:not(:last-child) {
     @include breakpoint(lg) {
-      margin-right: $separator * 2;
+      margin-right: $spacer * 2;
     }
   }
 }
@@ -69,7 +69,7 @@
 }
 
 .filter__title {
-  margin-right: $separator;
+  margin-right: $spacer;
   font-size: 1.4rem;
 
   @include breakpoint(lg) {

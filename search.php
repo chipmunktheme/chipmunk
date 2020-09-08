@@ -17,7 +17,7 @@ get_header(); ?>
 		<div class="container">
 			<div class="row">
 				<div class="column column--md-3 column--lg-8">
-					<h1 class="heading heading--md">
+					<h1 class="heading heading--h4">
 						<small><?php esc_html_e( 'Search results for:', 'chipmunk' ); ?></small>
 						<?php echo get_search_query(); ?>
 					</h1>

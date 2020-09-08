@@ -30,7 +30,7 @@ endif;
 	 */
 	?>
 	<?php if ( have_comments() ) : ?>
-		<h3 class="heading heading--md"><?php esc_html( printf( _n( '%s Comment', '%s Comments', get_comments_number(), 'chipmunk' ), number_format_i18n( get_comments_number() ) ) ); ?></h3>
+		<h3 class="heading heading--h4"><?php esc_html( printf( _n( '%s Comment', '%s Comments', get_comments_number(), 'chipmunk' ), number_format_i18n( get_comments_number() ) ) ); ?></h3>
 
 		<ul>
 			<?php
@@ -81,7 +81,7 @@ endif;
 			'class_submit'         => 'button button--primary-outline',
 			'comment_notes_before' => '',
 			'comment_notes_after'  => '',
-			'title_reply_before'   => '<h3 class="heading heading--md">',
+			'title_reply_before'   => '<h3 class="heading heading--h4">',
 			'title_reply_after'    => '</h3>',
 			'submit_field'         => '%1$s %2$s',
 			'submit_button'        => '<div class="form__field form__field--cta"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></div>',

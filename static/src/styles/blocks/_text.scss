@@ -2,11 +2,42 @@
 ** Blocks / Text
 ** -----------------------------------------------------------------------------*/
 
-p.has-drop-cap:first-letter {
+// Drop cap
+.has-drop-cap:first-letter {
   color: $color-black;
   float: left;
   font-family: Georgia;
   font-size: 4em;
   line-height: 0.75em;
   padding-right: 0.075em;
+}
+
+// Text align
+.has-text-align-center {
+  text-align: center;
+}
+
+.has-text-align-left {
+  text-align: left;
+}
+
+.has-text-align-right {
+  text-align: right;
+}
+
+// Font sizes
+.has-small-font-size {
+  font-size: 0.8em;
+}
+
+.has-normal-font-size {
+  font-size: 1em;
+}
+
+.has-large-font-size {
+  font-size: 1.2em;
+}
+
+.has-huge-font-size {
+  font-size: 1.6em;
 }

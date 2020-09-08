@@ -5,10 +5,10 @@
 
 <form action="#" class="form loader <?php echo esc_attr( ! empty( $align ) ? 'align' . $align : '' ); ?>" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
 	<?php if ( ! empty( $title ) ) : ?>
-		<h4 class="heading heading--xl text--<?php echo esc_attr( $alignment ); ?>"><?php echo esc_html( $title ); ?></h4>
+		<h4 class="heading heading--h1 text--<?php echo esc_attr( $alignment ); ?>"><?php echo esc_html( $title ); ?></h4>
 	<?php endif; ?>
 
-	<p class="form__message heading heading--thin" data-action-message="<?php echo $action; ?>"></p>
+	<p class="form__message heading heading--h4 heading--thin" data-action-message="<?php echo $action; ?>"></p>
 
 	<input type="hidden" name="filter" value="">
 

@@ -5,24 +5,24 @@
 .comment {
   display: flex;
   flex-wrap: nowrap;
-  margin-top: $separator;
+  margin-top: $spacer;
   line-height: 1.65;
 
   @include breakpoint(md) {
-    margin-top: ($separator * 2);
+    margin-top: ($spacer * 2);
   }
 
   & + .children {
-    margin-left: $separator;
+    margin-left: $spacer;
 
     @include breakpoint(md) {
-      margin-left: ($separator * 3);
+      margin-left: ($spacer * 3);
     }
   }
 }
 
 .comment__image {
-  margin-right: $separator;
+  margin-right: $spacer;
 
   img {
     border-radius: 50%;
@@ -104,10 +104,10 @@
 
 .comment-respond {
   &:not(:first-child) {
-    margin-top: ($separator * 2);
+    margin-top: ($spacer * 2);
 
     @include breakpoint(md) {
-      margin-top: ($separator * 4);
+      margin-top: ($spacer * 4);
     }
   }
 
@@ -115,11 +115,11 @@
     text-align: left;
 
     &:not(:first-child) {
-      margin-top: $separator;
+      margin-top: $spacer;
 
       &.form-submit {
         @include breakpoint(md) {
-          margin-top: ($separator * 2);
+          margin-top: ($spacer * 2);
         }
       }
     }

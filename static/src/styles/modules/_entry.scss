@@ -4,18 +4,18 @@
 
 .entry {
   &:not(:first-child) {
-    margin-top: $separator;
+    margin-top: $spacer;
 
     @include breakpoint(md) {
-      margin-top: ($separator * 2);
+      margin-top: ($spacer * 2);
     }
   }
 
   &:not(:last-child) {
-    margin-bottom: ($separator * 2);
+    margin-bottom: ($spacer * 2);
 
     @include breakpoint(md) {
-      margin-bottom: ($separator * 3);
+      margin-bottom: ($spacer * 3);
     }
   }
 
@@ -29,7 +29,7 @@
 }
 
 .entry__hero {
-  $head-outer-height: ($head-height + $separator);
+  $head-outer-height: ($head-height + $spacer);
 
   position: relative;
   display: flex;
@@ -44,7 +44,7 @@
   overflow: hidden;
 
   @include breakpoint(md) {
-    $head-outer-height: ($head-height + $separator * 2);
+    $head-outer-height: ($head-height + $spacer * 2);
 
     height: calc(40vh + #{$head-outer-height});
     min-height: calc(55vw + #{$head-outer-height});
@@ -53,7 +53,7 @@
   }
 
   @include breakpoint(lg) {
-    $head-outer-height: ($head-height + $separator * 3);
+    $head-outer-height: ($head-height + $spacer * 3);
 
     height: auto;
     min-height: calc(45rem + #{$head-outer-height});
@@ -91,10 +91,10 @@
   transition: opacity $transition-duration;
 
   &:not(:last-child) {
-    margin-bottom: $separator;
+    margin-bottom: $spacer;
 
     @include breakpoint(md) {
-      margin-bottom: ($separator * 2);
+      margin-bottom: ($spacer * 2);
     }
   }
 
@@ -111,10 +111,10 @@
 .entry__head {
   &:only-child,
   &:not(:last-child) {
-    margin-bottom: $separator;
+    margin-bottom: $spacer;
 
     @include breakpoint(md) {
-      margin-bottom: ($separator * 2);
+      margin-bottom: ($spacer * 2);
     }
   }
 }
@@ -123,11 +123,11 @@
   transition: opacity $transition-duration;
 
   &:not(:first-child) {
-    margin-top: $separator;
+    margin-top: $spacer;
   }
 
   &:not(:last-child) {
-    margin-bottom: $separator;
+    margin-bottom: $spacer;
   }
 
   a {
@@ -147,13 +147,13 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: -($separator / 2);
-  margin-left: -$separator;
+  margin-top: -($spacer / 2);
+  margin-left: -$spacer;
   opacity: 0.8;
 
   > * {
-    margin-left: $separator;
-    padding-top: ($separator / 2);
+    margin-left: $spacer;
+    padding-top: ($spacer / 2);
   }
 }
 
@@ -163,10 +163,10 @@
   transition: opacity $transition-duration;
 
   &:not(:first-child):not(:empty) {
-    margin-top: $separator;
+    margin-top: $spacer;
 
     @include breakpoint(md) {
-      margin-top: ($separator * 1.5);
+      margin-top: ($spacer * 1.5);
     }
   }
 }
@@ -183,7 +183,7 @@
 
   .nav-socials {
     &:not(:first-child) {
-      margin-top: $separator;
+      margin-top: $spacer;
 
       @include breakpoint(md) {
         margin-top: 0;
@@ -194,7 +194,7 @@
 
 .entry__column {
   &:not(:first-child) {
-    margin-top: $separator;
+    margin-top: $spacer;
 
     @include breakpoint(lg) {
       margin-top: 0;
@@ -210,7 +210,7 @@
   line-height: 1.2;
 
   img {
-    margin-right: ($separator / 2);
+    margin-right: ($spacer / 2);
     border-radius: 50%;
   }
 
@@ -222,10 +222,10 @@
 
 .entry__button {
   display: inline-block;
-  margin-top: $separator;
+  margin-top: $spacer;
 
   @include breakpoint(md) {
-    margin-top: ($separator * 2);
+    margin-top: ($spacer * 2);
   }
 
   .entry[href]:hover & {

@@ -8,10 +8,10 @@
   }
 
   &:not(:first-child) {
-    margin-top: $separator;
+    margin-top: $spacer;
 
     @include breakpoint(md) {
-      margin-top: ($separator * 2);
+      margin-top: ($spacer * 2);
     }
   }
 
@@ -31,8 +31,8 @@
 
 .widget__title {
   @extend %heading;
-  @extend %heading-sm;
-  margin-bottom: ($separator / 2);
+  @extend %heading-h4;
+  margin-bottom: ($spacer / 2);
 }
 
 // Text widget

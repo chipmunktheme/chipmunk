@@ -19,8 +19,8 @@
 
 .popup__close {
   position: absolute;
-  top: $separator;
-  right: $separator;
+  top: $spacer;
+  right: $spacer;
   z-index: $layer-utils;
   color: $color-black;
   font-size: 2.2rem;
@@ -33,8 +33,8 @@
   }
 
   @include breakpoint(lg) {
-    top: $separator * 2;
-    right: $separator * 2;
+    top: $spacer * 2;
+    right: $spacer * 2;
   }
 
   &:hover {
@@ -45,8 +45,8 @@
 .popup__content {
   position: relative;
   top: -300%;
-  padding: $separator;
-  margin-top: $separator * 2;
+  padding: $spacer;
+  margin-top: $spacer * 2;
   background-color: $color-section;
   color: $color-black;
   opacity: 0;
@@ -55,13 +55,13 @@
   transition: opacity $transition-duration * 1.5, transform $transition-duration * 1.5;
 
   @include breakpoint(md) {
-    padding: $separator * 2;
-    margin-top: $separator * 4;
+    padding: $spacer * 2;
+    margin-top: $spacer * 4;
   }
 
   @include breakpoint(lg) {
-    padding: $separator * 3;
-    margin-top: $separator * 8;
+    padding: $spacer * 3;
+    margin-top: $spacer * 8;
   }
 
   .has-popup-open & {
@@ -79,7 +79,7 @@
   .form {
     @include breakpoint(md) {
       &:not(:first-child) {
-        margin-top: $separator * 2;
+        margin-top: $spacer * 2;
       }
     }
   }

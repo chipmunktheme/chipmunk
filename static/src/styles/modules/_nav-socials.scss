@@ -13,12 +13,12 @@
 }
 
 .nav-socials__title {
-  margin-right: $separator;
+  margin-right: $spacer;
 }
 
 .nav-socials__item {
   &:not(:first-child) {
-    margin-left: ($separator / 2);
+    margin-left: ($spacer / 2);
   }
 }
 

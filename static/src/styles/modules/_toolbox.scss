@@ -21,7 +21,7 @@
 
   @include breakpoint(md) {
     justify-content: flex-end;
-    padding-left: $separator * 2;
+    padding-left: $spacer * 2;
     text-align: right;
   }
 }

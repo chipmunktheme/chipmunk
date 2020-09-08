@@ -5,30 +5,29 @@
 .heading {
   @extend %heading;
 
-  &--sm {
-    @extend %heading-sm;
+  @for $i from 1 through 6 {
+    &--h#{$i} {
+      @extend %heading-h#{$i} !optional;
+    }
   }
 
-  &--md {
-    @extend %heading-md;
+  small {
+    color: $color-gray;
   }
 
-  &--lg {
-    @extend %heading-lg;
-  }
-
-  &--xl {
-    @extend %heading-xl;
+  a:hover {
+    text-decoration: underline;
   }
 
   &--thin {
-    @extend %heading-thin;
+    font-weight: normal;
   }
 }
 
+
 .heading__link {
   display: inline-block;
-  margin-left: $separator;
+  margin-left: $spacer;
   color: $color-gray;
   font-size: 0.8em;
   cursor: pointer;
@@ -36,7 +35,7 @@
   transition-duration: $transition-duration;
 
   @include breakpoint(md) {
-    margin-left: ($separator * 1.5);
+    margin-left: ($spacer * 1.5);
     font-size: 1em;
   }
 

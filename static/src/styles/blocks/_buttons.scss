@@ -1,6 +1,16 @@
 /*
-** Blocks / Button
+** Blocks / Buttons
 ** -----------------------------------------------------------------------------*/
+
+.wp-block-buttons {
+  .wp-block-button {
+    display: inline-block;
+
+    &:not(:first-child) {
+      margin-top: 0;
+    }
+  }
+}
 
 .wp-block-button__link {
   @extend %button;
@@ -11,11 +21,6 @@
     .is-style-outline & {
       @extend %button-primary-outline;
     }
-  }
-
-  .is-style-default &,
-  .is-style-outline & {
-    @extend %button-rounded;
   }
 
   .is-style-squared & {

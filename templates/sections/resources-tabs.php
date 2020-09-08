@@ -33,7 +33,7 @@
 			<?php if ( ! empty( $tabs ) ) : ?>
 				<div class="tabs section__separator" data-tabs role="tablist">
 					<?php if ( count( $tabs ) > 1 ) : ?>
-						<div class="tabs__title heading heading--md">
+						<div class="tabs__title heading heading--h4">
 							<?php foreach ( array_values( $tabs ) as $index => $key ) : ?>
 
 								<strong class="heading__link<?php echo $index == 0 ? ' active' : ''; ?>" data-tabs-toggle role="tab">

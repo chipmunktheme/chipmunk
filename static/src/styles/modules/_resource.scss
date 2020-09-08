@@ -5,23 +5,23 @@
 .resource {
   display: flex;
   flex-direction: column;
-  margin-top: -($separator / 2);
-  margin-bottom: -($separator / 2);
+  margin-top: -($spacer / 2);
+  margin-bottom: -($spacer / 2);
 
   @include breakpoint(md) {
-    margin-top: -($separator);
-    margin-bottom: -($separator);
+    margin-top: -($spacer);
+    margin-bottom: -($spacer);
   }
 }
 
 .resource__head,
 .resource__main {
-  margin-top: $separator / 2;
-  margin-bottom: $separator / 2;
+  margin-top: $spacer / 2;
+  margin-bottom: $spacer / 2;
 
   @include breakpoint(md) {
-    margin-top: $separator;
-    margin-bottom: $separator;
+    margin-top: $spacer;
+    margin-bottom: $spacer;
   }
 }
 
@@ -45,7 +45,7 @@
 
 .resource__image {
   align-self: center;
-  margin-top: $separator * 2;
+  margin-top: $spacer * 2;
 
   @include breakpoint(lg) {
     margin-top: 0;
@@ -67,7 +67,7 @@
 .resource__extras,
 .resource__actions {
   &:not(:first-child):not(:empty) {
-    margin-top: $separator;
+    margin-top: $spacer;
   }
 }
 
@@ -84,14 +84,10 @@
 }
 
 .resource__description {
-  font-size: calc(#{$size-content} * 0.9);
-
-  @include breakpoint(md) {
-    font-size: $size-content;
-  }
+  @extend %content-size;
 
   @include breakpoint(lg) {
-    padding-right: $separator;
+    padding-right: $spacer;
   }
 
   a {
@@ -119,7 +115,7 @@
   margin-top: 1rem;
 
   @include breakpoint(md) {
-    margin-top: $separator;
+    margin-top: $spacer;
   }
 }
 
@@ -133,7 +129,7 @@
 
 .resource__share {
   &:not(:first-child) {
-    margin-top: $separator * 2;
+    margin-top: $spacer * 2;
 
     @include breakpoint(lg) {
       margin-top: 0;
@@ -154,6 +150,6 @@
 
 .resource__button {
   &:not(:first-child) {
-    margin-left: $separator;
+    margin-left: $spacer;
   }
 }

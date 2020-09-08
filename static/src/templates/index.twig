@@ -1,9 +1,0 @@
-{% extends 'layouts/default.twig' %}
-{% set pageName = 'Index' %}
-
-{% block content %}
-  {% include 'sections/resources-tabs.twig' with { rows: 2 } %}
-  {% include 'partials/toolbox.twig' %}
-  {% include 'sections/collections.twig' %}
-  {% include 'sections/posts.twig' with { title: 'Latest Posts', posts: 3 } %}
-{% endblock %}

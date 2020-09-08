@@ -3,23 +3,18 @@
 ** -----------------------------------------------------------------------------*/
 
 .content {
-  color: $color-black;
-  font-size: calc(#{$size-content} * 0.9);
+  @include typography-properties($content-type, font-size);
+  @extend %content-size;
 
-  @include breakpoint(md) {
-    font-size: $size-content;
+  @for $i from 1 through 6 {
+    h#{$i}:not(.heading) {
+      @extend %heading !optional;
+      @extend %heading-h#{$i} !optional;
+    }
   }
 
-  > h1, > h2, > h3, > h4, > h5, > h6 {
-    @extend %heading;
-
-    &:not(:first-child) {
-      margin-top: $separator;
-
-      @include breakpoint(md) {
-        margin-top: $separator * 2;
-      }
-    }
+  h1, h2, h3, h4, h5, h6 {
+    @include spacer-relative;
 
     + ul:not(:first-child),
     + ol:not(:first-child) {
@@ -27,67 +22,32 @@
     }
   }
 
-  > h1, > h2 {
-    @extend %heading-xl;
-
-    &:not(:first-child) {
-      margin-top: $separator * 2;
-
-      @include breakpoint(lg) {
-        margin-top: $separator * 3;
-      }
-    }
-  }
-
-  > h3 {
-    @extend %heading-lg;
-  }
-
-  > h4 {
-    @extend %heading-md;
-    text-transform: none !important;
-  }
-
-  > h5, > h6 {
-    font-size: 1.6rem;
-    line-height: 1.6;
-
-    @include breakpoint(md) {
-      font-size: 2.1rem;
-    }
-  }
-
-  > p, > ul, > ol, > blockquote, > table, > pre, > code, > iframe,
+  p, ul, ol, blockquote, table, pre, code, iframe,
   .wp-caption {
     &:not([class*='block']) {
-      @include spacer(top);
+      @include spacer-relative;
     }
   }
 
-  > ul,
-  > ol {
-    margin-left: $base-spacing;
+  ul:not([class*='block']),
+  ol:not([class*='block']) {
+    @include spacer-relative(1, left);
+    list-style-position: inside;
+
+    li {
+      @include spacer-relative(0.25);
+    }
   }
 
-  > ul:not([class*='block']) {
+  ul:not([class*='block']) {
     list-style: disc;
-    list-style-position: inside;
-
-    li:not(:first-child) {
-      margin-top: $base-spacing / 4;
-    }
   }
 
-  > ol:not([class*='block']) {
+  ol:not([class*='block']) {
     list-style: decimal;
-    list-style-position: inside;
-
-    li:not(:first-child) {
-      margin-top: $base-spacing / 4;
-    }
   }
 
-  a {
+  a:not([class]) {
     @extend %link;
   }
 
@@ -106,6 +66,11 @@
   blockquote:not([class*='block']) {
     p {
       font-size: 1.2em;
+      line-height: 1.5;
+    }
+
+    em {
+      font-style: normal;
     }
 
     cite {
@@ -153,21 +118,11 @@
   }
 
   .wp-caption {
+    @include spacer-relative(1, top);
+    @include spacer-relative(1, bottom);
     position: relative;
     max-width: 100%;
     height: auto;
-
-    &:not(:first-child) {
-      @include breakpoint(md) {
-        margin-top: $base-spacing;
-      }
-    }
-
-    &:not(:last-child) {
-      @include breakpoint(md) {
-        margin-bottom: $base-spacing;
-      }
-    }
 
     a:not(.button) {
       display: block;
@@ -179,54 +134,16 @@
     @extend %caption-text;
     @extend %caption-block;
   }
-
-  // Custom Forms
-  > div[class*="contact"],
-  > div[id*="contact"],
-  > form:not(.form) {
-    @include spacer(top);
-
-    div[class*="wrap"], p {
-      &:not(.form__field) {
-        @extend .form__field;
-      }
-    }
-
-    label[for] {
-      &:not(.form__label) {
-        @extend .form__label;
-      }
-    }
-
-    label {
-      width: 100%;
-    }
-
-    input:not([type="submit"]):not([type="radio"]):not([type="checkbox"]),
-    textarea {
-      &:not(.form__input) {
-        @extend .form__input;
-      }
-    }
-
-    input[type="submit"],
-    button[type="submit"] {
-      &:not(.button--primary) {
-        @extend .button;
-        @extend .button--primary;
-      }
-    }
-  }
 }
 
 .content__component {
   font-size: 1.6rem;
 
   &:not(:first-child) {
-    margin-top: $separator;
+    margin-top: $spacer;
 
     @include breakpoint(md) {
-      margin-top: ($separator * 2);
+      margin-top: ($spacer * 2);
     }
   }
 }

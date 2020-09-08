@@ -29,11 +29,11 @@
   }
 
   &--subtitle {
-    margin-top: $separator;
-    margin-bottom: $separator;
+    margin-top: $spacer;
+    margin-bottom: $spacer;
 
     @include breakpoint(lg) {
-      margin-bottom: ($separator * 1.5);
+      margin-bottom: ($spacer * 1.5);
     }
   }
 }

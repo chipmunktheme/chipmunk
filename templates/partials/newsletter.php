@@ -24,8 +24,8 @@
 	<div class="section section--theme-primary text--center">
 		<div class="container">
 			<div class="column column--lg-8 column--lg-offset-2">
-				<h4 class="heading heading--xl"><?php esc_html_e( 'Newsletter', 'chipmunk' ); ?></h4>
-				<p class="heading heading--thin"><?php echo esc_html( chipmunk_theme_option( 'newsletter_tagline' ) ); ?></p>
+				<h4 class="heading heading--h1"><?php esc_html_e( 'Newsletter', 'chipmunk' ); ?></h4>
+				<p class="heading heading--h4 heading--thin mt-sm-1"><?php echo esc_html( chipmunk_theme_option( 'newsletter_tagline' ) ); ?></p>
 			</div>
 
 			<div class="row">

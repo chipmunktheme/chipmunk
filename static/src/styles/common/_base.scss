@@ -3,14 +3,12 @@
 ** -----------------------------------------------------------------------------*/
 
 body {
+  @include typography-properties($body-type);
+  display: flex;
+  flex-direction: column;
   min-height: 100%;
   position: relative;
   background-color: $color-background;
-  color: $font-color;
-  font-family: $font-primary;
-  font-size: $font-size;
-  font-weight: normal;
-  line-height: $font-line-height;
 
   &::after {
     @include u-overlay;

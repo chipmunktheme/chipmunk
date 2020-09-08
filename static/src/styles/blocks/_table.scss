@@ -4,13 +4,8 @@
 
 .wp-block-table {
   min-width: 100%;
-  border: 1px solid $color-gray-light;
   border-spacing: 0;
   border-collapse: collapse;
-
-  @include breakpoint(md) {
-    border-width: 2px;
-  }
 
   thead {
     font-weight: bold;

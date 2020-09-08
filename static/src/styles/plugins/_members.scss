@@ -3,12 +3,11 @@
 ** -----------------------------------------------------------------------------*/
 
 .members__form {
-  margin-top: $separator;
-  font-size: calc(#{$size-content} * 0.9);
+  @extend %content-size;
+  margin-top: $spacer;
 
   @include breakpoint(md) {
-    margin-top: $separator * 2;
-    font-size: $size-content;
+    margin-top: $spacer * 2;
   }
 
   input[type="text"],
@@ -16,6 +15,7 @@
   input[type="url"],
   input[type="password"],
   textarea {
+    @extend %content-size;
     display: inline-block;
     width: 100%;
     padding: 5px 0;
@@ -23,14 +23,9 @@
     border-bottom: 1px solid currentColor;
     border-radius: 0;
     color: $color-black;
-    font-size: calc(#{$size-content} * 0.9);
     line-height: 1.6;
     resize: none;
     vertical-align: middle;
-
-    @include breakpoint(md) {
-      font-size: $size-content;
-    }
 
     @include breakpoint(lg) {
       border-bottom-width: 2px;
@@ -53,7 +48,7 @@
     margin-top: 0;
 
     &:not(:first-child) {
-      margin-top: $separator * 1.5;
+      margin-top: $spacer * 1.5;
     }
 
     label {
@@ -84,7 +79,7 @@
 
   .forgot-password {
     display: inline-block;
-    margin-top: $separator;
+    margin-top: $spacer;
     font-size: 1.6rem;
   }
 }

@@ -3,12 +3,11 @@
 ** -----------------------------------------------------------------------------*/
 
 .wp-block-button,
+.wp-block-buttons,
 .wp-block-code,
 .wp-block-preformatted,
 .wp-block-categories {
-  &:not(:first-child) {
-    margin-top: $base-spacing;
-  }
+  @include spacer-relative;
 }
 
 // Separators
@@ -19,31 +18,28 @@
 .wp-block-image,
 .wp-block-cover,
 .wp-block-gallery,
-.wp-block-columns,
-.wp-block-separator {
+.wp-block-columns {
   &:not(.alignleft):not(.alignright) {
-    @include spacer(top);
-    @include spacer(bottom);
+    @include spacer-relative(1, top, margin, 0.25);
+    @include spacer-relative(1, bottom, margin, 0.25);
+  }
 
-    &.alignwide,
-    &.alignfull {
-      @include spacer(top, 2);
-      @include spacer(bottom, 2);
-    }
+  &.alignwide:not(.alignnone),
+  &.alignfull:not(.alignnone) {
+    @include spacer-relative(2, top, margin, 0.25);
+    @include spacer-relative(2, bottom, margin, 0.25);
   }
 }
 
 .wp-block-quote,
 .wp-block-pullquote,
-.wp-block-verse {
+.wp-block-verse,
+.wp-block-separator {
   &:not(.alignleft):not(.alignright) {
-    @include spacer(top, 2);
-    @include spacer(bottom, 2);
+    @include spacer-relative(2, top, margin, 0.25);
+    @include spacer-relative(2, bottom, margin, 0.25);
   }
 }
-
-// Alignments
-$layouts: (6, 8, 10);
 
 .alignnone,
 .aligncenter,
@@ -68,14 +64,16 @@ $layouts: (6, 8, 10);
 }
 
 .alignleft {
+  @include negative-margins((margin-left, max-width));
+
   @include breakpoint(md) {
+    @include spacer-relative(1, right);
     float: left;
-    margin-right: $base-spacing;
     text-align: left;
   }
 
   @include breakpoint(lg) {
-    @each $layout in $layouts {
+    @each $layout in $grid-layouts {
       .column--lg-#{$layout}[class*="offset"] & {
         margin-left: column(((12 - $layout) / 2) / $layout, $layout, true);
       }
@@ -84,63 +82,36 @@ $layouts: (6, 8, 10);
 }
 
 .alignright {
-  @include breakpoint(md) {
-    float: right;
-    margin-left: $base-spacing;
-    text-align: right;
-  }
+  @include negative-margins((margin-right, max-width));
 
-  @include breakpoint(lg) {
-    @each $layout in $layouts {
-      .column--lg-#{$layout}[class*="offset"] & {
-        margin-right: column(((12 - $layout) / 2) / $layout, $layout, true);
-      }
-    }
+  @include breakpoint(md) {
+    @include spacer-relative(1, left);
+    float: right;
+    text-align: right;
   }
 }
 
 .alignleft,
 .alignright {
+  @include spacer-relative(1, top);
+  @include spacer-relative(1, bottom);
+
   @include breakpoint(md) {
     max-width: 50%;
-  }
-
-  @include breakpoint(lg) {
-    @each $layout in $layouts {
-      .column--lg-#{$layout}[class*="offset"] & {
-        max-width: column(((12 - $layout) / 2) / $layout, $layout, false, 50%);
-      }
-    }
-  }
-
-  &:not(:first-child) {
-    margin-top: $base-spacing;
-    margin-bottom: $base-spacing;
+    margin-bottom: $spacer;
   }
 }
 
 .alignwide {
-  @include breakpoint(lg) {
-    @each $layout in $layouts {
-      .column--lg-#{$layout}[class*="offset"] & {
-        width: column(12 / $layout, $layout, false);
-        margin-left: column(((12 - $layout) / 2) / $layout, $layout, true);
-        margin-right: column(((12 - $layout) / 2) / $layout, $layout, true);
-      }
-    }
-  }
+  @include negative-margins((width, margin));
 }
 
 .alignfull {
   .column[class*="offset"] & {
-    width: calc(100vw);
-    margin-left: calc(50% - (50vw));
-    margin-right: calc(50% - (50vw));
+    @include full-width;
 
     &.wp-block-columns {
-      width: calc(100vw - #{$grid-container-gutter * 2});
-      margin-left: calc(50% - (50vw - #{$grid-container-gutter}));
-      margin-right: calc(50% - (50vw - #{$grid-container-gutter}));
+      @include full-width($grid-container-gutter);
     }
   }
 }

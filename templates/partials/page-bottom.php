@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="column column--md-3 column--lg-5">
-				<h5 class="page-foot__heading heading heading--sm"><?php esc_html_e( 'About', 'chipmunk' ); ?></h5>
+				<h5 class="page-foot__heading heading heading--h5"><?php esc_html_e( 'About', 'chipmunk' ); ?></h5>
 
 				<?php if ( $about_copy = chipmunk_theme_option( 'about_copy' ) ) : ?>
 					<div class="page-foot__description">
@@ -17,7 +17,7 @@
 
 			<?php if ( ! empty( $menu_items ) || ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 				<div class="column column--md-2 column--md-offset-1 column--lg-2 column--lg-offset-<?php echo empty( $socials ) ? '5 text-right' : '3'; ?>">
-					<h5 class="page-foot__heading heading heading--sm"><?php esc_html_e( 'Navigation', 'chipmunk' ); ?></h5>
+					<h5 class="page-foot__heading heading heading--h5"><?php esc_html_e( 'Navigation', 'chipmunk' ); ?></h5>
 
 					<ul class="nav-secondary">
 						<?php if ( ! empty( $menu_items ) ) : ?>
@@ -39,7 +39,7 @@
 
 			<?php if ( ! empty( $socials ) ) : ?>
 				<div class="column column--lg-2 visible-lg-block">
-					<h5 class="page-foot__heading heading heading--sm"><?php esc_html_e( 'Follow', 'chipmunk' ); ?></h5>
+					<h5 class="page-foot__heading heading heading--h5"><?php esc_html_e( 'Follow', 'chipmunk' ); ?></h5>
 
 					<ul class="nav-secondary">
 						<?php foreach ( $socials as $social_key => $social_value ) : ?>

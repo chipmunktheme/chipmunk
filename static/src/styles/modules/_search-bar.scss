@@ -9,8 +9,8 @@
   left: 0;
   right: 0;
   z-index: $layer-head + 1;
-  padding-top: $separator * 0.5;
-  padding-bottom: $separator * 0.5;
+  padding-top: $spacer * 0.5;
+  padding-bottom: $spacer * 0.5;
   background-color: $color-section;
   transform: translateY(-100%);
   opacity: 0;
@@ -18,13 +18,13 @@
   transition-duration: $transition-duration * 1.5;
 
   @include breakpoint(md) {
-    padding-top: $separator;
-    padding-bottom: $separator;
+    padding-top: $spacer;
+    padding-bottom: $spacer;
   }
 
   @include breakpoint(lg) {
-    padding-top: $separator * 1.5;
-    padding-bottom: $separator * 1.5;
+    padding-top: $spacer * 1.5;
+    padding-bottom: $spacer * 1.5;
   }
 
   .has-search-open & {
@@ -45,8 +45,8 @@
   }
 
   [data-sticky].is-condensed ~ & {
-    padding-top: $separator * 0.5;
-    padding-bottom: $separator * 0.5;
+    padding-top: $spacer * 0.5;
+    padding-bottom: $spacer * 0.5;
   }
 }
 
@@ -64,11 +64,11 @@
   transition: color $transition-duration;
 
   &:first-child {
-    margin-right: $separator;
+    margin-right: $spacer;
   }
 
   &:last-child {
-    margin-left: $separator;
+    margin-left: $spacer;
   }
 
   &:hover {

@@ -29,7 +29,7 @@
 	<div class="section">
 		<div class="container">
 			<?php if ( $title and $layout == 'tiles' ) : ?>
-				<h2 class="heading heading--md"><?php echo $title; ?></h2>
+				<h2 class="heading heading--h4"><?php echo $title; ?></h2>
 			<?php endif; ?>
 
 			<?php if ( $query->have_posts() ) : ?>

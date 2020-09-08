@@ -7,13 +7,13 @@
   align-items: flex-start;
 
   &:not(:first-child) {
-    margin-top: $separator;
+    margin-top: $spacer;
   }
 }
 
 .profile__avatar {
   max-width: 10rem;
-  margin-right: $separator;
+  margin-right: $spacer;
 
   @include breakpoint(md) {
     max-width: 12.8rem;
@@ -30,7 +30,7 @@
 
 .profile__description {
   &:not(:first-child) {
-    margin-top: $separator / 2;
+    margin-top: $spacer / 2;
   }
 
   a {
@@ -48,7 +48,7 @@
   align-items: center;
 
   &:not(:first-child) {
-    margin-top: $separator;
+    margin-top: $spacer;
   }
 }
 

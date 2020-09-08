@@ -4,10 +4,10 @@
 
 .pagination {
   color: $color-black;
-  margin-top: -($separator);
+  margin-top: -($spacer);
 
   @include breakpoint(md) {
-    margin-top: -($separator * 2.5);
+    margin-top: -($spacer * 2.5);
   }
 
   &:first-child:last-child {
@@ -19,10 +19,10 @@
   }
 
   &:not(:first-child) {
-    margin-top: $separator;
+    margin-top: $spacer;
 
     @include breakpoint(md) {
-      margin-top: $separator * 1.5;
+      margin-top: $spacer * 1.5;
     }
   }
 }
@@ -41,11 +41,11 @@
   width: 25%;
 
   &:first-child {
-    margin-right: $separator;
+    margin-right: $spacer;
   }
 
   &:last-child {
-    margin-left: $separator;
+    margin-left: $spacer;
     text-align: right;
   }
 

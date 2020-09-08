@@ -3,7 +3,7 @@
 ** -----------------------------------------------------------------------------*/
 
 .card {
-  margin-top: $separator;
+  margin-top: $spacer;
 }
 
 .card__image {
@@ -20,17 +20,13 @@
 }
 
 .card__title {
-  margin-top: $separator;
+  @extend %content-size;
+  margin-top: $spacer;
   color: $color-black;
   font-family: $font-heading;
-  font-size: calc(#{$size-content} * 0.9);
   font-weight: bold;
   line-height: 1.4;
   word-break: break-all;
-
-  @include breakpoint(md) {
-    font-size: $size-content;
-  }
 }
 
 .card__copy {

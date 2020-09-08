@@ -51,20 +51,20 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 			$custom_style .= "
 				:root {
 					/* Fonts */
-					--font-primary: $primary_font;
-					--font-heading: $heading_font;
+					--chipmunk-body-font-family: $primary_font;
+					--chipmunk-heading-font-family: $heading_font;
 
 					/* Colors */
-					--color-primary: $primary_color;
-					--color-link: $link_color;
-					--color-background: $background_color;
-					--color-section: $section_color;
+					--chipmunk-color-primary: $primary_color;
+					--chipmunk-color-link: $link_color;
+					--chipmunk-color-background: $background_color;
+					--chipmunk-color-section: $section_color;
 
 					/* Sizes */
-					--size-content: $content_size;
+					--chipmunk-content-font-size: $content_size;
 
 					/* Borders */
-					--border-opacity: " . ( empty( $disable_borders ) ? "0.075" : "0" ) . ";
+					--chipmunk-border-opacity: " . ( empty( $disable_borders ) ? "0.075" : "0" ) . ";
 				}
 			";
 		}

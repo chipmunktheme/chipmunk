@@ -9,10 +9,10 @@
 }
 
 .row_separated {
-  margin-top: -($separator * 2);
+  margin-top: -($spacer * 2);
 
   > .column {
-    margin-top: ($separator * 2);
+    margin-top: ($spacer * 2);
   }
 }
 

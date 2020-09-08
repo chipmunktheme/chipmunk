@@ -91,12 +91,12 @@
   }
 
   &.slick-prev {
-    right: calc(#{$separator * 2} - 0.5em);
+    right: calc(#{$spacer * 2} - 0.5em);
     background-image: icon('chevron-left.svg');
   }
 
   &.slick-next {
-    right: calc(#{$separator / 2} - 0.5em);
+    right: calc(#{$spacer / 2} - 0.5em);
     background-image: icon('chevron-right.svg');
   }
 }

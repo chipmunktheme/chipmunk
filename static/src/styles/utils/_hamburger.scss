@@ -3,6 +3,5 @@
 ** ----------------------------------------------------------------------------- */
 
 .u-hamburger {
-  @include u-hamburger(2em, 1.65em, 2px, currentColor, $transition-duration, 'none');
-  margin: -0.125em -0.25em;
+  @include u-hamburger(2.5rem, 1.8rem, 2px, currentColor, $transition-duration / 1.25, 'none', 1px);
 }
