@@ -2740,25 +2740,25 @@ input:checked + .u-checkbox__mark .icon {
 /*
 ** Module - Entry
 ** -----------------------------------------------------------------------------*/
-.entry:not(:first-child) {
+.entry__tile:not(:first-child) {
   margin-top: 2rem;
 }
 @media (min-width: 680px) {
-  .entry:not(:first-child) {
+  .entry__tile:not(:first-child) {
     margin-top: 4rem;
   }
 }
-.entry:not(:last-child) {
+.entry__tile:not(:last-child) {
   margin-bottom: 4rem;
 }
 @media (min-width: 680px) {
-  .entry:not(:last-child) {
+  .entry__tile:not(:last-child) {
     margin-bottom: 6rem;
   }
 }
-.entry[href]:hover .entry__image,
-.entry[href]:hover .entry__title,
-.entry[href]:hover .entry__content {
+.entry__tile[href]:hover .entry__image,
+.entry__tile[href]:hover .entry__title,
+.entry__tile[href]:hover .entry__content {
   opacity: 0.8;
 }
 .entry__hero {

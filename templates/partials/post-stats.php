@@ -16,7 +16,7 @@
 	<li class="stats__item" title="<?php esc_attr_e( 'Published', 'chipmunk' ); ?>: <?php echo get_the_date( 'j F Y' ); ?>">
 		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'clock' ) ); ?>
 
-		<time datetime="<?php echo get_the_date( 'c' ); ?>"><?php echo get_the_date( chipmunk_theme_option( 'use_system_date_format' ) ? get_option( 'date_format' ) : 'M j, Y' ); ?></time>
+		<time datetime="<?php echo get_the_date( 'c' ); ?>" itemprop="datePublished"><?php echo get_the_date( chipmunk_theme_option( 'use_system_date_format' ) ? get_option( 'date_format' ) : 'M j, Y' ); ?></time>
 	</li>
 <?php endif; ?>
 

@@ -2,7 +2,7 @@
 ** Module - Entry
 ** -----------------------------------------------------------------------------*/
 
-.entry {
+.entry__tile {
   &:not(:first-child) {
     margin-top: $spacer;
 
