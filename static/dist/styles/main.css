@@ -39,7 +39,7 @@
   .container {
     padding-left: 2.4rem;
     padding-right: 2.4rem;
-    max-width: calc(1024px + 4.8rem);
+    max-width: calc(980px + 4.8rem);
   }
 }
 .row {

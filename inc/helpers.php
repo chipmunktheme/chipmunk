@@ -669,8 +669,8 @@ if ( ! function_exists( 'chipmunk_display_term_list' ) ) :
 		$output = '';
 		$count = count( $terms );
 
-		if ( $args['quantity'] > 0 && $args['quantity'] < $count ) {
-			// shuffle( $terms );
+		if ( $args['quantity'] > 0 && $args['quantity'] < $count && apply_filters( 'chipmunk_shuffle_terms', false ) ) {
+			shuffle( $terms );
 		}
 
 		foreach ( $terms as $key => $term ) {
