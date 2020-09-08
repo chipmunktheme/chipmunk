@@ -668,6 +668,9 @@ if ( ! function_exists( 'chipmunk_display_term_list' ) ) :
 
 		$output = '';
 		$count = count( $terms );
+		
+		// Max length of post term (set 0 to display full term)
+		$term_max_length = apply_filters( 'chipmunk_term_max_length', 25 );
 
 		if ( $args['quantity'] > 0 && $args['quantity'] < $count && apply_filters( 'chipmunk_shuffle_terms', false ) ) {
 			shuffle( $terms );
@@ -676,11 +679,11 @@ if ( ! function_exists( 'chipmunk_display_term_list' ) ) :
 		foreach ( $terms as $key => $term ) {
 			if ( $args['quantity'] < 0 || $args['quantity'] > $key ) {
 				if ( $args['type'] == 'link' ) {
-					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '" class="tag" title="' . esc_attr( $term->name ) . '">' . esc_html( chipmunk_truncate_string( $term->name, 25 ) ) . '</a>';
+					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '" class="tag" title="' . esc_attr( $term->name ) . '">' . esc_html( chipmunk_truncate_string( $term->name, $term_max_length ) ) . '</a>';
 				}
 
 				if ( $args['type'] == 'text' ) {
-					$output .= '<span class="tag">' . esc_html( chipmunk_truncate_string( $term->name, 25 ) ) . '</span>';
+					$output .= '<span class="tag">' . esc_html( chipmunk_truncate_string( $term->name, $term_max_length ) ) . '</span>';
 				}
 			}
 		}
@@ -785,7 +788,7 @@ if ( ! function_exists( 'chipmunk_truncate_string' ) ) :
 	function chipmunk_truncate_string( $str, $chars, $to_space = true, $replacement = '&hellip;' ) {
 		$str = strip_tags( $str );
 
-		if ( $chars > strlen( $str ) ) {
+		if ( $chars == 0 || $chars > strlen( $str ) ) {
 			return $str;
 		}
 
