@@ -1667,17 +1667,17 @@ sub {
 }
 @media (min-width: 0) {
   .content h1:not(.heading), .heading--h1 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 2.197 / 1 * 0.76562);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 2.35264 / 1 * 0.76562);
   }
 }
 @media (min-width: 680px) {
   .content h1:not(.heading), .heading--h1 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 2.197 / 1 * 0.875);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 2.35264 / 1 * 0.875);
   }
 }
 @media (min-width: 980px) {
   .content h1:not(.heading), .heading--h1 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 2.197 / 1 * 1);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 2.35264 / 1 * 1);
   }
 }
 .content h2:not(.heading), .heading--h2 {
@@ -1685,17 +1685,17 @@ sub {
 }
 @media (min-width: 0) {
   .content h2:not(.heading), .heading--h2 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.69 / 1 * 0.87501);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.7689 / 1 * 0.87501);
   }
 }
 @media (min-width: 680px) {
   .content h2:not(.heading), .heading--h2 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.69 / 1 * 0.93542);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.7689 / 1 * 0.93542);
   }
 }
 @media (min-width: 980px) {
   .content h2:not(.heading), .heading--h2 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.69 / 1 * 1);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.7689 / 1 * 1);
   }
 }
 .content h3:not(.heading), .heading--h3 {
@@ -1703,17 +1703,17 @@ sub {
 }
 @media (min-width: 0) {
   .content h3:not(.heading), .heading--h3 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.3 / 1 * 0.91483);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.33 / 1 * 0.91483);
   }
 }
 @media (min-width: 680px) {
   .content h3:not(.heading), .heading--h3 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.3 / 1 * 0.95647);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.33 / 1 * 0.95647);
   }
 }
 @media (min-width: 980px) {
   .content h3:not(.heading), .heading--h3 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.3 / 1 * 1);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.33 / 1 * 1);
   }
 }
 .content h4:not(.heading), .heading--h4, .widget__title {
@@ -1721,17 +1721,17 @@ sub {
 }
 @media (min-width: 0) {
   .content h4:not(.heading), .heading--h4, .widget__title {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1 / 1 * 0.93542);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1 / 1 * 0.93542);
   }
 }
 @media (min-width: 680px) {
   .content h4:not(.heading), .heading--h4, .widget__title {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1 / 1 * 0.96717);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1 / 1 * 0.96717);
   }
 }
 @media (min-width: 980px) {
   .content h4:not(.heading), .heading--h4, .widget__title {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1 / 1 * 1);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1 / 1 * 1);
   }
 }
 .content h5:not(.heading), .heading--h5 {
@@ -1739,17 +1739,17 @@ sub {
 }
 @media (min-width: 0) {
   .content h5:not(.heading), .heading--h5 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.3 / 1.69 * 0.94799);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.33 / 1.7689 * 0.94799);
   }
 }
 @media (min-width: 680px) {
   .content h5:not(.heading), .heading--h5 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.3 / 1.69 * 0.97365);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.33 / 1.7689 * 0.97365);
   }
 }
 @media (min-width: 980px) {
   .content h5:not(.heading), .heading--h5 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.3 / 1.69 * 1);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.33 / 1.7689 * 1);
   }
 }
 .content h6:not(.heading), .heading--h6 {
@@ -1757,17 +1757,17 @@ sub {
 }
 @media (min-width: 0) {
   .content h6:not(.heading), .heading--h6 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.69 / 2.8561 * 0.95647);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.7689 / 3.12901 * 0.95647);
   }
 }
 @media (min-width: 680px) {
   .content h6:not(.heading), .heading--h6 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.69 / 2.8561 * 0.97799);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.7689 / 3.12901 * 0.97799);
   }
 }
 @media (min-width: 980px) {
   .content h6:not(.heading), .heading--h6 {
-    font-size: calc(var(--chipmunk-heading-font-size, 2.4rem) * 1.69 / 2.8561 * 1);
+    font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.7689 / 3.12901 * 1);
   }
 }
 /*
