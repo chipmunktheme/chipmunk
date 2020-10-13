@@ -20,7 +20,7 @@
 <div class="section<?php echo ( ! $wp_query->current_post or $wp_query->current_post % 2 == 0 ) ? ' section--theme-light' : ''; ?>">
 	<div class="container">
 		<article class="resource" itemscope itemtype="http://schema.org/Product">
-			<meta itemprop="name" content="<?php the_title(); ?>" />
+			<meta itemprop="name" content="<?php echo esc_attr( strip_tags( get_the_title() ) ); ?>" />
 			
 			<div class="resource__main row">
 				<div class="resource__content column column--lg-<?php echo esc_attr( has_post_thumbnail() ? '6' : '12' ); ?>">

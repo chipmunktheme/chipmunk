@@ -1,5 +1,5 @@
 {
-  "proxy": "chipmunk.test",
+  "proxy": "chipmunk-demo.test",
   "src": "src",
   "dest": "dist",
   "tasks": [
