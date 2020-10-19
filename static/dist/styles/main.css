@@ -1708,39 +1708,39 @@ sub {
     font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.33 / 1 * 1);
   }
 }
-.content h4:not(.heading), .heading--h4, .widget__title {
+.content h4:not(.heading), .heading--h4 {
   line-height: calc(var(--chipmunk-heading-line-height, 1.4) * 1 / 1);
 }
 @media (min-width: 0) {
-  .content h4:not(.heading), .heading--h4, .widget__title {
+  .content h4:not(.heading), .heading--h4 {
     font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1 / 1 * 0.93542);
   }
 }
 @media (min-width: 680px) {
-  .content h4:not(.heading), .heading--h4, .widget__title {
+  .content h4:not(.heading), .heading--h4 {
     font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1 / 1 * 0.96717);
   }
 }
 @media (min-width: 980px) {
-  .content h4:not(.heading), .heading--h4, .widget__title {
+  .content h4:not(.heading), .heading--h4 {
     font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1 / 1 * 1);
   }
 }
-.content h5:not(.heading), .heading--h5 {
+.content h5:not(.heading), .heading--h5, .widget__title {
   line-height: calc(var(--chipmunk-heading-line-height, 1.4) * 0.933 / 0.87049);
 }
 @media (min-width: 0) {
-  .content h5:not(.heading), .heading--h5 {
+  .content h5:not(.heading), .heading--h5, .widget__title {
     font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.33 / 1.7689 * 0.94799);
   }
 }
 @media (min-width: 680px) {
-  .content h5:not(.heading), .heading--h5 {
+  .content h5:not(.heading), .heading--h5, .widget__title {
     font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.33 / 1.7689 * 0.97365);
   }
 }
 @media (min-width: 980px) {
-  .content h5:not(.heading), .heading--h5 {
+  .content h5:not(.heading), .heading--h5, .widget__title {
     font-size: calc(var(--chipmunk-heading-font-size, 2.2rem) * 1.33 / 1.7689 * 1);
   }
 }
@@ -3291,9 +3291,6 @@ input:checked + .u-checkbox__mark .icon {
 ** -----------------------------------------------------------------------------*/
 .heading small {
   color: #808080;
-}
-.heading a:hover {
-  text-decoration: underline;
 }
 .heading--thin {
   font-weight: normal;

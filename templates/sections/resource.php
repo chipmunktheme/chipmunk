@@ -27,7 +27,7 @@
 					<?php do_action( 'chipmunk_before_resource_info' ); ?>
 
 					<div class="resource__info">
-						<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading--h3', is_single() ? get_the_title() : '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_title() . '</a>' ); ?>
+						<?php echo chipmunk_conditional_markup( is_single(), 'h1', 'h2', 'resource__title heading heading--h2', is_single() ? get_the_title() : '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_title() . '</a>' ); ?>
 
 						<?php if ( ! empty( $description ) ) : ?>
 							<div class="resource__description" itemprop="description">

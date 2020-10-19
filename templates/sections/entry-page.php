@@ -16,7 +16,7 @@ switch ( get_page_template_slug() ) {
 
 <div class="row">
 	<div class="column <?php echo esc_attr( chipmunk_get_columns( $columns ) ); ?>">
-		<h1 class="heading heading--h3"><?php the_title(); ?></h1>
+		<h1 class="heading heading--h2"><?php the_title(); ?></h1>
 
 		<div class="entry__content content">
 			<?php the_content(); ?>

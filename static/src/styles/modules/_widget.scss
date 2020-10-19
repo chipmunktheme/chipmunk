@@ -31,7 +31,7 @@
 
 .widget__title {
   @extend %heading;
-  @extend %heading-h4;
+  @extend %heading-h5;
   margin-bottom: ($spacer / 2);
 }
 
