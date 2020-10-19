@@ -2592,19 +2592,19 @@ input:checked + .u-checkbox__mark .icon {
 .content .wp-caption:not([class*='block']):not(:first-child) {
   margin-top: calc(calc(var(--chipmunk-content-line-height, 1.75) * 1em) * 1);
 }
-.content ul:not([class*='block']),
-.content ol:not([class*='block']) {
+.content ul:not([class]),
+.content ol:not([class]) {
   margin-left: calc(calc(var(--chipmunk-content-line-height, 1.75) * 1em) * 1);
   list-style-position: inside;
 }
-.content ul:not([class*='block']) li:not(:first-child),
-.content ol:not([class*='block']) li:not(:first-child) {
+.content ul:not([class]) li:not(:first-child),
+.content ol:not([class]) li:not(:first-child) {
   margin-top: calc(calc(var(--chipmunk-content-line-height, 1.75) * 1em) * 0.25);
 }
-.content ul:not([class*='block']) {
+.content ul:not([class]) {
   list-style: disc;
 }
-.content ol:not([class*='block']) {
+.content ol:not([class]) {
   list-style: decimal;
 }
 .content img {
