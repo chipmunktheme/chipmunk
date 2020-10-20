@@ -17,4 +17,13 @@ get_header(); ?>
 	</div>
 	<!-- /.section -->
 
+	<?php if ( comments_open() || get_comments_number() ) : ?>
+		<div class="section section--theme-light">
+			<div class="container">
+				<?php comments_template(); ?>
+			</div>
+		</div>
+		<!-- /.section -->
+	<?php endif; ?>
+
 <?php get_footer(); ?>
