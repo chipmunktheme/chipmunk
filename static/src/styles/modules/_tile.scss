@@ -223,11 +223,10 @@
 }
 
 .tile__title {
+  @include typography-properties($heading-type, (font-size, line-height));
   flex: 1;
-  font-family: $font-heading;
-  font-weight: bold;
-  line-height: 1.25;
   font-size: 2rem;
+  line-height: 1.25;
 
   a {
     display: inline-block;

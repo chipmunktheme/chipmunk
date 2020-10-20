@@ -31,7 +31,7 @@ $layer-popup:           25 !default;
 $font-serif:            Georgia,Times,"Times New Roman",serif !default;
 $font-sans-serif:       -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default;
 $font-poppins:          'Poppins', 'Arial', 'Helvetica Neue', Helvetica, sans-serif !default;
-$font-menlo:            Menlo, Consolas, monaco, monospace !default;
+$font-mono:             Menlo, Consolas, monaco, monospace !default;
 
 // Dimensions
 $head-height:           4rem !default;
@@ -94,11 +94,6 @@ $color-primary:           var(--chipmunk-color-primary, #{$color-accent}) !defau
 $color-link:              var(--chipmunk-color-link, #{$color-accent}) !default;
 $color-background:        var(--chipmunk-color-background, #{$color-gray-lightest}) !default;
 $color-section:           var(--chipmunk-color-section, #{$color-white}) !default;
-
-// Customizable fonts
-$font-primary:            var(--chipmunk-font-primary, #{$font-sans-serif}) !default;
-$font-heading:            var(--chipmunk-font-heading, #{$font-sans-serif}) !default;
-$font-mono:               var(--chipmunk-font-mono, #{$font-menlo}) !default;
 
 // Customizable type
 $body-type:               (

@@ -20,12 +20,9 @@
 }
 
 .card__title {
+  @include typography-properties($heading-type);
   @extend %content-size;
   margin-top: $spacer;
-  color: $color-black;
-  font-family: $font-heading;
-  font-weight: bold;
-  line-height: 1.4;
   word-break: break-all;
 }
 
