@@ -126,7 +126,7 @@ if ( ! class_exists( 'SubmissionForm' ) ) :
 
 			$post_object = array(
 				'post_type'     => 'resource',
-				'post_status'   => 'pending',
+				'post_status'   => apply_filters( 'chipmunk_submission_post_status', 'pending' ),
 				'post_title'    => $name,
 				'post_content'  => $content,
 				'post_author'   => $author_id,
