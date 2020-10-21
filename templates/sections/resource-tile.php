@@ -64,7 +64,7 @@
 						}
 					</script>
 
-					<div onclick="openURL(event, '<?php echo chipmunk_external_link( $website ); ?>');" class="tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'external-link' ) ); ?></div>
+					<div onclick="openURL(event, '<?php echo chipmunk_external_link( $website ); ?>');" class="tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'external-link' ) ); ?></div>
 				<?php endif; ?>
 			</div>
 
@@ -72,7 +72,7 @@
 
 			<?php if ( ! $options['disable_desc'] and ! empty( $content ) ) : ?>
 				<p class="tile__copy">
-					<?php echo esc_html( chipmunk_truncate_string( $content, apply_filters( 'chipmunk_resource_excerpt_length', $excerpt_lengths[ $options['display_as'] ] ) ) ); ?><span>&nbsp;<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'arrow-right' ) ); ?></span>
+					<?php echo esc_html( chipmunk_truncate_string( $content, apply_filters( 'chipmunk_resource_excerpt_length', $excerpt_lengths[ $options['display_as'] ] ) ) ); ?><span>&nbsp;<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'arrow-right' ) ); ?></span>
 				</p>
 			<?php endif; ?>
 
@@ -93,7 +93,7 @@
 						'desktop_only' => true,
 					);
 
-					chipmunk_get_template( 'partials/post-stats', array( 'args' => $collections_args ) );
+					chipmunk_get_template_part( 'partials/post-stats', array( 'args' => $collections_args ) );
 				?>
 			</ul>
 		<?php endif; ?>

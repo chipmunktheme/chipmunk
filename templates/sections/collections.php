@@ -17,7 +17,7 @@
 
 			<?php if ( ! empty( $collections ) ) : ?>
 				<?php foreach ( $collections as $collection ) : ?>
-					<?php chipmunk_get_template( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
+					<?php chipmunk_get_template_part( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
 				<?php endforeach; ?>
 			<?php else : ?>
 				<div class="column">

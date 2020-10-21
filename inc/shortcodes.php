@@ -77,7 +77,7 @@ if ( ! function_exists( 'chipmunk_get_shortcode_template' ) ) :
 
 		do_action( 'chipmunk_shortcode_template_before_' . $template_name );
 
-		chipmunk_get_template( 'shortcodes/' . $template_name, array( 'attributes' => $attributes ) );
+		chipmunk_get_template_part( 'shortcodes/' . $template_name, array( 'attributes' => $attributes ) );
 
 		do_action( 'chipmunk_shortcode_template_after_' . $template_name );
 

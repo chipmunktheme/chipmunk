@@ -28,7 +28,7 @@ get_header(); ?>
 						<form action="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>" method="get" class="search-bar__form" role="search" novalidate autocomplete="off">
 							<input type="search" name="s" placeholder="<?php esc_attr_e( 'Search query...', 'chipmunk' ); ?>" value="<?php echo get_search_query(); ?>" required minlength="3">
 							<button type="submit" class="search-bar__icon">
-								<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'search' ) ); ?>
+								<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'search' ) ); ?>
 							</button>
 						</form>
 					</div>
@@ -49,7 +49,7 @@ get_header(); ?>
 		<div data-action-element="load_posts">
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php get_template_part( 'templates/sections/resource' ); ?>
+				<?php chipmunk_get_template_part( 'sections/resource' ); ?>
 
 			<?php endwhile; ?>
 		</div>
@@ -57,7 +57,7 @@ get_header(); ?>
 
 	<?php if ( $wp_query->max_num_pages > 1 ) : ?>
 		<div class="section">
-			<?php chipmunk_get_template( 'sections/pagination' ); ?>
+			<?php chipmunk_get_template_part( 'sections/pagination' ); ?>
 		</div>
 		<!-- /.section -->
 	<?php endif; ?>

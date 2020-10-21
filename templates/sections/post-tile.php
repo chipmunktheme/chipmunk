@@ -31,7 +31,7 @@
 						'quantity' => 1,
 					);
 
-					chipmunk_get_template( 'partials/post-stats', array( 'args' => $collections_args ) );
+					chipmunk_get_template_part( 'partials/post-stats', array( 'args' => $collections_args ) );
 				?>
 			</ul>
 		<?php endif; ?>

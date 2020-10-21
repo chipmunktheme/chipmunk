@@ -8,13 +8,13 @@
 
 <?php if ( isset( $args ) && $args['display'] && $collections ) : ?>
 	<li class="stats__item <?php echo isset( $args['desktop_only'] ) ? 'visible-lg-block' : ''; ?>">
-		<?php chipmunk_get_template( 'partials/post-terms', array( 'terms' => $collections, 'args' => $args ) ); ?>
+		<?php chipmunk_get_template_part( 'partials/post-terms', array( 'terms' => $collections, 'args' => $args ) ); ?>
 	</li>
 <?php endif; ?>
 
 <?php if ( chipmunk_is_feature_enabled( 'date', get_post_type() ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Published', 'chipmunk' ); ?>: <?php echo get_the_date( 'j F Y' ); ?>">
-		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'clock' ) ); ?>
+		<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'clock' ) ); ?>
 
 		<time datetime="<?php echo get_the_date( 'c' ); ?>" itemprop="datePublished"><?php echo get_the_date( chipmunk_theme_option( 'use_system_date_format' ) ? get_option( 'date_format' ) : 'M j, Y' ); ?></time>
 	</li>
@@ -22,7 +22,7 @@
 
 <?php if ( chipmunk_is_feature_enabled( 'views', get_post_type() ) ) : ?>
 	<li class="stats__item" title="<?php esc_attr_e( 'Views', 'chipmunk' ); ?>">
-		<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'eye' ) ); ?>
+		<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'eye' ) ); ?>
 
 		<?php echo chipmunk_format_number( chipmunk_get_views( get_the_ID() ) ); ?>
 	</li>
@@ -33,7 +33,7 @@
 
 	<?php if ( ! empty( $average_rating ) && ! $is_single_resource ) : ?>
 		<li class="stats__item">
-			<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'star' ) ); ?>
+			<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'star' ) ); ?>
 
 			<?php echo esc_html( $average_rating ); ?>
 		</li>

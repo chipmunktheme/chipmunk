@@ -163,6 +163,28 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 							),
 						),
 						array(
+							'name'        => 'dropdown_theme',
+							'type'        => 'radio',
+							'label'       => esc_html__( 'Dropdown Color Theme', 'chipmunk' ),
+							'default'     => 'light',
+							'choices'     => array(
+								'light'       => esc_html__( 'Light', 'chipmunk' ),
+								'dark'        => esc_html__( 'Dark', 'chipmunk' ),
+							),
+						),
+						array(
+							'name'        => 'logo_height',
+							'type'        => 'range',
+							'label'       => esc_html__( 'Logo height', 'chipmunk-lite' ),
+							'default'     => 40,
+							'description' => esc_html__( 'Width will be calculated automatically.', 'chipmunk' ),
+							'input_attrs'     => array(
+								'min'         => 20,
+								'max'         => 100,
+								'step'        => 1,
+							),
+						),
+						array(
 							'name'        => 'sticky_header',
 							'type'        => 'checkbox',
 							'label'       => esc_html__( 'Enable sticky header', 'chipmunk' ),
@@ -873,6 +895,7 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 				'settings'    => $this->settings_name . '[' . $field['name'] . ']',
 				'description' => ! empty( $field['description'] ) ? $field['description'] : null,
 				'choices'     => ! empty( $field['choices'] ) ? array_filter( $field['choices'] ) : null,
+				'input_attrs' => ! empty( $field['input_attrs'] ) ? array_filter( $field['input_attrs'] ) : null,
 			);
 
 			$this->customize->add_setting( $this->settings_name . '[' . $field['name'] . ']', $setting_args );

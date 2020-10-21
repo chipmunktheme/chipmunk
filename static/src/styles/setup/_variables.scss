@@ -22,10 +22,12 @@ $layer-negative:        -1 !default;
 $layer-neutral:         0 !default;
 $layer-base:            1 !default;
 $layer-utils:           5 !default;
-$layer-head:            10 !default;
-$layer-nav:             15 !default;
-$layer-dropdown:        20 !default;
-$layer-popup:           25 !default;
+$layer-dropdown:        15 !default;
+$layer-overlay:         20 !default;
+$layer-head:            25 !default;
+$layer-top:             30 !default;
+$layer-search:          35 !default;
+$layer-popup:           40 !default;
 
 // Font definitions
 $font-serif:            Georgia,Times,"Times New Roman",serif !default;
@@ -37,7 +39,7 @@ $font-mono:             Menlo, Consolas, monaco, monospace !default;
 $head-height:           4rem !default;
 
 // Others
-$transition-duration:   0.25s !default;
+$transition-duration:   0.15s !default;
 
 // Base path for assets
 $base-path:             '..' !default;
@@ -130,4 +132,5 @@ $content-type:            (
 ) !default;
 
 // Customizable variables
-$border-opacity:        var(--chipmunk-border-opacity, 0.075) !default;
+$border-opacity:          var(--chipmunk-border-opacity, 0.075) !default;
+$logo-height:             var(--chipmunk-logo-height, 4rem) !default;

@@ -22,7 +22,7 @@ get_header(); ?>
 						<h1 class="heading heading--h4"><?php echo esc_html( $title ); ?></h1>
 					</div>
 
-					<?php get_template_part( 'templates/partials/filters' ); ?>
+					<?php chipmunk_get_template_part( 'partials/filters' ); ?>
 
 					<?php if ( ! empty( $term->description ) ) : ?>
 						<div class="column column--md-4 column--lg-8">
@@ -45,7 +45,7 @@ get_header(); ?>
 			<?php if ( ( $children_collections = get_terms( 'resource-collection', array( 'parent' => $term->term_id ) ) ) && $paged == 1 ) : ?>
 				<div class="row">
 					<?php foreach ( $children_collections as $collection ) : ?>
-						<?php chipmunk_get_template( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
+						<?php chipmunk_get_template_part( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
 					<?php endforeach; ?>
 				</div>
 
@@ -58,7 +58,7 @@ get_header(); ?>
 				<div class="row" data-action-element="load_posts">
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-						<?php get_template_part( 'templates/sections/resource-tile' ); ?>
+						<?php chipmunk_get_template_part( 'sections/resource-tile' ); ?>
 
 					<?php endwhile; wp_reset_postdata(); ?>
 				</div>
@@ -76,7 +76,7 @@ get_header(); ?>
 			<?php endif; ?>
 		</div>
 
-		<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query ) ); ?>
+		<?php chipmunk_get_template_part( 'sections/pagination', array( 'query' => $query ) ); ?>
 	</div>
 	<!-- /.section -->
 

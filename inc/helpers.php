@@ -52,25 +52,43 @@ if ( ! function_exists( 'chipmunk_theme_option' ) ) :
 endif;
 
 
-if ( ! function_exists( 'chipmunk_get_template' ) ) :
+if ( ! function_exists( 'chipmunk_get_template_part' ) ) :
 	/**
 	 * Load a template with supplied data.
 	 */
-	function chipmunk_get_template($template, array $params = array(), $output = true) {
+	function chipmunk_get_template_part( $template, array $params = array(), $output = true ) {
+		if ( is_array( $template ) ) {
+			$template = implode( '-', $template );
+		}
+	
+		if ( empty( $params ) ) {
+			return get_template_part( "templates/{$template}" );
+		}
+	
 		if ( ! $output ) {
 			ob_start();
 		}
-
+	
 		if ( ! $template_file = locate_template( "templates/{$template}.php", false, false ) ) {
-			trigger_error( sprintf(__( 'Error locating %s for inclusion', 'chipmunk' ), $template_file ), E_USER_ERROR );
+			trigger_error( sprintf(__( 'Error locating %s for inclusion', 'chipmunk-lite' ), $template_file ), E_USER_ERROR );
 		}
-
+	
 		extract( $params, EXTR_SKIP );
 		require( $template_file );
-
+	
 		if ( ! $output ) {
 			return ob_get_clean();
 		}
+	}
+endif;
+
+
+if ( ! function_exists( 'chipmunk_get_template' ) ) :
+	/**
+	 * DEPRECATED: v1.15
+	 */
+	function chipmunk_get_template( $template, array $params = array(), $output = true ) {
+		return chipmunk_get_template_part( $template, $params, $output );
 	}
 endif;
 
@@ -231,7 +249,7 @@ if ( ! function_exists( 'chipmunk_inform_admin' ) ) :
 		$headers    = array( 'Content-Type: text/html; charset=UTF-8' );
 
 		$subject    = sprintf( esc_html__( '%s: New user submission', 'chipmunk' ), $name );
-		$template   = chipmunk_get_template( 'emails/submission', array( 'subject' => $subject, 'post' => $post ), false );
+		$template   = chipmunk_get_template_part( 'emails/submission', array( 'subject' => $subject, 'post' => $post ), false );
 
 		wp_mail( $admin, $subject, $template, $headers );
 	}

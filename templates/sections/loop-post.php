@@ -38,20 +38,20 @@
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 						<?php if ( $layout == 'mixed' ) : ?>
 							<?php if ( $i % 4 == 0 and $paged == 1 ) : ?>
-								<?php get_template_part( 'templates/sections/post-excerpt' ); ?>
+								<?php chipmunk_get_template_part( 'sections/post-excerpt' ); ?>
 							<?php else : ?>
-								<?php get_template_part( 'templates/sections/post-tile' ); ?>
+								<?php chipmunk_get_template_part( 'sections/post-tile' ); ?>
 							<?php endif; ?>
 
 							<?php $i++; ?>
 						<?php endif; ?>
 
 						<?php if ( $layout == 'tiles' ) : ?>
-							<?php get_template_part( 'templates/sections/post-tile' ); ?>
+							<?php chipmunk_get_template_part( 'sections/post-tile' ); ?>
 						<?php endif; ?>
 
 						<?php if ( $layout == 'excerpts' ) : ?>
-							<?php get_template_part( 'templates/sections/post-excerpt' ); ?>
+							<?php chipmunk_get_template_part( 'sections/post-excerpt' ); ?>
 						<?php endif; ?>
 					<?php endwhile; ?>
 				</div>
@@ -69,7 +69,7 @@
 		</div>
 
 		<?php if ( ! is_single() and ! is_front_page() ) : ?>
-			<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query ) ); ?>
+			<?php chipmunk_get_template_part( 'sections/pagination', array( 'query' => $query ) ); ?>
 		<?php endif; ?>
 	</div>
 	<!-- /.section -->

@@ -17,6 +17,6 @@
 	<?php endif; ?>
 
 	<ul class="entry__stats stats">
-		<?php chipmunk_get_template( 'partials/post-stats', array( 'args' => $collections ) ); ?>
+		<?php chipmunk_get_template_part( 'partials/post-stats', array( 'args' => $collections ) ); ?>
 	</ul>
 </div>

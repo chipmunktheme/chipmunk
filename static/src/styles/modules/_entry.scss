@@ -29,7 +29,7 @@
 }
 
 .entry__hero {
-  $head-outer-height: ($head-height + $spacer);
+  $head-outer-height: ($logo-height + #{$spacer});
 
   position: relative;
   display: flex;
@@ -44,7 +44,7 @@
   overflow: hidden;
 
   @include breakpoint(md) {
-    $head-outer-height: ($head-height + $spacer * 2);
+    $head-outer-height: ($logo-height + #{$spacer * 2});
 
     height: calc(40vh + #{$head-outer-height});
     min-height: calc(55vw + #{$head-outer-height});
@@ -53,7 +53,7 @@
   }
 
   @include breakpoint(lg) {
-    $head-outer-height: ($head-height + $spacer * 3);
+    $head-outer-height: ($logo-height + #{$spacer * 3});
 
     height: auto;
     min-height: calc(45rem + #{$head-outer-height});

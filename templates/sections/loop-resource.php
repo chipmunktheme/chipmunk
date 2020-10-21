@@ -31,7 +31,7 @@
 							<h1 class="heading heading--h4"><?php echo esc_html( $resources_title ); ?></h1>
 						</div>
 
-						<?php get_template_part( 'templates/partials/filters' ); ?>
+						<?php chipmunk_get_template_part( 'partials/filters' ); ?>
 					</div>
 				<?php else : ?>
 					<h1 class="heading heading--h4"><?php echo esc_html( $resources_title ); ?></h1>
@@ -42,7 +42,7 @@
 				<div class="row" data-action-element="load_posts">
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-						<?php get_template_part( 'templates/sections/resource-tile' ); ?>
+						<?php chipmunk_get_template_part( 'sections/resource-tile' ); ?>
 
 					<?php endwhile; ?>
 				</div>
@@ -59,7 +59,7 @@
 			<?php endif; ?>
 		</div>
 
-		<?php chipmunk_get_template( 'sections/pagination', array( 'query' => $query ) ); ?>
+		<?php chipmunk_get_template_part( 'sections/pagination', array( 'query' => $query ) ); ?>
 	</div>
 	<!-- /.section -->
 <?php endif; ?>

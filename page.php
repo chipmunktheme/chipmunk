@@ -11,7 +11,7 @@ get_header(); ?>
 	<div class="section">
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 			<div class="container">
-				<?php get_template_part( 'templates/sections/entry', 'page' ); ?>
+				<?php chipmunk_get_template_part( array( 'sections/entry', 'page' ) ); ?>
 			</div>
 		<?php endwhile; endif; ?>
 	</div>

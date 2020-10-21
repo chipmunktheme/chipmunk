@@ -13,7 +13,7 @@
 								<?php foreach ( $socials as $social_key => $social_value ) : ?>
 									<li class="nav-socials__item">
 										<a href="<?php echo esc_url( $social_value ); ?>" class="nav-socials__link" title="<?php echo $social_key; ?>" target="_blank">
-											<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'social-' . strtolower( $social_key ) ) ); ?>
+											<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'social-' . strtolower( $social_key ) ) ); ?>
 											<span class="sr-only"><?php echo $social_key; ?></span>
 										</a>
 									</li>
@@ -27,7 +27,7 @@
 				<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 					<div class="toolbox__cta<?php echo ! empty( $socials ) ? ' visible-md-flex ' : ''; ?>">
 						<p<?php echo ! empty( $socials ) ? ' class="visible-lg-block"': ''; ?>><?php echo esc_html( chipmunk_theme_option( 'submit_tagline' ) ); ?></p>
-						<?php chipmunk_get_template( 'partials/submit-button', array( 'class' => 'toolbox__button button button--primary' ) ); ?>
+						<?php chipmunk_get_template_part( 'partials/submit-button', array( 'class' => 'toolbox__button button button--primary' ) ); ?>
 					</div>
 				<?php endif; ?>
 			</div>

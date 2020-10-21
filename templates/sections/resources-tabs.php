@@ -58,7 +58,7 @@
 											<div class="row">
 												<?php while ( $sections[ $key ]['results']->have_posts() ) : $sections[ $key ]['results']->the_post(); ?>
 
-													<?php get_template_part( 'templates/sections/resource-tile' ); ?>
+													<?php chipmunk_get_template_part( 'sections/resource-tile' ); ?>
 
 													<?php if ( $index % ( $breakpoint_index + 1 ) == 0 && $index != $sections[ $key ]['results']->post_count ) : ?>
 														</div></div><div class="tile__slider"><div class="row">

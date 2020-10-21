@@ -9,24 +9,24 @@
  */
 ?>
 
-		<?php get_template_part( 'templates/partials/promo' ); ?>
+		<?php chipmunk_get_template_part( 'partials/promo' ); ?>
 
 		<?php if ( ! is_front_page() || chipmunk_theme_option( 'disable_homepage_listings' ) ) : ?>
-			<?php get_template_part( 'templates/partials/toolbox' ); ?>
+			<?php chipmunk_get_template_part( 'partials/toolbox' ); ?>
 		<?php endif; ?>
 
-		<?php get_template_part( 'templates/partials/newsletter' ); ?>
-		<?php get_template_part( 'templates/partials/page-bottom' ); ?>
-		<?php get_template_part( 'templates/partials/page-foot' ); ?>
+		<?php chipmunk_get_template_part( 'partials/newsletter' ); ?>
+		<?php chipmunk_get_template_part( 'partials/page-bottom' ); ?>
+		<?php chipmunk_get_template_part( 'partials/page-foot' ); ?>
 	</div>
 	<!-- /.body-bag -->
 
 	<?php if ( ! chipmunk_theme_option( 'disable_search' ) ) : ?>
-		<?php get_template_part( 'templates/partials/search-bar' ); ?>
+		<?php chipmunk_get_template_part( 'partials/search-bar' ); ?>
 	<?php endif; ?>
 
 	<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) && empty( chipmunk_theme_option( 'submit_page' ) ) ) : ?>
-		<?php get_template_part( 'templates/partials/popup' ); ?>
+		<?php chipmunk_get_template_part( 'partials/popup' ); ?>
 	<?php endif; ?>
 
 	<?php wp_footer(); ?>

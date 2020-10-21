@@ -251,3 +251,72 @@ if ( ! function_exists( 'chipmunk_remove_type_attr' ) ) :
 endif;
 add_filter( 'style_loader_tag', 'chipmunk_remove_type_attr', 10, 2 );
 add_filter( 'script_loader_tag', 'chipmunk_remove_type_attr', 10, 2 );
+
+
+// Menus
+if ( ! function_exists( 'chipmunk_menu_item_classes' ) ) :
+	/**
+	 * Add menu item classes
+	 */
+	function chipmunk_menu_item_classes( $classes, $item, $args ) {
+		if ( property_exists( $args, 'menu_item_class' ) ) {
+			$classes[] = $args->menu_item_class;
+		}
+
+		return $classes;
+	}
+endif;
+add_filter( 'nav_menu_css_class', 'chipmunk_menu_item_classes', 1, 3 );
+
+
+if ( ! function_exists( 'chipmunk_menu_link_classes' ) ) :
+	/**
+	 * Add menu link classes
+	 */
+	function chipmunk_menu_link_classes( $atts, $item, $args ) {
+		if ( property_exists( $args, 'menu_link_class' ) ) {
+			$atts['class'] = $args->menu_link_class;
+		}
+
+		return $atts;
+	}
+endif;
+add_filter( 'nav_menu_link_attributes', 'chipmunk_menu_link_classes', 1, 3 );
+
+
+if ( ! function_exists( 'chipmunk_menu_item_toggle' ) ) :
+	/**
+	 * Add menu toggle items
+	 *
+	 * @param  string  $item_output The menu item output.
+	 * @param  WP_Post $item        Menu item object.
+	 * @param  int     $depth       Depth of the menu.
+	 * @param  array   $args        wp_nav_menu() arguments.
+	 * @return string  $item_output The menu item output with social icon.
+	 */
+	function chipmunk_menu_item_toggle( $item_output, $item, $depth, $args ) {
+		if ( $args->theme_location == 'nav-primary' && property_exists( $args, 'show_toggles' ) && in_array( 'menu-item-has-children', $item->classes ) ) {
+			$icon = chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'chevron-down', 'size' => 'lg' ), false );
+			$classes = implode( '.', explode( ' ', $args->menu_class ) );
+
+			$button = "<button class='menu-toggle' data-expand='.{$classes} .menu-item-{$item->ID}'>{$icon}</button>";
+			$item_output = str_replace( '</a>', '</a>' . $button, $item_output );
+		}
+
+		return $item_output;
+	}
+endif;
+add_filter( 'walker_nav_menu_start_el', 'chipmunk_menu_item_toggle', 10, 4 );
+
+
+if ( ! function_exists( 'chipmunk_extra_submenu_classes' ) ) :
+	/**
+	 * Adds extra sub-menu subclasses
+	 */
+	function chipmunk_extra_submenu_classes( $classes ) {
+		$classes[] = 'theme-' . chipmunk_theme_option( 'dropdown_theme' );
+	
+		return $classes;
+	}
+endif;
+add_action( 'nav_menu_submenu_css_class', 'chipmunk_extra_submenu_classes' );

@@ -10,6 +10,7 @@ import 'custom-event-polyfill';
 
 import toggle from './modules/toggle';
 import dropdown from './modules/dropdown';
+import expander from './modules/expander';
 import popup from './modules/popup';
 import validate from './modules/validate';
 import filter from './modules/filter';
@@ -28,6 +29,7 @@ import panels from './utils/panels';
 (function () {
   toggle.init();
   dropdown.init();
+  expander.init();
   popup.init();
   validate.init();
   filter.init();

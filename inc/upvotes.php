@@ -60,7 +60,7 @@ if ( ! class_exists( 'ChipmunkUpvotes' ) ) :
 		 * @return string
 		 */
 		public function get_content() {
-			$icon = chipmunk_get_template( 'partials/icon', array( 'icon' => 'arrow-up' ), false );
+			$icon = chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'arrow-up' ), false );
 
 			$count = $this->get_upvote_count();
 			$label = ( is_numeric( $count ) && $count > 0 ) ? chipmunk_format_number( $count ) : 0;

@@ -9,6 +9,6 @@
 
 get_header(); ?>
 
-	<?php get_template_part( 'templates/sections/posts' ); ?>
+	<?php chipmunk_get_template_part( array( 'sections/loop', 'post' ) ); ?>
 
 <?php get_footer(); ?>

@@ -41,6 +41,8 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 		$content_size      = chipmunk_theme_option( 'content_size' );
 		$custom_css        = chipmunk_theme_option( 'custom_css' );
 
+		$logo_height       = chipmunk_theme_option( 'logo_height' );
+
 		$custom_style      = ! empty( $custom_css ) ? $custom_css : '';
 		$primary_font      = $primary_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $primary_font ) . '"';
 		$heading_font      = $heading_font == 'System' ? '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif' : '"' . str_replace( '+', ' ', $heading_font ) . '"';
@@ -65,6 +67,9 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 
 					/* Borders */
 					--chipmunk-border-opacity: " . ( empty( $disable_borders ) ? "0.075" : "0" ) . ";
+
+					/* Others */
+					--chipmunk-logo-height: " . $logo_height / 10 . "rem;
 				}
 			";
 		}

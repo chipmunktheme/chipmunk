@@ -46,7 +46,7 @@
 												<?php if ( ! empty( $user_meta[ $social_key ] ) ) : ?>
 													<li class="nav-socials__item">
 														<a href="<?php echo esc_url( $user_meta[ $social_key ] ); ?>" class="nav-socials__link" title="<?php echo $social_value; ?>" target="_blank">
-															<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'social-' . $social_key ) ); ?>
+															<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'social-' . $social_key ) ); ?>
 															<span class="sr-only"><?php echo $social_value; ?></span>
 														</a>
 													</li>
@@ -62,7 +62,7 @@
 									<?php do_action( 'chipmunk_user_profile_stats_before', $user->ID ); ?>
 
 									<li class="stats__item" title="<?php esc_attr_e( 'Registered', 'chipmunk' ); ?>: <?php echo date( 'j F Y', $registered ); ?>">
-										<?php chipmunk_get_template( 'partials/icon', array( 'icon' => 'clock' ) ); ?>
+										<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'clock' ) ); ?>
 
 										<time datetime="<?php echo date( 'c', $registered ); ?>"><?php echo date( ( chipmunk_theme_option( 'use_system_date_format' ) ? get_option( 'date_format' ) : 'M j, Y' ), $registered ); ?></time>
 									</li>

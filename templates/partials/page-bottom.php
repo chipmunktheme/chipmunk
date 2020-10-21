@@ -30,7 +30,7 @@
 
 						<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 							<li class="nav-secondary__item">
-								<?php chipmunk_get_template( 'partials/submit-button' ); ?>
+								<?php chipmunk_get_template_part( 'partials/submit-button' ); ?>
 							</li>
 						<?php endif; ?>
 					</ul>

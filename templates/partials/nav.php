@@ -65,7 +65,7 @@
 	<?php if ( chipmunk_has_plugin( 'members' ) ) : ?>
 		<li class="nav-primary__item nav-primary__item--condensed hidden-lg">
 			<?php if ( is_user_logged_in() ) : ?>
-				<?php chipmunk_get_template( 'partials/submit-button', array( 'class' => 'button button--primary-outline' ) ); ?>
+				<?php chipmunk_get_template_part( 'partials/submit-button', array( 'class' => 'button button--primary-outline' ) ); ?>
 			<?php else : ?>
 				<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'login' ) ); ?>" class="button button--primary-outline">
 					<?php esc_html_e( 'Login', 'chipmunk' ); ?>
@@ -79,7 +79,7 @@
 	<?php else : ?>
 		<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
 			<li class="nav-primary__item nav-primary__item--condensed hidden-lg">
-				<?php chipmunk_get_template( 'partials/submit-button', array( 'class' => 'button button--primary-outline' ) ); ?>
+				<?php chipmunk_get_template_part( 'partials/submit-button', array( 'class' => 'button button--primary-outline' ) ); ?>
 			</li>
 		<?php endif; ?>
 	<?php endif; ?>

@@ -1,1 +1,1 @@
-<?php chipmunk_get_template( 'sections/submit', $attributes ); ?>
+<?php chipmunk_get_template_part( 'sections/submit', $attributes ); ?>

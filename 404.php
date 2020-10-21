@@ -27,6 +27,6 @@ get_header(); ?>
 	</div>
 	<!-- /.section -->
 
-	<?php get_template_part( 'templates/sections/toolbox' ); ?>
+	<?php chipmunk_get_template_part( 'sections/toolbox' ); ?>
 
 <?php get_footer(); ?>

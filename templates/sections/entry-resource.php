@@ -37,7 +37,7 @@
 
 						<?php if ( ! empty( $tags ) and ! chipmunk_theme_option( 'disable_resource_tags' ) ) : ?>
 							<div class="resource__tags tag__list">
-								<?php chipmunk_get_template( 'partials/post-terms', array( 'terms' => $tags ) ); ?>
+								<?php chipmunk_get_template_part( 'partials/post-terms', array( 'terms' => $tags ) ); ?>
 							</div>
 						<?php endif; ?>
 					</div>
@@ -60,7 +60,7 @@
 								<?php while ( have_rows( '_' . THEME_SLUG . '_resource_links' ) ) : the_row(); ?>
 
 									<?php if ( ! empty( get_sub_field( 'link' ) ) ) : ?>
-										<?php chipmunk_get_template( 'partials/button', array( 'link' => get_sub_field( 'link' ), 'class' => 'resource__button button button--primary-outline' ) ); ?>
+										<?php chipmunk_get_template_part( 'partials/button', array( 'link' => get_sub_field( 'link' ), 'class' => 'resource__button button button--primary-outline' ) ); ?>
 									<?php endif; ?>
 
 								<?php endwhile; ?>
@@ -100,13 +100,13 @@
 								'quantity' => 1,
 							);
 
-							chipmunk_get_template( 'partials/post-stats', array( 'args' => $collections_args ) );
+							chipmunk_get_template_part( 'partials/post-stats', array( 'args' => $collections_args ) );
 						?>
 					</ul>
 
 					<?php if ( chipmunk_is_feature_enabled( 'sharing', 'resource' ) ) : ?>
 						<div class="resource__share">
-							<?php get_template_part( 'templates/partials/share-box' ); ?>
+							<?php chipmunk_get_template_part( 'partials/share-box' ); ?>
 						</div>
 					<?php endif; ?>
 

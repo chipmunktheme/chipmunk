@@ -2,42 +2,26 @@
 ** Utils - Dropdown
 ** -----------------------------------------------------------------------------*/
 
-.dropdown {
-  [data-dropdown] ~ & {
-    @include dropdown;
+.u-dropdown {
+  &--light {
+    @include dropdown(2.25rem, 'light', 'right');
   }
 
-  [data-dropdown] > & {
-    @include breakpoint(lg) {
-      @include dropdown;
-    }
+  &--dark {
+    @include dropdown(2.25rem, 'dark', 'right');
   }
 
-  .is-open [data-dropdown] ~ & {
+  .is-open & {
     @include dropdown-open;
   }
-
-  .is-open[data-dropdown] > & {
-    @include breakpoint(lg) {
-      @include dropdown-open(true);
-    }
-  }
 }
 
-.dropdown__trigger {
+.u-dropdown__link {
+  @extend %dropdown-link;
+  min-width: 12.5rem;
+  white-space: nowrap;
+}
+
+.u-dropdown__trigger {
   position: relative;
-  padding-bottom: 0.75rem;
-  margin-bottom: -0.75rem;
-}
-
-.dropdown__item {
-  padding: 0.25rem 0;
-
-  @include breakpoint(lg) {
-    white-space: nowrap;
-  }
-
-  &--active {
-    color: $color-black;
-  }
 }

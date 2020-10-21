@@ -13,7 +13,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ) : ''; ?>">
-							<?php chipmunk_get_template( 'partials/post-head', array( 'collections' => array(
+							<?php chipmunk_get_template_part( 'partials/post-head', array( 'collections' => array(
 								'display'  => true,
 								'type'     => 'link',
 								'quantity' => -1,
@@ -38,7 +38,7 @@
 				<div class="row">
 					<div class="column <?php echo ! is_active_sidebar( 'blog-sidebar' ) ? esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ) : ''; ?>">
 						<div class="entry__head">
-							<?php chipmunk_get_template( 'partials/post-head', array( 'collections' => array( 'display' => true ) ) ); ?>
+							<?php chipmunk_get_template_part( 'partials/post-head', array( 'collections' => array( 'display' => true ) ) ); ?>
 						</div>
 					</div>
 				</div>
@@ -63,12 +63,12 @@
 						<div class="entry__footer">
 							<?php if ( ! empty( $tags ) and chipmunk_is_feature_enabled( 'tags', 'post' ) ) : ?>
 								<div class="tag__list">
-									<?php chipmunk_get_template( 'partials/post-terms', array( 'terms' => $tags, 'args' => array( 'quantity' => 5 ) ) ); ?>
+									<?php chipmunk_get_template_part( 'partials/post-terms', array( 'terms' => $tags, 'args' => array( 'quantity' => 5 ) ) ); ?>
 								</div>
 							<?php endif; ?>
 
 							<?php if ( chipmunk_is_feature_enabled( 'sharing', 'post' ) ) : ?>
-								<?php get_template_part( 'templates/partials/share-box' ); ?>
+								<?php chipmunk_get_template_part( 'partials/share-box' ); ?>
 							<?php endif; ?>
 						</div>
 					<?php endif; ?>

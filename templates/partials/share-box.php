@@ -34,7 +34,7 @@
 				?>
 
 				<a href="<?php echo $link; ?>" class="nav-socials__link" title="<?php echo $provider['name']; ?>" target="_blank">
-					<?php chipmunk_get_template( 'partials/icon', array( 'icon' => "social-{$slug}" ) ); ?>
+					<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => "social-{$slug}" ) ); ?>
 					<span class="sr-only"><?php echo $provider['name']; ?></span>
 				</a>
 			</li>

@@ -21,6 +21,7 @@
 
 	<?php wp_body_open(); ?>
 
-	<?php get_template_part( 'templates/partials/page-head' ); ?>
+	<?php chipmunk_get_template_part( 'partials/page-head' ); ?>
+	<?php chipmunk_get_template_part( 'partials/page-overlay' ); ?>
 
 	<div class="body-bag">

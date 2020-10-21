@@ -1,8 +1,8 @@
 <?php
-	$previous_content = chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-left' ), false ) . esc_html__( 'Older', 'chipmunk' );
+	$previous_content = chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'chevron-left' ), false ) . esc_html__( 'Older', 'chipmunk' );
 	$previous_link = get_previous_comments_link( $previous_content );
 
-	$next_content = esc_html__( 'Newer', 'chipmunk' ) . chipmunk_get_template( 'partials/icon', array( 'icon' => 'chevron-right' ), false );
+	$next_content = esc_html__( 'Newer', 'chipmunk' ) . chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'chevron-right' ), false );
 	$next_link = get_next_comments_link( $next_content );
 ?>
 

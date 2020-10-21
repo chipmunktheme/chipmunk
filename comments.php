@@ -50,7 +50,7 @@ endif;
 		/*
 		 * Displays a paginated navigation to next/previous set of comments
 		 */
-		chipmunk_get_template( 'sections/comment-pagination' );
+		chipmunk_get_template_part( 'sections/comment-pagination' );
 		?>
 	<?php endif; ?>
 

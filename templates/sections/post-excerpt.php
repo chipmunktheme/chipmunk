@@ -6,7 +6,7 @@
 	<?php endif; ?>
 
 	<div class="entry__head">
-		<?php chipmunk_get_template( 'partials/post-head', array( 'collections' => array(
+		<?php chipmunk_get_template_part( 'partials/post-head', array( 'collections' => array(
 			'display'  => true,
 			'type'     => 'link',
 			'quantity' => -1,

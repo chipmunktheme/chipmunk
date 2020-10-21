@@ -63,7 +63,7 @@
 		<?php if ( ! empty( chipmunk_theme_option( 'submission_consent' ) ) ) : ?>
 			<div class="form__field form__field--<?php echo esc_attr( $alignment ); ?> form__field--separated">
 				<div class="form__child">
-					<?php chipmunk_get_template( 'partials/checkbox', array( 'name' => 'consent', 'label' => chipmunk_theme_option( 'submission_consent' ), 'required' => true ) ); ?>
+					<?php chipmunk_get_template_part( 'partials/checkbox', array( 'name' => 'consent', 'label' => chipmunk_theme_option( 'submission_consent' ), 'required' => true ) ); ?>
 				</div>
 			</div>
 		<?php endif; ?>
