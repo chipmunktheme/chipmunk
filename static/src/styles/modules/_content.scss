@@ -29,8 +29,8 @@
     }
   }
 
-  ul:not([class]),
-  ol:not([class]) {
+  ul:not([class*='block']),
+  ol:not([class*='block']) {
     @include spacer-relative(1, left);
     list-style-position: inside;
 
@@ -39,11 +39,11 @@
     }
   }
 
-  ul:not([class]) {
+  ul:not([class*='block']) {
     list-style: disc;
   }
 
-  ol:not([class]) {
+  ol:not([class*='block']) {
     list-style: decimal;
   }
 
@@ -137,7 +137,7 @@
 }
 
 .content__component {
-  font-size: 1.6rem;
+  font-size: map-get($body-type, font-size);
 
   &:not(:first-child) {
     margin-top: $spacer;

@@ -1369,18 +1369,6 @@
 /*
 ** Setup - Normalize
 ** -----------------------------------------------------------------------------*/
-* {
-  padding: 0;
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  font-style: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  color: inherit;
-  background-color: transparent;
-  border: 0;
-}
 :root {
   overflow-y: scroll;
   font-size: 62.5%;
@@ -1394,11 +1382,6 @@
   word-wrap: break-word;
   box-sizing: border-box;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-}
-*,
-::before,
-::after {
-  box-sizing: inherit;
 }
 a,
 button,
@@ -1619,7 +1602,7 @@ sub {
 /*
 ** Placeholders - Content
 ** -----------------------------------------------------------------------------*/
-.select2-container, .card__title, .content, .form__input, .widget_search .search-field, .resource__description, .members__form, .members__form input[type="text"],
+.select2-container, .content, .form__input, .widget_search .search-field, .resource__description, .members__form, .members__form input[type="text"],
 .members__form input[type="email"],
 .members__form input[type="url"],
 .members__form input[type="password"],
@@ -1627,7 +1610,7 @@ sub {
   font-size: calc(var(--chipmunk-content-font-size, 2.1rem) * 0.9);
 }
 @media (min-width: 980px) {
-  .select2-container, .card__title, .content, .form__input, .widget_search .search-field, .resource__description, .members__form, .members__form input[type="text"],
+  .select2-container, .content, .form__input, .widget_search .search-field, .resource__description, .members__form, .members__form input[type="text"],
   .members__form input[type="email"],
   .members__form input[type="url"],
   .members__form input[type="password"],
@@ -1791,6 +1774,23 @@ input[type="submit"], .stats__button {
   -webkit-user-drag: none;
   transition-duration: 0.15s;
   transition-property: color, background, border, opacity, transform;
+}
+/*
+** Placeholders - Normalizer
+** -----------------------------------------------------------------------------*/
+* {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: 0;
+  box-sizing: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-transform: inherit;
 }
 /*
 ** Common - Base
@@ -2278,10 +2278,10 @@ input:checked + .u-checkbox__mark .icon {
   display: block;
   height: 2px;
   background-color: currentColor;
-  border-radius: 1px;
-  transition: background-color 0.12s;
+  border-radius: 0px;
+  transition: background-color 0.15s;
 }
-.none .u-hamburger > * {
+.has-nav-open .u-hamburger > * {
   background-color: transparent;
 }
 .u-hamburger > *::before, .u-hamburger > *::after {
@@ -2291,23 +2291,23 @@ input:checked + .u-checkbox__mark .icon {
   width: 100%;
   height: 100%;
   background-color: currentColor;
-  border-radius: 1px;
-  transition: top 0.12s 0.12s, bottom 0.12s 0.12s, width 0.12s 0.12s, transform 0.12s 0s, background-color 0.12s 0s;
+  border-radius: 0px;
+  transition: top 0.15s 0.15s, bottom 0.15s 0.15s, width 0.15s 0.15s, transform 0.15s 0s, background-color 0.15s 0s;
 }
-.none .u-hamburger > *::before, .none .u-hamburger > *::after {
-  transition: top 0.12s 0s, bottom 0.12s 0s, width 0.12s 0s, transform 0.12s 0.12s, background-color 0.12s 0.12s;
+.has-nav-open .u-hamburger > *::before, .has-nav-open .u-hamburger > *::after {
+  transition: top 0.15s 0s, bottom 0.15s 0s, width 0.15s 0s, transform 0.15s 0.15s, background-color 0.15s 0.15s;
 }
 .u-hamburger > *::before {
   top: calc((0.9rem - 1px) * -1);
 }
-.none .u-hamburger > *::before {
+.has-nav-open .u-hamburger > *::before {
   top: 0;
   transform: rotate(45deg);
 }
 .u-hamburger > *::after {
   bottom: calc((0.9rem - 1px) * -1);
 }
-.none .u-hamburger > *::after {
+.has-nav-open .u-hamburger > *::after {
   bottom: 0;
   transform: rotate(-45deg);
 }
@@ -2464,49 +2464,6 @@ input:checked + .u-checkbox__mark .icon {
 ** Module - Button
 ** -----------------------------------------------------------------------------*/
 /*
-** Module - Card
-** -----------------------------------------------------------------------------*/
-.card {
-  margin-top: 2rem;
-}
-.card__image {
-  display: block;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-.card__image::before {
-  content: '';
-  display: block;
-  padding-bottom: 70%;
-}
-.card__title {
-  color: var(--chipmunk-heading-color, #333333);
-  font-family: var(--chipmunk-heading-font-family, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif);
-  font-size: var(--chipmunk-heading-font-size, 2.2rem);
-  font-weight: var(--chipmunk-heading-font-weight, 700);
-  font-style: var(--chipmunk-heading-font-style, normal);
-  line-height: var(--chipmunk-heading-line-height, 1.4);
-  letter-spacing: var(--chipmunk-heading-letter-spacing, 0px);
-  text-transform: var(--chipmunk-heading-text-transform, none);
-  margin-top: 2rem;
-  word-break: break-all;
-}
-.card__copy {
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  opacity: 0.85;
-}
-.content .card__copy:not(:first-child) {
-  margin-top: 0;
-}
-.card__handle {
-  font-size: 1.6rem;
-}
-.card__handle:hover {
-  color: #333333;
-}
-/*
 ** Module - Comment
 ** -----------------------------------------------------------------------------*/
 .comment {
@@ -2653,19 +2610,19 @@ input:checked + .u-checkbox__mark .icon {
 .content .wp-caption:not([class*='block']):not(:first-child) {
   margin-top: calc(calc(var(--chipmunk-content-line-height, 1.75) * 1em) * 1);
 }
-.content ul:not([class]),
-.content ol:not([class]) {
+.content ul:not([class*='block']),
+.content ol:not([class*='block']) {
   margin-left: calc(calc(var(--chipmunk-content-line-height, 1.75) * 1em) * 1);
   list-style-position: inside;
 }
-.content ul:not([class]) li:not(:first-child),
-.content ol:not([class]) li:not(:first-child) {
+.content ul:not([class*='block']) li:not(:first-child),
+.content ol:not([class*='block']) li:not(:first-child) {
   margin-top: calc(calc(var(--chipmunk-content-line-height, 1.75) * 1em) * 0.25);
 }
-.content ul:not([class]) {
+.content ul:not([class*='block']) {
   list-style: disc;
 }
-.content ol:not([class]) {
+.content ol:not([class*='block']) {
   list-style: decimal;
 }
 .content img {
@@ -2736,7 +2693,7 @@ input:checked + .u-checkbox__mark .icon {
   border: 0;
 }
 .content__component {
-  font-size: 1.6rem;
+  font-size: var(--chipmunk-body-font-size, 1.6rem);
 }
 .content__component:not(:first-child) {
   margin-top: 2rem;

@@ -241,11 +241,22 @@ endif;
 add_action( 'wp_head', 'chipmunk_add_og_tags' );
 
 
+if ( ! function_exists( 'chipmunk_normalize_content_whitespace' ) ) :
+	/**
+	 * Normalize EOL characters and strip duplicate whitespace.
+	 */
+	function chipmunk_normalize_content_whitespace( $content ) {
+		return normalize_whitespace( $content );
+	}
+endif;
+add_filter( 'the_content', 'chipmunk_normalize_content_whitespace', 10, 1 );
+
+
 if ( ! function_exists( 'chipmunk_remove_type_attr' ) ) :
 	/**
 	 * Remove type attribute for Javascript and style
 	 */
-	function chipmunk_remove_type_attr($tag, $handle) {
+	function chipmunk_remove_type_attr( $tag, $handle ) {
 		return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", '', $tag );
 	}
 endif;

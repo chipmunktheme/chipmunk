@@ -6,23 +6,6 @@
  * @subpackage Chipmunk
  */
 
-if ( ! function_exists( 'chipmunk_render_curators' ) ) :
-	/**
-	 * Render the curators list
-	 */
-	function chipmunk_render_curators( $atts, $content = null ) {
-		// Parse shortcode attributes
-		$attributes = shortcode_atts( array(
-			'title' => '',
-		), $atts );
-
-		// Render the login form using an external template
-		return chipmunk_get_shortcode_template( 'curators', $attributes );
-	}
-endif;
-add_shortcode( 'chipmunk-curators', 'chipmunk_render_curators' );
-
-
 if ( ! function_exists( 'chipmunk_render_counter' ) ) :
 	/**
 	 * Render the counter value
