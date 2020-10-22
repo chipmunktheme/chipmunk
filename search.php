@@ -49,7 +49,7 @@ get_header(); ?>
 		<div data-action-element="load_posts">
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php chipmunk_get_template_part( 'sections/resource' ); ?>
+				<?php chipmunk_get_template_part( array( 'sections/entry', 'resource' ) ); ?>
 
 			<?php endwhile; ?>
 		</div>

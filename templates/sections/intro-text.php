@@ -4,7 +4,7 @@
 	<div class="section section--intro">
 		<div class="container">
 			<h2 class="section__title section__separator heading heading--h1">
-				<?php echo do_shortcode( wp_kses_post( $intro_text ) ); ?>
+				<?php echo apply_filters( 'the_content', $intro_text ); ?>
 			</h2>
 		</div>
 	</div>
