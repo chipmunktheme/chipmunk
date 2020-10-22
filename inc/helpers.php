@@ -57,24 +57,26 @@ if ( ! function_exists( 'chipmunk_get_template_part' ) ) :
 	 * Load a template with supplied data.
 	 */
 	function chipmunk_get_template_part( $template, array $params = array(), $output = true ) {
+		if ( ! $output ) {
+			ob_start();
+		}
+
 		if ( is_array( $template ) ) {
 			$template = implode( '-', $template );
 		}
 	
 		if ( empty( $params ) ) {
-			return get_template_part( "templates/{$template}" );
+			get_template_part( "templates/{$template}" );
 		}
-	
-		if ( ! $output ) {
-			ob_start();
+
+		else {
+			if ( ! $template_file = locate_template( "templates/{$template}.php", false, false ) ) {
+				trigger_error( sprintf(__( 'Error locating %s for inclusion', 'chipmunk-lite' ), $template_file ), E_USER_ERROR );
+			}
+		
+			extract( $params, EXTR_SKIP );
+			require( $template_file );
 		}
-	
-		if ( ! $template_file = locate_template( "templates/{$template}.php", false, false ) ) {
-			trigger_error( sprintf(__( 'Error locating %s for inclusion', 'chipmunk-lite' ), $template_file ), E_USER_ERROR );
-		}
-	
-		extract( $params, EXTR_SKIP );
-		require( $template_file );
 	
 		if ( ! $output ) {
 			return ob_get_clean();
