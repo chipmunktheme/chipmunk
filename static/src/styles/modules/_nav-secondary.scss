@@ -9,22 +9,19 @@
 
 .nav-secondary__item {
   position: relative;
+  line-height: 1.4;
+
+  &:not(:first-child) {
+    margin-top: 0.5em;
+  }
 }
 
 .nav-secondary__link {
+  display: inline-block;
+
   &[href]:hover,
   &[title]:hover,
   &[type]:hover {
     color: $color-black;
-  }
-}
-
-.nav-toolbox__dropdown {
-  .u-icon {
-    margin-left: 0.5em;
-
-    .is-open & {
-      transform: scale(-1);
-    }
   }
 }

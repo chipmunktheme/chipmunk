@@ -3597,15 +3597,16 @@ input:checked + .u-checkbox__mark .icon {
 }
 .nav-secondary__item {
   position: relative;
+  line-height: 1.4;
+}
+.nav-secondary__item:not(:first-child) {
+  margin-top: 0.5em;
+}
+.nav-secondary__link {
+  display: inline-block;
 }
 .nav-secondary__link[href]:hover, .nav-secondary__link[title]:hover, .nav-secondary__link[type]:hover {
   color: #333333;
-}
-.nav-toolbox__dropdown .u-icon {
-  margin-left: 0.5em;
-}
-.is-open .nav-toolbox__dropdown .u-icon {
-  transform: scale(-1);
 }
 /*
 ** Module - Nav socials
