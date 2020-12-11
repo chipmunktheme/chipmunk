@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Chipmunk\n"
-"POT-Creation-Date: 2020-02-05 13:52+0100\n"
+"POT-Creation-Date: 2020-11-26 14:06+0100\n"
 "PO-Revision-Date: 2017-08-30 14:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: style.css\n"
@@ -20,6 +20,9 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: inc/acf\n"
+"X-Poedit-SearchPathExcluded-2: inc/merlin\n"
+"X-Poedit-SearchPathExcluded-3: inc/updater\n"
 
 #: 404.php:15
 msgid "404! The page you are looking for couldn't be found."
@@ -41,7 +44,7 @@ msgid_plural "%s Comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: comments.php:70 inc/customizer.php:372 templates/partials/filters.php:40
+#: comments.php:70 inc/customizer.php:410 templates/partials/filters.php:40
 #: templates/partials/filters.php:41
 msgid "Name"
 msgstr ""
@@ -50,7 +53,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: comments.php:88
+#: comments.php:89
 msgid "Comment"
 msgstr ""
 
@@ -62,168 +65,205 @@ msgstr ""
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: functions.php:90
+#: functions.php:101
 msgid "Blog sidebar"
 msgstr ""
 
-#: functions.php:101
+#: functions.php:112
 msgid "Black"
 msgstr ""
 
-#: functions.php:106
+#: functions.php:117
 msgid "Gray"
 msgstr ""
 
-#: functions.php:111
+#: functions.php:122
 msgid "White"
 msgstr ""
 
-#: functions.php:124
+#: functions.php:135
 msgid "Small"
 msgstr ""
 
-#: functions.php:129 inc/customizer.php:151
+#: functions.php:140 inc/customizer.php:160
 msgid "Normal"
 msgstr ""
 
-#: functions.php:134
+#: functions.php:145
 msgid "Medium"
 msgstr ""
 
-#: functions.php:139
+#: functions.php:150
 msgid "Large"
 msgstr ""
 
-#: functions.php:144
+#: functions.php:155
 msgid "Huge"
 msgstr ""
 
-#: functions.php:152 functions.php:154
+#: functions.php:163 functions.php:165 inc/acf-config.php:41
 msgid "Resource"
 msgstr ""
 
-#: functions.php:153 inc/customizer.php:252
-#: templates/sections/collection-tile.php:70
-#: templates/sections/resources.php:18 templates/sections/resources.php:24
+#: functions.php:164 inc/customizer.php:283
+#: templates/sections/collection-tile.php:73
+#: templates/sections/loop-resource.php:19
 msgid "Resources"
 msgstr ""
 
-#: functions.php:162
+#: functions.php:173
 msgid "Add New Resource"
 msgstr ""
 
-#: functions.php:163
+#: functions.php:174
 msgid "Edit Resource"
 msgstr ""
 
-#: functions.php:164
+#: functions.php:175
 msgid "New Resource"
 msgstr ""
 
-#: functions.php:165
+#: functions.php:176
 msgid "View Resource"
 msgstr ""
 
-#: functions.php:166
+#: functions.php:177
 msgid "All Resources"
 msgstr ""
 
-#: functions.php:167
+#: functions.php:178
 msgid "Search Resources"
 msgstr ""
 
-#: functions.php:168
+#: functions.php:179
 msgid "No Resources found."
 msgstr ""
 
-#: functions.php:169
+#: functions.php:180
 msgid "No Resources found in trash."
 msgstr ""
 
-#: functions.php:176 functions.php:179 templates/emails/submission.php:9
-#: templates/sections/submit.php:23 templates/sections/submit.php:24
+#: functions.php:187 functions.php:190 inc/acf-config.php:94
+#: templates/emails/submission.php:9 templates/sections/submit.php:24
+#: templates/sections/submit.php:25
 msgid "Collection"
 msgstr ""
 
-#: functions.php:177 inc/customizer.php:391
+#: functions.php:188 inc/customizer.php:430
 #: templates/sections/collections.php:3
 msgid "Collections"
 msgstr ""
 
-#: functions.php:183
+#: functions.php:194
 msgid "Add Collection"
 msgstr ""
 
-#: functions.php:184
+#: functions.php:195
 msgid "New Collection Name"
 msgstr ""
 
-#: functions.php:185
+#: functions.php:196
 msgid "Edit Collection"
 msgstr ""
 
-#: functions.php:186
+#: functions.php:197
 msgid "Update Collection"
 msgstr ""
 
-#: functions.php:187
+#: functions.php:198
 msgid "Parent Collection"
 msgstr ""
 
-#: functions.php:188
+#: functions.php:199
 msgid "Parent Collection:"
 msgstr ""
 
-#: functions.php:189
+#: functions.php:200
 msgid "All Collections"
 msgstr ""
 
-#: functions.php:190
+#: functions.php:201
 msgid "Search Collections"
 msgstr ""
 
-#: functions.php:195
+#: functions.php:206
 msgid "Tag"
 msgstr ""
 
-#: functions.php:196
+#: functions.php:207
 msgid "Tags"
 msgstr ""
 
-#: functions.php:198
+#: functions.php:209
 msgid "Resource Tag"
 msgstr ""
 
-#: functions.php:201
+#: functions.php:212
 msgid "Add Tag"
 msgstr ""
 
-#: functions.php:202
+#: functions.php:213
 msgid "New Tag Name"
 msgstr ""
 
-#: functions.php:203
+#: functions.php:214
 msgid "Edit Tag"
 msgstr ""
 
-#: functions.php:204
+#: functions.php:215
 msgid "Update Tag"
 msgstr ""
 
-#: functions.php:205
+#: functions.php:216
 msgid "Parent Tag"
 msgstr ""
 
-#: functions.php:206
+#: functions.php:217
 msgid "Parent Tag:"
 msgstr ""
 
-#: functions.php:207
+#: functions.php:218
 msgid "All Tags"
 msgstr ""
 
-#: functions.php:208
+#: functions.php:219
 msgid "Search Tags"
+msgstr ""
+
+#: inc/acf-config.php:52
+msgid "Featured on homepage"
+msgstr ""
+
+#: inc/acf-config.php:59
+msgid "Links"
+msgstr ""
+
+#: inc/acf-config.php:63
+msgid "Add link"
+msgstr ""
+
+#: inc/acf-config.php:67
+msgid "Link"
+msgstr ""
+
+#: inc/acf-config.php:75
+msgid "Website"
+msgstr ""
+
+#: inc/acf-config.php:78
+msgid "Deprecated. Please use \"Links\" functionality above."
+msgstr ""
+
+#: inc/acf-config.php:82
+msgid "Submitter"
+msgstr ""
+
+#: inc/acf-config.php:85
+msgid "Read only, will contain the email of resource submitter."
+msgstr ""
+
+#: inc/acf-config.php:105
+msgid "Image"
 msgstr ""
 
 #: inc/ajax.php:53
@@ -258,579 +298,621 @@ msgstr ""
 msgid "Resource tag base"
 msgstr ""
 
-#: inc/customizer.php:82
+#: inc/customizer.php:85
 msgid "Site Identity"
 msgstr ""
 
-#: inc/customizer.php:88
+#: inc/customizer.php:91
 msgid "Site Logo"
 msgstr ""
 
-#: inc/customizer.php:89
+#: inc/customizer.php:92
 msgid ""
 "Upload a logo for your theme. You can leave it empty to use your site name "
 "as a plain text logo."
 msgstr ""
 
-#: inc/customizer.php:95
+#: inc/customizer.php:98
 msgid "Visuals"
 msgstr ""
 
-#: inc/customizer.php:101
+#: inc/customizer.php:104
 msgid "Primary Color"
 msgstr ""
 
-#: inc/customizer.php:107
+#: inc/customizer.php:110
 msgid "Link Color"
 msgstr ""
 
-#: inc/customizer.php:113
+#: inc/customizer.php:116
 msgid "Background Color"
 msgstr ""
 
-#: inc/customizer.php:119
-msgid "Section background Color"
+#: inc/customizer.php:122
+msgid "Section Background Color"
 msgstr ""
 
-#: inc/customizer.php:125
+#: inc/customizer.php:128
+msgid "Section Border Color"
+msgstr ""
+
+#: inc/customizer.php:134
 msgid "Primary Font"
 msgstr ""
 
-#: inc/customizer.php:127 inc/customizer.php:134
+#: inc/customizer.php:136 inc/customizer.php:143
 msgid "System font"
 msgstr ""
 
-#: inc/customizer.php:132
+#: inc/customizer.php:141
 msgid "Heading Font"
 msgstr ""
 
-#: inc/customizer.php:139
+#: inc/customizer.php:148
 msgid "Content Size"
 msgstr ""
 
-#: inc/customizer.php:141
+#: inc/customizer.php:150
 msgid "You can use any CSS unit here (eg. px, em, rem, vw)"
 msgstr ""
 
-#: inc/customizer.php:146
+#: inc/customizer.php:155
 msgid "Content Width"
 msgstr ""
 
-#: inc/customizer.php:148
+#: inc/customizer.php:157
 msgid "You can can still overwrite it by setting page templates."
 msgstr ""
 
-#: inc/customizer.php:150
+#: inc/customizer.php:159
 msgid "Narrow"
 msgstr ""
 
-#: inc/customizer.php:152
+#: inc/customizer.php:161
 msgid "Wide"
 msgstr ""
 
-#: inc/customizer.php:153
+#: inc/customizer.php:162
 msgid "Full"
 msgstr ""
 
-#: inc/customizer.php:159
-msgid "Enable sticky header"
-msgstr ""
-
-#: inc/customizer.php:165
-msgid "Disable section borders"
+#: inc/customizer.php:168
+msgid "Dropdown Color Theme"
 msgstr ""
 
 #: inc/customizer.php:171
-msgid "Custom CSS"
+msgid "Light"
 msgstr ""
 
-#: inc/customizer.php:173
-msgid "Quickly add some CSS to your theme by adding it to this block."
+#: inc/customizer.php:172
+msgid "Dark"
 msgstr ""
 
-#: inc/customizer.php:179
-msgid "Open Graph"
+#: inc/customizer.php:178
+msgid "Logo height"
 msgstr ""
 
-#: inc/customizer.php:185
-msgid "Disable Open Graph"
+#: inc/customizer.php:180
+msgid "Width will be calculated automatically."
 msgstr ""
 
 #: inc/customizer.php:190
-msgid "Open Graph Image"
-msgstr ""
-
-#: inc/customizer.php:191
-msgid "1200x630 pixels"
+msgid "Enable sticky header"
 msgstr ""
 
 #: inc/customizer.php:196
-msgid "Remove 'on [website name]' text"
+msgid "Disable section borders"
 msgstr ""
 
 #: inc/customizer.php:202
+msgid "Custom CSS"
+msgstr ""
+
+#: inc/customizer.php:204
+msgid "Quickly add some CSS to your theme by adding it to this block."
+msgstr ""
+
+#: inc/customizer.php:210
+msgid "Open Graph"
+msgstr ""
+
+#: inc/customizer.php:216
+msgid "Disable Open Graph"
+msgstr ""
+
+#: inc/customizer.php:221
+msgid "Open Graph Image"
+msgstr ""
+
+#: inc/customizer.php:222
+msgid "1200x630 pixels"
+msgstr ""
+
+#: inc/customizer.php:227
+msgid "Remove 'on [website name]' text"
+msgstr ""
+
+#: inc/customizer.php:233
 msgid "Homepage"
 msgstr ""
 
-#: inc/customizer.php:208
+#: inc/customizer.php:239
 msgid "Intro text"
 msgstr ""
 
-#: inc/customizer.php:209
+#: inc/customizer.php:240
 msgid ""
 "Enter your site's tagline to show on homepage under the header. Leave empty "
 "to hide."
 msgstr ""
 
-#: inc/customizer.php:214
+#: inc/customizer.php:245
 msgid "Latest resources count"
 msgstr ""
 
-#: inc/customizer.php:216
+#: inc/customizer.php:247
 msgid "Enter the max resources number to show on resource sliders."
 msgstr ""
 
-#: inc/customizer.php:221
+#: inc/customizer.php:252
 msgid "Disable resource listings"
 msgstr ""
 
-#: inc/customizer.php:227
+#: inc/customizer.php:258
 msgid "Disable resource listings sliders"
 msgstr ""
 
-#: inc/customizer.php:233
+#: inc/customizer.php:264
 msgid "Make resource sliders infinite"
 msgstr ""
 
-#: inc/customizer.php:239
+#: inc/customizer.php:270
 msgid "Disable collections"
 msgstr ""
 
-#: inc/customizer.php:245
+#: inc/customizer.php:276
 msgid "Disable latest posts"
 msgstr ""
 
-#: inc/customizer.php:258
+#: inc/customizer.php:289
 msgid "Number of resources per page"
 msgstr ""
 
-#: inc/customizer.php:264
+#: inc/customizer.php:295
 msgid "Number of search results per page"
 msgstr ""
 
-#: inc/customizer.php:270
+#: inc/customizer.php:301
 msgid "Display resources as"
 msgstr ""
 
-#: inc/customizer.php:273 inc/customizer.php:400
+#: inc/customizer.php:304 inc/customizer.php:439
 msgid "Tile"
 msgstr ""
 
-#: inc/customizer.php:274 inc/customizer.php:401
+#: inc/customizer.php:305 inc/customizer.php:440
 msgid "Card"
 msgstr ""
 
-#: inc/customizer.php:275 inc/customizer.php:402
+#: inc/customizer.php:306 inc/customizer.php:441
 msgid "Card (blank)"
 msgstr ""
 
-#: inc/customizer.php:276
+#: inc/customizer.php:307
 msgid "List"
 msgstr ""
 
-#: inc/customizer.php:282
+#: inc/customizer.php:313
 msgid "Display resource content in a separate section"
 msgstr ""
 
-#: inc/customizer.php:288
+#: inc/customizer.php:319
 msgid "Disable featured panel"
 msgstr ""
 
-#: inc/customizer.php:294
+#: inc/customizer.php:325
 msgid "Disable description"
 msgstr ""
 
-#: inc/customizer.php:300
+#: inc/customizer.php:331
 msgid "Disable date"
 msgstr ""
 
-#: inc/customizer.php:306
+#: inc/customizer.php:337
 msgid "Disable tags"
 msgstr ""
 
-#: inc/customizer.php:312
+#: inc/customizer.php:343
 msgid "Disable thumbs"
 msgstr ""
 
-#: inc/customizer.php:318
+#: inc/customizer.php:349
 msgid "Disable website button"
 msgstr ""
 
-#: inc/customizer.php:324 inc/customizer.php:526
+#: inc/customizer.php:355 inc/customizer.php:571
 msgid "Disable view count"
 msgstr ""
 
-#: inc/customizer.php:330
+#: inc/customizer.php:361
 msgid "Disable upvoting"
 msgstr ""
 
-#: inc/customizer.php:336
+#: inc/customizer.php:367
 msgid "Disable sharing"
 msgstr ""
 
-#: inc/customizer.php:342
+#: inc/customizer.php:373
 msgid "Disable bookmarking"
 msgstr ""
 
-#: inc/customizer.php:349
+#: inc/customizer.php:380
+msgid "Disable ratings"
+msgstr ""
+
+#: inc/customizer.php:387
 msgid "Disable sorting"
 msgstr ""
 
-#: inc/customizer.php:355
+#: inc/customizer.php:393
 msgid "Disable filters"
 msgstr ""
 
-#: inc/customizer.php:361
+#: inc/customizer.php:399
 msgid "Restrict guest upvoting"
 msgstr ""
 
-#: inc/customizer.php:368 templates/partials/filters.php:31
+#: inc/customizer.php:406 templates/partials/filters.php:31
 msgid "Sort by"
 msgstr ""
 
-#: inc/customizer.php:371 templates/partials/filters.php:38
+#: inc/customizer.php:409 templates/partials/filters.php:38
 #: templates/partials/filters.php:39
 msgid "Date"
 msgstr ""
 
-#: inc/customizer.php:373 inc/settings.php:123
-#: templates/partials/filters.php:44 templates/partials/filters.php:45
-#: templates/partials/post-stats.php:22
+#: inc/customizer.php:411 inc/settings.php:123
+#: templates/partials/filters.php:44 templates/partials/post-stats.php:24
 msgid "Views"
 msgstr ""
 
-#: inc/customizer.php:374 inc/settings.php:107
-#: templates/partials/filters.php:49 templates/partials/filters.php:50
-#: templates/partials/post-stats.php:40
+#: inc/customizer.php:412 inc/settings.php:107
+#: templates/partials/filters.php:48 templates/partials/post-stats.php:54
 msgid "Upvotes"
 msgstr ""
 
-#: inc/customizer.php:380
+#: inc/customizer.php:413 templates/partials/filters.php:52
+msgid "Ratings"
+msgstr ""
+
+#: inc/customizer.php:419
 msgid "Sort order"
 msgstr ""
 
-#: inc/customizer.php:383
+#: inc/customizer.php:422
 msgid "Ascending"
 msgstr ""
 
-#: inc/customizer.php:384
+#: inc/customizer.php:423
 msgid "Descending"
 msgstr ""
 
-#: inc/customizer.php:397
+#: inc/customizer.php:436
 msgid "Display collections as"
 msgstr ""
 
-#: inc/customizer.php:408
+#: inc/customizer.php:447
 msgid "Disable collection thumbs"
 msgstr ""
 
-#: inc/customizer.php:415
+#: inc/customizer.php:453
+msgid "Disable collection stats"
+msgstr ""
+
+#: inc/customizer.php:460
 msgid "Submissions"
 msgstr ""
 
-#: inc/customizer.php:421
+#: inc/customizer.php:466
 msgid "Disable user submissions"
 msgstr ""
 
-#: inc/customizer.php:427
+#: inc/customizer.php:472
 msgid "Inform me about new submissions"
 msgstr ""
 
-#: inc/customizer.php:433
+#: inc/customizer.php:478
 msgid "Disable asking for submitter info"
 msgstr ""
 
-#: inc/customizer.php:439
+#: inc/customizer.php:484
 msgid "Disable image auto-fetching"
 msgstr ""
 
-#: inc/customizer.php:445
+#: inc/customizer.php:490
 msgid "Submit form page"
 msgstr ""
 
-#: inc/customizer.php:446
+#: inc/customizer.php:491
 msgid ""
 "Select one if you want to display the submit form on a standard page instead "
 "of in a popup. Make sure to put [chipmunk-submit] shortode on the page."
 msgstr ""
 
-#: inc/customizer.php:451
+#: inc/customizer.php:496
 msgid "Submission tagline"
 msgstr ""
 
-#: inc/customizer.php:452
+#: inc/customizer.php:497
 msgid "Internet is huge! Help us find great content"
 msgstr ""
 
-#: inc/customizer.php:457
+#: inc/customizer.php:502
 msgid "Submission consent"
 msgstr ""
 
-#: inc/customizer.php:462
+#: inc/customizer.php:507
 msgid "Submission \"Thank You\" message"
 msgstr ""
 
-#: inc/customizer.php:463
+#: inc/customizer.php:508
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
 msgstr ""
 
-#: inc/customizer.php:468
+#: inc/customizer.php:513
 msgid "Submission \"Failure\" message"
 msgstr ""
 
-#: inc/customizer.php:469
+#: inc/customizer.php:514
 msgid "Your submission could not be processed."
 msgstr ""
 
-#: inc/customizer.php:475 templates/sections/posts.php:24
+#: inc/customizer.php:520 templates/sections/loop-post.php:24
 msgid "Blog"
 msgstr ""
 
-#: inc/customizer.php:481
+#: inc/customizer.php:526
 msgid "Blog list layout"
 msgstr ""
 
-#: inc/customizer.php:484
+#: inc/customizer.php:529
 msgid "Tiles"
 msgstr ""
 
-#: inc/customizer.php:485
+#: inc/customizer.php:530
 msgid "Excerpts"
 msgstr ""
 
-#: inc/customizer.php:486
+#: inc/customizer.php:531
 msgid "Mixed"
 msgstr ""
 
-#: inc/customizer.php:492
+#: inc/customizer.php:537
 msgid "Blog post layout"
 msgstr ""
 
-#: inc/customizer.php:495
+#: inc/customizer.php:540
 msgid "Hero"
 msgstr ""
 
-#: inc/customizer.php:496
+#: inc/customizer.php:541
 msgid "No Hero"
 msgstr ""
 
-#: inc/customizer.php:502
+#: inc/customizer.php:547
 msgid "Number of blog posts per page"
 msgstr ""
 
-#: inc/customizer.php:508
+#: inc/customizer.php:553
 msgid "Disable post sharing"
 msgstr ""
 
-#: inc/customizer.php:514
+#: inc/customizer.php:559
 msgid "Disable post tags"
 msgstr ""
 
-#: inc/customizer.php:520
+#: inc/customizer.php:565
 msgid "Disable post date"
 msgstr ""
 
-#: inc/customizer.php:533
+#: inc/customizer.php:578
 msgid "Pagination"
 msgstr ""
 
-#: inc/customizer.php:539
+#: inc/customizer.php:584
 msgid "Pagination type"
 msgstr ""
 
-#: inc/customizer.php:542
+#: inc/customizer.php:587
 msgid "Standard"
 msgstr ""
 
-#: inc/customizer.php:543
+#: inc/customizer.php:588
 msgid "Load More"
 msgstr ""
 
-#: inc/customizer.php:544
+#: inc/customizer.php:589
 msgid "Infinite scroll"
 msgstr ""
 
-#: inc/customizer.php:551
+#: inc/customizer.php:596
 msgid "Social Profiles"
 msgstr ""
 
-#: inc/customizer.php:557
+#: inc/customizer.php:602
 msgid "ReCaptcha"
 msgstr ""
 
-#: inc/customizer.php:563
+#: inc/customizer.php:608
 msgid "Enable reCAPTCHA"
 msgstr ""
 
-#: inc/customizer.php:569
+#: inc/customizer.php:614
 msgid "reCAPTCHA Site key"
 msgstr ""
 
-#: inc/customizer.php:570 inc/customizer.php:576
+#: inc/customizer.php:615 inc/customizer.php:621
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 msgstr ""
 
-#: inc/customizer.php:575
+#: inc/customizer.php:620
 msgid "reCAPTCHA Secret key"
 msgstr ""
 
-#: inc/customizer.php:582
+#: inc/customizer.php:627
 msgid "Ads"
 msgstr ""
 
-#: inc/customizer.php:588
+#: inc/customizer.php:633
 msgid "Disable ads"
 msgstr ""
 
-#: inc/customizer.php:594
+#: inc/customizer.php:639
 msgid "Show ads only on homepage"
 msgstr ""
 
-#: inc/customizer.php:600
+#: inc/customizer.php:645
 msgid "Ad link URL"
 msgstr ""
 
-#: inc/customizer.php:605
+#: inc/customizer.php:650
 msgid "Ad image (Desktop)"
 msgstr ""
 
-#: inc/customizer.php:606 inc/customizer.php:612
+#: inc/customizer.php:651 inc/customizer.php:657
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
 "wide."
 msgstr ""
 
-#: inc/customizer.php:611
+#: inc/customizer.php:656
 msgid "Ad image (Tablet)"
 msgstr ""
 
-#: inc/customizer.php:617
+#: inc/customizer.php:662
 msgid "Ad image (Mobile)"
 msgstr ""
 
-#: inc/customizer.php:618
+#: inc/customizer.php:663
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
 "wide."
 msgstr ""
 
-#: inc/customizer.php:623
+#: inc/customizer.php:668
 msgid "Ad HTML code"
 msgstr ""
 
-#: inc/customizer.php:624
+#: inc/customizer.php:669
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
 msgstr ""
 
-#: inc/customizer.php:630 templates/partials/newsletter.php:27
+#: inc/customizer.php:675 templates/partials/newsletter.php:27
 msgid "Newsletter"
 msgstr ""
 
-#: inc/customizer.php:636
+#: inc/customizer.php:681
 msgid "Disable newsletter"
 msgstr ""
 
-#: inc/customizer.php:642
+#: inc/customizer.php:687
 msgid "Form action URL"
 msgstr ""
 
-#: inc/customizer.php:643
+#: inc/customizer.php:688
 #, php-format
 msgid ""
 "We support Mailchimp, ConvertKit, Revue and AWeber. <a href=\"%1$s\" target="
 "\"_blank\">Learn how to find your URL</a>."
 msgstr ""
 
-#: inc/customizer.php:648
+#: inc/customizer.php:693
 msgid "Newsletter tagline"
 msgstr ""
 
-#: inc/customizer.php:649
+#: inc/customizer.php:694
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr ""
 
-#: inc/customizer.php:654
+#: inc/customizer.php:699
 msgid "Newsletter consent"
 msgstr ""
 
-#: inc/customizer.php:660
+#: inc/customizer.php:705
 msgid "Theme Options"
 msgstr ""
 
-#: inc/customizer.php:666
+#: inc/customizer.php:711
 msgid "Disable theme credits"
 msgstr ""
 
-#: inc/customizer.php:672
+#: inc/customizer.php:717
 msgid "Disable search"
 msgstr ""
 
-#: inc/customizer.php:678
+#: inc/customizer.php:723
 msgid "Disable \"ref\" attribute"
 msgstr ""
 
-#: inc/customizer.php:684
+#: inc/customizer.php:729
+msgid "Disable \"nofollow\" attribute"
+msgstr ""
+
+#: inc/customizer.php:735
 msgid "Disable cookies"
 msgstr ""
 
-#: inc/customizer.php:690
+#: inc/customizer.php:741
+msgid "Use system date format"
+msgstr ""
+
+#: inc/customizer.php:747
 msgid "About copy (footer)"
 msgstr ""
 
-#: inc/customizer.php:692
+#: inc/customizer.php:749
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
 msgstr ""
 
-#: inc/customizer.php:697
+#: inc/customizer.php:754
 msgid "Copyright text"
 msgstr ""
 
-#: inc/customizer.php:698
+#: inc/customizer.php:755
 #, php-format
 msgid "&copy; %1$s %2$s"
 msgstr ""
 
-#: inc/helpers.php:65
+#: inc/helpers.php:74
 #, php-format
 msgid "Error locating %s for inclusion"
 msgstr ""
 
-#: inc/helpers.php:92
+#: inc/helpers.php:112
 #, php-format
 msgid "Chipmunk requires PHP %1$s or greater. You have %2$s."
 msgstr ""
 
-#: inc/helpers.php:100
+#: inc/helpers.php:120
 #, php-format
 msgid "Chipmunk requires WordPress %1$s or greater. You have %2$s."
 msgstr ""
 
-#: inc/helpers.php:157
+#: inc/helpers.php:177
 #, php-format
 msgid "%s on %s"
 msgstr ""
 
-#: inc/helpers.php:233
+#: inc/helpers.php:253
 #, php-format
 msgid "%s: New user submission"
 msgstr ""
@@ -1030,672 +1112,6 @@ msgstr ""
 msgid "A special note for this import."
 msgstr ""
 
-#: inc/merlin/class-merlin.php:453
-msgid "Something went wrong. Please refresh the page and try again!"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:599
-msgid "Please define default parameters in the form of an array."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:604
-msgid "Please define an SVG icon filename."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:713
-msgid "Welcome"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:720
-msgid "Child"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:726
-msgid "License"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:734
-msgid "Plugins"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:742 inc/merlin/class-merlin.php:1982
-msgid "Content"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:748
-msgid "Ready"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:853
-msgid "The welcome step has been displayed"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:947
-msgid "The license activation step has been displayed"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1017
-msgid "The child theme installation step has been displayed"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1104
-msgid "Required"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1105
-msgid "req"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1145
-msgid "The plugin installation step has been displayed"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1191
-msgid "Select Demo"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1229
-msgid "The content import step has been displayed"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1309
-msgid "The final step has been displayed"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1386
-msgid "The existing child theme was activated"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1403
-msgid "The newly generated child theme was activated"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1424
-msgid ""
-"Yikes! The theme activation failed. Please try again or contact support."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1433
-msgid "Please add your license key before attempting to activate one."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1446
-msgid "The license activation was performed with the following results"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1492 inc/merlin/class-merlin.php:1533
-#: inc/updater/theme-licenser.php:61 inc/updater/theme-updater.php:83
-msgid "An error occurred, please try again."
-msgstr ""
-
-#. translators: Expiration date
-#: inc/merlin/class-merlin.php:1505 inc/updater/theme-licenser.php:55
-#: inc/updater/theme-updater.php:77
-#, php-format
-msgid "Your license key expired on %s."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1511 inc/updater/theme-licenser.php:56
-#: inc/updater/theme-updater.php:78
-msgid "Your license key has been disabled."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1515
-msgid ""
-"This appears to be an invalid license key. Please try again or contact "
-"support."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1520 inc/updater/theme-licenser.php:58
-#: inc/updater/theme-updater.php:80
-msgid "Your license is not active for this URL."
-msgstr ""
-
-#. translators: EDD Item Name
-#: inc/merlin/class-merlin.php:1525 inc/updater/theme-licenser.php:59
-#: inc/updater/theme-updater.php:81
-#, php-format
-msgid "This appears to be an invalid license key for %s."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1529 inc/updater/theme-licenser.php:60
-#: inc/updater/theme-updater.php:82
-msgid "Your license key has reached its activation limit."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1623
-msgid "The child theme functions.php content was generated"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1654
-msgid "The child theme style.css content was generated"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1688
-msgid ""
-"The child theme screenshot was copied to the child theme, with the following "
-"result"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1690
-msgid "The child theme screenshot was not generated, because of these results"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1719
-msgid "Activating"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1735
-msgid "Updating"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1751 inc/merlin/class-merlin.php:1767
-#: inc/merlin/class-merlin.php:1985 inc/merlin/class-merlin.php:1998
-#: inc/merlin/class-merlin.php:2011 inc/merlin/class-merlin.php:2024
-#: inc/merlin/class-merlin.php:2037 inc/merlin/class-merlin.php:2050
-#: inc/merlin/class-merlin.php:2093
-msgid "Installing"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1759
-msgid "A plugin with the following data will be processed"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1771
-msgid "A plugin with the following data was processed"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1780 inc/merlin/class-merlin.php:1986
-#: inc/merlin/class-merlin.php:1999 inc/merlin/class-merlin.php:2012
-#: inc/merlin/class-merlin.php:2025 inc/merlin/class-merlin.php:2038
-#: inc/merlin/class-merlin.php:2051
-msgid "Success"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1803
-msgid ""
-"The content importer AJAX call failed to start, because of incorrect data"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1808
-msgid "Invalid content!"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1819
-msgid "The content import AJAX call will be executed with this import data"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1861
-msgid "The content import AJAX call failed with this passed data"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1872
-msgid "Error"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1886
-msgid ""
-"The content importer AJAX call for retrieving total content import items "
-"failed to start, because of incorrect data."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1891
-msgid "Invalid data!"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1983
-msgid "Demo content data."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1984 inc/merlin/class-merlin.php:1997
-#: inc/merlin/class-merlin.php:2010 inc/merlin/class-merlin.php:2023
-#: inc/merlin/class-merlin.php:2036 inc/merlin/class-merlin.php:2049
-msgid "Pending"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1995
-msgid "Widgets"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:1996
-msgid "Sample widgets data."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2008
-msgid "Revolution Slider"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2009
-msgid "Sample Revolution sliders data."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2021
-msgid "Options"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2022
-msgid "Sample theme options data."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2034
-msgid "Redux Options"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2035
-msgid "Redux framework options."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2047
-msgid "After import setup"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2048
-msgid "After import setup."
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2077
-msgid "The revolution slider import was executed"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2114
-msgid "The home page was set"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2124
-msgid "The blog page was set"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2139
-msgid "The Hello world post status was set to draft"
-msgstr ""
-
-#: inc/merlin/class-merlin.php:2163
-msgid ""
-"This predefined demo import does not have the name parameter: "
-"import_file_name"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-customizer-importer.php:30
-msgid "The customizer import has finished successfully"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-customizer-importer.php:57
-#, php-format
-msgid "Error: The customizer import file is missing! File path: %s"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-customizer-importer.php:70
-msgid ""
-"Error: The customizer import file does not have any content in it. Please "
-"make sure to use the correct customizer import file."
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-customizer-importer.php:80
-msgid ""
-"Error: The customizer import file is not in a correct format. Please make "
-"sure to use the correct customizer import file."
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-customizer-importer.php:86
-msgid ""
-"Error: The customizer import file is not suitable for current theme. You can "
-"only import customizer settings for the same theme or a child theme."
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-downloader.php:49
-msgid "The file was not able to save to disk, while trying to download it"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-downloader.php:66
-msgid "Missing URL for downloading a file!"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-downloader.php:84
-#, php-format
-msgid ""
-"An error occurred while fetching file from: %1$s%2$s%3$s!%4$sReason: %5$s - "
-"%6$s."
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-redux-importer.php:32
-msgid "The Redux Framework data was imported"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-widget-importer.php:72
-msgid "Error: Widget import file could not be found."
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-widget-importer.php:83
-msgid "Error: Widget import file does not have any content in it."
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-widget-importer.php:105
-msgid ""
-"Error: Widget import data could not be read. Please try a different file."
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-widget-importer.php:144
-msgid "Sidebar does not exist in theme (moving widget to Inactive)"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-widget-importer.php:165
-msgid "Site does not support widget"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-widget-importer.php:198
-msgid "Widget already exists"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-widget-importer.php:256
-msgid "Imported"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-widget-importer.php:260
-msgid "Imported to Inactive"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-widget-importer.php:266
-msgid "No Title"
-msgstr ""
-
-#: inc/merlin/includes/class-merlin-widget-importer.php:328
-msgid "No results for widget import!"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:55
-msgid ""
-"The XMLReader class is missing! Please install the XMLReader PHP extension "
-"on your server"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:68
-msgid "Could not open the XML file for parsing!"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:248
-msgid "Content import start error: "
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:280
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:173
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:291
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:364
-#, php-format
-msgid ""
-"This WXR file (version %s) is newer than the importer (version %s) and may "
-"not be supported. Please consider updating."
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:504
-msgid "New AJAX call!"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:135
-msgid "Could not open the file for parsing"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:514
-msgid "The file does not exist, please try again."
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:577
-msgid "Invalid author mapping"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:678
-msgid "Cannot import auto-draft posts"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:770
-#, php-format
-msgid "Failed to import \"%s\": Invalid post type %s"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:780
-#, php-format
-msgid "%s \"%s\" already exists."
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:858
-#, php-format
-msgid "Skipping attachment \"%s\", fetching attachments disabled"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:872
-#, php-format
-msgid "Failed to import \"%s\" (%s)"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:904
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1822
-#, php-format
-msgid "Imported \"%s\" (%s)"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:909
-#, php-format
-msgid "Post %d remapped to %d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:949
-#, php-format
-msgid "Failed to import term: %s - %s"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1094
-msgid "Invalid file type"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1593
-#, php-format
-msgid "Failed to import user \"%s\""
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1614
-#, php-format
-msgid "Imported user \"%s\""
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1618
-#, php-format
-msgid "User %d remapped to %d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1783
-#, php-format
-msgid "Failed to import %s %s"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1827
-#, php-format
-msgid "Term %d remapped to %d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1886
-#, php-format
-msgid "Failed to add metakey: %s, metavalue: %s to term_id: %d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1895
-#, php-format
-msgid "Meta for term_id %d : %s => %s ; successfully added!"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1947
-#, php-format
-msgid "Remote server returned %1$d %2$s for %3$s"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1969
-msgid "Zero size file downloaded"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1975
-#, php-format
-msgid "Remote file is too large, limit is %s"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2000
-#, php-format
-msgid "Running post-processing for post %d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2013
-#, php-format
-msgid "Could not find the post parent for \"%s\" (post #%d)"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2018
-#, php-format
-msgid "Post %d was imported with parent %d, but could not be found"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2032
-#, php-format
-msgid "Could not find the author for \"%s\" (post #%d)"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2037
-#, php-format
-msgid "Post %d was imported with author \"%s\", but could not be found"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2063
-#, php-format
-msgid "Post %d was marked for post-processing, but none was required."
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2074
-#, php-format
-msgid "Could not update \"%s\" (post #%d) with mapped data"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2119
-#, php-format
-msgid "Could not find the menu object for \"%s\" (post #%d)"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2124
-#, php-format
-msgid ""
-"Post %d was imported with object \"%d\" of type \"%s\", but could not be "
-"found"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2146
-#, php-format
-msgid "Could not find the comment parent for comment #%d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2150
-#, php-format
-msgid "Comment %d was imported with parent %d, but could not be found"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2164
-#, php-format
-msgid "Could not find the author for comment #%d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2168
-#, php-format
-msgid "Comment %d was imported with author %d, but could not be found"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2185
-#, php-format
-msgid "Could not update comment #%d with mapped data"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2216
-#, php-format
-msgid "Faulty term_id provided in terms-to-be-remapped array %s"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2226
-#, php-format
-msgid "No taxonomy provided in terms-to-be-remapped array for term #%d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2236
-#, php-format
-msgid "No parent_slug identified in remapping-array for term: %d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2244
-#, php-format
-msgid "The term(%d)\"s parent_slug (%s) is not found in the remapping-array."
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2258
-#, php-format
-msgid "No data returned by get_term_by for term_id #%d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2277
-#, php-format
-msgid "Could not update \"%s\" (term #%d) with mapped data"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2287
-#, php-format
-msgid "Term %d was successfully updated with parent %d"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2322
-msgid "Starting remapping of featured images"
-msgstr ""
-
-#: inc/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2331
-#, php-format
-msgid "Remapping featured image ID %d to new ID %d for post ID %d"
-msgstr ""
-
-#: inc/meta-post.php:79 templates/emails/submission.php:14
-#: templates/sections/submit.php:42
-msgid "Website URL"
-msgstr ""
-
-#: inc/meta-post.php:85
-msgid "Featured?"
-msgstr ""
-
-#: inc/meta-post.php:89
-msgid "Featured on homepage"
-msgstr ""
-
-#: inc/meta-post.php:96
-msgid "Submitter"
-msgstr ""
-
-#: inc/meta-post.php:115
-msgid "Custom fields"
-msgstr ""
-
-#: inc/meta-taxonomy.php:47
-msgid "Image"
-msgstr ""
-
-#: inc/meta-taxonomy.php:48
-msgid "Select which image should represent this collection."
-msgstr ""
-
-#: inc/meta-taxonomy.php:50
-msgid "Media Library"
-msgstr ""
-
-#: inc/meta-taxonomy.php:51
-msgid "Remove"
-msgstr ""
-
-#: inc/meta-taxonomy.php:52
-msgid "Select or Upload Media"
-msgstr ""
-
-#: inc/meta-taxonomy.php:53
-msgid "Select"
-msgstr ""
-
 #: inc/settings.php:38 inc/settings.php:39
 msgid "Licenses"
 msgstr ""
@@ -1741,104 +1157,6 @@ msgstr ""
 msgid "Your request could not be processed."
 msgstr ""
 
-#: inc/updater/theme-licenser.php:31 inc/updater/theme-updater.php:53
-msgid "To receive updates, please enter your valid license key."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:32 inc/updater/theme-updater.php:54
-msgid "License Key"
-msgstr ""
-
-#: inc/updater/theme-licenser.php:33 inc/updater/theme-updater.php:55
-msgid "License Action"
-msgstr ""
-
-#: inc/updater/theme-licenser.php:34 inc/updater/theme-updater.php:56
-msgid "Deactivate License"
-msgstr ""
-
-#: inc/updater/theme-licenser.php:35 inc/updater/theme-updater.php:57
-msgid "Activate License"
-msgstr ""
-
-#: inc/updater/theme-licenser.php:36 inc/updater/theme-licenser.php:50
-#: inc/updater/theme-updater.php:58 inc/updater/theme-updater.php:72
-msgid "License status is unknown."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:37 inc/updater/theme-updater.php:59
-msgid "Renew?"
-msgstr ""
-
-#: inc/updater/theme-licenser.php:38 inc/updater/theme-updater.php:60
-msgid "unlimited"
-msgstr ""
-
-#: inc/updater/theme-licenser.php:39 inc/updater/theme-updater.php:61
-msgid "License key is active."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:40 inc/updater/theme-updater.php:62
-#, php-format
-msgid "Expires %s."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:41 inc/updater/theme-updater.php:63
-msgid "Lifetime License."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:42 inc/updater/theme-updater.php:64
-#, php-format
-msgid "You have %1$s / %2$s sites activated."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:43 inc/updater/theme-updater.php:65
-#, php-format
-msgid "License key expired %s."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:44 inc/updater/theme-updater.php:66
-msgid "License key has expired."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:45 inc/updater/theme-updater.php:67
-msgid "License keys do not match."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:46 inc/updater/theme-updater.php:68
-msgid "License is invalid."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:47 inc/updater/theme-updater.php:69
-msgid "License is inactive."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:48 inc/updater/theme-updater.php:70
-msgid "License key is disabled."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:49 inc/updater/theme-updater.php:71
-msgid "Site is inactive."
-msgstr ""
-
-#: inc/updater/theme-licenser.php:57 inc/updater/theme-updater.php:79
-msgid "Your license is invalid."
-msgstr ""
-
-#: inc/updater/theme-updater.php:33
-msgid ""
-"Updating this theme may lose the customizations you have made directly in "
-"the source code."
-msgstr ""
-
-#: inc/updater/theme-updater.php:34
-#, php-format
-msgid ""
-"<strong>%1$s %2$s</strong> is available. <a href=\"%3$s\" class=\"thickbox\" "
-"title=\"%4s\">Check out what's new</a> or <a href=\"%5$s\"%6$s>update now</"
-"a>."
-msgstr ""
-
 #: inc/upvotes.php:47
 msgid "Remove upvote"
 msgstr ""
@@ -1859,16 +1177,16 @@ msgstr ""
 msgid "Sorry, your search did not match any resources."
 msgstr ""
 
-#: taxonomy.php:68 templates/sections/resources.php:39
+#: taxonomy.php:68 templates/sections/loop-resource.php:52
 msgid "Ready to publish your first resource?"
 msgstr ""
 
 #: taxonomy.php:70 templates/sections/collections.php:28
-#: templates/sections/posts.php:63 templates/sections/resources.php:41
+#: templates/sections/loop-post.php:63 templates/sections/loop-resource.php:54
 msgid "Get started here"
 msgstr ""
 
-#: taxonomy.php:72 templates/sections/resources.php:43
+#: taxonomy.php:72 templates/sections/loop-resource.php:56
 msgid "Sorry, there are no resources to display yet."
 msgstr ""
 
@@ -1876,12 +1194,16 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: templates/emails/submission.php:15 templates/sections/resource-tile.php:67
-#: templates/sections/resource.php:59
+#: templates/emails/submission.php:14 templates/sections/submit.php:43
+msgid "Website URL"
+msgstr ""
+
+#: templates/emails/submission.php:15 templates/sections/entry-resource.php:56
+#: templates/sections/resource-tile.php:67
 msgid "Visit website"
 msgstr ""
 
-#: templates/emails/submission.php:20 templates/sections/submit.php:46
+#: templates/emails/submission.php:20 templates/sections/submit.php:47
 msgid "Description"
 msgstr ""
 
@@ -1897,14 +1219,6 @@ msgstr ""
 msgid "Choose topic"
 msgstr ""
 
-#: templates/partials/nav.php:71 templates/partials/page-head.php:68
-msgid "Login"
-msgstr ""
-
-#: templates/partials/nav.php:75 templates/partials/page-head.php:73
-msgid "Register"
-msgstr ""
-
 #: templates/partials/newsletter.php:34
 msgid "Email address"
 msgstr ""
@@ -1917,11 +1231,11 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: templates/partials/page-bottom.php:17
+#: templates/partials/page-bottom.php:20
 msgid "Navigation"
 msgstr ""
 
-#: templates/partials/page-bottom.php:40
+#: templates/partials/page-bottom.php:42
 msgid "Follow"
 msgstr ""
 
@@ -1929,33 +1243,44 @@ msgstr ""
 msgid "Chipmunk WordPress Theme"
 msgstr ""
 
-#: templates/partials/page-head.php:25 templates/partials/popup.php:10
-#: templates/partials/search-bar.php:14
-msgid "Close"
-msgstr ""
-
-#: templates/partials/page-head.php:36
+#: templates/partials/page-head.php:32
 msgid "Search"
 msgstr ""
 
-#: templates/partials/page-head.php:57
+#: templates/partials/page-head.php:50
 msgid "Dashboard"
 msgstr ""
 
-#: templates/partials/page-head.php:58
+#: templates/partials/page-head.php:52
 msgid "Profile"
 msgstr ""
 
-#: templates/partials/page-head.php:62
+#: templates/partials/page-head.php:54
+msgid "Edit Profile"
+msgstr ""
+
+#: templates/partials/page-head.php:56
 msgid "Logout"
 msgstr ""
 
+#: templates/partials/page-head.php:61 templates/partials/page-overlay.php:21
+msgid "Login"
+msgstr ""
+
+#: templates/partials/page-head.php:66 templates/partials/page-overlay.php:25
+msgid "Register"
+msgstr ""
+
 #: templates/partials/popup.php:5 templates/partials/submit-button.php:3
-#: templates/partials/submit-button.php:7 templates/sections/submit.php:77
+#: templates/partials/submit-button.php:7 templates/sections/submit.php:78
 msgid "Submit"
 msgstr ""
 
-#: templates/partials/post-stats.php:14
+#: templates/partials/popup.php:10 templates/partials/search-bar.php:14
+msgid "Close"
+msgstr ""
+
+#: templates/partials/post-stats.php:16
 msgid "Published"
 msgstr ""
 
@@ -1967,11 +1292,20 @@ msgstr ""
 msgid "Follow us"
 msgstr ""
 
-#: templates/sections/collection-tile.php:54
+#: templates/sections/author.php:14
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: templates/sections/author.php:64
+msgid "Registered"
+msgstr ""
+
+#: templates/sections/collection-tile.php:56
 msgid "View this collection"
 msgstr ""
 
-#: templates/sections/collection-tile.php:64
+#: templates/sections/collection-tile.php:67
 msgid "Sub collections"
 msgstr ""
 
@@ -1991,6 +1325,37 @@ msgstr ""
 msgid "Newer"
 msgstr ""
 
+#: templates/sections/entry-resource.php:69
+#: templates/sections/post-excerpt.php:23 templates/sections/post-tile.php:40
+msgid "Read more"
+msgstr ""
+
+#: templates/sections/loop-post.php:9 templates/sections/loop-resource.php:26
+msgid "Related"
+msgstr ""
+
+#: templates/sections/loop-post.php:12
+msgid "Latest Posts"
+msgstr ""
+
+#: templates/sections/loop-post.php:18
+#, php-format
+msgid "%s Category"
+msgstr ""
+
+#: templates/sections/loop-post.php:21
+#, php-format
+msgid "%s Tag"
+msgstr ""
+
+#: templates/sections/loop-post.php:61
+msgid "Ready to publish your first post?"
+msgstr ""
+
+#: templates/sections/loop-post.php:65
+msgid "Sorry, there are no posts to display yet."
+msgstr ""
+
 #: templates/sections/pagination.php:17
 msgid "Load more"
 msgstr ""
@@ -2004,62 +1369,28 @@ msgstr ""
 msgid "Page %d of %d"
 msgstr ""
 
-#: templates/sections/post-excerpt.php:23 templates/sections/post-tile.php:40
-msgid "Read more"
-msgstr ""
-
-#: templates/sections/posts.php:9 templates/sections/resources.php:13
-msgid "Related"
-msgstr ""
-
-#: templates/sections/posts.php:12
-msgid "Latest Posts"
-msgstr ""
-
-#: templates/sections/posts.php:18
-#, php-format
-msgid "%s Category"
-msgstr ""
-
-#: templates/sections/posts.php:21
-#, php-format
-msgid "%s Tag"
-msgstr ""
-
-#: templates/sections/posts.php:61
-msgid "Ready to publish your first post?"
-msgstr ""
-
-#: templates/sections/posts.php:65
-msgid "Sorry, there are no posts to display yet."
-msgstr ""
-
-#: templates/sections/resources-tabs.php:9
+#: templates/sections/resources-tabs.php:8
 msgid "Featured"
 msgstr ""
 
-#: templates/sections/resources-tabs.php:13
+#: templates/sections/resources-tabs.php:12
 msgid "Latest"
 msgstr ""
 
-#: templates/sections/resources-tabs.php:17
+#: templates/sections/resources-tabs.php:16
 msgid "Popular"
 msgstr ""
 
-#: templates/sections/submit.php:19
+#: templates/sections/submit.php:20
 msgid "Resource name"
 msgstr ""
 
-#: templates/sections/submit.php:53
+#: templates/sections/submit.php:54
 msgid "Your name"
 msgstr ""
 
-#: templates/sections/submit.php:57
+#: templates/sections/submit.php:58
 msgid "Your email"
-msgstr ""
-
-#: templates/shortcodes/curators.php:6
-msgid "Curators"
 msgstr ""
 
 #. Theme Name of the plugin/theme

@@ -897,6 +897,26 @@ if ( ! function_exists( 'chipmunk_get_fonts_url' ) ) :
 endif;
 
 
+if ( ! function_exists( 'chipmunk_get_extension_by_mime' ) ) :
+	/**
+	 * Get file extension by content mime type
+	 */
+	function chipmunk_get_extension_by_mime( $mime ) {
+		$extensions = array(
+			'image/jpeg' 	=> '.jpeg',
+			'image/jpg' 	=> '.jpg',
+			'image/png' 	=> '.png',
+			'image/gif' 	=> '.gif',
+			'image/bmp' 	=> '.bmp',
+			'image/webp' 	=> '.webp',
+			'image/svg+xml' => '.svg',
+		);
+
+		return $extensions[$mime];
+	}
+endif;
+
+
 if ( ! function_exists( 'chipmunk_upload_attachment' ) ) :
 	/**
 	 * Upload attachment image from URL
@@ -910,13 +930,15 @@ if ( ! function_exists( 'chipmunk_upload_attachment' ) ) :
 
 		$http = new WP_Http();
 		$response = $http->request( $url );
+		$file_extension = chipmunk_get_extension_by_mime( $response['headers']['content-type'] );
+
 		$wp_upload_dir = wp_upload_dir();
 
 		if ( $response['response']['code'] != 200 ) {
 			return false;
 		}
 
-		$upload = wp_upload_bits( basename( $url ), null, $response['body'] );
+		$upload = wp_upload_bits( basename( $url ) . $file_extension, null, $response['body'] );
 
 		if ( ! empty( $upload['error'] ) ) {
 			return false;
