@@ -54,6 +54,7 @@ if ( ! function_exists( 'chipmunk_custom_style' ) ) :
 				:root {
 					/* Fonts */
 					--chipmunk-body-font-family: $primary_font;
+					--chipmunk-content-font-family: $primary_font;
 					--chipmunk-heading-font-family: $heading_font;
 
 					/* Colors */
