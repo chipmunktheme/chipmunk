@@ -2735,7 +2735,7 @@ input:checked + .u-checkbox__mark .icon {
   height: calc(50vh + var(--chipmunk-logo-height, 4rem) + 2rem);
   min-height: calc(36rem + var(--chipmunk-logo-height, 4rem) + 2rem);
   max-height: calc(75rem + var(--chipmunk-logo-height, 4rem) + 2rem);
-  margin-top: calc(-var(--chipmunk-logo-height, 4rem) + 2rem);
+  margin-top: calc((var(--chipmunk-logo-height, 4rem) + 2rem) * -1);
   padding-top: calc(var(--chipmunk-logo-height, 4rem) + 2rem);
   background-color: rgba(51, 51, 51, 0.9);
   overflow: hidden;
@@ -2744,7 +2744,7 @@ input:checked + .u-checkbox__mark .icon {
   .entry__hero {
     height: calc(40vh + var(--chipmunk-logo-height, 4rem) + 4rem);
     min-height: calc(55vw + var(--chipmunk-logo-height, 4rem) + 4rem);
-    margin-top: calc(-var(--chipmunk-logo-height, 4rem) + 4rem);
+    margin-top: calc((var(--chipmunk-logo-height, 4rem) + 4rem) * -1);
     padding-top: calc(var(--chipmunk-logo-height, 4rem) + 4rem);
   }
 }
@@ -2752,7 +2752,7 @@ input:checked + .u-checkbox__mark .icon {
   .entry__hero {
     height: auto;
     min-height: calc(45rem + var(--chipmunk-logo-height, 4rem) + 6rem);
-    margin-top: calc(-var(--chipmunk-logo-height, 4rem) + 6rem);
+    margin-top: calc((var(--chipmunk-logo-height, 4rem) + 6rem) * -1);
     padding-top: calc(var(--chipmunk-logo-height, 4rem) + 6rem);
   }
 }

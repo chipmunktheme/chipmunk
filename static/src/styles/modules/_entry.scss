@@ -38,7 +38,7 @@
   height: calc(50vh + #{$head-outer-height});
   min-height: calc(36rem + #{$head-outer-height});
   max-height: calc(75rem + #{$head-outer-height});
-  margin-top: calc(-#{$head-outer-height});
+  margin-top: calc((#{$head-outer-height}) * -1);
   padding-top: calc(#{$head-outer-height});
   background-color: rgba($color-black, 0.9);
   overflow: hidden;
@@ -48,7 +48,7 @@
 
     height: calc(40vh + #{$head-outer-height});
     min-height: calc(55vw + #{$head-outer-height});
-    margin-top: calc(-#{$head-outer-height});
+    margin-top: calc((#{$head-outer-height}) * -1);
     padding-top: calc(#{$head-outer-height});
   }
 
@@ -57,7 +57,7 @@
 
     height: auto;
     min-height: calc(45rem + #{$head-outer-height});
-    margin-top: calc(-#{$head-outer-height});
+    margin-top: calc((#{$head-outer-height}) * -1);
     padding-top: calc(#{$head-outer-height});
 
     @media (min-height: 800px) {
