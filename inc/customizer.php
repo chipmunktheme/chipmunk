@@ -340,7 +340,13 @@ if ( ! class_exists( 'ChipmunkCustomizer' ) ) :
 						array(
 							'name'        => 'disable_resource_thumbs',
 							'type'        => 'checkbox',
-							'label'       => esc_html__( 'Disable thumbs', 'chipmunk' ),
+							'label'       => esc_html__( 'Disable thumbnails on resource list', 'chipmunk' ),
+							'default'     => false,
+						),
+						array(
+							'name'        => 'disable_resource_single_thumbs',
+							'type'        => 'checkbox',
+							'label'       => esc_html__( 'Disable thumbnails on resource page', 'chipmunk' ),
 							'default'     => false,
 						),
 						array(

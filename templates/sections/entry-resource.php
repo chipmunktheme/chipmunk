@@ -23,7 +23,7 @@
 			<meta itemprop="name" content="<?php echo esc_attr( strip_tags( get_the_title() ) ); ?>" />
 			
 			<div class="resource__main row">
-				<div class="resource__content column column--lg-<?php echo esc_attr( has_post_thumbnail() ? '6' : '12' ); ?>">
+				<div class="resource__content column column--lg-<?php echo esc_attr( (has_post_thumbnail() and ! chipmunk_theme_option( 'disable_resource_single_thumbs' )) ? '6' : '12' ); ?>">
 					<?php do_action( 'chipmunk_before_resource_info' ); ?>
 
 					<div class="resource__info">
@@ -73,7 +73,7 @@
 					<?php do_action( 'chipmunk_after_resource_actions' ); ?>
 				</div>
 
-				<?php if ( has_post_thumbnail() ) : ?>
+				<?php if ( has_post_thumbnail() and ! chipmunk_theme_option( 'disable_resource_single_thumbs' ) ) : ?>
 					<aside class="resource__image column column--lg-6">
 						<?php if ( is_single() ) : ?>
 							<?php if ( ! empty( $primary_website ) ) : ?>
