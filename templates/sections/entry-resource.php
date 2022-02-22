@@ -31,7 +31,7 @@
 
 						<?php if ( ! empty( $description ) ) : ?>
 							<div class="resource__description" itemprop="description">
-								<?php echo wp_kses_post( apply_filters( 'the_content', $description ) ); ?>
+								<?php echo apply_filters( 'the_content', $description ); ?>
 							</div>
 						<?php endif; ?>
 
