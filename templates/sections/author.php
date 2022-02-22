@@ -41,7 +41,7 @@
 
 								<?php if ( ! $socials_empty ) : ?>
 									<nav class="profile__socials nav-socials">
-										<ul>
+										<ul class="nav-socials__list">
 											<?php foreach ( $user_socials as $social_key => $social_value ) : ?>
 												<?php if ( ! empty( $user_meta[ $social_key ] ) ) : ?>
 													<li class="nav-socials__item">

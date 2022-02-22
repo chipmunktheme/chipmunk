@@ -29,18 +29,18 @@
 			</div>
 
 			<div class="row">
-				<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="form form--compact column column--md-4 column--md-offset-1 column--lg-6 column--lg-offset-3 mt-sm-2" target="_blank" novalidate data-validate>
-					<div class="form__field">
+				<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="form column column--md-4 column--md-offset-1 column--lg-6 column--lg-offset-3 mt-sm-2" target="_blank" novalidate data-validate>
+					<div class="form__field form__field--wide">
 						<input type="email" name="<?php echo $email_field; ?>" placeholder="<?php esc_html_e( 'Email address', 'chipmunk' ); ?>" class="form__input" required>
 					</div>
 
 					<?php if ( ! empty( chipmunk_theme_option( 'newsletter_consent' ) ) ) : ?>
-						<div class="form__field" data-consent>
+						<div class="form__field form__field--wide" data-consent>
 							<?php chipmunk_get_template_part( 'partials/checkbox', array( 'name' => 'consent', 'label' => chipmunk_theme_option( 'newsletter_consent' ), 'required' => true ) ); ?>
 						</div>
 					<?php endif; ?>
 
-					<div class="form__field form__field--center">
+					<div class="form__field form__field--wide form__field--center">
 						<button type="submit" class="button button--white-outline"><?php esc_html_e( 'Join now', 'chipmunk' ); ?></button>
 					</div>
 

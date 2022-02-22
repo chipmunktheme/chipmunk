@@ -6,20 +6,17 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-
-  ul {
-    display: flex;
-  }
+  gap: ($spacer / 2);
 }
 
 .nav-socials__title {
-  margin-right: $spacer;
+  &:not(:last-child) {
+    margin-right: ($spacer / 2);
+  }
 }
 
-.nav-socials__item {
-  &:not(:first-child) {
-    margin-left: ($spacer / 2);
-  }
+.nav-socials__list {
+  display: contents;
 }
 
 .nav-socials__link {

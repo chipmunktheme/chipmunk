@@ -112,17 +112,8 @@
   }
 
   p {
+    grid-column: 1 / -1;
     text-align: left;
-
-    &:not(:first-child) {
-      margin-top: $spacer;
-
-      &.form-submit {
-        @include breakpoint(md) {
-          margin-top: ($spacer * 2);
-        }
-      }
-    }
 
     a {
       &:hover {

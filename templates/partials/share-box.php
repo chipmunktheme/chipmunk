@@ -20,7 +20,7 @@
 <nav class="nav-socials">
 	<h5 class="nav-socials__title"><?php esc_html_e( 'Share', 'chipmunk' ); ?></h5>
 
-	<ul>
+	<ul class="nav-socials__list">
 		<?php foreach ( $providers as $provider ) : ?>
 			<li class="nav-socials__item">
 				<?php

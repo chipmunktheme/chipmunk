@@ -140,16 +140,10 @@
 .resource__actions {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
+  gap: ($spacer / 2) $spacer;
 
   @include breakpoint(lg) {
     justify-content: flex-start;
-  }
-}
-
-.resource__button {
-  &:not(:first-child) {
-    margin-left: $spacer;
   }
 }

@@ -23,7 +23,6 @@
 
 .heading__link {
   display: inline-block;
-  margin-left: $spacer;
   color: $color-gray;
   font-size: 0.8em;
   cursor: pointer;
@@ -31,12 +30,7 @@
   transition-duration: $transition-duration;
 
   @include breakpoint(md) {
-    margin-left: ($spacer * 1.5);
     font-size: 1em;
-  }
-
-  &:first-child {
-    margin-left: 0;
   }
 
   &:hover,

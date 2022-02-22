@@ -65,13 +65,13 @@ endif;
 		$req = get_option( 'require_name_email' ) ? " required" : '';
 
 		$fields = array(
-			'author' => '<div class="form__field"><div class="form__child">' .
+			'author' => '<div class="form__field">' .
 				'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
 				'" size="30" placeholder="' . esc_attr__( 'Name', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '" class="form__input"' . $req . ' /></div>',
 
-			'email' => '<div class="form__child">' .
+			'email' => '<div class="form__field">' .
 				'<input id="email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
-				'" size="30" placeholder="' . esc_attr__( 'Email', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '" class="form__input"' . $req . ' /></div></div>',
+				'" size="30" placeholder="' . esc_attr__( 'Email', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '" class="form__input"' . $req . ' /></div>',
 
 			'url' => '',
 		);
@@ -84,9 +84,9 @@ endif;
 			'title_reply_before'   => '<h3 class="heading heading--h4">',
 			'title_reply_after'    => '</h3>',
 			'submit_field'         => '%1$s %2$s',
-			'submit_button'        => '<div class="form__field form__field--cta"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></div>',
+			'submit_button'        => '<div class="form__field form__field--wide form__field--cta"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></div>',
 			'fields'               => apply_filters( 'comment_form_fields', $fields ),
-			'comment_field'        => '<div class="form__field"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . esc_attr__( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '" class="form__input"' . $req . ' data-dynamic-rows></textarea></div>',
+			'comment_field'        => '<div class="form__field form__field--wide"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . esc_attr__( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? ' *' : '' ) . '" class="form__input"' . $req . ' data-dynamic-rows></textarea></div>',
 		) );
 
 		?>

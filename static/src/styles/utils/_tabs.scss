@@ -6,7 +6,12 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  gap: $spacer;
   padding-right: 6rem;
+
+  @include breakpoint(md) {
+    gap: $spacer * 1.5;
+  }
 }
 
 .tabs__item {

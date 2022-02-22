@@ -9,7 +9,7 @@
 						<nav class="nav-socials">
 							<h5 class="nav-socials__title"><?php esc_html_e( 'Follow us', 'chipmunk' ); ?></h5>
 
-							<ul>
+							<ul class="nav-socials__list">
 								<?php foreach ( $socials as $social_key => $social_value ) : ?>
 									<li class="nav-socials__item">
 										<a href="<?php echo esc_url( $social_value ); ?>" class="nav-socials__link" title="<?php echo $social_key; ?>" target="_blank">

@@ -17,15 +17,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
+  gap: $spacer;
+  margin-left: auto;
 
   @include breakpoint(md) {
     justify-content: flex-end;
     padding-left: $spacer * 2;
-    text-align: right;
   }
-}
-
-.toolbox__button {
-  margin-left: 2.5rem;
 }

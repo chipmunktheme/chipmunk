@@ -49,17 +49,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: $spacer;
   min-height: $logo-height;
+
+  @include breakpoint(lg) {
+    gap: ($spacer * 2);
+  }
 }
 
 .page-head__logo {
-  margin-right: $spacer;
   color: $color-primary;
   font-weight: bold;
-
-  @include breakpoint(lg) {
-    margin-right: $spacer * 2;
-  }
 
   a {
     display: block;
@@ -80,23 +80,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: $spacer * 0.75;
   margin-left: auto;
-
-  .button:not(:first-child) {
-    margin-left: 1.5rem;
-
-    @include breakpoint(md) {
-      margin-left: $spacer;
-    }
-  }
-
-  .button + .button {
-    margin-left: $spacer / 2;
-  }
-}
-
-.page-head__hamburger {
-  margin-left: 1.5rem;
 }
 
 .page-head__search {
