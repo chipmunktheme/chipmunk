@@ -87,7 +87,7 @@
     border-collapse: collapse;
     font-size: 0.8em;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       border-width: 2px;
     }
 
@@ -102,7 +102,7 @@
       border: 1px solid $color-gray-light;
       vertical-align: top;
 
-      @include breakpoint(md) {
+      @include bp(md) {
         border-width: 2px;
       }
     }
@@ -142,7 +142,7 @@
   &:not(:first-child) {
     margin-top: $spacer;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-top: ($spacer * 2);
     }
   }

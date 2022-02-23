@@ -3,5 +3,76 @@
 ** ----------------------------------------------------------------------------- */
 
 .u-hamburger {
-  @include u-hamburger(2.5rem, 1.8rem, 2px, currentColor, $transition-duration);
+  position: relative;
+  width: var(--hamburger-width);
+  height: var(--hamburger-width);
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: calc(var(--hamburger-width) * 0.5);
+
+    @include bp(md) {
+      margin-right: var(--hamburger-width);
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  > * {
+    position: relative;
+    width: 100%;
+    display: block;
+    height: var(--hamburger-weight);
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: var(--hamburger-color);
+      border-radius: var(--hamburger-radius);
+      transition: top var(--hamburger-duration) var(--hamburger-duration),
+        bottom var(--hamburger-duration) var(--hamburger-duration),
+        width var(--hamburger-duration) var(--hamburger-duration),
+        transform var(--hamburger-duration) 0s,
+        background-color var(--hamburger-duration) 0s;
+
+      .has-nav-open & {
+        // Revert the delays
+        transition: top var(--hamburger-duration) 0s,
+          bottom var(--hamburger-duration) 0s,
+          width var(--hamburger-duration) 0s,
+          transform var(--hamburger-duration) var(--hamburger-duration),
+          background-color var(--hamburger-duration) var(--hamburger-duration);
+      }
+    }
+
+    &::before {
+      top: calc(
+        ((var(--hamburger-height) * 0.5) - (var(--hamburger-weight) * 0.5)) * -1
+      );
+
+      .has-nav-open & {
+        top: 0;
+        transform: rotate(45deg);
+      }
+    }
+
+    &::after {
+      width: calc(var(--hamburger-width) * 0.666);
+      bottom: calc(
+        ((var(--hamburger-height) * 0.5) - (var(--hamburger-weight) * 0.5)) * -1
+      );
+
+      .has-nav-open & {
+        width: 100%;
+        bottom: 0;
+        transform: rotate(-45deg);
+      }
+    }
+  }
 }

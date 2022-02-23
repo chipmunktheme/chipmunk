@@ -33,7 +33,7 @@
 	);
 ?>
 
-<<?php echo get_post_status() == 'publish' ? 'a href="' . get_the_permalink() . '"' : 'article'; ?> class="<?php echo esc_attr( $classes[ $options['display_as'] ] ); ?><?php echo ( $options['display_as'] == 'card_wide' ? ' column' : ' column column--md-3 column--lg-4' ); ?>">
+<<?php echo get_post_status() == 'publish' ? 'a href="' . get_the_permalink() . '"' : 'article'; ?> class="<?php echo esc_attr( $classes[ $options['display_as'] ] ); ?><?php echo ( $options['display_as'] == 'card_wide' ? ' grid__item' : ' grid__item grid__item--md-3 grid__item--lg-4' ); ?>">
 	<?php if ( ! chipmunk_theme_option( 'disable_resource_thumbs' ) || $options['display_as'] == 'tile' ) : ?>
 		<div class="tile__image <?php echo ( isset( $display_status ) and $options['display_as'] != 'tile' ) ? 'tile__image--with-status' : ''; ?>">
 			<?php if ( ! $options['disable_thumbs'] && has_post_thumbnail() ) : ?>

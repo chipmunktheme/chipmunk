@@ -11,8 +11,8 @@
 
 			<div class="entry__details section">
 				<div class="container">
-					<div class="row">
-						<div class="column <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
+					<div class="grid">
+						<div class="grid__item <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
 							<?php chipmunk_get_template_part( 'partials/post-head', array( 'collections' => array(
 								'display'  => true,
 								'type'     => 'link',
@@ -35,8 +35,8 @@
 					</div>
 				<?php endif; ?>
 
-				<div class="row">
-					<div class="column <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
+				<div class="grid">
+					<div class="grid__item <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
 						<div class="entry__head">
 							<?php chipmunk_get_template_part( 'partials/post-head', array( 'collections' => array( 'display' => true ) ) ); ?>
 						</div>
@@ -44,8 +44,8 @@
 				</div>
 			<?php endif; ?>
 
-			<div class="row row_separated">
-				<div class="column <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
+			<div class="grid grid--separated">
+				<div class="grid__item <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
 					<?php do_action( 'chipmunk_before_post_content' ); ?>
 
 					<div class="entry__content content" itemprop="articleBody">

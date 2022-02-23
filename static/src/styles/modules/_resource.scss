@@ -8,7 +8,7 @@
   margin-top: -($spacer / 2);
   margin-bottom: -($spacer / 2);
 
-  @include breakpoint(md) {
+  @include bp(md) {
     margin-top: -($spacer);
     margin-bottom: -($spacer);
   }
@@ -19,7 +19,7 @@
   margin-top: $spacer / 2;
   margin-bottom: $spacer / 2;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     margin-top: $spacer;
     margin-bottom: $spacer;
   }
@@ -29,7 +29,7 @@
   display: flex;
   flex-direction: column;
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     order: -1;
     flex-direction: row;
     align-items: center;
@@ -47,14 +47,22 @@
   align-self: center;
   margin-top: $spacer * 2;
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     margin-top: 0;
   }
 }
 
 .resource__media {
-  @include u-object-fit(75%);
   display: block;
+  aspect-ratio: 4 / 3;
+
+  > img,
+  > svg,
+  > video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
 
   &[href] {
     &:hover {
@@ -86,7 +94,7 @@
 .resource__description {
   @extend %content-size;
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     padding-right: $spacer;
   }
 
@@ -114,7 +122,7 @@
 .resource__tags {
   margin-top: 1rem;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     margin-top: $spacer;
   }
 }
@@ -131,7 +139,7 @@
   &:not(:first-child) {
     margin-top: $spacer * 2;
 
-    @include breakpoint(lg) {
+    @include bp(lg) {
       margin-top: 0;
     }
   }
@@ -143,7 +151,7 @@
   flex-wrap: wrap;
   gap: ($spacer / 2) $spacer;
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     justify-content: flex-start;
   }
 }

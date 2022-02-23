@@ -6,7 +6,7 @@
   padding-top: $spacer * 2;
   padding-bottom: $spacer * 2;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     padding-top: $spacer * 4;
     padding-bottom: $spacer * 4;
   }
@@ -15,14 +15,14 @@
     padding-top: $spacer;
     padding-bottom: $spacer;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       padding-top: $spacer * 2;
       padding-bottom: $spacer * 2;
     }
   }
 
   &--double {
-    @include breakpoint(lg) {
+    @include bp(lg) {
       padding-top: $spacer * 8;
       padding-bottom: $spacer * 8;
     }
@@ -57,20 +57,20 @@
   &:not(:first-child) {
     margin-top: $spacer * 2;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-top: $spacer * 4;
     }
 
     .section--compact & {
       margin-top: $spacer;
 
-      @include breakpoint(md) {
+      @include bp(md) {
         margin-top: $spacer * 2;
       }
     }
 
     .section--double & {
-      @include breakpoint(lg) {
+      @include bp(lg) {
         margin-top: $spacer * 8;
       }
     }

@@ -8,8 +8,8 @@
 
 	<div class="section section--theme-light section--compact" id="author-profile">
 		<div class="container">
-			<div class="row">
-				<div class="column column--lg-8">
+			<div class="grid">
+				<div class="grid__item grid__item--lg-8">
 					<h1 class="profile__title heading heading--h4 u-verifiable">
 						<?php printf( apply_filters( 'chipmunk_author_title', esc_html__( '%s', 'chipmunk' ) ), $user->display_name ); ?>
 					</h1>

@@ -39,7 +39,7 @@
     margin: 1em auto 0;
     background-color: $color-gray-light;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       content: none;
     }
   }
@@ -51,10 +51,10 @@
   padding: $grid-column-gutter $grid-column-gutter 0;
   text-align: center;
 
-  @include breakpoint(md) {
-    @include u-overlay;
-    @include u-dimmer('bottom', 100%);
-    top: auto;
+  @include bp(md) {
+    @include dimmer('bottom', 100%, $color-black);
+    position: absolute;
+    inset: auto 0 0;
     z-index: $layer-base;
     display: flex;
     align-items: flex-end;

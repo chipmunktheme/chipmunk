@@ -1,4 +1,4 @@
-<div class="filter__group column column--md-2 column--lg-8">
+<div class="filter__group grid__item grid__item--md-2 grid__item--lg-8">
 	<?php if ( ! chipmunk_theme_option( 'disable_resource_filters' ) and ! is_tax() ) : ?>
 		<?php
 			$tags = get_terms( array(

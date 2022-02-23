@@ -1,0 +1,10 @@
+/*
+** Layout - Container
+** -----------------------------------------------------------------------------*/
+
+.container {
+  width: 100%;
+  // max-width: min(var(--container-width), calc(100% - var(--container-gutter) * 2));
+  margin-right: auto;
+  margin-left: auto;
+}

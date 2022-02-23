@@ -66,13 +66,13 @@
 .alignleft {
   @include negative-margins((margin-left, max-width));
 
-  @include breakpoint(md) {
+  @include bp(md) {
     @include spacer-relative(1, right);
     float: left;
     text-align: left;
   }
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     @each $layout in $grid-layouts {
       .column--lg-#{$layout}[class*="offset"] & {
         margin-left: column(((12 - $layout) / 2) / $layout, $layout, true);
@@ -84,7 +84,7 @@
 .alignright {
   @include negative-margins((margin-right, max-width));
 
-  @include breakpoint(md) {
+  @include bp(md) {
     @include spacer-relative(1, left);
     float: right;
     text-align: right;
@@ -96,7 +96,7 @@
   @include spacer-relative(1, top);
   @include spacer-relative(1, bottom);
 
-  @include breakpoint(md) {
+  @include bp(md) {
     max-width: 50%;
     margin-bottom: $spacer;
   }

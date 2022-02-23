@@ -29,7 +29,7 @@
   transition-property: color, border-color;
   transition-duration: $transition-duration;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     font-size: 1em;
   }
 

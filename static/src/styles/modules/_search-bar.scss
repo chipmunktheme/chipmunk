@@ -17,12 +17,12 @@
   transition-property: transform, opacity, padding;
   transition-duration: $transition-duration * 1.5;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     padding-top: $spacer;
     padding-bottom: $spacer;
   }
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     padding-top: $spacer * 1.5;
     padding-bottom: $spacer * 1.5;
   }
@@ -109,7 +109,7 @@
     right: 0;
     text-align: right;
 
-    @include breakpoint(lg) {
+    @include bp(lg) {
       display: block;
     }
 
@@ -128,7 +128,7 @@
   font-size: 2.2rem;
   line-height: 1;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     margin-left: 1.5rem;
     font-size: 2.4rem;
   }

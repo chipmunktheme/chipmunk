@@ -17,7 +17,7 @@
   opacity: 0.9;
   filter: saturate(75%);
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     margin-top: 0;
   }
 

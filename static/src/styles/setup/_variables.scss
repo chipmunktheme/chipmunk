@@ -66,30 +66,11 @@ $grid-layouts:          (6, 8, 10) !default;
 $grid-column-gutter:    2.4rem !default;
 $grid-container-gutter: 2.4rem !default;
 
-// Grid definitions
-$grid-breakpoints: (
-  sm: (
-    min-width: 0,
-    container: 450px,
-    container-gutter: $grid-container-gutter,
-    gutter: $grid-column-gutter,
-    columns: 4
-  ),
-  md: (
-    min-width: 680px,
-    container: 640px,
-    container-gutter: $grid-container-gutter,
-    gutter: $grid-column-gutter,
-    columns: 6
-  ),
-  lg: (
-    min-width: 980px,
-    container: 980px,
-    container-gutter: $grid-container-gutter,
-    gutter: $grid-column-gutter,
-    columns: 12
-  )
-) !default;
+$breakpoints: (
+  sm: 0,
+  md: 680px,
+  lg: 980px,
+);
 
 // Customizable colors
 $color-primary:           var(--chipmunk-color-primary, #{$color-accent}) !default;
@@ -134,3 +115,20 @@ $content-type:            (
 // Customizable variables
 $border-opacity:          var(--chipmunk-border-opacity, 0.075) !default;
 $logo-height:             var(--chipmunk-logo-height, 4rem) !default;
+
+/* GLOBAL CSS VARIABLES
+  ========================================================================== */
+
+:root {
+  --column-gutter: 2.4rem;
+  --container-width: 98rem;
+  --container-gutter: clamp(2.4rem, 5vw, 7.2rem);
+
+  // Hamburger
+  --hamburger-width: 3.5rem;
+  --hamburger-height: 1rem;
+  --hamburger-weight: 2px;
+  --hamburger-color: currentColor;
+  --hamburger-duration: 0.25s;
+  --hamburger-radius: 3px;
+}

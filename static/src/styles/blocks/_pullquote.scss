@@ -9,12 +9,12 @@
   border-bottom: 4px solid $color-gray;
   text-align: center;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     padding-top: 2em;
     padding-bottom: 2em;
   }
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     padding-top: 3em;
     padding-bottom: 3em;
   }
@@ -37,7 +37,7 @@
     &[style*='background'] {
       padding: 0.75em 1em;
 
-      @include breakpoint(lg) {
+      @include bp(lg) {
         padding: 1em 1.25em;
       }
     }

@@ -61,7 +61,7 @@
       border-bottom: 1px solid currentColor;
       line-height: inherit;
 
-      @include breakpoint(lg) {
+      @include bp(lg) {
         border-bottom-width: 2px;
       }
     }

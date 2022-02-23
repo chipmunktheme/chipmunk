@@ -2,7 +2,7 @@
 	<div class="container">
 		<?php echo chipmunk_conditional_markup( is_front_page(), 'h2', 'h1', 'heading heading--h4', esc_html__( 'Collections', 'chipmunk' ) ); ?>
 
-		<div class="row">
+		<div class="grid">
 			<?php
 			$collections = get_terms( array(
 				'taxonomy'    => 'resource-collection',
@@ -20,7 +20,7 @@
 					<?php chipmunk_get_template_part( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
 				<?php endforeach; ?>
 			<?php else : ?>
-				<div class="column">
+				<div class="grid__item">
 					<p class="text--content text--separated">
 						<?php if ( current_user_can( 'publish_posts' ) ) : ?>
 							<?php esc_html_e( 'Ready to publish your first collection?', 'chipmunk' ); ?>

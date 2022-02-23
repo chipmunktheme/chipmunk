@@ -11,8 +11,9 @@ body {
   background-color: $color-background;
 
   &::after {
-    @include u-overlay;
     content: '';
+    position: absolute;
+    inset: 0;
     z-index: $layer-popup - 1;
     background-color: rgba($color-black, 0.9);
     opacity: 0;

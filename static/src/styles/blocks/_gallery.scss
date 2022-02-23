@@ -20,7 +20,7 @@
 
     .columns-#{$i} & {
       @each $breakpoint, $columns in $gallery-breakpoints {
-        @include breakpoint($breakpoint) {
+        @include bp($breakpoint) {
           flex-basis: calc(100% / #{$columns} - #{$grid-column-gutter});
 
           &:nth-child(1n) {
@@ -45,7 +45,7 @@
     @extend %caption;
     display: none;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       display: flex;
     }
   }

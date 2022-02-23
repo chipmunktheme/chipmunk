@@ -6,14 +6,14 @@
   color: $color-black;
   margin-top: -($spacer);
 
-  @include breakpoint(md) {
+  @include bp(md) {
     margin-top: -($spacer * 2.5);
   }
 
   &:first-child:last-child {
     margin-top: 0;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-top: 0;
     }
   }
@@ -21,7 +21,7 @@
   &:not(:first-child) {
     margin-top: $spacer;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-top: $spacer * 1.5;
     }
   }

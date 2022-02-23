@@ -21,9 +21,9 @@
 	<div class="container">
 		<article class="resource" itemscope itemtype="http://schema.org/Product">
 			<meta itemprop="name" content="<?php echo esc_attr( strip_tags( get_the_title() ) ); ?>" />
-			
+
 			<div class="resource__main row">
-				<div class="resource__content column column--lg-<?php echo esc_attr( (has_post_thumbnail() and ! chipmunk_theme_option( 'disable_resource_single_thumbs' )) ? '6' : '12' ); ?>">
+				<div class="resource__content grid__item grid__item--lg-<?php echo esc_attr( (has_post_thumbnail() and ! chipmunk_theme_option( 'disable_resource_single_thumbs' )) ? '6' : '12' ); ?>">
 					<?php do_action( 'chipmunk_before_resource_info' ); ?>
 
 					<div class="resource__info">
@@ -74,7 +74,7 @@
 				</div>
 
 				<?php if ( has_post_thumbnail() and ! chipmunk_theme_option( 'disable_resource_single_thumbs' ) ) : ?>
-					<aside class="resource__image column column--lg-6">
+					<aside class="resource__image grid__item grid__item--lg-6">
 						<?php if ( is_single() ) : ?>
 							<?php if ( ! empty( $primary_website ) ) : ?>
 								<a href="<?php echo chipmunk_external_link( $primary_website ); ?>" class="resource__media" target="_blank"<?php echo chipmunk_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
@@ -123,8 +123,8 @@
 	<?php if ( ! empty( get_the_content() ) and $content_separated ) : ?>
 		<div class="section">
 			<div class="container">
-				<div class="row">
-					<div class="column <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
+				<div class="grid">
+					<div class="grid__item <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
 						<div class="entry__content content">
 							<?php the_content(); ?>
 						</div>

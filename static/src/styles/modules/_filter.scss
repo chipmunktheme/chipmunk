@@ -5,27 +5,22 @@
 .filter {
   display: flex;
   align-items: center;
-
-  &:not(:last-child) {
-    @include breakpoint(lg) {
-      margin-right: $spacer * 2;
-    }
-  }
 }
 
 .filter__group {
   display: flex;
   flex-direction: column;
+  gap: 0 $spacer * 1.5;
   margin-top: 1rem;
 
-  @include breakpoint(md) {
-    margin-top: 0;
-  }
-
-  @include breakpoint(lg) {
+  @include bp(md) {
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-end;
+    margin-top: 0;
+  }
+
+  @include bp(lg) {
     text-align: right;
   }
 }
@@ -34,8 +29,11 @@
   ~ .select2-container {
     font-size: 1.4rem;
 
-    @include breakpoint(lg) {
+    @include bp(md) {
       width: 150px !important;
+    }
+
+    @include bp(lg) {
       font-size: 1.6rem;
     }
 
@@ -60,7 +58,7 @@
         padding-top: 4px;
         padding-bottom: 4px;
 
-        @include breakpoint(lg) {
+        @include bp(lg) {
           border-bottom-width: 2px;
         }
       }
@@ -72,7 +70,7 @@
   margin-right: $spacer;
   font-size: 1.4rem;
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     font-size: 1.6rem;
   }
 }

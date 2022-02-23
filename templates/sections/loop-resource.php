@@ -26,8 +26,8 @@
 				<h2 class="heading heading--h4"><?php esc_html_e( 'Related', 'chipmunk' ); ?></h2>
 			<?php else : ?>
 				<?php if ( $query->have_posts() ) : ?>
-					<div class="row">
-						<div class="column column--md-4 column--lg-4">
+					<div class="grid">
+						<div class="grid__item grid__item--md-4 grid__item--lg-4">
 							<h1 class="heading heading--h4"><?php echo esc_html( $resources_title ); ?></h1>
 						</div>
 
@@ -39,7 +39,7 @@
 			<?php endif; ?>
 
 			<?php if ( $query->have_posts() ) : ?>
-				<div class="row" data-action-element="load_posts">
+				<div class="grid" data-action-element="load_posts">
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
 						<?php chipmunk_get_template_part( 'sections/resource-tile' ); ?>

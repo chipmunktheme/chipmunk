@@ -6,12 +6,12 @@
   display: flex;
   flex-direction: column;
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     flex-direction: row;
   }
 
   &.alignfull {
-    @include breakpoint(md) {
+    @include bp(md) {
       flex-direction: row;
     }
   }
@@ -28,13 +28,13 @@
   &:not(:first-child) {
     margin-top: $grid-column-gutter;
 
-    @include breakpoint(lg) {
+    @include bp(lg) {
       margin-top: 0;
       margin-left: $grid-column-gutter;
     }
 
     .alignfull & {
-      @include breakpoint(md) {
+      @include bp(md) {
         margin-top: 0;
         margin-left: $grid-column-gutter;
       }

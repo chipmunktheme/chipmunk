@@ -5,7 +5,7 @@
 %content-size {
   font-size: calc(#{map-get($content-type, font-size)} * 0.9);
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     font-size: map-get($content-type, font-size);
   }
 }

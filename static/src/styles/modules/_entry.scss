@@ -6,7 +6,7 @@
   &:not(:first-child) {
     margin-top: $spacer;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-top: ($spacer * 2);
     }
   }
@@ -14,7 +14,7 @@
   &:not(:last-child) {
     margin-bottom: ($spacer * 2);
 
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-bottom: ($spacer * 3);
     }
   }
@@ -43,7 +43,7 @@
   background-color: rgba($color-black, 0.9);
   overflow: hidden;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     $head-outer-height: ($logo-height + #{$spacer * 2});
 
     height: calc(40vh + #{$head-outer-height});
@@ -52,7 +52,7 @@
     padding-top: calc(#{$head-outer-height});
   }
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     $head-outer-height: ($logo-height + #{$spacer * 3});
 
     height: auto;
@@ -71,13 +71,22 @@
 }
 
 .entry__background {
-  @include u-cover(0.33, $color-black);
-  @include u-object-fit;
-  @include u-overlay;
+  @include cover(0.33, $color-black);
+  position: absolute;
+  inset: 0;
   background-color: transparent;
   pointer-events: none;
   user-select: none;
   transition: opacity $transition-duration;
+  aspect-ratio: 16 / 9;
+
+  > img,
+  > svg,
+  > video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
 .entry__details {
@@ -93,7 +102,7 @@
   &:not(:last-child) {
     margin-bottom: $spacer;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-bottom: ($spacer * 2);
     }
   }
@@ -113,7 +122,7 @@
   &:not(:last-child) {
     margin-bottom: $spacer;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-bottom: ($spacer * 2);
     }
   }
@@ -165,7 +174,7 @@
   &:not(:first-child):not(:empty) {
     margin-top: $spacer;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-top: ($spacer * 1.5);
     }
   }
@@ -175,7 +184,7 @@
   display: flex;
   flex-direction: column;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -185,7 +194,7 @@
     &:not(:first-child) {
       margin-top: $spacer;
 
-      @include breakpoint(md) {
+      @include bp(md) {
         margin-top: 0;
       }
     }
@@ -196,7 +205,7 @@
   &:not(:first-child) {
     margin-top: $spacer;
 
-    @include breakpoint(lg) {
+    @include bp(lg) {
       margin-top: 0;
     }
   }
@@ -224,7 +233,7 @@
   display: inline-block;
   margin-top: $spacer;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     margin-top: ($spacer * 2);
   }
 

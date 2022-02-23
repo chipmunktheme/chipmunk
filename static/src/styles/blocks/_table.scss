@@ -17,7 +17,7 @@
     border: 1px solid $color-gray-light;
     vertical-align: top;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       border-width: 2px;
     }
   }

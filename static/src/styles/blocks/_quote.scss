@@ -6,7 +6,7 @@
   @include spacer-relative(1, left, padding, 166666);
   border-left: 1px solid $color-primary;
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     border-left-width: 2px;
   }
 

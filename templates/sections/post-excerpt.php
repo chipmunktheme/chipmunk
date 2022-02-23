@@ -1,4 +1,4 @@
-<div class="entry__tile column <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
+<div class="entry__tile grid__item <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
 	<?php if ( has_post_thumbnail() ) : ?>
 		<a href="<?php the_permalink(); ?>" class="entry__image">
 			<?php the_post_thumbnail( '1280x720' ); ?>

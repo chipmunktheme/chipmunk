@@ -8,7 +8,7 @@
   flex-direction: column;
   overflow-x: hidden;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     font-size: 1.8rem;
   }
 

@@ -23,13 +23,13 @@
 <?php if ( ! chipmunk_theme_option( 'disable_newsletter' ) and ! empty( $action ) ) : ?>
 	<div class="section section--theme-primary text--center">
 		<div class="container">
-			<div class="column column--lg-8 column--lg-offset-2">
-				<h4 class="heading heading--h1"><?php esc_html_e( 'Newsletter', 'chipmunk' ); ?></h4>
-				<p class="heading heading--h4 heading--thin mt-sm-1"><?php echo esc_html( chipmunk_theme_option( 'newsletter_tagline' ) ); ?></p>
-			</div>
+			<div class="grid">
+				<div class="grid__item grid__item--lg-8">
+					<h4 class="heading heading--h1"><?php esc_html_e( 'Newsletter', 'chipmunk' ); ?></h4>
+					<p class="heading heading--h4 heading--thin mt-sm-1"><?php echo esc_html( chipmunk_theme_option( 'newsletter_tagline' ) ); ?></p>
+				</div>
 
-			<div class="row">
-				<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="form column column--md-4 column--md-offset-1 column--lg-6 column--lg-offset-3 mt-sm-2" target="_blank" novalidate data-validate>
+				<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="form grid__item grid__item--md-4 grid__item--lg-6 mt-sm-2" target="_blank" novalidate data-validate>
 					<div class="form__field form__field--wide">
 						<input type="email" name="<?php echo $email_field; ?>" placeholder="<?php esc_html_e( 'Email address', 'chipmunk' ); ?>" class="form__input" required>
 					</div>

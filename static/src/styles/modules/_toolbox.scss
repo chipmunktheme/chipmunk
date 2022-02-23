@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
@@ -20,7 +20,7 @@
   gap: $spacer;
   margin-left: auto;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     justify-content: flex-end;
     padding-left: $spacer * 2;
   }

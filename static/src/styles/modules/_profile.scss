@@ -15,7 +15,7 @@
   max-width: 10rem;
   margin-right: $spacer;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     max-width: 12.8rem;
   }
 

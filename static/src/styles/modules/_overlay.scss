@@ -3,7 +3,8 @@
 ** -----------------------------------------------------------------------------*/
 
 .overlay {
-  @include u-overlay(0, 'fixed');
+  position: fixed;
+  inset: 0;
   z-index: $layer-overlay;
   display: flex;
   background-color: $color-background;
@@ -33,7 +34,7 @@
   padding-top: calc(#{$logo-height} + #{$spacer} + 5vh);
   padding-bottom: 5vh;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     padding-top: calc(#{$logo-height} + #{$spacer * 2} + 5vh);
   }
 }

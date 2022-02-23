@@ -6,7 +6,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: $grid-column-gutter;
   overflow: hidden;
 
   &[href]:hover {
@@ -44,7 +43,7 @@
   }
 
   &--wide {
-    @include breakpoint(md) {
+    @include bp(md) {
       flex-direction: row;
     }
   }
@@ -53,7 +52,7 @@
     background-color: transparent;
     box-shadow: none;
 
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-bottom: $grid-column-gutter * 2;
     }
 
@@ -87,7 +86,7 @@
     outline: none;
   }
 
-  .row {
+  .grid {
     height: 100%;
   }
 
@@ -97,19 +96,18 @@
 }
 
 .tile__image {
-  @include u-object-fit(75%);
   background-color: $color-gray-light;
+  aspect-ratio: 4 / 3;
   transition: opacity $transition-duration;
 
-  &[href]:hover {
-    opacity: 0.8;
-  }
-
-  img,
-  svg,
-  video,
-  audio,
-  iframe {
+  > img,
+  > svg,
+  > video,
+  > audio,
+  > iframe {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     box-shadow: -2px 0 10px 0 rgba($color-black, 0.25);
     transition: transform $transition-duration ease-in-out 0.05s;
 
@@ -122,19 +120,23 @@
     }
   }
 
+  &[href]:hover {
+    opacity: 0.8;
+  }
+
   .tile--card & {
     position: relative;
     margin-bottom: $spacer;
   }
 
   .tile--wide & {
-    @include breakpoint(md) {
+    @include bp(md) {
       margin-bottom: 0;
       width: 40%;
       box-shadow: 0 1px 2px 1px rgba($color-black, 0.1);
     }
 
-    @include breakpoint(lg) {
+    @include bp(lg) {
       width: 25%;
     }
   }
@@ -157,7 +159,8 @@
 }
 
 .tile__content {
-  @include u-overlay;
+  position: absolute;
+  inset: 0;
   z-index: $layer-base;
   display: flex;
   flex-direction: column;
@@ -166,7 +169,7 @@
   padding: $spacer;
   color: $color-black;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     padding: $spacer * 1.5;
   }
 
@@ -189,7 +192,7 @@
   }
 
   .tile--card.tile--wide &:not(:first-child) {
-    @include breakpoint(md) {
+    @include bp(md) {
       padding: $spacer * 1.5;
     }
   }

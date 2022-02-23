@@ -7,7 +7,7 @@
 	);
 ?>
 
-<a href="<?php echo esc_url( get_term_link( $collection->term_id ) ); ?>" class="<?php echo esc_attr( $tile_classes[ chipmunk_theme_option( 'display_collection_as' ) ] ); ?> column column--md-3 column--lg-4">
+<a href="<?php echo esc_url( get_term_link( $collection->term_id ) ); ?>" class="<?php echo esc_attr( $tile_classes[ chipmunk_theme_option( 'display_collection_as' ) ] ); ?> grid__item grid__item--md-3 grid__item--lg-4">
 	<?php if ( ! chipmunk_theme_option( 'disable_collection_thumbs' ) || chipmunk_theme_option( 'display_collection_as' ) == 'tile' ) : ?>
 		<div class="tile__image">
 			<?php if ( ! chipmunk_theme_option( 'disable_collection_thumbs' ) ) : ?>

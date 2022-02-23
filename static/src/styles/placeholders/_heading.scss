@@ -30,7 +30,7 @@ $base-breakpoints: (sm: 2, md: 1, lg: 0);
     line-height: calc(#{$line-height});
 
     @each $breakpoint, $scale in $base-breakpoints {
-      @include breakpoint($breakpoint) {
+      @include bp($breakpoint) {
         font-size: calc(#{$font-size} * #{pow($responsive-scale, $scale)});
       }
     }

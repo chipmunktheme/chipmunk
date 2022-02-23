@@ -12,12 +12,12 @@
   transition-property: padding;
   transition-duration: $transition-duration;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     padding-top: $spacer;
     padding-bottom: $spacer;
   }
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     padding-top: $spacer * 1.5;
     padding-bottom: $spacer * 1.5;
   }
@@ -52,7 +52,7 @@
   gap: $spacer;
   min-height: $logo-height;
 
-  @include breakpoint(lg) {
+  @include bp(lg) {
     gap: ($spacer * 2);
   }
 }

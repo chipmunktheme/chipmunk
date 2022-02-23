@@ -9,7 +9,7 @@
   gap: $spacer;
   padding-right: 6rem;
 
-  @include breakpoint(md) {
+  @include bp(md) {
     gap: $spacer * 1.5;
   }
 }

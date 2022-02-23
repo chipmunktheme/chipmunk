@@ -22,7 +22,7 @@
 
 // Adds negative margins to the element
 @mixin negative-margins($properties, $columns: 12, $breakpoint: lg) {
-  @include breakpoint($breakpoint) {
+  @include bp($breakpoint) {
     @each $layout in $grid-layouts {
       .column--lg-#{$layout}[class*="offset"] & {
         @if (index($properties, width)) {
@@ -222,7 +222,7 @@
   }
   @else {
     @each $breakpoint, $breakpoint-scale in $spacer-breakpoints {
-      @include breakpoint($breakpoint) {
+      @include bp($breakpoint) {
         #{$property}-#{$direction}: calc(#{$spacer} * #{$size * (1 - ($scale * $breakpoint-scale))});
       }
     }

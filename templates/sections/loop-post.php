@@ -33,7 +33,7 @@
 			<?php endif; ?>
 
 			<?php if ( $query->have_posts() ) : ?>
-				<div class="row" data-action-element="load_posts">
+				<div class="grid" data-action-element="load_posts">
 					<?php $i = 0; ?>
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 						<?php if ( $layout == 'mixed' ) : ?>

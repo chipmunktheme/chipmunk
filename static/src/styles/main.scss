@@ -5,20 +5,17 @@
 ** ------------------------------------
 **/
 
-@import 'setup/variables';
-
 // Vendor dependencies
-@import 'bespoke-toolkit/styles/toolkit';
+// @import 'bespoke-toolkit/styles/toolkit';
 @import 'select2/src/scss/core';
 
-@import 'setup/mixins';
-@import 'setup/animations';
-@import 'setup/normalize';
-
+@import 'setup/*';
+@import 'tools/*';
 @import 'placeholders/*';
 @import 'common/*';
 @import 'vendor/*';
 @import 'utils/*';
+@import 'layout/*';
 @import 'modules/*';
 @import 'blocks/*';
 @import 'plugins/*';

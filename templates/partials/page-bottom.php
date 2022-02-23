@@ -2,8 +2,8 @@
 
 <div class="page-foot section section--theme-light">
 	<div class="container">
-		<div class="row">
-			<div class="column column--md-3 column--lg-5">
+		<div class="grid">
+			<div class="grid__item grid__item--md-3 grid__item--lg-<?php echo empty( $socials ) ? '10 text-right' : '8'; ?>">
 				<h5 class="page-foot__heading heading heading--h5"><?php esc_html_e( 'About', 'chipmunk' ); ?></h5>
 
 				<?php if ( $about_copy = chipmunk_theme_option( 'about_copy' ) ) : ?>
@@ -16,7 +16,7 @@
 			<?php $menu_items = chipmunk_get_menu_items( 'nav-secondary' ); ?>
 
 			<?php if ( ! empty( $menu_items ) || ! chipmunk_theme_option( 'disable_submissions' ) ) : ?>
-				<div class="column column--md-2 column--md-offset-1 column--lg-2 column--lg-offset-<?php echo empty( $socials ) ? '5 text-right' : '3'; ?>">
+				<div class="grid__item grid__item--md-2 grid__item--lg-2 <?php echo empty( $socials ) ? 'text-right' : ''; ?>">
 					<h5 class="page-foot__heading heading heading--h5"><?php esc_html_e( 'Navigation', 'chipmunk' ); ?></h5>
 
 					<ul class="nav-secondary">
@@ -38,7 +38,7 @@
 			<?php endif; ?>
 
 			<?php if ( ! empty( $socials ) ) : ?>
-				<div class="column column--lg-2 visible-lg-block">
+				<div class="grid__item grid__item--lg-2 visible-lg-block">
 					<h5 class="page-foot__heading heading heading--h5"><?php esc_html_e( 'Follow', 'chipmunk' ); ?></h5>
 
 					<ul class="nav-secondary">
