@@ -65,7 +65,7 @@
 			<ul class="tile__stats stats">
 				<?php if ( $term_children = wp_count_terms( 'resource-collection', array( 'parent' => $collection->term_id, 'hide_empty' => true ) ) ) : ?>
 					<li class="stats__item" title="<?php esc_attr_e( 'Sub collections', 'chipmunk' ); ?>">
-						<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'collections' ) ); ?>
+						<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'collection' ) ); ?>
 						<?php echo $term_children; ?>
 					</li>
 				<?php endif; ?>

@@ -1,0 +1,12 @@
+{
+  "scripts/app.js": "scripts/app.js",
+  "styles/main.css": "styles/main.css",
+  "styles/main.js": "styles/main.js",
+  "assets/.DS_Store": "assets/.DS_Store.40d34992",
+  "assets/images/chipmunk-og.png": "assets/images/chipmunk-og.d5a24664.png",
+  "assets/images/chipmunk.png": "assets/images/chipmunk.092eda16.png",
+  "assets/images/icons.svg": "assets/images/icons.c234b53e.svg",
+  "assets/images/loader-dark.svg": "assets/images/loader-dark.87556356.svg",
+  "assets/images/loader.svg": "assets/images/loader.86194a55.svg",
+  "assets/images/pic-404.svg": "assets/images/pic-404.c2803616.svg"
+}
