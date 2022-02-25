@@ -17,22 +17,22 @@ get_header(); ?>
 			<?php $title = ucfirst( single_term_title( null, false ) ); ?>
 
 			<?php if ( ! chipmunk_theme_option( 'disable_resource_sorting' ) and $query->have_posts() ) : ?>
-				<div class="row">
-					<div class="column column--md-4 column--lg-4">
+				<div class="grid">
+					<div class="grid__item grid__item--md-4 grid__item--lg-4">
 						<h1 class="heading heading--h4"><?php echo esc_html( $title ); ?></h1>
 					</div>
 
 					<?php chipmunk_get_template_part( 'partials/filters' ); ?>
 
 					<?php if ( ! empty( $term->description ) ) : ?>
-						<div class="column column--md-4 column--lg-8">
+						<div class="grid__item grid__item--md-4 grid__item--lg-8">
 							<p class="text--content text--subtitle"><?php echo $term->description; ?></p>
 						</div>
 					<?php endif; ?>
 				</div>
 			<?php else : ?>
-				<div class="row">
-					<div class="column column--md-4 column--lg-8">
+				<div class="grid">
+					<div class="grid__item grid__item--md-4 grid__item--lg-8">
 						<h3 class="heading heading--h4"><?php echo esc_html( $title ); ?></h3>
 
 						<?php if ( ! empty( $term->description ) ) : ?>
@@ -43,7 +43,7 @@ get_header(); ?>
 			<?php endif; ?>
 
 			<?php if ( ( $children_collections = get_terms( 'resource-collection', array( 'parent' => $term->term_id ) ) ) && $paged == 1 ) : ?>
-				<div class="row">
+				<div class="grid">
 					<?php foreach ( $children_collections as $collection ) : ?>
 						<?php chipmunk_get_template_part( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
 					<?php endforeach; ?>
@@ -55,7 +55,7 @@ get_header(); ?>
 			<?php endif; ?>
 
 			<?php if ( $query->have_posts() ) : ?>
-				<div class="row" data-action-element="load_posts">
+				<div class="grid" data-action-element="load_posts">
 					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
 						<?php chipmunk_get_template_part( 'sections/resource-tile' ); ?>

@@ -10,13 +10,13 @@ get_header(); ?>
 
 	<div class="section">
 		<div class="container">
-			<div class="error-404 row">
-				<div class="column column--lg-6 text--center">
+			<div class="error-404 grid">
+				<div class="grid__item grid__item--lg-6 text--center">
 					<h3 class="error-404__title heading heading--h3"><?php esc_html_e( '404! The page you are looking for couldn\'t be found.', 'chipmunk' ); ?></h3>
 					<a href="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>" class="button button--primary"><?php esc_html_e( 'Bring me to the frontpage', 'chipmunk' ); ?></a>
 				</div>
 
-				<div class="column column--lg-6">
+				<div class="grid__item grid__item--lg-6">
 					<div class="error-404__image">
 						<img src="<?php echo get_template_directory_uri(); ?>/static/dist/images/pic-404.svg" alt="" />
 					</div>
