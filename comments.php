@@ -73,11 +73,11 @@ endif;
 				$fields = array(
 					'author' => '<div class="c-form__field">' .
 						'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
-						'" size="30" placeholder="' . esc_attr__( 'Name', 'chipmunk' ) . '" class="c-form__input"' . $req . ' /></div>',
+						'" size="30" placeholder="' . esc_attr__( 'Name', 'chipmunk' ) . ( ! empty( $req ) ? '*' : '' ) . '" class="c-form__input"' . $req . ' /></div>',
 
 					'email' => '<div class="c-form__field">' .
 						'<input id="email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
-						'" size="30" placeholder="' . esc_attr__( 'Email', 'chipmunk' ) . '" class="c-form__input"' . $req . ' /></div>',
+						'" size="30" placeholder="' . esc_attr__( 'Email', 'chipmunk' ) . ( ! empty( $req ) ? '*' : '' ) . '" class="c-form__input"' . $req . ' /></div>',
 
 					'url' => '',
 				);
@@ -92,7 +92,7 @@ endif;
 					'submit_field'         => '%1$s %2$s',
 					'submit_button'        => '<div class="c-form__field c-form__field--wide c-form__field--cta"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></div>',
 					'fields'               => apply_filters( 'comment_form_fields', $fields ),
-					'comment_field'        => '<div class="c-form__field c-form__field--wide"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . esc_attr__( 'Comment', 'chipmunk' ) . '" class="c-form__input"' . $req . ' data-dynamic-rows></textarea></div>',
+					'comment_field'        => '<div class="c-form__field c-form__field--wide"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . esc_attr__( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? '*' : '' ) . '" class="c-form__input"' . $req . ' data-dynamic-rows></textarea></div>',
 					'must_log_in'          => '<div class="l-component"><p class="l-header__copy">' . sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ) . '</p></div>',
 				) );
 

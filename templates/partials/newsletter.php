@@ -30,7 +30,7 @@
 
 					<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="c-lead__cta c-form c-form--inline c-form--narrow" target="_blank" novalidate data-validate>
 						<div class="c-form__field">
-							<input type="email" name="<?php echo $email_field; ?>" placeholder="<?php esc_html_e( 'Email address', 'chipmunk' ); ?>" class="c-form__input" required>
+							<input type="email" name="<?php echo $email_field; ?>" placeholder="<?php esc_html_e( 'Email address', 'chipmunk' ); ?>" class="c-form__input" required autocomplete="off">
 							<button type="submit" class="c-form__button"><?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'arrow-right' ) ); ?></button>
 						</div>
 

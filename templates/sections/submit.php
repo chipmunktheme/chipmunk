@@ -35,6 +35,8 @@
 					<?php endif; ?>
 				</select>
 			</div>
+
+			<div class="c-form__error" data-validate-message="collection"></div>
 		</div>
 
 		<div class="c-form__field">

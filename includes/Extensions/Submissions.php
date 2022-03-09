@@ -4,6 +4,7 @@ namespace Chipmunk\Extensions;
 
 use Chipmunk\Helpers;
 use Chipmunk\Customizer;
+use Chipmunk\Plugins\OpenGraph;
 
 /**
  * Submission form class
@@ -75,7 +76,7 @@ class Submissions {
 			return get_current_user_id();
 		}
 
-		if ( $user = get_user_by( 'email', $email ) ) {
+		if ( ! empty( $email ) && $user = get_user_by( 'email', $email ) ) {
 			return $user->ID;
 		}
 
@@ -179,14 +180,14 @@ class Submissions {
 		$meta_prefix        = '_' . THEME_SLUG . '_resource';
 		$meta_input         = array();
 
-		$name               = wp_filter_nohtml_kses( $_REQUEST['name'] );
-		$website            = wp_filter_nohtml_kses( $_REQUEST['website'] );
-		$collection         = wp_filter_kses( $_REQUEST['collection'] );
-		$content            = wp_kses_post( wpautop( $_REQUEST['content'] ) );
-		$submitter_email    = wp_filter_nohtml_kses( $this->data['submitter_email'] );
-		$submitter_name     = wp_filter_nohtml_kses( $this->data['submitter_name'] );
+		$name               = wp_filter_nohtml_kses( isset( $this->data['name'] ) ? $this->data['name'] : '' );
+		$website            = wp_filter_nohtml_kses( isset( $this->data['website'] ) ? $this->data['website'] : '' );
+		$collection         = wp_filter_kses( isset( $this->data['collection'] ) ? $this->data['collection'] : '' );
+		$content            = wp_kses_post( wpautop( isset( $this->data['content'] ) ? $this->data['content'] : '' ) );
+		$submitter_email    = wp_filter_nohtml_kses( isset( $this->data['submitter_email'] ) ? $this->data['submitter_email'] : '' );
+		$submitter_name     = wp_filter_nohtml_kses( isset( $this->data['submitter_name'] ) ? $this->data['submitter_name'] : '' );
 
-		$author_id          = $this->get_submitter_id( $submitter_email, $submitter_name );
+		$author_id          = $this->get_submitter_id( $submitter_email );
 
 		if ( empty( $author_id ) ) {
 			if ( ! empty( $submitter_email ) && ! empty( $submitter_name ) ) {

@@ -184,6 +184,51 @@
             "install-path": "./installers"
         },
         {
+            "name": "deliciousbrains-plugin/wp-migrate-db-pro",
+            "version": "2.2.2",
+            "version_normalized": "2.2.2.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.deliciousbrains.com/?wc-api=delicious-brains&request=composer_download&package=wp-migrate-db-pro&version=2.2.2"
+            },
+            "require": {
+                "composer/installers": "~1.0 || ~2.0"
+            },
+            "type": "wordpress-plugin",
+            "installation-source": "dist",
+            "install-path": "../../../../plugins/wp-migrate-db-pro"
+        },
+        {
+            "name": "deliciousbrains-plugin/wp-migrate-db-pro-cli",
+            "version": "1.6.0",
+            "version_normalized": "1.6.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.deliciousbrains.com/?wc-api=delicious-brains&request=composer_download&package=wp-migrate-db-pro-cli&version=1.6.0"
+            },
+            "require": {
+                "composer/installers": "~1.0 || ~2.0"
+            },
+            "type": "wordpress-plugin",
+            "installation-source": "dist",
+            "install-path": "../../../../plugins/wp-migrate-db-pro-cli"
+        },
+        {
+            "name": "deliciousbrains-plugin/wp-migrate-db-pro-media-files",
+            "version": "2.1.0",
+            "version_normalized": "2.1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.deliciousbrains.com/?wc-api=delicious-brains&request=composer_download&package=wp-migrate-db-pro-media-files&version=2.1.0"
+            },
+            "require": {
+                "composer/installers": "~1.0 || ~2.0"
+            },
+            "type": "wordpress-plugin",
+            "installation-source": "dist",
+            "install-path": "../../../../plugins/wp-migrate-db-pro-media-files"
+        },
+        {
             "name": "graham-campbell/result-type",
             "version": "v1.0.4",
             "version_normalized": "1.0.4.0",
@@ -643,8 +688,8 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.24.0",
-            "version_normalized": "1.24.0.0",
+            "version": "v1.25.0",
+            "version_normalized": "1.25.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -708,7 +753,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -728,8 +773,8 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.24.0",
-            "version_normalized": "1.24.0.0",
+            "version": "v1.25.0",
+            "version_normalized": "1.25.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
@@ -794,7 +839,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -814,23 +859,23 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.24.0",
-            "version_normalized": "1.24.0.0",
+            "version": "v1.25.0",
+            "version_normalized": "1.25.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "57b712b08eddb97c762a8caa32c84e037892d2e9"
+                "reference": "4407588e0d3f1f52efb65fbe92babe41f37fe50c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/57b712b08eddb97c762a8caa32c84e037892d2e9",
-                "reference": "57b712b08eddb97c762a8caa32c84e037892d2e9",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/4407588e0d3f1f52efb65fbe92babe41f37fe50c",
+                "reference": "4407588e0d3f1f52efb65fbe92babe41f37fe50c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
             },
-            "time": "2021-09-13T13:58:33+00:00",
+            "time": "2022-03-04T08:16:47+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -880,7 +925,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.24.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.25.0"
             },
             "funding": [
                 {

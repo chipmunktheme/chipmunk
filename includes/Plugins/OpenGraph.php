@@ -14,7 +14,7 @@ namespace Chipmunk\Plugins;
  * @package WordPress
  * @subpackage Chipmunk
  */
-class OpenGraph implements Iterator {
+class OpenGraph implements \Iterator {
 	/**
 	 * There are base schema's based on type, this is just
 	 * a map so that the schema can be obtained
@@ -74,7 +74,7 @@ class OpenGraph implements Iterator {
 	static private function _parse( $HTML ) {
 		$old_libxml_error = libxml_use_internal_errors( true );
 
-		$doc = new DOMDocument();
+		$doc = new \DOMDocument();
 		$doc->loadHTML( $HTML );
 
 		libxml_use_internal_errors( $old_libxml_error );
@@ -122,7 +122,7 @@ class OpenGraph implements Iterator {
 
 		// Fallback to use image_src if ogp::image isn't set.
 		if ( ! isset( $page->values['image'] ) ) {
-			$domxpath = new DOMXPath( $doc );
+			$domxpath = new \DOMXPath( $doc );
 			$elements = $domxpath->query( "//link[@rel='image_src']" );
 
 			if ( $elements->length > 0 ) {
