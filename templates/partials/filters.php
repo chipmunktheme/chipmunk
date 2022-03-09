@@ -1,5 +1,5 @@
-<div class="filter__group grid__item grid__item--md-2 grid__item--lg-8">
-	<?php if ( ! chipmunk_theme_option( 'disable_resource_filters' ) and ! is_tax() ) : ?>
+<div class="c-filter__group">
+	<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_resource_filters' ) && ! is_tax() ) : ?>
 		<?php
 			$tags = get_terms( array(
 				'taxonomy'    => 'resource-tag',
@@ -9,50 +9,78 @@
 		?>
 
 		<?php if ( ! empty( $tags ) ) : ?>
-			<div class="filter">
-				<h4 class="filter__title visible-lg-inline-block"><?php esc_html_e( 'Filter by', 'chipmunk' ); ?>:</h4>
-
-				<select class="filter__select custom-select" data-filter="tag">
-					<option value=""><?php esc_html_e( 'Choose topic', 'chipmunk' ); ?></option>
-
-					<?php if ( ! empty( $tags ) ) : ?>
-						<?php foreach ( $tags as $tag ) : ?>
-							<option value="<?php echo esc_attr( $tag->slug ); ?>" <?php if ( isset( $_GET['tag'] ) and $_GET['tag'] == $tag->slug ) echo 'selected'; ?>><?php echo esc_html( ucfirst( $tag->name ) ); ?></option>
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</select>
-			</div>
-			<!-- /.filter -->
+			<?php Chipmunk\Helpers::get_template_part( 'partials/filter', array(
+				'filter' => 'tag',
+				'title' => __( 'Filter by', 'chipmunk' ),
+				'placeholder' => __( 'Choose topic', 'chipmunk' ),
+				'options' => array_map( function( $tag ) {
+					return array(
+						'value' => $tag->slug,
+						'title' => ucfirst( $tag->name ),
+						'selected' => isset( $_GET['tag'] ) && $_GET['tag'] == $tag->slug,
+					);
+				}, $tags ),
+			) ); ?>
 		<?php endif; ?>
 	<?php endif; ?>
 
-	<?php if ( ! chipmunk_theme_option( 'disable_resource_sorting' ) ) : ?>
-		<div class="filter">
-			<h4 class="filter__title visible-lg-inline-block"><?php esc_html_e( 'Sort by', 'chipmunk' ); ?>:</h4>
+	<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_resource_sorting' ) ) : ?>
+		<?php
+			$default_orderby = Chipmunk\Customizer::get_theme_option( 'default_sort_by' );
+			$default_order = Chipmunk\Customizer::get_theme_option( 'default_sort_order' );
 
-			<select class="filter__select custom-select" data-filter="sort">
-				<?php
-					$default_orderby = chipmunk_theme_option( 'default_sort_by' );
-					$default_order = chipmunk_theme_option( 'default_sort_order' );
-				?>
-				<option value="date-desc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'date-desc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'date' and $default_order == 'desc' ) ) echo 'selected'; ?>><?php esc_html_e( 'Date', 'chipmunk' ); ?> &darr;</option>
-				<option value="date-asc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'date-asc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'date' and $default_order == 'asc' ) ) echo 'selected'; ?>><?php esc_html_e( 'Date', 'chipmunk' ); ?> &uarr;</option>
-				<option value="name-desc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'name-desc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'name' and $default_order == 'desc' ) ) echo 'selected'; ?>><?php esc_html_e( 'Name', 'chipmunk' ); ?> &darr;</option>
-				<option value="name-asc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'name-asc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'name' and $default_order == 'asc' ) ) echo 'selected'; ?>><?php esc_html_e( 'Name', 'chipmunk' ); ?> &uarr;</option>
+			$options = array(
+				array(
+					'value' => 'date-desc',
+					'title' => __( 'Date', 'chipmunk' ) . ' &uarr;',
+					'selected' => ( isset( $_GET['sort'] ) && $_GET['sort'] == 'date-desc' ) || ( ! isset( $_GET['sort'] ) && $default_orderby == 'date' && $default_order == 'desc' ),
+				),
+				array(
+					'value' => 'date-asc',
+					'title' => __( 'Date', 'chipmunk' ) . ' &darr;',
+					'selected' => ( isset( $_GET['sort'] ) && $_GET['sort'] == 'date-asc' ) || ( ! isset( $_GET['sort'] ) && $default_orderby == 'date' && $default_order == 'asc' ),
+				),
+				array(
+					'value' => 'name-desc',
+					'title' => __( 'Name', 'chipmunk' ) . ' &uarr;',
+					'selected' => ( isset( $_GET['sort'] ) && $_GET['sort'] == 'name-desc' ) || ( ! isset( $_GET['sort'] ) && $default_orderby == 'name' && $default_order == 'desc' ),
+				),
+				array(
+					'value' => 'name-asc',
+					'title' => __( 'Name', 'chipmunk' ) . ' &darr;',
+					'selected' => ( isset( $_GET['sort'] ) && $_GET['sort'] == 'name-asc' ) || ( ! isset( $_GET['sort'] ) && $default_orderby == 'name' && $default_order == 'asc' ),
+				),
+			);
 
-				<?php if ( ! chipmunk_theme_option( 'disable_resource_views' ) ) : ?>
-					<option value="views-desc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'views-desc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'views' ) ) echo 'selected'; ?>><?php esc_html_e( 'Views', 'chipmunk' ); ?></option>
-				<?php endif; ?>
+			if ( ! Chipmunk\Customizer::get_theme_option( 'disable_resource_views' ) ) {
+				$options[] = array(
+					'value' => 'views-desc',
+					'title' => __( 'Views', 'chipmunk' ),
+					'selected' => ( isset( $_GET['sort'] ) && $_GET['sort'] == 'views-desc' ) || ( ! isset( $_GET['sort'] ) && $default_orderby == 'views' ),
+				);
+			}
 
-				<?php if ( ! chipmunk_theme_option( 'disable_resource_upvotes' ) ) : ?>
-					<option value="upvotes-desc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'upvotes-desc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'upvotes' ) ) echo 'selected'; ?>><?php esc_html_e( 'Upvotes', 'chipmunk' ); ?></option>
-				<?php endif; ?>
+			if ( ! Chipmunk\Customizer::get_theme_option( 'disable_resource_upvotes' ) ) {
+				$options[] = array(
+					'value' => 'upvotes-desc',
+					'title' => __( 'Upvotes', 'chipmunk' ),
+					'selected' => ( isset( $_GET['sort'] ) && $_GET['sort'] == 'upvotes-desc' ) || ( ! isset( $_GET['sort'] ) && $default_orderby == 'upvotes' ),
+				);
+			}
 
-				<?php if ( chipmunk_has_plugin( 'ratings' ) ) : ?>
-					<option value="ratings-desc" <?php if ( ( isset( $_GET['sort'] ) and $_GET['sort'] == 'ratings-desc' ) or ( ! isset( $_GET['sort'] ) and $default_orderby == 'ratings' ) ) echo 'selected'; ?>><?php esc_html_e( 'Ratings', 'chipmunk' ); ?></option>
-				<?php endif; ?>
-			</select>
-		</div>
-		<!-- /.filter -->
+			if ( Chipmunk\Helpers::has_plugin( 'ratings' ) ) {
+				$options[] = array(
+					'value' => 'ratings-desc',
+					'title' => __( 'Ratings', 'chipmunk' ),
+					'selected' => ( isset( $_GET['sort'] ) && $_GET['sort'] == 'ratings-desc' ) || ( ! isset( $_GET['sort'] ) && $default_orderby == 'ratings' ),
+				);
+			}
+		?>
+
+		<?php Chipmunk\Helpers::get_template_part( 'partials/filter', array(
+			'filter' => 'sort',
+			'title' => __( 'Sort by', 'chipmunk' ),
+			'options' => $options,
+		) ); ?>
 	<?php endif; ?>
 </div>

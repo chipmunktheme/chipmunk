@@ -9,75 +9,64 @@
 get_header(); ?>
 
 	<?php $term = get_queried_object(); ?>
-	<?php $paged = chipmunk_get_current_page(); ?>
-	<?php $query = chipmunk_get_resources( chipmunk_theme_option( 'posts_per_page' ), $paged, $term ); ?>
+	<?php $paged = Chipmunk\Helpers::get_current_page(); ?>
+	<?php $query = Chipmunk\Query::get_resources( Chipmunk\Customizer::get_theme_option( 'posts_per_page' ), $paged, $term ); ?>
+	<?php $children_collections = get_terms( 'resource-collection', array( 'parent' => $term->term_id ) ); ?>
 
-	<div class="section">
-		<div class="container">
+	<div class="l-section">
+		<div class="l-container">
 			<?php $title = ucfirst( single_term_title( null, false ) ); ?>
 
-			<?php if ( ! chipmunk_theme_option( 'disable_resource_sorting' ) and $query->have_posts() ) : ?>
-				<div class="grid">
-					<div class="grid__item grid__item--md-4 grid__item--lg-4">
-						<h1 class="heading heading--h4"><?php echo esc_html( $title ); ?></h1>
-					</div>
+			<div class="l-component l-header">
+				<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_resource_sorting' ) && $query->have_posts() ) : ?>
+					<h1 class="c-heading c-heading--h4"><?php echo esc_html( $title ); ?></h1>
 
-					<?php chipmunk_get_template_part( 'partials/filters' ); ?>
+					<?php Chipmunk\Helpers::get_template_part( 'partials/filters' ); ?>
 
 					<?php if ( ! empty( $term->description ) ) : ?>
-						<div class="grid__item grid__item--md-4 grid__item--lg-8">
-							<p class="text--content text--subtitle"><?php echo $term->description; ?></p>
-						</div>
+						<p class="l-header__copy"><?php echo $term->description; ?></p>
 					<?php endif; ?>
-				</div>
-			<?php else : ?>
-				<div class="grid">
-					<div class="grid__item grid__item--md-4 grid__item--lg-8">
-						<h3 class="heading heading--h4"><?php echo esc_html( $title ); ?></h3>
+				<?php else : ?>
+					<h3 class="c-heading c-heading--h4"><?php echo esc_html( $title ); ?></h3>
 
-						<?php if ( ! empty( $term->description ) ) : ?>
-							<p class="text--content text--subtitle"><?php echo $term->description; ?></p>
-						<?php endif; ?>
+					<?php if ( ! empty( $term->description ) ) : ?>
+						<p class="l-header__copy"><?php echo $term->description; ?></p>
+					<?php endif; ?>
+				<?php endif; ?>
+
+				<?php if ( ! $query->have_posts() && empty( $children_collections ) ) : ?>
+					<p class="l-header__copy">
+						<?php esc_html_e( 'Sorry, there are no resources to display yet.', 'chipmunk' ); ?>
+					</p>
+				<?php endif; ?>
+			</div>
+
+			<?php if ( ! empty( $children_collections ) && $paged == 1 ) : ?>
+				<div class="l-component">
+					<div class="c-tile__list">
+						<?php foreach ( $children_collections as $collection ) : ?>
+							<?php Chipmunk\Helpers::get_template_part( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
+						<?php endforeach; ?>
 					</div>
 				</div>
 			<?php endif; ?>
 
-			<?php if ( ( $children_collections = get_terms( 'resource-collection', array( 'parent' => $term->term_id ) ) ) && $paged == 1 ) : ?>
-				<div class="grid">
-					<?php foreach ( $children_collections as $collection ) : ?>
-						<?php chipmunk_get_template_part( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
-					<?php endforeach; ?>
-				</div>
-
+			<div class="l-component<?php echo ( ! empty( $children_collections ) ? ' l-component--lg' : '' ); ?>">
 				<?php if ( $query->have_posts() ) : ?>
-					<div class="separator"></div>
+					<div class="c-tile__list" data-action-element="load_posts">
+						<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+
+							<?php Chipmunk\Helpers::get_template_part( 'sections/resource-tile' ); ?>
+
+						<?php endwhile; wp_reset_postdata(); ?>
+					</div>
 				<?php endif; ?>
-			<?php endif; ?>
+			</div>
 
-			<?php if ( $query->have_posts() ) : ?>
-				<div class="grid" data-action-element="load_posts">
-					<?php while ( $query->have_posts() ) : $query->the_post(); ?>
-
-						<?php chipmunk_get_template_part( 'sections/resource-tile' ); ?>
-
-					<?php endwhile; wp_reset_postdata(); ?>
-				</div>
-			<?php elseif ( empty( $children_collections ) ) : ?>
-				<p class="text--content text--separated">
-					<?php if ( current_user_can( 'publish_posts' ) ) : ?>
-						<?php esc_html_e( 'Ready to publish your first resource?', 'chipmunk' ); ?>
-
-						<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=resource' ) ); ?>"><?php esc_html_e( 'Get started here', 'chipmunk' ); ?></a>.
-					<?php else : ?>
-						<?php esc_html_e( 'Sorry, there are no resources to display yet.', 'chipmunk' ); ?>
-					<?php endif; ?>
-				</p>
-
-			<?php endif; ?>
+			<div class="l-component l-component--md">
+				<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', array( 'query' => $query ) ); ?>
+			</div>
 		</div>
-
-		<?php chipmunk_get_template_part( 'sections/pagination', array( 'query' => $query ) ); ?>
 	</div>
-	<!-- /.section -->
 
 <?php get_footer(); ?>

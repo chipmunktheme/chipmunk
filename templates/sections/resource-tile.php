@@ -1,59 +1,58 @@
 <?php
 	// Cache resource customizer options
 	$options = array(
-		'display_as'             => chipmunk_theme_option( 'display_resource_as' ),
-		'disable_thumbs'         => chipmunk_theme_option( 'disable_resource_thumbs' ),
-		'disable_website_button' => chipmunk_theme_option( 'disable_resource_website_button' ),
-		'disable_desc'           => chipmunk_theme_option( 'disable_resource_desc' ),
-		'disable_date'           => chipmunk_theme_option( 'disable_resource_date' ),
-		'disable_tags'           => chipmunk_theme_option( 'disable_resource_tags' ),
-		'disable_views'          => chipmunk_theme_option( 'disable_resource_views' ),
-		'disable_upvotes'        => chipmunk_theme_option( 'disable_resource_upvotes' ),
+		'display_as'             => Chipmunk\Customizer::get_theme_option( 'display_resource_as' ),
+		'disable_thumbs'         => Chipmunk\Customizer::get_theme_option( 'disable_resource_thumbs' ),
+		'disable_website_button' => Chipmunk\Customizer::get_theme_option( 'disable_resource_website_button' ),
+		'disable_desc'           => Chipmunk\Customizer::get_theme_option( 'disable_resource_desc' ),
+		'disable_date'           => Chipmunk\Customizer::get_theme_option( 'disable_resource_date' ),
+		'disable_tags'           => Chipmunk\Customizer::get_theme_option( 'disable_resource_tags' ),
+		'disable_views'          => Chipmunk\Customizer::get_theme_option( 'disable_resource_views' ),
+		'disable_upvotes'        => Chipmunk\Customizer::get_theme_option( 'disable_resource_upvotes' ),
 	);
 
 	// Resource website - custom post meta
-	$website = chipmunk_get_resource_website( get_the_ID() );
+	$website = Chipmunk\Helpers::get_resource_website( get_the_ID() );
 
 	// Resource tile classes
-	$classes = array(
-		''           => 'tile tile--card',
-		'tile'       => 'tile tile--tile',
-		'card'       => 'tile tile--card',
-		'card_blank' => 'tile tile--card tile--blank',
-		'card_wide'  => 'tile tile--card tile--wide',
+	$tile_classes = array(
+		''           => array( 'card' ),
+		'tile'       => array( 'tile' ),
+		'card'       => array( 'card' ),
+		'card_blank' => array( 'blank' ),
+		'card_wide'  => array( 'wide' ),
 	);
 
-	// Resource excerpt length
-	$excerpt_lengths = array(
-		''           => 80,
-		'tile'       => 80,
-		'card'       => 80,
-		'card_blank' => 60,
-		'card_wide'  => 200,
-	);
+	$tile_class = Chipmunk\Helpers::class_name( 'c-tile', $tile_classes[ $options['display_as'] ] );
 ?>
 
-<<?php echo get_post_status() == 'publish' ? 'a href="' . get_the_permalink() . '"' : 'article'; ?> class="<?php echo esc_attr( $classes[ $options['display_as'] ] ); ?><?php echo ( $options['display_as'] == 'card_wide' ? ' grid__item' : ' grid__item grid__item--md-3 grid__item--lg-4' ); ?>">
-	<?php if ( ! chipmunk_theme_option( 'disable_resource_thumbs' ) || $options['display_as'] == 'tile' ) : ?>
-		<div class="tile__image <?php echo ( isset( $display_status ) and $options['display_as'] != 'tile' ) ? 'tile__image--with-status' : ''; ?>">
-			<?php if ( ! $options['disable_thumbs'] && has_post_thumbnail() ) : ?>
-				<?php the_post_thumbnail( '600x420' ); ?>
-			<?php endif; ?>
+<<?php echo get_post_status() == 'publish' ? 'a href="' . get_the_permalink() . '"' : 'div'; ?> class="<?php echo esc_attr( $tile_class ); ?>">
+	<div class="c-tile__inner">
+		<?php if ( ! $options['disable_thumbs'] || $options['display_as'] == 'tile' ) : ?>
+			<div class="c-tile__image">
+				<?php if ( ! $options['disable_thumbs'] && has_post_thumbnail() ) : ?>
+					<?php the_post_thumbnail( '600x420' ); ?>
+				<?php endif; ?>
 
-			<?php if ( isset( $display_status ) and $options['display_as'] != 'tile' ) : ?>
-				<span class="tile__status tile__status--<?php echo esc_attr( get_post_status() ); ?>">
-					<?php echo esc_html( ucfirst( get_post_status() ) ); ?>
-				</span>
-			<?php endif; ?>
-		</div>
-	<?php endif; ?>
+				<?php if ( ! empty( $display_status ) && $options['display_as'] != 'tile' ) : ?>
+					<span class="c-tile__status c-tile__status--<?php echo esc_attr( get_post_status() ); ?>">
+						<?php echo esc_html( ucfirst( get_post_status() ) ); ?>
+					</span>
+				<?php endif; ?>
+			</div>
+		<?php endif; ?>
 
-	<div class="tile__content<?php echo ( $options['display_as'] == 'tile' ? ( $options['disable_thumbs'] || ! has_post_thumbnail() ? ' tile__content--primary' : ' tile__content--dimmed' ) : '' ); ?>">
-		<div class="tile__info">
-			<div class="tile__head">
-				<?php echo chipmunk_conditional_markup( is_front_page() or is_single(), 'h3', 'h2', 'tile__title', $options['display_as'] == 'tile' ? esc_html( chipmunk_truncate_string( get_the_title(), 60 ) ) : get_the_title() ); ?>
+		<div class="c-tile__content<?php echo ( $options['display_as'] == 'tile' ? ( $options['disable_thumbs'] || ! has_post_thumbnail() ? ' c-tile__content--primary' : ' c-tile__content--dimmed' ) : '' ); ?>">
+			<div class="c-tile__head">
+				<<?php echo ( is_front_page() || is_single() ) ? 'h3' : 'h2'; ?> class="c-tile__title c-heading c-heading--h5">
+					<?php the_title(); ?>
 
-				<?php if ( ! $options['disable_website_button'] and ! empty( $website ) ) : ?>
+					<?php if ( ! empty( $display_status ) && $options['display_as'] == 'tile' ) : ?>
+						(<?php echo esc_html( ucfirst( get_post_status() ) ); ?>)
+					<?php endif; ?>
+				</<?php echo ( is_front_page() || is_single() ) ? 'h3' : 'h2'; ?>>
+
+				<?php if ( ! $options['disable_website_button'] && ! empty( $website ) ) : ?>
 					<script>
 						function openURL(ev, url) {
 							ev.stopPropagation();
@@ -64,38 +63,28 @@
 						}
 					</script>
 
-					<div onclick="openURL(event, '<?php echo chipmunk_external_link( $website ); ?>');" class="tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'external-link' ) ); ?></div>
+					<div onclick="openURL(event, '<?php echo Chipmunk\Helpers::render_external_link( $website ); ?>');" class="c-tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'external-link' ) ); ?></div>
+				<?php endif; ?>
+
+				<?php if ( ! $options['disable_desc'] ) : ?>
+					<p class="c-tile__copy"><?php echo esc_html( get_the_excerpt() ); ?></p>
 				<?php endif; ?>
 			</div>
 
-			<?php $content = get_the_excerpt(); ?>
+			<?php if ( ! $options['disable_date'] || ! $options['disable_views'] || ! $options['disable_upvotes'] ) : ?>
+				<ul class="c-tile__stats c-stats">
+					<?php
+						$collections_args = array(
+							'display'      => ( $options['display_as'] == 'card_wide' && ! $options['disable_tags'] ),
+							'type'         => 'text',
+							'quantity'     => 1,
+							'desktop_only' => true,
+						);
 
-			<?php if ( ! $options['disable_desc'] and ! empty( $content ) ) : ?>
-				<p class="tile__copy">
-					<?php echo esc_html( chipmunk_truncate_string( $content, apply_filters( 'chipmunk_resource_excerpt_length', $excerpt_lengths[ $options['display_as'] ] ) ) ); ?><span>&nbsp;<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'arrow-right' ) ); ?></span>
-				</p>
-			<?php endif; ?>
-
-			<?php if ( isset( $display_status ) and chipmunk_theme_option( 'display_resource_as' ) == 'tile' ) : ?>
-				<span class="tile__status tile__status--<?php echo esc_attr( get_post_status() ); ?>">
-					<?php echo esc_html( ucfirst( get_post_status() ) ); ?>
-				</span>
+						Chipmunk\Helpers::get_template_part( 'partials/post-stats', array( 'args' => $collections_args ) );
+					?>
+				</ul>
 			<?php endif; ?>
 		</div>
-
-		<?php if ( ! $options['disable_date'] or ! $options['disable_views'] or ! $options['disable_upvotes'] ) : ?>
-			<ul class="tile__stats stats">
-				<?php
-					$collections_args = array(
-						'display'      => ( $options['display_as'] == 'card_wide' && ! $options['disable_tags'] ),
-						'type'         => 'text',
-						'quantity'     => 1,
-						'desktop_only' => true,
-					);
-
-					chipmunk_get_template_part( 'partials/post-stats', array( 'args' => $collections_args ) );
-				?>
-			</ul>
-		<?php endif; ?>
 	</div>
-</<?php echo get_post_status() == 'publish' ? 'a' : 'article'; ?>>
+</<?php echo get_post_status() == 'publish' ? 'a' : 'div'; ?>>

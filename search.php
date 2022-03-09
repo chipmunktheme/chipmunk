@@ -7,59 +7,47 @@
  */
 
 // If the search query is shorter than 3 letters redirect to homepage
-if ( strlen( get_search_query() ) < 3 or chipmunk_theme_option( 'disable_search' ) ) {
+if ( strlen( get_search_query() ) < 3 || Chipmunk\Customizer::get_theme_option( 'disable_search' ) ) {
 	wp_redirect( home_url( '/', 'relative' ) ); exit;
 }
 
 get_header(); ?>
 
-	<div class="section<?php echo ( have_posts() ? ' section--compact-bottom' : '' ); ?>">
-		<div class="container">
-			<div class="grid">
-				<div class="grid__item grid__item--md-3 grid__item--lg-8">
-					<h1 class="heading heading--h4">
-						<small><?php esc_html_e( 'Search results for:', 'chipmunk' ); ?></small>
-						<?php echo get_search_query(); ?>
-					</h1>
-				</div>
+	<div class="l-section<?php echo ( have_posts() ? ' l-section--compact-bottom' : '' ); ?>">
+		<div class="l-container">
+			<div class="l-header">
+				<h1 class="c-heading c-heading--h4">
+					<small><?php esc_html_e( 'Search results for:', 'chipmunk' ); ?></small>
+					<?php echo get_search_query(); ?>
+				</h1>
 
-				<div class="grid__item grid__item--md-3 grid__item--lg-4">
-					<div class="search-bar__inner">
-						<form action="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>" method="get" class="search-bar__form" role="search" novalidate autocomplete="off">
-							<input type="search" name="s" placeholder="<?php esc_attr_e( 'Search query...', 'chipmunk' ); ?>" value="<?php echo get_search_query(); ?>" required minlength="3">
-							<button type="submit" class="search-bar__icon">
-								<?php chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'search' ) ); ?>
-							</button>
-						</form>
-					</div>
-					<!-- /.search-bar__inner -->
-				</div>
+				<?php Chipmunk\Helpers::get_template_part( 'partials/search-form', array( 'narrow' => true ) ); ?>
+
+				<?php if ( ! have_posts() ) : ?>
+					<p class="l-header__copy">
+						<?php esc_html_e( 'Sorry, your search did not match any resources.', 'chipmunk' ); ?>
+					</p>
+				<?php endif; ?>
 			</div>
-
-			<?php if ( ! have_posts() ) : ?>
-				<p class="text--content text--separated">
-					<?php esc_html_e( 'Sorry, your search did not match any resources.', 'chipmunk' ); ?>
-				</p>
-			<?php endif; ?>
 		</div>
 	</div>
-	<!-- /.section -->
 
 	<?php if ( have_posts() ) : ?>
 		<div data-action-element="load_posts">
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php chipmunk_get_template_part( array( 'sections/entry', 'resource' ) ); ?>
+				<?php Chipmunk\Helpers::get_template_part( array( 'sections/entry', 'resource' ) ); ?>
 
 			<?php endwhile; ?>
 		</div>
 	<?php endif; ?>
 
 	<?php if ( $wp_query->max_num_pages > 1 ) : ?>
-		<div class="section">
-			<?php chipmunk_get_template_part( 'sections/pagination' ); ?>
+		<div class="l-section">
+			<div class="l-container">
+				<?php Chipmunk\Helpers::get_template_part( 'sections/pagination' ); ?>
+			</div>
 		</div>
-		<!-- /.section -->
 	<?php endif; ?>
 
 <?php get_footer(); ?>

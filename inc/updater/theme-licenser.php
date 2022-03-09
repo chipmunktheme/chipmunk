@@ -367,7 +367,7 @@ class Chipmunk_Licenser {
 	private function add_settings_error( $message, $type = 'error' ) {
 		$old_errors = get_settings_errors( $this->theme_slug . '_licenses' );
 
-		if ( ! chipmunk_find_key_value( $old_errors, 'code', 'license_error' ) ) {
+		if ( ! \Chipmunk\Helpers::find_key_value( $old_errors, 'code', 'license_error' ) ) {
 			add_settings_error( $this->theme_slug . '_licenses', 'license_error', $message, $type );
 		}
 	}

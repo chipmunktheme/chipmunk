@@ -7,12 +7,12 @@
 
 <p>
 	<strong><?php esc_html_e( 'Collection', 'chipmunk' ); ?>:</strong><br>
-	<?php echo implode( ', ', array_map( 'chipmunk_get_term_name', get_the_terms( $post->ID, 'resource-collection' ) ) ); ?>
+	<?php echo implode( ', ', array_column( get_the_terms( $post->ID, 'resource-collection' ), 'name' ) ); ?>
 </p>
 
 <p>
 	<strong><?php esc_html_e( 'Website URL', 'chipmunk' ); ?>:</strong><br>
-	<a href="<?php echo esc_url( chipmunk_external_link( get_post_meta( $post->ID, '_' . THEME_SLUG . '_resource_website', true ) ) ); ?>" target="_blank"><?php esc_html_e( 'Visit website', 'chipmunk' ); ?></a>
+	<a href="<?php echo esc_url( Chipmunk\Helpers::render_external_link( get_post_meta( $post->ID, '_' . THEME_SLUG . '_resource_website', true ) ) ); ?>" target="_blank"><?php esc_html_e( 'Visit website', 'chipmunk' ); ?></a>
 </p>
 
 <?php if ( ! empty( $post->post_content ) ) : ?>

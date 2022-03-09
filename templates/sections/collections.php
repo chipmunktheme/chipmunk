@@ -1,38 +1,37 @@
-<div class="section">
-	<div class="container">
-		<?php echo chipmunk_conditional_markup( is_front_page(), 'h2', 'h1', 'heading heading--h4', esc_html__( 'Collections', 'chipmunk' ) ); ?>
+<?php
+	$collections = get_terms( array(
+		'taxonomy'    => 'resource-collection',
+		'orderby'     => 'name',
+		'pad_counts'  => true,
+	) );
 
-		<div class="grid">
-			<?php
-			$collections = get_terms( array(
-				'taxonomy'    => 'resource-collection',
-				'orderby'     => 'name',
-				'pad_counts'  => true,
-			) );
+	// Remove children from the listing
+	// http://wordpress.stackexchange.com/a/48630/58550
+	$collections = wp_list_filter( $collections, array( 'parent' => 0 ) );
+?>
 
-			// Remove children from the listing
-			// http://wordpress.stackexchange.com/a/48630/58550
-			$collections = wp_list_filter( $collections, array( 'parent' => 0 ) );
-			?>
+<div class="l-section">
+	<div class="l-container">
+		<div class="l-component l-header">
+			<<?php echo is_front_page() ? 'h2' : 'h1'; ?> class="c-heading c-heading--h4">
+				<?php esc_html_e( 'Collections', 'chipmunk' ); ?>
+			</<?php echo is_front_page() ? 'h2' : 'h1'; ?>>
 
-			<?php if ( ! empty( $collections ) ) : ?>
-				<?php foreach ( $collections as $collection ) : ?>
-					<?php chipmunk_get_template_part( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
-				<?php endforeach; ?>
-			<?php else : ?>
-				<div class="grid__item">
-					<p class="text--content text--separated">
-						<?php if ( current_user_can( 'publish_posts' ) ) : ?>
-							<?php esc_html_e( 'Ready to publish your first collection?', 'chipmunk' ); ?>
-
-							<a href="<?php echo esc_url( admin_url( 'edit-tags.php?taxonomy=resource-collection&post_type=resource' ) ); ?>"><?php esc_html_e( 'Get started here', 'chipmunk' ); ?></a>.
-						<?php else : ?>
-							<?php esc_html_e( 'Sorry, there are no collections to display yet.', 'chipmunk' ); ?>
-						<?php endif; ?>
-					</p>
-				</div>
+			<?php if ( empty( $collections ) ) : ?>
+				<p class="l-header__copy">
+					<?php esc_html_e( 'Sorry, there are no collections to display yet.', 'chipmunk' ); ?>
+				</p>
 			<?php endif; ?>
 		</div>
+
+		<?php if ( ! empty( $collections ) ) : ?>
+			<div class="l-component">
+				<div class="c-tile__list">
+					<?php foreach ( $collections as $collection ) : ?>
+						<?php Chipmunk\Helpers::get_template_part( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		<?php endif; ?>
 	</div>
 </div>
-<!-- /.section -->

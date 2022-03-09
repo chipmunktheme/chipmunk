@@ -1,76 +1,75 @@
 <?php $action = 'submit_resource'; ?>
-<?php $salt = chipmunk_get_salt( 5 ); ?>
+<?php $salt = Chipmunk\Helpers::get_salt( 5 ); ?>
 <?php $alignment = isset( $popup ) ? 'center' : 'left'; ?>
 <?php $required_fields = apply_filters( 'chipmunk_submission_required_fields', array( 'name', 'collection', 'website' ) ); ?>
 
 <?php if ( ! empty( $title ) ) : ?>
-	<h4 class="heading heading--h1 text--<?php echo esc_attr( $alignment ); ?>"><?php echo esc_html( $title ); ?></h4>
+	<div class="l-component">
+		<h4 class="c-heading c-heading--h1 u-text--<?php echo esc_attr( $alignment ); ?>"><?php echo esc_html( $title ); ?></h4>
+	</div>
 <?php endif; ?>
 
-<form action="#" class="form loader <?php echo esc_attr( ! empty( $align ) ? 'align' . $align : '' ); ?>" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
-
-	<p class="form__message heading heading--h4 heading--thin" data-action-message="<?php echo $action; ?>"></p>
+<form action="#" class="c-form l-component l-component--md u-loader <?php echo esc_attr( ! empty( $align ) ? 'align' . $align : '' ); ?>" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
+	<p class="c-form__message c-content" data-action-message="<?php echo $action; ?>"></p>
 
 	<input type="hidden" name="filter" value="">
-
 	<?php wp_nonce_field( $action, 'nonce', false ); ?>
 
-	<div class="form__content" data-action-element="<?php echo $action; ?>">
-		<div class="form__field">
-			<input type="text" name="name" placeholder="<?php esc_attr_e( 'Resource name', 'chipmunk' ); ?>" class="form__input" <?php echo in_array( 'name', $required_fields ) ? 'required' : ''; ?>>
+	<div class="c-form__content" data-action-element="<?php echo $action; ?>">
+		<div class="c-form__field">
+			<input type="text" name="name" placeholder="<?php esc_attr_e( 'Resource name', 'chipmunk' ); ?>" class="c-form__input" <?php echo in_array( 'name', $required_fields ) ? 'required' : ''; ?>>
 		</div>
 
-		<div class="form__field">
-			<select name="collection" data-placeholder="<?php esc_attr_e( 'Collection', 'chipmunk' ); ?>" data-parsley-errors-container=".collection-errors-<?php echo $salt; ?>" data-parsley-group="select" class="form__input custom-select" <?php echo in_array( 'collection', $required_fields ) ? 'required' : ''; ?>>
-				<option value=""><?php esc_html_e( 'Collection', 'chipmunk' ); ?></option>
-				<?php
-					$collections = chipmunk_get_taxonomy_hierarchy( 'resource-collection', array(
-						'hide_empty' => false,
-					) );
-				?>
+		<div class="c-form__field">
+			<div class="c-form__select">
+				<select name="collection" class="c-form__input" <?php echo in_array( 'collection', $required_fields ) ? 'required' : ''; ?>>
+					<option value=""><?php esc_html_e( 'Collection', 'chipmunk' ); ?></option>
+					<?php
+						$collections = Chipmunk\Helpers::get_taxonomy_hierarchy( 'resource-collection', array(
+							'hide_empty' => false,
+						) );
+					?>
 
-				<?php if ( ! empty( $collections ) ) : ?>
-					<?php chipmunk_display_terms( $collections ); ?>
-				<?php endif; ?>
-			</select>
-
-			<div class="collection-errors-<?php echo $salt; ?>"></div>
+					<?php if ( ! empty( $collections ) ) : ?>
+						<?php Chipmunk\Helpers::display_terms( $collections ); ?>
+					<?php endif; ?>
+				</select>
+			</div>
 		</div>
 
-		<div class="form__field">
-			<input type="url" name="website" placeholder="<?php esc_attr_e( 'Website URL', 'chipmunk' ); ?>" class="form__input" <?php echo in_array( 'website', $required_fields ) ? 'required' : ''; ?>>
+		<div class="c-form__field">
+			<input type="url" name="website" placeholder="<?php esc_attr_e( 'Website URL', 'chipmunk' ); ?>" class="c-form__input" <?php echo in_array( 'website', $required_fields ) ? 'required' : ''; ?>>
 		</div>
 
-		<div class="form__field">
-			<textarea rows="1" name="content" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>" class="form__input" <?php echo in_array( 'content', $required_fields ) ? 'required' : ''; ?> data-dynamic-rows></textarea>
+		<div class="c-form__field">
+			<textarea rows="1" name="content" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>" class="c-form__input" <?php echo in_array( 'content', $required_fields ) ? 'required' : ''; ?> data-dynamic-rows></textarea>
 		</div>
 
-		<?php if ( ! chipmunk_theme_option( 'disable_submitter_info' ) and ! is_user_logged_in() ) : ?>
-			<div class="form__field form__field--separated">
-				<input type="text" name="submitter_name" placeholder="<?php esc_attr_e( 'Your name', 'chipmunk' ); ?>" class="form__input" required>
+		<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_submitter_info' ) && ! is_user_logged_in() ) : ?>
+			<div class="c-form__field c-form__field--separated">
+				<input type="text" name="submitter_name" placeholder="<?php esc_attr_e( 'Your name', 'chipmunk' ); ?>" class="c-form__input" required>
 			</div>
 
-			<div class="form__field form__field--separated">
-				<input type="email" name="submitter_email" placeholder="<?php esc_attr_e( 'Your email', 'chipmunk' ); ?>" class="form__input" required>
-			</div>
-		<?php endif; ?>
-
-		<?php if ( ! empty( chipmunk_theme_option( 'submission_consent' ) ) ) : ?>
-			<div class="form__field form__field--wide form__field--<?php echo esc_attr( $alignment ); ?> form__field--separated">
-				<div class="form__checkbox">
-					<?php chipmunk_get_template_part( 'partials/checkbox', array( 'name' => 'consent', 'label' => chipmunk_theme_option( 'submission_consent' ), 'required' => true ) ); ?>
-				</div>
+			<div class="c-form__field c-form__field--separated">
+				<input type="email" name="submitter_email" placeholder="<?php esc_attr_e( 'Your email', 'chipmunk' ); ?>" class="c-form__input" required>
 			</div>
 		<?php endif; ?>
 
-		<?php if ( ! empty( chipmunk_theme_option( 'recaptcha_enabled' ) ) and ! is_user_logged_in() ) : ?>
-			<div class="form__field form__field--wide form__field--<?php echo esc_attr( $alignment ); ?>">
+		<?php if ( ! empty( Chipmunk\Customizer::get_theme_option( 'submission_consent' ) ) ) : ?>
+			<label class="c-form__field c-form__field--wide c-form__checkbox" data-consent>
+				<input type="checkbox" name="consent" required>
+				<p><?php echo esc_html( Chipmunk\Customizer::get_theme_option( 'submission_consent' ) ); ?></p>
+			</label>
+		<?php endif; ?>
+
+		<?php if ( ! empty( Chipmunk\Customizer::get_theme_option( 'recaptcha_enabled' ) ) && ! is_user_logged_in() ) : ?>
+			<div class="c-form__field c-form__field--wide c-form__field--<?php echo esc_attr( $alignment ); ?>">
 				<div class="g-recaptcha" id="submit-recaptcha"></div>
 			</div>
 		<?php endif; ?>
 
-		<div class="form__field form__field--wide form__field--cta form__field--<?php echo esc_attr( $alignment ); ?>">
-			<button type="submit" class="button button--primary-outline"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></button>
+		<div class="c-form__field c-form__field--wide c-form__field--cta c-form__field--<?php echo esc_attr( $alignment ); ?>">
+			<button type="submit" class="c-button c-button--primary-outline"><?php esc_html_e( 'Submit', 'chipmunk' ); ?></button>
 		</div>
 	</div>
 </form>

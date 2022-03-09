@@ -1,10 +1,13 @@
 {
-  "scripts/app.js": "scripts/app.7335b588.js",
-  "scripts/app.js.map": "scripts/app.7335b588.js.map",
-  "styles/main.css": "styles/main.f15d3e51.css",
-  "styles/main.css.map": "styles/main.f15d3e51.css.map",
-  "assets/fonts/.keep": "assets/fonts/.keep.31d6cfe0",
-  "assets/images/.keep": "assets/images/.keep.31d6cfe0",
-  "scripts/app.7335b588.full.js": "scripts/app.7335b588.full.js",
-  "styles/main.f15d3e51.full.css": "styles/main.f15d3e51.full.css"
+  "scripts/theme.js": "scripts/theme.03ae82cb.js",
+  "scripts/theme.js.map": "scripts/theme.03ae82cb.js.map",
+  "styles/theme.css": "styles/theme.d71fded4.css",
+  "styles/theme.css.map": "styles/theme.d71fded4.css.map",
+  "assets/.DS_Store": "assets/.DS_Store.64fd69e8",
+  "assets/images/chipmunk.svg": "assets/images/chipmunk.b372af53.svg",
+  "assets/images/icons.svg": "assets/images/icons.c5620246.svg",
+  "scripts/theme.03ae82cb.full.js": "scripts/theme.03ae82cb.full.js",
+  "scripts/theme.03ae82cb.full.js.LICENSE.txt": "scripts/theme.03ae82cb.full.js.LICENSE.txt",
+  "scripts/theme.03ae82cb.js.LICENSE.txt": "scripts/theme.03ae82cb.js.LICENSE.txt",
+  "styles/theme.d71fded4.full.css": "styles/theme.d71fded4.full.css"
 }

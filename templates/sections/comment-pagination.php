@@ -1,20 +1,19 @@
 <?php
-	$previous_content = chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'chevron-left' ), false ) . esc_html__( 'Older', 'chipmunk' );
+	$previous_content = Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'arrow-left' ), false ) . esc_html__( 'Older', 'chipmunk' );
 	$previous_link = get_previous_comments_link( $previous_content );
 
-	$next_content = esc_html__( 'Newer', 'chipmunk' ) . chipmunk_get_template_part( 'partials/icon', array( 'icon' => 'chevron-right' ), false );
+	$next_content = esc_html__( 'Newer', 'chipmunk' ) . Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'arrow-right' ), false );
 	$next_link = get_next_comments_link( $next_content );
 ?>
 
-<?php if ( ! empty( $previous_link ) or ! empty( $next_link ) ) : ?>
-	<ul class="pagination pagination__nav">
-		<li class="pagination__item<?php echo empty( $previous_link ) ? ' pagination__item--disabled' : ''; ?>">
-			<?php echo isset( $previous_link ) ? $previous_link : $previous_content; ?>
+<?php if ( ! empty( $previous_link ) || ! empty( $next_link ) ) : ?>
+	<ul class="c-pagination l-component l-component--md">
+		<li class="c-pagination__item<?php echo empty( $previous_link ) ? ' c-pagination__item--disabled' : ''; ?>">
+			<?php echo $previous_link ?? "<span>$previous_content</span>"; ?>
 		</li>
 
-		<li class="pagination__item<?php echo empty( $next_link ) ? ' pagination__item--disabled' : ''; ?>">
-			<?php echo isset( $next_link ) ? $next_link : $next_content; ?>
+		<li class="c-pagination__item<?php echo empty( $next_link ) ? ' c-pagination__item--disabled' : ''; ?>">
+			<?php echo $next_link ?? "<span>$next_content</span>"; ?>
 		</li>
 	</ul>
-	<!-- /.pagination -->
 <?php endif; ?>

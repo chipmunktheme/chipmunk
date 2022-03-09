@@ -1,27 +1,25 @@
-<div class="entry__tile grid__item <?php echo esc_attr( chipmunk_get_columns( chipmunk_theme_option( 'content_width' ) ) ); ?>">
+<div class="c-entry__tile l-wrapper">
 	<?php if ( has_post_thumbnail() ) : ?>
-		<a href="<?php the_permalink(); ?>" class="entry__image">
+		<a href="<?php the_permalink(); ?>" class="c-entry__image">
 			<?php the_post_thumbnail( '1280x720' ); ?>
 		</a>
 	<?php endif; ?>
 
-	<div class="entry__head">
-		<?php chipmunk_get_template_part( 'partials/post-head', array( 'collections' => array(
+	<div class="c-entry__head">
+		<?php Chipmunk\Helpers::get_template_part( 'partials/post-head', array( 'collections' => array(
 			'display'  => true,
 			'type'     => 'link',
 			'quantity' => -1,
 		) ) ); ?>
 
 		<?php if ( ! empty( get_the_content() ) ) : ?>
-			<div class="entry__content content">
-				<?php echo esc_html( chipmunk_truncate_string( get_the_excerpt(), 250 ) ); ?>
+			<div class="c-entry__content c-content">
+				<?php echo esc_html( Chipmunk\Helpers::truncate_string( get_the_excerpt(), 250 ) ); ?>
 			</div>
-			<!-- /.entry__content -->
 		<?php endif; ?>
 
-		<a href="<?php the_permalink(); ?>" class="entry__button button button--primary-outline">
+		<a href="<?php the_permalink(); ?>" class="c-entry__button c-button c-button--primary-outline">
 			<?php esc_html_e( 'Read more', 'chipmunk' ); ?>
 		</a>
 	</div>
-	<!-- /.entry__head -->
 </div>
