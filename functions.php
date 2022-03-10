@@ -31,12 +31,6 @@ define( 'THEME_MANIFEST_DEV_PATH',  THEME_DIST_PATH . 'manifest-dev.json' );
 require_once THEME_TEMPLATE_DIR . '/vendor/autoload.php';
 
 /*
- * Automatic update implementation
- * Using Easy Digital Downloads
- */
-require_once THEME_TEMPLATE_DIR . '/inc/updater/theme-updater.php';
-
-/*
  * Initialize theme setup
  */
 new Chipmunk\Setup();
@@ -46,3 +40,4 @@ new Chipmunk\Setup();
  */
 new Chipmunk\Plugins\ACF();
 new Chipmunk\Plugins\Merlin();
+new Chipmunk\Plugins\ThemeUpdater\Init();

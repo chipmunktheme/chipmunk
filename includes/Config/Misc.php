@@ -67,13 +67,15 @@ class Misc {
 
 			<!-- / FB Open Graph -->
 			<meta property="og:type" content="website">
+			<meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>">
 			<meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<meta property="og:title" content="<?php bloginfo( 'name' ); ?>">
 			<meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
-			<meta property="og:image" content="<?php echo $site_image; ?>">
-			<meta property="og:image:width" content="1200">
-			<meta property="og:image:height" content="630">
-			<meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>">
+			<?php if ( ! empty( $site_image ) ) : ?>
+				<meta property="og:image" content="<?php echo $site_image; ?>">
+				<meta property="og:image:width" content="1200">
+				<meta property="og:image:height" content="630">
+			<?php endif; ?>
 
 			<?php
 		}

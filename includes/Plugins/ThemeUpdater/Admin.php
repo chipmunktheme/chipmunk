@@ -1,12 +1,14 @@
 <?php
+
+namespace Chipmunk\Plugins\ThemeUpdater;
+
 /**
  * Theme updater admin page and functions.
  *
  * @package WordPress
  * @subpackage Chipmunk
  */
-
-class Chipmunk_Theme_Updater_Admin {
+class Admin {
 	/**
 	 * Initialize the class.
 	 *
@@ -43,20 +45,15 @@ class Chipmunk_Theme_Updater_Admin {
 	 */
 	function updater() {
 		if ( ! current_user_can( 'update_themes' ) ) {
-			return;
+			return false;
 		}
 
 		/* If there is no valid license key status, don't allow updates. */
 		if ( get_option( $this->item_slug . '_license_key_status', false ) != 'valid' ) {
-			return;
+			return false;
 		}
 
-		if ( ! class_exists( 'Chipmunk_Theme_Updater' ) ) {
-			// Load our custom theme updater
-			include( dirname( __FILE__ ) . '/theme-updater-class.php' );
-		}
-
-		new Chipmunk_Theme_Updater(
+		new Updater(
 			array(
 				'remote_api_url'    => $this->remote_api_url,
 				'version'           => $this->version,

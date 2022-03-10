@@ -1025,6 +1025,27 @@
                 }
             ],
             "install-path": "../vlucas/phpdotenv"
+        },
+        {
+            "name": "wpackagist-plugin/transients-manager",
+            "version": "2.0.2",
+            "version_normalized": "2.0.2.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/transients-manager/",
+                "reference": "tags/2.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/transients-manager.2.0.2.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "installation-source": "dist",
+            "homepage": "https://wordpress.org/plugins/transients-manager/",
+            "install-path": "../../../../plugins/transients-manager"
         }
     ],
     "dev": true,

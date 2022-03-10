@@ -1,12 +1,14 @@
 <?php
+
+namespace Chipmunk\Plugins\ThemeUpdater;
+
 /**
  * Easy Digital Downloads License class
  *
  * @package WordPress
  * @subpackage Chipmunk
  */
-
-class Chipmunk_Licenser {
+class Licenser {
 	/**
 	 * Initialize the class.
 	 *

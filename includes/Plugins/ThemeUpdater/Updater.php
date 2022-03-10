@@ -1,13 +1,14 @@
 <?php
+
+namespace Chipmunk\Plugins\ThemeUpdater;
+
 /**
  * Theme updater class.
  *
  * @package WordPress
  * @subpackage Chipmunk
- * @version 1.0.3
  */
-
-class Chipmunk_Theme_Updater {
+class Updater {
 	/**
 	 * Initiate the Theme updater
 	 *
