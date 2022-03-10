@@ -4,7 +4,6 @@
 	$website = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_resource_website', true );
 	$description = '';
 	$excerpt = Chipmunk\Helpers::truncate_string( get_the_excerpt(), 120 );
-	$tags = wp_get_post_terms( get_the_ID(), 'resource-tag' );
 ?>
 
 <?php if ( is_search() ) : ?>
@@ -42,11 +41,16 @@
 						</div>
 					<?php endif; ?>
 
-					<?php if ( ! empty( $tags ) && ! Chipmunk\Customizer::get_theme_option( 'disable_resource_tags' ) ) : ?>
-						<div class="c-resource__tags c-tag__list">
-							<?php Chipmunk\Helpers::get_template_part( 'partials/post-terms', array( 'terms' => $tags, 'icon' => 'tag' ) ); ?>
-						</div>
-					<?php endif; ?>
+					<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+						'class' => 'c-resource__tags',
+						'stats' => array(
+							'terms' => array(
+								'term_args' => array(
+									'taxonomy' => 'resource-tag',
+								),
+							),
+						),
+					) ); ?>
 				</div>
 
 				<?php do_action( 'chipmunk_after_resource_info' ); ?>
@@ -94,19 +98,26 @@
 
 			<?php if ( ! is_search() ) : ?>
 				<div class="c-resource__head">
-					<?php do_action( 'chipmunk_before_resource_stats' ); ?>
+					<?php do_action( 'chipmunk_before_resource_head' ); ?>
 
-					<ul class="c-resource__stats c-stats">
-						<?php
-							$collections_args = array(
-								'display'  => true,
-								'type'     => 'link',
-								'quantity' => 1,
-							);
-
-							Chipmunk\Helpers::get_template_part( 'partials/post-stats', array( 'args' => $collections_args ) );
-						?>
-					</ul>
+					<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+						'class' => 'c-resource__stats',
+						'stats' => array(
+							'upvotes' => array(),
+							'bookmarks' => array(),
+							'author' => array(
+								'show_link' => true,
+							),
+							'terms' => array(
+								'term_args' => array(
+									'taxonomy' => 'resource-collection',
+									'quantity' => 1,
+								),
+							),
+							'date' => array(),
+							'views' => array(),
+						),
+					) ); ?>
 
 					<?php if ( Chipmunk\Helpers::is_feature_enabled( 'sharing', 'resource' ) ) : ?>
 						<div class="c-resource__share">
@@ -114,7 +125,7 @@
 						</div>
 					<?php endif; ?>
 
-					<?php do_action( 'chipmunk_after_resource_stats' ); ?>
+					<?php do_action( 'chipmunk_after_resource_head' ); ?>
 				</div>
 			<?php endif; ?>
 		</article>

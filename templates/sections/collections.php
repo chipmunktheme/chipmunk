@@ -28,7 +28,7 @@
 			<div class="l-component">
 				<div class="c-tile__list">
 					<?php foreach ( $collections as $collection ) : ?>
-						<?php Chipmunk\Helpers::get_template_part( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
+						<?php Chipmunk\Helpers::get_template_part( 'sections/tile-collection', array( 'collection' => $collection ) ); ?>
 					<?php endforeach; ?>
 				</div>
 			</div>

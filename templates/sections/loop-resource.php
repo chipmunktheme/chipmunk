@@ -40,7 +40,7 @@
 					<div class="c-tile__list" data-action-element="load_posts">
 						<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-							<?php Chipmunk\Helpers::get_template_part( 'sections/resource-tile' ); ?>
+							<?php Chipmunk\Helpers::get_template_part( 'sections/tile-resource' ); ?>
 
 						<?php endwhile; ?>
 					</div>

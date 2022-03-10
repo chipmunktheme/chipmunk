@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../../',
         'aliases' => array(),
-        'reference' => '20bdbe545c3d94f282f9c78e449bafbf4937fbc8',
+        'reference' => 'a870fb7c12746c366543a84a228bfb98cec0ef1f',
         'name' => 'chipmunk-theme/chipmunk',
         'dev' => true,
     ),
@@ -25,7 +25,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../../',
             'aliases' => array(),
-            'reference' => '20bdbe545c3d94f282f9c78e449bafbf4937fbc8',
+            'reference' => 'a870fb7c12746c366543a84a228bfb98cec0ef1f',
             'dev_requirement' => false,
         ),
         'composer/installers' => array(

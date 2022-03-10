@@ -5,10 +5,6 @@
 		'disable_thumbs'         => Chipmunk\Customizer::get_theme_option( 'disable_resource_thumbs' ),
 		'disable_website_button' => Chipmunk\Customizer::get_theme_option( 'disable_resource_website_button' ),
 		'disable_desc'           => Chipmunk\Customizer::get_theme_option( 'disable_resource_desc' ),
-		'disable_date'           => Chipmunk\Customizer::get_theme_option( 'disable_resource_date' ),
-		'disable_tags'           => Chipmunk\Customizer::get_theme_option( 'disable_resource_tags' ),
-		'disable_views'          => Chipmunk\Customizer::get_theme_option( 'disable_resource_views' ),
-		'disable_upvotes'        => Chipmunk\Customizer::get_theme_option( 'disable_resource_upvotes' ),
 	);
 
 	// Resource website - custom post meta
@@ -71,20 +67,23 @@
 				<?php endif; ?>
 			</div>
 
-			<?php if ( ! $options['disable_date'] || ! $options['disable_views'] || ! $options['disable_upvotes'] ) : ?>
-				<ul class="c-tile__stats c-stats">
-					<?php
-						$collections_args = array(
-							'display'      => ( $options['display_as'] == 'card_wide' && ! $options['disable_tags'] ),
+			<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+				'class' => 'c-tile__stats',
+				'stats' => array(
+					'upvotes' => array(),
+					'terms' => $options['display_as'] != 'card_wide' ? null : array(
+						'term_args' => array(
+							'taxonomy'     => 'resource-collection',
 							'type'         => 'text',
 							'quantity'     => 1,
 							'desktop_only' => true,
-						);
-
-						Chipmunk\Helpers::get_template_part( 'partials/post-stats', array( 'args' => $collections_args ) );
-					?>
-				</ul>
-			<?php endif; ?>
+						),
+					),
+					'date' => array(),
+					'views' => array(),
+					'ratings' => array(),
+				),
+			) ); ?>
 		</div>
 	</div>
 </<?php echo get_post_status() == 'publish' ? 'a' : 'div'; ?>>

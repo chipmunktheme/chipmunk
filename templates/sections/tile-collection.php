@@ -65,19 +65,17 @@
 			</div>
 
 			<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_collection_stats' ) ) : ?>
-				<ul class="c-tile__stats c-stats">
-					<?php if ( $term_children = wp_count_terms( 'resource-collection', array( 'parent' => $collection->term_id, 'hide_empty' => true ) ) ) : ?>
-						<li class="c-stats__item" title="<?php esc_attr_e( 'Sub collections', 'chipmunk' ); ?>">
-							<?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'collection' ) ); ?>
-							<?php echo $term_children; ?>
-						</li>
-					<?php endif; ?>
-
-					<li class="c-stats__item" title="<?php esc_attr_e( 'Resources', 'chipmunk' ); ?>">
-						<?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'link' ) ); ?>
-						<?php echo $collection->count; ?>
-					</li>
-				</ul>
+				<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+					'class' => 'c-tile__stats',
+					'stats' => array(
+						'count-collections' => array(
+							'term_id' => $collection->term_id,
+						),
+						'count-resources' => array(
+							'count' => $collection->count,
+						),
+					),
+				) ); ?>
 			<?php endif; ?>
 		</div>
 	</div>

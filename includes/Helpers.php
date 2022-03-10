@@ -60,7 +60,7 @@ class Helpers {
 	 *
 	 * @return string           The contents of the template.
 	 */
-	public static function get_template_part( $template, array $params = array(), $output = true ) {
+	public static function get_template_part( $template, $params = array(), $output = true ) {
 		if ( ! $output ) {
 			ob_start();
 		}
@@ -73,11 +73,7 @@ class Helpers {
 			get_template_part( "templates/{$template}" );
 		}
 
-		else {
-			if ( ! $template_file = locate_template( "templates/{$template}.php", false, false ) ) {
-				trigger_error( sprintf(__( 'Error locating %s for inclusion', 'chipmunk-lite' ), $template_file ), E_USER_ERROR );
-			}
-
+		elseif ( $template_file = locate_template( "templates/{$template}.php", false, false ) ) {
 			extract( $params, EXTR_SKIP );
 			require( $template_file );
 		}
@@ -359,11 +355,11 @@ class Helpers {
 		foreach ( $terms as $key => $term ) {
 			if ( $args['quantity'] < 0 || $args['quantity'] > $key ) {
 				if ( $args['type'] == 'link' ) {
-					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '" class="c-tag" title="' . esc_attr( $term->name ) . '">' . esc_html( self::truncate_string( $term->name, $term_max_length ) ) . '</a>';
+					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '" title="' . esc_attr( $term->name ) . '">' . esc_html( self::truncate_string( $term->name, $term_max_length ) ) . '</a>';
 				}
 
 				if ( $args['type'] == 'text' ) {
-					$output .= '<span class="c-tag">' . esc_html( self::truncate_string( $term->name, $term_max_length ) ) . '</span>';
+					$output .= '<span>' . esc_html( self::truncate_string( $term->name, $term_max_length ) ) . '</span>';
 				}
 			}
 		}

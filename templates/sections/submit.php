@@ -48,11 +48,11 @@
 		</div>
 
 		<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_submitter_info' ) && ! is_user_logged_in() ) : ?>
-			<div class="c-form__field c-form__field--separated">
+			<div class="c-form__field">
 				<input type="text" name="submitter_name" placeholder="<?php esc_attr_e( 'Your name', 'chipmunk' ); ?>" class="c-form__input" required>
 			</div>
 
-			<div class="c-form__field c-form__field--separated">
+			<div class="c-form__field">
 				<input type="email" name="submitter_email" placeholder="<?php esc_attr_e( 'Your email', 'chipmunk' ); ?>" class="c-form__input" required>
 			</div>
 		<?php endif; ?>

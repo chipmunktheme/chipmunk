@@ -19,19 +19,19 @@
 				<p class="c-tile__copy"><?php echo esc_html( get_the_excerpt() ); ?></p>
 			</div>
 
-			<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_resource_date' ) || ! Chipmunk\Customizer::get_theme_option( 'disable_resource_views' ) || ! Chipmunk\Customizer::get_theme_option( 'disable_resource_upvotes' ) ) : ?>
-				<ul class="c-tile__stats c-stats">
-					<?php
-						$collections_args = array(
-							'display'  => true,
-							'type'     => 'link',
+			<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+				'class' => 'c-tile__stats',
+				'stats' => array(
+					'terms' => array(
+						'term_args' => array(
 							'quantity' => 1,
-						);
-
-						Chipmunk\Helpers::get_template_part( 'partials/post-stats', array( 'args' => $collections_args ) );
-					?>
-				</ul>
-			<?php endif; ?>
+						),
+					),
+					'date' => array(),
+					'views' => array(),
+					'ratings' => array(),
+				),
+			) ); ?>
 
 			<a href="<?php the_permalink(); ?>" class="c-tile__button c-button c-button--primary-outline u-visible-lg-block">
 				<?php esc_html_e( 'Read more', 'chipmunk' ); ?>

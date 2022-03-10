@@ -49,9 +49,9 @@
 
 						<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 							<?php if ( $layout == 'excerpts' || ( $layout == 'mixed' && ( $i % 4 == 0 && $paged == 1 ) ) ) : ?>
-								<?php Chipmunk\Helpers::get_template_part( 'sections/post-excerpt' ); ?>
+								<?php Chipmunk\Helpers::get_template_part( 'sections/excerpt-post' ); ?>
 							<?php else : ?>
-								<?php Chipmunk\Helpers::get_template_part( 'sections/post-tile' ); ?>
+								<?php Chipmunk\Helpers::get_template_part( 'sections/tile-post' ); ?>
 							<?php endif; ?>
 
 							<?php $i++; ?>

@@ -50,7 +50,7 @@
 							<div class="c-tile__list"<?php echo $disable_sliders ? '' : " data-carousel='{ \"wrapAround\": " . json_encode( $infinite_sliders ) . " }'"; ?>>
 								<?php while ( $sections[ $key ]['results']->have_posts() ) : $sections[ $key ]['results']->the_post(); ?>
 
-									<?php Chipmunk\Helpers::get_template_part( 'sections/resource-tile' ); ?>
+									<?php Chipmunk\Helpers::get_template_part( 'sections/tile-resource' ); ?>
 
 								<?php endwhile; wp_reset_postdata(); ?>
 							</div>

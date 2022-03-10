@@ -70,7 +70,7 @@ class Upvotes {
 		$count = $this->get_upvote_count();
 		$label = ( is_numeric( $count ) && $count > 0 ) ? Helpers::format_number( $count ) : 0;
 
-		return '<span>' . $icon . $label . '</span>';
+		return "<span>$icon$label</span";
 	}
 
 	/**
