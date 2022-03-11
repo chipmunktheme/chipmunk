@@ -3,11 +3,13 @@
 	<?php $upvote_button = $upvotes->get_button( 'toggle_upvote', 'c-stats__button' ); ?>
 	<?php $upvote_counter = $upvotes->get_content(); ?>
 
-	<li class="c-stats__item" title="<?php esc_attr_e( 'Upvotes', 'chipmunk' ); ?>">
-		<?php if ( is_single() || Chipmunk\Customizer::get_theme_option( 'display_resource_as' ) != 'tile' ) : ?>
+	<?php if ( is_single() || Chipmunk\Customizer::get_theme_option( 'display_resource_as' ) != 'tile' ) : ?>
+		<li class="c-stats__item c-stats__item--upvotes">
 			<?php echo $upvote_button; ?>
-		<?php else : ?>
+		</li>
+	<?php else : ?>
+		<li class="c-stats__item c-stats__item--upvotes" title="<?php esc_attr_e( 'Upvotes', 'chipmunk' ); ?>">
 			<?php echo $upvote_counter; ?>
-		<?php endif; ?>
-	</li>
+		</li>
+	<?php endif; ?>
 <?php endif; ?>

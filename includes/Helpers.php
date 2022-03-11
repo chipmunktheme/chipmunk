@@ -355,7 +355,7 @@ class Helpers {
 		foreach ( $terms as $key => $term ) {
 			if ( $args['quantity'] < 0 || $args['quantity'] > $key ) {
 				if ( $args['type'] == 'link' ) {
-					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '" title="' . esc_attr( $term->name ) . '">' . esc_html( self::truncate_string( $term->name, $term_max_length ) ) . '</a>';
+					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '">' . esc_html( self::truncate_string( $term->name, $term_max_length ) ) . '</a>';
 				}
 
 				if ( $args['type'] == 'text' ) {
