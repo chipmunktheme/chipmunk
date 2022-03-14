@@ -1,0 +1,33 @@
+{
+  "name": "chipmunk-theme/chipmunk-theme",
+  "authors": [
+    {
+      "name": "Made by Less",
+      "email": "hello@madebyless.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Chipmunk\\": "includes/"
+    },
+    "files": [
+      "vendor/richtabor/merlin-wp/class-merlin.php"
+    ]
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/library/"
+    }
+  ],
+  "require": {
+    "advanced-custom-fields/advanced-custom-fields-pro": "^5.12",
+    "richtabor/merlin-wp": "dev-master"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true,
+      "pivvenit/acf-pro-installer": true
+    }
+  }
+}

@@ -9,7 +9,7 @@
                 "url": "https://connect.advancedcustomfields.com/v2/plugins/download?p=pro&t=5.12"
             },
             "require": {
-                "composer/installers": "~1.0",
+                "composer/installers": "^1.0 || ^2.0",
                 "pivvenit/acf-pro-installer": "^2.4.0 || ^3.0"
             },
             "type": "library",
@@ -184,51 +184,6 @@
             "install-path": "./installers"
         },
         {
-            "name": "deliciousbrains-plugin/wp-migrate-db-pro",
-            "version": "2.2.2",
-            "version_normalized": "2.2.2.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.deliciousbrains.com/?wc-api=delicious-brains&request=composer_download&package=wp-migrate-db-pro&version=2.2.2"
-            },
-            "require": {
-                "composer/installers": "~1.0 || ~2.0"
-            },
-            "type": "wordpress-plugin",
-            "installation-source": "dist",
-            "install-path": "../../../../plugins/wp-migrate-db-pro"
-        },
-        {
-            "name": "deliciousbrains-plugin/wp-migrate-db-pro-cli",
-            "version": "1.6.0",
-            "version_normalized": "1.6.0.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.deliciousbrains.com/?wc-api=delicious-brains&request=composer_download&package=wp-migrate-db-pro-cli&version=1.6.0"
-            },
-            "require": {
-                "composer/installers": "~1.0 || ~2.0"
-            },
-            "type": "wordpress-plugin",
-            "installation-source": "dist",
-            "install-path": "../../../../plugins/wp-migrate-db-pro-cli"
-        },
-        {
-            "name": "deliciousbrains-plugin/wp-migrate-db-pro-media-files",
-            "version": "2.1.0",
-            "version_normalized": "2.1.0.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.deliciousbrains.com/?wc-api=delicious-brains&request=composer_download&package=wp-migrate-db-pro-media-files&version=2.1.0"
-            },
-            "require": {
-                "composer/installers": "~1.0 || ~2.0"
-            },
-            "type": "wordpress-plugin",
-            "installation-source": "dist",
-            "install-path": "../../../../plugins/wp-migrate-db-pro-media-files"
-        },
-        {
             "name": "graham-campbell/result-type",
             "version": "v1.0.4",
             "version_normalized": "1.0.4.0",
@@ -295,17 +250,17 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.26.1",
-            "version_normalized": "1.26.1.0",
+            "version": "1.27.0",
+            "version_normalized": "1.27.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c6b00f05152ae2c9b04a448f99c7590beb6042f5"
+                "reference": "52ebd235c1f7e0d5e1b16464b695a28335f8e44a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c6b00f05152ae2c9b04a448f99c7590beb6042f5",
-                "reference": "c6b00f05152ae2c9b04a448f99c7590beb6042f5",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/52ebd235c1f7e0d5e1b16464b695a28335f8e44a",
+                "reference": "52ebd235c1f7e0d5e1b16464b695a28335f8e44a",
                 "shasum": ""
             },
             "require": {
@@ -340,9 +295,9 @@
                 "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
                 "sentry/sentry": "Allow sending log messages to a Sentry server"
             },
-            "time": "2021-05-28T08:32:12+00:00",
+            "time": "2022-03-13T20:29:46+00:00",
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Monolog\\": "src/Monolog"
@@ -368,7 +323,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/1.26.1"
+                "source": "https://github.com/Seldaek/monolog/tree/1.27.0"
             },
             "funding": [
                 {
@@ -544,7 +499,7 @@
             },
             "time": "2018-04-13T07:31:18+00:00",
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "ProteusThemes\\WPContentImporter2\\": "src/"
@@ -607,7 +562,7 @@
                     "dev-master": "1.1.x-dev"
                 }
             },
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "Psr\\Log\\": "Psr/Log/"
@@ -637,38 +592,39 @@
         },
         {
             "name": "richtabor/merlin-wp",
-            "version": "v1.0",
-            "version_normalized": "1.0.0.0",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/richtabor/MerlinWP.git",
-                "reference": "0f4dd88acc727f24de17afaace690d3f5fb2ba6a"
+                "reference": "7db427cb0cadea916d6b4c44aeb8b64c83002fde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/richtabor/MerlinWP/zipball/0f4dd88acc727f24de17afaace690d3f5fb2ba6a",
-                "reference": "0f4dd88acc727f24de17afaace690d3f5fb2ba6a",
+                "url": "https://api.github.com/repos/richtabor/MerlinWP/zipball/7db427cb0cadea916d6b4c44aeb8b64c83002fde",
+                "reference": "7db427cb0cadea916d6b4c44aeb8b64c83002fde",
                 "shasum": ""
             },
             "require": {
                 "monolog/monolog": "^1.23",
                 "proteusthemes/wp-content-importer-v2": "^2.1.0"
             },
-            "time": "2018-11-27T15:03:37+00:00",
+            "time": "2019-09-16T13:46:25+00:00",
+            "default-branch": true,
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0+"
             ],
             "authors": [
                 {
-                    "name": "ProteusThemes",
-                    "homepage": "https://www.proteusthemes.com/"
-                },
-                {
                     "name": "Rich Tabor",
                     "homepage": "https://richtabor.com"
+                },
+                {
+                    "name": "ProteusThemes",
+                    "homepage": "https://www.proteusthemes.com/"
                 }
             ],
             "description": "Better WordPress Theme Onboarding.",
@@ -682,7 +638,7 @@
             ],
             "support": {
                 "issues": "https://github.com/richtabor/MerlinWP/issues",
-                "source": "https://github.com/richtabor/MerlinWP/tree/v1.0"
+                "source": "https://github.com/richtabor/MerlinWP/tree/master"
             },
             "install-path": "../richtabor/merlin-wp"
         },
@@ -1025,48 +981,6 @@
                 }
             ],
             "install-path": "../vlucas/phpdotenv"
-        },
-        {
-            "name": "wpackagist-plugin/force-regenerate-thumbnails",
-            "version": "2.0.6",
-            "version_normalized": "2.0.6.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/force-regenerate-thumbnails/",
-                "reference": "tags/2.0.6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/force-regenerate-thumbnails.2.0.6.zip"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "installation-source": "dist",
-            "homepage": "https://wordpress.org/plugins/force-regenerate-thumbnails/",
-            "install-path": "../../../../plugins/force-regenerate-thumbnails"
-        },
-        {
-            "name": "wpackagist-plugin/transients-manager",
-            "version": "2.0.2",
-            "version_normalized": "2.0.2.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/transients-manager/",
-                "reference": "tags/2.0.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/transients-manager.2.0.2.zip"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "installation-source": "dist",
-            "homepage": "https://wordpress.org/plugins/transients-manager/",
-            "install-path": "../../../../plugins/transients-manager"
         }
     ],
     "dev": true,

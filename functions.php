@@ -21,7 +21,7 @@ define( 'THEME_ITEM_ID',        	'893' );
 define( 'THEME_ITEM_SLUG',      	'chipmunk-theme' );
 define( 'THEME_DIST_PATH', 			'dist/' );
 define( 'THEME_ASSETS_PATH', 		'assets/' );
-define( 'THEME_TEMPLATES_DIR', 		'templates' );
+define( 'THEME_TEMPLATES_PATH', 	'templates/' );
 define( 'THEME_MANIFEST_PATH',      THEME_DIST_PATH . 'manifest.json' );
 define( 'THEME_MANIFEST_DEV_PATH',  THEME_DIST_PATH . 'manifest-dev.json' );
 

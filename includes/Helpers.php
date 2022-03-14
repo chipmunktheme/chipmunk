@@ -70,10 +70,10 @@ class Helpers {
 		}
 
 		if ( empty( $params ) ) {
-			get_template_part( "templates/{$template}" );
+			get_template_part( THEME_TEMPLATES_PATH . $template );
 		}
 
-		elseif ( $template_file = locate_template( "templates/{$template}.php", false, false ) ) {
+		elseif ( $template_file = locate_template( THEME_TEMPLATES_PATH . "{$template}.php", false, false ) ) {
 			extract( $params, EXTR_SKIP );
 			require( $template_file );
 		}

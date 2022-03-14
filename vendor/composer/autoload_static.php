@@ -4,13 +4,13 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6b25387269fdaae0ab67907d337e4a68
+class ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '056446b9843a4d48f14b2176436e4603' => __DIR__ . '/..' . '/richtabor/merlin-wp/class-merlin.php',
+        'db16dc5d3d092a561768f6cd8a0da824' => __DIR__ . '/..' . '/richtabor/merlin-wp/class-merlin.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -93,7 +93,7 @@ class ComposerStaticInit6b25387269fdaae0ab67907d337e4a68
         ),
         'Chipmunk\\' => 
         array (
-            0 => __DIR__ . '/../../../../../..' . '/wp/wp-content/themes/chipmunk-theme/includes',
+            0 => __DIR__ . '/../..' . '/includes',
         ),
     );
 
@@ -109,9 +109,9 @@ class ComposerStaticInit6b25387269fdaae0ab67907d337e4a68
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6b25387269fdaae0ab67907d337e4a68::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6b25387269fdaae0ab67907d337e4a68::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit6b25387269fdaae0ab67907d337e4a68::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d::$classMap;
 
         }, null, ClassLoader::class);
     }

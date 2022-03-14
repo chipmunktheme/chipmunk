@@ -20,9 +20,6 @@ class Merlin {
 			// Config settings
 			array(
 				'directory'            => 'vendor/richtabor/merlin-wp', // Location / directory where Merlin WP is placed in your theme.
-				'merlin_url'           => 'merlin', // The wp-admin page slug where Merlin WP loads.
-				'parent_slug'          => 'themes.php', // The wp-admin parent page slug for the admin menu item.
-				'capability'           => 'manage_options', // The capability required for this menu to be displayed to the user.
 				'child_action_btn_url' => 'https://developer.wordpress.org/themes/advanced-topics/child-themes', // URL for the 'child-action-link'.
 				'dev_mode'             => false, // Enable development mode for testing.
 				'license_step'         => true, // EDD license activation step.
@@ -31,7 +28,6 @@ class Merlin {
 				'edd_remote_api_url'   => THEME_SHOP_URL, // EDD_Theme_Updater_Admin remote_api_url.
 				'edd_item_name'        => THEME_TITLE, // EDD_Theme_Updater_Admin item_name.
 				'edd_theme_slug'       => THEME_SLUG, // EDD_Theme_Updater_Admin item_slug.
-				'ready_big_button_url' => esc_url( home_url( '/', 'relative' ) ), // Link for the big button on the ready step.
 			),
 
 			// Strings
@@ -100,6 +96,7 @@ class Merlin {
 
 		add_action( 'admin_head', array( $this, 'add_merlin_styles' ) );
 		add_filter( 'merlin_import_files', array( $this, 'import_merlin_files' ) );
+		add_action( 'merlin_after_all_import', array( $this, 'after_import_merlin_files' ) );
 	}
 
 	/**
@@ -151,6 +148,23 @@ class Merlin {
 				'import_customizer_file_url' => THEME_SHOP_URL . '/wp-content/uploads/chipmunk-theme-customizer.dat',
 				'preview_url'                => THEME_DEMO_URL,
 			),
+		);
+	}
+
+	/**
+	 * Execute custom code after the whole import has finished.
+	 *
+	 * @return void
+	 */
+	public static function after_import_merlin_files() {
+		$head_nav = get_term_by( 'name', 'Head nav', 'nav_menu' );
+		$bottom_nav = get_term_by( 'name', 'Bottom nav', 'nav_menu' );
+
+		set_theme_mod(
+			'nav_menu_locations', array(
+				'nav-primary' => $head_nav->term_id,
+				'nav-secondary' => $bottom_nav->term_id,
+			)
 		);
 	}
 }
