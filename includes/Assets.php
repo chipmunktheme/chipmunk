@@ -68,9 +68,8 @@ class Assets {
 		$logo_height       = Customizer::get_theme_option( 'logo_height' );
 
 		$custom_style      = ! empty( $custom_css ) ? $custom_css : '';
-		$system_font       = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif';
-		$primary_font      = $primary_font == 'System' ? $system_font : '"' . str_replace( '+', ' ', $primary_font ) . '"';
-		$heading_font      = $heading_font == 'System' ? $system_font : '"' . str_replace( '+', ' ', $heading_font ) . '"';
+		$primary_font      = ( ! empty( $primary_font ) && $primary_font != 'System' ) ? str_replace( '+', ' ', $primary_font ) : '';
+		$heading_font      = ( ! empty( $heading_font ) && $heading_font != 'System' ) ? str_replace( '+', ' ', $heading_font ) : '';
 
 		$disable_borders   = Customizer::get_theme_option( 'disable_section_borders' );
 
@@ -95,31 +94,20 @@ class Assets {
 			$content_width = Customizer::get_theme_option( 'content_width' );
 		}
 
-		if ( ! empty( $primary_font ) ) {
-			$custom_style .= "
-				:root {
-					/* Fonts */
-					--chipmunk-body-font-family: $primary_font;
-					--chipmunk-heading-font-family: $heading_font;
-
-					/* Colors */
-					--chipmunk-color-primary: $primary_color;
-					--chipmunk-color-link: $link_color;
-					--chipmunk-color-background: $background_color;
-					--chipmunk-color-section: $section_color;
-
-					/* Content */
-					--chipmunk-content-font-size: $content_size;
-					--chipmunk-content-width: $content_width;
-
-					/* Borders */
-					--chipmunk-border-opacity: " . ( empty( $disable_borders ) ? "0.075" : "0" ) . ";
-
-					/* Others */
-					--chipmunk-logo-height: " . $logo_height / 10 . "rem;
-				}
-			";
-		}
+		$custom_style .= "
+			body {
+				" . ( ! empty( $primary_font ) ? "--chipmunk--typography--font-family: '$primary_font';" : "" ) . "
+				" . ( ! empty( $heading_font ) ? "--chipmunk--typography--heading-font-family: '$heading_font';" : "" ) . "
+				--chipmunk--color--primary: $primary_color;
+				--chipmunk--color--link: $link_color;
+				--chipmunk--color--background: $background_color;
+				--chipmunk--color--section: $section_color;
+				--chipmunk--typography--content-size: $content_size;
+				--chipmunk--layout--content-width: $content_width;
+				--chipmunk--border-opacity: " . ( empty( $disable_borders ) ? "0.075" : "0" ) . ";
+				--chipmunk--logo-height: " . $logo_height / 10 . "rem;
+			}
+		";
 
 		wp_add_inline_style( 'chipmunk-styles', $custom_style );
 	}

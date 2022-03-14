@@ -26,7 +26,7 @@
 			<div class="l-wrapper">
 				<div class="c-lead c-lead--center">
 					<h4 class="c-lead__title c-heading c-heading--h1"><?php esc_html_e( 'Newsletter', 'chipmunk' ); ?></h4>
-					<p class="c-lead__content c-content"><?php echo esc_html( Chipmunk\Customizer::get_theme_option( 'newsletter_tagline' ) ); ?></p>
+					<p class="c-lead__content c-content c-content--type"><?php echo esc_html( Chipmunk\Customizer::get_theme_option( 'newsletter_tagline' ) ); ?></p>
 
 					<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="c-lead__cta c-form c-form--inline c-form--narrow" target="_blank" novalidate data-validate>
 						<div class="c-form__field">

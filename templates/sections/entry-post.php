@@ -31,7 +31,7 @@
 
 					<?php do_action( 'chipmunk_before_post_content' ); ?>
 
-					<div class="c-entry__content c-content" itemprop="articleBody">
+					<div class="c-entry__content c-content c-content--type" itemprop="articleBody">
 						<?php the_content(); ?>
 					</div>
 

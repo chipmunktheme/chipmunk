@@ -514,7 +514,7 @@ class Helpers {
 						</time>
 					</a>
 
-					<div class="c-comment__content">
+					<div class="c-comment__content c-content c-content--type">
 						<?php comment_text(); ?>
 					</div>
 

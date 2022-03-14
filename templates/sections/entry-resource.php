@@ -36,7 +36,7 @@
 					<?php endif; ?>
 
 					<?php if ( ! empty( $description ) ) : ?>
-						<div class="c-resource__description" itemprop="description">
+						<div class="c-resource__description c-content c-content--type" itemprop="description">
 							<?php echo apply_filters( 'the_content', $description ); ?>
 						</div>
 					<?php endif; ?>
@@ -85,14 +85,15 @@
 			</div>
 
 			<?php if ( has_post_thumbnail() && ! Chipmunk\Customizer::get_theme_option( 'disable_resource_single_thumbs' ) ) : ?>
-				<?php if ( is_single() ) : ?>
-					<?php if ( ! empty( $primary_website ) ) : ?>
-						<a href="<?php echo Chipmunk\Helpers::render_external_link( $primary_website ); ?>" class="c-resource__media" target="_blank"<?php echo Chipmunk\Customizer::get_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
-					<?php else : ?>
-						<div class="c-resource__media"><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></div>
-					<?php endif; ?>
+				<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', '4-3' ); ?>
+				<?php $media_class = "c-resource__media $media_class"; ?>
+
+				<?php if ( ! is_single() ) : ?>
+					<a href="<?php the_permalink(); ?>" class="<?php echo esc_attr( $media_class ); ?>"><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
+				<?php elseif ( ! empty( $primary_website ) ) : ?>
+					<a href="<?php echo Chipmunk\Helpers::render_external_link( $primary_website ); ?>" class="<?php echo esc_attr( $media_class ); ?>" target="_blank"<?php echo Chipmunk\Customizer::get_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
 				<?php else : ?>
-					<a href="<?php the_permalink(); ?>" class="c-resource__media"><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
+					<div class="<?php echo esc_attr( $media_class ); ?>"><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></div>
 				<?php endif; ?>
 			<?php endif; ?>
 

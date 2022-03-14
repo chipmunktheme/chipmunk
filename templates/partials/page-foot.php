@@ -1,7 +1,7 @@
 <footer class="c-page-foot l-section l-section--compact">
 	<div class="l-container">
 		<div class="c-page-foot__inner">
-			<p class="c-page-foot__copy">
+			<p class="c-page-foot__copy c-content">
 				<?php echo do_shortcode( wp_kses_post( Chipmunk\Customizer::get_theme_option( 'copyright_text' ) ) ); ?>
 			</p>
 

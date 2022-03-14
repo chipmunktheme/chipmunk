@@ -10,7 +10,7 @@
 	</div>
 
 	<?php if ( ! empty( get_the_content() ) ) : ?>
-		<div class="c-entry__description c-content">
+		<div class="c-entry__description c-content c-content--type">
 			<?php echo esc_html( get_the_excerpt() ); ?>
 		</div>
 	<?php endif; ?>

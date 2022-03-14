@@ -26,7 +26,7 @@
 						<?php endif; ?>
 
 						<?php if ( ! empty( $user_meta['description'] ) ) : ?>
-							<div class="c-profile__description">
+							<div class="c-profile__description c-content">
 								<?php echo $user_meta['description']; ?>
 							</div>
 						<?php endif; ?>
