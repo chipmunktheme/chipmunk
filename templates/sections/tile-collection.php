@@ -13,8 +13,8 @@
 	$tile_class = Chipmunk\Helpers::class_name( 'c-tile', $tile_classes[ $options['display_as'] ] );
 ?>
 
-<a href="<?php echo esc_url( get_term_link( $collection->term_id ) ); ?>" class="<?php echo esc_attr( $tile_class ); ?>">
-	<div class="c-tile__inner">
+<div class="<?php echo esc_attr( $tile_class ); ?>">
+	<a href="<?php echo esc_url( get_term_link( $collection->term_id ) ); ?>" class="c-tile__inner">
 		<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_collection_thumbs' ) || $options['display_as'] == 'tile' ) : ?>
 			<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Customizer::get_theme_option( 'resource_image_aspect_ratio' ) ); ?>
 
@@ -80,5 +80,5 @@
 				) ); ?>
 			<?php endif; ?>
 		</div>
-	</div>
-</a>
+	</a>
+</div>

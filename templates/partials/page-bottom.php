@@ -7,7 +7,7 @@
 				<h5 class="c-page-foot__heading c-heading c-heading--h6"><?php esc_html_e( 'About', 'chipmunk' ); ?></h5>
 
 				<?php if ( $about_copy = Chipmunk\Customizer::get_theme_option( 'about_copy' ) ) : ?>
-					<div class="c-page-foot__description">
+					<div class="c-page-foot__description c-content">
 						<?php echo do_shortcode( wp_kses_post( wpautop( $about_copy ) ) ); ?>
 					</div>
 				<?php endif; ?>
