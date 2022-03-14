@@ -16,12 +16,14 @@
 <a href="<?php echo esc_url( get_term_link( $collection->term_id ) ); ?>" class="<?php echo esc_attr( $tile_class ); ?>">
 	<div class="c-tile__inner">
 		<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_collection_thumbs' ) || $options['display_as'] == 'tile' ) : ?>
-			<div class="c-tile__image">
+			<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Customizer::get_theme_option( 'resource_image_aspect_ratio' ) ); ?>
+
+			<div class="c-tile__image <?php echo esc_attr( $media_class ); ?>">
 				<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_collection_thumbs' ) ) : ?>
 					<?php $collection_image = get_field( '_' . THEME_SLUG . '_collection_image', $collection ); ?>
 
 					<?php if ( ! empty( $collection_image ) ) : ?>
-						<?php echo wp_get_attachment_image( $collection_image, '600x420' ); ?>
+						<?php echo wp_get_attachment_image( $collection_image, '640x480' ); ?>
 					<?php else : ?>
 						<?php
 						$resources = new WP_Query( array(
@@ -41,7 +43,7 @@
 							<?php while ( $resources->have_posts() ) : $resources->the_post(); ?>
 
 								<?php if ( has_post_thumbnail() ) : ?>
-									<?php the_post_thumbnail( '600x420' ); ?>
+									<?php the_post_thumbnail( '640x480' ); ?>
 								<?php endif; ?>
 
 							<?php endwhile; wp_reset_postdata(); ?>

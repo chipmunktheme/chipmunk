@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../../../../',
         'aliases' => array(),
-        'reference' => 'a870fb7c12746c366543a84a228bfb98cec0ef1f',
+        'reference' => '8db2ac0a988aff857996f880546ba7fb0b12d63b',
         'name' => 'chipmunk-theme/chipmunk',
         'dev' => true,
     ),
@@ -25,7 +25,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../../../../',
             'aliases' => array(),
-            'reference' => 'a870fb7c12746c366543a84a228bfb98cec0ef1f',
+            'reference' => '8db2ac0a988aff857996f880546ba7fb0b12d63b',
             'dev_requirement' => false,
         ),
         'composer/installers' => array(
@@ -173,6 +173,15 @@
             'install_path' => __DIR__ . '/../vlucas/phpdotenv',
             'aliases' => array(),
             'reference' => '264dce589e7ce37a7ba99cb901eed8249fbec92f',
+            'dev_requirement' => false,
+        ),
+        'wpackagist-plugin/force-regenerate-thumbnails' => array(
+            'pretty_version' => '2.0.6',
+            'version' => '2.0.6.0',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../../../plugins/force-regenerate-thumbnails',
+            'aliases' => array(),
+            'reference' => 'tags/2.0.6',
             'dev_requirement' => false,
         ),
         'wpackagist-plugin/transients-manager' => array(

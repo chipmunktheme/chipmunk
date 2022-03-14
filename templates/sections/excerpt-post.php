@@ -1,6 +1,6 @@
 <div class="c-entry c-entry__tile l-wrapper">
 	<?php if ( has_post_thumbnail() ) : ?>
-		<a href="<?php the_permalink(); ?>" class="c-entry__image">
+		<a href="<?php the_permalink(); ?>" class="c-entry__image c-media c-media--16-9">
 			<?php the_post_thumbnail( '1280x720' ); ?>
 		</a>
 	<?php endif; ?>

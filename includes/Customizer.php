@@ -302,6 +302,20 @@ class Customizer {
 						),
 					),
 					array(
+						'name'        => 'resource_image_aspect_ratio',
+						'type'        => 'select',
+						'label'       => esc_html__( 'Resouce image aspect ratio', 'chipmunk' ),
+						'default'     => '4-3',
+						'choices'     => array(
+							''            => esc_html( 'None - Don\'t crop iamge' ),
+							'1-1'         => esc_html( '1 / 1' ),
+							'4-3'         => esc_html( '4 / 3' ),
+							'3-2'         => esc_html( '3 / 2' ),
+							'16-9'        => esc_html( '16 / 9' ),
+							'21-9'        => esc_html( '21 / 9' ),
+						),
+					),
+					array(
 						'name'        => 'display_resource_content_separated',
 						'type'        => 'checkbox',
 						'label'       => esc_html__( 'Display resource content in a separate section', 'chipmunk' ),
@@ -553,6 +567,20 @@ class Customizer {
 						'type'        => 'number',
 						'label'       => esc_html__( 'Number of blog posts per page', 'chipmunk' ),
 						'default'     => 12,
+					),
+					array(
+						'name'        => 'post_image_aspect_ratio',
+						'type'        => 'select',
+						'label'       => esc_html__( 'Blog post image aspect ratio', 'chipmunk' ),
+						'default'     => '4-3',
+						'choices'     => array(
+							''            => esc_html( 'None - Don\'t crop iamge' ),
+							'1-1'         => esc_html( '1 / 1' ),
+							'4-3'         => esc_html( '4 / 3' ),
+							'3-2'         => esc_html( '3 / 2' ),
+							'16-9'        => esc_html( '16 / 9' ),
+							'21-9'        => esc_html( '21 / 9' ),
+						),
 					),
 					array(
 						'name'        => 'disable_post_author',

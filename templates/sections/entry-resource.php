@@ -85,7 +85,7 @@
 			</div>
 
 			<?php if ( has_post_thumbnail() && ! Chipmunk\Customizer::get_theme_option( 'disable_resource_single_thumbs' ) ) : ?>
-				<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', '4-3' ); ?>
+				<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Customizer::get_theme_option( 'resource_image_aspect_ratio' ) ); ?>
 				<?php $media_class = "c-resource__media $media_class"; ?>
 
 				<?php if ( ! is_single() ) : ?>

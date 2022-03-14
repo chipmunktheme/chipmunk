@@ -180,27 +180,22 @@ class Setup {
 			'1920x1080' => array(
 				'width'   => 1920,
 				'height'  => 1080,
-				'crop'    => true,
+				'crop'    => false,
 			),
 			'1280x960' => array(
 				'width'   => 1280,
 				'height'  => 960,
-				'crop'    => true,
+				'crop'    => false,
 			),
 			'1280x720' => array(
 				'width'   => 1280,
 				'height'  => 720,
-				'crop'    => true,
+				'crop'    => false,
 			),
-			'600x420' => array(
-				'width'   => 600,
-				'height'  => 420,
-				'crop'    => true,
-			),
-			'300x210' => array(
-				'width'   => 300,
-				'height'  => 210,
-				'crop'    => true,
+			'640x480' => array(
+				'width'   => 640,
+				'height'  => 480,
+				'crop'    => false,
 			),
 		) );
 
@@ -233,8 +228,10 @@ class Setup {
 
 		// Plugins
 		new Plugins\ACF();
-		// new Plugins\Merlin();
+		new Plugins\Merlin();
+		new Plugins\ThemeUpdater\Init();
 
+		// Customizer
 		$customizer = new Customizer();
 
 		// Set theme env

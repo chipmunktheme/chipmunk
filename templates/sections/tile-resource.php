@@ -25,9 +25,11 @@
 <<?php echo get_post_status() == 'publish' ? 'a href="' . get_the_permalink() . '"' : 'div'; ?> class="<?php echo esc_attr( $tile_class ); ?>">
 	<div class="c-tile__inner">
 		<?php if ( ! $options['disable_thumbs'] || $options['display_as'] == 'tile' ) : ?>
-			<div class="c-tile__image">
+			<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Customizer::get_theme_option( 'resource_image_aspect_ratio' ) ); ?>
+
+			<div class="c-tile__image <?php echo esc_attr( $media_class ); ?>">
 				<?php if ( ! $options['disable_thumbs'] && has_post_thumbnail() ) : ?>
-					<?php the_post_thumbnail( '600x420' ); ?>
+					<?php the_post_thumbnail( '640x480' ); ?>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $display_status ) && $options['display_as'] != 'tile' ) : ?>

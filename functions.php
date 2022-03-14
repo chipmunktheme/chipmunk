@@ -34,10 +34,3 @@ require_once THEME_TEMPLATE_DIR . '/vendor/autoload.php';
  * Initialize theme setup
  */
 new Chipmunk\Setup();
-
-/*
- * Initialize theme plugins
- */
-new Chipmunk\Plugins\ACF();
-new Chipmunk\Plugins\Merlin();
-new Chipmunk\Plugins\ThemeUpdater\Init();

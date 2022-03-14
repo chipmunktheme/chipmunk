@@ -4,9 +4,11 @@
 
 <div class="<?php echo esc_attr( $tile_class ); ?>">
 	<div class="c-tile__inner">
-		<a href="<?php the_permalink(); ?>" class="c-tile__image">
+		<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Customizer::get_theme_option( 'post_image_aspect_ratio' ) ); ?>
+
+		<a href="<?php the_permalink(); ?>" class="c-tile__image <?php echo esc_attr( $media_class ); ?>">
 			<?php if ( has_post_thumbnail() ) : ?>
-				<?php the_post_thumbnail( '600x420' ); ?>
+				<?php the_post_thumbnail( '640x480' ); ?>
 			<?php endif; ?>
 		</a>
 

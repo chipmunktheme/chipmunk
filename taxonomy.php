@@ -45,7 +45,7 @@ get_header(); ?>
 				<div class="l-component">
 					<div class="c-tile__list">
 						<?php foreach ( $children_collections as $collection ) : ?>
-							<?php Chipmunk\Helpers::get_template_part( 'sections/collection-tile', array( 'collection' => $collection ) ); ?>
+							<?php Chipmunk\Helpers::get_template_part( 'sections/tile-collection', array( 'collection' => $collection ) ); ?>
 						<?php endforeach; ?>
 					</div>
 				</div>
@@ -56,7 +56,7 @@ get_header(); ?>
 					<div class="c-tile__list" data-action-element="load_posts">
 						<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-							<?php Chipmunk\Helpers::get_template_part( 'sections/resource-tile' ); ?>
+							<?php Chipmunk\Helpers::get_template_part( 'sections/tile-resource' ); ?>
 
 						<?php endwhile; wp_reset_postdata(); ?>
 					</div>

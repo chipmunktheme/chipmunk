@@ -51,7 +51,7 @@ class Actions {
 					$template .= Helpers::get_template_part( array( 'sections/entry', 'resource' ), array(), false );
 				}
 				else {
-					$template .= Helpers::get_template_part( 'sections/' . get_post_type(). '-tile', array(), false );
+					$template .= Helpers::get_template_part( 'sections/tile-' . get_post_type(), array(), false );
 				}
 			endwhile;
 		}
