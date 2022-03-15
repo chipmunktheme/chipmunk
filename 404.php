@@ -8,25 +8,18 @@
 
 get_header(); ?>
 
-	<div class="section">
-		<div class="container">
-			<div class="error-404 row">
-				<div class="column column--lg-6 text--center">
-					<h3 class="error-404__title heading heading--h3"><?php esc_html_e( '404! The page you are looking for couldn\'t be found.', 'chipmunk' ); ?></h3>
-					<a href="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>" class="button button--primary"><?php esc_html_e( 'Bring me to the frontpage', 'chipmunk' ); ?></a>
-				</div>
-
-				<div class="column column--lg-6">
-					<div class="error-404__image">
-						<img src="<?php echo get_template_directory_uri(); ?>/static/dist/images/pic-404.svg" alt="" />
-					</div>
-				</div>
+	<div class="l-section l-section--double">
+		<div class="l-container">
+			<div class="c-lead c-lead--center">
+				<h1 class="c-lead__title c-heading c-heading--h1"><?php esc_html_e( 'Page not found!', 'chipmunk' ); ?></h1>
+				<p class="c-lead__content c-content c-content--type"><?php esc_html_e( 'Sorry, we couldn\'t find what you\'re looking for.', 'chipmunk' ); ?></p>
+				<a href="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>" class="c-lead__cta c-button c-button--primary">
+					<?php esc_html_e( 'Bring me to the frontpage', 'chipmunk' ); ?>
+				</a>
 			</div>
-			<!-- /.error-404 -->
 		</div>
 	</div>
-	<!-- /.section -->
 
-	<?php chipmunk_get_template_part( 'sections/toolbox' ); ?>
+	<?php Chipmunk\Helpers::get_template_part( 'sections/toolbox' ); ?>
 
 <?php get_footer(); ?>

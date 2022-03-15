@@ -1,5 +1,6 @@
 # OS or Editor folders
 .DS_Store
+.DS_Store.*
 ._*
 Desktop.ini
 Thumbs.db
@@ -15,7 +16,5 @@ nbproject
 *.sublime-workspace
 
 # Project specific
-node_modules
-npm-debug.log
-src/**/iconfont.*
-src/**/_icons.*
+.env
+composer.lock

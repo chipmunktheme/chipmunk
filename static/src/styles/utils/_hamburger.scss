@@ -1,7 +1,0 @@
-/*
-** Utils - Hamburger
-** ----------------------------------------------------------------------------- */
-
-.u-hamburger {
-  @include u-hamburger(2.5rem, 1.8rem, 2px, currentColor, $transition-duration);
-}

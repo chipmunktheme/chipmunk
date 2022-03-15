@@ -1,4 +1,4 @@
-<?php $action = esc_url( chipmunk_theme_option( 'newsletter_action' ) ); ?>
+<?php $action = esc_url( Chipmunk\Customizer::get_theme_option( 'newsletter_action' ) ); ?>
 <?php $email_field = 'email'; ?>
 <?php $args = array(); ?>
 
@@ -20,38 +20,34 @@
 	<?php $args['redirect'] = ''; ?>
 <?php endif; ?>
 
-<?php if ( ! chipmunk_theme_option( 'disable_newsletter' ) and ! empty( $action ) ) : ?>
-	<div class="section section--theme-primary text--center">
-		<div class="container">
-			<div class="column column--lg-8 column--lg-offset-2">
-				<h4 class="heading heading--h1"><?php esc_html_e( 'Newsletter', 'chipmunk' ); ?></h4>
-				<p class="heading heading--h4 heading--thin mt-sm-1"><?php echo esc_html( chipmunk_theme_option( 'newsletter_tagline' ) ); ?></p>
-			</div>
+<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_newsletter' ) && ! empty( $action ) ) : ?>
+	<div class="l-section l-section--theme-primary">
+		<div class="l-container">
+			<div class="l-wrapper">
+				<div class="c-lead c-lead--center">
+					<h4 class="c-lead__title c-heading c-heading--h1"><?php esc_html_e( 'Newsletter', 'chipmunk' ); ?></h4>
+					<p class="c-lead__content c-content c-content--type"><?php echo esc_html( Chipmunk\Customizer::get_theme_option( 'newsletter_tagline' ) ); ?></p>
 
-			<div class="row">
-				<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="form column column--md-4 column--md-offset-1 column--lg-6 column--lg-offset-3 mt-sm-2" target="_blank" novalidate data-validate>
-					<div class="form__field form__field--wide">
-						<input type="email" name="<?php echo $email_field; ?>" placeholder="<?php esc_html_e( 'Email address', 'chipmunk' ); ?>" class="form__input" required>
-					</div>
-
-					<?php if ( ! empty( chipmunk_theme_option( 'newsletter_consent' ) ) ) : ?>
-						<div class="form__field form__field--wide" data-consent>
-							<?php chipmunk_get_template_part( 'partials/checkbox', array( 'name' => 'consent', 'label' => chipmunk_theme_option( 'newsletter_consent' ), 'required' => true ) ); ?>
+					<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="c-lead__cta c-form c-form--inline c-form--narrow" target="_blank" novalidate data-validate>
+						<div class="c-form__field">
+							<input type="email" name="<?php echo $email_field; ?>" placeholder="<?php esc_html_e( 'Email address', 'chipmunk' ); ?>" class="c-form__input" required autocomplete="off">
+							<button type="submit" class="c-form__button"><?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'arrow-right' ) ); ?></button>
 						</div>
-					<?php endif; ?>
 
-					<div class="form__field form__field--wide form__field--center">
-						<button type="submit" class="button button--white-outline"><?php esc_html_e( 'Join now', 'chipmunk' ); ?></button>
-					</div>
-
-					<?php if ( ! empty( $args ) ) : ?>
-						<?php foreach ( $args as $key => $value ) : ?>
-							<input type="hidden" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $value ); ?>">
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</form>
+						<?php if ( ! empty( Chipmunk\Customizer::get_theme_option( 'newsletter_consent' ) ) ) : ?>
+							<label class="c-form__field c-form__checkbox" data-consent>
+								<input type="checkbox" name="consent" required>
+								<p><?php echo esc_html( Chipmunk\Customizer::get_theme_option( 'newsletter_consent' ) ); ?></p>
+							</label>
+						<?php endif; ?>
+						<?php if ( ! empty( $args ) ) : ?>
+							<?php foreach ( $args as $key => $value ) : ?>
+								<input type="hidden" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $value ); ?>">
+							<?php endforeach; ?>
+						<?php endif; ?>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- /.section -->
 <?php endif; ?>

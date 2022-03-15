@@ -9,28 +9,22 @@
  */
 ?>
 
-		<?php chipmunk_get_template_part( 'partials/promo' ); ?>
+	<?php Chipmunk\Helpers::get_template_part( 'partials/promo' ); ?>
 
-		<?php if ( ! is_front_page() || chipmunk_theme_option( 'disable_homepage_listings' ) ) : ?>
-			<?php chipmunk_get_template_part( 'partials/toolbox' ); ?>
-		<?php endif; ?>
-
-		<?php chipmunk_get_template_part( 'partials/newsletter' ); ?>
-		<?php chipmunk_get_template_part( 'partials/page-bottom' ); ?>
-		<?php chipmunk_get_template_part( 'partials/page-foot' ); ?>
-	</div>
-	<!-- /.body-bag -->
-
-	<?php if ( ! chipmunk_theme_option( 'disable_search' ) ) : ?>
-		<?php chipmunk_get_template_part( 'partials/search-bar' ); ?>
+	<?php if ( ! is_front_page() || Chipmunk\Customizer::get_theme_option( 'disable_homepage_listings' ) ) : ?>
+		<?php Chipmunk\Helpers::get_template_part( 'partials/toolbox' ); ?>
 	<?php endif; ?>
 
-	<?php if ( ! chipmunk_theme_option( 'disable_submissions' ) && empty( chipmunk_theme_option( 'submit_page' ) ) ) : ?>
-		<?php chipmunk_get_template_part( 'partials/popup' ); ?>
+	<?php Chipmunk\Helpers::get_template_part( 'partials/newsletter' ); ?>
+	<?php Chipmunk\Helpers::get_template_part( 'partials/page-bottom' ); ?>
+	<?php Chipmunk\Helpers::get_template_part( 'partials/page-foot' ); ?>
+
+	<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_submissions' ) && empty( Chipmunk\Customizer::get_theme_option( 'submit_page' ) ) ) : ?>
+		<?php Chipmunk\Helpers::get_template_part( 'partials/popup' ); ?>
 	<?php endif; ?>
 
 	<?php wp_footer(); ?>
 
-	<!-- Chipmunk Theme: Version <?php echo chipmunk_get_version(); ?> -->
+	<!-- Chipmunk Theme: Version <?php echo Chipmunk\Helpers::get_version(); ?> -->
 </body>
 </html>

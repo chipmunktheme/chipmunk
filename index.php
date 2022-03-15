@@ -8,6 +8,6 @@
 
 get_header(); ?>
 
-	<?php chipmunk_get_template_part( array( 'sections/loop', 'post' ) ); ?>
+	<?php Chipmunk\Helpers::get_template_part( array( 'sections/loop', 'post' ) ); ?>
 
 <?php get_footer(); ?>

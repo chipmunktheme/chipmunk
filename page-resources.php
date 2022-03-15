@@ -9,6 +9,6 @@
 
 get_header(); ?>
 
-	<?php chipmunk_get_template_part( array( 'sections/loop', 'resource' ) ); ?>
+	<?php Chipmunk\Helpers::get_template_part( array( 'sections/loop', 'resource' ) ); ?>
 
 <?php get_footer(); ?>
