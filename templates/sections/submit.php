@@ -9,7 +9,7 @@
 	</div>
 <?php endif; ?>
 
-<form action="#" class="c-form l-component l-component--md u-loader <?php echo esc_attr( ! empty( $align ) ? 'align' . $align : '' ); ?>" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
+<form action="#" class="c-form u-loader <?php echo esc_attr( ! empty( $popup ) ? 'l-component l-component--md' : '' ); ?>" novalidate data-validate data-action="<?php echo $action; ?>" data-action-event="submit">
 	<p class="c-form__message c-content c-content--type" data-action-message="<?php echo $action; ?>"></p>
 
 	<input type="hidden" name="filter" value="">

@@ -64,7 +64,7 @@
 					<div onclick="openURL(event, '<?php echo Chipmunk\Helpers::render_external_link( $website ); ?>');" class="c-tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'external-link' ) ); ?></div>
 				<?php endif; ?>
 
-				<?php if ( ! $options['disable_desc'] ) : ?>
+				<?php if ( ! $options['disable_desc'] && ! empty( get_the_excerpt() ) ) : ?>
 					<p class="c-tile__copy"><?php echo esc_html( get_the_excerpt() ); ?></p>
 				<?php endif; ?>
 			</div>

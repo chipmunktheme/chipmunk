@@ -61,7 +61,7 @@
 
 				<?php if ( $options['display_as'] == 'tile' ) : ?>
 					<p class="c-tile__copy"><?php esc_html_e( 'View this collection', 'chipmunk' ); ?></p>
-				<?php else : ?>
+				<?php elseif ( ! empty( $collection->description ) ) : ?>
 					<p class="c-tile__copy"><?php echo esc_html( $collection->description ); ?></p>
 				<?php endif; ?>
 			</div>

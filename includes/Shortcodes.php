@@ -45,7 +45,6 @@ class Shortcodes {
 		// Parse shortcode attributes
 		$attributes = shortcode_atts( array(
 			'title' => '',
-			'align' => '',
 		), $atts );
 
 		// Render the login form using an external template
