@@ -48,7 +48,7 @@ body {
   --chipmunk--color--accent: #5b5c89;
   --chipmunk--color--black: #1d1d1d;
   --chipmunk--color--gray-dark: #444;
-  --chipmunk--color--gray: #808080;
+  --chipmunk--color--gray: #777;
   --chipmunk--color--gray-light: #cdcdcd;
   --chipmunk--color--gray-lighter: #e6e6e6;
   --chipmunk--color--gray-lightest: #ededed;
@@ -973,8 +973,8 @@ sub {
 }
 
 .c-comment__note {
-  margin-top: 1em;
-  font-style: italic;
+  color: var(--chipmunk--color--gray);
+  font-size: 0.875em;
 }
 
 .c-comment-respond:not(:first-child) {
@@ -1866,7 +1866,7 @@ sub {
   width: 2em;
   border: var(--chipmunk--button--border-width) solid var(--chipmunk--color--gray-light);
   border-radius: var(--chipmunk--button--border-radius);
-  color: var(--chipmunk--color--gray-dark);
+  color: var(--chipmunk--color--gray);
   font-size: var(--chipmunk--button--font-size);
   line-height: 1;
   text-align: center;
