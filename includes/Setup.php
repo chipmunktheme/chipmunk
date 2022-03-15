@@ -36,10 +36,6 @@ class Setup {
 		 */
 		load_theme_textdomain( THEME_SLUG, THEME_TEMPLATE_DIR . '/languages' );
 
-		// Add-Ons
-		add_theme_support( 'chipmunk-members' );
-		add_theme_support( 'chipmunk-ratings' );
-
 		// Theme Support
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'automatic-feed-links' );

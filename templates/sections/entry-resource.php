@@ -138,7 +138,7 @@
 		<div class="l-section">
 			<div class="l-container">
 				<div class="l-wrapper">
-					<div class="c-entry__content c-content">
+					<div class="c-entry__content c-content c-content--type">
 						<?php the_content(); ?>
 					</div>
 				</div>

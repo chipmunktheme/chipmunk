@@ -32,7 +32,7 @@
 
 						<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_submissions' ) ) : ?>
 							<li class="c-menu-secondary__item">
-								<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', array( 'class' => 'nav-secondary__link' ) ); ?>
+								<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', array( 'class' => 'c-menu-secondary__link' ) ); ?>
 							</li>
 						<?php endif; ?>
 					</ul>

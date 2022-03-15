@@ -30,18 +30,9 @@ class Helpers {
 	 * Check if Chipmunk plugin is enabled
 	 */
 	public static function has_plugin( $plugin ) {
-		return class_exists( 'Chipmunk' . ucfirst( $plugin ) );
-	}
+		$class = '\Chipmunk' . ucwords( $plugin );
 
-	/**
-	 * Check if Chipmunk plugin is enabled and get option from it
-	 */
-	public static function get_plugin_option( $plugin, $option ) {
-		if ( ! self::has_plugin( $plugin ) ) {
-			return false;
-		}
-
-		return get_option( 'chipmunk_' . strtolower( $plugin ) . '_' . $option );
+		return class_exists( $class ) && property_exists( $class, 'is_enabled' ) && $class::$is_enabled;
 	}
 
 	/**

@@ -157,13 +157,13 @@ class Merlin {
 	 * @return void
 	 */
 	public static function after_import_merlin_files() {
-		$head_nav = get_term_by( 'name', 'Head nav', 'nav_menu' );
-		$bottom_nav = get_term_by( 'name', 'Bottom nav', 'nav_menu' );
+		$header_nav = get_term_by( 'name', 'Header nav', 'nav_menu' );
+		$footer_nav = get_term_by( 'name', 'Footer nav', 'nav_menu' );
 
 		set_theme_mod(
 			'nav_menu_locations', array(
-				'nav-primary' => $head_nav->term_id,
-				'nav-secondary' => $bottom_nav->term_id,
+				'nav-primary' => $header_nav->term_id,
+				'nav-secondary' => $footer_nav->term_id,
 			)
 		);
 	}
