@@ -18,4 +18,5 @@ return array(
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
     'Chipmunk\\' => array($baseDir . '/includes'),
+    'ChipmunkMembers\\' => array($vendorDir . '/chipmunk-theme/chipmunk-members/includes', $vendorDir . '/chipmunk-theme/chipmunk-ratings/includes'),
 );

@@ -572,6 +572,28 @@ class Helpers {
 	}
 
 	/**
+	 * Get popular fonts from Google Fonts API
+	 */
+	public static function get_google_fonts( $api_key, $sort = 'popularity' ) {
+		$ch = curl_init( "https://www.googleapis.com/webfonts/v1/webfonts?key=$api_key&sort=$sort" );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/json' ) );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, FALSE );
+
+		$response = curl_exec( $ch );
+		$http_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+		curl_close( $ch );
+
+		$fonts = json_decode( $response, true );
+
+		if ( $http_code == 200 && ! empty( $fonts ) ) {
+			return $fonts['items'];
+		}
+
+		return null;
+	}
+
+	/**
 	 * Parse Google Fonts url
 	 */
 	public static function get_google_fonts_url( $fonts = array() ) {

@@ -228,7 +228,7 @@ class Setup {
 		new Plugins\ThemeUpdater\Init();
 
 		// Customizer
-		$customizer = new Customizer();
+		Customizer::register_sections();
 
 		// Set theme env
 		Helpers::set_theme_env();

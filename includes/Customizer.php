@@ -48,32 +48,21 @@ class Customizer {
 	);
 
 	/**
-	 * An array of available Google fonts
-	 * @var array
+	 * Register the customizer sections
 	 */
-	private static $google_fonts = array(
-		'Poppins'         => 'Poppins',
-		'Roboto'          => 'Roboto',
-		'Open Sans'       => 'Open Sans',
-		'Work Sans'       => 'Work Sans',
-		'Lato'            => 'Lato',
-		'Source Sans Pro' => 'Source Sans Pro',
-		'Montserrat'      => 'Montserrat',
-		'Raleway'         => 'Raleway',
-		'PT Sans'         => 'PT Sans',
-		'Lora'            => 'Lora',
-		'Karla'           => 'Karla',
-		'Ubuntu'          => 'Ubuntu',
-		'Droid Sans'      => 'Droid Sans',
-		'Nunito Sans'     => 'Nunito Sans',
-		'Inconsolata'     => 'Inconsolata',
-		'Cousine'         => 'Cousine',
-	);
+	public static function register_sections() {
+		self::set_sections();
+
+		if ( is_customize_preview() ) {
+			add_action( 'customize_register', array( self::class, 'remove_sections' ) );
+			add_action( 'customize_register', array( self::class, 'add_sections' ) );
+		}
+	}
 
 	/**
-	 * Class constructor
+	 * Set the customizer sections
 	 */
-	public function __construct() {
+	public static function set_sections() {
 		self::$sections = array(
 			array(
 				'title'         => esc_html__( 'Site Identity', 'chipmunk' ),
@@ -642,7 +631,7 @@ class Customizer {
 			array(
 				'title'         => esc_html__( 'Social Profiles', 'chipmunk' ),
 				'slug'          => 'socials_section',
-				'callback'      => 'register_socials',
+				'fields'        => self::get_socials_fields(),
 			),
 
 			array(
@@ -798,8 +787,33 @@ class Customizer {
 				),
 			),
 		);
+	}
 
-		add_action( 'customize_register', array( $this, 'customize_register' ) );
+	/**
+	 * Remove unnecessary sections from Customize panel
+	 */
+	public static function remove_sections( $customize ) {
+		$customize->remove_section( 'themes' );
+		$customize->remove_section( 'static_front_page' );
+	}
+
+	/**
+	 * Add custom sections to Customize panel
+	 */
+	public static function add_sections( $customize ) {
+		foreach ( self::$sections as $index => $section ) {
+			$customize->add_section( $section['slug'], array(
+				'capability'  => self::$capability,
+				'title'       => $section['title'],
+				'priority'    => $index + 100
+			) );
+
+			if ( ! empty( $section['fields'] ) ) {
+				foreach ( $section['fields'] as $field ) {
+					self::register_field( $customize, $section, $field );
+				}
+			}
+		}
 	}
 
 	/**
@@ -828,7 +842,7 @@ class Customizer {
 	private static function find_default_by_name( $name ) {
 		foreach ( self::$sections as $section ) {
 			if ( ! empty( $section['fields'] ) ) {
-				foreach( $section['fields'] as $field ) {
+				foreach ( $section['fields'] as $field ) {
 					if ( $field['name'] === $name && ! empty( $field['default'] ) ) {
 						return $field['default'];
 					}
@@ -837,13 +851,6 @@ class Customizer {
 		}
 
 		return false;
-	}
-
-	/**
-	 * Get section list
-	 */
-	public static function get_sections() {
-		return self::$sections;
 	}
 
 	/**
@@ -856,85 +863,42 @@ class Customizer {
 	/**
 	 * Get Google fonts list
 	 */
-	public static function get_google_fonts() {
-		return apply_filters( 'chipmunk_google_fonts', self::$google_fonts );
-	}
-
-	/**
-	 * Init customization options
-	 */
-	public function customize_register( $wp_customize ) {
-		// Store global customize object
-		$this->customize = $wp_customize;
-
-		// Manipulate setting sections
-		$this->remove_sections();
-		$this->add_sections();
-	}
-
-	/**
-	 * Remove unnecessary sections from Customize panel
-	 */
-	private function remove_sections() {
-		$this->customize->remove_section( 'themes' );
-		$this->customize->remove_section( 'static_front_page' );
-	}
-
-	/**
-	 * Add custom sections to Customize panel
-	 */
-	private function add_sections() {
-		foreach ( self::$sections as $index => $section ) {
-			$this->customize->add_section( $section['slug'], array(
-				'capability'  => self::$capability,
-				'title'       => $section['title'],
-				'priority'    => $index + 100
-			) );
-
-			if ( ! empty( $section['callback'] ) ) {
-				call_user_func( array( $this, $section['callback'] ) );
-			}
-
-			if ( ! empty( $section['fields'] ) ) {
-				foreach( $section['fields'] as $field ) {
-					$this->register_field( $section, $field );
-				}
-			}
+	private static function get_google_fonts() {
+		if ( ! is_customize_preview() ) {
+			return array();
 		}
+
+		$google_fonts = Helpers::get_google_fonts( 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE' );
+		$google_fonts = array_column( $google_fonts, 'family' );
+		$google_fonts = array_combine( $google_fonts, $google_fonts);
+
+		return $google_fonts;
 	}
 
 	/**
-	 * Register social profile settings
+	 * Get social fields list
 	 */
-	private function register_socials() {
-		foreach( self::get_socials() as $social ) {
-			$this->register_social( $social );
+	private static function get_socials_fields() {
+		$social_fields = array();
+
+		foreach ( self::get_socials() as $social ) {
+			$slug = strtolower( $social );
+
+			$social_fields[] = array(
+				'name'        => $slug,
+				'type'        => 'url',
+				'label'       => $social,
+				'default'     => 'tiles',
+			);
 		}
-	}
 
-	/**
-	 * Add setting and control for each social profile
-	 */
-	private function register_social( $social ) {
-		$social_slug = strtolower( $social );
-
-		$this->customize->add_setting( self::$settings_name . '[' . $social_slug . ']', array(
-			'capability'  => self::$capability,
-			'type'        => 'option',
-		) );
-
-		$this->customize->add_control( $social_slug, array(
-			'settings' => self::$settings_name . '[' . $social_slug . ']',
-			'section'  => 'socials_section',
-			'label'    => $social,
-			'type'     => 'url',
-		) );
+		return $social_fields;
 	}
 
 	/**
 	 * Add setting and control for each field
 	 */
-	private function register_field( $section, $field ) {
+	private static function register_field( $customize, $section, $field ) {
 		// Plugin restricted fields
 		if ( ! empty( $field['restrict'] ) && ! Helpers::has_plugin( $field['restrict'] ) ) {
 			return;
@@ -955,20 +919,20 @@ class Customizer {
 			'input_attrs' => ! empty( $field['input_attrs'] ) ? array_filter( $field['input_attrs'] ) : null,
 		);
 
-		$this->customize->add_setting( self::$settings_name . '[' . $field['name'] . ']', $setting_args );
+		$customize->add_setting( self::$settings_name . '[' . $field['name'] . ']', $setting_args );
 
 		switch ( $field['type'] ) {
 			case 'color':
-				$this->customize->add_control( new \WP_Customize_Color_Control( $this->customize, $field['name'], $control_args ) );
+				$customize->add_control( new \WP_Customize_Color_Control( $customize, $field['name'], $control_args ) );
 				break;
 
 			case 'image':
-				$this->customize->add_control( new \WP_Customize_Image_Control( $this->customize, $field['name'], $control_args ) );
+				$customize->add_control( new \WP_Customize_Image_Control( $customize, $field['name'], $control_args ) );
 				break;
 
 			default:
 				$control_args['type'] = $field['type'];
-				$this->customize->add_control( $field['name'], $control_args );
+				$customize->add_control( $field['name'], $control_args );
 		}
 	}
 }

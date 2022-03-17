@@ -1,6 +1,7 @@
 {
   "name": "chipmunk-theme/chipmunk-theme",
   "homepage": "https://chipmunktheme.com/",
+  "description": "A WordPress Theme for Content Curation",
   "authors": [
     {
       "name": "Made by Less",
@@ -9,7 +10,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Chipmunk\\": "includes/"
+      "Chipmunk\\": "includes"
     },
     "files": [
       "vendor/richtabor/merlin-wp/class-merlin.php"
@@ -19,10 +20,20 @@
     {
       "type": "composer",
       "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/library/"
+    },
+    {
+      "type": "git",
+      "url": "git@github.com:chipmunk-theme/chipmunk-members.git"
+    },
+    {
+      "type": "git",
+      "url": "git@github.com:chipmunk-theme/chipmunk-ratings.git"
     }
   ],
   "require": {
     "advanced-custom-fields/advanced-custom-fields-pro": "^5.12",
+    "chipmunk-theme/chipmunk-members": "dev-master",
+    "chipmunk-theme/chipmunk-ratings": "dev-master",
     "richtabor/merlin-wp": "dev-master"
   },
   "config": {

@@ -9,6 +9,7 @@ namespace Chipmunk\Plugins\ThemeUpdater;
  * @subpackage Chipmunk
  */
 class Admin {
+
 	/**
 	 * Initialize the class.
 	 *
@@ -27,8 +28,11 @@ class Admin {
 			'beta'              => false,
 		) );
 
-		// Strings passed in from the updater config
-		$this->strings = $strings;
+		// Set default strings
+		$this->strings = wp_parse_args( $strings, array(
+			'update-notice'     => __( 'Updating this theme may lose the customizations you have made directly in the source code.', 'chipmunk' ),
+			'update-available'  => __( '<strong>%1$s %2$s</strong> is available. <a href="%3$s" class="thickbox" title="%4s">Check out what\'s new</a> or <a href="%5$s"%6$s>update now</a>.', 'chipmunk' ),
+		) );
 
 		// Set config arguments
 		foreach ( $config as $key => $value ) {

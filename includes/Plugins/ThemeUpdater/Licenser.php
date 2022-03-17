@@ -9,6 +9,7 @@ namespace Chipmunk\Plugins\ThemeUpdater;
  * @subpackage Chipmunk
  */
 class Licenser {
+
 	/**
 	 * Initialize the class.
 	 *
@@ -29,7 +30,7 @@ class Licenser {
 		) );
 
 		// Set default strings
-		$strings = wp_parse_args( $strings, array(
+		$this->strings = wp_parse_args( $strings, array(
 			'enter-key'                 => __( 'To receive updates, please enter your valid license key.', 'chipmunk' ),
 			'license-key'               => __( 'License Key', 'chipmunk' ),
 			'license-action'            => __( 'License Action', 'chipmunk' ),
@@ -53,7 +54,7 @@ class Licenser {
 		) );
 
 		// Set default errors
-		$errors = wp_parse_args( $errors, array(
+		$this->errors = wp_parse_args( $errors, array(
 			'license-expired'           => __( 'Your license key expired on %s.', 'chipmunk' ),
 			'license-disabled'          => __( 'Your license key has been disabled.', 'chipmunk' ),
 			'license-missing'           => __( 'Your license is invalid.', 'chipmunk' ),
@@ -62,12 +63,6 @@ class Licenser {
 			'license-exceeded'          => __( 'Your license key has reached its activation limit.', 'chipmunk' ),
 			'license-unknown'           => __( 'An error occurred, please try again.', 'chipmunk' ),
 		) );
-
-		// Set string defaults
-		$this->strings = $strings;
-
-		// Set error defaults
-		$this->errors = $errors;
 
 		// Set config arguments
 		foreach ( $config as $key => $value ) {
@@ -91,14 +86,15 @@ class Licenser {
 	 */
 	public function activate_license( $license = null ) {
 		$license = isset( $license ) ? $license : get_option( $this->item_slug . '_license_key' );
-		$api_params = $this->get_api_params( 'activate_license', $license );
-		$response = $this->get_api_response( $api_params );
+		$params = $this->get_api_params( 'activate_license', $license );
+		$response = $this->get_api_response( $params );
 
 		// Make sure the response came back okay
 		if ( ! $this->is_valid_response( $response ) ) {
-			$this->display_serttings_error( $this->errors['license-unknown'] );
+			$this->display_settings_error( $this->errors['license-unknown'] );
 		}
 
+		// Decode the API response
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 		if ( ! $license_data->success ) {
@@ -135,12 +131,12 @@ class Licenser {
 			}
 
 			if ( ! empty( $message ) ) {
-				$this->display_serttings_error( null, $message );
+				$this->display_settings_error( null, $message );
 			}
 		}
 
-		// $response->license will be either "active" or "inactive"
-		if ( $license_data && isset( $license_data->license ) ) {
+		// $license_data->license will be either "active" or "inactive"
+		if ( ! empty( $license_data->license ) ) {
 			update_option( $this->item_slug . '_license_key_status', $license_data->license );
 			delete_transient( $this->item_slug . '_license_status' );
 		}
@@ -151,18 +147,19 @@ class Licenser {
 	 */
 	private function deactivate_license( $license = null ) {
 		$license = isset( $license ) ? $license : get_option( $this->item_slug . '_license_key' );
-		$api_params = $this->get_api_params( 'deactivate_license', $license );
-		$response = $this->get_api_response( $api_params );
+		$params = $this->get_api_params( 'deactivate_license', $license );
+		$response = $this->get_api_response( $params );
 
 		// Make sure the response came back okay
 		if ( ! $this->is_valid_response( $response ) ) {
-			$this->display_serttings_error( $this->errors['license-unknown'] );
+			$this->display_settings_error( $this->errors['license-unknown'] );
 		}
 
+		// Decode the API response
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 		// $license_data->license will be either "deactivated" or "failed"
-		if ( $license_data && ( $license_data->license == 'deactivated' ) ) {
+		if ( ! empty( $license_data ) && ( $license_data->license == 'deactivated' ) ) {
 			delete_option( $this->item_slug . '_license_key_status' );
 			delete_transient( $this->item_slug . '_license_status' );
 		}
@@ -173,26 +170,156 @@ class Licenser {
 	 *
 	 * @return string $message License status message.
 	 */
-	private function check_license( $license = null ) {
+	private function get_license_response( $license = null ) {
 		$license = isset( $license ) ? $license : get_option( $this->item_slug . '_license_key' );
-		$api_params = $this->get_api_params( 'check_license', $license );
-		$response = $this->get_api_response( $api_params );
+		$params = $this->get_api_params( 'check_license', $license );
+		$response = $this->get_api_response( $params );
 
 		// Make sure the response came back okay
 		if ( ! $this->is_valid_response( $response ) ) {
-			$this->display_serttings_error( $this->strings['license-status-unknown'] );
+			$this->display_settings_error( $this->strings['license-status-unknown'] );
 		}
 
+		// Decode the API response
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+
+		return $license_data;
+	}
+
+	/**
+	 * Prints API params to be used for wp_remote_get
+	 *
+	 * @param string $action Name of the API action
+	 * @param string $license License key
+	 *
+	 * @return array API params array
+	 */
+	private function get_api_params( $action, $license ) {
+		return array(
+			'edd_action' => $action,
+			'license'    => $license,
+			'item_id'    => $this->item_id,
+			'url'        => home_url(),
+		);
+	}
+
+	/**
+	 * Makes a call to the API.
+	 *
+	 * @param array $params to be used for wp_remote_get.
+	 * @return array $response decoded JSON response.
+	 */
+	private function get_api_response( $params ) {
+		$verify_ssl = (bool) apply_filters( 'chipmunk_api_request_verify_ssl', true );
+
+		// Call the custom API.
+		$response = wp_remote_post( $this->remote_api_url, array(
+			'timeout'   => 15,
+			'sslverify' => $verify_ssl,
+			'body'      => $params,
+		) );
+
+		return $response;
+	}
+
+	/**
+	 * Check if the API response is valid
+	 *
+	 * @param object $response Remote API response object
+	 *
+	 * @return boolean
+	 */
+	private function is_valid_response( $response ) {
+		return ! is_wp_error( $response ) && 200 == wp_remote_retrieve_response_code( $response );
+	}
+
+	/**
+	 * Displays the error on the page
+	 *
+	 * @param object $response Remote API response object
+	 * @param string $error Fallback error message
+	 */
+	private function display_settings_error( $response, $error = '' ) {
+		$message = is_wp_error( $response ) ? $response->get_error_message() : $error;
+
+		// Add proper error message
+		if ( ! isset( $_POST['submit'] ) ) {
+			$this->add_settings_error( $message );
+		}
+	}
+
+	/**
+	 * Constructs a renewal link
+	 *
+	 * @param string $license License key
+	 *
+	 * @return string Renewal link.
+	 */
+	private function get_renewal_link( $license ) {
+		// If a renewal link was passed in the config, use that
+		if ( ! empty( $this->renew_url ) ) {
+			return esc_url( $this->renew_url );
+		}
+
+		if ( ! empty( $this->download_id ) && $license ) {
+			$renew_url = add_query_arg( array(
+				'edd_license_key'   => $license,
+				'download_id'       => $this->download_id,
+			), $this->remote_api_url . '/checkout/' );
+
+			return esc_url( $renew_url );
+		}
+
+		// Otherwise return the remote_api_url
+		return esc_url( $this->remote_api_url );
+	}
+
+	/**
+	 * Adds setting error using Settings API
+	 *
+	 * @param string $message Error message
+	 * @param string $type Error type
+	 */
+	private function add_settings_error( $message, $type = 'error' ) {
+		$old_errors = get_settings_errors( $this->theme_slug . '_licenses' );
+
+		if ( ! \Chipmunk\Helpers::find_key_value( $old_errors, 'code', 'license_error' ) ) {
+			add_settings_error( $this->theme_slug . '_licenses', 'license_error', $message, $type );
+		}
+	}
+
+	// /**
+	//  * Returns a license status
+	//  *
+	//  * @param string $license License key
+	//  *
+	//  * @return object License status.
+	//  */
+	// public function get_license_status( $license = null ) {
+	// 	return $this->get_license_response();
+	// }
+
+	/**
+	 * Returns a license status
+	 *
+	 * @param string $license License key
+	 *
+	 * @return string/object License status.
+	 */
+	public function get_license_status( $license ) {
+		if ( empty( $license ) ) {
+			return $this->strings['enter-key'];
+		}
+
+		$license_data = $this->get_license_response( $license );
 
 		// If response doesn't include license data, return
 		if ( ! isset( $license_data->license ) ) {
-			$message = $this->strings['license-status-unknown'];
-			return $message;
+			return $this->strings['license-status-unknown'];
 		}
 
 		// We need to update the license status at the same time the message is updated
-		if ( $license_data && isset( $license_data->license ) ) {
+		if ( ! empty( $license_data ) && isset( $license_data->license ) ) {
 			update_option( $this->item_slug . '_license_key_status', $license_data->license );
 		}
 
@@ -243,7 +370,7 @@ class Licenser {
 				}
 
 				if ( $renew_link ) {
-					$message .= ' ' . $renew_link;
+					$message .= " $renew_link";
 				}
 
 				break;
@@ -270,123 +397,6 @@ class Licenser {
 		}
 
 		return $message;
-	}
-
-	/**
-	 * Prints API params to be used for wp_remote_get
-	 *
-	 * @param string $action Name of the API action
-	 * @param string $license License key
-	 *
-	 * @return array API params array
-	 */
-	private function get_api_params( $action, $license ) {
-		return array(
-			'edd_action' => $action,
-			'license'    => $license,
-			'item_id'    => $this->item_id,
-			'url'        => home_url(),
-		);
-	}
-
-	/**
-	 * Makes a call to the API.
-	 *
-	 * @param array $api_params to be used for wp_remote_get.
-	 * @return array $response decoded JSON response.
-	 */
-	private function get_api_response( $api_params ) {
-		$verify_ssl = (bool) apply_filters( 'chipmunk_api_request_verify_ssl', true );
-
-		// Call the custom API.
-		$response = wp_remote_post( $this->remote_api_url, array(
-			'timeout'   => 15,
-			'sslverify' => $verify_ssl,
-			'body'      => $api_params,
-		) );
-
-		return $response;
-	}
-
-	/**
-	 * Check if the API response is valid
-	 *
-	 * @param object $response Remote API response object
-	 *
-	 * @return boolean
-	 */
-	private function is_valid_response( $response ) {
-		return ! is_wp_error( $response ) && 200 == wp_remote_retrieve_response_code( $response );
-	}
-
-	/**
-	 * Displays the error on the page
-	 *
-	 * @param object $response Remote API response object
-	 * @param string $error Fallback error message
-	 */
-	private function display_serttings_error( $response, $error = '' ) {
-		$message = is_wp_error( $response ) ? $response->get_error_message() : $error;
-
-		// Add proper error message
-		if ( ! isset( $_POST['submit'] ) ) {
-			$this->add_settings_error( $message );
-		}
-	}
-
-	/**
-	 * Constructs a renewal link
-	 *
-	 * @param string $license License key
-	 *
-	 * @return string Renewal link.
-	 */
-	private function get_renewal_link( $license ) {
-		// If a renewal link was passed in the config, use that
-		if ( ! empty( $this->renew_url ) ) {
-			return esc_url( $this->renew_url );
-		}
-
-		if ( ! empty( $this->download_id ) && $license ) {
-			$renew_url = add_query_arg( array(
-				'edd_license_key'   => $license,
-				'download_id'       => $this->download_id,
-			), $this->remote_api_url . '/checkout/' );
-
-			return esc_url( $renew_url );
-		}
-
-		// Otherwise return the remote_api_url
-		return esc_url( $this->remote_api_url );
-	}
-
-	/**
-	 * Adds setting error using Settings API
-	 *
-	 * @param string $message Error message
-	 * @param string $type Error type
-	 */
-	private function add_settings_error( $message, $type = 'error' ) {
-		$old_errors = get_settings_errors( $this->theme_slug . '_licenses' );
-
-		if ( ! \Chipmunk\Helpers::find_key_value( $old_errors, 'code', 'license_error' ) ) {
-			add_settings_error( $this->theme_slug . '_licenses', 'license_error', $message, $type );
-		}
-	}
-
-	/**
-	 * Returns a license status
-	 *
-	 * @param string $license License key
-	 *
-	 * @return string/object License status.
-	 */
-	public function get_license_status( $license ) {
-		if ( empty( $license ) ) {
-			return $this->strings['enter-key'];
-		}
-
-		return $this->check_license( $license );
 	}
 
 	/**
@@ -454,7 +464,7 @@ class Licenser {
 	 */
 	public function license_settings() {
 		$license    = get_option( $this->item_slug . '_license_key' );
-		$status     = $this->get_license_status( $license );
+		$status    = $this->get_license_status( $license );
 		$key_status = get_option( $this->item_slug . '_license_key_status', false );
 
 		?>

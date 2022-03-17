@@ -38,6 +38,68 @@
             "install-path": "../advanced-custom-fields/advanced-custom-fields-pro"
         },
         {
+            "name": "chipmunk-theme/chipmunk-members",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:chipmunk-theme/chipmunk-members.git",
+                "reference": "2cbcf3c7bef549f1de333631dd668752ae4e2420"
+            },
+            "time": "2022-03-16T14:32:24+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "ChipmunkMembers\\": "includes"
+                },
+                "files": [
+                    "chipmunk-members.php"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Made by Less",
+                    "email": "hello@madebyless.com"
+                }
+            ],
+            "description": "Makes it a breeze for users to sign-up and become members of your website.",
+            "homepage": "https://chipmunktheme.com/",
+            "install-path": "../chipmunk-theme/chipmunk-members"
+        },
+        {
+            "name": "chipmunk-theme/chipmunk-ratings",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:chipmunk-theme/chipmunk-ratings.git",
+                "reference": "c8ec48871decbd572a06c4ff138912eb8dce0d2b"
+            },
+            "time": "2022-03-16T15:06:42+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "ChipmunkMembers\\": "includes"
+                },
+                "files": [
+                    "chipmunk-ratings.php"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Made by Less",
+                    "email": "hello@madebyless.com"
+                }
+            ],
+            "description": "Adds 5-star rating system to your website and increases user engagement.",
+            "homepage": "https://chipmunktheme.com/",
+            "install-path": "../chipmunk-theme/chipmunk-ratings"
+        },
+        {
             "name": "composer/installers",
             "version": "v2.0.1",
             "version_normalized": "2.0.1.0",

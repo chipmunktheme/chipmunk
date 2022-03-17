@@ -9,6 +9,7 @@ namespace Chipmunk\Plugins\ThemeUpdater;
  * @subpackage Chipmunk
  */
 class Updater {
+
 	/**
 	 * Initiate the Theme updater
 	 *
