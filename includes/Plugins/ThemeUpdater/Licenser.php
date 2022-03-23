@@ -430,21 +430,25 @@ class Licenser {
 	 * Checks if a license action was submitted.
 	 */
 	public function license_action() {
+		$license_key = $_POST[$this->item_slug . '_license_key'] ?? null;
+		$license_activate = $_POST[$this->item_slug . '_license_activate'] ?? null;
+		$license_deactivate = $_POST[$this->item_slug . '_license_deactivate'] ?? null;
+
 		if ( isset ( $_POST['submit'] )) {
-			if ( ! empty ( $_POST[$this->item_slug . '_license_key'] ) ) {
-				$this->activate_license( $_POST[$this->item_slug . '_license_key'] );
+			if ( ! empty( $license_key ) ) {
+				$this->activate_license( $license_key );
 			}
-			else {
-				$this->deactivate_license( $_POST[$this->item_slug . '_license_key'] );
+			elseif ( isset( $license_key ) ) {
+				$this->deactivate_license( $license_key );
 			}
 		}
 
-		if ( isset( $_POST[$this->item_slug . '_license_activate'] ) ) {
-			$this->activate_license( $_POST[$this->item_slug . '_license_key'] );
+		if ( isset( $license_activate ) ) {
+			$this->activate_license( $license_key );
 		}
 
-		if ( isset( $_POST[$this->item_slug . '_license_deactivate'] ) ) {
-			$this->deactivate_license( $_POST[$this->item_slug . '_license_key'] );
+		if ( isset( $license_deactivate ) ) {
+			$this->deactivate_license( $license_key );
 		}
 	}
 
