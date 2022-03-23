@@ -297,6 +297,10 @@ class Customizer {
 						'default'     => '4-3',
 						'choices'     => array(
 							''            => esc_html( 'None - Don\'t crop iamge' ),
+							'9-21'        => esc_html( '9 / 21' ),
+							'9-16'        => esc_html( '9 / 16' ),
+							'2-3'         => esc_html( '2 / 3' ),
+							'3-4'         => esc_html( '3 / 4' ),
 							'1-1'         => esc_html( '1 / 1' ),
 							'4-3'         => esc_html( '4 / 3' ),
 							'3-2'         => esc_html( '3 / 2' ),
@@ -868,11 +872,14 @@ class Customizer {
 			return array();
 		}
 
-		$google_fonts = Helpers::get_google_fonts( 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE' );
-		$google_fonts = array_column( $google_fonts, 'family' );
-		$google_fonts = array_combine( $google_fonts, $google_fonts);
+		if ( false === ( $google_fonts = unserialize( get_transient( THEME_SLUG . '_google_fonts' ) ) ) ) {
+			$google_fonts = Helpers::get_google_fonts( 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE' ) ?? array();
+			$google_fonts = array_column( $google_fonts, 'family' );
 
-		return $google_fonts;
+			set_transient( THEME_SLUG . '_google_fonts', serialize( $google_fonts ), WEEK_IN_SECONDS );
+		}
+
+		return array_combine( $google_fonts, $google_fonts);
 	}
 
 	/**
