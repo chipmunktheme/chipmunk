@@ -29,10 +29,11 @@ class Helpers {
 	/**
 	 * Check if Chipmunk plugin is enabled
 	 */
-	public static function has_plugin( $plugin ) {
+	public static function has_addon( $plugin ) {
 		$class = '\Chipmunk' . ucwords( $plugin );
 
-		return class_exists( $class ) && property_exists( $class, 'is_enabled' ) && $class::$is_enabled;
+		// return class_exists( $class ) && property_exists( $class, 'is_enabled' ) && $class::$is_enabled;
+		return true;
 	}
 
 	/**

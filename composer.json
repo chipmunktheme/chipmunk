@@ -22,8 +22,11 @@
       "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/library/"
     },
     {
-      "type": "git",
-      "url": "git@github.com:chipmunk-theme/chipmunk-members.git"
+      "type": "path",
+      "url": "../../plugins/chipmunk-members",
+      "options": {
+        "symlink": true
+      }
     },
     {
       "type": "git",
@@ -32,8 +35,6 @@
   ],
   "require": {
     "advanced-custom-fields/advanced-custom-fields-pro": "^5.12",
-    "chipmunk-theme/chipmunk-members": "dev-master",
-    "chipmunk-theme/chipmunk-ratings": "dev-master",
     "richtabor/merlin-wp": "dev-master"
   },
   "config": {

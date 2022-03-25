@@ -1,6 +1,6 @@
 <?php
 
-namespace Chipmunk\Plugins\ThemeUpdater;
+namespace Chipmunk\Vendors\ThemeUpdater;
 
 /**
  * Easy Digital Downloads License class

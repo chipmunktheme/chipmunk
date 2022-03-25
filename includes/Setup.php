@@ -215,17 +215,18 @@ class Setup {
 		new Settings();
 		new Shortcodes();
 
-		// Config
 		new Config\Admin();
 		new Config\Assets();
 		new Config\Nav();
 		new Config\Query();
 		new Config\Misc();
 
-		// Plugins
-		new Plugins\ACF();
-		new Plugins\Merlin();
-		new Plugins\ThemeUpdater\Init();
+		new Addons\Members();
+		new Addons\Ratings();
+
+		new Vendors\ACF();
+		new Vendors\Merlin();
+		new Vendors\ThemeUpdater\Init();
 
 		// Customizer
 		Customizer::register_sections();

@@ -424,7 +424,7 @@ class Customizer {
 							'name'        => esc_html__( 'Name', 'chipmunk' ),
 							'views'       => esc_html__( 'Views', 'chipmunk' ),
 							'upvotes'     => esc_html__( 'Upvotes', 'chipmunk' ),
-							'ratings'     => Helpers::has_plugin( 'ratings' ) ? esc_html__( 'Ratings', 'chipmunk' ) : null,
+							'ratings'     => Helpers::has_addon( 'ratings' ) ? esc_html__( 'Ratings', 'chipmunk' ) : null,
 						),
 					),
 					array(
@@ -907,7 +907,7 @@ class Customizer {
 	 */
 	private static function register_field( $customize, $section, $field ) {
 		// Plugin restricted fields
-		if ( ! empty( $field['restrict'] ) && ! Helpers::has_plugin( $field['restrict'] ) ) {
+		if ( ! empty( $field['restrict'] ) && ! Helpers::has_addon( $field['restrict'] ) ) {
 			return;
 		}
 

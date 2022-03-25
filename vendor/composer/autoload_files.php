@@ -9,7 +9,5 @@ return array(
     '320cde22f66dd4f5d3fd621d3e88b98f' => $vendorDir . '/symfony/polyfill-ctype/bootstrap.php',
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
     'a4a119a56e50fbb293281d9a48007e0e' => $vendorDir . '/symfony/polyfill-php80/bootstrap.php',
-    'a3bcc13b7dc8863ab845ef5af66d1115' => $vendorDir . '/chipmunk-theme/chipmunk-members/chipmunk-members.php',
-    'afd3e8b7a4fd63131be493f8b4f11f53' => $vendorDir . '/chipmunk-theme/chipmunk-ratings/chipmunk-ratings.php',
     'db16dc5d3d092a561768f6cd8a0da824' => $vendorDir . '/richtabor/merlin-wp/class-merlin.php',
 );

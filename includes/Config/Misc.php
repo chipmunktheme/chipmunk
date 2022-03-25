@@ -36,7 +36,7 @@ class Misc {
 			'_' . THEME_SLUG . '_upvote_count'      => 0,
 		);
 
-		if ( Helpers::has_plugin( 'ratings' ) ) {
+		if ( Helpers::has_addon( 'ratings' ) ) {
 			$defaut_values = array_merge( $defaut_values, array(
 				'_' . THEME_SLUG . '_rating_count'   => 0,
 				'_' . THEME_SLUG . '_rating_average' => 0,

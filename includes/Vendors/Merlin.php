@@ -1,6 +1,6 @@
 <?php
 
-namespace Chipmunk\Plugins;
+namespace Chipmunk\Vendors;
 
 /**
  * Configure MerlinWP plugin

@@ -1,6 +1,6 @@
 <?php
 
-namespace Chipmunk\Plugins;
+namespace Chipmunk\Vendors;
 
 /**
  * Copyright 2010 Scott MacVicar

@@ -31,7 +31,7 @@
 					</button>
 				<?php endif; ?>
 
-				<?php if ( Chipmunk\Helpers::has_plugin( 'members' ) ) : ?>
+				<?php if ( Chipmunk\Helpers::has_addon( 'members' ) ) : ?>
 					<?php if ( is_user_logged_in() ) : ?>
 						<?php $current_user = wp_get_current_user(); ?>
 
@@ -45,22 +45,22 @@
 							</button>
 
 							<ul class="u-dropdown u-dropdown--<?php echo esc_attr( Chipmunk\Customizer::get_theme_option( 'dropdown_theme' ) ); ?>">
-								<li class="u-dropdown__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'dashboard' ) ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Dashboard', 'chipmunk' ); ?></a></li>
+								<li class="u-dropdown__item"><a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'dashboard' ) ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Dashboard', 'chipmunk' ); ?></a></li>
 								<?php if ( apply_filters( 'chipmunk_enable_user_profiles', false ) ) : ?>
 									<li class="u-dropdown__item"><a href="<?php echo esc_url( get_author_posts_url( $current_user->ID ) ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Profile', 'chipmunk' ); ?></a></li>
 								<?php endif; ?>
-								<li class="u-dropdown__item"><a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'profile' ) ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Edit Profile', 'chipmunk' ); ?></a></li>
+								<li class="u-dropdown__item"><a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'profile' ) ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Edit Profile', 'chipmunk' ); ?></a></li>
 								<li class="u-dropdown__item"><?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', array( 'class' => 'u-dropdown__link' ) ); ?></li>
 								<li class="u-dropdown__item"><a href="<?php echo esc_url( wp_logout_url() ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Logout', 'chipmunk' ); ?></a></li>
 							</ul>
 						</div>
 					<?php else : ?>
-						<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'login' ) ); ?>" class="c-button c-button--primary-outline u-visible-lg-block">
+						<a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'login' ) ); ?>" class="c-button c-button--primary-outline u-visible-lg-block">
 							<?php esc_html_e( 'Login', 'chipmunk' ); ?>
 						</a>
 
 						<?php if ( get_option( 'users_can_register' ) ) : ?>
-							<a href="<?php echo esc_url( ChipmunkMembers::get_page_permalink( 'register' ) ); ?>" class="c-button c-button--primary-outline u-visible-lg-block">
+							<a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'register' ) ); ?>" class="c-button c-button--primary-outline u-visible-lg-block">
 								<?php esc_html_e( 'Register', 'chipmunk' ); ?>
 							</a>
 						<?php endif; ?>
