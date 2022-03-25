@@ -111,10 +111,15 @@ class Settings {
 	 * Render settings page
 	 */
 	public function render_settings_page() {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Unauthorized user.', 'chipmunk' ) );
-		}
+		?>
+		<form action="options.php" method="post">
+			<?php
+				settings_fields( 'chipmunk_members_pages' );
+				do_settings_sections( 'chipmunk_members_pages' );
+			?>
 
-		\Chipmunk\Helpers::get_template_part( 'addons/members/admin/settings' );
+			<?php submit_button(); ?>
+		</form>
+		<?php
 	}
 }

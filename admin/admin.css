@@ -45,26 +45,26 @@
 }
 
 /* Licences */
-.chipmunk-wrap-licenses .form-table,
-.chipmunk-wrap-licenses thead,
-.chipmunk-wrap-licenses tbody,
-.chipmunk-wrap-licenses tfoot,
-.chipmunk-wrap-licenses tr,
-.chipmunk-wrap-licenses td,
-.chipmunk-wrap-licenses th,
-.chipmunk-wrap-licenses caption {
+.chipmunk-licenses,
+.chipmunk-licenses thead,
+.chipmunk-licenses tbody,
+.chipmunk-licenses tfoot,
+.chipmunk-licenses tr,
+.chipmunk-licenses td,
+.chipmunk-licenses th,
+.chipmunk-licenses caption {
   display: block;
 }
 
-.chipmunk-wrap-licenses .form-table {
+.chipmunk-licenses {
   margin-top: 1.5em;
 }
 
-.chipmunk-wrap-licenses .form-table * {
+.chipmunk-licenses * {
   box-sizing: border-box;
 }
 
-.chipmunk-wrap-licenses .form-table tbody {
+.chipmunk-licenses tbody {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -72,12 +72,12 @@
 }
 
 @media screen and ( min-width: 600px ) {
-  .chipmunk-wrap-licenses .form-table tbody {
+  .chipmunk-licenses tbody {
 		flex-direction: row;
 	}
 }
 
-.chipmunk-wrap-licenses .form-table tr {
+.chipmunk-licenses tr {
   display: flex;
   flex-direction: column;
   width: calc(100% - 1em);
@@ -88,25 +88,25 @@
 }
 
 @media screen and ( min-width: 600px ) {
-  .chipmunk-wrap-licenses .form-table tr {
+  .chipmunk-licenses tr {
     width: calc(50% - 1em);
 	}
 }
 
 @media screen and ( min-width: 1100px ) {
-  .chipmunk-wrap-licenses .form-table tr {
+  .chipmunk-licenses tr {
     width: calc(33.3% - 1em);
 	}
 }
 
-.chipmunk-wrap-licenses .form-table th {
+.chipmunk-licenses th {
   background: #f9f9f9;
   padding: 1em;
   border-bottom: 1px solid #ccc;
   width: auto;
 }
 
-.chipmunk-wrap-licenses .form-table td {
+.chipmunk-licenses td {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -115,69 +115,69 @@
   margin: 0;
 }
 
-.chipmunk-wrap-licenses td input.regular-text {
+.chipmunk-licenses td input.regular-text {
   width: 100%;
   margin: 0;
 }
 
-.chipmunk-wrap-licenses td input.regular-text:not(:last-child) {
+.chipmunk-licenses td input.regular-text:not(:last-child) {
   margin-bottom: 0.5em;
 }
 
-.chipmunk-wrap-licenses .chipmunk-license {
+.chipmunk-licenses .chipmunk-license {
   padding: 1em;
 }
 
-.chipmunk-wrap-licenses .chipmunk-license-data {
+.chipmunk-licenses .chipmunk-license-data {
   background: #fafafa;
   padding: 1em;
   border-top: 1px solid #eee;
 }
 
-.chipmunk-wrap-licenses .chipmunk-license-data a {
+.chipmunk-licenses .chipmunk-license-data a {
   color: #444;
 }
 
-.chipmunk-wrap-licenses .chipmunk-license-data a:hover {
+.chipmunk-licenses .chipmunk-license-data a:hover {
   text-decoration: none;
 }
 
-.chipmunk-wrap-licenses .chipmunk-license-data.license-expires-soon-notice {
+.chipmunk-licenses .chipmunk-license-data.license-expires-soon-notice {
   background-color: #00a0d2;
   color: #fff;
   border-color: #00a0d2;
 }
 
-.chipmunk-wrap-licenses .chipmunk-license-data.chipmunk-license-expired {
+.chipmunk-licenses .chipmunk-license-data.chipmunk-license-expired {
   background-color: #e24e4e;
   color: #fff;
   border-color: #e24e4e;
 }
 
-.chipmunk-wrap-licenses .chipmunk-license-data.chipmunk-license-error,
-.chipmunk-wrap-licenses .chipmunk-license-data.chipmunk-license-missing,
-.chipmunk-wrap-licenses .chipmunk-license-data.chipmunk-license-invalid,
-.chipmunk-wrap-licenses .chipmunk-license-data.chipmunk-license-site_inactive,
-.chipmunk-wrap-licenses .chipmunk-license-data.chipmunk-license-item_name_mismatch {
+.chipmunk-licenses .chipmunk-license-data.chipmunk-license-error,
+.chipmunk-licenses .chipmunk-license-data.chipmunk-license-missing,
+.chipmunk-licenses .chipmunk-license-data.chipmunk-license-invalid,
+.chipmunk-licenses .chipmunk-license-data.chipmunk-license-site_inactive,
+.chipmunk-licenses .chipmunk-license-data.chipmunk-license-item_name_mismatch {
   background-color: #ffebcd;
   border-color: #ffebcd;
 }
 
-.chipmunk-wrap-licenses .chipmunk-license-data p {
+.chipmunk-licenses .chipmunk-license-data p {
   font-size: 13px;
   margin-top: 0;
 }
 
-.chipmunk-wrap-licenses .chipmunk-license-data.license-expires-soon-notice a,
-.chipmunk-wrap-licenses .chipmunk-license-data.chipmunk-license-expired a {
+.chipmunk-licenses .chipmunk-license-data.license-expires-soon-notice a,
+.chipmunk-licenses .chipmunk-license-data.chipmunk-license-expired a {
   color: #fff;
 }
 
-.chipmunk-wrap-licenses .chipmunk-license-data.license-expires-soon-notice a:hover,
-.chipmunk-wrap-licenses .chipmunk-license-data.chipmunk-license-expired a:hover {
+.chipmunk-licenses .chipmunk-license-data.license-expires-soon-notice a:hover,
+.chipmunk-licenses .chipmunk-license-data.chipmunk-license-expired a:hover {
   text-decoration: none;
 }
 
-.chipmunk-wrap-licenses p.submit {
+.chipmunk-licenses p.submit {
   clear: both;
 }

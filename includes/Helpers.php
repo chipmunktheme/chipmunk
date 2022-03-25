@@ -81,28 +81,34 @@ class Helpers {
 	public static function check_requirements() {
 		global $wp_version;
 
+		$php_version = phpversion();
 		$php_min_version = '7.4.0';
 		$wp_min_version = '5.0';
-		$php_current_version = phpversion();
-		$errors = array();
+		$notices = array();
 
-		if ( version_compare( $php_min_version, $php_current_version, '>' ) ) {
-			$errors[] = sprintf(
-				__( 'Chipmunk requires PHP %1$s or greater. You have %2$s.', 'chipmunk' ),
-				$php_min_version,
-				$php_current_version
+		if ( version_compare( $php_min_version, $php_version, '>' ) ) {
+			$notices[] = array(
+				'type' => 'error',
+				'message' => sprintf(
+					__( 'Chipmunk requires PHP %1$s or greater. You have %2$s.', 'chipmunk' ),
+					$php_min_version,
+					$php_version
+				),
 			);
 		}
 
 		if ( version_compare( $wp_min_version, $wp_version, '>' ) ) {
-			$errors[] = sprintf(
-				__( 'Chipmunk requires WordPress %1$s or greater. You have %2$s.', 'chipmunk' ),
-				$wp_min_version,
-				$wp_version
+			$notices[] = array(
+				'type' => 'error',
+				'message' => sprintf(
+					__( 'Chipmunk requires WordPress %1$s or greater. You have %2$s.', 'chipmunk' ),
+					$wp_min_version,
+					$wp_version
+				),
 			);
 		}
 
-		return $errors;
+		return $notices;
 	}
 
 	/**

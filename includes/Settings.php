@@ -17,9 +17,18 @@ class Settings {
 	 */
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu_page' ), 1 );
-		add_action( 'admin_menu', array( $this, 'add_licenses_menu_page' ) );
-		add_action( 'admin_init', array( $this, 'faker_action' ) );
-		add_action( 'chipmunk_settings_content', array( $this, 'faker_settings' ) );
+
+		// Initialize theme licenser
+		new Settings\Licenser( array(
+			'menu_url'       => admin_url( 'admin.php?page=' . THEME_SLUG . '_licenses' ),
+			'remote_api_url' => THEME_SHOP_URL,
+			'item_id'        => THEME_ITEM_ID,
+			'item_name'      => THEME_TITLE,
+			'item_slug'      => THEME_ITEM_SLUG,
+		) );
+
+		// Initialize faker
+		new Settings\Faker();
 	}
 
 	/**
@@ -41,148 +50,17 @@ class Settings {
 	}
 
 	/**
-	 * Adds a menu item for the theme license under the appearance menu.
-	 */
-	public static function add_licenses_menu_page() {
-		add_submenu_page(
-			THEME_SLUG,
-			__( 'Licenses', 'chipmunk' ),
-			__( 'Licenses', 'chipmunk' ),
-			'manage_options',
-			THEME_SLUG . '_licenses',
-			array( self::class, 'admin_licenses' ),
-		);
-	}
-
-	/**
 	 * Outputs the markup used on the theme settings page.
 	 */
 	public static function admin_settings() {
 		?>
-		<div class="wrap">
+		<div class="wrap chipmunk-settings">
 			<h1><?php echo THEME_TITLE; ?></h1>
-			<hr>
+
+			<?php settings_errors(); ?>
 
 			<?php do_action( 'chipmunk_settings_content' ); ?>
 		</div>
 		<?php
-	}
-
-	/**
-	 * Outputs the markup used on the theme license page.
-	 */
-	public static function admin_licenses() {
-		?>
-		<div class="wrap chipmunk-wrap-licenses">
-			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<hr>
-
-			<?php settings_errors(); ?>
-
-			<form method="post" action="options.php">
-				<table class="form-table">
-					<tbody>
-						<?php do_action( 'chipmunk_licenses_content' ); ?>
-					</tbody>
-				</table>
-
-				<?php submit_button(); ?>
-			</form>
-		<?php
-	}
-
-	/**
-	 * Outputs the settings markup for upvote faker
-	 */
-	public static function faker_settings() {
-		?>
-		<h2><?php esc_html_e( 'Fake counter generators', 'chipmunk' ); ?></h2>
-
-		<p class="description">
-			<?php esc_html_e( 'Adds fake values for your upvote or view counters.', 'chipmunk' ); ?>
-		</p>
-
-		<table class="form-table">
-			<tbody>
-				<tr>
-					<th><?php esc_html_e( 'Upvotes', 'chipmunk' ); ?></th>
-
-					<td>
-						<form method="post" action="">
-							<input type="number" class="small-text" name="<?php echo esc_attr( THEME_SLUG . '_generator_upvote_start' ); ?>" value="" min="0" placeholder="<?php esc_attr_e( 'Start', 'chipmunk' ); ?>" />
-							<input type="number" class="small-text" name="<?php echo esc_attr( THEME_SLUG . '_generator_upvote_end' ); ?>" value="" min="0" placeholder="<?php esc_attr_e( 'End', 'chipmunk' ); ?>" />
-							<button type="submit" class="button-primary" name="<?php echo esc_attr( THEME_SLUG . '_generator_upvote' ); ?>"><?php esc_html_e( 'Generate', 'chipmunk' ); ?></button>
-						</form>
-
-						<p class="description">
-							<?php printf( esc_html__( 'Pick a range to generate %1$s from.', 'chipmunk' ), esc_html__( 'upvotes', 'chipmunk' ) ); ?>
-						</p>
-					</td>
-				</tr>
-
-				<tr>
-					<th><?php esc_html_e( 'Views', 'chipmunk' ); ?></th>
-
-					<td>
-						<form method="post" action="">
-							<input type="number" class="small-text" name="<?php echo esc_attr( THEME_SLUG . '_generator_view_start' ); ?>" value="" min="0" placeholder="<?php esc_attr_e( 'Start', 'chipmunk' ); ?>" />
-							<input type="number" class="small-text" name="<?php echo esc_attr( THEME_SLUG . '_generator_view_end' ); ?>" value="" min="0" placeholder="<?php esc_attr_e( 'End', 'chipmunk' ); ?>" />
-							<button type="submit" class="button-primary" name="<?php echo esc_attr( THEME_SLUG . '_generator_view' ); ?>"><?php esc_html_e( 'Generate', 'chipmunk' ); ?></button>
-						</form>
-
-						<p class="description">
-							<?php printf( esc_html__( 'Pick a range to generate %1$s from.', 'chipmunk' ), esc_html__( 'views', 'chipmunk' ) ); ?>
-						</p>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<?php
-	}
-
-	/**
-	 * Checks if a generator action was submitted.
-	 */
-	public static function faker_action() {
-		if ( isset( $_POST[THEME_SLUG . '_generator_upvote'] ) ) {
-			self::faker_generate( 'upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'], array( 'resource' ) );
-		}
-
-		if ( isset( $_POST[THEME_SLUG . '_generator_view'] ) ) {
-			self::faker_generate( 'post_view', (int) $_POST[THEME_SLUG . '_generator_view_start'], (int) $_POST[THEME_SLUG . '_generator_view_end'], array( 'post', 'resource' ) );
-		}
-	}
-
-	/**
-	 * Generate fake values for upvote and view counters
-	 */
-	public static function faker_generate( $type, $start, $end, $post_types ) {
-		if ( empty( $start ) && empty( $end ) ) {
-			return;
-		}
-
-		$db_key = '_' . THEME_SLUG . '_' . $type . '_count';
-
-		$posts = get_posts( array(
-			'post_type'         => $post_types,
-			'post_status'       => 'any',
-			'posts_per_page'    => -1,
-		) );
-
-		foreach ( $posts as $post ) {
-			$count = (int) get_post_meta( $post->ID, $db_key, true );
-
-			if ( isset( $count ) && is_numeric( $count ) ) {
-				update_post_meta( $post->ID, $db_key, $count + rand( $start, ( $start > $end ? $start : $end ) ) );
-			}
-		}
-
-		add_action( 'admin_notices', function() {
-			?>
-				<div class="notice notice-success">
-					<p><?php echo esc_html( 'Fake counters successfully generated!', 'chipmunk' ); ?></p>
-				</div>
-			<?php
-		} );
 	}
 }

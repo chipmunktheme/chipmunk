@@ -33,7 +33,7 @@ class Ratings {
 	 * @return void
 	 */
 	public function __construct() {
-		add_action( 'wp', array( $this, 'setup_addon' ) );
+		add_action( 'init', array( $this, 'setup_addon' ) );
 	}
 
 	/**

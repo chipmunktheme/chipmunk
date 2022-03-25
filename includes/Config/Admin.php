@@ -18,7 +18,7 @@ class Admin {
 	 * @return void
 	 */
 	function __construct() {
-		add_action( 'admin_notices', array( $this, 'display_admin_notices' ) );;
+		add_action( 'admin_notices', array( $this, 'display_admin_notices' ) );
 		add_action( 'admin_init', array( $this, 'add_resource_permalink_setting' ) );
 		add_action( 'admin_init', array( $this, 'add_collection_permalink_setting' ) );
 		add_action( 'admin_init', array( $this, 'add_tag_permalink_setting' ) );
@@ -30,15 +30,13 @@ class Admin {
 	 * @return void
 	 */
 	public static function display_admin_notices() {
-		$errors = apply_filters( 'chipmunk_admin_notices', Helpers::check_requirements() );
+		$notices = apply_filters( 'chipmunk_admin_notices', Helpers::check_requirements() );
 
-		if ( ! empty( $errors ) ) {
-			foreach ( $errors as $error ) { ?>
-				<div class="notice notice-error">
-					<p><?php echo $error; ?></p>
-				</div>
-			<?php }
-		}
+		foreach ( $notices as $notice ) { ?>
+			<div class="notice notice-<?php echo esc_attr( $notice['type'] ?? 'error' ); ?>">
+				<p><?php echo esc_html( $notice['message'] ); ?></p>
+			</div>
+		<?php }
 	}
 
 	/**

@@ -1,9 +1,9 @@
 <?php
 
-namespace Chipmunk\Vendors\ThemeUpdater;
+namespace Chipmunk\Settings;
 
 /**
- * Easy Digital Downloads License class
+ * A License settings class
  *
  * @package WordPress
  * @subpackage Chipmunk
@@ -78,7 +78,7 @@ class Licenser {
 		// add_action( 'update_option_' . $this->item_slug . '_license_key', array( $this, 'activate_license' ), $this->item_priority, 2 );
 
 		// Output license settings
-		add_action( 'chipmunk_licenses_content', array( $this, 'license_settings' ), $this->item_priority );
+		add_action( 'chipmunk_settings_content', array( $this, 'license_settings' ), $this->item_priority );
 	}
 
 	/**
@@ -472,31 +472,43 @@ class Licenser {
 		$key_status = get_option( $this->item_slug . '_license_key_status', false );
 
 		?>
-		<tr valign="top">
-			<th scope="row" valign="top">
-				<?php echo $this->item_name; ?>
-			</th>
+		<h2><?php esc_html_e( 'Licenses', 'chipmunk' ); ?></h2>
 
-			<td>
-				<div class="chipmunk-license">
-					<?php settings_fields( $this->theme_slug . '_licenses' ); ?>
+		<form method="post" action="options.php">
+			<table class="form-table chipmunk-licenses">
+				<tbody>
+					<tr valign="top">
+						<th scope="row" valign="top">
+							<?php echo $this->item_name; ?>
+						</th>
 
-					<input id="<?php echo $this->item_slug; ?>_license_key" name="<?php echo $this->item_slug; ?>_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
+						<td>
+							<div class="chipmunk-license">
+								<?php settings_fields( $this->theme_slug . '_licenses' ); ?>
 
-					<?php if ( ! empty( $license ) ) : ?>
-						<?php if ( 'valid' == $key_status ) : ?>
-							<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
-						<?php else : ?>
-							<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
-						<?php endif; ?>
-					<?php endif; ?>
-				</div>
+								<input id="<?php echo $this->item_slug; ?>_license_key" name="<?php echo $this->item_slug; ?>_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
 
-				<div class="chipmunk-license-data license-<?php echo $key_status; ?>-notice">
-					<p class="description"><?php echo $status; ?></p>
-				</div>
-			</td>
-		</tr>
+								<?php if ( ! empty( $license ) ) : ?>
+									<?php if ( 'valid' == $key_status ) : ?>
+										<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
+									<?php else : ?>
+										<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
+									<?php endif; ?>
+								<?php endif; ?>
+							</div>
+
+							<div class="chipmunk-license-data license-<?php echo $key_status; ?>-notice">
+								<p class="description"><?php echo $status; ?></p>
+							</div>
+						</td>
+					</tr>
+
+					<?php do_action( 'chipmunk_licenses_content' ); ?>
+				</tbody>
+			</table>
+
+			<?php submit_button(); ?>
+		</form>
 		<?php
 	}
 }

@@ -16,13 +16,13 @@ class Renderers {
 	 * @return void
 	 */
 	public function __construct() {
-		if ( \Chipmunk\Helpers::is_feature_enabled( 'ratings', 'resource' ) ) {
+		// if ( \Chipmunk\Helpers::is_feature_enabled( 'ratings', 'resource' ) ) {
 			add_action( 'chipmunk_resource_extras', array( $this, 'render_rating_form' ) );
-		}
+		// }
 
-		if ( \Chipmunk\Helpers::is_feature_enabled( 'ratings', 'post' ) ) {
+		// if ( \Chipmunk\Helpers::is_feature_enabled( 'ratings', 'post' ) ) {
 			add_action( 'chipmunk_post_extras', array( $this, 'render_rating_form' ) );
-		}
+		// }
 	}
 
 	/**
