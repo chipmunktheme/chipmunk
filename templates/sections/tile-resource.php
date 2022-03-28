@@ -1,10 +1,10 @@
 <?php
 	// Cache resource customizer options
 	$options = array(
-		'display_as'             => Chipmunk\Customizer::get_theme_option( 'display_resource_as' ),
-		'disable_thumbs'         => Chipmunk\Customizer::get_theme_option( 'disable_resource_thumbs' ),
-		'disable_website_button' => Chipmunk\Customizer::get_theme_option( 'disable_resource_website_button' ),
-		'disable_desc'           => Chipmunk\Customizer::get_theme_option( 'disable_resource_desc' ),
+		'display_as'             => Chipmunk\Helpers::get_theme_option( 'display_resource_as' ),
+		'disable_thumbs'         => ! Chipmunk\Helpers::is_feature_enabled( 'thumbs', 'resource', false ),
+		'disable_website_button' => ! Chipmunk\Helpers::is_feature_enabled( 'website_button', 'resource', false ),
+		'disable_desc'           => ! Chipmunk\Helpers::is_feature_enabled( 'desc', 'resource', false ),
 	);
 
 	// Resource website - custom post meta
@@ -25,7 +25,7 @@
 <div class="<?php echo esc_attr( $tile_class ); ?>">
 	<<?php echo get_post_status() == 'publish' ? 'a href="' . get_the_permalink() . '"' : 'div'; ?> class="c-tile__inner">
 		<?php if ( ! $options['disable_thumbs'] || $options['display_as'] == 'tile' ) : ?>
-			<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Customizer::get_theme_option( 'resource_image_aspect_ratio' ) ); ?>
+			<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Helpers::get_theme_option( 'resource_image_aspect_ratio' ) ); ?>
 
 			<div class="c-tile__image <?php echo esc_attr( $media_class ); ?>">
 				<?php if ( ! $options['disable_thumbs'] && has_post_thumbnail() ) : ?>

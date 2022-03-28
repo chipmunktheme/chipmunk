@@ -1,4 +1,4 @@
-<?php $action = esc_url( Chipmunk\Customizer::get_theme_option( 'newsletter_action' ) ); ?>
+<?php $action = esc_url( Chipmunk\Helpers::get_theme_option( 'newsletter_action' ) ); ?>
 <?php $email_field = 'email'; ?>
 <?php $args = array(); ?>
 
@@ -20,13 +20,13 @@
 	<?php $args['redirect'] = ''; ?>
 <?php endif; ?>
 
-<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_newsletter' ) && ! empty( $action ) ) : ?>
+<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_newsletter' ) && ! empty( $action ) ) : ?>
 	<div class="l-section l-section--theme-primary">
 		<div class="l-container">
 			<div class="l-wrapper">
 				<div class="c-lead c-lead--center">
 					<h4 class="c-lead__title c-heading c-heading--h1"><?php esc_html_e( 'Newsletter', 'chipmunk' ); ?></h4>
-					<p class="c-lead__content c-content c-content--type"><?php echo esc_html( Chipmunk\Customizer::get_theme_option( 'newsletter_tagline' ) ); ?></p>
+					<p class="c-lead__content c-content c-content--type"><?php echo esc_html( Chipmunk\Helpers::get_theme_option( 'newsletter_tagline' ) ); ?></p>
 
 					<form action="<?php echo stripslashes( trim( $action, '" ' ) ); ?>" method="post" class="c-lead__cta c-form c-form--inline c-form--narrow" target="_blank" novalidate data-validate>
 						<div class="c-form__field">
@@ -34,10 +34,10 @@
 							<button type="submit" class="c-form__button"><?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'arrow-right' ) ); ?></button>
 						</div>
 
-						<?php if ( ! empty( Chipmunk\Customizer::get_theme_option( 'newsletter_consent' ) ) ) : ?>
+						<?php if ( ! empty( Chipmunk\Helpers::get_theme_option( 'newsletter_consent' ) ) ) : ?>
 							<label class="c-form__field c-form__checkbox" data-consent>
 								<input type="checkbox" name="consent" required>
-								<p><?php echo esc_html( Chipmunk\Customizer::get_theme_option( 'newsletter_consent' ) ); ?></p>
+								<p><?php echo esc_html( Chipmunk\Helpers::get_theme_option( 'newsletter_consent' ) ); ?></p>
 							</label>
 						<?php endif; ?>
 						<?php if ( ! empty( $args ) ) : ?>

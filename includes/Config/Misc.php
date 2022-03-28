@@ -3,7 +3,6 @@
 namespace Chipmunk\Config;
 
 use Chipmunk\Helpers;
-use Chipmunk\Customizer;
 
 /**
  * Miscellaneous config hooks
@@ -53,11 +52,11 @@ class Misc {
 	 * @return void
 	 */
 	public static function add_og_tags() {
-		if ( Customizer::get_theme_option( 'disable_og' ) ) {
+		if ( Helpers::get_theme_option( 'disable_og' ) ) {
 			return;
 		}
 
-		$site_image = Customizer::get_theme_option( 'og_image' );
+		$site_image = Helpers::get_theme_option( 'og_image' );
 
 		if ( is_front_page() ) {
 			?>

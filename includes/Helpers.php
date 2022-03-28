@@ -37,10 +37,17 @@ class Helpers {
 	}
 
 	/**
+	 * Get theme option alias
+	 */
+	public static function get_theme_option( $name, $default = false ) {
+		return Customizer::get_theme_option( $name, $default );
+	}
+
+	/**
 	 * Check if feature is enabled in customizer
 	 */
-	public static function is_feature_enabled( $feature, $post_type ) {
-		return ! Customizer::get_theme_option( "disable_{$post_type}_{$feature}" ) && get_post_type() == $post_type;
+	public static function is_feature_enabled( $feature, $post_type, $check_type = true ) {
+		return ! self::get_theme_option( "disable_{$post_type}_{$feature}" ) && ( $check_type ? get_post_type() == $post_type : true );
 	}
 
 	/**
@@ -149,9 +156,9 @@ class Helpers {
 	 * @return bool True if the CAPTCHA is OK, otherwise false.
 	 */
 	public static function verify_recaptcha( $response ) {
-		$enabled    = Customizer::get_theme_option( 'recaptcha_enabled' );
-		$site_key   = Customizer::get_theme_option( 'recaptcha_site_key' );
-		$secret_key = Customizer::get_theme_option( 'recaptcha_secret_key' );
+		$enabled    = self::get_theme_option( 'recaptcha_enabled' );
+		$site_key   = self::get_theme_option( 'recaptcha_site_key' );
+		$secret_key = self::get_theme_option( 'recaptcha_secret_key' );
 
 		// Verify if user is logged in
 		if ( is_user_logged_in() ) {
@@ -199,7 +206,7 @@ class Helpers {
 		$socials = array();
 
 		foreach ( Customizer::get_socials() as $social ) {
-			$value = Customizer::get_theme_option( strtolower( $social ) );
+			$value = self::get_theme_option( strtolower( $social ) );
 
 			if ( $value ) {
 				$socials[$social] = $value;
@@ -222,7 +229,7 @@ class Helpers {
 	 * Create title for post and pages OG tags
 	 */
 	public static function get_og_title() {
-		if ( ! Customizer::get_theme_option( 'disable_og_branding' ) ) {
+		if ( ! self::get_theme_option( 'disable_og_branding' ) ) {
 			$title = sprintf( esc_html__( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) );
 		}
 		else {
@@ -389,7 +396,7 @@ class Helpers {
 	 * Create external links
 	 */
 	public static function render_external_link( $url ) {
-		if ( ! Customizer::get_theme_option( 'disable_ref' ) ) {
+		if ( ! self::get_theme_option( 'disable_ref' ) ) {
 			$title = str_replace( '-', '', sanitize_title( get_bloginfo( 'name' ) ) );
 			$prefix = ( preg_match( '(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
 
@@ -397,93 +404,6 @@ class Helpers {
 		}
 
 		return esc_url( $url );
-	}
-
-	/**
-	 * Get resources sort WP_Query arguments
-	 */
-	public static function get_resources_sort_args() {
-		$sort_args = array();
-
-		// Apply sorting options
-		if ( isset( $_GET['sort'] ) && ! empty( $_GET['sort'] ) && ! Customizer::get_theme_option( 'disable_resource_sorting' ) ) {
-			$sort_params = explode( '-', $_GET['sort'] );
-			$sort_orderby = $sort_params[0];
-			$sort_order = $sort_params[1];
-		}
-		else {
-			$sort_orderby = Customizer::get_theme_option( 'default_sort_by' );
-			$sort_order = Customizer::get_theme_option( 'default_sort_order' );
-		}
-
-		switch ( $sort_orderby ) {
-			case 'date':
-				$sort_args = array(
-					'orderby'   => 'date',
-				);
-				break;
-			case 'name':
-				$sort_args = array(
-					'orderby'   => 'title',
-				);
-				break;
-			case 'views':
-				$sort_args = array(
-					'orderby'   => 'meta_value_num date',
-					'meta_key'  => '_' . THEME_SLUG . '_post_view_count',
-				);
-				break;
-			case 'upvotes':
-				$sort_args = array(
-					'orderby'   => 'meta_value_num date',
-					'meta_key'  => '_' . THEME_SLUG . '_upvote_count',
-				);
-				break;
-			case 'ratings':
-				$sort_args = array(
-					'orderby'   => 'meta_value_num date',
-					'meta_key'  => '_' . THEME_SLUG . '_rating_rank',
-				);
-				break;
-		}
-
-		$sort_args['order'] = $sort_order;
-
-		return $sort_args;
-	}
-
-	/**
-	 * Get resources tax WP_Query arguments
-	 */
-	public static function get_resources_tax_args( $term = null ) {
-		$tax_args = array(
-			'tax_query' => array(),
-		);
-
-		// Apply taxonomy options
-		if ( is_tax() && isset( $term ) ) {
-			$tax_args['tax_query'][] = array(
-				'taxonomy'          => $term->taxonomy,
-				'field'             => 'id',
-				'terms'             => $term->term_id,
-				'include_children'  => false,
-			);
-		}
-
-		// Apply tag filters
-		if ( isset( $_GET['tag'] ) && ! empty( $_GET['tag'] ) && ! Customizer::get_theme_option( 'disable_resource_filters' ) ) {
-			$tax_args['tax_query'][] = array(
-				'taxonomy'          => 'resource-tag',
-				'field'             => 'slug',
-				'terms'             => $_GET['tag'],
-			);
-		}
-
-		if ( count( $tax_args['tax_query'] ) > 1 ) {
-			$tax_args['tax_query']['relation'] = 'AND';
-		}
-
-		return $tax_args;
 	}
 
 	/**

@@ -2,10 +2,10 @@
 	<div class="l-container">
 		<div class="c-page-foot__inner">
 			<p class="c-page-foot__copy">
-				<?php echo do_shortcode( wp_kses_post( Chipmunk\Customizer::get_theme_option( 'copyright_text' ) ) ); ?>
+				<?php echo do_shortcode( wp_kses_post( Chipmunk\Helpers::get_theme_option( 'copyright_text' ) ) ); ?>
 			</p>
 
-			<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_credits' ) ) : ?>
+			<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_credits' ) ) : ?>
 				<a href="<?php echo esc_url( Chipmunk\Helpers::render_external_link( 'https://chipmunktheme.com' ) ); ?>" class="c-page-foot__credits" target="_blank" title="<?php esc_attr_e( 'Chipmunk WordPress Theme', 'chipmunk' ); ?>">
 					<?php esc_html_e( 'Chipmunk WordPress Theme', 'chipmunk' ); ?>
 

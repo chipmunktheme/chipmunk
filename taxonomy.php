@@ -9,8 +9,7 @@
 get_header(); ?>
 
 	<?php $term = get_queried_object(); ?>
-	<?php $paged = Chipmunk\Helpers::get_current_page(); ?>
-	<?php $query = Chipmunk\Query::get_resources( Chipmunk\Customizer::get_theme_option( 'posts_per_page' ), $paged, $term ); ?>
+	<?php $query = Chipmunk\Query::get_resources( array(), $term ); ?>
 	<?php $children_collections = get_terms( 'resource-collection', array( 'parent' => $term->term_id ) ); ?>
 
 	<div class="l-section">
@@ -18,7 +17,7 @@ get_header(); ?>
 			<?php $title = ucfirst( single_term_title( null, false ) ); ?>
 
 			<div class="l-component l-header">
-				<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_resource_sorting' ) && $query->have_posts() ) : ?>
+				<?php if ( Chipmunk\Helpers::is_feature_enabled( 'sorting', 'resource', false ) && $query->have_posts() ) : ?>
 					<h1 class="c-heading c-heading--h4"><?php echo esc_html( $title ); ?></h1>
 
 					<?php Chipmunk\Helpers::get_template_part( 'partials/filters' ); ?>
@@ -41,7 +40,7 @@ get_header(); ?>
 				<?php endif; ?>
 			</div>
 
-			<?php if ( ! empty( $children_collections ) && $paged == 1 ) : ?>
+			<?php if ( ! empty( $children_collections ) && Chipmunk\Helpers::get_current_page() == 1 ) : ?>
 				<div class="l-component">
 					<div class="c-tile__list">
 						<?php foreach ( $children_collections as $collection ) : ?>

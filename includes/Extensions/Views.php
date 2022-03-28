@@ -53,7 +53,7 @@ class Views {
 				$count++;
 				update_post_meta( $id, $db_key, $count );
 
-				if ( ! Customizer::get_theme_option( 'disable_cookies' ) ) {
+				if ( ! Helpers::get_theme_option( 'disable_cookies' ) ) {
 					setcookie( $db_key . '-' . $id, true );
 				}
 			}

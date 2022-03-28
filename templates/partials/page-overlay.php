@@ -25,7 +25,7 @@
 					</a>
 				<?php endif; ?>
 			</div>
-		<?php elseif ( ! Chipmunk\Customizer::get_theme_option( 'disable_submissions' ) ) : ?>
+		<?php elseif ( ! Chipmunk\Helpers::get_theme_option( 'disable_submissions' ) ) : ?>
 			<div class="c-overlay__bottom">
 				<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', array( 'class' => 'c-button c-button--primary-outline' ) ); ?>
 			</div>

@@ -1,4 +1,9 @@
-<?php $resources = Chipmunk\Addons\Members\Helpers::get_submitted_resources( Chipmunk\Customizer::get_theme_option( 'posts_per_page' ) ); ?>
+<?php $resources = Chipmunk\Query::get_resources( array(
+	'post_status'       => 'any, trash',
+	'author'            => get_current_user_id(),
+	'order'             => 'DESC',
+	'orderby'           => 'date',
+) ); ?>
 
 <?php if ( $resources->have_posts() ) : ?>
 	<div class="c-tile__list" data-action-element="load_posts">

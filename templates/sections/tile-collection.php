@@ -1,6 +1,6 @@
 <?php
 	$options = array(
-		'display_as' => Chipmunk\Customizer::get_theme_option( 'display_collection_as' ),
+		'display_as' => Chipmunk\Helpers::get_theme_option( 'display_collection_as' ),
 	);
 
 	$tile_classes = array(
@@ -15,11 +15,11 @@
 
 <div class="<?php echo esc_attr( $tile_class ); ?>">
 	<a href="<?php echo esc_url( get_term_link( $collection->term_id ) ); ?>" class="c-tile__inner">
-		<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_collection_thumbs' ) || $options['display_as'] == 'tile' ) : ?>
-			<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Customizer::get_theme_option( 'resource_image_aspect_ratio' ) ); ?>
+		<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_collection_thumbs' ) || $options['display_as'] == 'tile' ) : ?>
+			<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Helpers::get_theme_option( 'resource_image_aspect_ratio' ) ); ?>
 
 			<div class="c-tile__image <?php echo esc_attr( $media_class ); ?>">
-				<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_collection_thumbs' ) ) : ?>
+				<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_collection_thumbs' ) ) : ?>
 					<?php $collection_image = get_field( '_' . THEME_SLUG . '_collection_image', $collection ); ?>
 
 					<?php if ( ! empty( $collection_image ) ) : ?>
@@ -53,7 +53,7 @@
 			</div>
 		<?php endif; ?>
 
-		<div class="c-tile__content<?php echo ( $options['display_as'] == 'tile' ? ( Chipmunk\Customizer::get_theme_option( 'disable_collection_thumbs' ) ? ' c-tile__content--primary' : ' c-tile__content--dimmed' ) : '' ); ?>">
+		<div class="c-tile__content<?php echo ( $options['display_as'] == 'tile' ? ( Chipmunk\Helpers::get_theme_option( 'disable_collection_thumbs' ) ? ' c-tile__content--primary' : ' c-tile__content--dimmed' ) : '' ); ?>">
 			<div class="c-tile__head">
 				<<?php echo ( is_front_page() || is_single() ) ? 'h3' : 'h2'; ?> class="c-tile__title c-heading c-heading--h5">
 					<?php echo $collection->name; ?>
@@ -66,7 +66,7 @@
 				<?php endif; ?>
 			</div>
 
-			<?php if ( ! Chipmunk\Customizer::get_theme_option( 'disable_collection_stats' ) ) : ?>
+			<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_collection_stats' ) ) : ?>
 				<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
 					'class' => 'c-tile__stats',
 					'stats' => array(

@@ -2,7 +2,7 @@
 
 namespace Chipmunk\Config;
 
-use Chipmunk\Customizer;
+use Chipmunk\Helpers;
 
 /**
  * Query config hooks
@@ -30,7 +30,7 @@ class Query {
 	 */
 	public static function update_main_query( $query ) {
 		if ( ! is_admin() && $query->is_tax && is_tax() ) {
-			$query->set( 'posts_per_page', Customizer::get_theme_option( 'posts_per_page' ) );
+			$query->set( 'posts_per_page', Helpers::get_theme_option( 'posts_per_page' ) );
 		}
 
 		return $query;
@@ -44,7 +44,7 @@ class Query {
 	public static function update_search_query( $query ) {
 		if ( ! is_admin() && $query->is_search ) {
 			// Use custom value for posts per page
-			$query->set( 'posts_per_page', Customizer::get_theme_option( 'results_per_page' ) );
+			$query->set( 'posts_per_page', Helpers::get_theme_option( 'results_per_page' ) );
 
 			// Include resources
 			$query->set( 'post_type', array( 'post', 'resource' ) );

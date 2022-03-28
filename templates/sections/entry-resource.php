@@ -1,5 +1,5 @@
 <?php
-	$content_separated = ( strlen( strip_tags( get_the_content() ) ) > 500 || Chipmunk\Customizer::get_theme_option( 'display_resource_content_separated' ) );
+	$content_separated = ( strlen( strip_tags( get_the_content() ) ) > 500 || Chipmunk\Helpers::get_theme_option( 'display_resource_content_separated' ) );
 	$primary_website = Chipmunk\Helpers::get_resource_website( get_the_ID() );
 	$website = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_resource_website', true );
 	$description = '';
@@ -21,7 +21,7 @@
 		<article class="c-resource" itemscope itemtype="http://schema.org/Product">
 			<meta itemprop="name" content="<?php echo esc_attr( strip_tags( get_the_title() ) ); ?>" />
 
-			<div class="c-resource__content<?php echo esc_attr( ( ! has_post_thumbnail() || Chipmunk\Customizer::get_theme_option( 'disable_resource_single_thumbs' ) ) ? ' c-resource__content--full' : '' ); ?>">
+			<div class="c-resource__content<?php echo esc_attr( ( ! has_post_thumbnail() || ! Chipmunk\Helpers::is_feature_enabled( 'single_thumbs', 'resource' ) ) ? ' c-resource__content--full' : '' ); ?>">
 				<?php do_action( 'chipmunk_before_resource_info' ); ?>
 
 				<div class="c-resource__info">
@@ -64,7 +64,7 @@
 				<div class="c-resource__actions">
 					<?php if ( ! is_search() ) : ?>
 						<?php if ( ! empty( $website ) ) : ?>
-							<a href="<?php echo esc_url( Chipmunk\Helpers::render_external_link( $website ) ); ?>" class="c-resource__button c-button c-button--primary-outline" target="_blank"<?php echo Chipmunk\Customizer::get_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php esc_html_e( 'Visit website', 'chipmunk' ); ?></a>
+							<a href="<?php echo esc_url( Chipmunk\Helpers::render_external_link( $website ) ); ?>" class="c-resource__button c-button c-button--primary-outline" target="_blank"<?php echo Chipmunk\Helpers::get_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php esc_html_e( 'Visit website', 'chipmunk' ); ?></a>
 						<?php endif; ?>
 
 						<?php if ( have_rows( '_' . THEME_SLUG . '_resource_links' ) ) : ?>
@@ -84,14 +84,14 @@
 				<?php do_action( 'chipmunk_after_resource_actions' ); ?>
 			</div>
 
-			<?php if ( has_post_thumbnail() && ! Chipmunk\Customizer::get_theme_option( 'disable_resource_single_thumbs' ) ) : ?>
-				<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Customizer::get_theme_option( 'resource_image_aspect_ratio' ) ); ?>
+			<?php if ( has_post_thumbnail() && ! Chipmunk\Helpers::is_feature_enabled( 'single_thumbs', 'resource' ) ) : ?>
+				<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Helpers::get_theme_option( 'resource_image_aspect_ratio' ) ); ?>
 				<?php $media_class = "c-resource__media $media_class"; ?>
 
 				<?php if ( ! is_single() ) : ?>
 					<a href="<?php the_permalink(); ?>" class="<?php echo esc_attr( $media_class ); ?>"><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
 				<?php elseif ( ! empty( $primary_website ) ) : ?>
-					<a href="<?php echo Chipmunk\Helpers::render_external_link( $primary_website ); ?>" class="<?php echo esc_attr( $media_class ); ?>" target="_blank"<?php echo Chipmunk\Customizer::get_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
+					<a href="<?php echo Chipmunk\Helpers::render_external_link( $primary_website ); ?>" class="<?php echo esc_attr( $media_class ); ?>" target="_blank"<?php echo Chipmunk\Helpers::get_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
 				<?php else : ?>
 					<div class="<?php echo esc_attr( $media_class ); ?>"><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></div>
 				<?php endif; ?>

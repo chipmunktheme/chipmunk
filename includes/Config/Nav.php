@@ -3,7 +3,6 @@
 namespace Chipmunk\Config;
 
 use Chipmunk\Helpers;
-use Chipmunk\Customizer;
 
 /**
  * Nav config hooks
@@ -78,7 +77,7 @@ class Nav {
 	 * @return array
 	 */
 	public static function extra_submenu_classes( $classes ) {
-		$classes[] = 'theme-' . Customizer::get_theme_option( 'dropdown_theme' );
+		$classes[] = 'theme-' . Helpers::get_theme_option( 'dropdown_theme' );
 
 		return $classes;
 	}

@@ -4,7 +4,7 @@ namespace Chipmunk\Extensions;
 
 use Chipmunk\Helpers;
 use Chipmunk\Customizer;
-use Chipmunk\Plugins\OpenGraph;
+use Chipmunk\Vendors\OpenGraph;
 
 /**
  * Submission form class
@@ -211,18 +211,18 @@ class Submissions {
 			wp_set_object_terms( $post_id, (int) $collection, 'resource-collection' );
 
 			// Attach post thumbnail
-			if ( ! Customizer::get_theme_option( 'disable_submission_image_fetch' ) ) {
+			if ( ! Helpers::get_theme_option( 'disable_submission_image_fetch' ) ) {
 				$this->attach_post_thumbnail( $post_id, $website );
 			}
 
 			// Send email to website admin
-			if ( Customizer::get_theme_option( 'inform_about_submissions' ) ) {
+			if ( Helpers::get_theme_option( 'inform_about_submissions' ) ) {
 				$this->inform_admin( $post_id );
 			}
 		}
 
 		// Failure during wp_insert_post
-		else throw new \Exception( Customizer::get_theme_option( 'submission_failure' ) );
+		else throw new \Exception( Helpers::get_theme_option( 'submission_failure' ) );
 	}
 
 	/**
@@ -239,7 +239,7 @@ class Submissions {
 			$this->submit_post();
 
 			// Return success message
-			wp_send_json_success( Customizer::get_theme_option( 'submission_thanks' ) );
+			wp_send_json_success( Helpers::get_theme_option( 'submission_thanks' ) );
 
 		} catch ( \Exception $e ) {
 

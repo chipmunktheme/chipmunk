@@ -1,5 +1,5 @@
 <article itemscope itemtype="http://schema.org/BlogPosting">
-	<?php if ( has_post_thumbnail() && Chipmunk\Customizer::get_theme_option( 'blog_post_layout' ) == 'hero' ) : ?>
+	<?php if ( has_post_thumbnail() && Chipmunk\Helpers::get_theme_option( 'blog_post_layout' ) == 'hero' ) : ?>
 		<section class="c-entry__hero">
 			<?php the_post_thumbnail( '1920x1080', array( 'itemprop' => 'image' ) ); ?>
 
@@ -17,7 +17,7 @@
 		<div class="l-container">
 			<div class="l-wrapper">
 				<div class="c-entry">
-					<?php if ( ! has_post_thumbnail() || Chipmunk\Customizer::get_theme_option( 'blog_post_layout' ) == 'no_hero' ) : ?>
+					<?php if ( ! has_post_thumbnail() || Chipmunk\Helpers::get_theme_option( 'blog_post_layout' ) == 'no_hero' ) : ?>
 						<?php if ( has_post_thumbnail() ) : ?>
 							<div class="c-entry__image c-media c-media--16-9">
 								<?php the_post_thumbnail( '1280x720', array( 'itemprop' => 'image' ) ); ?>

@@ -10,8 +10,8 @@ $paged = Chipmunk\Helpers::get_current_page();
 
 <?php if ( $query && $query->max_num_pages > 1 && ( ! isset( $query->query['orderby'] ) || $query->query['orderby'] != 'rand' ) ) : ?>
 	<nav class="c-pagination l-component l-component--md">
-		<?php if ( Chipmunk\Customizer::get_theme_option( 'pagination_type' ) == 'load_more' || Chipmunk\Customizer::get_theme_option( 'pagination_type' ) == 'infinite' ) : ?>
-			<button class="c-pagination__button c-button c-button--primary-outline u-loader" data-action="load_posts" data-query-vars="<?php echo esc_attr( json_encode( $query->query ) ); ?>" data-page="<?php echo $paged + 1; ?>"<?php echo Chipmunk\Customizer::get_theme_option( 'pagination_type' ) == 'infinite' ? ' data-view-trigger="click"' : ''; ?>>
+		<?php if ( Chipmunk\Helpers::get_theme_option( 'pagination_type' ) == 'load_more' || Chipmunk\Helpers::get_theme_option( 'pagination_type' ) == 'infinite' ) : ?>
+			<button class="c-pagination__button c-button c-button--primary-outline u-loader" data-action="load_posts" data-query-vars="<?php echo esc_attr( json_encode( $query->query ) ); ?>" data-page="<?php echo $paged + 1; ?>"<?php echo Chipmunk\Helpers::get_theme_option( 'pagination_type' ) == 'infinite' ? ' data-view-trigger="click"' : ''; ?>>
 				<span><?php esc_html_e( 'Load more', 'chipmunk' ); ?></span>
 			</button>
 		<?php else : ?>

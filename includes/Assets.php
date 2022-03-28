@@ -55,23 +55,23 @@ class Assets {
 	 * @return void
 	 */
 	public static function enqueue_inline_styles() {
-		$primary_font      = Customizer::get_theme_option( 'primary_font' );
-		$heading_font      = Customizer::get_theme_option( 'heading_font' );
+		$primary_font      = Helpers::get_theme_option( 'primary_font' );
+		$heading_font      = Helpers::get_theme_option( 'heading_font' );
 
-		$primary_color     = Customizer::get_theme_option( 'primary_color' );
-		$link_color        = Customizer::get_theme_option( 'link_color' );
-		$background_color  = Customizer::get_theme_option( 'background_color' );
-		$section_color     = Customizer::get_theme_option( 'section_color' );
-		$content_size      = Customizer::get_theme_option( 'content_size' );
-		$custom_css        = Customizer::get_theme_option( 'custom_css' );
+		$primary_color     = Helpers::get_theme_option( 'primary_color' );
+		$link_color        = Helpers::get_theme_option( 'link_color' );
+		$background_color  = Helpers::get_theme_option( 'background_color' );
+		$section_color     = Helpers::get_theme_option( 'section_color' );
+		$content_size      = Helpers::get_theme_option( 'content_size' );
+		$custom_css        = Helpers::get_theme_option( 'custom_css' );
 
-		$logo_height       = Customizer::get_theme_option( 'logo_height' );
+		$logo_height       = Helpers::get_theme_option( 'logo_height' );
 
 		$custom_style      = ! empty( $custom_css ) ? $custom_css : '';
 		$primary_font      = ( ! empty( $primary_font ) && $primary_font != 'System' ) ? str_replace( '+', ' ', $primary_font ) : '';
 		$heading_font      = ( ! empty( $heading_font ) && $heading_font != 'System' ) ? str_replace( '+', ' ', $heading_font ) : '';
 
-		$disable_borders   = Customizer::get_theme_option( 'disable_section_borders' );
+		$disable_borders   = Helpers::get_theme_option( 'disable_section_borders' );
 
 		if ( is_page() ) {
 			switch ( get_page_template_slug() ) {
@@ -88,10 +88,10 @@ class Assets {
 					$content_width = 6;
 					break;
 				default:
-					$content_width = Customizer::get_theme_option( 'content_width' );
+					$content_width = Helpers::get_theme_option( 'content_width' );
 			}
 		} else {
-			$content_width = Customizer::get_theme_option( 'content_width' );
+			$content_width = Helpers::get_theme_option( 'content_width' );
 		}
 
 		$custom_style .= "
@@ -120,8 +120,8 @@ class Assets {
 	public static function enqueue_google_fonts() {
 		$fonts = array();
 
-		$primary_font = Customizer::get_theme_option( 'primary_font' );
-		$heading_font = Customizer::get_theme_option( 'heading_font' );
+		$primary_font = Helpers::get_theme_option( 'primary_font' );
+		$heading_font = Helpers::get_theme_option( 'heading_font' );
 
 		if ( ! empty( $primary_font ) && $primary_font != 'System' ) {
 			$fonts[] = $primary_font;
@@ -142,8 +142,8 @@ class Assets {
 	 * @return void
 	 */
 	public static function enqueue_external_scripts() {
-		$enabled = Customizer::get_theme_option( 'recaptcha_enabled' );
-		$site_key = Customizer::get_theme_option( 'recaptcha_site_key' );
+		$enabled = Helpers::get_theme_option( 'recaptcha_enabled' );
+		$site_key = Helpers::get_theme_option( 'recaptcha_site_key' );
 
 		if ( $enabled && $site_key ) {
 			wp_enqueue_script( 'chipmunk-recaptcha', '//google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit', false, null, true );

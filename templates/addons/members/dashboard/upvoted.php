@@ -1,4 +1,15 @@
-<?php $resources = Chipmunk\Addons\Members\Helpers::get_upvoted_resources( Chipmunk\Customizer::get_theme_option( 'posts_per_page' ) ); ?>
+<?php $resources = Chipmunk\Query::get_resources( array(
+	'post_status'       => 'any, trash',
+	'meta_query'        => array(
+		'relation'          => 'OR',
+
+		array(
+			'key'           => Chipmunk\Extensions\Upvotes::$db_key,
+			'value'         => get_current_user_id(),
+			'compare'       => '=',
+		),
+	),
+) ); ?>
 
 <?php if ( $resources->have_posts() ) : ?>
 	<div class="c-tile__list" data-action-element="load_posts">

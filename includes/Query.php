@@ -16,12 +16,11 @@ class Query {
 	public static function get_posts( $args, $tax = null, $date = null ) {
 		$defaults = array(
 			'post_type'         => 'post',
-			'post_status'       => 'publish',
 			'posts_per_page'    => -1,
 		);
 
 		// Apply taxonomy params
-		if ( isset( $tax ) ) {
+		if ( ! empty( $tax ) ) {
 			$defaults['tax_query'] = array(
 				array(
 					'taxonomy'          => $tax->taxonomy,
@@ -33,7 +32,7 @@ class Query {
 		}
 
 		// Apply date params
-		if ( isset( $date ) ) {
+		if ( ! empty( $date ) ) {
 			$defaults['date_query'] = array(
 				array(
 					'year'  => $date['year'],
@@ -86,83 +85,24 @@ class Query {
 	/**
 	 * Get resources
 	 */
-	public static function get_resources( $limit = -1, $paged = false, $term = null, $author = null ) {
-		$args = array(
+	public static function get_resources( $args = array(), $term = null ) {
+		$defaults = array(
 			'post_type'         => 'resource',
-			'post_status'       => 'publish',
-			'posts_per_page'    => $limit,
-			'paged'             => $paged,
+			'posts_per_page'    => Helpers::get_theme_option( 'posts_per_page' ),
+			'paged'             => Helpers::get_current_page(),
 		);
 
-		// Apply taxonomy options
-		if ( is_author() && isset( $author ) ) {
-			$args[] = array(
-				'author_name'   => $author,
-			);
+		// Add default ordering args
+		if ( empty( $args['orderby'] ) ) {
+			$defaults = array_merge( $defaults, self::get_resources_sort_args() );
 		}
 
-		$sort_args = \Chipmunk\Helpers::get_resources_sort_args();
-		$tax_args = \Chipmunk\Helpers::get_resources_tax_args( $term );
+		// Add default taxonomy args
+		if ( ( is_tax() && ! empty( $term ) ) || ( ! empty( $_GET['tag'] ) && Helpers::is_feature_enabled( 'filters', 'resource', false ) ) ) {
+			$defaults = array_merge( $defaults, self::get_resources_tax_args( $term ) );
+		}
 
-		return new \WP_Query( array_merge( $args, $sort_args, $tax_args ) );
-	}
-
-	/**
-	 * Get latest resources
-	 */
-	public static function get_latest_resources( $limit = -1, $paged = false ) {
-		$args = array(
-			'post_type'         => 'resource',
-			'post_status'       => 'publish',
-			'posts_per_page'    => $limit,
-			'paged'             => $paged,
-			'orderby'           => 'date',
-			'order'             => 'DESC',
-		);
-
-		return new \WP_Query( $args );
-	}
-
-	/**
-	 * Get featured resources
-	 */
-	public static function get_featured_resources( $limit = -1, $paged = false ) {
-		$args = array(
-			'post_type'         => 'resource',
-			'post_status'       => 'publish',
-			'posts_per_page'    => $limit,
-			'paged'             => $paged,
-			'meta_query'        => array(
-				'featured'          => array(
-					'key'               => '_' . THEME_SLUG . '_resource_is_featured',
-					'value'             => array( '1', 'on' ),
-					'compare'           => 'IN',
-				),
-				'views'             => array(
-					'key'               => '_' . THEME_SLUG . '_post_view_count',
-				),
-			),
-			'orderby'           => 'rand',
-		);
-
-		return new \WP_Query( $args );
-	}
-
-	/**
-	 * Get popular resources
-	 */
-	public static function get_popular_resources( $limit = -1, $paged = false ) {
-		$args = array(
-			'post_type'         => 'resource',
-			'post_status'       => 'publish',
-			'posts_per_page'    => $limit,
-			'paged'             => $paged,
-			'meta_key'          => '_' . THEME_SLUG . '_post_view_count',
-			'orderby'           => 'meta_value_num',
-			'order'             => 'DESC',
-		);
-
-		return new \WP_Query( $args );
+		return new \WP_Query( wp_parse_args( $args, $defaults ) );
 	}
 
 	/**
@@ -177,5 +117,89 @@ class Query {
 		);
 
 		return new \WP_User_Query( $args );
+	}
+
+	/**
+	 * Get resources sort WP_Query arguments
+	 */
+	private static function get_resources_sort_args() {
+		$sort_args = array();
+
+		// Apply sorting options
+		if ( ! empty( $_GET['sort'] ) && Helpers::is_feature_enabled( 'sorting', 'resource', false ) ) {
+			$sort_params = explode( '-', $_GET['sort'] );
+			$sort_orderby = $sort_params[0];
+			$sort_order = $sort_params[1];
+		}
+		else {
+			$sort_orderby = Helpers::get_theme_option( 'default_sort_by' );
+			$sort_order = Helpers::get_theme_option( 'default_sort_order' );
+		}
+
+		switch ( $sort_orderby ) {
+			case 'date':
+				$sort_args = array(
+					'orderby'   => 'date',
+				);
+				break;
+			case 'name':
+				$sort_args = array(
+					'orderby'   => 'title',
+				);
+				break;
+			case 'views':
+				$sort_args = array(
+					'orderby'   => 'meta_value_num date',
+					'meta_key'  => '_' . THEME_SLUG . '_post_view_count',
+				);
+				break;
+			case 'upvotes':
+				$sort_args = array(
+					'orderby'   => 'meta_value_num date',
+					'meta_key'  => '_' . THEME_SLUG . '_upvote_count',
+				);
+				break;
+			case 'ratings':
+				$sort_args = array(
+					'orderby'   => 'meta_value_num date',
+					'meta_key'  => '_' . THEME_SLUG . '_rating_rank',
+				);
+				break;
+		}
+
+		$sort_args['order'] = $sort_order;
+
+		return $sort_args;
+	}
+
+	/**
+	 * Get resources tax WP_Query arguments
+	 */
+	private static function get_resources_tax_args( $term = null ) {
+		$tax_query = array();
+
+		// Apply taxonomy options
+		if ( is_tax() && ! empty( $term ) ) {
+			$tax_query[] = array(
+				'taxonomy'          => $term->taxonomy,
+				'field'             => 'slug',
+				'terms'             => $term->slug,
+			);
+		}
+
+		// Apply tag filters
+		if ( ! empty( $_GET['tag'] ) && Helpers::is_feature_enabled( 'filters', 'resources', false ) ) {
+			$tax_query[] = array(
+				'taxonomy'          => 'resource-tag',
+				'field'             => 'slug',
+				'terms'             => $_GET['tag'],
+			);
+		}
+
+		if ( count( $tax_query ) > 1 ) {
+			$tax_query['relation'] = 'AND';
+		}
+
+		return array( 'tax_query' => $tax_query );
 	}
 }

@@ -2,8 +2,8 @@
 <?php $year = get_query_var( 'year' ); ?>
 <?php $month = get_query_var( 'monthnum' ); ?>
 <?php $paged = Chipmunk\Helpers::get_current_page(); ?>
-<?php $limit = Chipmunk\Customizer::get_theme_option( 'blog_posts_per_page' ); ?>
-<?php $layout = ( is_single() || is_front_page() ) ? 'tiles' : Chipmunk\Customizer::get_theme_option( 'blog_layout' ); ?>
+<?php $limit = Chipmunk\Helpers::get_theme_option( 'blog_posts_per_page' ); ?>
+<?php $layout = ( is_single() || is_front_page() ) ? 'tiles' : Chipmunk\Helpers::get_theme_option( 'blog_layout' ); ?>
 
 <?php if ( is_single() ) : ?>
 	<?php $title = esc_html__( 'Related', 'chipmunk' ); ?>

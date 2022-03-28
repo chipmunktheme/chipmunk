@@ -1,20 +1,46 @@
 <?php
-	$resources_count    = Chipmunk\Customizer::get_theme_option( 'resources_count', 9 );
-	$disable_sliders    = Chipmunk\Customizer::get_theme_option( 'disable_homepage_listings_sliders' );
-	$infinite_sliders   = Chipmunk\Customizer::get_theme_option( 'infinite_sliders' );
+	$resources_count    = Chipmunk\Helpers::get_theme_option( 'resources_count', 9 );
+	$disable_sliders    = Chipmunk\Helpers::get_theme_option( 'disable_homepage_listings_sliders' );
+	$infinite_sliders   = Chipmunk\Helpers::get_theme_option( 'infinite_sliders' );
 
 	$sections = array(
 		'featured'  => array(
 			'label'     => esc_html__( 'Featured', 'chipmunk' ),
-			'results'   => Chipmunk\Customizer::get_theme_option( 'disable_featured' ) ? new \WP_Query : Chipmunk\Query::get_featured_resources( $resources_count ),
+			'results'   => Chipmunk\Helpers::get_theme_option( 'disable_featured' )
+				? new \WP_Query
+				: Chipmunk\Query::get_resources( array(
+					'posts_per_page'    => -1,
+					'meta_query'        => array(
+						'featured'          => array(
+							'key'               => '_' . THEME_SLUG . '_resource_is_featured',
+							'value'             => array( '1', 'on' ),
+							'compare'           => 'IN',
+						),
+						'views'             => array(
+							'key'               => '_' . THEME_SLUG . '_post_view_count',
+						),
+					),
+					'orderby'           => 'rand',
+				) ),
 		),
 		'latest'    => array(
 			'label'     => esc_html__( 'Latest', 'chipmunk' ),
-			'results'   => Chipmunk\Query::get_latest_resources( $resources_count ),
+			'results'   => Chipmunk\Query::get_resources( array(
+				'posts_per_page'    => -1,
+				'orderby'           => 'date',
+				'order'             => 'DESC',
+			) ),
 		),
 		'popular'   => array(
 			'label'     => esc_html__( 'Popular', 'chipmunk' ),
-			'results'   => Chipmunk\Customizer::get_theme_option( 'disable_resource_views' ) ? new \WP_Query : Chipmunk\Query::get_popular_resources( $resources_count ),
+			'results'   => ! Chipmunk\Helpers::is_feature_enabled( 'views', 'resource', false )
+				? new \WP_Query
+				: Chipmunk\Query::get_resources( array(
+					'posts_per_page'    => -1,
+					'meta_key'          => '_' . THEME_SLUG . '_post_view_count',
+					'orderby'           => 'meta_value_num',
+					'order'             => 'DESC',
+				) ),
 		),
 	);
 

@@ -7,7 +7,7 @@
  */
 
 // If the search query is shorter than 3 letters redirect to homepage
-if ( strlen( get_search_query() ) < 3 || Chipmunk\Customizer::get_theme_option( 'disable_search' ) ) {
+if ( strlen( get_search_query() ) < 3 || Chipmunk\Helpers::get_theme_option( 'disable_search' ) ) {
 	wp_redirect( home_url( '/', 'relative' ) ); exit;
 }
 
