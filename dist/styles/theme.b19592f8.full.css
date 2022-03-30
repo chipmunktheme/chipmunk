@@ -613,6 +613,8 @@ button:focus {
 * {
   margin: 0;
   padding: 0;
+  background: none;
+  border: 0;
   color: inherit;
   font-family: inherit;
   font-size: inherit;
@@ -966,36 +968,16 @@ sub {
     0.5 * 1vw,
     calc(var(--chipmunk--spacer) * 0.5)
   );
+  color: var(--chipmunk--color--gray);
   font-size: 0.875em;
 }
 .c-comment__reply a:hover {
-  opacity: 0.8;
+  color: var(--chipmunk--color--black);
 }
 
 .c-comment__note {
   color: var(--chipmunk--color--gray);
   font-size: 0.875em;
-}
-
-.c-comment-respond:not(:first-child) {
-  margin-top: clamp(
-    calc(var(--chipmunk--spacer) * 2),
-    4 * 1vw,
-    calc(var(--chipmunk--spacer) * 4)
-  );
-}
-.c-comment-respond p {
-  grid-column: 1/-1;
-  text-align: left;
-}
-.c-comment-respond p a:hover {
-  color: var(--chipmunk--color--black);
-}
-.c-comment-respond label {
-  cursor: pointer;
-}
-.c-comment-respond [type=checkbox] {
-  margin-right: 0.5em;
 }
 
 /*
@@ -1500,6 +1482,22 @@ sub {
 
 /* Aspect variants
     ========================================================================== */
+.c-media--9-21 {
+  aspect-ratio: 9/21;
+}
+
+.c-media--9-16 {
+  aspect-ratio: 9/16;
+}
+
+.c-media--2-3 {
+  aspect-ratio: 2/3;
+}
+
+.c-media--3-4 {
+  aspect-ratio: 3/4;
+}
+
 .c-media--1-1 {
   aspect-ratio: 1/1;
 }
@@ -2084,6 +2082,7 @@ sub {
 }
 
 .c-page-head__logo {
+  flex-shrink: 0;
   color: var(--chipmunk--color--primary);
   font-weight: bold;
 }
@@ -3282,6 +3281,7 @@ sub {
 ** ----------------------------------------------------------------------------- */
 .wp-block-separator {
   color: var(--chipmunk--color--gray-light);
+  border-top: 0;
 }
 .wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
   width: 10rem;
@@ -3289,7 +3289,6 @@ sub {
   margin-right: auto;
 }
 .wp-block-separator.is-style-wide {
-  width: 100%;
   border-bottom-width: 1px;
 }
 

@@ -177,7 +177,9 @@ class Assets {
 	 * @return void
 	 */
 	public static function enqueue_admin_scripts() {
-		wp_enqueue_style( 'chipmunk-admin-styles', THEME_TEMPLATE_URI . '/admin/admin.css', array(), THEME_VERSION );
+		if ( self::has_file( 'styles/theme.css' ) ) {
+			wp_enqueue_style( 'chipmunk-admin-styles', self::revisioned_path( 'styles/admin.css' ) );
+		}
 	}
 
 	/**

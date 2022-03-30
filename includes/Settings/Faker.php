@@ -8,7 +8,28 @@ namespace Chipmunk\Settings;
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Faker {
+class Faker extends \Chipmunk\Settings {
+
+	/**
+	 * Setting name
+	 *
+	 * @var string
+	 */
+	private $setting_name = 'faker';
+
+	/**
+	 * Settings tab name
+	 *
+	 * @var string
+	 */
+	private $tab_name = 'Faker';
+
+	/**
+	 * Settings tab slug
+	 *
+	 * @var string
+	 */
+	private $tab_slug = 'faker';
 
 	/**
 	 * Initialize the class.
@@ -17,13 +38,30 @@ class Faker {
 	 */
 	function __construct( ) {
 		add_action( 'admin_init', array( $this, 'action' ) );
-		add_action( 'chipmunk_settings_content', array( $this, 'settings' ), 99 );
+
+		// Output settings content
+		add_filter( 'chipmunk_settings_tabs', array( $this, 'add_settings_tab' ) );
 	}
 
 	/**
-	 * Outputs the settings markup for upvote faker
+	 * Adds settings tab to the list
 	 */
-	public static function settings() {
+	public function add_settings_tab( $tabs ) {
+		$tabs[] = array(
+			'name'      => $this->tab_name,
+			'slug'      => $this->tab_slug,
+			'content'   => $this->get_settings_content(),
+		);
+
+		return $tabs;
+	}
+
+	/**
+	 * Returns the settings markup for upvote faker
+	 */
+	private function get_settings_content() {
+		ob_start();
+
 		?>
 		<h2><?php esc_html_e( 'Fake counter generators', 'chipmunk' ); ?></h2>
 
@@ -66,13 +104,15 @@ class Faker {
 				</tr>
 			</tbody>
 		</table>
+
 		<?php
+		return ob_get_clean();
 	}
 
 	/**
 	 * Checks if a generator action was submitted.
 	 */
-	public static function action() {
+	public function action() {
 		if ( isset( $_POST[THEME_SLUG . '_generator_upvote'] ) ) {
 			self::generate( 'upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'], array( 'resource' ) );
 		}
@@ -85,9 +125,9 @@ class Faker {
 	/**
 	 * Generate fake values for upvote and view counters
 	 */
-	private static function generate( $type, $start, $end, $post_types ) {
+	private function generate( $type, $start, $end, $post_types ) {
 		if ( empty( $start ) && empty( $end ) ) {
-			add_filter( 'chipmunk_admin_notices', array( self::class, 'add_error_notice' ) );
+			$this->add_settings_error( $this->setting_name, __( 'You need to provide both values for the range!', 'chipmunk' ) );
 			return;
 		}
 
@@ -107,30 +147,6 @@ class Faker {
 			}
 		}
 
-		add_filter( 'chipmunk_admin_notices', array( self::class, 'add_success_notice' ) );
-	}
-
-	/**
-	 * Adds success notice
-	 */
-	public static function add_success_notice( $notices ) {
-		$notices[] = array(
-			'type' => 'success',
-			'message' => __( 'Fake counters successfully generated!', 'chipmunk' ),
-		);
-
-		return $notices;
-	}
-
-	/**
-	 * Adds error notice
-	 */
-	public static function add_error_notice( $notices ) {
-		$notices[] = array(
-			'type' => 'error',
-			'message' => __( 'You need to provide both values for the range!', 'chipmunk' ),
-		);
-
-		return $notices;
+		$this->add_settings_error( $this->setting_name, __( 'Fake counters successfully generated!', 'chipmunk' ), 'success' );
 	}
 }

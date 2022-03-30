@@ -11,40 +11,35 @@ namespace Chipmunk\Addons\Members;
 class Settings {
 
 	/**
+	 * Settings tab name
+	 *
+	 * @var string
+	 */
+	private $tab_name = 'Members';
+
+	/**
+	 * Settings tab slug
+	 *
+	 * @var string
+	 */
+	private $tab_slug = 'members';
+
+	/**
  	 * Class constructor
 	 *
 	 * @return void
 	 */
 	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'register_settings_page' ), 20 );
 		add_action( 'admin_init', array( $this, 'register_settings_init' ), 20 );
+
+		// Output settings content
+		add_filter( 'chipmunk_settings_tabs', array( $this, 'add_settings_tab' ) );
 	}
 
 	/**
-	 * Register settings page to the admin_menu action hook
-	 */
-	public function register_settings_page() {
-		add_submenu_page(
-			THEME_SLUG,
-			__( 'Members', 'chipmunk' ),
-			__( 'Members', 'chipmunk' ),
-			'manage_options',
-			THEME_SLUG . '_members',
-			array( $this, 'render_settings_page' )
-		);
-	}
-
-	/**
-	 * Register a settings for Members page
+	 * Register a settings for Members tab
 	 */
 	public function register_settings_init() {
-		$this->init_page_settings();
-	}
-
-	/**
-	 * Init page settings
-	 */
-	public function init_page_settings() {
 		$setting_name = THEME_SLUG . '_members_pages';
 		$pages = get_pages();
 
@@ -108,10 +103,25 @@ class Settings {
 	}
 
 	/**
-	 * Render settings page
+	 * Adds settings tab to the list
 	 */
-	public function render_settings_page() {
+	public function add_settings_tab( $tabs ) {
+		$tabs[] = array(
+			'name'      => $this->tab_name,
+			'slug'      => $this->tab_slug,
+			'content'   => $this->get_settings_content(),
+		);
+
+		return $tabs;
+	}
+
+	/**
+	 * Returns the settings markup for upvote faker
+	 */
+	private function get_settings_content() {
+		ob_start();
 		?>
+
 		<form action="options.php" method="post">
 			<?php
 				settings_fields( 'chipmunk_members_pages' );
@@ -120,6 +130,8 @@ class Settings {
 
 			<?php submit_button(); ?>
 		</form>
+
 		<?php
+		return ob_get_clean();
 	}
 }

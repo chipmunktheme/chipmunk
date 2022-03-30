@@ -8,7 +8,28 @@ namespace Chipmunk\Settings;
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Licenser {
+class Licenser extends \Chipmunk\Settings {
+
+	/**
+	 * Setting name
+	 *
+	 * @var string
+	 */
+	private $setting_name = 'licenses';
+
+	/**
+	 * Settings tab name
+	 *
+	 * @var string
+	 */
+	private $tab_name = 'License';
+
+	/**
+	 * Settings tab slug
+	 *
+	 * @var string
+	 */
+	private $tab_slug = 'license';
 
 	/**
 	 * Initialize the class.
@@ -74,11 +95,11 @@ class Licenser {
 		add_action( 'admin_init', array( $this, 'license_action' ), $this->item_priority );
 
 		// License updating hooks
-		add_action( 'pre_update_option_' . $this->item_slug . '_license_key', array( $this, 'trim_value' ), $this->item_priority, 1 );
+		add_action( 'pre_update_option_' . $this->item_slug . '_license_key', 'trim', $this->item_priority, 1 );
 		// add_action( 'update_option_' . $this->item_slug . '_license_key', array( $this, 'activate_license' ), $this->item_priority, 2 );
 
-		// Output license settings
-		add_action( 'chipmunk_settings_content', array( $this, 'license_settings' ), $this->item_priority );
+		// Output settings content
+		add_filter( 'chipmunk_settings_tabs', array( $this, 'add_settings_tab' ) );
 	}
 
 	/**
@@ -244,7 +265,7 @@ class Licenser {
 
 		// Add proper error message
 		if ( ! isset( $_POST['submit'] ) ) {
-			$this->add_settings_error( $message );
+			$this->add_settings_error( $this->setting_name, $message );
 		}
 	}
 
@@ -272,20 +293,6 @@ class Licenser {
 
 		// Otherwise return the remote_api_url
 		return esc_url( $this->remote_api_url );
-	}
-
-	/**
-	 * Adds setting error using Settings API
-	 *
-	 * @param string $message Error message
-	 * @param string $type Error type
-	 */
-	private function add_settings_error( $message, $type = 'error' ) {
-		$old_errors = get_settings_errors( $this->theme_slug . '_licenses' );
-
-		if ( ! \Chipmunk\Helpers::find_key_value( $old_errors, 'code', 'license_error' ) ) {
-			add_settings_error( $this->theme_slug . '_licenses', 'license_error', $message, $type );
-		}
 	}
 
 	// /**
@@ -418,15 +425,6 @@ class Licenser {
 	}
 
 	/**
-	 * Trims the value of the key.
-	 *
-	 * @param string $value Value to be trimmed
-	 */
-	public function trim_value( $value ) {
-		return trim( $value );
-	}
-
-	/**
 	 * Checks if a license action was submitted.
 	 */
 	public function license_action() {
@@ -457,58 +455,67 @@ class Licenser {
 	 */
 	public function register_option() {
 		register_setting(
-			$this->theme_slug . '_licenses',
-			$this->item_slug . '_license_key',
+			"{$this->theme_slug}_{$this->setting_name}",
+			"{$this->item_slug}_license_key",
 			array( 'sanitize_callback' => array( $this, 'sanitize_license' ) )
 		);
 	}
 
 	/**
-	 * Outputs the markup used on the theme license page.
+	 * Adds settings tab to the list
 	 */
-	public function license_settings() {
+	public function add_settings_tab( $tabs ) {
+		$tabs[] = array(
+			'name'      => $this->tab_name,
+			'slug'      => $this->tab_slug,
+			'content'   => $this->get_settings_content(),
+		);
+
+		return $tabs;
+	}
+
+	/**
+	 * Returns the markup used on the theme license page.
+	 */
+	private function get_settings_content() {
+		ob_start();
+
 		$license    = get_option( $this->item_slug . '_license_key' );
 		$status    = $this->get_license_status( $license );
 		$key_status = get_option( $this->item_slug . '_license_key_status', false );
-
 		?>
-		<h2><?php esc_html_e( 'Licenses', 'chipmunk' ); ?></h2>
 
-		<form method="post" action="options.php">
-			<table class="form-table chipmunk-licenses">
-				<tbody>
-					<tr valign="top">
-						<th scope="row" valign="top">
-							<?php echo $this->item_name; ?>
-						</th>
+		<form action="options.php" method="post">
+			<div class="chipmunk__license">
+				<h3 class="chipmunk__license-head">
+					<?php echo $this->item_name; ?>
+				</h3>
 
-						<td>
-							<div class="chipmunk-license">
-								<?php settings_fields( $this->theme_slug . '_licenses' ); ?>
+				<div class="chipmunk__license-body">
+					<?php settings_fields( $this->theme_slug . '_licenses' ); ?>
 
-								<input id="<?php echo $this->item_slug; ?>_license_key" name="<?php echo $this->item_slug; ?>_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
+					<input id="<?php echo $this->item_slug; ?>_license_key" name="<?php echo $this->item_slug; ?>_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
 
-								<?php if ( ! empty( $license ) ) : ?>
-									<?php if ( 'valid' == $key_status ) : ?>
-										<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
-									<?php else : ?>
-										<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
-									<?php endif; ?>
-								<?php endif; ?>
-							</div>
+					<?php if ( ! empty( $license ) ) : ?>
+						<?php if ( 'valid' == $key_status ) : ?>
+							<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
+						<?php else : ?>
+							<button type="submit" class="button-secondary" name="<?php echo $this->item_slug; ?>_license_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
+						<?php endif; ?>
+					<?php endif; ?>
+				</div>
 
-							<div class="chipmunk-license-data license-<?php echo $key_status; ?>-notice">
-								<p class="description"><?php echo $status; ?></p>
-							</div>
-						</td>
-					</tr>
+				<div class="chipmunk__license-data is-<?php echo $key_status; ?>">
+					<p class="description"><?php echo $status; ?></p>
+				</div>
 
-					<?php do_action( 'chipmunk_licenses_content' ); ?>
-				</tbody>
-			</table>
+				<?php do_action( 'chipmunk_licenses_content' ); ?>
+			</div>
 
 			<?php submit_button(); ?>
 		</form>
+
 		<?php
+		return ob_get_clean();
 	}
 }
