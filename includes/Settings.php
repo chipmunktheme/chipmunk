@@ -20,12 +20,11 @@ class Settings {
 		add_action( 'chipmunk_settings_nav', array( $this, 'add_menu_page' ), 1 );
 
 		// Initialize theme licenser
-		new Settings\Licenser( array(
-			'menu_url'       => admin_url( 'admin.php?page=' . THEME_SLUG . '_licenses' ),
+		$licenser = new Settings\Licenser( array(
 			'remote_api_url' => THEME_SHOP_URL,
 			'item_id'        => THEME_ITEM_ID,
 			'item_name'      => THEME_TITLE,
-			'item_slug'      => THEME_ITEM_SLUG,
+			'item_slug'      => THEME_SLUG,
 		) );
 
 		// Initialize faker
@@ -108,7 +107,7 @@ class Settings {
 		$setting = THEME_SLUG . '_' . $setting;
 		$errors = get_settings_errors( $setting );
 
-		if ( ! Helpers::find_key_value( $errors, 'code', $setting ) ) {
+		if ( ! empty( $message ) && ! Helpers::find_key_value( $errors, 'code', $setting ) ) {
 			add_settings_error( $setting, $setting, $message, $type );
 		}
 	}
