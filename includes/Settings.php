@@ -11,6 +11,13 @@ namespace Chipmunk;
 class Settings {
 
 	/**
+	 * License data object
+	 *
+	 * @var object
+	 */
+	public static $license;
+
+	/**
  	 * Used to register custom hooks
 	 *
 	 * @return void
@@ -26,6 +33,9 @@ class Settings {
 			'item_name'      => THEME_TITLE,
 			'item_slug'      => THEME_SLUG,
 		) );
+
+		// Store license data
+		self::$license = $licenser->get_license_data();
 
 		// Initialize faker
 		new Settings\Faker();
@@ -51,6 +61,7 @@ class Settings {
 	public function admin_settings() {
 		$tabs = apply_filters( 'chipmunk_settings_tabs', array() );
 		?>
+
 		<div class="chipmunk">
 			<div class="chipmunk__head chipmunk__wrap">
 				<h1>
@@ -60,10 +71,18 @@ class Settings {
 					<?php echo THEME_TITLE; ?>
 				</h1>
 
-				<a href="<?php echo THEME_SHOP_URL; ?>/account" target="_blank" class="chipmunk__status">
-					<strong>Plus License</strong><br>
-					piotr@kulpinski.pl
-				</a>
+				<?php if ( ! empty( self::$license ) && 'valid' == self::$license->license ) : ?>
+					<a href="<?php echo THEME_SHOP_URL; ?>/account" target="_blank" class="chipmunk__status">
+						<div class="chipmunk__status-icon">
+							✓
+						</div>
+
+						<div class="chipmunk__status-content">
+							<strong><?php printf( esc_html__( '%s License', 'chipmunk' ), THEME_PLANS[ self::$license->price_id ] ); ?></strong><br>
+							<?php echo esc_html( self::$license->customer_email ); ?>
+						</div>
+					</a>
+				<?php endif; ?>
 			</div>
 
 			<div class="chipmunk__nav chipmunk__wrap">
@@ -84,6 +103,7 @@ class Settings {
 				<?php endforeach; ?>
 			</div>
 		</div>
+
 		<?php
 	}
 

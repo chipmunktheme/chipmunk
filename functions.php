@@ -24,6 +24,7 @@ define( 'THEME_ASSETS_PATH', 		'assets/' );
 define( 'THEME_TEMPLATES_PATH', 	'templates/' );
 define( 'THEME_MANIFEST_PATH',      THEME_DIST_PATH . 'manifest.json' );
 define( 'THEME_MANIFEST_DEV_PATH',  THEME_DIST_PATH . 'manifest-dev.json' );
+define( 'THEME_PLANS',              array( '1' => 'Basic', '2' => 'Plus', '3' => 'Pro' ) );
 
 /*
  * Composer autoload

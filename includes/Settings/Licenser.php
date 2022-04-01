@@ -155,6 +155,7 @@ class Licenser extends \Chipmunk\Settings {
 
 					case 'invalid':
 					case 'site_inactive':
+					case 'invalid_item_id':
 						$message = $this->errors['license-invalid'];
 						break;
 
@@ -203,10 +204,8 @@ class Licenser extends \Chipmunk\Settings {
 	 * @return array
 	 */
 	public function check_license( $force_refresh = false ) {
-		$license_data = get_transient( $this->license_data_option );
-
-		if ( ! $force_refresh && ! empty( $license_data ) ) {
-			return maybe_unserialize( $license_data );
+		if ( ! $force_refresh && $license_data = $this->get_license_data() ) {
+			return $license_data;
 		}
 
 		if ( $response = $this->get_api_response( 'check_license' ) ) {
@@ -224,7 +223,11 @@ class Licenser extends \Chipmunk\Settings {
 	 * @return array
 	 */
 	public function get_license_data() {
-		return $this->check_license();
+		$license_data = get_transient( $this->license_data_option );
+
+		if ( ! empty( $license_data ) ) {
+			return maybe_unserialize( $license_data );
+		}
 	}
 
 	/**
@@ -235,7 +238,6 @@ class Licenser extends \Chipmunk\Settings {
 	 * @return array Encoded JSON response.
 	 */
 	private function get_api_response( $action ) {
-		// Call the custom API.
 		$response = wp_remote_post( $this->remote_api_url, array(
 			'timeout'   => 15,
 			'sslverify' => false,
@@ -247,7 +249,6 @@ class Licenser extends \Chipmunk\Settings {
 			),
 		) );
 
-		// Make sure the response came back okay
 		if ( ! $this->is_valid_response( $response ) ) {
 			$this->display_settings_error( $response, $this->errors['license-unknown'] );
 			return;
@@ -319,15 +320,9 @@ class Licenser extends \Chipmunk\Settings {
 			return $this->strings['license-status-unknown'];
 		}
 
-		// Get expire date
-		$expires = false;
-
 		if ( isset( $license_data->expires ) && 'lifetime' != $license_data->expires ) {
 			$expires = date_i18n( 'F j, Y', strtotime( $license_data->expires, current_time( 'timestamp' ) ) );
 			$renew_link = '<a href="' . esc_url( $this->get_renewal_link() ) . '" target="_blank">' . $this->strings['renew'] . '</a>';
-		}
-		elseif ( isset( $license_data->expires ) && 'lifetime' == $license_data->expires ) {
-			$expires = 'lifetime';
 		}
 
 		// Get site counts
@@ -343,7 +338,7 @@ class Licenser extends \Chipmunk\Settings {
 			case 'valid':
 				$messages[] = $this->strings['license-key-is-active'];
 
-				if ( ! empty( $expires ) && 'lifetime' != $expires ) {
+				if ( ! empty( $expires ) ) {
 					$messages[] = sprintf( $this->strings['expires%s'], $expires );
 				}
 
@@ -354,7 +349,7 @@ class Licenser extends \Chipmunk\Settings {
 				break;
 
 			case 'expired':
-				if ( $expires ) {
+				if ( ! empty( $expires ) ) {
 					$messages[] = sprintf( $this->strings['license-key-expired-%s'], $expires );
 				}
 				else {
@@ -368,6 +363,7 @@ class Licenser extends \Chipmunk\Settings {
 				break;
 
 			case 'invalid':
+			case 'invalid_item_id':
 				$messages[] = $this->strings['license-is-invalid'];
 				break;
 
