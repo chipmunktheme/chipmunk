@@ -2,6 +2,8 @@
 
 namespace Chipmunk\Addons;
 
+use Chipmunk\Helpers;
+
 /**
  * Allows users to sign-up and improve the experience of the theme
  *
@@ -120,6 +122,10 @@ class Members {
 	 * @return void
 	 */
 	public function setup_addon() {
+		if ( ! Helpers::has_addon( 'members' ) ) {
+			return;
+		}
+
 		if ( ! get_transient( self::$init_transient ) ) {
 			// Register post meta
 			$this->register_pages();

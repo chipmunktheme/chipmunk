@@ -2,6 +2,8 @@
 
 namespace Chipmunk\Addons;
 
+use Chipmunk\Helpers;
+
 /**
  * Adds a 5-star rating system to the theme
  *
@@ -75,6 +77,10 @@ class Ratings {
 	 * @return void
 	 */
 	public function setup_addon() {
+		if ( ! Helpers::has_addon( 'ratings' ) ) {
+			return;
+		}
+
 		if ( ! get_transient( self::$init_transient ) ) {
 			// Register post meta
 			$this->register_post_meta();

@@ -29,11 +29,12 @@ class Helpers {
 	/**
 	 * Check if Chipmunk plugin is enabled
 	 */
-	public static function has_addon( $plugin ) {
-		$class = '\Chipmunk' . ucwords( $plugin );
+	public static function has_addon( $addon ) {
+		if ( empty( $license = \Chipmunk\Settings::$license ) ) {
+			return false;
+		}
 
-		// return class_exists( $class ) && property_exists( $class, 'is_enabled' ) && $class::$is_enabled;
-		return true;
+		return (int) $license->price_id >= THEME_ADDONS[ $addon ];
 	}
 
 	/**
