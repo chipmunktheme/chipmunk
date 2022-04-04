@@ -41,16 +41,18 @@
 						</div>
 					<?php endif; ?>
 
-					<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
-						'class' => 'c-resource__tags',
-						'stats' => array(
-							'terms' => array(
-								'term_args' => array(
-									'taxonomy' => 'resource-tag',
+					<?php if ( ! is_search() ) : ?>
+						<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+							'class' => 'c-resource__tags',
+							'stats' => array(
+								'terms' => array(
+									'term_args' => array(
+										'taxonomy' => 'resource-tag',
+									),
 								),
 							),
-						),
-					) ); ?>
+						) ); ?>
+					<?php endif; ?>
 				</div>
 
 				<?php do_action( 'chipmunk_after_resource_info' ); ?>
