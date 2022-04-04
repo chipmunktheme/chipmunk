@@ -1,0 +1,18 @@
+/*
+** Blocks / Separator
+** ----------------------------------------------------------------------------- */
+
+.wp-block-separator {
+  color: var(--chipmunk--color--gray-light);
+  border-top: 0;
+
+  &:not(.is-style-wide):not(.is-style-dots) {
+    width: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &.is-style-wide {
+    border-bottom-width: 1px;
+  }
+}

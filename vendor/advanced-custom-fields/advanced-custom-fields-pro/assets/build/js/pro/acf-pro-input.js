@@ -1,14 +1,14 @@
-/******/ (function() { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
+/** *** */ (function() { // webpackBootstrap
+/** *** */ 	const __webpack_modules__ = ({
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-flexible-content.js":
-/*!*****************************************************************************************!*\
+/*! *****************************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-flexible-content.js ***!
-  \*****************************************************************************************/
+  \**************************************************************************************** */
 /***/ (function() {
 
 (function ($) {
-  var Field = acf.Field.extend({
+  const Field = acf.Field.extend({
     type: 'flexible_content',
     wait: '',
     events: {
@@ -20,44 +20,44 @@
       unloadField: 'onUnload',
       mouseover: 'onHover'
     },
-    $control: function () {
+    $control () {
       return this.$('.acf-flexible-content:first');
     },
-    $layoutsWrap: function () {
+    $layoutsWrap () {
       return this.$('.acf-flexible-content:first > .values');
     },
-    $layouts: function () {
+    $layouts () {
       return this.$('.acf-flexible-content:first > .values > .layout');
     },
-    $layout: function (index) {
-      return this.$('.acf-flexible-content:first > .values > .layout:eq(' + index + ')');
+    $layout (index) {
+      return this.$(`.acf-flexible-content:first > .values > .layout:eq(${  index  })`);
     },
-    $clonesWrap: function () {
+    $clonesWrap () {
       return this.$('.acf-flexible-content:first > .clones');
     },
-    $clones: function () {
+    $clones () {
       return this.$('.acf-flexible-content:first > .clones  > .layout');
     },
-    $clone: function (name) {
-      return this.$('.acf-flexible-content:first > .clones  > .layout[data-layout="' + name + '"]');
+    $clone (name) {
+      return this.$(`.acf-flexible-content:first > .clones  > .layout[data-layout="${  name  }"]`);
     },
-    $actions: function () {
+    $actions () {
       return this.$('.acf-actions:last');
     },
-    $button: function () {
+    $button () {
       return this.$('.acf-actions:last .button');
     },
-    $popup: function () {
+    $popup () {
       return this.$('.tmpl-popup:last');
     },
-    getPopupHTML: function () {
+    getPopupHTML () {
       // vars
-      var html = this.$popup().html();
-      var $html = $(html); // count layouts
+      let html = this.$popup().html();
+      const $html = $(html); // count layouts
 
-      var $layouts = this.$layouts();
+      const $layouts = this.$layouts();
 
-      var countLayouts = function (name) {
+      const countLayouts = function (name) {
         return $layouts.filter(function () {
           return $(this).data('layout') === name;
         }).length;
@@ -66,11 +66,11 @@
 
       $html.find('[data-layout]').each(function () {
         // vars
-        var $a = $(this);
-        var min = $a.data('min') || 0;
-        var max = $a.data('max') || 0;
-        var name = $a.data('layout') || '';
-        var count = countLayouts(name); // max
+        const $a = $(this);
+        const min = $a.data('min') || 0;
+        const max = $a.data('max') || 0;
+        const name = $a.data('layout') || '';
+        const count = countLayouts(name); // max
 
         if (max && count >= max) {
           $a.addClass('disabled');
@@ -80,11 +80,11 @@
 
         if (min && count < min) {
           // vars
-          var required = min - count;
+          const required = min - count;
 
-          var title = acf.__('{required} {label} {identifier} required (min {min})');
+          let title = acf.__('{required} {label} {identifier} required (min {min})');
 
-          var identifier = acf._n('layout', 'layouts', required); // translate
+          const identifier = acf._n('layout', 'layouts', required); // translate
 
 
           title = title.replace('{required}', required);
@@ -93,7 +93,7 @@
           title = title.replace('{identifier}', identifier);
           title = title.replace('{min}', min); // badge
 
-          $a.append('<span class="badge" title="' + title + '">' + required + '</span>');
+          $a.append(`<span class="badge" title="${  title  }">${  required  }</span>`);
         }
       }); // update
 
@@ -101,22 +101,22 @@
 
       return html;
     },
-    getValue: function () {
+    getValue () {
       return this.$layouts().length;
     },
-    allowRemove: function () {
-      var min = parseInt(this.get('min'));
+    allowRemove () {
+      const min = parseInt(this.get('min'));
       return !min || min < this.val();
     },
-    allowAdd: function () {
-      var max = parseInt(this.get('max'));
+    allowAdd () {
+      const max = parseInt(this.get('max'));
       return !max || max > this.val();
     },
-    isFull: function () {
-      var max = parseInt(this.get('max'));
+    isFull () {
+      const max = parseInt(this.get('max'));
       return max && this.val() >= max;
     },
-    addSortable: function (self) {
+    addSortable (self) {
       // bail early if max 1 row
       if (this.get('max') == 1) {
         return;
@@ -129,17 +129,17 @@
         forceHelperSize: true,
         forcePlaceholderSize: true,
         scroll: true,
-        stop: function (event, ui) {
+        stop (event, ui) {
           self.render();
         },
-        update: function (event, ui) {
+        update (event, ui) {
           self.$input().trigger('change');
         }
       });
     },
-    addCollapsed: function () {
+    addCollapsed () {
       // vars
-      var indexes = preference.load(this.get('key')); // bail early if no collapsed
+      const indexes = preference.load(this.get('key')); // bail early if no collapsed
 
       if (!indexes) {
         return false;
@@ -152,13 +152,13 @@
         }
       });
     },
-    addUnscopedEvents: function (self) {
+    addUnscopedEvents (self) {
       // invalidField
       this.on('invalidField', '.layout', function (e) {
         self.onInvalidField(e, $(this));
       });
     },
-    initialize: function () {
+    initialize () {
       // add unscoped events
       this.addUnscopedEvents(this); // add collapsed
 
@@ -168,7 +168,7 @@
 
       this.render();
     },
-    render: function () {
+    render () {
       // update order number
       this.$layouts().each(function (i) {
         $(this).find('.acf-fc-layout-order:first').html(i + 1);
@@ -187,9 +187,9 @@
         this.$button().removeClass('disabled');
       }
     },
-    onShow: function (e, $el, context) {
+    onShow (e, $el, context) {
       // get sub fields
-      var fields = acf.getFields({
+      const fields = acf.getFields({
         is: ':visible',
         parent: this.$el
       }); // trigger action
@@ -198,18 +198,18 @@
 
       acf.doAction('show_fields', fields);
     },
-    validateAdd: function () {
+    validateAdd () {
       // return true if allowed
       if (this.allowAdd()) {
         return true;
       } // vars
 
 
-      var max = this.get('max');
+      const max = this.get('max');
 
-      var text = acf.__('This field has a limit of {max} {label} {identifier}');
+      let text = acf.__('This field has a limit of {max} {label} {identifier}');
 
-      var identifier = acf._n('layout', 'layouts', max); // replace
+      const identifier = acf._n('layout', 'layouts', max); // replace
 
 
       text = text.replace('{max}', max);
@@ -217,20 +217,20 @@
       text = text.replace('{identifier}', identifier); // add notice
 
       this.showNotice({
-        text: text,
+        text,
         type: 'warning'
       }); // return
 
       return false;
     },
-    onClickAdd: function (e, $el) {
+    onClickAdd (e, $el) {
       // validate
       if (!this.validateAdd()) {
         return false;
       } // within layout
 
 
-      var $layout = null;
+      let $layout = null;
 
       if ($el.hasClass('acf-icon')) {
         $layout = $el.closest('.layout');
@@ -238,12 +238,12 @@
       } // new popup
 
 
-      var popup = new Popup({
+      const popup = new Popup({
         target: $el,
         targetConfirm: false,
         text: this.getPopupHTML(),
         context: this,
-        confirm: function (e, $el) {
+        confirm (e, $el) {
           // check disabled
           if ($el.hasClass('disabled')) {
             return;
@@ -255,7 +255,7 @@
             before: $layout
           });
         },
-        cancel: function () {
+        cancel () {
           if ($layout) {
             $layout.removeClass('-hover');
           }
@@ -264,7 +264,7 @@
 
       popup.on('click', '[data-layout]', 'onConfirm');
     },
-    add: function (args) {
+    add (args) {
       // defaults
       args = acf.parseArgs(args, {
         layout: '',
@@ -276,7 +276,7 @@
       } // add row
 
 
-      var $el = acf.duplicate({
+      const $el = acf.duplicate({
         target: this.$clone(args.layout),
         append: this.proxy(function ($el, $el2) {
           // append
@@ -297,40 +297,40 @@
 
       return $el;
     },
-    onClickDuplicate: function (e, $el) {
+    onClickDuplicate (e, $el) {
       // Validate with warning.
       if (!this.validateAdd()) {
         return false;
       } // get layout and duplicate it.
 
 
-      var $layout = $el.closest('.layout');
+      const $layout = $el.closest('.layout');
       this.duplicateLayout($layout);
     },
-    duplicateLayout: function ($layout) {
+    duplicateLayout ($layout) {
       // Validate without warning.
       if (!this.allowAdd()) {
         return false;
       } // Vars.
 
 
-      var fieldKey = this.get('key'); // Duplicate layout.
+      const fieldKey = this.get('key'); // Duplicate layout.
 
-      var $el = acf.duplicate({
+      const $el = acf.duplicate({
         target: $layout,
         // Provide a custom renaming callback to avoid renaming parent row attributes.
-        rename: function (name, value, search, replace) {
+        rename (name, value, search, replace) {
           // Rename id attributes from "field_1-search" to "field_1-replace".
           if (name === 'id') {
-            return value.replace(fieldKey + '-' + search, fieldKey + '-' + replace); // Rename name and for attributes from "[field_1][search]" to "[field_1][replace]".
-          } else {
-            return value.replace(fieldKey + '][' + search, fieldKey + '][' + replace);
-          }
+            return value.replace(`${fieldKey  }-${  search}`, `${fieldKey  }-${  replace}`); // Rename name and for attributes from "[field_1][search]" to "[field_1][replace]".
+          } 
+            return value.replace(`${fieldKey  }][${  search}`, `${fieldKey  }][${  replace}`);
+          
         },
-        before: function ($el) {
+        before ($el) {
           acf.doAction('unmount', $el);
         },
-        after: function ($el, $el2) {
+        after ($el, $el2) {
           acf.doAction('remount', $el);
         }
       }); // trigger change for validation errors
@@ -343,18 +343,18 @@
 
       return $el;
     },
-    validateRemove: function () {
+    validateRemove () {
       // return true if allowed
       if (this.allowRemove()) {
         return true;
       } // vars
 
 
-      var min = this.get('min');
+      const min = this.get('min');
 
-      var text = acf.__('This field requires at least {min} {label} {identifier}');
+      let text = acf.__('This field requires at least {min} {label} {identifier}');
 
-      var identifier = acf._n('layout', 'layouts', min); // replace
+      const identifier = acf._n('layout', 'layouts', min); // replace
 
 
       text = text.replace('{min}', min);
@@ -362,14 +362,14 @@
       text = text.replace('{identifier}', identifier); // add notice
 
       this.showNotice({
-        text: text,
+        text,
         type: 'warning'
       }); // return
 
       return false;
     },
-    onClickRemove: function (e, $el) {
-      var $layout = $el.closest('.layout'); // Bypass confirmation when holding down "shift" key.
+    onClickRemove (e, $el) {
+      const $layout = $el.closest('.layout'); // Bypass confirmation when holding down "shift" key.
 
       if (e.shiftKey) {
         return this.removeLayout($layout);
@@ -378,28 +378,28 @@
 
       $layout.addClass('-hover'); // add tooltip
 
-      var tooltip = acf.newTooltip({
+      const tooltip = acf.newTooltip({
         confirmRemove: true,
         target: $el,
         context: this,
-        confirm: function () {
+        confirm () {
           this.removeLayout($layout);
         },
-        cancel: function () {
+        cancel () {
           $layout.removeClass('-hover');
         }
       });
     },
-    removeLayout: function ($layout) {
+    removeLayout ($layout) {
       // reference
-      var self = this; // vars
+      const self = this; // vars
 
-      var endHeight = this.getValue() == 1 ? 60 : 0; // remove
+      const endHeight = this.getValue() == 1 ? 60 : 0; // remove
 
       acf.remove({
         target: $layout,
-        endHeight: endHeight,
-        complete: function () {
+        endHeight,
+        complete () {
           // trigger change to allow attachment save
           self.$input().trigger('change'); // render
 
@@ -407,9 +407,9 @@
         }
       });
     },
-    onClickCollapse: function (e, $el) {
+    onClickCollapse (e, $el) {
       // vars
-      var $layout = $el.closest('.layout'); // toggle
+      const $layout = $el.closest('.layout'); // toggle
 
       if (this.isLayoutClosed($layout)) {
         this.openLayout($layout);
@@ -417,26 +417,26 @@
         this.closeLayout($layout);
       }
     },
-    isLayoutClosed: function ($layout) {
+    isLayoutClosed ($layout) {
       return $layout.hasClass('-collapsed');
     },
-    openLayout: function ($layout) {
+    openLayout ($layout) {
       $layout.removeClass('-collapsed');
       acf.doAction('show', $layout, 'collapse');
     },
-    closeLayout: function ($layout) {
+    closeLayout ($layout) {
       $layout.addClass('-collapsed');
       acf.doAction('hide', $layout, 'collapse'); // render
       // - no change could happen if layout was already closed. Only render when closing
 
       this.renderLayout($layout);
     },
-    renderLayout: function ($layout) {
+    renderLayout ($layout) {
       // vars
-      var $input = $layout.children('input');
-      var prefix = $input.attr('name').replace('[acf_fc_layout]', ''); // ajax data
+      const $input = $layout.children('input');
+      const prefix = $input.attr('name').replace('[acf_fc_layout]', ''); // ajax data
 
-      var ajaxData = {
+      const ajaxData = {
         action: 'acf/fields/flexible_content/layout_title',
         field_key: this.get('key'),
         i: $layout.index(),
@@ -449,16 +449,16 @@
         data: acf.prepareForAjax(ajaxData),
         dataType: 'html',
         type: 'post',
-        success: function (html) {
+        success (html) {
           if (html) {
             $layout.children('.acf-fc-layout-handle').html(html);
           }
         }
       });
     },
-    onUnload: function () {
+    onUnload () {
       // vars
-      var indexes = []; // loop
+      let indexes = []; // loop
 
       this.$layouts().each(function (i) {
         if ($(this).hasClass('-collapsed')) {
@@ -470,13 +470,13 @@
 
       preference.save(this.get('key'), indexes);
     },
-    onInvalidField: function (e, $layout) {
+    onInvalidField (e, $layout) {
       // open if is collapsed
       if (this.isLayoutClosed($layout)) {
         this.openLayout($layout);
       }
     },
-    onHover: function () {
+    onHover () {
       // add sortable
       this.addSortable(this); // remove event
 
@@ -501,7 +501,7 @@
       'click [data-layout]': 'onConfirm',
       'click [data-event="cancel"]': 'onCancel'
     },
-    render: function () {
+    render () {
       // set HTML
       this.html(this.get('text')); // add class
 
@@ -528,35 +528,35 @@
 
   var preference = new acf.Model({
     name: 'this.collapsedLayouts',
-    key: function (key, context) {
+    key (key, context) {
       // vars
-      var count = this.get(key + context) || 0; // update
+      let count = this.get(key + context) || 0; // update
 
       count++;
       this.set(key + context, count, true); // modify fieldKey
 
       if (count > 1) {
-        key += '-' + count;
+        key += `-${  count}`;
       } // return
 
 
       return key;
     },
-    load: function (key) {
+    load (key) {
       // vars
       var key = this.key(key, 'load');
-      var data = acf.getPreference(this.name); // return
+      const data = acf.getPreference(this.name); // return
 
       if (data && data[key]) {
         return data[key];
-      } else {
+      } 
         return false;
-      }
+      
     },
-    save: function (key, value) {
+    save (key, value) {
       // vars
       var key = this.key(key, 'save');
-      var data = acf.getPreference(this.name) || {}; // delete
+      let data = acf.getPreference(this.name) || {}; // delete
 
       if (value === null) {
         delete data[key]; // append
@@ -578,13 +578,13 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-gallery.js":
-/*!********************************************************************************!*\
+/*! ********************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-gallery.js ***!
-  \********************************************************************************/
+  \******************************************************************************* */
 /***/ (function() {
 
 (function ($) {
-  var Field = acf.Field.extend({
+  const Field = acf.Field.extend({
     type: 'gallery',
     events: {
       'click .acf-gallery-add': 'onClickAdd',
@@ -602,44 +602,44 @@
       validation_failure: 'onValidationFailure',
       resize: 'onResize'
     },
-    onValidationBegin: function () {
+    onValidationBegin () {
       acf.disable(this.$sideData(), this.cid);
     },
-    onValidationFailure: function () {
+    onValidationFailure () {
       acf.enable(this.$sideData(), this.cid);
     },
-    $control: function () {
+    $control () {
       return this.$('.acf-gallery');
     },
-    $collection: function () {
+    $collection () {
       return this.$('.acf-gallery-attachments');
     },
-    $attachments: function () {
+    $attachments () {
       return this.$('.acf-gallery-attachment');
     },
-    $attachment: function (id) {
-      return this.$('.acf-gallery-attachment[data-id="' + id + '"]');
+    $attachment (id) {
+      return this.$(`.acf-gallery-attachment[data-id="${  id  }"]`);
     },
-    $active: function () {
+    $active () {
       return this.$('.acf-gallery-attachment.active');
     },
-    $main: function () {
+    $main () {
       return this.$('.acf-gallery-main');
     },
-    $side: function () {
+    $side () {
       return this.$('.acf-gallery-side');
     },
-    $sideData: function () {
+    $sideData () {
       return this.$('.acf-gallery-side-data');
     },
-    isFull: function () {
-      var max = parseInt(this.get('max'));
-      var count = this.$attachments().length;
+    isFull () {
+      const max = parseInt(this.get('max'));
+      const count = this.$attachments().length;
       return max && count >= max;
     },
-    getValue: function () {
+    getValue () {
       // vars
-      var val = []; // loop
+      const val = []; // loop
 
       this.$attachments().each(function () {
         val.push($(this).data('id'));
@@ -647,24 +647,24 @@
 
       return val.length ? val : false;
     },
-    addUnscopedEvents: function (self) {
+    addUnscopedEvents (self) {
       // invalidField
       this.on('change', '.acf-gallery-side', function (e) {
         self.onUpdate(e, $(this));
       });
     },
-    addSortable: function (self) {
+    addSortable (self) {
       // add sortable
       this.$collection().sortable({
         items: '.acf-gallery-attachment',
         forceHelperSize: true,
         forcePlaceholderSize: true,
         scroll: true,
-        start: function (event, ui) {
+        start (event, ui) {
           ui.placeholder.html(ui.item.html());
           ui.placeholder.removeAttr('style');
         },
-        update: function (event, ui) {
+        update (event, ui) {
           self.$input().trigger('change');
         }
       }); // resizable
@@ -672,22 +672,22 @@
       this.$control().resizable({
         handles: 's',
         minHeight: 200,
-        stop: function (event, ui) {
+        stop (event, ui) {
           acf.update_user_setting('gallery_height', ui.size.height);
         }
       });
     },
-    initialize: function () {
+    initialize () {
       // add unscoped events
       this.addUnscopedEvents(this); // render
 
       this.render();
     },
-    render: function () {
+    render () {
       // vars
-      var $sort = this.$('.acf-gallery-sort');
-      var $add = this.$('.acf-gallery-add');
-      var count = this.$attachments().length; // disable add
+      const $sort = this.$('.acf-gallery-sort');
+      const $add = this.$('.acf-gallery-add');
+      const count = this.$attachments().length; // disable add
 
       if (this.isFull()) {
         $add.addClass('disabled');
@@ -705,27 +705,27 @@
 
       this.resize();
     },
-    resize: function () {
+    resize () {
       // vars
-      var width = this.$control().width();
-      var target = 150;
-      var columns = Math.round(width / target); // max columns = 8
+      const width = this.$control().width();
+      const target = 150;
+      let columns = Math.round(width / target); // max columns = 8
 
       columns = Math.min(columns, 8); // update data
 
       this.$control().attr('data-columns', columns);
     },
-    onResize: function () {
+    onResize () {
       this.resize();
     },
-    openSidebar: function () {
+    openSidebar () {
       // add class
       this.$control().addClass('-open'); // hide bulk actions
       // should be done with CSS
-      //this.$main().find('.acf-gallery-sort').hide();
+      // this.$main().find('.acf-gallery-sort').hide();
       // vars
 
-      var width = this.$control().width() / 3;
+      let width = this.$control().width() / 3;
       width = parseInt(width);
       width = Math.max(width, 350); // animate
 
@@ -739,7 +739,7 @@
         right: width
       }, 250);
     },
-    closeSidebar: function () {
+    closeSidebar () {
       // remove class
       this.$control().removeClass('-open'); // clear selection
 
@@ -747,7 +747,7 @@
 
       acf.disable(this.$side()); // animate
 
-      var $sideData = this.$('.acf-gallery-side-data');
+      const $sideData = this.$('.acf-gallery-side-data');
       this.$main().animate({
         right: 0
       }, 250);
@@ -757,7 +757,7 @@
         $sideData.html('');
       });
     },
-    onClickAdd: function (e, $el) {
+    onClickAdd (e, $el) {
       // validate
       if (this.isFull()) {
         this.showNotice({
@@ -768,7 +768,7 @@
       } // new frame
 
 
-      var frame = acf.newMediaPopup({
+      const frame = acf.newMediaPopup({
         mode: 'select',
         title: acf.__('Add Image to Gallery'),
         field: this.get('key'),
@@ -781,7 +781,7 @@
         }, this)
       });
     },
-    appendAttachment: function (attachment, i) {
+    appendAttachment (attachment, i) {
       // vars
       attachment = this.validateAttachment(attachment); // bail early if is full
 
@@ -795,13 +795,13 @@
       } // html
 
 
-      var html = ['<div class="acf-gallery-attachment" data-id="' + attachment.id + '">', '<input type="hidden" value="' + attachment.id + '" name="' + this.getInputName() + '[]">', '<div class="margin" title="">', '<div class="thumbnail">', '<img src="" alt="">', '</div>', '<div class="filename"></div>', '</div>', '<div class="actions">', '<a href="#" class="acf-icon -cancel dark acf-gallery-remove" data-id="' + attachment.id + '"></a>', '</div>', '</div>'].join('');
-      var $html = $(html); // append
+      const html = [`<div class="acf-gallery-attachment" data-id="${  attachment.id  }">`, `<input type="hidden" value="${  attachment.id  }" name="${  this.getInputName()  }[]">`, '<div class="margin" title="">', '<div class="thumbnail">', '<img src="" alt="">', '</div>', '<div class="filename"></div>', '</div>', '<div class="actions">', `<a href="#" class="acf-icon -cancel dark acf-gallery-remove" data-id="${  attachment.id  }"></a>`, '</div>', '</div>'].join('');
+      const $html = $(html); // append
 
       this.$collection().append($html); // move to beginning
 
       if (this.get('insert') === 'prepend') {
-        var $before = this.$attachments().eq(i);
+        const $before = this.$attachments().eq(i);
 
         if ($before.length) {
           $before.before($html);
@@ -815,7 +815,7 @@
 
       this.$input().trigger('change');
     },
-    validateAttachment: function (attachment) {
+    validateAttachment (attachment) {
       // defaults
       attachment = acf.parseArgs(attachment, {
         id: '',
@@ -829,7 +829,7 @@
       if (attachment.attributes) {
         attachment = attachment.attributes; // preview size
 
-        var url = acf.isget(attachment, 'sizes', this.get('preview_size'), 'url');
+        const url = acf.isget(attachment, 'sizes', this.get('preview_size'), 'url');
 
         if (url !== null) {
           attachment.url = url;
@@ -839,18 +839,18 @@
 
       return attachment;
     },
-    renderAttachment: function (attachment) {
+    renderAttachment (attachment) {
       // vars
       attachment = this.validateAttachment(attachment); // vars
 
-      var $el = this.$attachment(attachment.id); // Image type.
+      const $el = this.$attachment(attachment.id); // Image type.
 
       if (attachment.type == 'image') {
         // Remove filename.
         $el.find('.filename').remove(); // Other file type.
       } else {
         // Check for attachment featured image.
-        var image = acf.isget(attachment, 'image', 'src');
+        const image = acf.isget(attachment, 'image', 'src');
 
         if (image !== null) {
           attachment.url = image;
@@ -875,9 +875,9 @@
 
       acf.val($el.find('input'), attachment.id);
     },
-    editAttachment: function (id) {
+    editAttachment (id) {
       // new frame
-      var frame = acf.newMediaPopup({
+      const frame = acf.newMediaPopup({
         mode: 'edit',
         title: acf.__('Edit Image'),
         button: acf.__('Update Image'),
@@ -888,14 +888,14 @@
         }, this)
       });
     },
-    onClickEdit: function (e, $el) {
-      var id = $el.data('id');
+    onClickEdit (e, $el) {
+      const id = $el.data('id');
 
       if (id) {
         this.editAttachment(id);
       }
     },
-    removeAttachment: function (id) {
+    removeAttachment (id) {
       // close sidebar (if open)
       this.closeSidebar(); // remove attachment
 
@@ -905,27 +905,27 @@
 
       this.$input().trigger('change');
     },
-    onClickRemove: function (e, $el) {
+    onClickRemove (e, $el) {
       // prevent event from triggering click on attachment
       e.preventDefault();
-      e.stopPropagation(); //remove
+      e.stopPropagation(); // remove
 
-      var id = $el.data('id');
+      const id = $el.data('id');
 
       if (id) {
         this.removeAttachment(id);
       }
     },
-    selectAttachment: function (id) {
+    selectAttachment (id) {
       // vars
-      var $el = this.$attachment(id); // bail early if already active
+      const $el = this.$attachment(id); // bail early if already active
 
       if ($el.hasClass('active')) {
         return;
       } // step 1
 
 
-      var step1 = this.proxy(function () {
+      const step1 = this.proxy(function () {
         // save any changes in sidebar
         this.$side().find(':focus').trigger('blur'); // clear selection
 
@@ -940,10 +940,10 @@
 
       var step2 = this.proxy(function () {
         // ajax
-        var ajaxData = {
+        const ajaxData = {
           action: 'acf/fields/gallery/get_attachment',
           field_key: this.get('key'),
-          id: id
+          id
         }; // abort prev ajax call
 
         if (this.has('xhr')) {
@@ -953,7 +953,7 @@
 
         acf.showLoading(this.$sideData()); // get HTML
 
-        var xhr = $.ajax({
+        const xhr = $.ajax({
           url: acf.get('ajaxurl'),
           data: acf.prepareForAjax(ajaxData),
           type: 'post',
@@ -972,7 +972,7 @@
         } // vars
 
 
-        var $side = this.$sideData(); // render
+        const $side = this.$sideData(); // render
 
         $side.html(html); // remove acf form data
 
@@ -985,45 +985,45 @@
 
       step1();
     },
-    onClickSelect: function (e, $el) {
-      var id = $el.data('id');
+    onClickSelect (e, $el) {
+      const id = $el.data('id');
 
       if (id) {
         this.selectAttachment(id);
       }
     },
-    onClickClose: function (e, $el) {
+    onClickClose (e, $el) {
       this.closeSidebar();
     },
-    onChangeSort: function (e, $el) {
+    onChangeSort (e, $el) {
       // Bail early if is disabled.
       if ($el.hasClass('disabled')) {
         return;
       } // Get sort val.
 
 
-      var val = $el.val();
+      const val = $el.val();
 
       if (!val) {
         return;
       } // find ids
 
 
-      var ids = [];
+      const ids = [];
       this.$attachments().each(function () {
         ids.push($(this).data('id'));
       }); // step 1
 
-      var step1 = this.proxy(function () {
+      const step1 = this.proxy(function () {
         // vars
-        var ajaxData = {
+        const ajaxData = {
           action: 'acf/fields/gallery/get_sort_order',
           field_key: this.get('key'),
-          ids: ids,
+          ids,
           sort: val
         }; // get results
 
-        var xhr = $.ajax({
+        const xhr = $.ajax({
           url: acf.get('ajaxurl'),
           dataType: 'json',
           type: 'post',
@@ -1049,16 +1049,16 @@
 
       step1();
     },
-    onUpdate: function (e, $el) {
+    onUpdate (e, $el) {
       // vars
-      var $submit = this.$('.acf-gallery-update'); // validate
+      const $submit = this.$('.acf-gallery-update'); // validate
 
       if ($submit.hasClass('disabled')) {
         return;
       } // serialize data
 
 
-      var ajaxData = acf.serialize(this.$sideData()); // loading
+      const ajaxData = acf.serialize(this.$sideData()); // loading
 
       $submit.addClass('disabled');
       $submit.before('<i class="acf-loading"></i> '); // append AJAX action
@@ -1070,13 +1070,13 @@
         data: acf.prepareForAjax(ajaxData),
         type: 'post',
         dataType: 'json',
-        complete: function () {
+        complete () {
           $submit.removeClass('disabled');
           $submit.prev('.acf-loading').remove();
         }
       });
     },
-    onHover: function () {
+    onHover () {
       // add sortable
       this.addSortable(this); // remove event
 
@@ -1094,13 +1094,13 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-repeater.js":
-/*!*********************************************************************************!*\
+/*! *********************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-repeater.js ***!
-  \*********************************************************************************/
+  \******************************************************************************** */
 /***/ (function() {
 
 (function ($) {
-  var Field = acf.Field.extend({
+  const Field = acf.Field.extend({
     type: 'repeater',
     wait: '',
     events: {
@@ -1113,42 +1113,42 @@
       mouseover: 'onHover',
       unloadField: 'onUnload'
     },
-    $control: function () {
+    $control () {
       return this.$('.acf-repeater:first');
     },
-    $table: function () {
+    $table () {
       return this.$('table:first');
     },
-    $tbody: function () {
+    $tbody () {
       return this.$('tbody:first');
     },
-    $rows: function () {
+    $rows () {
       return this.$('tbody:first > tr').not('.acf-clone');
     },
-    $row: function (index) {
-      return this.$('tbody:first > tr:eq(' + index + ')');
+    $row (index) {
+      return this.$(`tbody:first > tr:eq(${  index  })`);
     },
-    $clone: function () {
+    $clone () {
       return this.$('tbody:first > tr.acf-clone');
     },
-    $actions: function () {
+    $actions () {
       return this.$('.acf-actions:last');
     },
-    $button: function () {
+    $button () {
       return this.$('.acf-actions:last .button');
     },
-    getValue: function () {
+    getValue () {
       return this.$rows().length;
     },
-    allowRemove: function () {
-      var min = parseInt(this.get('min'));
+    allowRemove () {
+      const min = parseInt(this.get('min'));
       return !min || min < this.val();
     },
-    allowAdd: function () {
-      var max = parseInt(this.get('max'));
+    allowAdd () {
+      const max = parseInt(this.get('max'));
       return !max || max > this.val();
     },
-    addSortable: function (self) {
+    addSortable (self) {
       // bail early if max 1 row
       if (this.get('max') == 1) {
         return;
@@ -1161,17 +1161,17 @@
         forceHelperSize: true,
         forcePlaceholderSize: true,
         scroll: true,
-        stop: function (event, ui) {
+        stop (event, ui) {
           self.render();
         },
-        update: function (event, ui) {
+        update (event, ui) {
           self.$input().trigger('change');
         }
       });
     },
-    addCollapsed: function () {
+    addCollapsed () {
       // vars
-      var indexes = preference.load(this.get('key')); // bail early if no collapsed
+      const indexes = preference.load(this.get('key')); // bail early if no collapsed
 
       if (!indexes) {
         return false;
@@ -1186,17 +1186,17 @@
         }
       });
     },
-    addUnscopedEvents: function (self) {
+    addUnscopedEvents (self) {
       // invalidField
       this.on('invalidField', '.acf-row', function (e) {
-        var $row = $(this);
+        const $row = $(this);
 
         if (self.isCollapsed($row)) {
           self.expand($row);
         }
       });
     },
-    initialize: function () {
+    initialize () {
       // add unscoped events
       this.addUnscopedEvents(this); // add collapsed
 
@@ -1206,14 +1206,14 @@
 
       this.render();
     },
-    render: function () {
+    render () {
       // update order number
       this.$rows().each(function (i) {
         $(this).find('> .order > span').html(i + 1);
       }); // Extract vars.
 
-      var $controll = this.$control();
-      var $button = this.$button(); // empty
+      const $controll = this.$control();
+      const $button = this.$button(); // empty
 
       if (this.val() == 0) {
         $controll.addClass('-empty');
@@ -1229,35 +1229,35 @@
         $controll.removeClass('-max');
         $button.removeClass('disabled');
       } // Reached min rows (not used).
-      //if( !this.allowRemove() ) {
+      // if( !this.allowRemove() ) {
       //	$controll.addClass('-min');
-      //} else {
+      // } else {
       //	$controll.removeClass('-min');
-      //}
+      // }
 
     },
-    validateAdd: function () {
+    validateAdd () {
       // return true if allowed
       if (this.allowAdd()) {
         return true;
       } // vars
 
 
-      var max = this.get('max');
+      const max = this.get('max');
 
-      var text = acf.__('Maximum rows reached ({max} rows)'); // replace
+      let text = acf.__('Maximum rows reached ({max} rows)'); // replace
 
 
       text = text.replace('{max}', max); // add notice
 
       this.showNotice({
-        text: text,
+        text,
         type: 'warning'
       }); // return
 
       return false;
     },
-    onClickAdd: function (e, $el) {
+    onClickAdd (e, $el) {
       // validate
       if (!this.validateAdd()) {
         return false;
@@ -1272,7 +1272,7 @@
         this.add();
       }
     },
-    add: function (args) {
+    add (args) {
       // validate
       if (!this.allowAdd()) {
         return false;
@@ -1283,7 +1283,7 @@
         before: false
       }); // add row
 
-      var $el = acf.duplicate({
+      const $el = acf.duplicate({
         target: this.$clone(),
         append: this.proxy(function ($el, $el2) {
           // append
@@ -1306,40 +1306,40 @@
 
       return $el;
     },
-    onClickDuplicate: function (e, $el) {
+    onClickDuplicate (e, $el) {
       // Validate with warning.
       if (!this.validateAdd()) {
         return false;
       } // get layout and duplicate it.
 
 
-      var $row = $el.closest('.acf-row');
+      const $row = $el.closest('.acf-row');
       this.duplicateRow($row);
     },
-    duplicateRow: function ($row) {
+    duplicateRow ($row) {
       // Validate without warning.
       if (!this.allowAdd()) {
         return false;
       } // Vars.
 
 
-      var fieldKey = this.get('key'); // Duplicate row.
+      const fieldKey = this.get('key'); // Duplicate row.
 
-      var $el = acf.duplicate({
+      const $el = acf.duplicate({
         target: $row,
         // Provide a custom renaming callback to avoid renaming parent row attributes.
-        rename: function (name, value, search, replace) {
+        rename (name, value, search, replace) {
           // Rename id attributes from "field_1-search" to "field_1-replace".
           if (name === 'id') {
-            return value.replace(fieldKey + '-' + search, fieldKey + '-' + replace); // Rename name and for attributes from "[field_1][search]" to "[field_1][replace]".
-          } else {
-            return value.replace(fieldKey + '][' + search, fieldKey + '][' + replace);
-          }
+            return value.replace(`${fieldKey  }-${  search}`, `${fieldKey  }-${  replace}`); // Rename name and for attributes from "[field_1][search]" to "[field_1][replace]".
+          } 
+            return value.replace(`${fieldKey  }][${  search}`, `${fieldKey  }][${  replace}`);
+          
         },
-        before: function ($el) {
+        before ($el) {
           acf.doAction('unmount', $el);
         },
-        after: function ($el, $el2) {
+        after ($el, $el2) {
           acf.doAction('remount', $el);
         }
       }); // trigger change for validation errors
@@ -1352,29 +1352,29 @@
 
       return $el;
     },
-    validateRemove: function () {
+    validateRemove () {
       // return true if allowed
       if (this.allowRemove()) {
         return true;
       } // vars
 
 
-      var min = this.get('min');
+      const min = this.get('min');
 
-      var text = acf.__('Minimum rows reached ({min} rows)'); // replace
+      let text = acf.__('Minimum rows reached ({min} rows)'); // replace
 
 
       text = text.replace('{min}', min); // add notice
 
       this.showNotice({
-        text: text,
+        text,
         type: 'warning'
       }); // return
 
       return false;
     },
-    onClickRemove: function (e, $el) {
-      var $row = $el.closest('.acf-row'); // Bypass confirmation when holding down "shift" key.
+    onClickRemove (e, $el) {
+      const $row = $el.closest('.acf-row'); // Bypass confirmation when holding down "shift" key.
 
       if (e.shiftKey) {
         return this.remove($row);
@@ -1383,49 +1383,49 @@
 
       $row.addClass('-hover'); // add tooltip
 
-      var tooltip = acf.newTooltip({
+      const tooltip = acf.newTooltip({
         confirmRemove: true,
         target: $el,
         context: this,
-        confirm: function () {
+        confirm () {
           this.remove($row);
         },
-        cancel: function () {
+        cancel () {
           $row.removeClass('-hover');
         }
       });
     },
-    remove: function ($row) {
+    remove ($row) {
       // reference
-      var self = this; // remove
+      const self = this; // remove
 
       acf.remove({
         target: $row,
         endHeight: 0,
-        complete: function () {
+        complete () {
           // trigger change to allow attachment save
           self.$input().trigger('change'); // render
 
           self.render(); // sync collapsed order
-          //self.sync();
+          // self.sync();
         }
       });
     },
-    isCollapsed: function ($row) {
+    isCollapsed ($row) {
       return $row.hasClass('-collapsed');
     },
-    collapse: function ($row) {
+    collapse ($row) {
       $row.addClass('-collapsed');
       acf.doAction('hide', $row, 'collapse');
     },
-    expand: function ($row) {
+    expand ($row) {
       $row.removeClass('-collapsed');
       acf.doAction('show', $row, 'collapse');
     },
-    onClickCollapse: function (e, $el) {
+    onClickCollapse (e, $el) {
       // vars
-      var $row = $el.closest('.acf-row');
-      var isCollpased = this.isCollapsed($row); // shift
+      let $row = $el.closest('.acf-row');
+      const isCollpased = this.isCollapsed($row); // shift
 
       if (e.shiftKey) {
         $row = this.$rows();
@@ -1438,9 +1438,9 @@
         this.collapse($row);
       }
     },
-    onShow: function (e, $el, context) {
+    onShow (e, $el, context) {
       // get sub fields
-      var fields = acf.getFields({
+      const fields = acf.getFields({
         is: ':visible',
         parent: this.$el
       }); // trigger action
@@ -1449,9 +1449,9 @@
 
       acf.doAction('show_fields', fields);
     },
-    onUnload: function () {
+    onUnload () {
       // vars
-      var indexes = []; // loop
+      let indexes = []; // loop
 
       this.$rows().each(function (i) {
         if ($(this).hasClass('-collapsed')) {
@@ -1463,7 +1463,7 @@
 
       preference.save(this.get('key'), indexes);
     },
-    onHover: function () {
+    onHover () {
       // add sortable
       this.addSortable(this); // remove event
 
@@ -1479,35 +1479,35 @@
 
   var preference = new acf.Model({
     name: 'this.collapsedRows',
-    key: function (key, context) {
+    key (key, context) {
       // vars
-      var count = this.get(key + context) || 0; // update
+      let count = this.get(key + context) || 0; // update
 
       count++;
       this.set(key + context, count, true); // modify fieldKey
 
       if (count > 1) {
-        key += '-' + count;
+        key += `-${  count}`;
       } // return
 
 
       return key;
     },
-    load: function (key) {
+    load (key) {
       // vars
       var key = this.key(key, 'load');
-      var data = acf.getPreference(this.name); // return
+      const data = acf.getPreference(this.name); // return
 
       if (data && data[key]) {
         return data[key];
-      } else {
+      } 
         return false;
-      }
+      
     },
-    save: function (key, value) {
+    save (key, value) {
       // vars
       var key = this.key(key, 'save');
-      var data = acf.getPreference(this.name) || {}; // delete
+      let data = acf.getPreference(this.name) || {}; // delete
 
       if (value === null) {
         delete data[key]; // append
@@ -1528,92 +1528,92 @@
 
 /***/ })
 
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = function(module) {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				function() { return module['default']; } :
-/******/ 				function() { return module; };
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	!function() {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = function(exports, definition) {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	!function() {
-/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = function(exports) {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/************************************************************************/
-var __webpack_exports__ = {};
+/** *** */ 	});
+/** ********************************************************************* */
+/** *** */ 	// The module cache
+/** *** */ 	const __webpack_module_cache__ = {};
+/** *** */ 	
+/** *** */ 	// The require function
+/** *** */ 	function __webpack_require__(moduleId) {
+/** *** */ 		// Check if module is in cache
+/** *** */ 		const cachedModule = __webpack_module_cache__[moduleId];
+/** *** */ 		if (cachedModule !== undefined) {
+/** *** */ 			return cachedModule.exports;
+/** *** */ 		}
+/** *** */ 		// Create a new module (and put it into the cache)
+/** *** */ 		const module = __webpack_module_cache__[moduleId] = {
+/** *** */ 			// no module.id needed
+/** *** */ 			// no module.loaded needed
+/** *** */ 			exports: {}
+/** *** */ 		};
+/** *** */ 	
+/** *** */ 		// Execute the module function
+/** *** */ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/** *** */ 	
+/** *** */ 		// Return the exports of the module
+/** *** */ 		return module.exports;
+/** *** */ 	}
+/** *** */ 	
+/** ********************************************************************* */
+/** *** */ 	/* webpack/runtime/compat get default export */
+/** *** */ 	!function() {
+/** *** */ 		// getDefaultExport function for compatibility with non-harmony modules
+/** *** */ 		__webpack_require__.n = function(module) {
+/** *** */ 			const getter = module && module.__esModule ?
+/** *** */ 				function() { return module.default; } :
+/** *** */ 				function() { return module; };
+/** *** */ 			__webpack_require__.d(getter, { a: getter });
+/** *** */ 			return getter;
+/** *** */ 		};
+/** *** */ 	}();
+/** *** */ 	
+/** *** */ 	/* webpack/runtime/define property getters */
+/** *** */ 	!function() {
+/** *** */ 		// define getter functions for harmony exports
+/** *** */ 		__webpack_require__.d = function(exports, definition) {
+/** *** */ 			for(const key in definition) {
+/** *** */ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/** *** */ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/** *** */ 				}
+/** *** */ 			}
+/** *** */ 		};
+/** *** */ 	}();
+/** *** */ 	
+/** *** */ 	/* webpack/runtime/hasOwnProperty shorthand */
+/** *** */ 	!function() {
+/** *** */ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/** *** */ 	}();
+/** *** */ 	
+/** *** */ 	/* webpack/runtime/make namespace object */
+/** *** */ 	!function() {
+/** *** */ 		// define __esModule on exports
+/** *** */ 		__webpack_require__.r = function(exports) {
+/** *** */ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/** *** */ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/** *** */ 			}
+/** *** */ 			Object.defineProperty(exports, '__esModule', { value: true });
+/** *** */ 		};
+/** *** */ 	}();
+/** *** */ 	
+/** ********************************************************************* */
+const __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
-"use strict";
-/*!***************************************************************************!*\
+
+/*! ***************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/pro/acf-pro-input.js ***!
-  \***************************************************************************/
+  \************************************************************************** */
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _acf_field_repeater_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_acf-field-repeater.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-repeater.js");
-/* harmony import */ var _acf_field_repeater_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_acf_field_repeater_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _acf_field_flexible_content_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_acf-field-flexible-content.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-flexible-content.js");
-/* harmony import */ var _acf_field_flexible_content_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_acf_field_flexible_content_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _acf_field_gallery_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_acf-field-gallery.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-gallery.js");
-/* harmony import */ var _acf_field_gallery_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_acf_field_gallery_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ const _acf_field_repeater_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_acf-field-repeater.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-repeater.js");
+/* harmony import */ const _acf_field_repeater_js__WEBPACK_IMPORTED_MODULE_0___default = /* #__PURE__ */__webpack_require__.n(_acf_field_repeater_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ const _acf_field_flexible_content_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_acf-field-flexible-content.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-flexible-content.js");
+/* harmony import */ const _acf_field_flexible_content_js__WEBPACK_IMPORTED_MODULE_1___default = /* #__PURE__ */__webpack_require__.n(_acf_field_flexible_content_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ const _acf_field_gallery_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_acf-field-gallery.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-field-gallery.js");
+/* harmony import */ const _acf_field_gallery_js__WEBPACK_IMPORTED_MODULE_2___default = /* #__PURE__ */__webpack_require__.n(_acf_field_gallery_js__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 }();
-/******/ })()
+/** *** */ })()
 ;
-//# sourceMappingURL=acf-pro-input.js.map
+// # sourceMappingURL=acf-pro-input.js.map

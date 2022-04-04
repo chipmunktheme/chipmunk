@@ -1,0 +1,21 @@
+/*
+** Variables - Layout
+** ----------------------------------------------------------------------------- */
+
+body {
+  // Container
+  --chipmunk--layout--container-width: 110rem;
+  --chipmunk--layout--container-gutter: clamp(2.4rem, 5vw, 7.2rem);
+
+  // Columns
+  --chipmunk--layout--column-gutter: calc(var(--chipmunk--layout--container-width) * 0.025);
+
+  // Content
+  --chipmunk--layout--content-width: 8;
+
+  // Popup
+  --chipmunk--layout--popup-width: 80rem;
+
+  // Tiles
+  --chipmunk--layout--tile-padding: 1rem;
+}

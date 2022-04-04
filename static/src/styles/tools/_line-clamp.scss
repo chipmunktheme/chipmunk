@@ -1,0 +1,10 @@
+/*
+** Tools - Line clamp
+** ----------------------------------------------------------------------------- */
+
+@mixin line-clamp($lines) {
+  display: -webkit-box; /* stylelint-disable-line value-no-vendor-prefix */
+  -webkit-box-orient: vertical; /* stylelint-disable-line property-no-vendor-prefix */
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+}

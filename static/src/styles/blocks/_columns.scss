@@ -1,0 +1,14 @@
+/*
+** Blocks / Columns
+** ----------------------------------------------------------------------------- */
+
+.wp-block-columns {
+  row-gap: calc(var(--column-gutter) * 2);
+  column-gap: var(--column-gutter);
+}
+
+.wp-block-column[class] {
+  &:not(:first-child) {
+    margin: 0;
+  }
+}

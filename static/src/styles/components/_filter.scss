@@ -1,0 +1,32 @@
+/*
+** Component - Filter
+** ----------------------------------------------------------------------------- */
+
+.c-filter {
+  display: flex;
+  align-items: center;
+}
+
+.c-filter__group {
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: spacer-clamped(1) spacer-fixed(2);
+
+  @include bp(md) {
+    flex-basis: auto;
+    flex-direction: row;
+  }
+}
+
+.c-filter__title {
+  @include spacer-relative(0.75, 'right');
+
+  color: var(--chipmunk--color--gray);
+  font-size: 0.875em;
+  white-space: nowrap;
+
+  @include bp(lg) {
+    font-size: 1em;
+  }
+}

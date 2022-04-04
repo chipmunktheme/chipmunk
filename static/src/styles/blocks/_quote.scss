@@ -1,0 +1,14 @@
+/*
+** Blocks / Quote
+** ----------------------------------------------------------------------------- */
+
+.wp-block-quote {
+  padding-left: spacer-relative(1);
+  border-left: 0.1em solid var(--chipmunk--color--primary);
+
+  &.is-large p {
+    font-size: 1.25em;
+    font-style: inherit;
+    line-height: inherit;
+  }
+}

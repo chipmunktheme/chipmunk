@@ -1,0 +1,94 @@
+/*
+** Vendor - Flickity
+** ----------------------------------------------------------------------------- */
+
+/* prevent page scrolling when flickity is fullscreen */
+.is-flickity-fullscreen {
+  overflow: hidden;
+}
+
+.flickity-enabled {
+  position: relative;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.is-draggable {
+    user-select: none;
+
+    .flickity-viewport {
+      cursor: grab;
+
+      &.is-pointer-down {
+        cursor: grabbing;
+      }
+    }
+  }
+
+  &.is-fade .flickity-slider {
+    > * {
+      pointer-events: none;
+    }
+
+    > .is-selected {
+      pointer-events: auto;
+    }
+  }
+}
+
+.flickity-viewport {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  transition: height 0.25s;
+
+  .is-fullscreen & {
+    transition: none;
+  }
+}
+
+.flickity-slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.flickity-button {
+  display: block;
+  position: absolute;
+  bottom: 100%;
+  z-index: var(--chipmunk--layer--utils);
+  width: 1em;
+  height: 1em;
+  margin-bottom: calc(var(--chipmunk--layout--column-gutter) * 0.5 + 0.2em);
+  font-size: 1.25em;
+  transition-property: font-size, opacity;
+  transition-duration: var(--chipmunk--transition-duration);
+
+  &.previous {
+    right: calc(var(--chipmunk--layout--column-gutter) * 0.5 + 1em + #{spacer-fixed(0.5)});
+  }
+
+  &.next {
+    right: calc(var(--chipmunk--layout--column-gutter) * 0.5);
+  }
+
+  svg {
+    display: block;
+    height: 1em;
+    width: 1em;
+    fill: currentColor;
+    stroke: none;
+  }
+
+  &:not([disabled]):hover {
+    cursor: pointer;
+    opacity: 0.75;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

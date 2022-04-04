@@ -1,0 +1,24 @@
+/*
+** Generic - Animations
+** ----------------------------------------------------------------------------- */
+
+@keyframes button-spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes grow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, 0, 0) scale(1.5);
+  }
+}

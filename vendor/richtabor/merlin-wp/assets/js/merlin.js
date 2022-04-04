@@ -1,36 +1,36 @@
 
-var Merlin = (function($){
+const Merlin = (function($){
 
-    var t;
+    let t;
 
     // callbacks from form button clicks.
-    var callbacks = {
-        install_child: function(btn) {
-            var installer = new ChildTheme();
+    const callbacks = {
+        install_child(btn) {
+            const installer = new ChildTheme();
             installer.init(btn);
         },
-        activate_license: function(btn) {
-            var license = new ActivateLicense();
+        activate_license(btn) {
+            const license = new ActivateLicense();
             license.init(btn);
         },
-        install_plugins: function(btn){
-            var plugins = new PluginManager();
+        install_plugins(btn){
+            const plugins = new PluginManager();
             plugins.init(btn);
         },
-        install_content: function(btn){
-            var content = new ContentManager();
+        install_content(btn){
+            const content = new ContentManager();
             content.init(btn);
         }
     };
 
     function window_loaded(){
 
-    	var
-    	body 		= $('.merlin__body'),
-    	body_loading 	= $('.merlin__body--loading'),
-    	body_exiting 	= $('.merlin__body--exiting'),
-    	drawer_trigger 	= $('#merlin__drawer-trigger'),
-    	drawer_opening 	= 'merlin__drawer--opening';
+    	const
+    	body 		= $('.merlin__body');
+    	const body_loading 	= $('.merlin__body--loading');
+    	const body_exiting 	= $('.merlin__body--exiting');
+    	const drawer_trigger 	= $('#merlin__drawer-trigger');
+    	const drawer_opening 	= 'merlin__drawer--opening';
     	drawer_opened 	= 'merlin__drawer--open';
 
     	setTimeout(function(){
@@ -43,7 +43,7 @@ var Merlin = (function($){
 
     	$('.merlin__button--proceed:not(.merlin__button--closer)').click(function (e) {
 		    e.preventDefault();
-		    var goTo = this.getAttribute("href");
+		    const goTo = this.getAttribute("href");
 
 		    body.addClass('exiting');
 
@@ -57,7 +57,7 @@ var Merlin = (function($){
         	body.removeClass( drawer_opened );
 
             e.preventDefault();
-		    var goTo = this.getAttribute("href");
+		    const goTo = this.getAttribute("href");
 
 		    setTimeout(function(){
 		        body.addClass('exiting');
@@ -70,22 +70,22 @@ var Merlin = (function($){
 
         $(".button-next").on( "click", function(e) {
             e.preventDefault();
-            var loading_button = merlin_loading_button(this);
+            const loading_button = merlin_loading_button(this);
             if ( ! loading_button ) {
                 return false;
             }
-            var data_callback = $(this).data("callback");
+            const data_callback = $(this).data("callback");
             if( data_callback && typeof callbacks[data_callback] !== "undefined"){
                 // We have to process a callback before continue with form submission.
                 callbacks[data_callback](this);
                 return false;
-            } else {
+            } 
                 return true;
-            }
+            
         });
 
 				$( document ).on( 'change', '.js-merlin-demo-import-select', function() {
-					var selectedIndex  = $( this ).val();
+					const selectedIndex  = $( this ).val();
 
 					$( '.js-merlin-select-spinner' ).show();
 
@@ -111,8 +111,8 @@ var Merlin = (function($){
     }
 
     function ChildTheme() {
-    	var body 				= $('.merlin__body');
-        var complete, notice 	= $("#child-theme-text");
+    	const body 				= $('.merlin__body');
+        let complete; const notice 	= $("#child-theme-text");
 
         function ajax_callback(r) {
 
@@ -141,7 +141,7 @@ var Merlin = (function($){
         }
 
         return {
-            init: function(btn) {
+            init(btn) {
                 complete = function() {
 
                 	setTimeout(function(){
@@ -174,9 +174,9 @@ var Merlin = (function($){
 
 
 function ActivateLicense() {
-    	var body 		= $( '.merlin__body' );
-    	var wrapper 		= $( '.merlin__content--license-key' );
-        var complete, notice 	= $( '#license-text' );
+    	const body 		= $( '.merlin__body' );
+    	const wrapper 		= $( '.merlin__content--license-key' );
+        let complete; const notice 	= $( '#license-text' );
 
         function ajax_callback(r) {
 
@@ -214,7 +214,7 @@ function ActivateLicense() {
         }
 
         return {
-            init: function(btn) {
+            init(btn) {
                 complete = function() {
                 	setTimeout(function(){
 				$(".merlin__body").addClass('js--finished');
@@ -238,22 +238,22 @@ function ActivateLicense() {
 
 function PluginManager(){
 
-    	var body = $('.merlin__body');
-        var complete;
-        var items_completed 	= 0;
-        var current_item 		= "";
-        var $current_node;
-        var current_item_hash 	= "";
+    	const body = $('.merlin__body');
+        let complete;
+        let items_completed 	= 0;
+        let current_item 		= "";
+        let $current_node;
+        let current_item_hash 	= "";
 
         function ajax_callback(response){
-            var currentSpan = $current_node.find("label");
+            const currentSpan = $current_node.find("label");
             if(typeof response === "object" && typeof response.message !== "undefined"){
                 currentSpan.removeClass( 'installing success error' ).addClass(response.message.toLowerCase());
 
                 // The plugin is done (installed, updated and activated).
-                if(typeof response.done != "undefined" && response.done){
+                if(typeof response.done !== "undefined" && response.done){
                     find_next();
-                }else if(typeof response.url != "undefined"){
+                }else if(typeof response.url !== "undefined"){
                     // we have an ajax url action to perform.
                     if(response.hash == current_item_hash){
                         currentSpan.removeClass( 'installing success' ).addClass("error");
@@ -274,7 +274,7 @@ function PluginManager(){
 
         function process_current(){
             if(current_item){
-                var $check = $current_node.find("input:checkbox");
+                const $check = $current_node.find("input:checkbox");
                 if($check.is(":checked")) {
                     jQuery.post(merlin_params.ajaxurl, {
                         action: "merlin_plugins",
@@ -296,9 +296,9 @@ function PluginManager(){
                 }
                 $current_node.find(".spinner").css("visibility","hidden");
             }
-            var $li = $(".merlin__drawer--install-plugins li");
+            const $li = $(".merlin__drawer--install-plugins li");
             $li.each(function(){
-                var $item = $(this);
+                const $item = $(this);
 
                 if ( $item.data("done_item") ) {
                     return true;
@@ -316,7 +316,7 @@ function PluginManager(){
         }
 
         return {
-            init: function(btn){
+            init(btn){
                 $(".merlin__drawer--install-plugins").addClass("installing");
                 $(".merlin__drawer--install-plugins").find("input").prop("disabled", true);
                 complete = function(){
@@ -342,23 +342,23 @@ function PluginManager(){
     }
     function ContentManager(){
 
-    	var body 				= $('.merlin__body');
-        var complete;
-        var items_completed 	= 0;
-        var current_item 		= "";
-        var $current_node;
-        var current_item_hash 	= "";
-        var current_content_import_items = 1;
-        var total_content_import_items = 0;
-        var progress_bar_interval;
+    	const body 				= $('.merlin__body');
+        let complete;
+        let items_completed 	= 0;
+        let current_item 		= "";
+        let $current_node;
+        let current_item_hash 	= "";
+        let current_content_import_items = 1;
+        let total_content_import_items = 0;
+        let progress_bar_interval;
 
         function ajax_callback(response) {
-            var currentSpan = $current_node.find("label");
-            if(typeof response == "object" && typeof response.message !== "undefined"){
+            const currentSpan = $current_node.find("label");
+            if(typeof response === "object" && typeof response.message !== "undefined"){
                 currentSpan.addClass(response.message.toLowerCase());
 
-                if( typeof response.num_of_imported_posts !== "undefined" && 0 < total_content_import_items ) {
-                    current_content_import_items = 'all' === response.num_of_imported_posts ? total_content_import_items : response.num_of_imported_posts;
+                if( typeof response.num_of_imported_posts !== "undefined" && total_content_import_items > 0 ) {
+                    current_content_import_items = response.num_of_imported_posts === 'all' ? total_content_import_items : response.num_of_imported_posts;
                     update_progress_bar();
                 }
 
@@ -394,7 +394,7 @@ function PluginManager(){
 
         function process_current(){
             if(current_item){
-                var $check = $current_node.find("input:checkbox");
+                const $check = $current_node.find("input:checkbox");
                 if($check.is(":checked")) {
                     jQuery.post(merlin_params.ajaxurl, {
                         action: "merlin_content",
@@ -410,7 +410,7 @@ function PluginManager(){
         }
 
         function find_next(){
-            var do_next = false;
+            let do_next = false;
             if($current_node){
                 if(!$current_node.data("done_item")){
                     items_completed++;
@@ -418,8 +418,8 @@ function PluginManager(){
                 }
                 $current_node.find(".spinner").css("visibility","hidden");
             }
-            var $items = $(".merlin__drawer--import-content__list-item");
-            var $enabled_items = $(".merlin__drawer--import-content__list-item input:checked");
+            const $items = $(".merlin__drawer--import-content__list-item");
+            const $enabled_items = $(".merlin__drawer--import-content__list-item input:checked");
             $items.each(function(){
                 if (current_item == "" || do_next) {
                     current_item = $(this).data("content");
@@ -447,12 +447,12 @@ function PluginManager(){
             }, function( response ) {
                 total_content_import_items = response.data;
 
-                if ( 0 < total_content_import_items ) {
+                if ( total_content_import_items > 0 ) {
                     update_progress_bar();
 
                     // Change the value of the progress bar constantly for a small amount (0,2% per sec), to improve UX.
                     progress_bar_interval = setInterval( function() {
-                        current_content_import_items = current_content_import_items + total_content_import_items/500;
+                        current_content_import_items += total_content_import_items/500;
                         update_progress_bar();
                     }, 1000 );
                 }
@@ -464,19 +464,19 @@ function PluginManager(){
         }
 
         function update_progress_bar() {
-            $('.js-merlin-progress-bar').css( 'width', (current_content_import_items/total_content_import_items) * 100 + '%' );
+            $('.js-merlin-progress-bar').css( 'width', `${(current_content_import_items/total_content_import_items) * 100  }%` );
 
-            var $percentage = valBetween( ((current_content_import_items/total_content_import_items) * 100) , 0, 99);
+            const $percentage = valBetween( ((current_content_import_items/total_content_import_items) * 100) , 0, 99);
 
-            $('.js-merlin-progress-bar-percentage').html( Math.round( $percentage ) + '%' );
+            $('.js-merlin-progress-bar-percentage').html( `${Math.round( $percentage )  }%` );
 
-            if ( 1 === current_content_import_items/total_content_import_items ) {
+            if ( current_content_import_items/total_content_import_items === 1 ) {
                 clearInterval( progress_bar_interval );
             }
         }
 
         return {
-            init: function(btn){
+            init(btn){
                 $(".merlin__drawer--import-content").addClass("installing");
                 $(".merlin__drawer--import-content").find("input").prop("disabled", true);
                 complete = function(){
@@ -515,22 +515,22 @@ function PluginManager(){
 
     function merlin_loading_button( btn ){
 
-        var $button = jQuery(btn);
+        const $button = jQuery(btn);
 
         if ( $button.data( "done-loading" ) == "yes" ) {
         	return false;
         }
 
-        var completed = false;
+        let completed = false;
 
-        var _modifier = $button.is("input") || $button.is("button") ? "val" : "text";
+        const _modifier = $button.is("input") || $button.is("button") ? "val" : "text";
 
         $button.data("done-loading","yes");
 
         $button.addClass("merlin__button--loading");
 
         return {
-            done: function(){
+            done(){
                 completed = true;
                 $button.attr("disabled",false);
             }
@@ -539,11 +539,11 @@ function PluginManager(){
     }
 
     return {
-        init: function(){
+        init(){
             t = this;
             $(window_loaded);
         },
-        callback: function(func){
+        callback(func){
             console.log(func);
             console.log(this);
         }

@@ -1,0 +1,113 @@
+/*
+** Component - Page head
+** ----------------------------------------------------------------------------- */
+
+.c-page-head {
+  @extend %bordered-box;
+
+  z-index: var(--chipmunk--layer--head);
+  background-color: var(--chipmunk--color--section);
+
+  &.is-sticky {
+    inset: 0 0 auto;
+
+    .admin-bar & {
+      top: 4.6rem;
+
+      @media (min-width: 783px) {
+        top: 3.2rem;
+      }
+    }
+  }
+}
+
+.c-page-head__inner {
+  padding-top: spacer-clamped(2);
+  padding-bottom: spacer-clamped(2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: spacer-clamped(2);
+  min-height: var(--chipmunk--logo-height);
+  transition-property: padding;
+  transition-duration: var(--chipmunk--transition-duration);
+
+  .is-condensed .is-sticky & {
+    padding-top: spacer-clamped(1);
+    padding-bottom: spacer-clamped(1);
+  }
+}
+
+.c-page-head__logo {
+  flex-shrink: 0;
+  color: var(--chipmunk--color--primary);
+  font-weight: bold;
+
+  a {
+    display: block;
+
+    &:hover {
+      color: var(--chipmunk--color--black);
+    }
+  }
+
+  img {
+    display: inline-block;
+    width: auto;
+    height: var(--chipmunk--logo-height);
+    vertical-align: middle;
+  }
+}
+
+.c-page-head__cta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: spacer-fixed(0.75);
+  margin-left: auto;
+}
+
+.c-page-head__search {
+  position: absolute;
+  inset: -100% 0 100%;
+  z-index: var(--chipmunk--layer--base);
+  display: flex;
+  align-items: center;
+  gap: spacer-fixed();
+  background-color: var(--chipmunk--color--section);
+  opacity: 0;
+  pointer-events: none;
+  transition-property: bottom, top, opacity;
+  transition-duration: calc(var(--chipmunk--transition-duration) * 1.5);
+
+  .has-search-open & {
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .c-form__error {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 3em;
+    max-width: 50%;
+    font-size: 1.2rem;
+    line-height: 1.25;
+    text-align: right;
+    pointer-events: none;
+    transform: translateY(-50%);
+
+    @include bp(md) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.c-page-head__placeholder {
+  height: var(--header-height, 0);
+}

@@ -1,0 +1,65 @@
+/*
+** Component - Ratings
+** ----------------------------------------------------------------------------- */
+
+.c-ratings {
+  display: flex;
+  align-items: center;
+  gap: spacer-relative(0.5) spacer-relative(0.5);
+}
+
+.c-ratings__form {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 0.125em;
+
+  > input {
+    position: absolute;
+    left: -9999em;
+    opacity: 0;
+  }
+}
+
+.c-ratings__button {
+  color: var(--chipmunk--color--gray-light);
+  padding: 0.1em;
+  cursor: pointer;
+  transition: color var(--chipmunk--transition-duration);
+
+  :not(.is-active) > &.is-selected,
+  :not(.is-active) > &.is-selected ~ & {
+    color: var(--chipmunk--color--gray);
+  }
+
+  &.is-active,
+  &.is-active ~ & {
+    color: var(--chipmunk--color--primary);
+  }
+
+  [class]:hover > &,
+  [class]:hover > & ~ & {
+    color: var(--chipmunk--color--gray-light);
+  }
+
+  [class]:hover > &:hover,
+  [class]:hover > &:hover ~ & {
+    color: var(--chipmunk--color--primary);
+  }
+
+  &.is-active {
+    animation-name: grow;
+    animation-timing-function: ease-in-out;
+    animation-duration: calc(var(--chipmunk--transition-duration) * 2);
+  }
+}
+
+.c-ratings__result {
+  strong {
+    font-weight: bold;
+  }
+
+  small {
+    margin-left: 0.5em;
+    opacity: 0.5;
+  }
+}

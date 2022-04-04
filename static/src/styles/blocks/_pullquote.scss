@@ -1,0 +1,15 @@
+/*
+** Blocks / Pullquote
+** ----------------------------------------------------------------------------- */
+
+.wp-block-pullquote {
+  padding-top: spacer-clamped(2);
+  padding-bottom: spacer-clamped(2);
+  border-top: 4px solid var(--chipmunk--color--gray);
+  border-bottom: 4px solid var(--chipmunk--color--gray);
+  text-align: center;
+
+  p {
+    font-size: 1.25em;
+  }
+}

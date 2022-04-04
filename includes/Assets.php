@@ -27,7 +27,6 @@ class Assets {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_inline_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_google_fonts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_external_scripts' ) );
-		// add_action( 'wp_enqueue_scripts', array( $this, 'deregister_block_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 		add_filter( 'script_loader_tag', array( $this, 'add_async_attribute' ), 10, 3 );
 	}

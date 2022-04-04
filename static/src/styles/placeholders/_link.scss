@@ -1,0 +1,27 @@
+/*
+** Placeholders - Link
+** ----------------------------------------------------------------------------- */
+
+%link {
+  &:not([class]) {
+    color: var(--chipmunk--color--link);
+
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+    }
+  }
+}
+
+%link-transition {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-user-drag: none;
+  transition-duration: var(--chipmunk--transition-duration);
+  transition-property: color, background-color, border-color, outline, box-shadow, opacity, outline, transform;
+
+  &:focus {
+    outline: none;
+  }
+}

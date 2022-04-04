@@ -1,0 +1,53 @@
+/*
+** Placeholders - Heading
+** ----------------------------------------------------------------------------- */
+
+%heading {
+  font-family: var(--chipmunk--typography--heading-font-family);
+  font-weight: 700;
+  line-height: calc(1.5rem + 1.5ex);
+}
+
+%heading-small {
+  font-size: var(--chipmunk--typography--small);
+}
+
+%heading-normal {
+  font-size: clamp(
+    var(--chipmunk--typography--small),
+    calc(1rem + var(--chipmunk--typography--normal--preferred, 1vw)),
+    var(--chipmunk--typography--normal)
+  );
+}
+
+%heading-medium {
+  font-size: clamp(
+    var(--chipmunk--typography--normal),
+    calc(1rem + var(--chipmunk--typography--medium--preferred, 2vw)),
+    var(--chipmunk--typography--medium)
+  );
+}
+
+%heading-large {
+  font-size: clamp(
+    var(--chipmunk--typography--medium),
+    calc(1rem + var(--chipmunk--typography--large--preferred, 3vw)),
+    var(--chipmunk--typography--large)
+  );
+}
+
+%heading-xlarge {
+  font-size: clamp(
+    var(--chipmunk--typography--large),
+    calc(1rem + var(--chipmunk--typography--xlarge--preferred, 4vw)),
+    var(--chipmunk--typography--xlarge)
+  );
+}
+
+%heading-huge {
+  font-size: clamp(
+    var(--chipmunk--typography--xlarge),
+    calc(1rem + var(--chipmunk--typography--huge--preferred, 5vw)),
+    var(--chipmunk--typography--huge)
+  );
+}

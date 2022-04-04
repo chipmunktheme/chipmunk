@@ -1,0 +1,39 @@
+/*
+** Component - Menu socials
+** ----------------------------------------------------------------------------- */
+
+.c-menu-socials {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: spacer-clamped(0.5);
+}
+
+.c-menu-socials__title {
+  @include spacer-clamped(0.5, 'right');
+}
+
+.c-menu-socials__list {
+  display: contents;
+}
+
+.c-menu-socials__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2em;
+  width: 2em;
+  border: var(--chipmunk--button--border-width) solid var(--chipmunk--color--gray-light);
+  border-radius: var(--chipmunk--button--border-radius);
+  color: var(--chipmunk--color--gray);
+  font-size: var(--chipmunk--button--font-size);
+  line-height: 1;
+  text-align: center;
+
+  &:hover {
+    border-color: var(--chipmunk--color--primary);
+    color: var(--chipmunk--color--primary);
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+}

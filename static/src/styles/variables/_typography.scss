@@ -1,0 +1,28 @@
+/*
+** Variables - Typography
+** ----------------------------------------------------------------------------- */
+
+body {
+  // Fonts
+  --chipmunk--font--system: -apple-system, BlinkMacSystemFont, 'Segoe UI', roboto, oxygen, ubuntu, cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
+  --chipmunk--font--mono: menlo, consolas, monaco, monospace;
+
+  // Typography
+  --chipmunk--typography--font-family: var(--chipmunk--font--system);
+  --chipmunk--typography--font-size: 1.6rem;
+  --chipmunk--typography--line-height: 1.618;
+
+  // Headings
+  --chipmunk--typography--scale: 1.25;
+  --chipmunk--typography--small: var(--chipmunk--typography--font-size);
+  --chipmunk--typography--normal: var(--chipmunk--typography--small) * var(--chipmunk--typography--scale);
+  --chipmunk--typography--medium: var(--chipmunk--typography--normal) * var(--chipmunk--typography--scale);
+  --chipmunk--typography--large: var(--chipmunk--typography--medium) * var(--chipmunk--typography--scale);
+  --chipmunk--typography--xlarge: var(--chipmunk--typography--large) * var(--chipmunk--typography--scale);
+  --chipmunk--typography--huge: var(--chipmunk--typography--xlarge) * var(--chipmunk--typography--scale);
+  --chipmunk--typography--heading-font-family: var(--chipmunk--font--system);
+
+  // Content
+  --chipmunk--typography--content-size: 1.25em;
+}

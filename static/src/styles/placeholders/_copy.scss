@@ -1,0 +1,188 @@
+/*
+** Placeholders - Copy
+** ----------------------------------------------------------------------------- */
+
+%copy {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include spacer-relative;
+
+    @extend %heading;
+
+    + ul:not(:first-child),
+    + ol:not(:first-child) {
+      margin-top: 0;
+    }
+  }
+
+  h1 {
+    @extend %heading-huge !optional;
+  }
+
+  h2 {
+    @extend %heading-xlarge !optional;
+  }
+
+  h3 {
+    @extend %heading-large !optional;
+  }
+
+  h4 {
+    @extend %heading-medium !optional;
+  }
+
+  h5 {
+    @extend %heading-normal !optional;
+  }
+
+  h6 {
+    @extend %heading-small !optional;
+  }
+
+  p,
+  ul,
+  ol,
+  blockquote,
+  table,
+  pre,
+  code,
+  iframe,
+  .wp-caption {
+    &:not([class*='block']) {
+      @include spacer-relative;
+    }
+  }
+
+  ul:not([class*='block']),
+  ol:not([class*='block']) {
+    @include spacer-relative(1, left, padding);
+
+    list-style-position: inside;
+
+    li {
+      @include spacer-relative(0.25);
+    }
+
+    ul,
+    ol {
+      @include spacer-relative(0.25, top, padding);
+      @include spacer-relative(1, left, padding);
+    }
+  }
+
+  ul:not([class*='block']) {
+    list-style: disc;
+  }
+
+  ol:not([class*='block']) {
+    list-style: decimal;
+  }
+
+  a:not([class]) {
+    @extend %link;
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    background-color: var(--chipmunk--color--white);
+  }
+
+  blockquote:not([class*='block']) {
+    p {
+      font-size: 1.2em;
+      line-height: 1.5;
+    }
+
+    em {
+      font-style: normal;
+    }
+
+    cite {
+      @extend %caption;
+    }
+  }
+
+  table {
+    min-width: 100%;
+    table-layout: fixed;
+    border: 1px solid var(--chipmunk--color--gray);
+    border-spacing: 0;
+    border-collapse: collapse;
+    font-size: 0.8em;
+
+    @include bp(md) {
+      border-width: 2px;
+    }
+
+    thead {
+      background-color: var(--chipmunk--color--white);
+      font-weight: bold;
+      text-align: left;
+    }
+
+    td,
+    th {
+      padding: 0.5em 1em;
+      border: 1px solid var(--chipmunk--color--gray);
+      vertical-align: top;
+
+      @include bp(md) {
+        border-width: 2px;
+      }
+    }
+  }
+
+  hr:not([class]) {
+    border-bottom: 2px solid var(--chipmunk--color--gray-lighter);
+  }
+
+  strong,
+  b {
+    font-weight: bold;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  pre {
+    font-family: var(--chipmunk--font--mono);
+    font-size: 0.8125em;
+    line-height: 1.75;
+    white-space: nowrap;
+    overflow: auto;
+    tab-size: 4;
+  }
+
+  cite,
+  footer {
+    @extend %caption;
+    @extend %caption-quote;
+  }
+
+  figcaption {
+    @extend %caption;
+  }
+
+  .alignwide > figcaption,
+  .alignfull > figcaption {
+    @extend %caption-indented;
+  }
+
+  .alignwide > figcaption {
+    @include bp(lg) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+%copy-type {
+  font-size: var(--chipmunk--typography--content-size);
+}

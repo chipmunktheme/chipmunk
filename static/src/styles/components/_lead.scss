@@ -1,0 +1,21 @@
+/*
+** Component - Lead
+** ----------------------------------------------------------------------------- */
+
+.c-lead {
+  display: flex;
+  flex-direction: column;
+
+  &--center {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.c-lead__content {
+  @include spacer-relative(0.5);
+}
+
+.c-lead__cta {
+  @include spacer-relative(1.5);
+}

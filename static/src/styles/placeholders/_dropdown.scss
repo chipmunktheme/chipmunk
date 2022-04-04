@@ -1,0 +1,15 @@
+/*
+** Placeholders - Dropdown
+** ----------------------------------------------------------------------------- */
+
+%dropdown-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0.25em 1em;
+  text-align: inherit;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

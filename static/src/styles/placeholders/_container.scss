@@ -1,0 +1,10 @@
+/*
+** Placeholders - Container
+** ----------------------------------------------------------------------------- */
+
+%container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: min(var(--chipmunk--layout--container-width), calc(100vw - var(--chipmunk--layout--container-gutter) * 2));
+}

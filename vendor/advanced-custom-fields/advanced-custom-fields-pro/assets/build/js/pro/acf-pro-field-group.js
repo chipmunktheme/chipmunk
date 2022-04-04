@@ -1,10 +1,10 @@
-/******/ (function() { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
+/** *** */ (function() { // webpackBootstrap
+/** *** */ 	const __webpack_modules__ = ({
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-clone.js":
-/*!********************************************************************************!*\
+/*! ********************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-clone.js ***!
-  \********************************************************************************/
+  \******************************************************************************* */
 /***/ (function() {
 
 (function ($) {
@@ -19,12 +19,12 @@
    *  @param	void
    *  @return	void
    */
-  var CloneDisplayFieldSetting = acf.FieldSetting.extend({
+  const CloneDisplayFieldSetting = acf.FieldSetting.extend({
     type: 'clone',
     name: 'display',
-    render: function () {
+    render () {
       // vars
-      var display = this.field.val(); // set data attribute used by CSS to hide/show
+      const display = this.field.val(); // set data attribute used by CSS to hide/show
 
       this.$fieldObject.attr('data-display', display);
     }
@@ -42,19 +42,19 @@
    *  @return	void
    */
 
-  var ClonePrefixLabelFieldSetting = acf.FieldSetting.extend({
+  const ClonePrefixLabelFieldSetting = acf.FieldSetting.extend({
     type: 'clone',
     name: 'prefix_label',
-    render: function () {
+    render () {
       // vars
-      var prefix = ''; // if checked
+      let prefix = ''; // if checked
 
       if (this.field.val()) {
-        prefix = this.fieldObject.prop('label') + ' ';
+        prefix = `${this.fieldObject.prop('label')  } `;
       } // update HTML
 
 
-      this.$('code').html(prefix + '%field_label%');
+      this.$('code').html(`${prefix  }%field_label%`);
     }
   });
   acf.registerFieldSetting(ClonePrefixLabelFieldSetting);
@@ -70,19 +70,19 @@
    *  @return	void
    */
 
-  var ClonePrefixNameFieldSetting = acf.FieldSetting.extend({
+  const ClonePrefixNameFieldSetting = acf.FieldSetting.extend({
     type: 'clone',
     name: 'prefix_name',
-    render: function () {
+    render () {
       // vars
-      var prefix = ''; // if checked
+      let prefix = ''; // if checked
 
       if (this.field.val()) {
-        prefix = this.fieldObject.prop('name') + '_';
+        prefix = `${this.fieldObject.prop('name')  }_`;
       } // update HTML
 
 
-      this.$('code').html(prefix + '%field_name%');
+      this.$('code').html(`${prefix  }%field_name%`);
     }
   });
   acf.registerFieldSetting(ClonePrefixNameFieldSetting);
@@ -98,11 +98,11 @@
    *  @return	void
    */
 
-  var cloneFieldSelectHelper = new acf.Model({
+  const cloneFieldSelectHelper = new acf.Model({
     filters: {
       select2_args: 'select2Args'
     },
-    select2Args: function (options, $select, data, $el, instance) {
+    select2Args (options, $select, data, $el, instance) {
       // check
       if (data.ajaxAction == 'acf/fields/clone/query') {
         // remain open on select
@@ -114,7 +114,7 @@
 
       return options;
     },
-    ajaxData: function (data) {
+    ajaxData (data) {
       // find current fields
       data.fields = {}; // loop
 
@@ -138,9 +138,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-flexible-content.js":
-/*!*******************************************************************************************!*\
+/*! *******************************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-flexible-content.js ***!
-  \*******************************************************************************************/
+  \****************************************************************************************** */
 /***/ (function() {
 
 (function ($) {
@@ -155,7 +155,7 @@
    *  @param	void
    *  @return	void
    */
-  var FlexibleContentLayoutFieldSetting = acf.FieldSetting.extend({
+  const FlexibleContentLayoutFieldSetting = acf.FieldSetting.extend({
     type: 'flexible_content',
     name: 'fc_layout',
     events: {
@@ -164,30 +164,30 @@
       'click .duplicate-layout': 'onClickDuplicate',
       'click .delete-layout': 'onClickDelete'
     },
-    $input: function (name) {
-      return $('#' + this.getInputId() + '-' + name);
+    $input (name) {
+      return $(`#${  this.getInputId()  }-${  name}`);
     },
-    $list: function () {
+    $list () {
       return this.$('.acf-field-list:first');
     },
-    getInputId: function () {
-      return this.fieldObject.getInputId() + '-layouts-' + this.field.get('id');
+    getInputId () {
+      return `${this.fieldObject.getInputId()  }-layouts-${  this.field.get('id')}`;
     },
     // get all sub fields
-    getFields: function () {
+    getFields () {
       return acf.getFieldObjects({
         parent: this.$el
       });
     },
     // get imediate children
-    getChildren: function () {
+    getChildren () {
       return acf.getFieldObjects({
         list: this.$list()
       });
     },
-    initialize: function () {
+    initialize () {
       // add sortable
-      var $tbody = this.$el.parent();
+      const $tbody = this.$el.parent();
 
       if (!$tbody.hasClass('ui-sortable')) {
         $tbody.sortable({
@@ -205,33 +205,33 @@
 
       this.updateFieldLayouts();
     },
-    updateFieldLayouts: function () {
+    updateFieldLayouts () {
       this.getChildren().map(this.updateFieldLayout, this);
     },
-    updateFieldLayout: function (field) {
+    updateFieldLayout (field) {
       field.prop('parent_layout', this.get('id'));
     },
-    onChangeLabel: function (e, $el) {
+    onChangeLabel (e, $el) {
       // vars
-      var label = $el.val();
-      var $name = this.$input('name'); // render name
+      const label = $el.val();
+      const $name = this.$input('name'); // render name
 
       if ($name.val() == '') {
         acf.val($name, acf.strSanitize(label));
       }
     },
-    onClickAdd: function (e, $el) {
+    onClickAdd (e, $el) {
       // vars
-      var prevKey = this.get('id');
-      var newKey = acf.uniqid('layout_'); // duplicate
+      const prevKey = this.get('id');
+      const newKey = acf.uniqid('layout_'); // duplicate
 
       $layout = acf.duplicate({
         $el: this.$el,
         search: prevKey,
         replace: newKey,
-        after: function ($el, $el2) {
+        after ($el, $el2) {
           // vars
-          var $list = $el2.find('.acf-field-list:first'); // remove sub fields
+          const $list = $el2.find('.acf-field-list:first'); // remove sub fields
 
           $list.children('.acf-field-object').remove(); // show empty
 
@@ -241,16 +241,16 @@
         }
       }); // get layout
 
-      var layout = acf.getFieldSetting($layout); // update hidden input
+      const layout = acf.getFieldSetting($layout); // update hidden input
 
       layout.$input('key').val(newKey); // save
 
       this.fieldObject.save();
     },
-    onClickDuplicate: function (e, $el) {
+    onClickDuplicate (e, $el) {
       // vars
-      var prevKey = this.get('id');
-      var newKey = acf.uniqid('layout_'); // duplicate
+      const prevKey = this.get('id');
+      const newKey = acf.uniqid('layout_'); // duplicate
 
       $layout = acf.duplicate({
         $el: this.$el,
@@ -260,7 +260,7 @@
       // important to run field.wipe() before making any changes to the "parent_layout" prop
       // to ensure the correct input is modified.
 
-      var children = acf.getFieldObjects({
+      const children = acf.getFieldObjects({
         parent: $layout
       });
 
@@ -277,13 +277,13 @@
       } // get layout
 
 
-      var layout = acf.getFieldSetting($layout); // update hidden input
+      const layout = acf.getFieldSetting($layout); // update hidden input
 
       layout.$input('key').val(newKey); // save
 
       this.fieldObject.save();
     },
-    onClickDelete: function (e, $el) {
+    onClickDelete (e, $el) {
       // Bypass confirmation when holding down "shift" key.
       if (e.shiftKey) {
         return this.delete();
@@ -292,21 +292,21 @@
 
       this.$el.addClass('-hover'); // add tooltip
 
-      var tooltip = acf.newTooltip({
+      const tooltip = acf.newTooltip({
         confirmRemove: true,
         target: $el,
         context: this,
-        confirm: function () {
+        confirm () {
           this.delete();
         },
-        cancel: function () {
+        cancel () {
           this.$el.removeClass('-hover');
         }
       });
     },
-    delete: function () {
+    delete () {
       // vars
-      var $siblings = this.$el.siblings('.acf-field-setting-fc_layout'); // validate
+      const $siblings = this.$el.siblings('.acf-field-setting-fc_layout'); // validate
 
       if (!$siblings.length) {
         alert(acf.__('Flexible Content requires at least 1 layout'));
@@ -338,14 +338,14 @@
    *  @return	type Description.
    */
 
-  var flexibleContentHelper = new acf.Model({
+  const flexibleContentHelper = new acf.Model({
     actions: {
       sortstop_field_object: 'updateParentLayout',
       change_field_object_parent: 'updateParentLayout'
     },
-    updateParentLayout: function (fieldObject) {
+    updateParentLayout (fieldObject) {
       // vars
-      var parent = fieldObject.getParent(); // delete meta
+      const parent = fieldObject.getParent(); // delete meta
 
       if (!parent || parent.prop('type') !== 'flexible_content') {
         fieldObject.prop('parent_layout', null);
@@ -353,8 +353,8 @@
       } // get layout
 
 
-      var $layout = fieldObject.$el.closest('.acf-field-setting-fc_layout');
-      var layout = acf.getFieldSetting($layout); // check if previous prop exists
+      const $layout = fieldObject.$el.closest('.acf-field-setting-fc_layout');
+      const layout = acf.getFieldSetting($layout); // check if previous prop exists
       // - if not, set prop to allow following code to trigger 'change' and save the field
 
       if (!fieldObject.has('parent_layout')) {
@@ -370,9 +370,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-repeater.js":
-/*!***********************************************************************************!*\
+/*! ***********************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-repeater.js ***!
-  \***********************************************************************************/
+  \********************************************************************************** */
 /***/ (function() {
 
 (function ($) {
@@ -388,25 +388,25 @@
    *  @param	n/a
    *  @return	n/a
    */
-  var RepeaterCollapsedFieldSetting = acf.FieldSetting.extend({
+  const RepeaterCollapsedFieldSetting = acf.FieldSetting.extend({
     type: 'repeater',
     name: 'collapsed',
     events: {
       'focus select': 'onFocus'
     },
-    onFocus: function (e, $el) {
+    onFocus (e, $el) {
       // vars
-      var $select = $el; // collapsed
+      const $select = $el; // collapsed
 
-      var choices = []; // keep 'null' choice
+      const choices = []; // keep 'null' choice
 
       choices.push({
         label: $select.find('option[value=""]').text(),
         value: ''
       }); // find sub fields
 
-      var $list = this.fieldObject.$('.acf-field-list:first');
-      var fields = acf.getFieldObjects({
+      const $list = this.fieldObject.$('.acf-field-list:first');
+      const fields = acf.getFieldObjects({
         list: $list
       }); // loop
 
@@ -425,92 +425,92 @@
 
 /***/ })
 
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = function(module) {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				function() { return module['default']; } :
-/******/ 				function() { return module; };
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	!function() {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = function(exports, definition) {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	!function() {
-/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = function(exports) {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/************************************************************************/
-var __webpack_exports__ = {};
+/** *** */ 	});
+/** ********************************************************************* */
+/** *** */ 	// The module cache
+/** *** */ 	const __webpack_module_cache__ = {};
+/** *** */ 	
+/** *** */ 	// The require function
+/** *** */ 	function __webpack_require__(moduleId) {
+/** *** */ 		// Check if module is in cache
+/** *** */ 		const cachedModule = __webpack_module_cache__[moduleId];
+/** *** */ 		if (cachedModule !== undefined) {
+/** *** */ 			return cachedModule.exports;
+/** *** */ 		}
+/** *** */ 		// Create a new module (and put it into the cache)
+/** *** */ 		const module = __webpack_module_cache__[moduleId] = {
+/** *** */ 			// no module.id needed
+/** *** */ 			// no module.loaded needed
+/** *** */ 			exports: {}
+/** *** */ 		};
+/** *** */ 	
+/** *** */ 		// Execute the module function
+/** *** */ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/** *** */ 	
+/** *** */ 		// Return the exports of the module
+/** *** */ 		return module.exports;
+/** *** */ 	}
+/** *** */ 	
+/** ********************************************************************* */
+/** *** */ 	/* webpack/runtime/compat get default export */
+/** *** */ 	!function() {
+/** *** */ 		// getDefaultExport function for compatibility with non-harmony modules
+/** *** */ 		__webpack_require__.n = function(module) {
+/** *** */ 			const getter = module && module.__esModule ?
+/** *** */ 				function() { return module.default; } :
+/** *** */ 				function() { return module; };
+/** *** */ 			__webpack_require__.d(getter, { a: getter });
+/** *** */ 			return getter;
+/** *** */ 		};
+/** *** */ 	}();
+/** *** */ 	
+/** *** */ 	/* webpack/runtime/define property getters */
+/** *** */ 	!function() {
+/** *** */ 		// define getter functions for harmony exports
+/** *** */ 		__webpack_require__.d = function(exports, definition) {
+/** *** */ 			for(const key in definition) {
+/** *** */ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/** *** */ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/** *** */ 				}
+/** *** */ 			}
+/** *** */ 		};
+/** *** */ 	}();
+/** *** */ 	
+/** *** */ 	/* webpack/runtime/hasOwnProperty shorthand */
+/** *** */ 	!function() {
+/** *** */ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/** *** */ 	}();
+/** *** */ 	
+/** *** */ 	/* webpack/runtime/make namespace object */
+/** *** */ 	!function() {
+/** *** */ 		// define __esModule on exports
+/** *** */ 		__webpack_require__.r = function(exports) {
+/** *** */ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/** *** */ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/** *** */ 			}
+/** *** */ 			Object.defineProperty(exports, '__esModule', { value: true });
+/** *** */ 		};
+/** *** */ 	}();
+/** *** */ 	
+/** ********************************************************************* */
+const __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
-"use strict";
-/*!*********************************************************************************!*\
+
+/*! *********************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/pro/acf-pro-field-group.js ***!
-  \*********************************************************************************/
+  \******************************************************************************** */
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _acf_setting_repeater_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_acf-setting-repeater.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-repeater.js");
-/* harmony import */ var _acf_setting_repeater_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_acf_setting_repeater_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _acf_setting_flexible_content_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_acf-setting-flexible-content.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-flexible-content.js");
-/* harmony import */ var _acf_setting_flexible_content_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_acf_setting_flexible_content_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _acf_setting_clone_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_acf-setting-clone.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-clone.js");
-/* harmony import */ var _acf_setting_clone_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_acf_setting_clone_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ const _acf_setting_repeater_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_acf-setting-repeater.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-repeater.js");
+/* harmony import */ const _acf_setting_repeater_js__WEBPACK_IMPORTED_MODULE_0___default = /* #__PURE__ */__webpack_require__.n(_acf_setting_repeater_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ const _acf_setting_flexible_content_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_acf-setting-flexible-content.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-flexible-content.js");
+/* harmony import */ const _acf_setting_flexible_content_js__WEBPACK_IMPORTED_MODULE_1___default = /* #__PURE__ */__webpack_require__.n(_acf_setting_flexible_content_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ const _acf_setting_clone_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_acf-setting-clone.js */ "./src/advanced-custom-fields-pro/assets/src/js/pro/_acf-setting-clone.js");
+/* harmony import */ const _acf_setting_clone_js__WEBPACK_IMPORTED_MODULE_2___default = /* #__PURE__ */__webpack_require__.n(_acf_setting_clone_js__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 }();
-/******/ })()
+/** *** */ })()
 ;
-//# sourceMappingURL=acf-pro-field-group.js.map
+// # sourceMappingURL=acf-pro-field-group.js.map

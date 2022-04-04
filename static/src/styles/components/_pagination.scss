@@ -1,0 +1,44 @@
+/*
+** Component - Pagination
+** ----------------------------------------------------------------------------- */
+
+.c-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: spacer-clamped(0.5) spacer-clamped(1);
+}
+
+.c-pagination__title {
+  color: var(--chipmunk--color--gray);
+}
+
+.c-pagination__item {
+  &:last-child {
+    text-align: right;
+  }
+
+  a,
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: spacer-clamped(0.5);
+
+    &[href]:hover {
+      color: var(--chipmunk--color--primary);
+    }
+  }
+
+  .u-icon {
+    font-size: 1.25em;
+  }
+
+  &--disabled {
+    visibility: hidden;
+  }
+}
+
+.c-pagination__button {
+  margin-left: auto;
+  margin-right: auto;
+}

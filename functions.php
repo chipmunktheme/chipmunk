@@ -19,7 +19,7 @@ define( 'THEME_DEMO_URL',       	'https://demo.chipmunktheme.com' );
 define( 'THEME_SHOP_URL',       	'https://chipmunktheme.com' );
 define( 'THEME_ITEM_ID',        	'893' );
 define( 'THEME_ITEM_SLUG',      	'chipmunk-theme' );
-define( 'THEME_DIST_PATH', 			'dist/' );
+define( 'THEME_DIST_PATH', 			'static/dist/' );
 define( 'THEME_ASSETS_PATH', 		'assets/' );
 define( 'THEME_TEMPLATES_PATH', 	'templates/' );
 define( 'THEME_MANIFEST_PATH',      THEME_DIST_PATH . 'manifest.json' );

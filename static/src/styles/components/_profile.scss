@@ -1,0 +1,43 @@
+/*
+** Component - Profile
+** ----------------------------------------------------------------------------- */
+
+.c-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: spacer-clamped(1.5);
+}
+
+.c-profile__avatar {
+  max-width: 10rem;
+
+  @include bp(md) {
+    max-width: 12.8rem;
+  }
+
+  img {
+    height: auto;
+  }
+}
+
+.c-profile__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: spacer-clamped(1.5);
+}
+
+.c-profile__description {
+  @extend %copy;
+}
+
+.c-profile__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: spacer-clamped(2.5);
+}
+
+.c-profile__stats {
+  color: var(--chipmunk--color--gray);
+}

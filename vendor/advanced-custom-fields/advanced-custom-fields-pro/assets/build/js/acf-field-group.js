@@ -1,14 +1,14 @@
-/******/ (function() { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
+/** *** */ (function() { // webpackBootstrap
+/** *** */ 	const __webpack_modules__ = ({
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-compatibility.js":
-/*!************************************************************************************!*\
+/*! ************************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_field-group-compatibility.js ***!
-  \************************************************************************************/
+  \*********************************************************************************** */
 /***/ (function() {
 
 (function ($, undefined) {
-  var _acf = acf.getCompatibility(acf);
+  const _acf = acf.getCompatibility(acf);
   /**
    *  fieldGroupCompatibility
    *
@@ -23,20 +23,20 @@
 
 
   _acf.field_group = {
-    save_field: function ($field, type) {
+    save_field ($field, type) {
       type = type !== undefined ? type : 'settings';
       acf.getFieldObject($field).save(type);
     },
-    delete_field: function ($field, animate) {
+    delete_field ($field, animate) {
       animate = animate !== undefined ? animate : true;
       acf.getFieldObject($field).delete({
-        animate: animate
+        animate
       });
     },
-    update_field_meta: function ($field, name, value) {
+    update_field_meta ($field, name, value) {
       acf.getFieldObject($field).prop(name, value);
     },
-    delete_field_meta: function ($field, name) {
+    delete_field_meta ($field, name) {
       acf.getFieldObject($field).prop(name, null);
     }
   };
@@ -58,39 +58,39 @@
     o: {},
     $field: null,
     $settings: null,
-    tag: function (tag) {
+    tag (tag) {
       // vars
-      var type = this.type; // explode, add 'field' and implode
+      const {type} = this; // explode, add 'field' and implode
       // - open 			=> open_field
       // - change_type	=> change_field_type
 
-      var tags = tag.split('_');
+      const tags = tag.split('_');
       tags.splice(1, 0, 'field');
       tag = tags.join('_'); // add type
 
       if (type) {
-        tag += '/type=' + type;
+        tag += `/type=${  type}`;
       } // return
 
 
       return tag;
     },
-    selector: function () {
+    selector () {
       // vars
-      var selector = '.acf-field-object';
-      var type = this.type; // add type
+      let selector = '.acf-field-object';
+      const {type} = this; // add type
 
       if (type) {
-        selector += '-' + type;
+        selector += `-${  type}`;
         selector = acf.str_replace('_', '-', selector);
       } // return
 
 
       return selector;
     },
-    _add_action: function (name, callback) {
+    _add_action (name, callback) {
       // vars
-      var model = this; // add action
+      const model = this; // add action
 
       acf.add_action(this.tag(name), function ($field) {
         // focus
@@ -99,9 +99,9 @@
         model[callback].apply(model, arguments);
       });
     },
-    _add_filter: function (name, callback) {
+    _add_filter (name, callback) {
       // vars
-      var model = this; // add action
+      const model = this; // add action
 
       acf.add_filter(this.tag(name), function ($field) {
         // focus
@@ -110,14 +110,14 @@
         model[callback].apply(model, arguments);
       });
     },
-    _add_event: function (name, callback) {
+    _add_event (name, callback) {
       // vars
-      var model = this;
-      var event = name.substr(0, name.indexOf(' '));
-      var selector = name.substr(name.indexOf(' ') + 1);
-      var context = this.selector(); // add event
+      const model = this;
+      const event = name.substr(0, name.indexOf(' '));
+      const selector = name.substr(name.indexOf(' ') + 1);
+      const context = this.selector(); // add event
 
-      $(document).on(event, context + ' ' + selector, function (e) {
+      $(document).on(event, `${context  } ${  selector}`, function (e) {
         // append $el to event object
         e.$el = $(this);
         e.$field = e.$el.closest('.acf-field-object'); // focus
@@ -127,7 +127,7 @@
         model[callback].apply(model, [e]);
       });
     },
-    _set_$field: function () {
+    _set_$field () {
       // vars
       this.o = this.$field.data(); // els
 
@@ -135,10 +135,10 @@
 
       this.focus();
     },
-    focus: function () {// do nothing
+    focus () {// do nothing
     },
-    setting: function (name) {
-      return this.$settings.find('> .acf-field-setting-' + name);
+    setting (name) {
+      return this.$settings.find(`> .acf-field-setting-${  name}`);
     }
   });
   /*
@@ -154,7 +154,7 @@
    *  @return	n/a
    */
 
-  var actionManager = new acf.Model({
+  const actionManager = new acf.Model({
     actions: {
       open_field_object: 'onOpenFieldObject',
       close_field_object: 'onCloseFieldObject',
@@ -167,43 +167,43 @@
       change_field_object_parent: 'onChangeFieldObjectParent',
       sortstop_field_object: 'onChangeFieldObjectParent'
     },
-    onOpenFieldObject: function (field) {
+    onOpenFieldObject (field) {
       acf.doAction('open_field', field.$el);
-      acf.doAction('open_field/type=' + field.get('type'), field.$el);
+      acf.doAction(`open_field/type=${  field.get('type')}`, field.$el);
       acf.doAction('render_field_settings', field.$el);
-      acf.doAction('render_field_settings/type=' + field.get('type'), field.$el);
+      acf.doAction(`render_field_settings/type=${  field.get('type')}`, field.$el);
     },
-    onCloseFieldObject: function (field) {
+    onCloseFieldObject (field) {
       acf.doAction('close_field', field.$el);
-      acf.doAction('close_field/type=' + field.get('type'), field.$el);
+      acf.doAction(`close_field/type=${  field.get('type')}`, field.$el);
     },
-    onAddFieldObject: function (field) {
+    onAddFieldObject (field) {
       acf.doAction('add_field', field.$el);
-      acf.doAction('add_field/type=' + field.get('type'), field.$el);
+      acf.doAction(`add_field/type=${  field.get('type')}`, field.$el);
     },
-    onDuplicateFieldObject: function (field) {
+    onDuplicateFieldObject (field) {
       acf.doAction('duplicate_field', field.$el);
-      acf.doAction('duplicate_field/type=' + field.get('type'), field.$el);
+      acf.doAction(`duplicate_field/type=${  field.get('type')}`, field.$el);
     },
-    onDeleteFieldObject: function (field) {
+    onDeleteFieldObject (field) {
       acf.doAction('delete_field', field.$el);
-      acf.doAction('delete_field/type=' + field.get('type'), field.$el);
+      acf.doAction(`delete_field/type=${  field.get('type')}`, field.$el);
     },
-    onChangeFieldObjectType: function (field) {
+    onChangeFieldObjectType (field) {
       acf.doAction('change_field_type', field.$el);
-      acf.doAction('change_field_type/type=' + field.get('type'), field.$el);
+      acf.doAction(`change_field_type/type=${  field.get('type')}`, field.$el);
       acf.doAction('render_field_settings', field.$el);
-      acf.doAction('render_field_settings/type=' + field.get('type'), field.$el);
+      acf.doAction(`render_field_settings/type=${  field.get('type')}`, field.$el);
     },
-    onChangeFieldObjectLabel: function (field) {
+    onChangeFieldObjectLabel (field) {
       acf.doAction('change_field_label', field.$el);
-      acf.doAction('change_field_label/type=' + field.get('type'), field.$el);
+      acf.doAction(`change_field_label/type=${  field.get('type')}`, field.$el);
     },
-    onChangeFieldObjectName: function (field) {
+    onChangeFieldObjectName (field) {
       acf.doAction('change_field_name', field.$el);
-      acf.doAction('change_field_name/type=' + field.get('type'), field.$el);
+      acf.doAction(`change_field_name/type=${  field.get('type')}`, field.$el);
     },
-    onChangeFieldObjectParent: function (field) {
+    onChangeFieldObjectParent (field) {
       acf.doAction('update_field_parent', field.$el);
     }
   });
@@ -212,9 +212,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-conditions.js":
-/*!*********************************************************************************!*\
+/*! *********************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_field-group-conditions.js ***!
-  \*********************************************************************************/
+  \******************************************************************************** */
 /***/ (function() {
 
 (function ($, undefined) {
@@ -229,7 +229,7 @@
    *  @param	type $var Description. Default.
    *  @return	type Description.
    */
-  var ConditionalLogicFieldSetting = acf.FieldSetting.extend({
+  const ConditionalLogicFieldSetting = acf.FieldSetting.extend({
     type: '',
     name: 'conditional_logic',
     events: {
@@ -242,42 +242,42 @@
       'click .remove-conditional-rule': 'onClickRemove'
     },
     $rule: false,
-    scope: function ($rule) {
+    scope ($rule) {
       this.$rule = $rule;
       return this;
     },
-    ruleData: function (name, value) {
+    ruleData (name, value) {
       return this.$rule.data.apply(this.$rule, arguments);
     },
-    $input: function (name) {
-      return this.$rule.find('.condition-rule-' + name);
+    $input (name) {
+      return this.$rule.find(`.condition-rule-${  name}`);
     },
-    $td: function (name) {
-      return this.$rule.find('td.' + name);
+    $td (name) {
+      return this.$rule.find(`td.${  name}`);
     },
-    $toggle: function () {
+    $toggle () {
       return this.$('.conditions-toggle');
     },
-    $control: function () {
+    $control () {
       return this.$('.rule-groups');
     },
-    $groups: function () {
+    $groups () {
       return this.$('.rule-group');
     },
-    $rules: function () {
+    $rules () {
       return this.$('.rule');
     },
-    open: function () {
-      var $div = this.$control();
+    open () {
+      const $div = this.$control();
       $div.show();
       acf.enable($div);
     },
-    close: function () {
-      var $div = this.$control();
+    close () {
+      const $div = this.$control();
       $div.hide();
       acf.disable($div);
     },
-    render: function () {
+    render () {
       // show
       if (this.$toggle().prop('checked')) {
         this.renderRules();
@@ -286,30 +286,30 @@
         this.close();
       }
     },
-    renderRules: function () {
+    renderRules () {
       // vars
-      var self = this; // loop
+      const self = this; // loop
 
       this.$rules().each(function () {
         self.renderRule($(this));
       });
     },
-    renderRule: function ($rule) {
+    renderRule ($rule) {
       this.scope($rule);
       this.renderField();
       this.renderOperator();
       this.renderValue();
     },
-    renderField: function () {
+    renderField () {
       // vars
-      var choices = [];
-      var validFieldTypes = [];
-      var cid = this.fieldObject.cid;
-      var $select = this.$input('field'); // loop
+      const choices = [];
+      const validFieldTypes = [];
+      const {cid} = this.fieldObject;
+      const $select = this.$input('field'); // loop
 
       acf.getFieldObjects().map(function (fieldObject) {
         // vars
-        var choice = {
+        const choice = {
           id: fieldObject.getKey(),
           text: fieldObject.getLabel()
         }; // bail early if is self
@@ -320,7 +320,7 @@
         } // get selected field conditions
 
 
-        var conditionTypes = acf.getConditionTypes({
+        const conditionTypes = acf.getConditionTypes({
           fieldType: fieldObject.getType()
         }); // bail early if no types
 
@@ -329,7 +329,7 @@
         } // calulate indents
 
 
-        var indents = fieldObject.getParents().length;
+        const indents = fieldObject.getParents().length;
         choice.text = '- '.repeat(indents) + choice.text; // append
 
         choices.push(choice);
@@ -347,16 +347,16 @@
 
       this.ruleData('field', $select.val());
     },
-    renderOperator: function () {
+    renderOperator () {
       // bail early if no field selected
       if (!this.ruleData('field')) {
         return;
       } // vars
 
 
-      var $select = this.$input('operator');
-      var val = $select.val();
-      var choices = []; // set saved value on first render
+      const $select = this.$input('operator');
+      const val = $select.val();
+      const choices = []; // set saved value on first render
       // - this allows the 2nd render to correctly select an option
 
       if ($select.val() === null) {
@@ -367,10 +367,10 @@
       } // get selected field
 
 
-      var $field = acf.findFieldObject(this.ruleData('field'));
-      var field = acf.getFieldObject($field); // get selected field conditions
+      const $field = acf.findFieldObject(this.ruleData('field'));
+      const field = acf.getFieldObject($field); // get selected field conditions
 
-      var conditionTypes = acf.getConditionTypes({
+      const conditionTypes = acf.getConditionTypes({
         fieldType: field.getType()
       }); // html
 
@@ -385,27 +385,27 @@
 
       this.ruleData('operator', $select.val());
     },
-    renderValue: function () {
+    renderValue () {
       // bail early if no field selected
       if (!this.ruleData('field') || !this.ruleData('operator')) {
         return;
       } // vars
 
 
-      var $select = this.$input('value');
-      var $td = this.$td('value');
-      var val = $select.val(); // get selected field
+      const $select = this.$input('value');
+      const $td = this.$td('value');
+      const val = $select.val(); // get selected field
 
-      var $field = acf.findFieldObject(this.ruleData('field'));
-      var field = acf.getFieldObject($field); // get selected field conditions
+      const $field = acf.findFieldObject(this.ruleData('field'));
+      const field = acf.getFieldObject($field); // get selected field conditions
 
-      var conditionTypes = acf.getConditionTypes({
+      const conditionTypes = acf.getConditionTypes({
         fieldType: field.getType(),
         operator: this.ruleData('operator')
       }); // html
 
-      var conditionType = conditionTypes[0].prototype;
-      var choices = conditionType.choices(field); // create html: array
+      const conditionType = conditionTypes[0].prototype;
+      const choices = conditionType.choices(field); // create html: array
 
       if (choices instanceof Array) {
         var $newSelect = $('<select></select>');
@@ -432,17 +432,17 @@
 
       this.ruleData('value', $newSelect.val());
     },
-    onChangeToggle: function () {
+    onChangeToggle () {
       this.render();
     },
-    onClickAddGroup: function (e, $el) {
+    onClickAddGroup (e, $el) {
       this.addGroup();
     },
-    addGroup: function () {
+    addGroup () {
       // vars
-      var $group = this.$('.rule-group:last'); // duplicate
+      const $group = this.$('.rule-group:last'); // duplicate
 
-      var $group2 = acf.duplicate($group); // update h4
+      const $group2 = acf.duplicate($group); // update h4
 
       $group2.find('h4').text(acf.__('or')); // remove all tr's except the first one
 
@@ -450,10 +450,10 @@
 
       this.fieldObject.save();
     },
-    onFocusField: function (e, $el) {
+    onFocusField (e, $el) {
       this.renderField();
     },
-    onChangeField: function (e, $el) {
+    onChangeField (e, $el) {
       // scope
       this.scope($el.closest('.rule')); // set data
 
@@ -462,7 +462,7 @@
       this.renderOperator();
       this.renderValue();
     },
-    onChangeOperator: function (e, $el) {
+    onChangeOperator (e, $el) {
       // scope
       this.scope($el.closest('.rule')); // set data
 
@@ -470,15 +470,15 @@
 
       this.renderValue();
     },
-    onClickAdd: function (e, $el) {
+    onClickAdd (e, $el) {
       // duplciate
-      var $rule = acf.duplicate($el.closest('.rule')); // render
+      const $rule = acf.duplicate($el.closest('.rule')); // render
 
       this.renderRule($rule);
     },
-    onClickRemove: function (e, $el) {
+    onClickRemove (e, $el) {
       // vars
-      var $rule = $el.closest('.rule'); // save field
+      const $rule = $el.closest('.rule'); // save field
 
       this.fieldObject.save(); // remove group
 
@@ -503,14 +503,14 @@
    *  @return	type Description.
    */
 
-  var conditionalLogicHelper = new acf.Model({
+  const conditionalLogicHelper = new acf.Model({
     actions: {
       duplicate_field_objects: 'onDuplicateFieldObjects'
     },
-    onDuplicateFieldObjects: function (children, newField, prevField) {
+    onDuplicateFieldObjects (children, newField, prevField) {
       // vars
-      var data = {};
-      var $selects = $(); // reference change in key
+      const data = {};
+      let $selects = $(); // reference change in key
 
       children.map(function (child) {
         // store reference of changed key
@@ -521,8 +521,8 @@
 
       $selects.each(function () {
         // vars
-        var $select = $(this);
-        var val = $select.val(); // bail early if val is not a ref key
+        const $select = $(this);
+        const val = $select.val(); // bail early if val is not a ref key
 
         if (!val || !data[val]) {
           return;
@@ -540,9 +540,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-field.js":
-/*!****************************************************************************!*\
+/*! ****************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_field-group-field.js ***!
-  \****************************************************************************/
+  \*************************************************************************** */
 /***/ (function() {
 
 (function ($, undefined) {
@@ -571,14 +571,14 @@
       key: '',
       // The field type (text, image, etc)
       type: '' // The $post->ID of this field
-      //ID: 0,
+      // ID: 0,
       // The field's parent
-      //parent: 0,
+      // parent: 0,
       // The menu order
-      //menu_order: 0
+      // menu_order: 0
 
     },
-    setup: function ($field) {
+    setup ($field) {
       // set $el
       this.$el = $field; // inherit $field data (id, key, type)
 
@@ -589,81 +589,81 @@
       this.prop('parent');
       this.prop('menu_order');
     },
-    $input: function (name) {
-      return $('#' + this.getInputId() + '-' + name);
+    $input (name) {
+      return $(`#${  this.getInputId()  }-${  name}`);
     },
-    $meta: function () {
+    $meta () {
       return this.$('.meta:first');
     },
-    $handle: function () {
+    $handle () {
       return this.$('.handle:first');
     },
-    $settings: function () {
+    $settings () {
       return this.$('.settings:first');
     },
-    $setting: function (name) {
-      return this.$('.acf-field-settings:first > .acf-field-setting-' + name);
+    $setting (name) {
+      return this.$(`.acf-field-settings:first > .acf-field-setting-${  name}`);
     },
-    getParent: function () {
+    getParent () {
       return acf.getFieldObjects({
         child: this.$el,
         limit: 1
       }).pop();
     },
-    getParents: function () {
+    getParents () {
       return acf.getFieldObjects({
         child: this.$el
       });
     },
-    getFields: function () {
+    getFields () {
       return acf.getFieldObjects({
         parent: this.$el
       });
     },
-    getInputName: function () {
-      return 'acf_fields[' + this.get('id') + ']';
+    getInputName () {
+      return `acf_fields[${  this.get('id')  }]`;
     },
-    getInputId: function () {
-      return 'acf_fields-' + this.get('id');
+    getInputId () {
+      return `acf_fields-${  this.get('id')}`;
     },
-    newInput: function (name, value) {
+    newInput (name, value) {
       // vars
-      var inputId = this.getInputId();
-      var inputName = this.getInputName(); // append name
+      let inputId = this.getInputId();
+      let inputName = this.getInputName(); // append name
 
       if (name) {
-        inputId += '-' + name;
-        inputName += '[' + name + ']';
+        inputId += `-${  name}`;
+        inputName += `[${  name  }]`;
       } // create input (avoid HTML + JSON value issues)
 
 
-      var $input = $('<input />').attr({
+      const $input = $('<input />').attr({
         id: inputId,
         name: inputName,
-        value: value
+        value
       });
       this.$('> .meta').append($input); // return
 
       return $input;
     },
-    getProp: function (name) {
+    getProp (name) {
       // check data
       if (this.has(name)) {
         return this.get(name);
       } // get input value
 
 
-      var $input = this.$input(name);
-      var value = $input.length ? $input.val() : null; // set data silently (cache)
+      const $input = this.$input(name);
+      const value = $input.length ? $input.val() : null; // set data silently (cache)
 
       this.set(name, value, true); // return
 
       return value;
     },
-    setProp: function (name, value) {
+    setProp (name, value) {
       // get input
-      var $input = this.$input(name);
-      var prevVal = $input.val(); // create if new
+      let $input = this.$input(name);
+      const prevVal = $input.val(); // create if new
 
       if (!$input.length) {
         $input = this.newInput(name, value);
@@ -674,36 +674,36 @@
         $input.remove(); // update
       } else {
         $input.val(value);
-      } //console.log('setProp', name, value, this);
+      } // console.log('setProp', name, value, this);
       // set data silently (cache)
 
 
       if (!this.has(name)) {
-        //console.log('setting silently');
+        // console.log('setting silently');
         this.set(name, value, true); // set data allowing 'change' event to fire
       } else {
-        //console.log('setting loudly!');
+        // console.log('setting loudly!');
         this.set(name, value);
       } // return
 
 
       return this;
     },
-    prop: function (name, value) {
+    prop (name, value) {
       if (value !== undefined) {
         return this.setProp(name, value);
-      } else {
+      } 
         return this.getProp(name);
-      }
+      
     },
-    props: function (props) {
+    props (props) {
       Object.keys(props).map(function (key) {
         this.setProp(key, props[key]);
       }, this);
     },
-    getLabel: function () {
+    getLabel () {
       // get label with empty default
-      var label = this.prop('label');
+      let label = this.prop('label');
 
       if (label === '') {
         label = acf.__('(no label)');
@@ -712,48 +712,48 @@
 
       return label;
     },
-    getName: function () {
+    getName () {
       return this.prop('name');
     },
-    getType: function () {
+    getType () {
       return this.prop('type');
     },
-    getTypeLabel: function () {
-      var type = this.prop('type');
-      var types = acf.get('fieldTypes');
+    getTypeLabel () {
+      const type = this.prop('type');
+      const types = acf.get('fieldTypes');
       return types[type] ? types[type].label : type;
     },
-    getKey: function () {
+    getKey () {
       return this.prop('key');
     },
-    initialize: function () {
+    initialize () {
       this.addProFields();
     },
-    addProFields: function () {
+    addProFields () {
       // Make sure we're only running this on free version.
       if (acf.data.fieldTypes.hasOwnProperty('clone')) {
         return;
       } // Make sure we haven't appended these fields before.
 
 
-      var $fieldTypeSelect = $('.field-type').not('.acf-free-field-type'); // Append pro fields to "Layout" group.
+      const $fieldTypeSelect = $('.field-type').not('.acf-free-field-type'); // Append pro fields to "Layout" group.
 
-      var $layoutGroup = $fieldTypeSelect.find('optgroup option[value="group"]').parent();
-      $layoutGroup.append('<option value="null" disabled="disabled">' + acf.__('Repeater (Pro only)') + '</option>' + '<option value="null" disabled="disabled">' + acf.__('Flexible Content (Pro only)') + '</option>' + '<option value="null" disabled="disabled">' + acf.__('Clone (Pro only)') + '</option>'); // Add pro fields to "Content" group.
+      const $layoutGroup = $fieldTypeSelect.find('optgroup option[value="group"]').parent();
+      $layoutGroup.append(`<option value="null" disabled="disabled">${  acf.__('Repeater (Pro only)')  }</option>` + `<option value="null" disabled="disabled">${  acf.__('Flexible Content (Pro only)')  }</option>` + `<option value="null" disabled="disabled">${  acf.__('Clone (Pro only)')  }</option>`); // Add pro fields to "Content" group.
 
-      var $contentGroup = $fieldTypeSelect.find('optgroup option[value="image"]').parent();
-      $contentGroup.append('<option value="null" disabled="disabled">' + acf.__('Gallery (Pro only)') + '</option>');
+      const $contentGroup = $fieldTypeSelect.find('optgroup option[value="image"]').parent();
+      $contentGroup.append(`<option value="null" disabled="disabled">${  acf.__('Gallery (Pro only)')  }</option>`);
       $fieldTypeSelect.addClass('acf-free-field-type');
     },
-    render: function () {
+    render () {
       // vars
-      var $handle = this.$('.handle:first');
-      var menu_order = this.prop('menu_order');
-      var label = this.getLabel();
-      var name = this.prop('name');
-      var type = this.getTypeLabel();
-      var key = this.prop('key');
-      var required = this.$input('required').prop('checked'); // update menu order
+      const $handle = this.$('.handle:first');
+      const menu_order = this.prop('menu_order');
+      let label = this.getLabel();
+      const name = this.prop('name');
+      const type = this.getTypeLabel();
+      const key = this.prop('key');
+      const required = this.$input('required').prop('checked'); // update menu order
 
       $handle.find('.acf-icon').html(parseInt(menu_order) + 1); // update required
 
@@ -772,18 +772,18 @@
 
       acf.doAction('render_field_object', this);
     },
-    refresh: function () {
+    refresh () {
       acf.doAction('refresh_field_object', this);
     },
-    isOpen: function () {
+    isOpen () {
       return this.$el.hasClass('open');
     },
-    onClickEdit: function (e) {
+    onClickEdit (e) {
       this.isOpen() ? this.close() : this.open();
     },
-    open: function () {
+    open () {
       // vars
-      var $settings = this.$el.children('.settings'); // open
+      const $settings = this.$el.children('.settings'); // open
 
       $settings.slideDown();
       this.$el.addClass('open'); // action (open)
@@ -793,9 +793,9 @@
 
       acf.doAction('show', $settings);
     },
-    close: function () {
+    close () {
       // vars
-      var $settings = this.$el.children('.settings'); // close
+      const $settings = this.$el.children('.settings'); // close
 
       $settings.slideUp();
       this.$el.removeClass('open'); // action (close)
@@ -805,15 +805,15 @@
 
       acf.doAction('hide', $settings);
     },
-    serialize: function () {
+    serialize () {
       return acf.serialize(this.$el, this.getInputName());
     },
-    save: function (type) {
+    save (type) {
       // defaults
       type = type || 'settings'; // meta, settings
       // vars
 
-      var save = this.getProp('save'); // bail if already saving settings
+      const save = this.getProp('save'); // bail if already saving settings
 
       if (save === 'settings') {
         return;
@@ -826,10 +826,10 @@
 
       acf.doAction('save_field_object', this, type);
     },
-    submit: function () {
+    submit () {
       // vars
-      var inputName = this.getInputName();
-      var save = this.get('save'); // close
+      const inputName = this.getInputName();
+      const save = this.get('save'); // close
 
       if (this.isOpen()) {
         this.close();
@@ -839,21 +839,21 @@
       if (save == 'settings') {// do nothing
         // allow only meta inputs to save
       } else if (save == 'meta') {
-        this.$('> .settings [name^="' + inputName + '"]').remove(); // prevent all inputs from saving
+        this.$(`> .settings [name^="${  inputName  }"]`).remove(); // prevent all inputs from saving
       } else {
-        this.$('[name^="' + inputName + '"]').remove();
+        this.$(`[name^="${  inputName  }"]`).remove();
       } // action
 
 
       acf.doAction('submit_field_object', this);
     },
-    onChange: function (e, $el) {
+    onChange (e, $el) {
       // save settings
       this.save(); // action for 3rd party customization
 
       acf.doAction('change_field_object', this);
     },
-    onChanged: function (e, $el, name, value) {
+    onChanged (e, $el, name, value) {
       // ignore 'save'
       if (name == 'save') {
         return;
@@ -872,43 +872,43 @@
       } // action for 3rd party customization
 
 
-      acf.doAction('change_field_object_' + name, this, value);
+      acf.doAction(`change_field_object_${  name}`, this, value);
     },
-    onChangeLabel: function (e, $el) {
+    onChangeLabel (e, $el) {
       // set
-      var label = $el.val();
+      const label = $el.val();
       this.set('label', label); // render name
 
       if (this.prop('name') == '') {
-        var name = acf.applyFilters('generate_field_object_name', acf.strSanitize(label), this);
+        const name = acf.applyFilters('generate_field_object_name', acf.strSanitize(label), this);
         this.prop('name', name);
       }
     },
-    onChangeName: function (e, $el) {
+    onChangeName (e, $el) {
       // set
-      var name = $el.val();
+      const name = $el.val();
       this.set('name', name); // error
 
       if (name.substr(0, 6) === 'field_') {
         alert(acf.__('The string "field_" may not be used at the start of a field name'));
       }
     },
-    onChangeRequired: function (e, $el) {
+    onChangeRequired (e, $el) {
       // set
-      var required = $el.prop('checked') ? 1 : 0;
+      const required = $el.prop('checked') ? 1 : 0;
       this.set('required', required);
     },
-    delete: function (args) {
+    delete (args) {
       // defaults
       args = acf.parseArgs(args, {
         animate: true
       }); // add to remove list
 
-      var id = this.prop('ID');
+      const id = this.prop('ID');
 
       if (id) {
-        var $input = $('#_acf_delete_fields');
-        var newVal = $input.val() + '|' + id;
+        const $input = $('#_acf_delete_fields');
+        const newVal = `${$input.val()  }|${  id}`;
         $input.val(newVal);
       } // action
 
@@ -921,7 +921,7 @@
         this.remove();
       }
     },
-    onClickDelete: function (e, $el) {
+    onClickDelete (e, $el) {
       // Bypass confirmation when holding down "shift" key.
       if (e.shiftKey) {
         return this.delete();
@@ -930,30 +930,30 @@
 
       this.$el.addClass('-hover'); // add tooltip
 
-      var tooltip = acf.newTooltip({
+      const tooltip = acf.newTooltip({
         confirmRemove: true,
         target: $el,
         context: this,
-        confirm: function () {
+        confirm () {
           this.delete();
         },
-        cancel: function () {
+        cancel () {
           this.$el.removeClass('-hover');
         }
       });
     },
-    removeAnimate: function () {
+    removeAnimate () {
       // vars
-      var field = this;
-      var $list = this.$el.parent();
-      var $fields = acf.findFieldObjects({
+      const field = this;
+      const $list = this.$el.parent();
+      const $fields = acf.findFieldObjects({
         sibling: this.$el
       }); // remove
 
       acf.remove({
         target: this.$el,
         endHeight: $fields.length ? 0 : 50,
-        complete: function () {
+        complete () {
           field.remove();
           acf.doAction('removed_field_object', field, $list);
         }
@@ -961,11 +961,11 @@
 
       acf.doAction('remove_field_object', field, $list);
     },
-    duplicate: function () {
+    duplicate () {
       // vars
-      var newKey = acf.uniqid('field_'); // duplicate
+      const newKey = acf.uniqid('field_'); // duplicate
 
-      var $newField = acf.duplicate({
+      const $newField = acf.duplicate({
         target: this.$el,
         search: this.get('id'),
         replace: newKey
@@ -973,7 +973,7 @@
 
       $newField.attr('data-key', newKey); // get instance
 
-      var newField = acf.getFieldObject($newField); // open / close
+      const newField = acf.getFieldObject($newField); // open / close
 
       if (this.isOpen()) {
         this.close();
@@ -982,16 +982,16 @@
       } // focus label
 
 
-      var $label = newField.$setting('label input');
+      const $label = newField.$setting('label input');
       setTimeout(function () {
         $label.trigger('focus');
       }, 251); // update newField label / name
 
-      var label = newField.prop('label');
-      var name = newField.prop('name');
-      var end = name.split('_').pop();
+      let label = newField.prop('label');
+      let name = newField.prop('name');
+      const end = name.split('_').pop();
 
-      var copy = acf.__('copy'); // increase suffix "1"
+      const copy = acf.__('copy'); // increase suffix "1"
 
 
       if (acf.isNumeric(end)) {
@@ -1005,8 +1005,8 @@
         label = label.replace(end, copy + i);
         name = name.replace(end, copy + i); // add default "(copy)"
       } else {
-        label += ' (' + copy + ')';
-        name += '_' + copy;
+        label += ` (${  copy  })`;
+        name += `_${  copy}`;
       }
 
       newField.prop('ID', 0);
@@ -1017,11 +1017,11 @@
       acf.doAction('duplicate_field_object', this, newField);
       acf.doAction('append_field_object', newField);
     },
-    wipe: function () {
+    wipe () {
       // vars
-      var prevId = this.get('id');
-      var prevKey = this.get('key');
-      var newKey = acf.uniqid('field_'); // rename
+      const prevId = this.get('id');
+      const prevKey = this.get('key');
+      const newKey = acf.uniqid('field_'); // rename
 
       acf.rename({
         target: this.$el,
@@ -1041,14 +1041,14 @@
 
       acf.doAction('wipe_field_object', this);
     },
-    move: function () {
+    move () {
       // helper
-      var hasChanged = function (field) {
+      const hasChanged = function (field) {
         return field.get('save') == 'settings';
       }; // vars
 
 
-      var changed = hasChanged(this); // has sub fields changed
+      let changed = hasChanged(this); // has sub fields changed
 
       if (!changed) {
         acf.getFieldObjects({
@@ -1065,11 +1065,11 @@
       } // step 1.
 
 
-      var id = this.prop('ID');
-      var field = this;
-      var popup = false;
+      const id = this.prop('ID');
+      const field = this;
+      let popup = false;
 
-      var step1 = function () {
+      const step1 = function () {
         // popup
         popup = acf.newPopup({
           title: acf.__('Move Custom Field'),
@@ -1077,7 +1077,7 @@
           width: '300px'
         }); // ajax
 
-        var ajaxData = {
+        const ajaxData = {
           action: 'acf/field_group/move_field',
           field_id: id
         }; // get HTML
@@ -1105,7 +1105,7 @@
 
         acf.startButtonLoading(popup.$('.button')); // ajax
 
-        var ajaxData = {
+        const ajaxData = {
           action: 'acf/field_group/move_field',
           field_id: id,
           field_group_id: popup.$('select').val()
@@ -1130,7 +1130,7 @@
 
       step1();
     },
-    onChangeType: function (e, $el) {
+    onChangeType (e, $el) {
       // clea previous timout
       if (this.changeTimeout) {
         clearTimeout(this.changeTimeout);
@@ -1142,11 +1142,11 @@
         this.changeType($el.val());
       }, 300);
     },
-    changeType: function (newType) {
+    changeType (newType) {
       // vars
-      var prevType = this.prop('type');
-      var prevClass = acf.strSlugify('acf-field-object-' + prevType);
-      var newClass = acf.strSlugify('acf-field-object-' + newType); // update props
+      const prevType = this.prop('type');
+      const prevClass = acf.strSlugify(`acf-field-object-${  prevType}`);
+      const newClass = acf.strSlugify(`acf-field-object-${  newType}`); // update props
 
       this.$el.removeClass(prevClass).addClass(newClass);
       this.$el.attr('data-type', newType);
@@ -1157,36 +1157,36 @@
       } // store settings
 
 
-      var $tbody = this.$('> .settings > table > tbody');
-      var $settings = $tbody.children('[data-setting="' + prevType + '"]');
-      this.set('settings-' + prevType, $settings);
+      const $tbody = this.$('> .settings > table > tbody');
+      const $settings = $tbody.children(`[data-setting="${  prevType  }"]`);
+      this.set(`settings-${  prevType}`, $settings);
       $settings.detach(); // show settings
 
-      if (this.has('settings-' + newType)) {
-        var $newSettings = this.get('settings-' + newType);
+      if (this.has(`settings-${  newType}`)) {
+        const $newSettings = this.get(`settings-${  newType}`);
         this.$setting('conditional_logic').before($newSettings);
-        this.set('type', newType); //this.refresh();
+        this.set('type', newType); // this.refresh();
 
         return;
       } // load settings
 
 
-      var $loading = $('<tr class="acf-field"><td class="acf-label"></td><td class="acf-input"><div class="acf-loading"></div></td></tr>');
+      const $loading = $('<tr class="acf-field"><td class="acf-label"></td><td class="acf-input"><div class="acf-loading"></div></td></tr>');
       this.$setting('conditional_logic').before($loading); // ajax
 
-      var ajaxData = {
+      const ajaxData = {
         action: 'acf/field_group/render_field_settings',
         field: this.serialize(),
         prefix: this.getInputName()
       }; // ajax
 
-      var xhr = $.ajax({
+      const xhr = $.ajax({
         url: acf.get('ajaxurl'),
         data: acf.prepareForAjax(ajaxData),
         type: 'post',
         dataType: 'html',
         context: this,
-        success: function (html) {
+        success (html) {
           // bail early if no settings
           if (!html) return; // append settings
 
@@ -1194,20 +1194,20 @@
 
           acf.doAction('append', $tbody);
         },
-        complete: function () {
+        complete () {
           // also triggered by xhr.abort();
           $loading.remove();
-          this.set('type', newType); //this.refresh();
+          this.set('type', newType); // this.refresh();
         }
       }); // set
 
       this.set('xhr', xhr);
     },
-    updateParent: function () {
+    updateParent () {
       // vars
-      var ID = acf.get('post_id'); // check parent
+      let ID = acf.get('post_id'); // check parent
 
-      var parent = this.getParent();
+      const parent = this.getParent();
 
       if (parent) {
         ID = parseInt(parent.prop('ID')) || parent.prop('key');
@@ -1222,9 +1222,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-fields.js":
-/*!*****************************************************************************!*\
+/*! *****************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_field-group-fields.js ***!
-  \*****************************************************************************/
+  \**************************************************************************** */
 /***/ (function() {
 
 (function ($, undefined) {
@@ -1241,7 +1241,7 @@
    */
   acf.findFieldObject = function (key) {
     return acf.findFieldObjects({
-      key: key,
+      key,
       limit: 1
     });
   };
@@ -1261,8 +1261,8 @@
   acf.findFieldObjects = function (args) {
     // vars
     args = args || {};
-    var selector = '.acf-field-object';
-    var $fields = false; // args
+    let selector = '.acf-field-object';
+    let $fields = false; // args
 
     args = acf.parseArgs(args, {
       id: '',
@@ -1276,17 +1276,17 @@
     }); // id
 
     if (args.id) {
-      selector += '[data-id="' + args.id + '"]';
+      selector += `[data-id="${  args.id  }"]`;
     } // key
 
 
     if (args.key) {
-      selector += '[data-key="' + args.key + '"]';
+      selector += `[data-key="${  args.key  }"]`;
     } // type
 
 
     if (args.type) {
-      selector += '[data-type="' + args.type + '"]';
+      selector += `[data-type="${  args.type  }"]`;
     } // query
 
 
@@ -1330,7 +1330,7 @@
     } // instantiate
 
 
-    var field = $field.data('acf');
+    let field = $field.data('acf');
 
     if (!field) {
       field = acf.newFieldObject($field);
@@ -1354,11 +1354,11 @@
 
   acf.getFieldObjects = function (args) {
     // query
-    var $fields = acf.findFieldObjects(args); // loop
+    const $fields = acf.findFieldObjects(args); // loop
 
-    var fields = [];
+    const fields = [];
     $fields.each(function () {
-      var field = acf.getFieldObject($(this));
+      const field = acf.getFieldObject($(this));
       fields.push(field);
     }); // return
 
@@ -1379,7 +1379,7 @@
 
   acf.newFieldObject = function ($field) {
     // instantiate
-    var field = new acf.FieldObject($field); // action
+    const field = new acf.FieldObject($field); // action
 
     acf.doAction('new_field_object', field); // return
 
@@ -1398,36 +1398,36 @@
    */
 
 
-  var eventManager = new acf.Model({
+  const eventManager = new acf.Model({
     priority: 5,
-    initialize: function () {
+    initialize () {
       // actions
-      var actions = ['prepare', 'ready', 'append', 'remove']; // loop
+      const actions = ['prepare', 'ready', 'append', 'remove']; // loop
 
       actions.map(function (action) {
         this.addFieldActions(action);
       }, this);
     },
-    addFieldActions: function (action) {
+    addFieldActions (action) {
       // vars
-      var pluralAction = action + '_field_objects'; // ready_field_objects
+      const pluralAction = `${action  }_field_objects`; // ready_field_objects
 
-      var singleAction = action + '_field_object'; // ready_field_object
+      const singleAction = `${action  }_field_object`; // ready_field_object
 
-      var singleEvent = action + 'FieldObject'; // readyFieldObject
+      const singleEvent = `${action  }FieldObject`; // readyFieldObject
       // global action
 
-      var callback = function ($el
-      /*, arg1, arg2, etc*/
+      const callback = function ($el
+      /* , arg1, arg2, etc */
       ) {
         // vars
-        var fieldObjects = acf.getFieldObjects({
+        const fieldObjects = acf.getFieldObjects({
           parent: $el
         }); // call plural
 
         if (fieldObjects.length) {
           /// get args [$el, arg1]
-          var args = acf.arrayArgs(arguments); // modify args [pluralAction, fields, arg1]
+          const args = acf.arrayArgs(arguments); // modify args [pluralAction, fields, arg1]
 
           args.splice(0, 1, pluralAction, fieldObjects);
           acf.doAction.apply(null, args);
@@ -1435,11 +1435,11 @@
       }; // plural action
 
 
-      var pluralCallback = function (fieldObjects
-      /*, arg1, arg2, etc*/
+      const pluralCallback = function (fieldObjects
+      /* , arg1, arg2, etc */
       ) {
         /// get args [fields, arg1]
-        var args = acf.arrayArgs(arguments); // modify args [singleAction, fields, arg1]
+        const args = acf.arrayArgs(arguments); // modify args [singleAction, fields, arg1]
 
         args.unshift(singleAction); // loop
 
@@ -1451,17 +1451,17 @@
       }; // single action
 
 
-      var singleCallback = function (fieldObject
-      /*, arg1, arg2, etc*/
+      const singleCallback = function (fieldObject
+      /* , arg1, arg2, etc */
       ) {
         /// get args [$field, arg1]
-        var args = acf.arrayArgs(arguments); // modify args [singleAction, $field, arg1]
+        const args = acf.arrayArgs(arguments); // modify args [singleAction, $field, arg1]
 
         args.unshift(singleAction); // action variations (ready_field/type=image)
 
-        var variations = ['type', 'name', 'key'];
+        const variations = ['type', 'name', 'key'];
         variations.map(function (variation) {
-          args[0] = singleAction + '/' + variation + '=' + fieldObject.get(variation);
+          args[0] = `${singleAction  }/${  variation  }=${  fieldObject.get(variation)}`;
           acf.doAction.apply(null, args);
         }); // modify args [arg1]
 
@@ -1488,7 +1488,7 @@
    *  @return	type Description.
    */
 
-  var fieldManager = new acf.Model({
+  const fieldManager = new acf.Model({
     id: 'fieldManager',
     events: {
       'submit #post': 'onSubmit',
@@ -1502,43 +1502,43 @@
       change_field_object_type: 'onChangeFieldType',
       duplicate_field_object: 'onDuplicateField'
     },
-    onSubmit: function (e, $el) {
+    onSubmit (e, $el) {
       // vars
-      var fields = acf.getFieldObjects(); // loop
+      const fields = acf.getFieldObjects(); // loop
 
       fields.map(function (field) {
         field.submit();
       });
     },
-    setFieldMenuOrder: function (field) {
+    setFieldMenuOrder (field) {
       this.renderFields(field.$el.parent());
     },
-    onHoverSortable: function (e, $el) {
+    onHoverSortable (e, $el) {
       // bail early if already sortable
       if ($el.hasClass('ui-sortable')) return; // sortable
 
       $el.sortable({
         handle: '.acf-sortable-handle',
         connectWith: '.acf-field-list',
-        start: function (e, ui) {
-          var field = acf.getFieldObject(ui.item);
+        start (e, ui) {
+          const field = acf.getFieldObject(ui.item);
           ui.placeholder.height(ui.item.height());
           acf.doAction('sortstart_field_object', field, $el);
         },
-        update: function (e, ui) {
-          var field = acf.getFieldObject(ui.item);
+        update (e, ui) {
+          const field = acf.getFieldObject(ui.item);
           acf.doAction('sortstop_field_object', field, $el);
         }
       });
     },
-    onRemovedField: function (field, $list) {
+    onRemovedField (field, $list) {
       this.renderFields($list);
     },
-    onReorderField: function (field, $list) {
+    onReorderField (field, $list) {
       field.updateParent();
       this.renderFields($list);
     },
-    onDeleteField: function (field) {
+    onDeleteField (field) {
       // delete children
       field.getFields().map(function (child) {
         child.delete({
@@ -1546,12 +1546,12 @@
         });
       });
     },
-    onChangeFieldType: function (field) {// this caused sub fields to disapear if changing type back...
-      //this.onDeleteField( field );
+    onChangeFieldType (field) {// this caused sub fields to disapear if changing type back...
+      // this.onDeleteField( field );
     },
-    onDuplicateField: function (field, newField) {
+    onDuplicateField (field, newField) {
       // check for children
-      var children = newField.getFields();
+      const children = newField.getFields();
 
       if (children.length) {
         // loop
@@ -1568,9 +1568,9 @@
 
       this.setFieldMenuOrder(newField);
     },
-    renderFields: function ($list) {
+    renderFields ($list) {
       // vars
-      var fields = acf.getFieldObjects({
+      const fields = acf.getFieldObjects({
         list: $list
       }); // no fields
 
@@ -1586,27 +1586,27 @@
         field.prop('menu_order', i);
       });
     },
-    onClickAdd: function (e, $el) {
-      var $list = $el.closest('.acf-tfoot').siblings('.acf-field-list');
+    onClickAdd (e, $el) {
+      const $list = $el.closest('.acf-tfoot').siblings('.acf-field-list');
       this.addField($list);
     },
-    addField: function ($list) {
+    addField ($list) {
       // vars
-      var html = $('#tmpl-acf-field').html();
-      var $el = $(html);
-      var prevId = $el.data('id');
-      var newKey = acf.uniqid('field_'); // duplicate
+      const html = $('#tmpl-acf-field').html();
+      const $el = $(html);
+      const prevId = $el.data('id');
+      const newKey = acf.uniqid('field_'); // duplicate
 
-      var $newField = acf.duplicate({
+      const $newField = acf.duplicate({
         target: $el,
         search: prevId,
         replace: newKey,
-        append: function ($el, $el2) {
+        append ($el, $el2) {
           $list.append($el2);
         }
       }); // get instance
 
-      var newField = acf.getFieldObject($newField); // props
+      const newField = acf.getFieldObject($newField); // props
 
       newField.prop('key', newKey);
       newField.prop('ID', 0);
@@ -1618,7 +1618,7 @@
 
       newField.updateParent(); // focus label
 
-      var $label = newField.$input('label');
+      const $label = newField.$input('label');
       setTimeout(function () {
         $label.trigger('focus');
       }, 251); // open
@@ -1636,9 +1636,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-locations.js":
-/*!********************************************************************************!*\
+/*! ********************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_field-group-locations.js ***!
-  \********************************************************************************/
+  \******************************************************************************* */
 /***/ (function() {
 
 (function ($, undefined) {
@@ -1653,7 +1653,7 @@
    *  @param	void
    *  @return	void
    */
-  var locationManager = new acf.Model({
+  const locationManager = new acf.Model({
     id: 'locationManager',
     wait: 'ready',
     events: {
@@ -1662,27 +1662,27 @@
       'click .remove-location-rule': 'onClickRemoveRule',
       'change .refresh-location-rule': 'onChangeRemoveRule'
     },
-    initialize: function () {
+    initialize () {
       this.$el = $('#acf-field-group-locations');
       this.updateGroupsClass();
     },
-    onClickAddRule: function (e, $el) {
+    onClickAddRule (e, $el) {
       this.addRule($el.closest('tr'));
     },
-    onClickRemoveRule: function (e, $el) {
+    onClickRemoveRule (e, $el) {
       this.removeRule($el.closest('tr'));
     },
-    onChangeRemoveRule: function (e, $el) {
+    onChangeRemoveRule (e, $el) {
       this.changeRule($el.closest('tr'));
     },
-    onClickAddGroup: function (e, $el) {
+    onClickAddGroup (e, $el) {
       this.addGroup();
     },
-    addRule: function ($tr) {
+    addRule ($tr) {
       acf.duplicate($tr);
       this.updateGroupsClass();
     },
-    removeRule: function ($tr) {
+    removeRule ($tr) {
       if ($tr.siblings('tr').length == 0) {
         $tr.closest('.rule-group').remove();
       } else {
@@ -1690,16 +1690,16 @@
       } // Update h4
 
 
-      var $group = this.$('.rule-group:first');
+      const $group = this.$('.rule-group:first');
       $group.find('h4').text(acf.__('Show this field group if'));
       this.updateGroupsClass();
     },
-    changeRule: function ($rule) {
+    changeRule ($rule) {
       // vars
-      var $group = $rule.closest('.rule-group');
-      var prefix = $rule.find('td.param select').attr('name').replace('[param]', ''); // ajaxdata
+      const $group = $rule.closest('.rule-group');
+      const prefix = $rule.find('td.param select').attr('name').replace('[param]', ''); // ajaxdata
 
-      var ajaxdata = {};
+      const ajaxdata = {};
       ajaxdata.action = 'acf/field_group/render_location_rule';
       ajaxdata.rule = acf.serialize($rule, prefix);
       ajaxdata.rule.id = $rule.data('id');
@@ -1712,15 +1712,15 @@
         data: acf.prepareForAjax(ajaxdata),
         type: 'post',
         dataType: 'html',
-        success: function (html) {
+        success (html) {
           if (!html) return;
           $rule.replaceWith(html);
         }
       });
     },
-    addGroup: function () {
+    addGroup () {
       // vars
-      var $group = this.$('.rule-group:last'); // duplicate
+      const $group = this.$('.rule-group:last'); // duplicate
 
       $group2 = acf.duplicate($group); // update h4
 
@@ -1730,10 +1730,10 @@
 
       this.updateGroupsClass();
     },
-    updateGroupsClass: function () {
-      var $group = this.$('.rule-group:last');
-      var $ruleGroups = $group.closest('.rule-groups');
-      var rows_count = $ruleGroups.find('.acf-table tr').length;
+    updateGroupsClass () {
+      const $group = this.$('.rule-group:last');
+      const $ruleGroups = $group.closest('.rule-groups');
+      const rows_count = $ruleGroups.find('.acf-table tr').length;
 
       if (rows_count > 1) {
         $ruleGroups.addClass('rule-groups-multiple');
@@ -1747,9 +1747,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-settings.js":
-/*!*******************************************************************************!*\
+/*! *******************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_field-group-settings.js ***!
-  \*******************************************************************************/
+  \****************************************************************************** */
 /***/ (function() {
 
 (function ($, undefined) {
@@ -1764,8 +1764,8 @@
    *  @param	string type
    *  @return	string
    */
-  var modelId = function (type) {
-    return acf.strPascalCase(type || '') + 'FieldSetting';
+  const modelId = function (type) {
+    return `${acf.strPascalCase(type || '')  }FieldSetting`;
   };
   /**
    *  registerFieldType
@@ -1781,8 +1781,8 @@
 
 
   acf.registerFieldSetting = function (model) {
-    var proto = model.prototype;
-    var mid = modelId(proto.type + ' ' + proto.name);
+    const proto = model.prototype;
+    const mid = modelId(`${proto.type  } ${  proto.name}`);
     this.models[mid] = model;
   };
   /**
@@ -1800,14 +1800,14 @@
 
   acf.newFieldSetting = function (field) {
     // vars
-    var type = field.get('setting') || '';
-    var name = field.get('name') || '';
-    var mid = modelId(type + ' ' + name);
-    var model = acf.models[mid] || null; // bail ealry if no setting
+    const type = field.get('setting') || '';
+    const name = field.get('name') || '';
+    const mid = modelId(`${type  } ${  name}`);
+    const model = acf.models[mid] || null; // bail ealry if no setting
 
     if (model === null) return false; // instantiate
 
-    var setting = new model(field); // return
+    const setting = new model(field); // return
 
     return setting;
   };
@@ -1846,11 +1846,11 @@
    */
 
 
-  var settingsManager = new acf.Model({
+  const settingsManager = new acf.Model({
     actions: {
       new_field: 'onNewField'
     },
-    onNewField: function (field) {
+    onNewField (field) {
       field.setting = acf.newFieldSetting(field);
     }
   });
@@ -1875,9 +1875,9 @@
     events: {
       change: 'render'
     },
-    setup: function (field) {
+    setup (field) {
       // vars
-      var $field = field.$el; // set props
+      const $field = field.$el; // set props
 
       this.$el = $field;
       this.field = field;
@@ -1886,10 +1886,10 @@
 
       $.extend(this.data, field.data);
     },
-    initialize: function () {
+    initialize () {
       this.render();
     },
-    render: function () {// do nothing
+    render () {// do nothing
     }
   });
   /*
@@ -1905,22 +1905,22 @@
    *  @return	n/a
    */
 
-  var DisplayFormatFieldSetting = acf.FieldSetting.extend({
+  const DisplayFormatFieldSetting = acf.FieldSetting.extend({
     type: '',
     name: '',
-    render: function () {
-      var $input = this.$('input[type="radio"]:checked');
+    render () {
+      const $input = this.$('input[type="radio"]:checked');
 
       if ($input.val() != 'other') {
         this.$('input[type="text"]').val($input.val());
       }
     }
   });
-  var DatePickerDisplayFormatFieldSetting = DisplayFormatFieldSetting.extend({
+  const DatePickerDisplayFormatFieldSetting = DisplayFormatFieldSetting.extend({
     type: 'date_picker',
     name: 'display_format'
   });
-  var DatePickerReturnFormatFieldSetting = DisplayFormatFieldSetting.extend({
+  const DatePickerReturnFormatFieldSetting = DisplayFormatFieldSetting.extend({
     type: 'date_picker',
     name: 'return_format'
   });
@@ -1939,11 +1939,11 @@
    *  @return	n/a
    */
 
-  var DateTimePickerDisplayFormatFieldSetting = DisplayFormatFieldSetting.extend({
+  const DateTimePickerDisplayFormatFieldSetting = DisplayFormatFieldSetting.extend({
     type: 'date_time_picker',
     name: 'display_format'
   });
-  var DateTimePickerReturnFormatFieldSetting = DisplayFormatFieldSetting.extend({
+  const DateTimePickerReturnFormatFieldSetting = DisplayFormatFieldSetting.extend({
     type: 'date_time_picker',
     name: 'return_format'
   });
@@ -1962,11 +1962,11 @@
    *  @return	n/a
    */
 
-  var TimePickerDisplayFormatFieldSetting = DisplayFormatFieldSetting.extend({
+  const TimePickerDisplayFormatFieldSetting = DisplayFormatFieldSetting.extend({
     type: 'time_picker',
     name: 'display_format'
   });
-  var TimePickerReturnFormatFieldSetting = DisplayFormatFieldSetting.extend({
+  const TimePickerReturnFormatFieldSetting = DisplayFormatFieldSetting.extend({
     type: 'time_picker',
     name: 'return_format'
   });
@@ -1982,15 +1982,15 @@
    * @return	type Description.
    */
 
-  var ColorPickerReturnFormat = acf.FieldSetting.extend({
+  const ColorPickerReturnFormat = acf.FieldSetting.extend({
     type: 'color_picker',
     name: 'enable_opacity',
-    render: function () {
-      var $return_format_setting = this.fieldObject.$setting('return_format');
-      var $default_value_setting = this.fieldObject.$setting('default_value');
-      var $labelText = $return_format_setting.find('input[type="radio"][value="string"]').parent('label').contents().last();
-      var $defaultPlaceholder = $default_value_setting.find('input[type="text"]');
-      var l10n = acf.get('colorPickerL10n');
+    render () {
+      const $return_format_setting = this.fieldObject.$setting('return_format');
+      const $default_value_setting = this.fieldObject.$setting('default_value');
+      const $labelText = $return_format_setting.find('input[type="radio"][value="string"]').parent('label').contents().last();
+      const $defaultPlaceholder = $default_value_setting.find('input[type="text"]');
+      const l10n = acf.get('colorPickerL10n');
 
       if (this.field.val()) {
         $labelText.replaceWith(l10n.rgba_string);
@@ -2007,9 +2007,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_field-group.js":
-/*!**********************************************************************!*\
+/*! **********************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_field-group.js ***!
-  \**********************************************************************/
+  \********************************************************************* */
 /***/ (function() {
 
 (function ($, undefined) {
@@ -2024,7 +2024,7 @@
    *  @param	void
    *  @return	void
    */
-  var fieldGroupManager = new acf.Model({
+  const fieldGroupManager = new acf.Model({
     id: 'fieldGroupManager',
     events: {
       'submit #post': 'onSubmit',
@@ -2034,9 +2034,9 @@
     filters: {
       find_fields_args: 'filterFindFieldArgs'
     },
-    onSubmit: function (e, $el) {
+    onSubmit (e, $el) {
       // vars
-      var $title = $('#titlewrap #title'); // empty
+      const $title = $('#titlewrap #title'); // empty
 
       if (!$title.val()) {
         // prevent default
@@ -2049,17 +2049,17 @@
         $title.trigger('focus');
       }
     },
-    onClick: function (e) {
+    onClick (e) {
       e.preventDefault();
     },
-    onClickTrash: function (e) {
-      var result = confirm(acf.__('Move to trash. Are you sure?'));
+    onClickTrash (e) {
+      const result = confirm(acf.__('Move to trash. Are you sure?'));
 
       if (!result) {
         e.preventDefault();
       }
     },
-    filterFindFieldArgs: function (args) {
+    filterFindFieldArgs (args) {
       args.visible = true;
       return args;
     }
@@ -2076,16 +2076,16 @@
    *  @return	void
    */
 
-  var screenOptionsManager = new acf.Model({
+  const screenOptionsManager = new acf.Model({
     id: 'screenOptionsManager',
     wait: 'prepare',
     events: {
       change: 'onChange'
     },
-    initialize: function () {
+    initialize () {
       // vars
-      var $div = $('#adv-settings');
-      var $append = $('#acf-append-show-on-screen'); // append
+      const $div = $('#adv-settings');
+      const $append = $('#acf-append-show-on-screen'); // append
 
       $div.find('.metabox-prefs').append($append.html());
       $div.find('.metabox-prefs br').remove(); // clean up
@@ -2096,15 +2096,15 @@
 
       this.render();
     },
-    isChecked: function () {
+    isChecked () {
       return this.$el.prop('checked');
     },
-    onChange: function (e, $el) {
-      var val = this.isChecked() ? 1 : 0;
+    onChange (e, $el) {
+      const val = this.isChecked() ? 1 : 0;
       acf.updateUserSetting('show_field_keys', val);
       this.render();
     },
-    render: function () {
+    render () {
       if (this.isChecked()) {
         $('#acf-field-group-fields').addClass('show-field-keys');
       } else {
@@ -2124,21 +2124,21 @@
    *  @return	void
    */
 
-  var appendFieldManager = new acf.Model({
+  const appendFieldManager = new acf.Model({
     actions: {
       new_field: 'onNewField'
     },
-    onNewField: function (field) {
+    onNewField (field) {
       // bail ealry if not append
       if (!field.has('append')) return; // vars
 
-      var append = field.get('append');
-      var $sibling = field.$el.siblings('[data-name="' + append + '"]').first(); // bail early if no sibling
+      const append = field.get('append');
+      const $sibling = field.$el.siblings(`[data-name="${  append  }"]`).first(); // bail early if no sibling
 
       if (!$sibling.length) return; // ul
 
-      var $div = $sibling.children('.acf-input');
-      var $ul = $div.children('ul'); // create ul
+      const $div = $sibling.children('.acf-input');
+      let $ul = $div.children('ul'); // create ul
 
       if (!$ul.length) {
         $div.wrapInner('<ul class="acf-hl"><li></li></ul>');
@@ -2146,8 +2146,8 @@
       } // li
 
 
-      var html = field.$('.acf-input').html();
-      var $li = $('<li>' + html + '</li>');
+      const html = field.$('.acf-input').html();
+      const $li = $(`<li>${  html  }</li>`);
       $ul.append($li);
       $ul.attr('data-cols', $ul.children().length); // clean up
 
@@ -2158,96 +2158,96 @@
 
 /***/ })
 
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = function(module) {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				function() { return module['default']; } :
-/******/ 				function() { return module; };
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	!function() {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = function(exports, definition) {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	!function() {
-/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = function(exports) {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/************************************************************************/
-var __webpack_exports__ = {};
+/** *** */ 	});
+/** ********************************************************************* */
+/** *** */ 	// The module cache
+/** *** */ 	const __webpack_module_cache__ = {};
+/** *** */ 	
+/** *** */ 	// The require function
+/** *** */ 	function __webpack_require__(moduleId) {
+/** *** */ 		// Check if module is in cache
+/** *** */ 		const cachedModule = __webpack_module_cache__[moduleId];
+/** *** */ 		if (cachedModule !== undefined) {
+/** *** */ 			return cachedModule.exports;
+/** *** */ 		}
+/** *** */ 		// Create a new module (and put it into the cache)
+/** *** */ 		const module = __webpack_module_cache__[moduleId] = {
+/** *** */ 			// no module.id needed
+/** *** */ 			// no module.loaded needed
+/** *** */ 			exports: {}
+/** *** */ 		};
+/** *** */ 	
+/** *** */ 		// Execute the module function
+/** *** */ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/** *** */ 	
+/** *** */ 		// Return the exports of the module
+/** *** */ 		return module.exports;
+/** *** */ 	}
+/** *** */ 	
+/** ********************************************************************* */
+/** *** */ 	/* webpack/runtime/compat get default export */
+/** *** */ 	!function() {
+/** *** */ 		// getDefaultExport function for compatibility with non-harmony modules
+/** *** */ 		__webpack_require__.n = function(module) {
+/** *** */ 			const getter = module && module.__esModule ?
+/** *** */ 				function() { return module.default; } :
+/** *** */ 				function() { return module; };
+/** *** */ 			__webpack_require__.d(getter, { a: getter });
+/** *** */ 			return getter;
+/** *** */ 		};
+/** *** */ 	}();
+/** *** */ 	
+/** *** */ 	/* webpack/runtime/define property getters */
+/** *** */ 	!function() {
+/** *** */ 		// define getter functions for harmony exports
+/** *** */ 		__webpack_require__.d = function(exports, definition) {
+/** *** */ 			for(const key in definition) {
+/** *** */ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/** *** */ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/** *** */ 				}
+/** *** */ 			}
+/** *** */ 		};
+/** *** */ 	}();
+/** *** */ 	
+/** *** */ 	/* webpack/runtime/hasOwnProperty shorthand */
+/** *** */ 	!function() {
+/** *** */ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/** *** */ 	}();
+/** *** */ 	
+/** *** */ 	/* webpack/runtime/make namespace object */
+/** *** */ 	!function() {
+/** *** */ 		// define __esModule on exports
+/** *** */ 		__webpack_require__.r = function(exports) {
+/** *** */ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/** *** */ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/** *** */ 			}
+/** *** */ 			Object.defineProperty(exports, '__esModule', { value: true });
+/** *** */ 		};
+/** *** */ 	}();
+/** *** */ 	
+/** ********************************************************************* */
+const __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
-"use strict";
-/*!*************************************************************************!*\
+
+/*! *************************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/acf-field-group.js ***!
-  \*************************************************************************/
+  \************************************************************************ */
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _field_group_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_field-group.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group.js");
-/* harmony import */ var _field_group_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_field_group_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _field_group_field_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_field-group-field.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-field.js");
-/* harmony import */ var _field_group_field_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_field_group_field_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _field_group_settings_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_field-group-settings.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-settings.js");
-/* harmony import */ var _field_group_settings_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_field_group_settings_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _field_group_conditions_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_field-group-conditions.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-conditions.js");
-/* harmony import */ var _field_group_conditions_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_field_group_conditions_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _field_group_fields_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_field-group-fields.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-fields.js");
-/* harmony import */ var _field_group_fields_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_field_group_fields_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _field_group_locations_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_field-group-locations.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-locations.js");
-/* harmony import */ var _field_group_locations_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_field_group_locations_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _field_group_compatibility_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_field-group-compatibility.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-compatibility.js");
-/* harmony import */ var _field_group_compatibility_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_field_group_compatibility_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ const _field_group_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_field-group.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group.js");
+/* harmony import */ const _field_group_js__WEBPACK_IMPORTED_MODULE_0___default = /* #__PURE__ */__webpack_require__.n(_field_group_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ const _field_group_field_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_field-group-field.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-field.js");
+/* harmony import */ const _field_group_field_js__WEBPACK_IMPORTED_MODULE_1___default = /* #__PURE__ */__webpack_require__.n(_field_group_field_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ const _field_group_settings_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_field-group-settings.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-settings.js");
+/* harmony import */ const _field_group_settings_js__WEBPACK_IMPORTED_MODULE_2___default = /* #__PURE__ */__webpack_require__.n(_field_group_settings_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ const _field_group_conditions_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_field-group-conditions.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-conditions.js");
+/* harmony import */ const _field_group_conditions_js__WEBPACK_IMPORTED_MODULE_3___default = /* #__PURE__ */__webpack_require__.n(_field_group_conditions_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ const _field_group_fields_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_field-group-fields.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-fields.js");
+/* harmony import */ const _field_group_fields_js__WEBPACK_IMPORTED_MODULE_4___default = /* #__PURE__ */__webpack_require__.n(_field_group_fields_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ const _field_group_locations_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_field-group-locations.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-locations.js");
+/* harmony import */ const _field_group_locations_js__WEBPACK_IMPORTED_MODULE_5___default = /* #__PURE__ */__webpack_require__.n(_field_group_locations_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ const _field_group_compatibility_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_field-group-compatibility.js */ "./src/advanced-custom-fields-pro/assets/src/js/_field-group-compatibility.js");
+/* harmony import */ const _field_group_compatibility_js__WEBPACK_IMPORTED_MODULE_6___default = /* #__PURE__ */__webpack_require__.n(_field_group_compatibility_js__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
@@ -2256,6 +2256,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 }();
-/******/ })()
+/** *** */ })()
 ;
-//# sourceMappingURL=acf-field-group.js.map
+// # sourceMappingURL=acf-field-group.js.map

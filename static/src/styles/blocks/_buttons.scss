@@ -1,0 +1,29 @@
+/*
+** Blocks / Buttons
+** ----------------------------------------------------------------------------- */
+
+.wp-block-buttons {
+  .wp-block-button {
+    display: inline-block;
+
+    &:not(:first-child) {
+      margin-top: 0;
+    }
+  }
+}
+
+.wp-block-button__link {
+  @extend %button;
+
+  &:not(.has-background) {
+    @extend %button-primary;
+
+    .is-style-outline & {
+      @extend %button-primary-outline;
+    }
+  }
+
+  .is-style-squared & {
+    @extend %button-squared;
+  }
+}

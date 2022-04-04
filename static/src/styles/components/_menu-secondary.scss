@@ -1,0 +1,25 @@
+/*
+** Component - Menu secondary
+** ----------------------------------------------------------------------------- */
+
+.c-menu-secondary {
+  display: inline-flex;
+  flex-direction: column;
+  gap: spacer-clamped(0.5);
+}
+
+.c-menu-secondary__item {
+  position: relative;
+  line-height: 1.4;
+}
+
+.c-menu-secondary__link {
+  display: inline-block;
+  color: var(--chipmunk--color--gray);
+
+  &[href]:hover,
+  &[title]:hover,
+  &[type]:hover {
+    color: var(--chipmunk--color--black);
+  }
+}

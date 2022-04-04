@@ -1,0 +1,57 @@
+/*
+** Admin / License
+** ----------------------------------------------------------------------------- */
+
+.chipmunk__license {
+  position: relative;
+}
+
+.chipmunk__license-head {
+  margin: 0;
+  padding: 1em;
+  width: auto;
+  background: var(--chipmunk--color--white);
+  border-bottom: 1px solid var(--chipmunk--color--gray-light);
+}
+
+.chipmunk__license-body {
+  padding: 1em;
+
+  input.regular-text {
+    width: 100%;
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+.chipmunk__license-data {
+  background: var(--chipmunk--color--white);
+  padding: 1em;
+  border-top: 1px solid var(--chipmunk--color--gray-lighter);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &.is-valid {
+    color: var(--chipmunk--color--status-success);
+  }
+
+  &.is-expires-soon,
+  &.is-site_inactive,
+  &.is-item_name_mismatch {
+    color: var(--chipmunk--color--status-warning);
+  }
+
+  &.is-expired,
+  &.is-error,
+  &.is-missing,
+  &.is-invalid,
+  &.is-invalid_item_id {
+    color: var(--chipmunk--color--status-error);
+  }
+}

@@ -1,0 +1,23 @@
+/*
+** Layout - Header
+** ----------------------------------------------------------------------------- */
+
+.l-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: spacer-fixed();
+}
+
+.l-header__copy {
+  color: var(--chipmunk--color--gray);
+
+  a:hover {
+    color: var(--chipmunk--color--black);
+  }
+
+  @include bp(lg) {
+    width: 100%;
+    padding-right: calc(33.3% - var(--chipmunk--layout--column-gutter) * 0.25);
+  }
+}

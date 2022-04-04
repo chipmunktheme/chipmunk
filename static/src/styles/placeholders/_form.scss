@@ -1,0 +1,44 @@
+/*
+** Placeholders - Form
+** ----------------------------------------------------------------------------- */
+
+%input {
+  display: block;
+  width: 100%;
+  padding: 0.25em 0;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 0.1em solid currentColor;
+  border-radius: 0;
+  color: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  resize: none;
+  appearance: none;
+
+  &:not([rows]) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &::placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &[type='number']::-webkit-inner-spin-button,
+  &[type='number']::-webkit-outer-spin-button {
+    appearance: none;
+  }
+
+  &:-webkit-autofill {
+    animation-delay: 1s;
+    animation-name: autofill;
+    animation-fill-mode: both;
+  }
+}

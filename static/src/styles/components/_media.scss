@@ -1,0 +1,34 @@
+/*
+** Component - Media
+** ----------------------------------------------------------------------------- */
+
+@use 'sass:list';
+
+.c-media {
+  display: block;
+  overflow: hidden;
+
+  > img,
+  > svg,
+  > video,
+  > iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Aspect variants
+    ========================================================================== */
+
+$ratios: (9, 21), (9, 16), (2, 3), (3, 4), (1, 1), (4, 3), (3, 2), (16, 9), (21, 9);
+
+@each $ratio in $ratios {
+  $width: list.nth($ratio, 1);
+  $height: list.nth($ratio, 2);
+
+  .c-media--#{$width}-#{$height} {
+    aspect-ratio: #{$width} / #{$height};
+  }
+}

@@ -1,0 +1,27 @@
+/*
+** Variables - Colors
+** ----------------------------------------------------------------------------- */
+
+body {
+  // Default colors
+  --chipmunk--color--accent: #5b5c89;
+  --chipmunk--color--black: #1d1d1d;
+  --chipmunk--color--gray-dark: #444;
+  --chipmunk--color--gray: #777;
+  --chipmunk--color--gray-light: #cdcdcd;
+  --chipmunk--color--gray-lighter: #e6e6e6;
+  --chipmunk--color--gray-lightest: #ededed;
+  --chipmunk--color--white: #fafafa;
+
+  // Status colors
+  --chipmunk--color--status-success: #4f8a10;
+  --chipmunk--color--status-warning: #9f6000;
+  --chipmunk--color--status-info: #369bf8;
+  --chipmunk--color--status-error: #f74444;
+
+  // Customizable colors
+  --chipmunk--color--primary: var(--chipmunk--color--accent);
+  --chipmunk--color--link: var(--chipmunk--color--accent);
+  --chipmunk--color--background: var(--chipmunk--color--gray-lightest);
+  --chipmunk--color--section: var(--chipmunk--color--white);
+}

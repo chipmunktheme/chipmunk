@@ -1,0 +1,13 @@
+/*
+** Tools - Settings
+** ----------------------------------------------------------------------------- */
+
+// Responsive display values
+$display-values: (inline, inline-block, block, flex) !default;
+
+// Responsive breakpoints
+$breakpoints: (
+  sm: 0,
+  md: 680px,
+  lg: 1024px,
+) !default;

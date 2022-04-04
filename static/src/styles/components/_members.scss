@@ -1,0 +1,53 @@
+/*
+** Component - Members
+** ----------------------------------------------------------------------------- */
+
+.c-members__form {
+  input[type='text'],
+  input[type='email'],
+  input[type='url'],
+  input[type='password'],
+  textarea {
+    @extend %input;
+  }
+
+  p[class^='login-'] {
+    @include spacer-clamped(2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    label {
+      color: var(--chipmunk--color--gray);
+    }
+  }
+
+  .login-remember {
+    font-size: 1.6rem;
+
+    label {
+      cursor: pointer;
+    }
+
+    input[type='checkbox'] {
+      display: inline-block;
+      margin-right: 0.5em;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .button-primary {
+    @extend %button;
+    @extend %button-primary;
+  }
+
+  .forgot-password {
+    display: inline-block;
+    margin-top: spacer-fixed();
+    font-size: 1.6rem;
+  }
+}

@@ -1,0 +1,88 @@
+/*
+** Component - Resource
+** ----------------------------------------------------------------------------- */
+
+.c-resource {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: spacer-clamped(2.5, 2.5vw) spacer-fixed(2.5);
+}
+
+.c-resource__content,
+.c-resource__media {
+  flex-basis: 100%;
+
+  @include bp(lg) {
+    flex-basis: calc(50% - #{spacer-fixed(1.25)});
+    order: 3;
+
+    &--full {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.c-resource__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+  gap: spacer-fixed(1.25);
+}
+
+.c-resource__media {
+  display: block;
+
+  &[href] {
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+.c-resource__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: spacer-clamped(2.5) spacer-fixed(1.25);
+  width: 100%;
+}
+
+.c-resource__info {
+  display: flex;
+  flex-direction: column;
+  gap: spacer-fixed(1.25);
+  margin-bottom: auto;
+}
+
+.c-resource__title {
+  a:hover {
+    color: var(--chipmunk--color--gray-dark);
+  }
+}
+
+.c-resource__description {
+  p {
+    @include spacer-relative(0.5);
+  }
+}
+
+.c-resource__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: spacer-clamped(0.5) spacer-clamped(1);
+
+  @include bp(lg) {
+    justify-content: flex-start;
+  }
+}
+
+.c-resource__actions,
+.c-resource__extras {
+  &:empty {
+    display: none;
+  }
+}

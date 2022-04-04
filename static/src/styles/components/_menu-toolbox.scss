@@ -1,0 +1,15 @@
+/*
+** Component - Menu toolbox
+** ----------------------------------------------------------------------------- */
+
+.c-menu-toolbox__dropdown {
+  display: flex;
+  align-items: center;
+  gap: spacer-clamped(0.5);
+
+  .u-icon {
+    .is-open & {
+      transform: scale(-1);
+    }
+  }
+}

@@ -1,0 +1,28 @@
+/*
+** Admin / Status
+** ----------------------------------------------------------------------------- */
+
+.chipmunk__status {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-top: -1.5em;
+  margin-bottom: -1.5em;
+  padding: 1em;
+  background-color: #fff;
+  border: 1px solid #d6d6d6;
+  border-radius: 0.25rem;
+  color: #333;
+}
+
+.chipmunk__status-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  background-color: var(--chipmunk--color--status-success);
+  border-radius: 50%;
+  color: var(--chipmunk--color--white);
+}

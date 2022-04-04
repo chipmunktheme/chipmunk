@@ -1,0 +1,13 @@
+/*
+** Tools - Cover
+** ----------------------------------------------------------------------------- */
+
+@mixin cover($alpha: 0.1, $color: rgba(0, 0, 0)) {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba($color, 0), rgba($color, $alpha));
+    pointer-events: none;
+  }
+}

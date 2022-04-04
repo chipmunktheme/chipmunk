@@ -1,0 +1,114 @@
+/*
+** Tools - Dropdown
+** ----------------------------------------------------------------------------- */
+
+@mixin dropdown($margin, $theme: 'dark', $position: 'left', $offset: 1.5rem) {
+  position: absolute;
+  top: calc(100% + #{$offset});
+  z-index: var(--chipmunk--layer--dropdown);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  background-color: if($theme == 'dark', var(--chipmunk--color--black), var(--chipmunk--color--section));
+  border-radius: var(--chipmunk--border-radius);
+  border: 1px solid if($theme == 'dark', transparent, var(--chipmunk--color--gray-lighter));
+  color: if($theme == 'dark', var(--chipmunk--color--section), var(--chipmunk--color--black));
+  font-size: 1.4rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, #{$offset * 0.5}, 0);
+  transition-property: opacity, transform;
+  transition-duration: var(--chipmunk--transition-duration);
+
+  @if ($position == 'left') {
+    left: 0;
+    text-align: left;
+  }
+
+  @if ($position == 'right') {
+    right: 0;
+    text-align: right;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 100%;
+  }
+
+  &::before {
+    height: $offset;
+    left: 0;
+    right: 0;
+  }
+
+  &::after {
+    border: 0.75rem solid transparent;
+    border-bottom-color: if($theme == 'dark', var(--chipmunk--color--black), var(--chipmunk--color--section));
+    filter: drop-shadow(0 -1px 0 if($theme == 'dark', transparent, var(--chipmunk--color--gray-lighter)));
+
+    @if ($position == 'left') {
+      left: $margin;
+    }
+
+    @if ($position == 'right') {
+      right: $margin;
+    }
+  }
+
+  ul {
+    top: calc(0.5em - #{$margin});
+
+    @if ($position == 'left') {
+      right: auto;
+      left: calc(100% + #{$offset});
+    }
+
+    @if ($position == 'right') {
+      right: calc(100% + #{$offset});
+      left: auto;
+    }
+
+    &::before {
+      height: auto;
+      width: $offset;
+      top: 0;
+      bottom: 0;
+
+      @if ($position == 'left') {
+        right: 100%;
+        left: auto;
+      }
+
+      @if ($position == 'right') {
+        right: auto;
+        left: 100%;
+      }
+    }
+
+    &::after {
+      border-bottom-color: transparent;
+      bottom: auto;
+      top: $margin;
+
+      @if ($position == 'left') {
+        left: -$offset;
+        border-right-color: if($theme == 'dark', var(--chipmunk--color--black), var(--chipmunk--color--section));
+        filter: drop-shadow(-1px 0 0 if($theme == 'dark', transparent, var(--chipmunk--color--gray-lighter)));
+      }
+
+      @if ($position == 'right') {
+        right: -$offset;
+        border-left-color: if($theme == 'dark', var(--chipmunk--color--black), var(--chipmunk--color--section));
+        filter: drop-shadow(1px 0 0 if($theme == 'dark', transparent, var(--chipmunk--color--gray-lighter)));
+      }
+    }
+  }
+}
+
+@mixin dropdown-open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translate3d(0, 0, 0);
+}

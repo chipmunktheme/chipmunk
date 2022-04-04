@@ -1,0 +1,18 @@
+/*
+** Admin / Box
+** ----------------------------------------------------------------------------- */
+
+.chipmunk__box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #d6d6d6;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
+  border-radius: 5px;
+  overflow: hidden;
+
+  @include bp(md) {
+    max-width: 420px;
+  }
+}

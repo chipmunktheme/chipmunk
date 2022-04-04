@@ -1,0 +1,276 @@
+/*
+** Component - Form
+** ----------------------------------------------------------------------------- */
+
+.c-form {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: spacer-clamped(1.5);
+  width: 100%;
+  text-align: left;
+  transition: opacity var(--chipmunk--transition-duration);
+
+  @include bp(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.is-loading::after {
+    font-size: 5rem;
+  }
+
+  [data-consent] {
+    display: none;
+
+    &.is-visible {
+      display: flex;
+    }
+  }
+
+  > p {
+    grid-column: 1 / -1;
+    color: var(--chipmunk--color--gray-dark);
+
+    input[type='checkbox'] {
+      margin-right: 0.25em;
+      vertical-align: -0.05em;
+    }
+  }
+
+  &.is-loading {
+    opacity: 0.25;
+  }
+
+  &--inline {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &--narrow {
+    max-width: 36rem;
+  }
+}
+
+.c-form__content {
+  display: contents;
+}
+
+.c-form__field {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: spacer-relative(0.5);
+  grid-column: span 1;
+
+  &--separated {
+    @include bp(md) {
+      @include spacer-clamped(1.5);
+    }
+  }
+
+  &--cta {
+    align-items: center;
+    justify-content: space-between;
+    gap: spacer-clamped(1.5);
+
+    @include bp(md) {
+      @include spacer-clamped(1);
+    }
+  }
+
+  &--center {
+    justify-content: center;
+  }
+
+  &--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+.c-form__input {
+  @extend %input;
+
+  font-size: 1.25em;
+
+  &--default {
+    font-size: 1em;
+  }
+
+  .c-form--inline & {
+    padding-right: 2em;
+  }
+}
+
+.c-form__button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5em 0.25em;
+  font-size: 1.25em;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  .c-form__input--default + & {
+    font-size: 1em;
+  }
+}
+
+.c-form__label {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  font-size: 0.9em;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-bottom: 0.5em;
+  }
+
+  span {
+    margin-left: 0.5em;
+    color: var(--chipmunk--color--gray);
+    font-weight: normal;
+  }
+}
+
+.c-form__select {
+  position: relative;
+  width: 100%;
+
+  select {
+    padding-right: 1.5em;
+    cursor: pointer;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0.66em;
+    height: 0.33em;
+    background-color: currentColor;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    transform: translateY(-50%);
+  }
+}
+
+.c-form__checkbox {
+  display: flex;
+  gap: spacer-relative(0.5);
+  margin-right: auto;
+  font-size: 0.875em;
+
+  [type='checkbox'],
+  [type='radio'] {
+    position: relative;
+    flex-shrink: 0;
+    height: 1.25em;
+    width: 1.25em;
+    margin-top: 0.2em;
+    border: 0.1em solid currentColor;
+    border-radius: var(--chipmunk--button--border-radius);
+    appearance: none;
+    outline: none;
+
+    &::after {
+      content: '';
+      display: none;
+      position: absolute;
+      left: 0.4em;
+      top: 0.2em;
+      border: solid #fff;
+      border-width: 0 0.1em 0.1em 0;
+      border-color: currentColor;
+      height: 0.6em;
+      width: 0.3em;
+      transform: rotate(45deg);
+    }
+
+    &:checked::after {
+      display: block;
+    }
+  }
+
+  p {
+    flex: 1;
+    opacity: 0.8;
+  }
+}
+
+.c-form__message {
+  width: 100%;
+  grid-column: span 2;
+
+  &:empty {
+    display: none;
+  }
+
+  &[data-status='success'] {
+    color: var(--chipmunk--color--status-success);
+  }
+
+  &[data-status='error'] {
+    color: var(--chipmunk--color--status-error);
+  }
+
+  .c-popup & {
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
+.c-form__info {
+  grid-column: 1 / -1;
+  color: var(--chipmunk--color--gray-dark);
+
+  a:hover {
+    color: var(--chipmunk--color--gray-dark);
+  }
+
+  &--success,
+  &--success a {
+    color: var(--chipmunk--color--status-success);
+  }
+
+  &--warning,
+  &--warning a {
+    color: var(--chipmunk--color--status-warning);
+  }
+
+  &--error,
+  &--error a {
+    color: var(--chipmunk--color--status-error);
+  }
+}
+
+.c-form__error {
+  height: 100%;
+  width: 100%;
+  color: var(--chipmunk--color--status-error);
+  font-size: 1.4rem;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.c-form__link[href] {
+  display: inline-block;
+  margin: 0.5em 0;
+  color: var(--chipmunk--color--gray);
+  font-size: 0.8125em;
+
+  &:hover {
+    color: var(--chipmunk--color--black);
+  }
+
+  @include bp(md) {
+    margin: 0;
+    font-size: 0.875em;
+  }
+}
