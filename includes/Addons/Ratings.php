@@ -13,20 +13,6 @@ use Chipmunk\Helpers;
 class Ratings {
 
 	/**
-	 *
-	 * @since 1.4
-	 * @var string
-	 */
-	private static $init_transient = 'chipmunk_ratings_init';
-
-	/**
-	 * Allowed post types supporting the addon
-	 *
-	 * @var array
-	 */
-	static $allowed_types = array( 'post', 'resource' );
-
-	/**
 	 * Initializes the addon.
 	 *
 	 * To keep the initialization fast, only add filter and action
@@ -34,8 +20,29 @@ class Ratings {
 	 *
 	 * @return void
 	 */
-	public function __construct() {
+	public function __construct( $config = array() ) {
+		// Set config defaults
+		$this->config = wp_parse_args( $config, array(
+			'name'         => '',
+			'slug'         => '',
+			'excerpt'      => '',
+			'url'          => '',
+		) );
+
+		$this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
+
+		// Set hooks
+		$this->hooks();
+	}
+
+	/**
+	 * Setup hooks
+	 *
+	 * @return  void
+	 */
+	private function hooks() {
 		add_action( 'init', array( $this, 'setup_addon' ) );
+		add_filter( 'chipmunk_settings_addons', array( $this, 'add_settings_addon' ) );
 	}
 
 	/**
@@ -46,11 +53,11 @@ class Ratings {
 	private function register_post_meta() {
 		$posts = get_posts( array(
 			'posts_per_page' => -1,
-			'post_type'      => self::$allowed_types,
+			'post_type'      => $this->allowed_types,
 		) );
 
 		foreach ( $posts as $post ) {
-			$this->add_default_meta( $post->ID, self::$allowed_types );
+			$this->add_default_meta( $post->ID, $this->allowed_types );
 		}
 	}
 
@@ -77,19 +84,30 @@ class Ratings {
 	 * @return void
 	 */
 	public function setup_addon() {
-		if ( ! Helpers::has_addon( 'ratings' ) ) {
+		if ( ! Helpers::has_addon( $this->config['slug'] ) ) {
 			return;
 		}
 
-		if ( ! get_transient( self::$init_transient ) ) {
+		if ( ! get_transient( $this->transient ) ) {
 			// Register post meta
 			$this->register_post_meta();
 
 			// Set transient
-			set_transient( self::$init_transient, true );
+			set_transient( $this->transient, true );
 		}
 
 		new Ratings\Actions();
 		new Ratings\Renderers();
+	}
+
+	/**
+ 	 * Add settings addon component
+	 *
+	 * @return array
+	 */
+	public function add_settings_addon( $addons ) {
+		$addons[] = $this->config;
+
+		return $addons;
 	}
 }

@@ -11,25 +11,13 @@ namespace Chipmunk\Addons\Members;
 class Settings {
 
 	/**
-	 * Settings tab name
-	 *
-	 * @var string
-	 */
-	private $tab_name = 'Members';
-
-	/**
-	 * Settings tab slug
-	 *
-	 * @var string
-	 */
-	private $tab_slug = 'members';
-
-	/**
  	 * Class constructor
 	 *
 	 * @return void
 	 */
-	public function __construct() {
+	public function __construct( $config ) {
+		$this->config = $config;
+
 		add_action( 'admin_init', array( $this, 'register_settings_init' ), 20 );
 
 		// Output settings content
@@ -107,8 +95,8 @@ class Settings {
 	 */
 	public function add_settings_tab( $tabs ) {
 		$tabs[] = array(
-			'name'      => $this->tab_name,
-			'slug'      => $this->tab_slug,
+			'name'      => $this->config['name'],
+			'slug'      => $this->config['slug'],
 			'content'   => $this->get_settings_content(),
 		);
 

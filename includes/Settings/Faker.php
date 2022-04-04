@@ -15,21 +15,14 @@ class Faker extends \Chipmunk\Settings {
 	 *
 	 * @var string
 	 */
-	private $setting_name = 'faker';
+	private $name = 'Faker';
 
 	/**
-	 * Settings tab name
+	 * Setting slug
 	 *
 	 * @var string
 	 */
-	private $tab_name = 'Faker';
-
-	/**
-	 * Settings tab slug
-	 *
-	 * @var string
-	 */
-	private $tab_slug = 'faker';
+	private $slug = 'faker';
 
 	/**
 	 * Initialize the class.
@@ -44,12 +37,53 @@ class Faker extends \Chipmunk\Settings {
 	}
 
 	/**
+	 * Checks if a generator action was submitted.
+	 */
+	public function action() {
+		if ( isset( $_POST[THEME_SLUG . '_generator_upvote'] ) ) {
+			self::generate( 'upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'], array( 'resource' ) );
+		}
+
+		if ( isset( $_POST[THEME_SLUG . '_generator_view'] ) ) {
+			self::generate( 'post_view', (int) $_POST[THEME_SLUG . '_generator_view_start'], (int) $_POST[THEME_SLUG . '_generator_view_end'], array( 'post', 'resource' ) );
+		}
+	}
+
+	/**
+	 * Generate fake values for upvote and view counters
+	 */
+	private function generate( $type, $start, $end, $post_types ) {
+		if ( empty( $start ) && empty( $end ) ) {
+			$this->add_settings_error( $this->slug, __( 'You need to provide both values for the range!', 'chipmunk' ) );
+			return;
+		}
+
+		$db_key = '_' . THEME_SLUG . '_' . $type . '_count';
+
+		$posts = get_posts( array(
+			'post_type'         => $post_types,
+			'post_status'       => 'any',
+			'posts_per_page'    => -1,
+		) );
+
+		foreach ( $posts as $post ) {
+			$count = (int) get_post_meta( $post->ID, $db_key, true );
+
+			if ( isset( $count ) && is_numeric( $count ) ) {
+				update_post_meta( $post->ID, $db_key, $count + rand( $start, ( $start > $end ? $start : $end ) ) );
+			}
+		}
+
+		$this->add_settings_error( $this->slug, __( 'Fake counters successfully generated!', 'chipmunk' ), 'success' );
+	}
+
+	/**
 	 * Adds settings tab to the list
 	 */
 	public function add_settings_tab( $tabs ) {
 		$tabs[] = array(
-			'name'      => $this->tab_name,
-			'slug'      => $this->tab_slug,
+			'name'      => $this->name,
+			'slug'      => $this->slug,
 			'content'   => $this->get_settings_content(),
 		);
 
@@ -107,46 +141,5 @@ class Faker extends \Chipmunk\Settings {
 
 		<?php
 		return ob_get_clean();
-	}
-
-	/**
-	 * Checks if a generator action was submitted.
-	 */
-	public function action() {
-		if ( isset( $_POST[THEME_SLUG . '_generator_upvote'] ) ) {
-			self::generate( 'upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'], array( 'resource' ) );
-		}
-
-		if ( isset( $_POST[THEME_SLUG . '_generator_view'] ) ) {
-			self::generate( 'post_view', (int) $_POST[THEME_SLUG . '_generator_view_start'], (int) $_POST[THEME_SLUG . '_generator_view_end'], array( 'post', 'resource' ) );
-		}
-	}
-
-	/**
-	 * Generate fake values for upvote and view counters
-	 */
-	private function generate( $type, $start, $end, $post_types ) {
-		if ( empty( $start ) && empty( $end ) ) {
-			$this->add_settings_error( $this->setting_name, __( 'You need to provide both values for the range!', 'chipmunk' ) );
-			return;
-		}
-
-		$db_key = '_' . THEME_SLUG . '_' . $type . '_count';
-
-		$posts = get_posts( array(
-			'post_type'         => $post_types,
-			'post_status'       => 'any',
-			'posts_per_page'    => -1,
-		) );
-
-		foreach ( $posts as $post ) {
-			$count = (int) get_post_meta( $post->ID, $db_key, true );
-
-			if ( isset( $count ) && is_numeric( $count ) ) {
-				update_post_meta( $post->ID, $db_key, $count + rand( $start, ( $start > $end ? $start : $end ) ) );
-			}
-		}
-
-		$this->add_settings_error( $this->setting_name, __( 'Fake counters successfully generated!', 'chipmunk' ), 'success' );
 	}
 }

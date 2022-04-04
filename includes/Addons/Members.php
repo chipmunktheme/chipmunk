@@ -13,13 +13,6 @@ use Chipmunk\Helpers;
 class Members {
 
 	/**
-	 * A name of the transient storing addon init status
-	 *
-	 * @var string
-	 */
-	private static $init_transient = 'chipmunk_members_init';
-
-	/**
 	 * Initializes the addon.
 	 *
 	 * To keep the initialization fast, only add filter and action
@@ -27,8 +20,29 @@ class Members {
 	 *
 	 * @return void
 	 */
-	public function __construct() {
+	public function __construct( $config = array() ) {
+		// Set config defaults
+		$this->config = wp_parse_args( $config, array(
+			'name'         => '',
+			'slug'         => '',
+			'excerpt'      => '',
+			'url'          => '',
+		) );
+
+		$this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
+
+		// Set hooks
+		$this->hooks();
+	}
+
+	/**
+	 * Setup hooks
+	 *
+	 * @return  void
+	 */
+	private function hooks() {
 		add_action( 'init', array( $this, 'setup_addon' ) );
+		add_filter( 'chipmunk_settings_addons', array( $this, 'add_settings_addon' ) );
 	}
 
 	/**
@@ -122,22 +136,33 @@ class Members {
 	 * @return void
 	 */
 	public function setup_addon() {
-		if ( ! Helpers::has_addon( 'members' ) ) {
+		if ( ! Helpers::has_addon( $this->config['slug'] ) ) {
 			return;
 		}
 
-		if ( ! get_transient( self::$init_transient ) ) {
+		if ( ! get_transient( $this->transient ) ) {
 			// Register post meta
 			$this->register_pages();
 
 			// Set transient
-			set_transient( self::$init_transient, true );
+			set_transient( $this->transient, true );
 		}
 
 		new Members\Actions();
 		new Members\Config();
-		new Members\Settings();
 		new Members\Redirects();
 		new Members\Renderers();
+		new Members\Settings( $this->config );
+	}
+
+	/**
+ 	 * Add settings addon component
+	 *
+	 * @return array
+	 */
+	public function add_settings_addon( $addons ) {
+		$addons[] = $this->config;
+
+		return $addons;
 	}
 }

@@ -23,7 +23,6 @@ class Ratings {
 	/**
 	 * Maximun rating value
 	 *
-	 * @since 1.0
 	 * @var int
 	 */
 	protected $max_rating = 5;

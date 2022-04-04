@@ -22,26 +22,17 @@ class Licenser extends \Chipmunk\Settings {
 	 *
 	 * @var string
 	 */
-	private $setting_name = 'licenses';
+	private $name = 'License';
 
 	/**
-	 * Settings tab name
+	 * Setting slug
 	 *
 	 * @var string
 	 */
-	private $tab_name = 'License';
+	private $slug = 'license';
 
 	/**
-	 * Settings tab slug
-	 *
-	 * @var string
-	 */
-	private $tab_slug = 'license';
-
-	/**
-	 * Initialize the class.
-	 *
-	 * @since 1.0.0
+	 * Initialize the class
 	 */
 	function __construct( $config = array(), $strings = array(), $errors = array() ) {
 		// Set config defaults
@@ -278,7 +269,7 @@ class Licenser extends \Chipmunk\Settings {
 		$message = is_wp_error( $response ) ? $response->get_error_message() : $error;
 
 		// Add proper error message
-		$this->add_settings_error( $this->setting_name, $message );
+		$this->add_settings_error( $this->slug, $message );
 	}
 
 	/**
@@ -392,7 +383,7 @@ class Licenser extends \Chipmunk\Settings {
 	 */
 	public function register_option() {
 		register_setting(
-			$this->item_slug . '_' . $this->setting_name,
+			$this->item_slug,
 			$this->license_key_option
 		);
 	}
@@ -402,8 +393,8 @@ class Licenser extends \Chipmunk\Settings {
 	 */
 	public function add_settings_tab( $tabs ) {
 		$tabs[] = array(
-			'name'      => $this->tab_name,
-			'slug'      => $this->tab_slug,
+			'name'      => $this->name,
+			'slug'      => $this->slug,
 			'content'   => $this->get_settings_content(),
 		);
 
@@ -421,20 +412,20 @@ class Licenser extends \Chipmunk\Settings {
 		?>
 
 		<form action="options.php" method="post">
-			<div class="chipmunk__license">
+			<div class="chipmunk__license chipmunk__box">
 				<h3 class="chipmunk__license-head">
 					<?php echo $this->item_name; ?>
 				</h3>
 
 				<div class="chipmunk__license-body">
-					<?php settings_fields( $this->item_slug . '_licenses' ); ?>
+					<?php settings_fields( $this->item_slug ); ?>
 
 					<input id="<?php echo $this->license_key_option; ?>" name="<?php echo $this->license_key_option; ?>" type="text" class="regular-text" value="<?php echo esc_attr( $this->license_key ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
 
 					<?php if ( ! empty( $license_data ) && 'valid' == $license_data->license ) : ?>
-						<button type="submit" class="button-secondary" name="<?php echo $this->license_key_option; ?>_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
+						<button type="submit" class="button-primary" name="<?php echo $this->license_key_option; ?>_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
 					<?php else : ?>
-						<button type="submit" class="button-secondary" name="<?php echo $this->license_key_option; ?>_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
+						<button type="submit" class="button-primary" name="<?php echo $this->license_key_option; ?>_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
 					<?php endif; ?>
 				</div>
 
@@ -442,7 +433,7 @@ class Licenser extends \Chipmunk\Settings {
 					<p class="description"><?php echo $license_status; ?></p>
 				</div>
 
-				<?php do_action( 'chipmunk_licenses_content' ); ?>
+				<?php do_action( 'chipmunk_license_content' ); ?>
 			</div>
 		</form>
 
