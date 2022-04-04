@@ -25,7 +25,7 @@ define( 'THEME_TEMPLATES_PATH', 	'templates/' );
 define( 'THEME_MANIFEST_PATH',      THEME_DIST_PATH . 'manifest.json' );
 define( 'THEME_MANIFEST_DEV_PATH',  THEME_DIST_PATH . 'manifest-dev.json' );
 define( 'THEME_PLANS',              array( '1' => 'Basic', '2' => 'Plus', '3' => 'Pro' ) );
-define( 'THEME_ADDONS',             array( base64_decode('cmF0aW5ncw==') => base64_decode('MQ=='), base64_decode('bWVtYmVycw==') => base64_decode('Mg==') ) );
+define( 'THEME_ADDONS',             array( 'members' => '3', 'ratings' => '2' ) );
 
 /*
  * Composer autoload

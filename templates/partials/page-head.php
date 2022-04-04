@@ -31,7 +31,7 @@
 					</button>
 				<?php endif; ?>
 
-				<?php if ( Chipmunk\Helpers::has_addon( 'members' ) ) : ?>
+				<?php if ( Chipmunk\Helpers::is_addon_enabled( 'members' ) ) : ?>
 					<?php if ( is_user_logged_in() ) : ?>
 						<?php $current_user = wp_get_current_user(); ?>
 

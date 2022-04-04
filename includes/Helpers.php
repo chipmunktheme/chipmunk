@@ -2,6 +2,9 @@
 
 namespace Chipmunk;
 
+use Chipmunk\Customizer;
+use Chipmunk\Settings\Addons;
+
 /**
  * Theme specific helpers.
  *
@@ -11,30 +14,10 @@ namespace Chipmunk;
 class Helpers {
 
 	/**
-	 * Get current theme version
-	 */
-	public static function get_version() {
-		return wp_get_theme()->get( 'Version' );
-	}
-
-	/**
-	 * Set theme env based on the proxy value
-	 */
-	public static function set_theme_env() {
-		if ( isset( $_SERVER['HTTP_X_CHISEL_PROXY'] ) ) {
-			define( 'THEME_DEV_ENV', true );
-		}
-	}
-
-	/**
 	 * Check if Chipmunk plugin is enabled
 	 */
-	public static function has_addon( $addon ) {
-		if ( empty( $license = \Chipmunk\Settings::$license ) ) {
-			return false;
-		}
-
-		return (int) $license->price_id >= THEME_ADDONS[ $addon ];
+	public static function is_addon_enabled( $addon ) {
+		return Addons::is_addon_enabled( $addon );
 	}
 
 	/**

@@ -33,7 +33,7 @@ class Upvotes {
 		global $current_user;
 
 		$this->post_id = intval( wp_filter_kses( $post_id ) );
-		$this->user_id = ! empty( $current_user->ID ) ? $current_user->ID : ( Helpers::has_addon( 'members' ) && Helpers::get_theme_option( 'restrict_guest_upvotes' ) ? null : Helpers::get_ip() );
+		$this->user_id = ! empty( $current_user->ID ) ? $current_user->ID : ( Helpers::is_addon_enabled( 'members' ) && Helpers::get_theme_option( 'restrict_guest_upvotes' ) ? null : Helpers::get_ip() );
 	}
 
 	/**

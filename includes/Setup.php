@@ -242,8 +242,5 @@ class Setup {
 
 		// Customizer
 		Customizer::register_sections();
-
-		// Set theme env
-		Helpers::set_theme_env();
 	}
 }

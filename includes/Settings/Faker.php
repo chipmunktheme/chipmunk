@@ -2,13 +2,15 @@
 
 namespace Chipmunk\Settings;
 
+use \Chipmunk\Settings;
+
 /**
  * A Faker settings class
  *
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Faker extends \Chipmunk\Settings {
+class Faker extends Settings {
 
 	/**
 	 * Setting name

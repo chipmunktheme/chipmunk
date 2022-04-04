@@ -11,7 +11,7 @@
 			</nav>
 		<?php endif; ?>
 
-		<?php if ( Chipmunk\Helpers::has_addon( 'members' ) ) : ?>
+		<?php if ( Chipmunk\Helpers::is_addon_enabled( 'members' ) ) : ?>
 			<div class="c-overlay__bottom">
 				<?php if ( is_user_logged_in() ) : ?>
 					<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', array( 'class' => 'c-button c-button--primary-outline' ) ); ?>

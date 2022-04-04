@@ -84,7 +84,7 @@ class Ratings {
 	 * @return void
 	 */
 	public function setup_addon() {
-		if ( ! Helpers::has_addon( $this->config['slug'] ) ) {
+		if ( ! Helpers::is_addon_enabled( $this->config['slug'] ) ) {
 			return;
 		}
 

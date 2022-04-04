@@ -79,7 +79,9 @@ class Settings {
 						</div>
 
 						<div class="chipmunk__status-content">
-							<strong><?php printf( esc_html__( '%s License', 'chipmunk' ), THEME_PLANS[ self::$license->price_id ] ); ?></strong><br>
+							<?php if ( ! empty( self::$license->price_id ) ) : ?>
+								<strong><?php printf( esc_html__( '%s License', 'chipmunk' ), THEME_PLANS[ self::$license->price_id ] ); ?></strong><br>
+							<?php endif; ?>
 							<?php echo esc_html( self::$license->customer_email ); ?>
 						</div>
 					</a>
@@ -116,7 +118,7 @@ class Settings {
 		<?php
 	}
 
-	/*
+	/**
 	 * Checks if the tab is active
 	 *
 	 * @param array $tabs Tabs array list
@@ -124,6 +126,24 @@ class Settings {
 	 */
 	private function is_active_tab( $tabs, $tab ) {
 		return ( ! empty( $_GET['tab'] ) && $_GET['tab'] == $tab['slug'] ) || ( empty( $_GET['tab'] ) && $tabs[0] == $tab );
+	}
+
+	/**
+	 * Is valid license activated
+	 *
+	 * @return bool
+	 */
+	protected static function is_valid_license() {
+		return ! empty( self::$license ) && 'valid' == self::$license->license;
+	}
+
+	/**
+	 * Get the price ID if the license is valid and activated
+	 *
+	 * @return int
+	 */
+	protected static function get_license_price() {
+		return self::is_valid_license() ? (int) self::$license->price_id : 0;
 	}
 
 	/**

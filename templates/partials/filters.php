@@ -68,7 +68,7 @@
 				);
 			}
 
-			if ( Chipmunk\Helpers::has_addon( 'ratings' ) ) {
+			if ( Chipmunk\Helpers::is_addon_enabled( 'ratings' ) ) {
 				$options[] = array(
 					'value' => 'ratings-desc',
 					'title' => __( 'Ratings', 'chipmunk' ),

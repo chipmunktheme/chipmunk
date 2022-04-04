@@ -2,13 +2,15 @@
 
 namespace Chipmunk\Settings;
 
+use \Chipmunk\Settings;
+
 /**
  * A License settings class
  *
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Licenser extends \Chipmunk\Settings {
+class Licenser extends Settings {
 
 	/**
 	 * License key
@@ -383,7 +385,7 @@ class Licenser extends \Chipmunk\Settings {
 	 */
 	public function register_option() {
 		register_setting(
-			$this->item_slug,
+			$this->license_key_option,
 			$this->license_key_option
 		);
 	}
@@ -418,12 +420,12 @@ class Licenser extends \Chipmunk\Settings {
 				</h3>
 
 				<div class="chipmunk__license-body">
-					<?php settings_fields( $this->item_slug ); ?>
+					<?php settings_fields( $this->license_key_option ); ?>
 
 					<input id="<?php echo $this->license_key_option; ?>" name="<?php echo $this->license_key_option; ?>" type="text" class="regular-text" value="<?php echo esc_attr( $this->license_key ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
 
 					<?php if ( ! empty( $license_data ) && 'valid' == $license_data->license ) : ?>
-						<button type="submit" class="button-primary" name="<?php echo $this->license_key_option; ?>_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
+						<button type="submit" class="button-secondary" name="<?php echo $this->license_key_option; ?>_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
 					<?php else : ?>
 						<button type="submit" class="button-primary" name="<?php echo $this->license_key_option; ?>_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
 					<?php endif; ?>

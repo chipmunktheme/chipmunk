@@ -25,6 +25,6 @@
 
 	<?php wp_footer(); ?>
 
-	<!-- Chipmunk Theme: Version <?php echo Chipmunk\Helpers::get_version(); ?> -->
+	<!-- Chipmunk Theme: Version <?php echo wp_get_theme()->get( 'Version' ); ?> -->
 </body>
 </html>
