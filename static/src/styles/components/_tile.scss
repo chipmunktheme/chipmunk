@@ -180,8 +180,12 @@ $grid-columns: (
   justify-content: space-between;
   gap: spacer-fixed(1);
   flex: 1;
-  padding: spacer-fixed(1.5);
+  padding: spacer-fixed(1);
   color: var(--chipmunk--color--black);
+
+  @include bp(md) {
+    padding: spacer-fixed(1.5);
+  }
 
   &--dimmed {
     background-color: rgba(0, 0, 0, 0.75);
@@ -200,8 +204,10 @@ $grid-columns: (
   }
 
   .c-tile--card &:not(:first-child) {
-    padding: spacer-fixed(1);
-    padding-top: 0;
+    @include bp(md) {
+      padding: spacer-fixed(1);
+      padding-top: 0;
+    }
   }
 
   .c-tile--blank & {
