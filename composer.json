@@ -20,17 +20,6 @@
     {
       "type": "composer",
       "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/library/"
-    },
-    {
-      "type": "path",
-      "url": "../../plugins/chipmunk-members",
-      "options": {
-        "symlink": true
-      }
-    },
-    {
-      "type": "git",
-      "url": "git@github.com:chipmunk-theme/chipmunk-ratings.git"
     }
   ],
   "require": {

@@ -2,11 +2,11 @@
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
-            "version": "5.12.1",
-            "version_normalized": "5.12.1.0",
+            "version": "5.12.2",
+            "version_normalized": "5.12.2.0",
             "dist": {
                 "type": "zip",
-                "url": "https://connect.advancedcustomfields.com/v2/plugins/download?p=pro&t=5.12.1"
+                "url": "https://connect.advancedcustomfields.com/v2/plugins/download?p=pro&t=5.12.2"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0",
@@ -39,17 +39,17 @@
         },
         {
             "name": "composer/installers",
-            "version": "v2.1.0",
-            "version_normalized": "2.1.0.0",
+            "version": "v2.1.1",
+            "version_normalized": "2.1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "75e5ef05436c90ac565a48176cc7465991908352"
+                "reference": "af93ba6e52236418f07a278033eba6959ee5b983"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/75e5ef05436c90ac565a48176cc7465991908352",
-                "reference": "75e5ef05436c90ac565a48176cc7465991908352",
+                "url": "https://api.github.com/repos/composer/installers/zipball/af93ba6e52236418f07a278033eba6959ee5b983",
+                "reference": "af93ba6e52236418f07a278033eba6959ee5b983",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
                 "symfony/phpunit-bridge": "^5.3",
                 "symfony/process": "^5"
             },
-            "time": "2022-03-18T12:27:54+00:00",
+            "time": "2022-04-13T09:13:00+00:00",
             "type": "composer-plugin",
             "extra": {
                 "class": "Composer\\Installers\\Plugin",
@@ -166,7 +166,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v2.1.0"
+                "source": "https://github.com/composer/installers/tree/v2.1.1"
             },
             "funding": [
                 {

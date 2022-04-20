@@ -1,30 +1,30 @@
-/** *** */ (function() { // webpackBootstrap
-/** *** */ 	const __webpack_modules__ = ({
+/******/ (function() { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_acf-hooks.js":
-/*! ********************************************************************!*\
+/*!********************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_acf-hooks.js ***!
-  \******************************************************************* */
+  \********************************************************************/
 /***/ (function() {
 
 (function (window, undefined) {
-  
+  'use strict';
   /**
    * Handles managing all events for whatever you plug it into. Priorities for hooks are based on lowest to highest in
    * that, lowest priority hooks are fired first.
    */
 
-  const EventManager = function () {
+  var EventManager = function () {
     /**
      * Maintain a reference to the object scope so our public methods never get confusing.
      */
-    const MethodsAvailable = {
-      removeFilter,
-      applyFilters,
-      addFilter,
-      removeAction,
-      doAction,
-      addAction,
+    var MethodsAvailable = {
+      removeFilter: removeFilter,
+      applyFilters: applyFilters,
+      addFilter: addFilter,
+      removeAction: removeAction,
+      doAction: doAction,
+      addAction: addAction,
       storage: getStorage
     };
     /**
@@ -32,7 +32,7 @@
      * object literal such that looking up the hook utilizes the native object literal hash.
      */
 
-    const STORAGE = {
+    var STORAGE = {
       actions: {},
       filters: {}
     };
@@ -68,8 +68,8 @@
     function
       /* action, arg1, arg2, ... */
     doAction() {
-      const args = Array.prototype.slice.call(arguments);
-      const action = args.shift();
+      var args = Array.prototype.slice.call(arguments);
+      var action = args.shift();
 
       if (typeof action === 'string') {
         _runHook('actions', action, args);
@@ -120,8 +120,8 @@
     function
       /* filter, filtered arg, arg2, ... */
     applyFilters() {
-      const args = Array.prototype.slice.call(arguments);
-      const filter = args.shift();
+      var args = Array.prototype.slice.call(arguments);
+      var filter = args.shift();
 
       if (typeof filter === 'string') {
         return _runHook('filters', filter, args);
@@ -161,8 +161,8 @@
       if (!callback) {
         STORAGE[type][hook] = [];
       } else {
-        const handlers = STORAGE[type][hook];
-        let i;
+        var handlers = STORAGE[type][hook];
+        var i;
 
         if (!context) {
           for (i = handlers.length; i--;) {
@@ -172,7 +172,7 @@
           }
         } else {
           for (i = handlers.length; i--;) {
-            const handler = handlers[i];
+            var handler = handlers[i];
 
             if (handler.callback === callback && handler.context === context) {
               handlers.splice(i, 1);
@@ -194,13 +194,13 @@
 
 
     function _addHook(type, hook, callback, priority, context) {
-      const hookObject = {
-        callback,
-        priority,
-        context
+      var hookObject = {
+        callback: callback,
+        priority: priority,
+        context: context
       }; // Utilize 'prop itself' : http://jsperf.com/hasownproperty-vs-in-vs-undefined/19
 
-      let hooks = STORAGE[type][hook];
+      var hooks = STORAGE[type][hook];
 
       if (hooks) {
         hooks.push(hookObject);
@@ -221,9 +221,9 @@
 
 
     function _hookInsertSort(hooks) {
-      let tmpHook; let j; let prevHook;
+      var tmpHook, j, prevHook;
 
-      for (let i = 1, len = hooks.length; i < len; i++) {
+      for (var i = 1, len = hooks.length; i < len; i++) {
         tmpHook = hooks[i];
         j = i;
 
@@ -248,14 +248,14 @@
 
 
     function _runHook(type, hook, args) {
-      const handlers = STORAGE[type][hook];
+      var handlers = STORAGE[type][hook];
 
       if (!handlers) {
         return type === 'filters' ? args[0] : false;
       }
 
-      let i = 0;
-          const len = handlers.length;
+      var i = 0,
+          len = handlers.length;
 
       if (type === 'filters') {
         for (; i < len; i++) {
@@ -281,9 +281,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_acf-modal.js":
-/*! ********************************************************************!*\
+/*!********************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_acf-modal.js ***!
-  \******************************************************************* */
+  \********************************************************************/
 /***/ (function() {
 
 (function ($, undefined) {
@@ -296,21 +296,21 @@
     events: {
       'click .acf-modal-close': 'onClickClose'
     },
-    setup (props) {
+    setup: function (props) {
       $.extend(this.data, props);
       this.$el = $();
       this.render();
     },
-    initialize () {
+    initialize: function () {
       this.open();
     },
-    render () {
+    render: function () {
       // Extract vars.
-      const title = this.get('title');
-      const content = this.get('content');
-      const toolbar = this.get('toolbar'); // Create element.
+      var title = this.get('title');
+      var content = this.get('content');
+      var toolbar = this.get('toolbar'); // Create element.
 
-      const $el = $(['<div>', '<div class="acf-modal">', '<div class="acf-modal-title">', `<h2>${  title  }</h2>`, '<button class="acf-modal-close" type="button"><span class="dashicons dashicons-no"></span></button>', '</div>', `<div class="acf-modal-content">${  content  }</div>`, `<div class="acf-modal-toolbar">${  toolbar  }</div>`, '</div>', '<div class="acf-modal-backdrop acf-modal-close"></div>', '</div>'].join('')); // Update DOM.
+      var $el = $(['<div>', '<div class="acf-modal">', '<div class="acf-modal-title">', '<h2>' + title + '</h2>', '<button class="acf-modal-close" type="button"><span class="dashicons dashicons-no"></span></button>', '</div>', '<div class="acf-modal-content">' + content + '</div>', '<div class="acf-modal-toolbar">' + toolbar + '</div>', '</div>', '<div class="acf-modal-backdrop acf-modal-close"></div>', '</div>'].join('')); // Update DOM.
 
       if (this.$el) {
         this.$el.replaceWith($el);
@@ -320,26 +320,26 @@
 
       acf.doAction('append', $el);
     },
-    update (props) {
+    update: function (props) {
       this.data = acf.parseArgs(props, this.data);
       this.render();
     },
-    title (title) {
+    title: function (title) {
       this.$('.acf-modal-title h2').html(title);
     },
-    content (content) {
+    content: function (content) {
       this.$('.acf-modal-content').html(content);
     },
-    toolbar (toolbar) {
+    toolbar: function (toolbar) {
       this.$('.acf-modal-toolbar').html(toolbar);
     },
-    open () {
+    open: function () {
       $('body').append(this.$el);
     },
-    close () {
+    close: function () {
       this.remove();
     },
-    onClickClose (e, $el) {
+    onClickClose: function (e, $el) {
       e.preventDefault();
       this.close();
     }
@@ -362,14 +362,14 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_acf-model.js":
-/*! ********************************************************************!*\
+/*!********************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_acf-model.js ***!
-  \******************************************************************* */
+  \********************************************************************/
 /***/ (function() {
 
 (function ($, undefined) {
   // Cached regex to split keys for `addEvent`.
-  const delegateEventSplitter = /^(\S+)\s*(.*)$/;
+  var delegateEventSplitter = /^(\S+)\s*(.*)$/;
   /**
    *  extend
    *
@@ -383,10 +383,10 @@
    *  @return	function.
    */
 
-  const extend = function (protoProps) {
+  var extend = function (protoProps) {
     // vars
-    const Parent = this;
-    let Child; // The constructor function for the new subclass is either defined by you
+    var Parent = this;
+    var Child; // The constructor function for the new subclass is either defined by you
     // (the "constructor" property in your `extend` definition), or defaulted
     // by us to simply call the parent constructor.
 
@@ -405,7 +405,7 @@
     Child.prototype = Object.create(Parent.prototype);
     $.extend(Child.prototype, protoProps);
     Child.prototype.constructor = Child; // Set a convenience property in case the parent's prototype is needed later.
-    // Child.prototype.__parent__ = Parent.prototype;
+    //Child.prototype.__parent__ = Parent.prototype;
     // return
 
     return Child;
@@ -423,7 +423,7 @@
    */
 
 
-  const Model = acf.Model = function () {
+  var Model = acf.Model = function () {
     // generate uique client id
     this.cid = acf.uniqueId('acf'); // set vars to avoid modifying prototype
 
@@ -436,7 +436,7 @@
     } // initialize
 
 
-    const initialize = function () {
+    var initialize = function () {
       this.initialize();
       this.addEvents();
       this.addActions();
@@ -486,7 +486,7 @@
      *  @param	string name
      *  @return	mixed
      */
-    get (name) {
+    get: function (name) {
       return this.data[name];
     },
 
@@ -501,7 +501,7 @@
      *  @param	string name
      *  @return	boolean
      */
-    has (name) {
+    has: function (name) {
       return this.get(name) != null;
     },
 
@@ -517,9 +517,9 @@
      *  @param	mixed value
      *  @return	this
      */
-    set (name, value, silent) {
+    set: function (name, value, silent) {
       // bail if unchanged
-      const prevValue = this.get(name);
+      var prevValue = this.get(name);
 
       if (prevValue == value) {
         return this;
@@ -530,7 +530,7 @@
 
       if (!silent) {
         this.changed = true;
-        this.trigger(`changed:${  name}`, [value, prevValue]);
+        this.trigger('changed:' + name, [value, prevValue]);
         this.trigger('changed', [name, value, prevValue]);
       } // return
 
@@ -549,7 +549,7 @@
      *  @param	jQuery $el
      *  @return	this
      */
-    inherit (data) {
+    inherit: function (data) {
       // allow jQuery
       if (data instanceof jQuery) {
         data = data.data();
@@ -572,7 +572,7 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    prop () {
+    prop: function () {
       return this.$el.prop.apply(this.$el, arguments);
     },
 
@@ -587,7 +587,7 @@
      *  @param	n/a
      *  @return	n/a
      */
-    setup (props) {
+    setup: function (props) {
       $.extend(this, props);
     },
 
@@ -602,7 +602,7 @@
      *  @param	n/a
      *  @return	n/a
      */
-    initialize () {},
+    initialize: function () {},
 
     /**
      *  addElements
@@ -615,11 +615,11 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    addElements (elements) {
+    addElements: function (elements) {
       elements = elements || this.elements || null;
       if (!elements || !Object.keys(elements).length) return false;
 
-      for (const i in elements) {
+      for (var i in elements) {
         this.addElement(i, elements[i]);
       }
     },
@@ -635,8 +635,8 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    addElement (name, selector) {
-      this[`$${  name}`] = this.$(selector);
+    addElement: function (name, selector) {
+      this['$' + name] = this.$(selector);
     },
 
     /**
@@ -650,12 +650,12 @@
      *  @param	object events {event1 : callback, event2 : callback, etc }
      *  @return	n/a
      */
-    addEvents (events) {
+    addEvents: function (events) {
       events = events || this.events || null;
       if (!events) return false;
 
-      for (const key in events) {
-        const match = key.match(delegateEventSplitter);
+      for (var key in events) {
+        var match = key.match(delegateEventSplitter);
         this.on(match[1], match[2], events[key]);
       }
     },
@@ -671,12 +671,12 @@
      *  @param	object events {event1 : callback, event2 : callback, etc }
      *  @return	n/a
      */
-    removeEvents (events) {
+    removeEvents: function (events) {
       events = events || this.events || null;
       if (!events) return false;
 
-      for (const key in events) {
-        const match = key.match(delegateEventSplitter);
+      for (var key in events) {
+        var match = key.match(delegateEventSplitter);
         this.off(match[1], match[2], events[key]);
       }
     },
@@ -693,7 +693,7 @@
      *  @param	string event	The event name. Optional.
      *  @return	jQuery
      */
-    getEventTarget ($el, event) {
+    getEventTarget: function ($el, event) {
       return $el || this.$el || $(document);
     },
 
@@ -709,12 +709,12 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    validateEvent (e) {
+    validateEvent: function (e) {
       if (this.eventScope) {
         return $(e.target).closest(this.eventScope).is(this.$el);
-      } 
+      } else {
         return true;
-      
+      }
     },
 
     /**
@@ -728,7 +728,7 @@
      *  @param	function callback
      *  @return	function
      */
-    proxyEvent (callback) {
+    proxyEvent: function (callback) {
       return this.proxy(function (e) {
         // validate
         if (!this.validateEvent(e)) {
@@ -736,9 +736,9 @@
         } // construct args
 
 
-        const args = acf.arrayArgs(arguments);
-        const extraArgs = args.slice(1);
-        const eventArgs = [e, $(e.currentTarget)].concat(extraArgs); // callback
+        var args = acf.arrayArgs(arguments);
+        var extraArgs = args.slice(1);
+        var eventArgs = [e, $(e.currentTarget)].concat(extraArgs); // callback
 
         callback.apply(this, eventArgs);
       });
@@ -757,9 +757,9 @@
      *  @param	string callback
      *  @return	n/a
      */
-    on (a1, a2, a3, a4) {
+    on: function (a1, a2, a3, a4) {
       // vars
-      let $el; let event; let selector; let callback; let args; // find args
+      var $el, event, selector, callback, args; // find args
 
       if (a1 instanceof jQuery) {
         // 1. args( $el, event, selector, callback )
@@ -793,7 +793,7 @@
       } // modify event
 
 
-      event = `${event  }.${  this.cid}`; // args
+      event = event + '.' + this.cid; // args
 
       if (selector) {
         args = [event, selector, callback];
@@ -817,9 +817,9 @@
      *  @param	string callback
      *  @return	n/a
      */
-    off (a1, a2, a3) {
+    off: function (a1, a2, a3) {
       // vars
-      let $el; let event; let selector; let args; // find args
+      var $el, event, selector, args; // find args
 
       if (a1 instanceof jQuery) {
         // 1. args( $el, event, selector )
@@ -844,7 +844,7 @@
 
       $el = this.getEventTarget($el); // modify event
 
-      event = `${event  }.${  this.cid}`; // args
+      event = event + '.' + this.cid; // args
 
       if (selector) {
         args = [event, selector];
@@ -868,8 +868,8 @@
      *  @param	string callback
      *  @return	n/a
      */
-    trigger (name, args, bubbles) {
-      const $el = this.getEventTarget();
+    trigger: function (name, args, bubbles) {
+      var $el = this.getEventTarget();
 
       if (bubbles) {
         $el.trigger.apply($el, arguments);
@@ -891,11 +891,11 @@
      *  @param	object actions {action1 : callback, action2 : callback, etc }
      *  @return	n/a
      */
-    addActions (actions) {
+    addActions: function (actions) {
       actions = actions || this.actions || null;
       if (!actions) return false;
 
-      for (const i in actions) {
+      for (var i in actions) {
         this.addAction(i, actions[i]);
       }
     },
@@ -911,11 +911,11 @@
      *  @param	object actions {action1 : callback, action2 : callback, etc }
      *  @return	n/a
      */
-    removeActions (actions) {
+    removeActions: function (actions) {
       actions = actions || this.actions || null;
       if (!actions) return false;
 
-      for (const i in actions) {
+      for (var i in actions) {
         this.removeAction(i, actions[i]);
       }
     },
@@ -932,8 +932,8 @@
      *  @param	string callback
      *  @return	n/a
      */
-    addAction (name, callback, priority) {
-      // console.log('addAction', name, priority);
+    addAction: function (name, callback, priority) {
+      //console.log('addAction', name, priority);
       // defaults
       priority = priority || this.priority; // modify callback
 
@@ -957,7 +957,7 @@
      *  @param	string callback
      *  @return	n/a
      */
-    removeAction (name, callback) {
+    removeAction: function (name, callback) {
       acf.removeAction(name, this[callback]);
     },
 
@@ -972,11 +972,11 @@
      *  @param	object filters {filter1 : callback, filter2 : callback, etc }
      *  @return	n/a
      */
-    addFilters (filters) {
+    addFilters: function (filters) {
       filters = filters || this.filters || null;
       if (!filters) return false;
 
-      for (const i in filters) {
+      for (var i in filters) {
         this.addFilter(i, filters[i]);
       }
     },
@@ -993,7 +993,7 @@
      *  @param	string callback
      *  @return	n/a
      */
-    addFilter (name, callback, priority) {
+    addFilter: function (name, callback, priority) {
       // defaults
       priority = priority || this.priority; // modify callback
 
@@ -1016,11 +1016,11 @@
      *  @param	object filters {filter1 : callback, filter2 : callback, etc }
      *  @return	n/a
      */
-    removeFilters (filters) {
+    removeFilters: function (filters) {
       filters = filters || this.filters || null;
       if (!filters) return false;
 
-      for (const i in filters) {
+      for (var i in filters) {
         this.removeFilter(i, filters[i]);
       }
     },
@@ -1037,7 +1037,7 @@
      *  @param	string callback
      *  @return	n/a
      */
-    removeFilter (name, callback) {
+    removeFilter: function (name, callback) {
       acf.removeFilter(name, this[callback]);
     },
 
@@ -1052,7 +1052,7 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    $ (selector) {
+    $: function (selector) {
       return this.$el.find(selector);
     },
 
@@ -1067,7 +1067,7 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    remove () {
+    remove: function () {
       this.removeEvents();
       this.removeActions();
       this.removeFilters();
@@ -1085,7 +1085,7 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    setTimeout (callback, milliseconds) {
+    setTimeout: function (callback, milliseconds) {
       return setTimeout(this.proxy(callback), milliseconds);
     },
 
@@ -1100,7 +1100,7 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    time () {
+    time: function () {
       console.time(this.id || this.cid);
     },
 
@@ -1115,7 +1115,7 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    timeEnd () {
+    timeEnd: function () {
       console.timeEnd(this.id || this.cid);
     },
 
@@ -1130,7 +1130,7 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    show () {
+    show: function () {
       acf.show(this.$el);
     },
 
@@ -1145,7 +1145,7 @@
      *  @param	type $var Description. Default.
      *  @return	type Description.
      */
-    hide () {
+    hide: function () {
       acf.hide(this.$el);
     },
 
@@ -1160,7 +1160,7 @@
      *  @param	function callback
      *  @return	function
      */
-    proxy (callback) {
+    proxy: function (callback) {
       return $.proxy(callback, this);
     }
   }); // Set up inheritance for the model
@@ -1197,7 +1197,7 @@
 
 
   acf.getInstances = function ($el) {
-    const instances = [];
+    var instances = [];
     $el.each(function () {
       instances.push(acf.getInstance($(this)));
     });
@@ -1208,42 +1208,42 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_acf-notice.js":
-/*! *********************************************************************!*\
+/*!*********************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_acf-notice.js ***!
-  \******************************************************************** */
+  \*********************************************************************/
 /***/ (function() {
 
 (function ($, undefined) {
-  const Notice = acf.Model.extend({
+  var Notice = acf.Model.extend({
     data: {
       text: '',
       type: '',
       timeout: 0,
       dismiss: true,
       target: false,
-      close () {}
+      close: function () {}
     },
     events: {
       'click .acf-notice-dismiss': 'onClickClose'
     },
-    tmpl () {
+    tmpl: function () {
       return '<div class="acf-notice"></div>';
     },
-    setup (props) {
+    setup: function (props) {
       $.extend(this.data, props);
       this.$el = $(this.tmpl());
     },
-    initialize () {
+    initialize: function () {
       // render
       this.render(); // show
 
       this.show();
     },
-    render () {
+    render: function () {
       // class
       this.type(this.get('type')); // text
 
-      this.html(`<p>${  this.get('text')  }</p>`); // close
+      this.html('<p>' + this.get('text') + '</p>'); // close
 
       if (this.get('dismiss')) {
         this.$el.append('<a href="#" class="acf-notice-dismiss acf-icon -cancel small"></a>');
@@ -1251,13 +1251,13 @@
       } // timeout
 
 
-      const timeout = this.get('timeout');
+      var timeout = this.get('timeout');
 
       if (timeout) {
         this.away(timeout);
       }
     },
-    update (props) {
+    update: function (props) {
       // update
       $.extend(this.data, props); // re-initialize
 
@@ -1266,43 +1266,43 @@
       this.removeEvents();
       this.addEvents();
     },
-    show () {
-      const $target = this.get('target');
+    show: function () {
+      var $target = this.get('target');
 
       if ($target) {
         $target.prepend(this.$el);
       }
     },
-    hide () {
+    hide: function () {
       this.$el.remove();
     },
-    away (timeout) {
+    away: function (timeout) {
       this.setTimeout(function () {
         acf.remove(this.$el);
       }, timeout);
     },
-    type (type) {
+    type: function (type) {
       // remove prev type
-      const prevType = this.get('type');
+      var prevType = this.get('type');
 
       if (prevType) {
-        this.$el.removeClass(`-${  prevType}`);
+        this.$el.removeClass('-' + prevType);
       } // add new type
 
 
-      this.$el.addClass(`-${  type}`); // backwards compatibility
+      this.$el.addClass('-' + type); // backwards compatibility
 
       if (type == 'error') {
         this.$el.addClass('acf-error-message');
       }
     },
-    html (html) {
+    html: function (html) {
       this.$el.html(acf.escHtml(html));
     },
-    text (text) {
+    text: function (text) {
       this.$('p').html(acf.escHtml(text));
     },
-    onClickClose (e, $el) {
+    onClickClose: function (e, $el) {
       e.preventDefault();
       this.get('close').apply(this, arguments);
       this.remove();
@@ -1321,12 +1321,12 @@
     return new Notice(props);
   };
 
-  const noticeManager = new acf.Model({
+  var noticeManager = new acf.Model({
     wait: 'prepare',
     priority: 1,
-    initialize () {
+    initialize: function () {
       // vars
-      const $notice = $('.acf-admin-notice'); // move to avoid WP flicker
+      var $notice = $('.acf-admin-notice'); // move to avoid WP flicker
 
       if ($notice.length) {
         $('h1:first').after($notice);
@@ -1338,31 +1338,31 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_acf-panel.js":
-/*! ********************************************************************!*\
+/*!********************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_acf-panel.js ***!
-  \******************************************************************* */
+  \********************************************************************/
 /***/ (function() {
 
 (function ($, undefined) {
-  const panel = new acf.Model({
+  var panel = new acf.Model({
     events: {
       'click .acf-panel-title': 'onClick'
     },
-    onClick (e, $el) {
+    onClick: function (e, $el) {
       e.preventDefault();
       this.toggle($el.parent());
     },
-    isOpen ($el) {
+    isOpen: function ($el) {
       return $el.hasClass('-open');
     },
-    toggle ($el) {
+    toggle: function ($el) {
       this.isOpen($el) ? this.close($el) : this.open($el);
     },
-    open ($el) {
+    open: function ($el) {
       $el.addClass('-open');
       $el.find('.acf-panel-title i').attr('class', 'dashicons dashicons-arrow-down');
     },
-    close ($el) {
+    close: function ($el) {
       $el.removeClass('-open');
       $el.find('.acf-panel-title i').attr('class', 'dashicons dashicons-arrow-right');
     }
@@ -1372,9 +1372,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_acf-popup.js":
-/*! ********************************************************************!*\
+/*!********************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_acf-popup.js ***!
-  \******************************************************************* */
+  \********************************************************************/
 /***/ (function() {
 
 (function ($, undefined) {
@@ -1390,24 +1390,24 @@
       'click [data-event="close"]': 'onClickClose',
       'click .acf-close-popup': 'onClickClose'
     },
-    setup (props) {
+    setup: function (props) {
       $.extend(this.data, props);
       this.$el = $(this.tmpl());
     },
-    initialize () {
+    initialize: function () {
       this.render();
       this.open();
     },
-    tmpl () {
+    tmpl: function () {
       return ['<div id="acf-popup">', '<div class="acf-popup-box acf-box">', '<div class="title"><h3></h3><a href="#" class="acf-icon -cancel grey" data-event="close"></a></div>', '<div class="inner"></div>', '<div class="loading"><i class="acf-loading"></i></div>', '</div>', '<div class="bg" data-event="close"></div>', '</div>'].join('');
     },
-    render () {
+    render: function () {
       // Extract Vars.
-      const title = this.get('title');
-      const content = this.get('content');
-      const loading = this.get('loading');
-      const width = this.get('width');
-      const height = this.get('height'); // Update.
+      var title = this.get('title');
+      var content = this.get('content');
+      var loading = this.get('loading');
+      var width = this.get('width');
+      var height = this.get('height'); // Update.
 
       this.title(title);
       this.content(content);
@@ -1424,27 +1424,27 @@
 
       acf.doAction('append', this.$el);
     },
-    update (props) {
+    update: function (props) {
       this.data = acf.parseArgs(props, this.data);
       this.render();
     },
-    title (title) {
+    title: function (title) {
       this.$('.title:first h3').html(title);
     },
-    content (content) {
+    content: function (content) {
       this.$('.inner:first').html(content);
     },
-    loading (show) {
-      const $loading = this.$('.loading:first');
+    loading: function (show) {
+      var $loading = this.$('.loading:first');
       show ? $loading.show() : $loading.hide();
     },
-    open () {
+    open: function () {
       $('body').append(this.$el);
     },
-    close () {
+    close: function () {
       this.remove();
     },
-    onClickClose (e, $el) {
+    onClickClose: function (e, $el) {
       e.preventDefault();
       this.close();
     }
@@ -1469,9 +1469,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_acf-tooltip.js":
-/*! **********************************************************************!*\
+/*!**********************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_acf-tooltip.js ***!
-  \********************************************************************* */
+  \**********************************************************************/
 /***/ (function() {
 
 (function ($, undefined) {
@@ -1488,11 +1488,11 @@
       props.textConfirm = acf.__('Remove');
       props.textCancel = acf.__('Cancel');
       return new TooltipConfirm(props); // confirm
-    } if (props.confirm !== undefined) {
+    } else if (props.confirm !== undefined) {
       return new TooltipConfirm(props); // default
-    } 
+    } else {
       return new Tooltip(props);
-    
+    }
   };
 
   var Tooltip = acf.Model.extend({
@@ -1501,14 +1501,14 @@
       timeout: 0,
       target: null
     },
-    tmpl () {
+    tmpl: function () {
       return '<div class="acf-tooltip"></div>';
     },
-    setup (props) {
+    setup: function (props) {
       $.extend(this.data, props);
       this.$el = $(this.tmpl());
     },
-    initialize () {
+    initialize: function () {
       // render
       this.render(); // append
 
@@ -1516,26 +1516,26 @@
 
       this.position(); // timeout
 
-      const timeout = this.get('timeout');
+      var timeout = this.get('timeout');
 
       if (timeout) {
         setTimeout($.proxy(this.fade, this), timeout);
       }
     },
-    update (props) {
+    update: function (props) {
       $.extend(this.data, props);
       this.initialize();
     },
-    render () {
+    render: function () {
       this.html(this.get('text'));
     },
-    show () {
+    show: function () {
       $('body').append(this.$el);
     },
-    hide () {
+    hide: function () {
       this.$el.remove();
     },
-    fade () {
+    fade: function () {
       // add class
       this.$el.addClass('acf-fade-up'); // remove
 
@@ -1543,13 +1543,13 @@
         this.remove();
       }, 250);
     },
-    html (html) {
+    html: function (html) {
       this.$el.html(html);
     },
-    position () {
+    position: function () {
       // vars
-      const $tooltip = this.$el;
-      const $target = this.get('target');
+      var $tooltip = this.$el;
+      var $target = this.get('target');
       if (!$target) return; // Reset position.
 
       $tooltip.removeClass('right left bottom top').css({
@@ -1557,20 +1557,20 @@
         left: 0
       }); // Declare tollerance to edge of screen.
 
-      const tolerance = 10; // Find target position.
+      var tolerance = 10; // Find target position.
 
-      const targetWidth = $target.outerWidth();
-      const targetHeight = $target.outerHeight();
-      const targetTop = $target.offset().top;
-      const targetLeft = $target.offset().left; // Find tooltip position.
+      var targetWidth = $target.outerWidth();
+      var targetHeight = $target.outerHeight();
+      var targetTop = $target.offset().top;
+      var targetLeft = $target.offset().left; // Find tooltip position.
 
-      const tooltipWidth = $tooltip.outerWidth();
-      const tooltipHeight = $tooltip.outerHeight();
-      const tooltipTop = $tooltip.offset().top; // Should be 0, but WP media grid causes this to be 32 (toolbar padding).
+      var tooltipWidth = $tooltip.outerWidth();
+      var tooltipHeight = $tooltip.outerHeight();
+      var tooltipTop = $tooltip.offset().top; // Should be 0, but WP media grid causes this to be 32 (toolbar padding).
       // Assume default top alignment.
 
-      let top = targetTop - tooltipHeight - tooltipTop;
-      let left = targetLeft + targetWidth / 2 - tooltipWidth / 2; // Check if too far left.
+      var top = targetTop - tooltipHeight - tooltipTop;
+      var left = targetLeft + targetWidth / 2 - tooltipWidth / 2; // Check if too far left.
 
       if (left < tolerance) {
         $tooltip.addClass('right');
@@ -1589,8 +1589,8 @@
 
 
       $tooltip.css({
-        top,
-        left
+        top: top,
+        left: left
       });
     }
   });
@@ -1601,20 +1601,20 @@
       textCancel: '',
       target: null,
       targetConfirm: true,
-      confirm () {},
-      cancel () {},
+      confirm: function () {},
+      cancel: function () {},
       context: false
     },
     events: {
       'click [data-event="cancel"]': 'onCancel',
       'click [data-event="confirm"]': 'onConfirm'
     },
-    addEvents () {
+    addEvents: function () {
       // add events
       acf.Model.prototype.addEvents.apply(this); // vars
 
-      const $document = $(document);
-      const $target = this.get('target'); // add global 'cancel' click event
+      var $document = $(document);
+      var $target = this.get('target'); // add global 'cancel' click event
       // - use timeout to avoid the current 'click' event triggering the onCancel function
 
       this.setTimeout(function () {
@@ -1626,50 +1626,50 @@
         this.on($target, 'click', 'onConfirm');
       }
     },
-    removeEvents () {
+    removeEvents: function () {
       // remove events
       acf.Model.prototype.removeEvents.apply(this); // vars
 
-      const $document = $(document);
-      const $target = this.get('target'); // remove custom events
+      var $document = $(document);
+      var $target = this.get('target'); // remove custom events
 
       this.off($document, 'click');
       this.off($target, 'click');
     },
-    render () {
+    render: function () {
       // defaults
-      const text = this.get('text') || acf.__('Are you sure?');
+      var text = this.get('text') || acf.__('Are you sure?');
 
-      const textConfirm = this.get('textConfirm') || acf.__('Yes');
+      var textConfirm = this.get('textConfirm') || acf.__('Yes');
 
-      const textCancel = this.get('textCancel') || acf.__('No'); // html
+      var textCancel = this.get('textCancel') || acf.__('No'); // html
 
 
-      const html = [text, `<a href="#" data-event="confirm">${  textConfirm  }</a>`, `<a href="#" data-event="cancel">${  textCancel  }</a>`].join(' '); // html
+      var html = [text, '<a href="#" data-event="confirm">' + textConfirm + '</a>', '<a href="#" data-event="cancel">' + textCancel + '</a>'].join(' '); // html
 
       this.html(html); // class
 
       this.$el.addClass('-confirm');
     },
-    onCancel (e, $el) {
+    onCancel: function (e, $el) {
       // prevent default
       e.preventDefault();
       e.stopImmediatePropagation(); // callback
 
-      const callback = this.get('cancel');
-      const context = this.get('context') || this;
-      callback.apply(context, arguments); // remove
+      var callback = this.get('cancel');
+      var context = this.get('context') || this;
+      callback.apply(context, arguments); //remove
 
       this.remove();
     },
-    onConfirm (e, $el) {
+    onConfirm: function (e, $el) {
       // Prevent event from propagating completely to allow "targetConfirm" to be clicked.
       e.preventDefault();
       e.stopImmediatePropagation(); // callback
 
-      const callback = this.get('confirm');
-      const context = this.get('context') || this;
-      callback.apply(context, arguments); // remove
+      var callback = this.get('confirm');
+      var context = this.get('context') || this;
+      callback.apply(context, arguments); //remove
 
       this.remove();
     }
@@ -1689,16 +1689,16 @@
    *  @return	type Description.
    */
 
-  const tooltipHoverHelper = new acf.Model({
+  var tooltipHoverHelper = new acf.Model({
     tooltip: false,
     events: {
       'mouseenter .acf-js-tooltip': 'showTitle',
       'mouseup .acf-js-tooltip': 'hideTitle',
       'mouseleave .acf-js-tooltip': 'hideTitle'
     },
-    showTitle (e, $el) {
+    showTitle: function (e, $el) {
       // vars
-      const title = $el.attr('title'); // bail ealry if no title
+      var title = $el.attr('title'); // bail ealry if no title
 
       if (!title) {
         return;
@@ -1719,7 +1719,7 @@
         });
       }
     },
-    hideTitle (e, $el) {
+    hideTitle: function (e, $el) {
       // hide tooltip
       this.tooltip.hide(); // restore title
 
@@ -1731,9 +1731,9 @@
 /***/ }),
 
 /***/ "./src/advanced-custom-fields-pro/assets/src/js/_acf.js":
-/*! **************************************************************!*\
+/*!**************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/_acf.js ***!
-  \************************************************************* */
+  \**************************************************************/
 /***/ (function() {
 
 (function ($, undefined) {
@@ -1749,7 +1749,7 @@
    *  @return	type Description.
    */
   // The global acf object
-  const acf = {}; // Set as a browser global
+  var acf = {}; // Set as a browser global
 
   window.acf = acf;
   /** @var object Data sent from PHP */
@@ -1817,10 +1817,10 @@
    */
 
 
-  let idCounter = 0;
+  var idCounter = 0;
 
   acf.uniqueId = function (prefix) {
-    const id = `${++idCounter  }`;
+    var id = ++idCounter + '';
     return prefix ? prefix + id : id;
   };
   /**
@@ -1858,7 +1858,7 @@
    */
 
 
-  let uniqidSeed = '';
+  var uniqidSeed = '';
 
   acf.uniqid = function (prefix, moreEntropy) {
     //  discuss at: http://locutus.io/php/uniqid/
@@ -1878,9 +1878,9 @@
       prefix = '';
     }
 
-    let retId;
+    var retId;
 
-    const formatSeed = function (seed, reqWidth) {
+    var formatSeed = function (seed, reqWidth) {
       seed = parseInt(seed, 10).toString(16); // to hex str
 
       if (reqWidth < seed.length) {
@@ -1947,9 +1947,9 @@
 
 
   acf.strCamelCase = function (str) {
-    const matches = str.match(/([a-zA-Z0-9]+)/g);
+    var matches = str.match(/([a-zA-Z0-9]+)/g);
     return matches ? matches.map(function (s, i) {
-      const c = s.charAt(0);
+      var c = s.charAt(0);
       return (i === 0 ? c.toLowerCase() : c.toUpperCase()) + s.slice(1);
     }).join('') : '';
   };
@@ -1968,7 +1968,7 @@
 
 
   acf.strPascalCase = function (str) {
-    const camel = acf.strCamelCase(str);
+    var camel = acf.strCamelCase(str);
     return camel.charAt(0).toUpperCase() + camel.slice(1);
   };
   /**
@@ -1990,7 +1990,7 @@
 
   acf.strSanitize = function (str) {
     // chars (https://jsperf.com/replace-foreign-characters)
-    const map = {
+    var map = {
       À: 'A',
       Á: 'A',
       Â: 'A',
@@ -2223,9 +2223,9 @@
       ')': ''
     }; // vars
 
-    const nonWord = /\W/g;
+    var nonWord = /\W/g;
 
-    const mapping = function (c) {
+    var mapping = function (c) {
       return map[c] !== undefined ? map[c] : c;
     }; // replace
 
@@ -2251,10 +2251,10 @@
 
   acf.strMatch = function (s1, s2) {
     // vars
-    let val = 0;
-    const min = Math.min(s1.length, s2.length); // loop
+    var val = 0;
+    var min = Math.min(s1.length, s2.length); // loop
 
-    for (let i = 0; i < min; i++) {
+    for (var i = 0; i < min; i++) {
       if (s1[i] !== s2[i]) {
         break;
       }
@@ -2277,21 +2277,21 @@
 
 
   acf.strEscape = function (string) {
-    const htmlEscapes = {
+    var htmlEscapes = {
       '&': '&amp;',
       '<': '&lt;',
       '>': '&gt;',
       '"': '&quot;',
       "'": '&#39;'
     };
-    return (`${  string}`).replace(/[&<>"']/g, function (chr) {
+    return ('' + string).replace(/[&<>"']/g, function (chr) {
       return htmlEscapes[chr];
     });
   }; // Tests.
-  // console.log( acf.strEscape('Test 1') );
-  // console.log( acf.strEscape('Test & 1') );
-  // console.log( acf.strEscape('Test\'s &amp; 1') );
-  // console.log( acf.strEscape('<script>js</script>') );
+  //console.log( acf.strEscape('Test 1') );
+  //console.log( acf.strEscape('Test & 1') );
+  //console.log( acf.strEscape('Test\'s &amp; 1') );
+  //console.log( acf.strEscape('<script>js</script>') );
 
   /**
    * Unescapes HTML entities from a string.
@@ -2305,21 +2305,21 @@
 
 
   acf.strUnescape = function (string) {
-    const htmlUnescapes = {
+    var htmlUnescapes = {
       '&amp;': '&',
       '&lt;': '<',
       '&gt;': '>',
       '&quot;': '"',
       '&#39;': "'"
     };
-    return (`${  string}`).replace(/&amp;|&lt;|&gt;|&quot;|&#39;/g, function (entity) {
+    return ('' + string).replace(/&amp;|&lt;|&gt;|&quot;|&#39;/g, function (entity) {
       return htmlUnescapes[entity];
     });
   }; // Tests.
-  // console.log( acf.strUnescape( acf.strEscape('Test 1') ) );
-  // console.log( acf.strUnescape( acf.strEscape('Test & 1') ) );
-  // console.log( acf.strUnescape( acf.strEscape('Test\'s &amp; 1') ) );
-  // console.log( acf.strUnescape( acf.strEscape('<script>js</script>') ) );
+  //console.log( acf.strUnescape( acf.strEscape('Test 1') ) );
+  //console.log( acf.strUnescape( acf.strEscape('Test & 1') ) );
+  //console.log( acf.strUnescape( acf.strEscape('Test\'s &amp; 1') ) );
+  //console.log( acf.strUnescape( acf.strEscape('<script>js</script>') ) );
 
   /**
    * Escapes HTML entities from a string.
@@ -2344,13 +2344,13 @@
    */
 
   acf.escHtml = function (string) {
-    return (`${  string}`).replace(/<script|<\/script/g, function (html) {
+    return ('' + string).replace(/<script|<\/script/g, function (html) {
       return acf.strEscape(html);
     });
   }; // Tests.
-  // console.log( acf.escHtml('<script>js</script>') );
-  // console.log( acf.escHtml( acf.strEscape('<script>js</script>') ) );
-  // console.log( acf.escHtml( '<script>js1</script><script>js2</script>' ) );
+  //console.log( acf.escHtml('<script>js</script>') );
+  //console.log( acf.escHtml( acf.strEscape('<script>js</script>') ) );
+  //console.log( acf.escHtml( '<script>js1</script><script>js2</script>' ) );
 
   /**
    *  acf.decode
@@ -2422,7 +2422,7 @@
 
 
   acf._x = function (text, context) {
-    return acfL10n[`${text  }.${  context}`] || acfL10n[text] || text;
+    return acfL10n[text + '.' + context] || acfL10n[text] || text;
   };
   /**
    *  _n
@@ -2442,9 +2442,9 @@
   acf._n = function (single, plural, number) {
     if (number == 1) {
       return acf.__(single);
-    } 
+    } else {
       return acf.__(plural);
-    
+    }
   };
 
   acf.isArray = function (a) {
@@ -2467,18 +2467,18 @@
    */
 
 
-  const buildObject = function (obj, name, value) {
+  var buildObject = function (obj, name, value) {
     // replace [] with placeholder
     name = name.replace('[]', '[%%index%%]'); // vars
 
-    const keys = name.match(/([^\[\]])+/g);
+    var keys = name.match(/([^\[\]])+/g);
     if (!keys) return;
-    const {length} = keys;
-    let ref = obj; // loop
+    var length = keys.length;
+    var ref = obj; // loop
 
-    for (let i = 0; i < length; i++) {
+    for (var i = 0; i < length; i++) {
       // vars
-      const key = String(keys[i]); // value
+      var key = String(keys[i]); // value
 
       if (i == length - 1) {
         // %%index%%
@@ -2495,9 +2495,11 @@
             ref[key] = [];
           } // object
 
-        } else if (!acf.isObject(ref[key])) {
+        } else {
+          if (!acf.isObject(ref[key])) {
             ref[key] = {};
-          } // crawl
+          }
+        } // crawl
 
 
         ref = ref[key];
@@ -2507,8 +2509,8 @@
 
   acf.serialize = function ($el, prefix) {
     // vars
-    const obj = {};
-    let inputs = acf.serializeArray($el); // prefix
+    var obj = {};
+    var inputs = acf.serializeArray($el); // prefix
 
     if (prefix !== undefined) {
       // filter and modify
@@ -2521,7 +2523,7 @@
     } // loop
 
 
-    for (let i = 0; i < inputs.length; i++) {
+    for (var i = 0; i < inputs.length; i++) {
       buildObject(obj, inputs[i].name, inputs[i].value);
     } // return
 
@@ -2559,10 +2561,10 @@
 
   acf.serializeForAjax = function ($el) {
     // vars
-    const data = {};
-    const index = {}; // Serialize inputs.
+    var data = {};
+    var index = {}; // Serialize inputs.
 
-    const inputs = acf.serializeArray($el); // Loop over inputs and build data.
+    var inputs = acf.serializeArray($el); // Loop over inputs and build data.
 
     inputs.map(function (item) {
       // Append to array.
@@ -2596,7 +2598,7 @@
 
 
   acf.addAction = function (action, callback, priority, context) {
-    // action = prefixAction(action);
+    //action = prefixAction(action);
     acf.hooks.addAction.apply(this, arguments);
     return this;
   };
@@ -2614,7 +2616,7 @@
 
 
   acf.removeAction = function (action, callback) {
-    // action = prefixAction(action);
+    //action = prefixAction(action);
     acf.hooks.removeAction.apply(this, arguments);
     return this;
   };
@@ -2631,11 +2633,11 @@
    */
 
 
-  const actionHistory = {}; // var currentAction = false;
+  var actionHistory = {}; //var currentAction = false;
 
   acf.doAction = function (action) {
-    // action = prefixAction(action);
-    // currentAction = action;
+    //action = prefixAction(action);
+    //currentAction = action;
     actionHistory[action] = 1;
     acf.hooks.doAction.apply(this, arguments);
     actionHistory[action] = 0;
@@ -2655,7 +2657,7 @@
 
 
   acf.doingAction = function (action) {
-    // action = prefixAction(action);
+    //action = prefixAction(action);
     return actionHistory[action] === 1;
   };
   /**
@@ -2672,7 +2674,7 @@
 
 
   acf.didAction = function (action) {
-    // action = prefixAction(action);
+    //action = prefixAction(action);
     return actionHistory[action] !== undefined;
   };
   /**
@@ -2689,7 +2691,7 @@
 
 
   acf.currentAction = function () {
-    for (const k in actionHistory) {
+    for (var k in actionHistory) {
       if (actionHistory[k]) {
         return k;
       }
@@ -2711,7 +2713,7 @@
 
 
   acf.addFilter = function (action) {
-    // action = prefixAction(action);
+    //action = prefixAction(action);
     acf.hooks.addFilter.apply(this, arguments);
     return this;
   };
@@ -2729,7 +2731,7 @@
 
 
   acf.removeFilter = function (action) {
-    // action = prefixAction(action);
+    //action = prefixAction(action);
     acf.hooks.removeFilter.apply(this, arguments);
     return this;
   };
@@ -2747,7 +2749,7 @@
 
 
   acf.applyFilters = function (action) {
-    // action = prefixAction(action);
+    //action = prefixAction(action);
     return acf.hooks.applyFilters.apply(this, arguments);
   };
   /**
@@ -2810,9 +2812,9 @@
    */
 
 
-  const getPreferenceName = function (name) {
+  var getPreferenceName = function (name) {
     if (name.substr(0, 5) === 'this.') {
-      name = `${name.substr(5)  }-${  acf.get('post_id')}`;
+      name = name.substr(5) + '-' + acf.get('post_id');
     }
 
     return name;
@@ -2900,7 +2902,7 @@
     props = acf.parseArgs(props, {
       target: false,
       endHeight: 0,
-      complete () {}
+      complete: function () {}
     }); // action
 
     acf.doAction('remove', props.target); // tr
@@ -2926,21 +2928,21 @@
 
   var removeDiv = function (props) {
     // vars
-    const $el = props.target;
-    const height = $el.height();
-    const width = $el.width();
-    const margin = $el.css('margin');
-    const outerHeight = $el.outerHeight(true);
-    const style = `${$el.attr('style')  }`; // needed to copy
+    var $el = props.target;
+    var height = $el.height();
+    var width = $el.width();
+    var margin = $el.css('margin');
+    var outerHeight = $el.outerHeight(true);
+    var style = $el.attr('style') + ''; // needed to copy
     // wrap
 
-    $el.wrap(`<div class="acf-temp-remove" style="height:${  outerHeight  }px"></div>`);
-    const $wrap = $el.parent(); // set pos
+    $el.wrap('<div class="acf-temp-remove" style="height:' + outerHeight + 'px"></div>');
+    var $wrap = $el.parent(); // set pos
 
     $el.css({
-      height,
-      width,
-      margin,
+      height: height,
+      width: width,
+      margin: margin,
       position: 'absolute'
     }); // fade wrap
 
@@ -2972,11 +2974,11 @@
 
   var removeTr = function (props) {
     // vars
-    const $tr = props.target;
-    const height = $tr.height();
-    const children = $tr.children().length; // create dummy td
+    var $tr = props.target;
+    var height = $tr.height();
+    var children = $tr.children().length; // create dummy td
 
-    const $td = $(`<td class="acf-temp-remove" style="padding:0; height:${  height  }px" colspan="${  children  }"></td>`); // fade away tr
+    var $td = $('<td class="acf-temp-remove" style="padding:0; height:' + height + 'px" colspan="' + children + '"></td>'); // fade away tr
 
     $tr.addClass('acf-remove-element'); // update HTML after fade animation
 
@@ -3025,16 +3027,16 @@
       search: '',
       replace: '',
       rename: true,
-      before ($el) {},
-      after ($el, $el2) {},
-      append ($el, $el2) {
+      before: function ($el) {},
+      after: function ($el, $el2) {},
+      append: function ($el, $el2) {
         $el.after($el2);
       }
     }); // compatibility
 
     args.target = args.target || args.$el; // vars
 
-    const $el = args.target; // search
+    var $el = args.target; // search
 
     args.search = args.search || $el.attr('data-id');
     args.replace = args.replace || acf.uniqid(); // before
@@ -3044,7 +3046,7 @@
     args.before($el);
     acf.doAction('before_duplicate', $el); // clone
 
-    const $el2 = $el.clone(); // rename
+    var $el2 = $el.clone(); // rename
 
     if (args.rename) {
       acf.rename({
@@ -3110,7 +3112,7 @@
       replacer: null
     }); // Extract args.
 
-    const $el = args.target; // Provide backup for empty args.
+    var $el = args.target; // Provide backup for empty args.
 
     if (!args.search) {
       args.search = $el.attr('data-id');
@@ -3127,7 +3129,7 @@
     } // Callback function for jQuery replacing.
 
 
-    const withReplacer = function (name) {
+    var withReplacer = function (name) {
       return function (i, value) {
         return args.replacer(name, value, args.search, args.replace);
       };
@@ -3135,13 +3137,13 @@
 
 
     if (args.destructive) {
-      const html = acf.strReplace(args.search, args.replace, $el.outerHTML());
+      var html = acf.strReplace(args.search, args.replace, $el.outerHTML());
       $el.replaceWith(html); // Standard Replace.
     } else {
       $el.attr('data-id', args.replace);
-      $el.find(`[id*="${  args.search  }"]`).attr('id', withReplacer('id'));
-      $el.find(`[for*="${  args.search  }"]`).attr('for', withReplacer('for'));
-      $el.find(`[name*="${  args.search  }"]`).attr('name', withReplacer('name'));
+      $el.find('[id*="' + args.search + '"]').attr('id', withReplacer('id'));
+      $el.find('[for*="' + args.search + '"]').attr('for', withReplacer('for'));
+      $el.find('[name*="' + args.search + '"]').attr('name', withReplacer('name'));
     } // return
 
 
@@ -3230,10 +3232,10 @@
 
 
   acf.updateUserSetting = function (name, value) {
-    const ajaxData = {
+    var ajaxData = {
       action: 'acf/ajax/user_setting',
-      name,
-      value
+      name: name,
+      value: value
     };
     $.ajax({
       url: acf.get('ajaxurl'),
@@ -3257,7 +3259,7 @@
 
   acf.val = function ($input, value, silent) {
     // vars
-    const prevValue = $input.val(); // bail if no change
+    var prevValue = $input.val(); // bail if no change
 
     if (value === prevValue) {
       return false;
@@ -3300,7 +3302,7 @@
 
 
     if (acf.isLocked($el, 'hidden')) {
-      // console.log( 'still locked', getLocks( $el, 'hidden' ));
+      //console.log( 'still locked', getLocks( $el, 'hidden' ));
       return false;
     } // $el is hidden, remove class and return true due to change in visibility
 
@@ -3308,9 +3310,9 @@
     if ($el.hasClass('acf-hidden')) {
       $el.removeClass('acf-hidden');
       return true; // $el is visible, return false due to no change in visibility
-    } 
+    } else {
       return false;
-    
+    }
   };
   /**
    *  acf.hide
@@ -3334,10 +3336,10 @@
 
     if ($el.hasClass('acf-hidden')) {
       return false; // $el is visible, add class and return true due to change in visibility
-    } 
+    } else {
       $el.addClass('acf-hidden');
       return true;
-    
+    }
   };
   /**
    *  acf.isHidden
@@ -3384,7 +3386,7 @@
    */
 
 
-  const enable = function ($el, lockKey) {
+  var enable = function ($el, lockKey) {
     // check class. Allow .acf-disabled to overrule all JS
     if ($el.hasClass('acf-disabled')) {
       return false;
@@ -3404,9 +3406,9 @@
     if ($el.prop('disabled')) {
       $el.prop('disabled', false);
       return true; // $el is enabled, return false due to no change
-    } 
+    } else {
       return false;
-    
+    }
   };
   /**
    *  acf.enable
@@ -3429,9 +3431,9 @@
     // return true if any inputs have changed
 
 
-    let results = false;
+    var results = false;
     $el.find('[name]').each(function () {
-      const result = enable($(this), lockKey);
+      var result = enable($(this), lockKey);
 
       if (result) {
         results = true;
@@ -3452,7 +3454,7 @@
    */
 
 
-  const disable = function ($el, lockKey) {
+  var disable = function ($el, lockKey) {
     // lock
     if (lockKey) {
       acf.lock($el, 'disabled', lockKey);
@@ -3461,10 +3463,10 @@
 
     if ($el.prop('disabled')) {
       return false; // $el is enabled, add prop and return true due to change
-    } 
+    } else {
       $el.prop('disabled', true);
       return true;
-    
+    }
   };
   /**
    *  acf.disable
@@ -3487,9 +3489,9 @@
     // return true if any inputs have changed
 
 
-    let results = false;
+    var results = false;
     $el.find('[name]').each(function () {
-      const result = disable($(this), lockKey);
+      var result = disable($(this), lockKey);
 
       if (result) {
         results = true;
@@ -3511,9 +3513,9 @@
 
 
   acf.isset = function (obj
-  /* , level1, level2, ... */
+  /*, level1, level2, ... */
   ) {
-    for (let i = 1; i < arguments.length; i++) {
+    for (var i = 1; i < arguments.length; i++) {
       if (!obj || !obj.hasOwnProperty(arguments[i])) {
         return false;
       }
@@ -3537,9 +3539,9 @@
 
 
   acf.isget = function (obj
-  /* , level1, level2, ... */
+  /*, level1, level2, ... */
   ) {
-    for (let i = 1; i < arguments.length; i++) {
+    for (var i = 1; i < arguments.length; i++) {
       if (!obj || !obj.hasOwnProperty(arguments[i])) {
         return null;
       }
@@ -3564,18 +3566,18 @@
 
   acf.getFileInputData = function ($input, callback) {
     // vars
-    const value = $input.val(); // bail early if no value
+    var value = $input.val(); // bail early if no value
 
     if (!value) {
       return false;
     } // data
 
 
-    const data = {
+    var data = {
       url: value
     }; // modern browsers
 
-    const file = $input[0].files.length ? acf.isget($input[0].files, 0) : false;
+    var file = $input[0].files.length ? acf.isget($input[0].files, 0) : false;
 
     if (file) {
       // update data
@@ -3584,8 +3586,8 @@
 
       if (file.type.indexOf('image') > -1) {
         // vars
-        const windowURL = window.URL || window.webkitURL;
-        const img = new Image();
+        var windowURL = window.URL || window.webkitURL;
+        var img = new Image();
 
         img.onload = function () {
           // update
@@ -3664,7 +3666,7 @@
   acf.getXhrError = function (xhr) {
     if (xhr.responseJSON && xhr.responseJSON.message) {
       return xhr.responseJSON.message;
-    } if (xhr.statusText) {
+    } else if (xhr.statusText) {
       return xhr.statusText;
     }
 
@@ -3686,24 +3688,24 @@
 
   acf.renderSelect = function ($select, choices) {
     // vars
-    const value = $select.val();
-    const values = []; // callback
+    var value = $select.val();
+    var values = []; // callback
 
     var crawl = function (items) {
       // vars
-      let itemsHtml = ''; // loop
+      var itemsHtml = ''; // loop
 
       items.map(function (item) {
         // vars
-        const text = item.text || item.label || '';
-        const id = item.id || item.value || ''; // append
+        var text = item.text || item.label || '';
+        var id = item.id || item.value || ''; // append
 
         values.push(id); //  optgroup
 
         if (item.children) {
-          itemsHtml += `<optgroup label="${  acf.escAttr(text)  }">${  crawl(item.children)  }</optgroup>`; // option
+          itemsHtml += '<optgroup label="' + acf.escAttr(text) + '">' + crawl(item.children) + '</optgroup>'; // option
         } else {
-          itemsHtml += `<option value="${  acf.escAttr(id)  }"${  item.disabled ? ' disabled="disabled"' : ''  }>${  acf.strEscape(text)  }</option>`;
+          itemsHtml += '<option value="' + acf.escAttr(id) + '"' + (item.disabled ? ' disabled="disabled"' : '') + '>' + acf.strEscape(text) + '</option>';
         }
       }); // return
 
@@ -3735,17 +3737,17 @@
    */
 
 
-  const getLocks = function ($el, type) {
-    return $el.data(`acf-lock-${  type}`) || [];
+  var getLocks = function ($el, type) {
+    return $el.data('acf-lock-' + type) || [];
   };
 
-  const setLocks = function ($el, type, locks) {
-    $el.data(`acf-lock-${  type}`, locks);
+  var setLocks = function ($el, type, locks) {
+    $el.data('acf-lock-' + type, locks);
   };
 
   acf.lock = function ($el, type, key) {
-    const locks = getLocks($el, type);
-    const i = locks.indexOf(key);
+    var locks = getLocks($el, type);
+    var i = locks.indexOf(key);
 
     if (i < 0) {
       locks.push(key);
@@ -3768,8 +3770,8 @@
 
 
   acf.unlock = function ($el, type, key) {
-    const locks = getLocks($el, type);
-    const i = locks.indexOf(key);
+    var locks = getLocks($el, type);
+    var i = locks.indexOf(key);
 
     if (i > -1) {
       locks.splice(i, 1);
@@ -3844,12 +3846,12 @@
 
 
   acf.debounce = function (callback, wait) {
-    let timeout;
+    var timeout;
     return function () {
-      const context = this;
-      const args = arguments;
+      var context = this;
+      var args = arguments;
 
-      const later = function () {
+      var later = function () {
         callback.apply(context, args);
       };
 
@@ -3871,7 +3873,7 @@
 
 
   acf.throttle = function (callback, limit) {
-    let busy = false;
+    var busy = false;
     return function () {
       if (busy) return;
       busy = true;
@@ -3899,7 +3901,7 @@
       el = el[0];
     }
 
-    const rect = el.getBoundingClientRect();
+    var rect = el.getBoundingClientRect();
     return rect.top !== rect.bottom && rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
   };
   /**
@@ -3917,10 +3919,10 @@
 
   acf.onceInView = function () {
     // Define list.
-    let items = [];
-    let id = 0; // Define check function.
+    var items = [];
+    var id = 0; // Define check function.
 
-    const check = function () {
+    var check = function () {
       items.forEach(function (item) {
         if (acf.isInView(item.el)) {
           item.callback.apply(this);
@@ -3930,9 +3932,9 @@
     }; // And create a debounced version.
 
 
-    const debounced = acf.debounce(check, 300); // Define add function.
+    var debounced = acf.debounce(check, 300); // Define add function.
 
-    const push = function (el, callback) {
+    var push = function (el, callback) {
       // Add event listener.
       if (!items.length) {
         $(window).on('scroll resize', debounced).on('acfrefresh orientationchange', check);
@@ -3941,8 +3943,8 @@
 
       items.push({
         id: id++,
-        el,
-        callback
+        el: el,
+        callback: callback
       });
     }; // Define remove function.
 
@@ -3984,7 +3986,7 @@
 
 
   acf.once = function (func) {
-    let i = 0;
+    var i = 0;
     return function () {
       if (i++ > 0) {
         return func = undefined;
@@ -4005,11 +4007,11 @@
 
 
   acf.focusAttention = function ($el) {
-    let wait = 1000; // Apply class to focus attention.
+    var wait = 1000; // Apply class to focus attention.
 
     $el.addClass('acf-attention -focused'); // Scroll to element if needed.
 
-    const scrollTime = 500;
+    var scrollTime = 500;
 
     if (!acf.isInView($el)) {
       $('body, html').animate({
@@ -4019,7 +4021,7 @@
     } // Remove class after $wait amount of time.
 
 
-    const fadeTime = 250;
+    var fadeTime = 250;
     setTimeout(function () {
       $el.removeClass('-focused');
       setTimeout(function () {
@@ -4044,10 +4046,10 @@
     // 	return false;
     // }
     // Vars.
-    let ignoreBlur = false;
-    let focus = false; // Functions.
+    var ignoreBlur = false;
+    var focus = false; // Functions.
 
-    const onFocus = function () {
+    var onFocus = function () {
       ignoreBlur = true;
       setTimeout(function () {
         ignoreBlur = false;
@@ -4055,20 +4057,20 @@
       setFocus(true);
     };
 
-    const onBlur = function () {
+    var onBlur = function () {
       if (!ignoreBlur) {
         setFocus(false);
       }
     };
 
-    const addEvents = function () {
-      $(document).on('click', onBlur); // $el.on('acfBlur', onBlur);
+    var addEvents = function () {
+      $(document).on('click', onBlur); //$el.on('acfBlur', onBlur);
 
       $el.on('blur', 'input, select, textarea', onBlur);
     };
 
-    const removeEvents = function () {
-      $(document).off('click', onBlur); // $el.off('acfBlur', onBlur);
+    var removeEvents = function () {
+      $(document).off('click', onBlur); //$el.off('acfBlur', onBlur);
 
       $el.off('blur', 'input, select, textarea', onBlur);
     };
@@ -4089,9 +4091,9 @@
     }; // Add events and set data.
 
 
-    $el.on('click', onFocus); // $el.on('acfFocus', onFocus);
+    $el.on('click', onFocus); //$el.on('acfFocus', onFocus);
 
-    $el.on('focus', 'input, select, textarea', onFocus); // $el.data('acf.onFocus', true);
+    $el.on('focus', 'input, select, textarea', onFocus); //$el.data('acf.onFocus', true);
   };
   /*
    *  exists
@@ -4202,98 +4204,98 @@
 
 /***/ })
 
-/** *** */ 	});
-/** ********************************************************************* */
-/** *** */ 	// The module cache
-/** *** */ 	const __webpack_module_cache__ = {};
-/** *** */ 	
-/** *** */ 	// The require function
-/** *** */ 	function __webpack_require__(moduleId) {
-/** *** */ 		// Check if module is in cache
-/** *** */ 		const cachedModule = __webpack_module_cache__[moduleId];
-/** *** */ 		if (cachedModule !== undefined) {
-/** *** */ 			return cachedModule.exports;
-/** *** */ 		}
-/** *** */ 		// Create a new module (and put it into the cache)
-/** *** */ 		const module = __webpack_module_cache__[moduleId] = {
-/** *** */ 			// no module.id needed
-/** *** */ 			// no module.loaded needed
-/** *** */ 			exports: {}
-/** *** */ 		};
-/** *** */ 	
-/** *** */ 		// Execute the module function
-/** *** */ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/** *** */ 	
-/** *** */ 		// Return the exports of the module
-/** *** */ 		return module.exports;
-/** *** */ 	}
-/** *** */ 	
-/** ********************************************************************* */
-/** *** */ 	/* webpack/runtime/compat get default export */
-/** *** */ 	!function() {
-/** *** */ 		// getDefaultExport function for compatibility with non-harmony modules
-/** *** */ 		__webpack_require__.n = function(module) {
-/** *** */ 			const getter = module && module.__esModule ?
-/** *** */ 				function() { return module.default; } :
-/** *** */ 				function() { return module; };
-/** *** */ 			__webpack_require__.d(getter, { a: getter });
-/** *** */ 			return getter;
-/** *** */ 		};
-/** *** */ 	}();
-/** *** */ 	
-/** *** */ 	/* webpack/runtime/define property getters */
-/** *** */ 	!function() {
-/** *** */ 		// define getter functions for harmony exports
-/** *** */ 		__webpack_require__.d = function(exports, definition) {
-/** *** */ 			for(const key in definition) {
-/** *** */ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/** *** */ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/** *** */ 				}
-/** *** */ 			}
-/** *** */ 		};
-/** *** */ 	}();
-/** *** */ 	
-/** *** */ 	/* webpack/runtime/hasOwnProperty shorthand */
-/** *** */ 	!function() {
-/** *** */ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/** *** */ 	}();
-/** *** */ 	
-/** *** */ 	/* webpack/runtime/make namespace object */
-/** *** */ 	!function() {
-/** *** */ 		// define __esModule on exports
-/** *** */ 		__webpack_require__.r = function(exports) {
-/** *** */ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/** *** */ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/** *** */ 			}
-/** *** */ 			Object.defineProperty(exports, '__esModule', { value: true });
-/** *** */ 		};
-/** *** */ 	}();
-/** *** */ 	
-/** ********************************************************************* */
-const __webpack_exports__ = {};
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 !function() {
-
-/*! *************************************************************!*\
+"use strict";
+/*!*************************************************************!*\
   !*** ./src/advanced-custom-fields-pro/assets/src/js/acf.js ***!
-  \************************************************************ */
+  \*************************************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ const _acf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_acf.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf.js");
-/* harmony import */ const _acf_js__WEBPACK_IMPORTED_MODULE_0___default = /* #__PURE__ */__webpack_require__.n(_acf_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ const _acf_hooks_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_acf-hooks.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-hooks.js");
-/* harmony import */ const _acf_hooks_js__WEBPACK_IMPORTED_MODULE_1___default = /* #__PURE__ */__webpack_require__.n(_acf_hooks_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ const _acf_model_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_acf-model.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-model.js");
-/* harmony import */ const _acf_model_js__WEBPACK_IMPORTED_MODULE_2___default = /* #__PURE__ */__webpack_require__.n(_acf_model_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ const _acf_popup_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_acf-popup.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-popup.js");
-/* harmony import */ const _acf_popup_js__WEBPACK_IMPORTED_MODULE_3___default = /* #__PURE__ */__webpack_require__.n(_acf_popup_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ const _acf_modal_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_acf-modal.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-modal.js");
-/* harmony import */ const _acf_modal_js__WEBPACK_IMPORTED_MODULE_4___default = /* #__PURE__ */__webpack_require__.n(_acf_modal_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ const _acf_panel_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_acf-panel.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-panel.js");
-/* harmony import */ const _acf_panel_js__WEBPACK_IMPORTED_MODULE_5___default = /* #__PURE__ */__webpack_require__.n(_acf_panel_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ const _acf_notice_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_acf-notice.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-notice.js");
-/* harmony import */ const _acf_notice_js__WEBPACK_IMPORTED_MODULE_6___default = /* #__PURE__ */__webpack_require__.n(_acf_notice_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ const _acf_tooltip_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_acf-tooltip.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-tooltip.js");
-/* harmony import */ const _acf_tooltip_js__WEBPACK_IMPORTED_MODULE_7___default = /* #__PURE__ */__webpack_require__.n(_acf_tooltip_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _acf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_acf.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf.js");
+/* harmony import */ var _acf_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_acf_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _acf_hooks_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_acf-hooks.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-hooks.js");
+/* harmony import */ var _acf_hooks_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_acf_hooks_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _acf_model_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_acf-model.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-model.js");
+/* harmony import */ var _acf_model_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_acf_model_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _acf_popup_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_acf-popup.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-popup.js");
+/* harmony import */ var _acf_popup_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_acf_popup_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _acf_modal_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_acf-modal.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-modal.js");
+/* harmony import */ var _acf_modal_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_acf_modal_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _acf_panel_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_acf-panel.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-panel.js");
+/* harmony import */ var _acf_panel_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_acf_panel_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _acf_notice_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_acf-notice.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-notice.js");
+/* harmony import */ var _acf_notice_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_acf_notice_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _acf_tooltip_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_acf-tooltip.js */ "./src/advanced-custom-fields-pro/assets/src/js/_acf-tooltip.js");
+/* harmony import */ var _acf_tooltip_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_acf_tooltip_js__WEBPACK_IMPORTED_MODULE_7__);
 
 
 
@@ -4303,6 +4305,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 }();
-/** *** */ })()
+/******/ })()
 ;
-// # sourceMappingURL=acf.js.map
+//# sourceMappingURL=acf.js.map

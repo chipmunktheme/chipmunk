@@ -1,4 +1,4 @@
-/** !
+/**!
  * wp-color-picker-alpha
  *
  * Overwrite Automattic Iris for enabled Alpha Channel in wpColorPicker
@@ -10,7 +10,7 @@
  */
 
 ( function ( $, undef ) {
-	const wpColorPickerAlpha = {
+	var wpColorPickerAlpha = {
 		version: 300,
 	};
 
@@ -19,7 +19,7 @@
 		'wpColorPickerAlpha' in window &&
 		'version' in window.wpColorPickerAlpha
 	) {
-		const version = parseInt( window.wpColorPickerAlpha.version, 10 );
+		var version = parseInt( window.wpColorPickerAlpha.version, 10 );
 		if ( ! isNaN( version ) && version >= wpColorPickerAlpha.version ) {
 			return;
 		}
@@ -34,12 +34,12 @@
 	Color.fn.to_s = function ( type ) {
 		type = type || 'hex';
 		// Change hex to rgba to return the correct color.
-		if ( type === 'hex' && this._alpha < 1 ) {
+		if ( 'hex' === type && this._alpha < 1 ) {
 			type = 'rgba';
 		}
 
-		let color = '';
-		if ( type === 'hex' ) {
+		var color = '';
+		if ( 'hex' === type ) {
 			color = this.toString();
 		} else if ( ! this.error ) {
 			color = this.toCSS( type )
@@ -53,7 +53,7 @@
 	window.wpColorPickerAlpha = wpColorPickerAlpha;
 
 	// Background image encoded
-	const backgroundImage =
+	var backgroundImage =
 		'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAAHnlligAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHJJREFUeNpi+P///4EDBxiAGMgCCCAGFB5AADGCRBgYDh48CCRZIJS9vT2QBAggFBkmBiSAogxFBiCAoHogAKIKAlBUYTELAiAmEtABEECk20G6BOmuIl0CIMBQ/IEMkO0myiSSraaaBhZcbkUOs0HuBwDplz5uFJ3Z4gAAAABJRU5ErkJggg==';
 
 	/**
@@ -80,7 +80,7 @@
 		 *
 		 * @return {string} The element's color.
 		 */
-		_getColor ( color ) {
+		_getColor: function ( color ) {
 			if ( color === undef ) {
 				color = this._color;
 			}
@@ -102,7 +102,7 @@
 		 *
 		 * @return {void}
 		 */
-		_create () {
+		_create: function () {
 			try {
 				// Try to get the wpColorPicker alpha options.
 				this.alphaOptions = this.element.wpColorPicker(
@@ -129,21 +129,21 @@
 		 *
 		 * @return {void}
 		 */
-		_addInputListeners ( input ) {
-			const self = this;
-				const debounceTimeout = 100;
-				const callback = function ( event ) {
-					var val = input.val();
-						const color = new Color( val );
-						var val = val.replace( /^(#|(rgb|hsl)a?)/, '' );
-						const type = self.alphaOptions.alphaColorType;
+		_addInputListeners: function ( input ) {
+			var self = this,
+				debounceTimeout = 100,
+				callback = function ( event ) {
+					var val = input.val(),
+						color = new Color( val ),
+						val = val.replace( /^(#|(rgb|hsl)a?)/, '' ),
+						type = self.alphaOptions.alphaColorType;
 
 					input.removeClass( 'iris-error' );
 
 					if ( ! color.error ) {
 						// let's not do this on keyup for hex shortcodes
 						if (
-							type !== 'hex' ||
+							'hex' !== type ||
 							! (
 								event.type === 'keyup' &&
 								val.match( /^[0-9a-fA-F]{3}$/ )
@@ -184,17 +184,17 @@
 		 *
 		 * @return {void}
 		 */
-		_initControls () {
+		_initControls: function () {
 			this._super();
 
 			if ( this.alphaOptions.alphaEnabled ) {
 				// Create Alpha controls
-				const self = this;
-					const stripAlpha = self.controls.strip.clone( false, false );
-					const stripAlphaSlider = stripAlpha.find( '.iris-slider-offset' );
-					const controls = {
-						stripAlpha,
-						stripAlphaSlider,
+				var self = this,
+					stripAlpha = self.controls.strip.clone( false, false ),
+					stripAlphaSlider = stripAlpha.find( '.iris-slider-offset' ),
+					controls = {
+						stripAlpha: stripAlpha,
+						stripAlphaSlider: stripAlphaSlider,
 					};
 
 				stripAlpha.addClass( 'iris-strip-alpha' );
@@ -213,7 +213,7 @@
 					max: 100,
 					step: 1,
 					value: parseInt( self._color._alpha * 100 ),
-					slide ( event, ui ) {
+					slide: function ( event, ui ) {
 						self.active = 'strip';
 						// Update alpha value
 						self._color._alpha = parseFloat( ui.value / 100 );
@@ -232,20 +232,20 @@
 		 *
 		 * @return {void}
 		 */
-		_dimensions ( reset ) {
+		_dimensions: function ( reset ) {
 			this._super( reset );
 
 			if ( this.alphaOptions.alphaEnabled ) {
-				const self = this;
-					const opts = self.options;
-					const {controls} = self;
-					const {square} = controls;
-					const strip = self.picker.find( '.iris-strip' );
-					let innerWidth;
-					let squareWidth;
-					let stripWidth;
-					let stripMargin;
-					let totalWidth;
+				var self = this,
+					opts = self.options,
+					controls = self.controls,
+					square = controls.square,
+					strip = self.picker.find( '.iris-strip' ),
+					innerWidth,
+					squareWidth,
+					stripWidth,
+					stripMargin,
+					totalWidth;
 
 				/**
 				 * I use Math.round() to avoid possible size errors,
@@ -283,7 +283,7 @@
 				square.css( 'margin', '0' );
 				strip
 					.width( stripWidth )
-					.css( 'margin-left', `${stripMargin  }px` );
+					.css( 'margin-left', stripMargin + 'px' );
 			}
 		},
 		/**
@@ -294,33 +294,33 @@
 		 *
 		 * @return {void}
 		 */
-		_change () {
-			const self = this;
-				const {active} = self;
+		_change: function () {
+			var self = this,
+				active = self.active;
 
 			self._super();
 
 			if ( self.alphaOptions.alphaEnabled ) {
-				const {controls} = self;
-					const alpha = parseInt( self._color._alpha * 100 );
-					const color = self._color.toRgb();
-					const gradient = [
-						`rgb(${ 
-							color.r 
-							},${ 
-							color.g 
-							},${ 
-							color.b 
-							}) 0%`,
-						`rgba(${ 
-							color.r 
-							},${ 
-							color.g 
-							},${ 
-							color.b 
-							}, 0) 100%`,
-					];
-					const target = self.picker
+				var controls = self.controls,
+					alpha = parseInt( self._color._alpha * 100 ),
+					color = self._color.toRgb(),
+					gradient = [
+						'rgb(' +
+							color.r +
+							',' +
+							color.g +
+							',' +
+							color.b +
+							') 0%',
+						'rgba(' +
+							color.r +
+							',' +
+							color.g +
+							',' +
+							color.b +
+							', 0) 100%',
+					],
+					target = self.picker
 						.closest( '.wp-picker-container' )
 						.find( '.wp-color-result' );
 
@@ -328,11 +328,11 @@
 				// Generate background slider alpha, only for CSS3.
 				controls.stripAlpha.css( {
 					background:
-						`linear-gradient(to bottom, ${ 
-						gradient.join( ', ' ) 
-						}), url(${ 
-						backgroundImage 
-						})`,
+						'linear-gradient(to bottom, ' +
+						gradient.join( ', ' ) +
+						'), url(' +
+						backgroundImage +
+						')',
 				} );
 				// Update alpha value
 				if ( active ) {
@@ -348,7 +348,7 @@
 				self.picker
 					.find( '.iris-palette-container' )
 					.on( 'click.palette', '.iris-palette', function () {
-						let color = $( this ).data( 'color' );
+						var color = $( this ).data( 'color' );
 						if ( self.alphaOptions.alphaReset ) {
 							self._color._alpha = 1;
 							color = self._getColor();
@@ -368,12 +368,12 @@
 		 *
 		 * @return {void}
 		 */
-		_paintDimension ( origin, control ) {
-			const self = this;
-				let color = false;
+		_paintDimension: function ( origin, control ) {
+			var self = this,
+				color = false;
 
 			// Fix for slider hue opacity.
-			if ( self.alphaOptions.alphaEnabled && control === 'strip' ) {
+			if ( self.alphaOptions.alphaEnabled && 'strip' === control ) {
 				color = self._color;
 				self._color = new Color( color.toString() );
 				self.hue = self._color.h();
@@ -396,11 +396,11 @@
 		 *
 		 * @return {void}
 		 */
-		_setOption ( key, value ) {
-			const self = this;
-			if ( key === 'color' && self.alphaOptions.alphaEnabled ) {
+		_setOption: function ( key, value ) {
+			var self = this;
+			if ( 'color' === key && self.alphaOptions.alphaEnabled ) {
 				// cast to string in case we have a number
-				value = `${  value}`;
+				value = '' + value;
 				newColor = new Color( value ).setHSpace( self.options.mode );
 				// Check if error && Check the color to prevent callbacks with the same color.
 				if (
@@ -425,7 +425,7 @@
 		 *
 		 * @return {string} The element's color.
 		 */
-		color ( newColor ) {
+		color: function ( newColor ) {
 			if ( newColor === true ) {
 				return this._color.clone();
 			}
@@ -458,11 +458,11 @@
 		 *
 		 * @return {object} The current alpha options.
 		 */
-		_getAlphaOptions () {
-			const el = this.element;
-				const type = el.data( 'type' ) || this.options.type;
-				const color = el.data( 'defaultColor' ) || el.val();
-				const options = {
+		_getAlphaOptions: function () {
+			var el = this.element,
+				type = el.data( 'type' ) || this.options.type,
+				color = el.data( 'defaultColor' ) || el.val(),
+				options = {
 					alphaEnabled: el.data( 'alphaEnabled' ) || false,
 					alphaCustomWidth: 130,
 					alphaReset: false,
@@ -471,7 +471,7 @@
 				};
 
 			if ( options.alphaEnabled ) {
-				options.alphaEnabled = el.is( 'input' ) && type === 'full';
+				options.alphaEnabled = el.is( 'input' ) && 'full' === type;
 			}
 
 			if ( ! options.alphaEnabled ) {
@@ -481,7 +481,7 @@
 			options.alphaColorWithSpace = color && color.match( /\s/ );
 
 			$.each( options, function ( name, defaultValue ) {
-				let value = el.data( name ) || defaultValue;
+				var value = el.data( name ) || defaultValue;
 				switch ( name ) {
 					case 'alphaCustomWidth':
 						value = value ? parseInt( value, 10 ) : 0;
@@ -515,7 +515,7 @@
 		 *
 		 * @return {void}
 		 */
-		_create () {
+		_create: function () {
 			// Return early if Iris support is missing.
 			if ( ! $.support.iris ) {
 				return;
@@ -535,14 +535,14 @@
 		 *
 		 * @return {void}
 		 */
-		_addListeners () {
+		_addListeners: function () {
 			if ( ! this.alphaOptions.alphaEnabled ) {
 				return this._super();
 			}
 
-			const self = this;
-				const el = self.element;
-				const isDeprecated = self.toggler.is( 'a' );
+			var self = this,
+				el = self.element,
+				isDeprecated = self.toggler.is( 'a' );
 
 			this.alphaOptions.defaultWidth = el.width();
 			if ( this.alphaOptions.alphaCustomWidth ) {
@@ -557,7 +557,7 @@
 
 			self.toggler.css( {
 				position: 'relative',
-				'background-image': `url(${  backgroundImage  })`,
+				'background-image': 'url(' + backgroundImage + ')',
 			} );
 
 			if ( isDeprecated ) {
@@ -575,7 +575,7 @@
 			} );
 
 			// Define the correct position for ltr or rtl direction.
-			if ( self.colorAlpha.css( 'direction' ) === 'ltr' ) {
+			if ( 'ltr' === self.colorAlpha.css( 'direction' ) ) {
 				self.colorAlpha.css( {
 					'border-bottom-left-radius': '2px',
 					'border-top-left-radius': '2px',
@@ -603,7 +603,7 @@
 				 *
 				 * @returns {void}
 				 */
-				change ( event, ui ) {
+				change: function ( event, ui ) {
 					self.colorAlpha.css( {
 						'background-color': ui.color.to_s(
 							self.alphaOptions.alphaColorType
@@ -654,7 +654,7 @@
 			 * @return {void}
 			 */
 			el.change( function ( event ) {
-				const val = $( this ).val();
+				var val = $( this ).val();
 
 				if (
 					el.hasClass( 'iris-error' ) ||
