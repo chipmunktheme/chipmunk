@@ -2,6 +2,7 @@
 
 namespace Chipmunk\Extensions;
 
+use Chipmunk\Helpers;
 use Chipmunk\Customizer;
 
 /**

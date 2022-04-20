@@ -9,7 +9,7 @@
 			'results'   => Chipmunk\Helpers::get_theme_option( 'disable_featured' )
 				? new \WP_Query
 				: Chipmunk\Query::get_resources( array(
-					'posts_per_page'    => -1,
+					'posts_per_page'    => $resources_count,
 					'meta_query'        => array(
 						'featured'          => array(
 							'key'               => '_' . THEME_SLUG . '_resource_is_featured',
@@ -26,7 +26,7 @@
 		'latest'    => array(
 			'label'     => esc_html__( 'Latest', 'chipmunk' ),
 			'results'   => Chipmunk\Query::get_resources( array(
-				'posts_per_page'    => -1,
+				'posts_per_page'    => $resources_count,
 				'orderby'           => 'date',
 				'order'             => 'DESC',
 			) ),
@@ -36,7 +36,7 @@
 			'results'   => ! Chipmunk\Helpers::is_feature_enabled( 'views', 'resource', false )
 				? new \WP_Query
 				: Chipmunk\Query::get_resources( array(
-					'posts_per_page'    => -1,
+					'posts_per_page'    => $resources_count,
 					'meta_key'          => '_' . THEME_SLUG . '_post_view_count',
 					'orderby'           => 'meta_value_num',
 					'order'             => 'DESC',
