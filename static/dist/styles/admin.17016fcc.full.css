@@ -159,12 +159,28 @@ body {
 }
 
 .chipmunk__addons-item {
+  align-items: flex-start;
   gap: 1.5em;
   padding: 1.5em;
 }
 
+.chipmunk__addons-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
+}
+
 .chipmunk__addons-title {
   margin: 0;
+}
+
+.chipmunk__addons-error {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  color: var(--chipmunk--color--status-error) !important;
 }
 
 /*

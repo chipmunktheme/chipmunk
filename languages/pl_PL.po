@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Chipmunk Theme\n"
-"POT-Creation-Date: 2022-03-10 13:28+0100\n"
-"PO-Revision-Date: 2022-03-10 13:28+0100\n"
+"POT-Creation-Date: 2022-04-20 12:10+0200\n"
+"PO-Revision-Date: 2022-04-20 12:18+0200\n"
 "Last-Translator: Piotr Kulpinski <piotr@kulpinski.pl>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -45,7 +45,7 @@ msgstr[0] "%s Komentarz"
 msgstr[1] "%s Komentarze"
 msgstr[2] "%s Komentarzy"
 
-#: comments.php:76 includes/Customizer.php:417
+#: comments.php:76 includes/Customizer.php:424
 #: templates/partials/filters.php:45 templates/partials/filters.php:50
 msgid "Name"
 msgstr "Nazwa"
@@ -67,27 +67,237 @@ msgstr "Musisz być <a href=\"%s\">zalogowany</a>, aby opublikować komentarz."
 msgid "No more results found."
 msgstr "Nie znaleziono więcej wyników."
 
-#: includes/Config/Admin.php:56
+#: includes/Addons/Members.php:59 templates/addons/members/login-form.php:4
+#: templates/addons/members/login-form.php:23
+#: templates/partials/page-head.php:59 templates/partials/page-overlay.php:20
+msgid "Login"
+msgstr "Logowanie"
+
+#: includes/Addons/Members.php:65 templates/addons/members/register-form.php:4
+#: templates/addons/members/register-form.php:37
+#: templates/partials/page-head.php:64 templates/partials/page-overlay.php:24
+msgid "Register"
+msgstr "Rejestracja"
+
+#: includes/Addons/Members.php:71
+#: templates/addons/members/lost-password-form.php:4
+msgid "Forgot Your Password?"
+msgstr "Zapomniałeś hasła?"
+
+#: includes/Addons/Members.php:77
+#: templates/addons/members/lost-password-form.php:23
+#: templates/addons/members/reset-password-form.php:4
+#: templates/addons/members/reset-password-form.php:27
+msgid "Reset Password"
+msgstr "Resetuj hasło"
+
+#: includes/Addons/Members.php:83 templates/addons/members/profile-form.php:4
+#: templates/partials/page-head.php:52
+msgid "Edit Profile"
+msgstr "Edytuj profil"
+
+#: includes/Addons/Members.php:89 templates/addons/members/dashboard.php:4
+#: templates/partials/page-head.php:48
+msgid "Dashboard"
+msgstr "Kokpit"
+
+#: includes/Addons/Members/Actions.php:154
+#: includes/Addons/Members/Actions.php:193
+msgid "Invalid request."
+msgstr "Nieprawidłowe żądanie."
+
+#: includes/Addons/Members/Config.php:85
+msgid "Hello!"
+msgstr "Cześć!"
+
+#: includes/Addons/Members/Config.php:86
+#, php-format
+msgid ""
+"You asked us to reset your password for your account using the email address "
+"%s."
+msgstr ""
+"Poprosiłeś nas o zresetowanie hasła do Twojego konta przy użyciu adresu e-"
+"mail %s."
+
+#: includes/Addons/Members/Config.php:87
+msgid ""
+"If this was a mistake, or you didn't ask for a password reset, just ignore "
+"this email and nothing will happen."
+msgstr ""
+"Jeśli był to błąd lub nie poprosiłeś o zresetowanie hasła, po prostu "
+"zignoruj ten e-mail i nic się nie stanie."
+
+#: includes/Addons/Members/Config.php:88
+msgid "To reset your password, visit the following address:"
+msgstr "Aby zresetować hasło, przejdź tutaj:"
+
+#: includes/Addons/Members/Config.php:90
+msgid "Thanks!"
+msgstr "Dzięki!"
+
+#: includes/Addons/Members/Helpers.php:152
+msgid "You need to enter your username or email address to continue."
+msgstr ""
+"Aby kontynuować, musisz podać swoją nazwę użytkownika lub adres e-mail."
+
+#: includes/Addons/Members/Helpers.php:157
+msgid "There is no account with that username or email address."
+msgstr "Nie ma konta z tą nazwą użytkownika lub adresem e-mail."
+
+#: includes/Addons/Members/Helpers.php:160
+msgid "You need to enter a password to login."
+msgstr "Musisz wpisać hasło, aby się zalogować."
+
+#: includes/Addons/Members/Helpers.php:163
+msgid ""
+"The password you entered wasn't quite right. Did you forget your password?"
+msgstr "Wprowadzone hasło nie było całkiem poprawne. Zapomniałeś hasła?"
+
+#: includes/Addons/Members/Helpers.php:166
+msgid "The email address you entered is not valid."
+msgstr "Wprowadzony adres e-mail jest nieprawidłowy."
+
+#: includes/Addons/Members/Helpers.php:169
+msgid ""
+"An account exists with this email address. Please choose a different one."
+msgstr "Istnieje konto z tym adresem e-mail. Wybierz inny."
+
+#: includes/Addons/Members/Helpers.php:172
+msgid "An account exists with this username. Please choose a different one."
+msgstr "Istnieje konto z tą nazwą użytkownika. Wybierz inną."
+
+#: includes/Addons/Members/Helpers.php:175
+#: includes/Addons/Members/Helpers.php:259
+msgid "Registering new users is currently not allowed."
+msgstr "Rejestrowanie nowych użytkowników jest obecnie niedozwolone."
+
+#: includes/Addons/Members/Helpers.php:178
+#: includes/Extensions/Submissions.php:48
+msgid "Please verify that you are not a robot."
+msgstr "Zweryfikuj, że nie jesteś robotem."
+
+#: includes/Addons/Members/Helpers.php:182
+msgid "The password reset link you used is not valid anymore."
+msgstr "Użyty link resetowania hasła jest już nieprawidłowy."
+
+#: includes/Addons/Members/Helpers.php:185
+msgid "The two passwords you entered don't match."
+msgstr "Wprowadzone dwa hasła nie są zgodne."
+
+#: includes/Addons/Members/Helpers.php:188
+msgid "Sorry, we don't accept empty passwords."
+msgstr "Niestety, nie akceptujemy pustych haseł."
+
+#: includes/Addons/Members/Helpers.php:191
+#: includes/Addons/Members/Helpers.php:256
+msgid "You have to be signed in to view this page."
+msgstr "Musisz się zalogować, aby wyświetlić tę stronę."
+
+#: includes/Addons/Members/Helpers.php:194
+msgid "An unknown error occurred. Please try again later."
+msgstr "Wystąpił nieznany błąd. Spróbuj ponownie później."
+
+#: includes/Addons/Members/Helpers.php:211
+msgid "You have signed out. Would you like to sign in again?"
+msgstr "Wylogowałeś się. Chcesz zalogować się ponownie?"
+
+#: includes/Addons/Members/Helpers.php:217
+msgid "You have successfully registered your account. You can login now."
+msgstr "Pomyślnie zarejestrowałeś swoje konto. Możesz się teraz zalogować."
+
+#: includes/Addons/Members/Helpers.php:223
+msgid "Check your email for a link to reset your password."
+msgstr "Sprawdź w wiadomości e-mail link do zresetowania hasła."
+
+#: includes/Addons/Members/Helpers.php:229
+msgid "Your password has been changed. You can sign in now."
+msgstr "Twoje hasło zostało zmienione. Możesz się teraz zalogować."
+
+#: includes/Addons/Members/Helpers.php:235
+msgid "Your profile has been updated successfully."
+msgstr "Twój profil został pomyślnie zaktualizowany."
+
+#: includes/Addons/Members/Helpers.php:253
+msgid "You are already signed in."
+msgstr "Jesteś już zalogowany."
+
+#: includes/Addons/Members/Helpers.php:262
+msgid "Invalid password reset link."
+msgstr "Nieprawidłowy link do resetowania hasła."
+
+#: includes/Addons/Members/Settings.php:35
+msgid "Login Page"
+msgstr "Strona logowania"
+
+#: includes/Addons/Members/Settings.php:36
+msgid "Register Page"
+msgstr "Strona rejestracji"
+
+#: includes/Addons/Members/Settings.php:37
+msgid "Forgot Password Page"
+msgstr "Strona przypominania hasła"
+
+#: includes/Addons/Members/Settings.php:38
+msgid "Reset Password Page"
+msgstr "Strona resetowania hasła"
+
+#: includes/Addons/Members/Settings.php:39
+msgid "Profile Page"
+msgstr "Strona profilu"
+
+#: includes/Addons/Members/Settings.php:40
+msgid "Dashboard Page"
+msgstr "Strona kokpitu"
+
+#: includes/Addons/Members/Settings.php:51
+msgid "Page Options"
+msgstr "Opcje strony"
+
+#: includes/Addons/Members/Settings.php:80
+msgid "Choose page"
+msgstr "Wybierz stronę"
+
+#: includes/Addons/Ratings/Ratings.php:174
+msgid "out of"
+msgstr "z"
+
+#: includes/Addons/Ratings/Ratings.php:174
+msgid "stars"
+msgstr "gwiazdek"
+
+#: includes/Addons/Ratings/Ratings.php:175
+msgid "rating"
+msgid_plural "ratings"
+msgstr[0] "ocena"
+msgstr[1] "oceny"
+msgstr[2] "ocen"
+
+#: includes/Addons/Ratings/Ratings.php:215
+#: includes/Extensions/Bookmarks.php:116 includes/Extensions/Upvotes.php:141
+msgid "Not permitted."
+msgstr "Brak dostępu."
+
+#: includes/Config/Admin.php:54
 msgid "Resource base"
 msgstr "Alias materiału"
 
-#: includes/Config/Admin.php:80
+#: includes/Config/Admin.php:78
 msgid "Collection base"
 msgstr "Alias kolekcji"
 
-#: includes/Config/Admin.php:104
+#: includes/Config/Admin.php:102
 msgid "Resource tag base"
 msgstr "Alias tagów materiałów"
 
-#: includes/Customizer.php:79
+#: includes/Customizer.php:68
 msgid "Site Identity"
 msgstr "Ustawienia witryny"
 
-#: includes/Customizer.php:85
+#: includes/Customizer.php:74
 msgid "Site Logo"
 msgstr "Logo"
 
-#: includes/Customizer.php:86
+#: includes/Customizer.php:75
 msgid ""
 "Upload a logo for your theme. You can leave it empty to use your site name "
 "as a plain text logo."
@@ -95,140 +305,140 @@ msgstr ""
 "Wrzuć plik z logo Twojej strony. Możesz zostawić to pole pustym, aby "
 "wyświetlić tylko nazwę strony w postaci tekstu."
 
-#: includes/Customizer.php:92
+#: includes/Customizer.php:81
 msgid "Visuals"
 msgstr "Elementy graficzne"
 
-#: includes/Customizer.php:98
+#: includes/Customizer.php:87
 msgid "Primary Color"
 msgstr "Kolor podstawowy"
 
-#: includes/Customizer.php:104
+#: includes/Customizer.php:93
 msgid "Link Color"
 msgstr "Kolor linków"
 
-#: includes/Customizer.php:110
+#: includes/Customizer.php:99
 msgid "Background Color"
 msgstr "Kolor tła"
 
-#: includes/Customizer.php:116
+#: includes/Customizer.php:105
 msgid "Section Background Color"
 msgstr "Section Background Color"
 
-#: includes/Customizer.php:122
+#: includes/Customizer.php:111
 msgid "Section Border Color"
 msgstr "Kolor obramowania sekcji"
 
-#: includes/Customizer.php:128
+#: includes/Customizer.php:117
 msgid "Primary Font"
 msgstr "Czcionka podstawowa"
 
-#: includes/Customizer.php:130 includes/Customizer.php:137
+#: includes/Customizer.php:119 includes/Customizer.php:126
 msgid "System font"
 msgstr "Czcionka systemowa"
 
-#: includes/Customizer.php:135
+#: includes/Customizer.php:124
 msgid "Heading Font"
 msgstr "Czcionka nagłówków"
 
-#: includes/Customizer.php:142
+#: includes/Customizer.php:131
 msgid "Content Size"
 msgstr "Wielkość tekstu"
 
-#: includes/Customizer.php:144
+#: includes/Customizer.php:133
 msgid "You can use any CSS unit here (eg. px, em, rem, vw)"
 msgstr "Możesz użyć każdej jednostki CSS (np. px, em, rem, vw)"
 
-#: includes/Customizer.php:149
+#: includes/Customizer.php:138
 msgid "Content Width"
 msgstr "Szerokość strony"
 
-#: includes/Customizer.php:151
+#: includes/Customizer.php:140
 msgid "You can can still overwrite it by setting page templates."
 msgstr ""
 "Możesz nadpisać to ustawienie poprzez nadanie odpowiedniego szablonu strony."
 
-#: includes/Customizer.php:153
+#: includes/Customizer.php:142
 msgid "Narrow"
 msgstr "Wąski"
 
-#: includes/Customizer.php:154 includes/Setup.php:95
+#: includes/Customizer.php:143 includes/Setup.php:91
 msgid "Normal"
 msgstr "Normalny"
 
-#: includes/Customizer.php:155
+#: includes/Customizer.php:144
 msgid "Wide"
 msgstr "Szeroki"
 
-#: includes/Customizer.php:156
+#: includes/Customizer.php:145
 msgid "Full"
 msgstr "Na całą szerokość"
 
-#: includes/Customizer.php:162
+#: includes/Customizer.php:151
 msgid "Dropdown Color Theme"
 msgstr "Motyw kolorystyczny rozwijanego menu"
 
-#: includes/Customizer.php:165
+#: includes/Customizer.php:154
 msgid "Light"
 msgstr "Jasny"
 
-#: includes/Customizer.php:166
+#: includes/Customizer.php:155
 msgid "Dark"
 msgstr "Ciemny"
 
-#: includes/Customizer.php:172
+#: includes/Customizer.php:161
 msgid "Logo height"
 msgstr "Wysokość logo"
 
-#: includes/Customizer.php:174
+#: includes/Customizer.php:163
 msgid "Width will be calculated automatically."
 msgstr "Szerokość zostanie obliczona automatycznie."
 
-#: includes/Customizer.php:184
+#: includes/Customizer.php:173
 msgid "Enable sticky header"
 msgstr "Włącz przyklejony nagłówek"
 
-#: includes/Customizer.php:190
+#: includes/Customizer.php:179
 msgid "Disable section borders"
 msgstr "Wyłącz obramowanie sekcji"
 
-#: includes/Customizer.php:196
+#: includes/Customizer.php:185
 msgid "Custom CSS"
 msgstr "Dodatkowy kod CSS"
 
-#: includes/Customizer.php:198
+#: includes/Customizer.php:187
 msgid "Quickly add some CSS to your theme by adding it to this block."
 msgstr "Dodaj w łatwy sposób swój kod CSS wpisując go w polu poniżej."
 
-#: includes/Customizer.php:204
+#: includes/Customizer.php:193
 msgid "Open Graph"
 msgstr "Open Graph"
 
-#: includes/Customizer.php:210
+#: includes/Customizer.php:199
 msgid "Disable Open Graph"
 msgstr "Wyłącz Open Graph"
 
-#: includes/Customizer.php:215
+#: includes/Customizer.php:204
 msgid "Open Graph Image"
 msgstr "Obrazek \"Open Graph\""
 
-#: includes/Customizer.php:216
+#: includes/Customizer.php:205
 msgid "1200x630 pixels"
 msgstr "1200x630 px"
 
-#: includes/Customizer.php:221
+#: includes/Customizer.php:210
 msgid "Remove 'on [website name]' text"
 msgstr "Usuń tekst ‘» [nazwa strony]’"
 
-#: includes/Customizer.php:227
+#: includes/Customizer.php:216
 msgid "Homepage"
 msgstr "Strona główna"
 
-#: includes/Customizer.php:233
+#: includes/Customizer.php:222
 msgid "Intro text"
 msgstr "Opis strony"
 
-#: includes/Customizer.php:234
+#: includes/Customizer.php:223
 msgid ""
 "Enter your site's tagline to show on homepage under the header. Leave empty "
 "to hide."
@@ -236,214 +446,218 @@ msgstr ""
 "Podaj opis Twojej strony, który będzie widoczny pod nagłówkiem strony. "
 "Zostaw to pole puste by go ukryć."
 
-#: includes/Customizer.php:239
+#: includes/Customizer.php:228
 msgid "Latest resources count"
 msgstr "Liczba materiałów do wyświetlenia"
 
-#: includes/Customizer.php:241
+#: includes/Customizer.php:230
 msgid "Enter the max resources number to show on resource sliders."
 msgstr "Podaj maksymalną liczbę materiałów do wyświetlenia na sliderze."
 
-#: includes/Customizer.php:246
+#: includes/Customizer.php:235
 msgid "Disable resource listings"
 msgstr "Wyłącz listy materiałów"
 
-#: includes/Customizer.php:252
+#: includes/Customizer.php:241
 msgid "Disable resource listings sliders"
 msgstr "Wyłącz slidery z materiałami"
 
-#: includes/Customizer.php:258
+#: includes/Customizer.php:247
 msgid "Make resource sliders infinite"
 msgstr "Niekończące się slidery"
 
-#: includes/Customizer.php:264
+#: includes/Customizer.php:253
 msgid "Disable collections"
 msgstr "Wyłącz kolekcje"
 
-#: includes/Customizer.php:270
+#: includes/Customizer.php:259
 msgid "Disable latest posts"
 msgstr "Wyłącz najnowsze wpisy"
 
-#: includes/Customizer.php:277 includes/Setup.php:119
-#: templates/sections/collection-tile.php:76
-#: templates/sections/loop-resource.php:14
+#: includes/Customizer.php:266 includes/Setup.php:115
+#: templates/partials/stats/count-resources.php:1
+#: templates/sections/loop-resource.php:12
 msgid "Resources"
 msgstr "Materiały"
 
-#: includes/Customizer.php:283
+#: includes/Customizer.php:272
 msgid "Number of resources per page"
 msgstr "Liczba materiałów na stronę"
 
-#: includes/Customizer.php:289
+#: includes/Customizer.php:278
 msgid "Number of search results per page"
 msgstr "Liczba materiałów na stronę wyszukiwania"
 
-#: includes/Customizer.php:295
+#: includes/Customizer.php:284
 msgid "Display resources as"
 msgstr "Wyświetlaj materiały jako"
 
-#: includes/Customizer.php:298 includes/Customizer.php:446
+#: includes/Customizer.php:287 includes/Customizer.php:453
 msgid "Tile"
 msgstr "Kafelków"
 
-#: includes/Customizer.php:299 includes/Customizer.php:447
+#: includes/Customizer.php:288 includes/Customizer.php:454
 msgid "Card"
 msgstr "Kart"
 
-#: includes/Customizer.php:300 includes/Customizer.php:448
+#: includes/Customizer.php:289 includes/Customizer.php:455
 msgid "Card (blank)"
 msgstr "Kart (bez tła)"
 
-#: includes/Customizer.php:301
+#: includes/Customizer.php:290
 msgid "List"
 msgstr "Lista"
 
-#: includes/Customizer.php:307
+#: includes/Customizer.php:296
+msgid "Resouce image aspect ratio"
+msgstr "Współczynnik proporcji obrazu materiałów"
+
+#: includes/Customizer.php:314
 msgid "Display resource content in a separate section"
 msgstr "Wyświetlaj opis materiałów w osobnej sekcji"
 
-#: includes/Customizer.php:313
+#: includes/Customizer.php:320
 msgid "Disable featured panel"
 msgstr "Wyłącz promowane materiały"
 
-#: includes/Customizer.php:319
+#: includes/Customizer.php:326
 msgid "Disable description"
 msgstr "Wyłącz opis"
 
-#: includes/Customizer.php:325
+#: includes/Customizer.php:332 includes/Customizer.php:599
 msgid "Disable date"
 msgstr "Wyłącz datę"
 
-#: includes/Customizer.php:331
+#: includes/Customizer.php:338 includes/Customizer.php:593
 msgid "Disable tags"
 msgstr "Wyłącz tagi"
 
-#: includes/Customizer.php:337
+#: includes/Customizer.php:344
 msgid "Disable thumbnails on resource list"
 msgstr "Wyłącz miniaturki na liście materiałów"
 
-#: includes/Customizer.php:343
+#: includes/Customizer.php:350
 msgid "Disable thumbnails on resource page"
 msgstr "Wyłącz miniaturki na stronie materiału"
 
-#: includes/Customizer.php:349
+#: includes/Customizer.php:356
 msgid "Disable website button"
 msgstr "Wyłącz przycisk \"Przejdź do strony\""
 
-#: includes/Customizer.php:355 includes/Customizer.php:578
+#: includes/Customizer.php:362 includes/Customizer.php:605
 msgid "Disable view count"
 msgstr "Wyłącz popularne materiały"
 
-#: includes/Customizer.php:361
+#: includes/Customizer.php:368
 msgid "Disable upvoting"
 msgstr "Wyłącz głosowanie na materiały"
 
-#: includes/Customizer.php:367
+#: includes/Customizer.php:374 includes/Customizer.php:587
 msgid "Disable sharing"
 msgstr "Wyłącz udostępnianie"
 
-#: includes/Customizer.php:373
+#: includes/Customizer.php:380
 msgid "Disable author link"
 msgstr "Wyłącz linki do autorów"
 
-#: includes/Customizer.php:380
+#: includes/Customizer.php:387
 msgid "Disable bookmarking"
 msgstr "Wyłącz zakładki"
 
-#: includes/Customizer.php:387
+#: includes/Customizer.php:394 includes/Customizer.php:611
 msgid "Disable ratings"
 msgstr "Wyłącz oceny"
 
-#: includes/Customizer.php:394
+#: includes/Customizer.php:401
 msgid "Disable sorting"
 msgstr "Wyłącz sortowanie"
 
-#: includes/Customizer.php:400
+#: includes/Customizer.php:407
 msgid "Disable filters"
 msgstr "Wyłącz filtry"
 
-#: includes/Customizer.php:406
+#: includes/Customizer.php:413
 msgid "Restrict guest upvoting"
 msgstr "Pozwól na głosowanie tylko zalogowanym"
 
-#: includes/Customizer.php:413 templates/partials/filters.php:82
+#: includes/Customizer.php:420 templates/partials/filters.php:82
 msgid "Sort by"
 msgstr "Sortuj"
 
-#: includes/Customizer.php:416 templates/partials/filters.php:35
+#: includes/Customizer.php:423 templates/partials/filters.php:35
 #: templates/partials/filters.php:40
 msgid "Date"
 msgstr "Data"
 
-#: includes/Customizer.php:418 includes/Settings.php:124
-#: templates/partials/filters.php:58 templates/partials/post-stats.php:55
+#: includes/Customizer.php:425 includes/Settings/Faker.php:127
+#: templates/partials/filters.php:58 templates/partials/stats/views.php:2
 msgid "Views"
 msgstr "Wizyty"
 
-#: includes/Customizer.php:419 includes/Settings.php:108
-#: templates/partials/filters.php:66 templates/partials/post-stats.php:14
+#: includes/Customizer.php:426 includes/Settings/Faker.php:111
+#: templates/partials/filters.php:66 templates/partials/stats/upvotes.php:11
 msgid "Upvotes"
 msgstr "Głosy"
 
-#: includes/Customizer.php:420 templates/partials/filters.php:74
-#: templates/partials/post-stats.php:66
+#: includes/Customizer.php:427 templates/partials/filters.php:74
+#: templates/partials/stats/ratings.php:5
 msgid "Ratings"
 msgstr "Oceny"
 
-#: includes/Customizer.php:426
+#: includes/Customizer.php:433
 msgid "Sort order"
 msgstr "Kierunek sortowania"
 
-#: includes/Customizer.php:429
+#: includes/Customizer.php:436
 msgid "Ascending"
 msgstr "Rosnąco"
 
-#: includes/Customizer.php:430
+#: includes/Customizer.php:437
 msgid "Descending"
 msgstr "Malejąco"
 
-#: includes/Customizer.php:437 includes/Setup.php:143
+#: includes/Customizer.php:444 includes/Setup.php:139
 #: templates/sections/collections.php:17
 msgid "Collections"
 msgstr "Kolekcje"
 
-#: includes/Customizer.php:443
+#: includes/Customizer.php:450
 msgid "Display collections as"
 msgstr "Wyświetlaj kolekcje jako"
 
-#: includes/Customizer.php:454
+#: includes/Customizer.php:461
 msgid "Disable collection thumbs"
 msgstr "Wyłącz miniaturki dla kolekcji"
 
-#: includes/Customizer.php:460
+#: includes/Customizer.php:467
 msgid "Disable collection stats"
 msgstr "Wyłącz statystyki kolekcji"
 
-#: includes/Customizer.php:467
+#: includes/Customizer.php:474
 msgid "Submissions"
 msgstr "Zgłoszenia"
 
-#: includes/Customizer.php:473
+#: includes/Customizer.php:480
 msgid "Disable user submissions"
 msgstr "Wyłącz możliwość zgłaszania materiałów"
 
-#: includes/Customizer.php:479
+#: includes/Customizer.php:486
 msgid "Inform me about new submissions"
 msgstr "Informuj mnie o nowych zgłoszeniach"
 
-#: includes/Customizer.php:485
+#: includes/Customizer.php:492
 msgid "Disable asking for submitter info"
 msgstr "Nie pytaj zgłaszającego o imię/email"
 
-#: includes/Customizer.php:491
+#: includes/Customizer.php:498
 msgid "Disable image auto-fetching"
 msgstr "Wyłącz automatyczne zaciąganie miniaturek"
 
-#: includes/Customizer.php:497
+#: includes/Customizer.php:504
 msgid "Submit form page"
 msgstr "Strona z formularzem zgłoszeń"
 
-#: includes/Customizer.php:498
+#: includes/Customizer.php:505
 msgid ""
 "Select one if you want to display the submit form on a standard page instead "
 "of in a popup. Make sure to put [chipmunk-submit] shortode on the page."
@@ -451,23 +665,23 @@ msgstr ""
 "Select one if you want to display the submit form on a standard page instead "
 "of in a popup. Make sure to put [chipmunk-submit] shortode on the page."
 
-#: includes/Customizer.php:503
+#: includes/Customizer.php:510
 msgid "Submission tagline"
 msgstr "Opis dla zgłaszających"
 
-#: includes/Customizer.php:504
+#: includes/Customizer.php:511
 msgid "Internet is huge! Help us find great content"
 msgstr "Pomoż nam znaleźć wartościowe treści"
 
-#: includes/Customizer.php:509
+#: includes/Customizer.php:516
 msgid "Submission consent"
 msgstr "Zgody zgłoszenia"
 
-#: includes/Customizer.php:514
+#: includes/Customizer.php:521
 msgid "Submission \"Thank You\" message"
 msgstr "Tekst podziękowania za zgłoszenie"
 
-#: includes/Customizer.php:515
+#: includes/Customizer.php:522
 msgid ""
 "Thank you for your contribution. The submission was sent to the website "
 "owners for review."
@@ -475,128 +689,124 @@ msgstr ""
 "Dziękujemy za Twoje zgłoszenie. Informacje zostały przekazane do właścicieli "
 "strony to przeglądu."
 
-#: includes/Customizer.php:520
+#: includes/Customizer.php:527
 msgid "Submission \"Failure\" message"
 msgstr "Tekst błędu podczas zgłoszenia"
 
-#: includes/Customizer.php:521
+#: includes/Customizer.php:528
 msgid "Your submission could not be processed."
 msgstr "Twoje zgłoszenie nie zostało wysłane. Prosimy spróbować ponownie."
 
-#: includes/Customizer.php:527 templates/sections/loop-post.php:24
+#: includes/Customizer.php:534 templates/sections/loop-post.php:24
 msgid "Blog"
 msgstr "Blog"
 
-#: includes/Customizer.php:533
+#: includes/Customizer.php:540
 msgid "Blog list layout"
 msgstr "Układ listy postów"
 
-#: includes/Customizer.php:536
+#: includes/Customizer.php:543
 msgid "Tiles"
 msgstr "Kafelki"
 
-#: includes/Customizer.php:537
+#: includes/Customizer.php:544
 msgid "Excerpts"
 msgstr "Zajawki"
 
-#: includes/Customizer.php:538
+#: includes/Customizer.php:545
 msgid "Mixed"
 msgstr "Mieszane"
 
-#: includes/Customizer.php:544
+#: includes/Customizer.php:551
 msgid "Blog post layout"
 msgstr "Blog post layout"
 
-#: includes/Customizer.php:547
+#: includes/Customizer.php:554
 msgid "Hero"
 msgstr "Baner"
 
-#: includes/Customizer.php:548
+#: includes/Customizer.php:555
 msgid "No Hero"
 msgstr "Bez banera"
 
-#: includes/Customizer.php:554
+#: includes/Customizer.php:561
 msgid "Number of blog posts per page"
 msgstr "Liczba postów na stronę"
 
-#: includes/Customizer.php:560
-msgid "Disable post sharing"
-msgstr "Wyłącz udostępnianie postów"
+#: includes/Customizer.php:567
+msgid "Blog post image aspect ratio"
+msgstr "Współczynnik proporcji obrazu postów"
 
-#: includes/Customizer.php:566
-msgid "Disable post tags"
-msgstr "Wyłącz tagi dla postów"
+#: includes/Customizer.php:581
+msgid "Disable author"
+msgstr "Wyłącz linki do autorów"
 
-#: includes/Customizer.php:572
-msgid "Disable post date"
-msgstr "Wyłącz datowanie postów"
-
-#: includes/Customizer.php:585
+#: includes/Customizer.php:618
 msgid "Pagination"
 msgstr "Stronicowanie"
 
-#: includes/Customizer.php:591
+#: includes/Customizer.php:624
 msgid "Pagination type"
 msgstr "Typ stronicowania"
 
-#: includes/Customizer.php:594
+#: includes/Customizer.php:627
 msgid "Standard"
 msgstr "Domyślne"
 
-#: includes/Customizer.php:595
+#: includes/Customizer.php:628
 msgid "Load More"
 msgstr "Załaduj więcej"
 
-#: includes/Customizer.php:596
+#: includes/Customizer.php:629
 msgid "Infinite scroll"
 msgstr "Nieskończone przewijanie"
 
-#: includes/Customizer.php:603
+#: includes/Customizer.php:636
 msgid "Social Profiles"
 msgstr "Profile Social Media"
 
-#: includes/Customizer.php:609
+#: includes/Customizer.php:642
 msgid "ReCaptcha"
 msgstr "ReCaptcha"
 
-#: includes/Customizer.php:615
+#: includes/Customizer.php:648
 msgid "Enable reCAPTCHA"
 msgstr "Włącz reCAPTCHA"
 
-#: includes/Customizer.php:621
+#: includes/Customizer.php:654
 msgid "reCAPTCHA Site key"
 msgstr "reCAPTCHA Site key"
 
-#: includes/Customizer.php:622 includes/Customizer.php:628
+#: includes/Customizer.php:655 includes/Customizer.php:661
 #, php-format
 msgid "Register at <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 msgstr "Zarejestruj się na <a href=\"%1$s\" target=\"_blank\">reCAPTCHA</a>."
 
-#: includes/Customizer.php:627
+#: includes/Customizer.php:660
 msgid "reCAPTCHA Secret key"
 msgstr "reCAPTCHA Secret key"
 
-#: includes/Customizer.php:634
+#: includes/Customizer.php:667
 msgid "Ads"
 msgstr "Reklamy"
 
-#: includes/Customizer.php:640
+#: includes/Customizer.php:673
 msgid "Disable ads"
 msgstr "Wyłącz reklamy"
 
-#: includes/Customizer.php:646
+#: includes/Customizer.php:679
 msgid "Show ads only on homepage"
 msgstr "Pokazuj reklamy tylko na stronie głównej"
 
-#: includes/Customizer.php:652
+#: includes/Customizer.php:685
 msgid "Ad link URL"
 msgstr "Dodaj adres URL"
 
-#: includes/Customizer.php:657
+#: includes/Customizer.php:690
 msgid "Ad image (Desktop)"
 msgstr "Obrazek reklamy (na komputer)"
 
-#: includes/Customizer.php:658 includes/Customizer.php:664
+#: includes/Customizer.php:691 includes/Customizer.php:697
 #, php-format
 msgid ""
 "We recommend using a rectangle horizontal image that is at least %1$d pixels "
@@ -605,15 +815,15 @@ msgstr ""
 "Polecamy użyć prostokątnego obrazka w poziomie o minimalnej szrokości %1$d "
 "pikseli."
 
-#: includes/Customizer.php:663
+#: includes/Customizer.php:696
 msgid "Ad image (Tablet)"
 msgstr "Obrazek reklamy (na tablet)"
 
-#: includes/Customizer.php:669
+#: includes/Customizer.php:702
 msgid "Ad image (Mobile)"
 msgstr "Obrazek reklamy (na telefon)"
 
-#: includes/Customizer.php:670
+#: includes/Customizer.php:703
 #, php-format
 msgid ""
 "We recommend using a rectangle vertical image that is at least %1$d pixels "
@@ -622,11 +832,11 @@ msgstr ""
 "Polecamy użyć prostokątnego obrazka w pionie o minimalnej szrokości %1$d "
 "pikseli."
 
-#: includes/Customizer.php:675
+#: includes/Customizer.php:708
 msgid "Ad HTML code"
 msgstr "Dodaj kod HTML"
 
-#: includes/Customizer.php:676
+#: includes/Customizer.php:709
 msgid ""
 "Insert your Google AdSense (or other) generated HTML code to display ads in "
 "designated areas."
@@ -634,19 +844,19 @@ msgstr ""
 "Wklej tutaj swój wygenerowany kod HTML z Google AdSense (lub podobnych) aby "
 "wyświetlić dynamiczne reklamy w wyznaczonych miejscach."
 
-#: includes/Customizer.php:682 templates/partials/newsletter.php:28
+#: includes/Customizer.php:715 templates/partials/newsletter.php:28
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: includes/Customizer.php:688
+#: includes/Customizer.php:721
 msgid "Disable newsletter"
 msgstr "Wyłącz newsletter"
 
-#: includes/Customizer.php:694
+#: includes/Customizer.php:727
 msgid "Form action URL"
 msgstr "Adres URL akcji"
 
-#: includes/Customizer.php:695
+#: includes/Customizer.php:728
 #, php-format
 msgid ""
 "We support Mailchimp, ConvertKit, Revue and AWeber. <a href=\"%1$s\" target="
@@ -655,49 +865,49 @@ msgstr ""
 "Obsługujemy Mailchimp, ConvertKit, Revue i AWeber. <a href=\"%1$s\" target="
 "\"_blank\">Dowiedz się, jak znaleźć adres URL</a>."
 
-#: includes/Customizer.php:700
+#: includes/Customizer.php:733
 msgid "Newsletter tagline"
 msgstr "Opis newslettera"
 
-#: includes/Customizer.php:701
+#: includes/Customizer.php:734
 msgid "Never miss a thing! Sign up for our newsletter to stay updated."
 msgstr ""
 "Nigdy nie przegap nowych materiałów! Zapisz się do newslettera i zostań w "
 "kontakcie."
 
-#: includes/Customizer.php:706
+#: includes/Customizer.php:739
 msgid "Newsletter consent"
 msgstr "Zgody newslettera"
 
-#: includes/Customizer.php:712
+#: includes/Customizer.php:745
 msgid "Theme Options"
 msgstr "Ustawienia motywu"
 
-#: includes/Customizer.php:718
+#: includes/Customizer.php:751
 msgid "Disable theme credits"
 msgstr "Wyłącz informację o szablonie"
 
-#: includes/Customizer.php:724
+#: includes/Customizer.php:757
 msgid "Disable search"
 msgstr "Wyłącz wyszukiwawnie"
 
-#: includes/Customizer.php:730
+#: includes/Customizer.php:763
 msgid "Disable \"ref\" attribute"
 msgstr "Wyłącz atrybut \"ref\""
 
-#: includes/Customizer.php:736
+#: includes/Customizer.php:769
 msgid "Disable \"nofollow\" attribute"
 msgstr "Disable \"nofollow\" attribute"
 
-#: includes/Customizer.php:742
+#: includes/Customizer.php:775
 msgid "Disable cookies"
 msgstr "Wyłącz ciasteczka"
 
-#: includes/Customizer.php:748
+#: includes/Customizer.php:781
 msgid "About copy (footer)"
 msgstr "O Nas (stopka)"
 
-#: includes/Customizer.php:750
+#: includes/Customizer.php:783
 msgid ""
 "Enter your site's description displayed in the footer section. You can use "
 "basic HTML tags here (<p>, <a>, <strong>, <i>)."
@@ -705,11 +915,11 @@ msgstr ""
 "Podaj opis swojej strony wyświetlany w stopce. Możesz używać podstawowych "
 "tagów HTML (<p>, <a>, <strong>, <i>)."
 
-#: includes/Customizer.php:755
+#: includes/Customizer.php:788
 msgid "Copyright text"
 msgstr "Tekst dotyczący praw autorskich"
 
-#: includes/Customizer.php:756
+#: includes/Customizer.php:789
 #, php-format
 msgid "&copy; %1$s %2$s"
 msgstr "&copy; %1$s %2$s"
@@ -723,16 +933,9 @@ msgid "Bookmark"
 msgstr "Dodaj zakładkę"
 
 #: includes/Extensions/Bookmarks.php:103
+#: templates/addons/members/dashboard.php:27
 msgid "Bookmarked"
 msgstr "W zakładkach"
-
-#: includes/Extensions/Bookmarks.php:116 includes/Extensions/Upvotes.php:141
-msgid "Not permitted."
-msgstr "Brak dostępu."
-
-#: includes/Extensions/Submissions.php:48
-msgid "Please verify that you are not a robot."
-msgstr "Zweryfikuj, że nie jesteś robotem."
 
 #: includes/Extensions/Submissions.php:53
 msgid "Please fill out required fields."
@@ -755,173 +958,470 @@ msgstr "Remove upvote"
 msgid "Upvote"
 msgstr "Zagłosuj"
 
-#: includes/Helpers.php:78
-#, php-format
-msgid "Error locating %s for inclusion"
-msgstr "Błąd podczas ładowania %s"
-
-#: includes/Helpers.php:103
+#: includes/Helpers.php:84
 #, php-format
 msgid "Chipmunk requires PHP %1$s or greater. You have %2$s."
 msgstr "Chipmunk wymaga PHP %1$s lub nowszego. Ty posiadasz %2$s."
 
-#: includes/Helpers.php:111
+#: includes/Helpers.php:95
 #, php-format
 msgid "Chipmunk requires WordPress %1$s or greater. You have %2$s."
 msgstr "Chipmunk wymaga WordPress %1$s lub nowszego. Ty posiadasz %2$s."
 
-#: includes/Helpers.php:232
+#: includes/Helpers.php:217
 #, php-format
 msgid "%s on %s"
 msgstr "%s » %s"
 
-#: includes/Helpers.php:526
+#: includes/Helpers.php:424
 msgid "Reply"
 msgstr "Odpowiedz"
 
-#: includes/Helpers.php:530
+#: includes/Helpers.php:428
 msgid "Your comment is awaiting moderation."
 msgstr "Twój komentarz czeka na zatwierdzenie."
 
-#: includes/Plugins/ACF.php:44 includes/Setup.php:118 includes/Setup.php:120
+#: includes/Settings.php:83
+#, php-format
+msgid "%s License"
+msgstr "Licencja %s"
+
+#: includes/Settings/Addons.php:94 templates/sections/entry-resource.php:82
+#: templates/sections/excerpt-post.php:19 templates/sections/tile-post.php:39
+msgid "Read more"
+msgstr "Czytaj więcej"
+
+#: includes/Settings/Addons.php:99
+msgid "Please use a valid license to enable."
+msgstr "Użyj ważnej licencji, aby włączyć."
+
+#: includes/Settings/Addons.php:103
+msgid "Upgrade now"
+msgstr "Zmień plan"
+
+#: includes/Settings/Addons.php:104
+#, php-format
+msgid "Available in the %s plan."
+msgstr "Dostępne w planie %s."
+
+#: includes/Settings/Addons.php:109
+#, php-format
+msgid "Enable %s Addon"
+msgstr "Włącz addon %s"
+
+#: includes/Settings/Faker.php:59
+msgid "You need to provide both values for the range!"
+msgstr "Musisz podać obie wartości dla zakresu!"
+
+#: includes/Settings/Faker.php:79
+msgid "Fake counters successfully generated!"
+msgstr "Fałszywe liczniki zostały wygenerowane"
+
+#: includes/Settings/Faker.php:102
+msgid "Fake counter generators"
+msgstr "Generator fałszywych liczników"
+
+#: includes/Settings/Faker.php:105
+msgid "Adds fake values for your upvote or view counters."
+msgstr "Dodaje fałszywe wartości do liczników głosów poparcia lub widoku."
+
+#: includes/Settings/Faker.php:115 includes/Settings/Faker.php:131
+#: includes/Vendors/Merlin.php:44
+msgid "Start"
+msgstr "Start"
+
+#: includes/Settings/Faker.php:116 includes/Settings/Faker.php:132
+msgid "End"
+msgstr "Koniec"
+
+#: includes/Settings/Faker.php:117 includes/Settings/Faker.php:133
+msgid "Generate"
+msgstr "Generuj"
+
+#: includes/Settings/Faker.php:121 includes/Settings/Faker.php:137
+#, php-format
+msgid "Pick a range to generate %1$s from."
+msgstr "Wybierz zakres, z którego chcesz wygenerować %1$s."
+
+#: includes/Settings/Faker.php:121
+msgid "upvotes"
+msgstr "głosy"
+
+#: includes/Settings/Faker.php:137
+msgid "views"
+msgstr "odwiedziny"
+
+#: includes/Settings/Licenser.php:51
+msgid "To receive updates, please enter your valid license key."
+msgstr "Proszę wpisać poprawny klucz licencyjny, aby otrzymywać aktualizacje."
+
+#: includes/Settings/Licenser.php:52
+msgid "License Key"
+msgstr "Klucz licencyjny"
+
+#: includes/Settings/Licenser.php:53
+msgid "License Action"
+msgstr "Akcja licencji"
+
+#: includes/Settings/Licenser.php:54
+msgid "Deactivate License"
+msgstr "Deaktywuj licencję"
+
+#: includes/Settings/Licenser.php:55
+msgid "Activate License"
+msgstr "Aktywuj licencję"
+
+#: includes/Settings/Licenser.php:56 includes/Settings/Licenser.php:69
+msgid "License status is unknown."
+msgstr "Status licencj jest nieznany."
+
+#: includes/Settings/Licenser.php:57
+msgid "Renew?"
+msgstr "Odnowić?"
+
+#: includes/Settings/Licenser.php:58
+msgid "unlimited"
+msgstr "nielimitowany"
+
+#: includes/Settings/Licenser.php:59
+msgid "License key is active."
+msgstr "Klucz licencyjny jest aktywny."
+
+#: includes/Settings/Licenser.php:60
+#, php-format
+msgid "Expires %s."
+msgstr "Wygasa: %s."
+
+#: includes/Settings/Licenser.php:61
+#, php-format
+msgid "You have %1$s / %2$s sites activated."
+msgstr "Masz %1$s / %2$s witryny aktywowane."
+
+#: includes/Settings/Licenser.php:62
+#, php-format
+msgid "License key expired %s."
+msgstr "License key expired %s."
+
+#: includes/Settings/Licenser.php:63
+msgid "License key has expired."
+msgstr "Klucz licencyjny wygasł."
+
+#: includes/Settings/Licenser.php:64
+msgid "License keys do not match."
+msgstr "Klucz licencji jest niepoprawny."
+
+#: includes/Settings/Licenser.php:65
+msgid "License is invalid."
+msgstr "Licencja jest nieprawidłowa."
+
+#: includes/Settings/Licenser.php:66
+msgid "License is inactive."
+msgstr "Licencja jest nieaktywna."
+
+#: includes/Settings/Licenser.php:67
+msgid "License key is disabled."
+msgstr "Klucz licencyjny jest wyłączony."
+
+#: includes/Settings/Licenser.php:68
+msgid "Site is inactive."
+msgstr "Strona jest nieaktywna."
+
+#: includes/Settings/Licenser.php:74
+#, php-format
+msgid "Your license key expired on %s."
+msgstr "Klucz licencyjny wygasł %s."
+
+#: includes/Settings/Licenser.php:75
+msgid "Your license key has been disabled."
+msgstr "Klucz licencji został dezaktywowany."
+
+#: includes/Settings/Licenser.php:76 includes/Settings/Licenser.php:77
+msgid "Your license key is invalid."
+msgstr "Klucz licencji jest nieprawidłowy."
+
+#: includes/Settings/Licenser.php:78
+#, php-format
+msgid "This appears to be an invalid license key for %s."
+msgstr "Wygląda na to, że to jest nieprawidłowy klucz licencyjny dla %s."
+
+#: includes/Settings/Licenser.php:79
+msgid "Your license key has reached its activation limit."
+msgstr "Twój klucz licencyjny osiągnął limit aktywacji."
+
+#: includes/Settings/Licenser.php:80
+msgid "An error occurred, please try again."
+msgstr "Wystąpił błąd, spróbuj ponownie."
+
+#: includes/Setup.php:63
+msgid "Black"
+msgstr "Czarny"
+
+#: includes/Setup.php:68
+msgid "Gray"
+msgstr "Szary"
+
+#: includes/Setup.php:73
+msgid "White"
+msgstr "Biały"
+
+#: includes/Setup.php:86
+msgid "Small"
+msgstr "Mały"
+
+#: includes/Setup.php:96
+msgid "Medium"
+msgstr "Średni"
+
+#: includes/Setup.php:101
+msgid "Large"
+msgstr "Duży"
+
+#: includes/Setup.php:106
+msgid "Huge"
+msgstr "Ogromny"
+
+#: includes/Setup.php:114 includes/Setup.php:116 includes/Vendors/ACF.php:44
 msgid "Resource"
 msgstr "Materiał"
 
-#: includes/Plugins/ACF.php:55
-msgid "Featured on homepage"
-msgstr "Promowany na stronie głównej"
+#: includes/Setup.php:124
+msgid "Add New Resource"
+msgstr "Dodaj Nowy Materiał"
 
-#: includes/Plugins/ACF.php:62
-msgid "Links"
-msgstr "Linki"
+#: includes/Setup.php:125
+msgid "Edit Resource"
+msgstr "Edytuj Materiał"
 
-#: includes/Plugins/ACF.php:66
-msgid "Add link"
-msgstr "Dodaj link"
+#: includes/Setup.php:126
+msgid "New Resource"
+msgstr "Nowy Materiał"
 
-#: includes/Plugins/ACF.php:70
-msgid "Link"
-msgstr "Link"
+#: includes/Setup.php:127
+msgid "View Resource"
+msgstr "Zobacz Materiał"
 
-#: includes/Plugins/ACF.php:78
-msgid "Website"
-msgstr "Strona WWW"
+#: includes/Setup.php:128
+msgid "All Resources"
+msgstr "Wszystkie Materiały"
 
-#: includes/Plugins/ACF.php:81
-msgid "Deprecated. Please use \"Links\" functionality above."
-msgstr "Przestarzałe. Skorzystaj z funkcji \"Linki\" powyżej."
+#: includes/Setup.php:129
+msgid "Search Resources"
+msgstr "Szukaj Materiałów"
 
-#: includes/Plugins/ACF.php:85
-msgid "Submitter"
-msgstr "Zgłaszający"
+#: includes/Setup.php:130
+msgid "No Resources found."
+msgstr "Nie znaleziono materiałów."
 
-#: includes/Plugins/ACF.php:88
-msgid "Read only, will contain the email of resource submitter."
-msgstr "Tylko do odczytu, będzie zawierać adres e-mail przesyłającego zasoby."
+#: includes/Setup.php:131
+msgid "No Resources found in trash."
+msgstr "Nie znaleziono materiałów w koszu."
 
-#: includes/Plugins/ACF.php:97 includes/Setup.php:142 includes/Setup.php:145
+#: includes/Setup.php:138 includes/Setup.php:141 includes/Vendors/ACF.php:97
 #: templates/emails/submission.php:9 templates/sections/submit.php:26
 msgid "Collection"
 msgstr "Kolekcja"
 
-#: includes/Plugins/ACF.php:108
+#: includes/Setup.php:145
+msgid "Add Collection"
+msgstr "Dodaj Kolekcję"
+
+#: includes/Setup.php:146
+msgid "New Collection Name"
+msgstr "Nazwa Nowej Kolekcji"
+
+#: includes/Setup.php:147
+msgid "Edit Collection"
+msgstr "Edytuj Kolekcję"
+
+#: includes/Setup.php:148
+msgid "Update Collection"
+msgstr "Zaktualizuj Kolekcję"
+
+#: includes/Setup.php:149
+msgid "Parent Collection"
+msgstr "Kolekcja Rodzica"
+
+#: includes/Setup.php:150
+msgid "Parent Collection:"
+msgstr "Kolekcja Rodzica:"
+
+#: includes/Setup.php:151
+msgid "All Collections"
+msgstr "Wszystkie Kolekcje"
+
+#: includes/Setup.php:152
+msgid "Search Collections"
+msgstr "Szukaj Kolekcji"
+
+#: includes/Setup.php:157
+msgid "Tag"
+msgstr "Tag"
+
+#: includes/Setup.php:158
+msgid "Tags"
+msgstr "Tags"
+
+#: includes/Setup.php:160
+msgid "Resource Tag"
+msgstr "Tag materiału"
+
+#: includes/Setup.php:163
+msgid "Add Tag"
+msgstr "Dodaj Tag"
+
+#: includes/Setup.php:164
+msgid "New Tag Name"
+msgstr "New Tag Name"
+
+#: includes/Setup.php:165
+msgid "Edit Tag"
+msgstr "Edit Tag"
+
+#: includes/Setup.php:166
+msgid "Update Tag"
+msgstr "Update Tag"
+
+#: includes/Setup.php:167
+msgid "Parent Tag"
+msgstr "Parent Tag"
+
+#: includes/Setup.php:168
+msgid "Parent Tag:"
+msgstr "Parent Tag:"
+
+#: includes/Setup.php:169
+msgid "All Tags"
+msgstr "All Tags"
+
+#: includes/Setup.php:170
+msgid "Search Tags"
+msgstr "Search Tags"
+
+#: includes/Vendors/ACF.php:55
+msgid "Featured on homepage"
+msgstr "Promowany na stronie głównej"
+
+#: includes/Vendors/ACF.php:62
+msgid "Links"
+msgstr "Linki"
+
+#: includes/Vendors/ACF.php:66
+msgid "Add link"
+msgstr "Dodaj link"
+
+#: includes/Vendors/ACF.php:70
+msgid "Link"
+msgstr "Link"
+
+#: includes/Vendors/ACF.php:78 templates/addons/members/profile-form.php:27
+msgid "Website"
+msgstr "Strona WWW"
+
+#: includes/Vendors/ACF.php:81
+msgid "Deprecated. Please use \"Links\" functionality above."
+msgstr "Przestarzałe. Skorzystaj z funkcji \"Linki\" powyżej."
+
+#: includes/Vendors/ACF.php:85
+msgid "Submitter"
+msgstr "Zgłaszający"
+
+#: includes/Vendors/ACF.php:88
+msgid "Read only, will contain the email of resource submitter."
+msgstr "Tylko do odczytu, będzie zawierać adres e-mail przesyłającego zasoby."
+
+#: includes/Vendors/ACF.php:108
 msgid "Image"
 msgstr "Obrazek"
 
-#: includes/Plugins/Merlin.php:39
+#: includes/Vendors/Merlin.php:35
 msgid "Theme Setup"
 msgstr "Konfiguracja motywu"
 
-#: includes/Plugins/Merlin.php:42
+#: includes/Vendors/Merlin.php:38
 #, php-format
 msgid "%1$s%2$s Theme wizard &lsaquo; Theme Setup: %3$s%4$s"
 msgstr "%1$s %2$s Samouczek &lsaquo; Konfiguracja motywu: %3$s%4$s"
 
-#: includes/Plugins/Merlin.php:43
+#: includes/Vendors/Merlin.php:39
 msgid "Return to the dashboard"
 msgstr "Wróć do kokpitu"
 
-#: includes/Plugins/Merlin.php:44
+#: includes/Vendors/Merlin.php:40
 msgid "Disable this wizard"
 msgstr "Wyłącz samouczek"
 
-#: includes/Plugins/Merlin.php:46
+#: includes/Vendors/Merlin.php:42
 msgid "Skip"
 msgstr "Pomiń"
 
-#: includes/Plugins/Merlin.php:47 templates/sections/pagination.php:22
+#: includes/Vendors/Merlin.php:43 templates/sections/pagination.php:22
 msgid "Next"
 msgstr "Następne"
 
-#: includes/Plugins/Merlin.php:48 includes/Settings.php:112
-#: includes/Settings.php:128
-msgid "Start"
-msgstr "Start"
-
-#: includes/Plugins/Merlin.php:49
+#: includes/Vendors/Merlin.php:45
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: includes/Plugins/Merlin.php:50 includes/Plugins/Merlin.php:51
-#: includes/Plugins/Merlin.php:52
+#: includes/Vendors/Merlin.php:46 includes/Vendors/Merlin.php:47
+#: includes/Vendors/Merlin.php:48
 msgid "Install"
 msgstr "Instaluj"
 
-#: includes/Plugins/Merlin.php:53
+#: includes/Vendors/Merlin.php:49
 msgid "Import"
 msgstr "Importuj"
 
-#: includes/Plugins/Merlin.php:54
+#: includes/Vendors/Merlin.php:50
 msgid "Activate"
 msgstr "Aktywuj"
 
-#: includes/Plugins/Merlin.php:55
+#: includes/Vendors/Merlin.php:51
 msgid "Later"
 msgstr "Później"
 
-#: includes/Plugins/Merlin.php:58
+#: includes/Vendors/Merlin.php:54
 #, php-format
 msgid "Activate %s"
 msgstr "Aktywuj %s"
 
-#: includes/Plugins/Merlin.php:60
+#: includes/Vendors/Merlin.php:56
 #, php-format
 msgid "%s is Activated"
 msgstr "%s jest aktywowany"
 
-#: includes/Plugins/Merlin.php:62
+#: includes/Vendors/Merlin.php:58
 msgid "Enter your license key to enable remote updates and theme support."
 msgstr ""
 "Wprowadź klucz licencyjny, aby włączyć zdalne aktualizacje i obsługę motywu."
 
-#: includes/Plugins/Merlin.php:63
+#: includes/Vendors/Merlin.php:59
 msgid "License key"
 msgstr "Klucz licencji"
 
-#: includes/Plugins/Merlin.php:64
+#: includes/Vendors/Merlin.php:60
 msgid "The theme is already registered, so you can go to the next step!"
 msgstr ""
 "Motyw jest już zarejestrowany, więc możesz przejść do następnego kroku!"
 
-#: includes/Plugins/Merlin.php:65
+#: includes/Vendors/Merlin.php:61
 msgid "Your theme is activated! Remote updates and theme support are enabled."
 msgstr ""
 "Twój motyw jest aktywowany! Aktualizacje zdalne i obsługa motywu są włączone."
 
-#: includes/Plugins/Merlin.php:66
+#: includes/Vendors/Merlin.php:62
 msgid "Need help?"
 msgstr "Potrzebujesz pomocy?"
 
-#: includes/Plugins/Merlin.php:69
+#: includes/Vendors/Merlin.php:65
 #, php-format
 msgid "Welcome to %s"
 msgstr "Witamy w %s"
 
-#: includes/Plugins/Merlin.php:70
+#: includes/Vendors/Merlin.php:66
 msgid "Hi. Welcome back"
 msgstr "Cześć. Witamy ponownie"
 
-#: includes/Plugins/Merlin.php:71
+#: includes/Vendors/Merlin.php:67
 msgid ""
 "This wizard will set up your theme, import the demo content and activate the "
 "license. It should only take a few minutes."
@@ -929,7 +1429,7 @@ msgstr ""
 "Ten kreator skonfiguruje Twój motyw, zaimportuje zawartość demonstracyjną i "
 "aktywuje licencję. Powinno to zająć tylko kilka minut."
 
-#: includes/Plugins/Merlin.php:72
+#: includes/Vendors/Merlin.php:68
 msgid ""
 "You may have already run this theme setup wizard. If you would like to "
 "proceed anyway, click on the \"Start\" button below."
@@ -937,21 +1437,21 @@ msgstr ""
 "Być może ten kreator konfiguracji motywu został już uruchomiony. Jeśli mimo "
 "to chcesz kontynuować, kliknij przycisk \"Start\" poniżej."
 
-#: includes/Plugins/Merlin.php:74
+#: includes/Vendors/Merlin.php:70
 msgid "Install Child Theme"
 msgstr "Zainstaluj Visual Composer"
 
-#: includes/Plugins/Merlin.php:75
+#: includes/Vendors/Merlin.php:71
 msgid "You're good to go!"
 msgstr "Ok. Możesz zaczynać!"
 
-#: includes/Plugins/Merlin.php:76
+#: includes/Vendors/Merlin.php:72
 msgid ""
 "Let's build & activate a child theme so you may easily make theme changes."
 msgstr ""
 "Zbudujmy i aktywujmy motyw potomny, abyś mógł łatwo wprowadzać zmiany motywu."
 
-#: includes/Plugins/Merlin.php:77
+#: includes/Vendors/Merlin.php:73
 msgid ""
 "Your child theme has already been installed and is now activated, if it "
 "wasn't already."
@@ -959,35 +1459,35 @@ msgstr ""
 "Twój child motyw  został już zainstalowany i jest teraz aktywowany, jeśli "
 "nie był już."
 
-#: includes/Plugins/Merlin.php:78
+#: includes/Vendors/Merlin.php:74
 msgid "Learn about child themes"
 msgstr "Dowiedz się więcej o motywach podrzędnych"
 
-#: includes/Plugins/Merlin.php:79
+#: includes/Vendors/Merlin.php:75
 msgid ""
 "Awesome. Your child theme has already been installed and is now activated."
 msgstr "Niesamowite. Motyw child został już zainstalowany i jest aktywowany."
 
-#: includes/Plugins/Merlin.php:80
+#: includes/Vendors/Merlin.php:76
 msgid "Awesome. Your child theme has been created and is now activated."
 msgstr "Super. Motyw potomny został utworzony i jest teraz aktywowany."
 
-#: includes/Plugins/Merlin.php:82
+#: includes/Vendors/Merlin.php:78
 msgid "Install Plugins"
 msgstr "Zainstaluj wtyczki"
 
-#: includes/Plugins/Merlin.php:83
+#: includes/Vendors/Merlin.php:79
 msgid "You're up to speed!"
 msgstr "Jesteś na bieżąco!"
 
-#: includes/Plugins/Merlin.php:84
+#: includes/Vendors/Merlin.php:80
 msgid ""
 "Let's install some essential WordPress plugins to get your site up to speed."
 msgstr ""
 "Zainstalujmy kilka niezbędnych wtyczek WordPress, aby przyspieszyć działanie "
 "witryny."
 
-#: includes/Plugins/Merlin.php:85
+#: includes/Vendors/Merlin.php:81
 msgid ""
 "The required WordPress plugins are all installed and up to date. Press \"Next"
 "\" to continue the setup wizard."
@@ -995,15 +1495,15 @@ msgstr ""
 "Wymagane wtyczki WordPress są zainstalowane i aktualne. Naciśnij \"Dalej\", "
 "aby kontynuować pracę kreatora konfiguracji."
 
-#: includes/Plugins/Merlin.php:86 includes/Plugins/Merlin.php:90
+#: includes/Vendors/Merlin.php:82 includes/Vendors/Merlin.php:86
 msgid "Advanced"
 msgstr "Zaawansowane"
 
-#: includes/Plugins/Merlin.php:88
+#: includes/Vendors/Merlin.php:84
 msgid "Import Content"
 msgstr "Zawartość importu"
 
-#: includes/Plugins/Merlin.php:89
+#: includes/Vendors/Merlin.php:85
 msgid ""
 "Let's import content to your website, to help you get familiar with the "
 "theme."
@@ -1011,27 +1511,27 @@ msgstr ""
 "Zaimportujmy zawartość do Twojej witryny, aby pomóc Ci zapoznać się z "
 "motywem."
 
-#: includes/Plugins/Merlin.php:92
+#: includes/Vendors/Merlin.php:88
 msgid "All done. Have fun!"
 msgstr "Wszystko zrobione. Baw się dobrze!"
 
-#: includes/Plugins/Merlin.php:95
+#: includes/Vendors/Merlin.php:91
 msgid "Your theme has been all set up. Enjoy your new theme."
 msgstr "Twój motyw został skonfigurowany. Ciesz się nowym motywem."
 
-#: includes/Plugins/Merlin.php:96
+#: includes/Vendors/Merlin.php:92
 msgid "Extras"
 msgstr "Dodatki"
 
-#: includes/Plugins/Merlin.php:97
+#: includes/Vendors/Merlin.php:93
 msgid "View your website"
 msgstr "Wyświetl swoją witrynę"
 
-#: includes/Plugins/Merlin.php:149
+#: includes/Vendors/Merlin.php:146
 msgid "Demo Import"
 msgstr "Import demo"
 
-#: includes/Plugins/ThemeUpdater/Init.php:30
+#: includes/Vendors/ThemeUpdater/Admin.php:33
 msgid ""
 "Updating this theme may lose the customizations you have made directly in "
 "the source code."
@@ -1039,7 +1539,7 @@ msgstr ""
 "Aktualizacja tego motywu może spowodować utratę dostosowań wprowadzonych "
 "bezpośrednio w kodzie źródłowym."
 
-#: includes/Plugins/ThemeUpdater/Init.php:31
+#: includes/Vendors/ThemeUpdater/Admin.php:34
 #, php-format
 msgid ""
 "<strong>%1$s %2$s</strong> is available. <a href=\"%3$s\" class=\"thickbox\" "
@@ -1050,312 +1550,6 @@ msgstr ""
 "\" title=\"%4s\">Wyświetl szczegóły wersji</a> lub <a href=\"%5$s"
 "\"%6$s>aktualizuj teraz</a>."
 
-#: includes/Plugins/ThemeUpdater/Init.php:48
-#: includes/Plugins/ThemeUpdater/Licenser.php:33
-msgid "To receive updates, please enter your valid license key."
-msgstr "Proszę wpisać poprawny klucz licencyjny, aby otrzymywać aktualizacje."
-
-#: includes/Plugins/ThemeUpdater/Init.php:49
-#: includes/Plugins/ThemeUpdater/Licenser.php:34
-msgid "License Key"
-msgstr "Klucz licencyjny"
-
-#: includes/Plugins/ThemeUpdater/Init.php:50
-#: includes/Plugins/ThemeUpdater/Licenser.php:35
-msgid "License Action"
-msgstr "Akcja licencji"
-
-#: includes/Plugins/ThemeUpdater/Init.php:51
-#: includes/Plugins/ThemeUpdater/Licenser.php:36
-msgid "Deactivate License"
-msgstr "Deaktywuj licencję"
-
-#: includes/Plugins/ThemeUpdater/Init.php:52
-#: includes/Plugins/ThemeUpdater/Licenser.php:37
-msgid "Activate License"
-msgstr "Aktywuj licencję"
-
-#: includes/Plugins/ThemeUpdater/Init.php:53
-#: includes/Plugins/ThemeUpdater/Init.php:67
-#: includes/Plugins/ThemeUpdater/Licenser.php:38
-#: includes/Plugins/ThemeUpdater/Licenser.php:52
-msgid "License status is unknown."
-msgstr "Status licencj jest nieznany."
-
-#: includes/Plugins/ThemeUpdater/Init.php:54
-#: includes/Plugins/ThemeUpdater/Licenser.php:39
-msgid "Renew?"
-msgstr "Odnowić?"
-
-#: includes/Plugins/ThemeUpdater/Init.php:55
-#: includes/Plugins/ThemeUpdater/Licenser.php:40
-msgid "unlimited"
-msgstr "nielimitowany"
-
-#: includes/Plugins/ThemeUpdater/Init.php:56
-#: includes/Plugins/ThemeUpdater/Licenser.php:41
-msgid "License key is active."
-msgstr "Klucz licencyjny jest aktywny."
-
-#: includes/Plugins/ThemeUpdater/Init.php:57
-#: includes/Plugins/ThemeUpdater/Licenser.php:42
-#, php-format
-msgid "Expires %s."
-msgstr "Wygasa: %s."
-
-#: includes/Plugins/ThemeUpdater/Init.php:58
-#: includes/Plugins/ThemeUpdater/Licenser.php:43
-msgid "Lifetime License."
-msgstr "Dożywotnia licencja."
-
-#: includes/Plugins/ThemeUpdater/Init.php:59
-#: includes/Plugins/ThemeUpdater/Licenser.php:44
-#, php-format
-msgid "You have %1$s / %2$s sites activated."
-msgstr "Masz %1$s / %2$s witryny aktywowane."
-
-#: includes/Plugins/ThemeUpdater/Init.php:60
-#: includes/Plugins/ThemeUpdater/Licenser.php:45
-#, php-format
-msgid "License key expired %s."
-msgstr "License key expired %s."
-
-#: includes/Plugins/ThemeUpdater/Init.php:61
-#: includes/Plugins/ThemeUpdater/Licenser.php:46
-msgid "License key has expired."
-msgstr "Klucz licencyjny wygasł."
-
-#: includes/Plugins/ThemeUpdater/Init.php:62
-#: includes/Plugins/ThemeUpdater/Licenser.php:47
-msgid "License keys do not match."
-msgstr "Klucz licencji jest niepoprawny."
-
-#: includes/Plugins/ThemeUpdater/Init.php:63
-#: includes/Plugins/ThemeUpdater/Licenser.php:48
-msgid "License is invalid."
-msgstr "Licencja jest nieprawidłowa."
-
-#: includes/Plugins/ThemeUpdater/Init.php:64
-#: includes/Plugins/ThemeUpdater/Licenser.php:49
-msgid "License is inactive."
-msgstr "Licencja jest nieaktywna."
-
-#: includes/Plugins/ThemeUpdater/Init.php:65
-#: includes/Plugins/ThemeUpdater/Licenser.php:50
-msgid "License key is disabled."
-msgstr "Klucz licencyjny jest wyłączony."
-
-#: includes/Plugins/ThemeUpdater/Init.php:66
-#: includes/Plugins/ThemeUpdater/Licenser.php:51
-msgid "Site is inactive."
-msgstr "Strona jest nieaktywna."
-
-#: includes/Plugins/ThemeUpdater/Init.php:72
-#: includes/Plugins/ThemeUpdater/Licenser.php:57
-#, php-format
-msgid "Your license key expired on %s."
-msgstr "Klucz licencyjny wygasł %s."
-
-#: includes/Plugins/ThemeUpdater/Init.php:73
-#: includes/Plugins/ThemeUpdater/Licenser.php:58
-msgid "Your license key has been disabled."
-msgstr "Klucz licencji został dezaktywowany."
-
-#: includes/Plugins/ThemeUpdater/Init.php:74
-#: includes/Plugins/ThemeUpdater/Licenser.php:59
-msgid "Your license is invalid."
-msgstr "Twoja licencja jest nieważna."
-
-#: includes/Plugins/ThemeUpdater/Init.php:75
-#: includes/Plugins/ThemeUpdater/Licenser.php:60
-msgid "Your license is not active for this URL."
-msgstr "Twój klucz licencji nie został aktywowany dla tego adresu URL."
-
-#: includes/Plugins/ThemeUpdater/Init.php:76
-#: includes/Plugins/ThemeUpdater/Licenser.php:61
-#, php-format
-msgid "This appears to be an invalid license key for %s."
-msgstr "Wygląda na to, że to jest nieprawidłowy klucz licencyjny dla %s."
-
-#: includes/Plugins/ThemeUpdater/Init.php:77
-#: includes/Plugins/ThemeUpdater/Licenser.php:62
-msgid "Your license key has reached its activation limit."
-msgstr "Twój klucz licencyjny osiągnął limit aktywacji."
-
-#: includes/Plugins/ThemeUpdater/Init.php:78
-#: includes/Plugins/ThemeUpdater/Licenser.php:63
-msgid "An error occurred, please try again."
-msgstr "Wystąpił błąd, spróbuj ponownie."
-
-#: includes/Settings.php:49 includes/Settings.php:50
-msgid "Licenses"
-msgstr "Licencje"
-
-#: includes/Settings.php:99
-msgid "Fake counter generators"
-msgstr "Fałszywe liczniki generatorów"
-
-#: includes/Settings.php:102
-msgid "Adds fake values for your upvote or view counters."
-msgstr "Dodaje fałszywe wartości do liczników głosów poparcia lub widoku."
-
-#: includes/Settings.php:113 includes/Settings.php:129
-msgid "End"
-msgstr "Koniec"
-
-#: includes/Settings.php:114 includes/Settings.php:130
-msgid "Generate"
-msgstr "Generuj"
-
-#: includes/Settings.php:118 includes/Settings.php:134
-#, php-format
-msgid "Pick a range to generate %1$s from."
-msgstr "Wybierz zakres, z którego chcesz wygenerować %1$s."
-
-#: includes/Settings.php:118
-msgid "upvotes"
-msgstr "głosy"
-
-#: includes/Settings.php:134
-msgid "views"
-msgstr "odwiedziny"
-
-#: includes/Setup.php:67
-msgid "Black"
-msgstr "Czarny"
-
-#: includes/Setup.php:72
-msgid "Gray"
-msgstr "Szary"
-
-#: includes/Setup.php:77
-msgid "White"
-msgstr "Biały"
-
-#: includes/Setup.php:90
-msgid "Small"
-msgstr "Mały"
-
-#: includes/Setup.php:100
-msgid "Medium"
-msgstr "Średni"
-
-#: includes/Setup.php:105
-msgid "Large"
-msgstr "Duży"
-
-#: includes/Setup.php:110
-msgid "Huge"
-msgstr "Ogromny"
-
-#: includes/Setup.php:128
-msgid "Add New Resource"
-msgstr "Dodaj Nowy Materiał"
-
-#: includes/Setup.php:129
-msgid "Edit Resource"
-msgstr "Edytuj Materiał"
-
-#: includes/Setup.php:130
-msgid "New Resource"
-msgstr "Nowy Materiał"
-
-#: includes/Setup.php:131
-msgid "View Resource"
-msgstr "Zobacz Materiał"
-
-#: includes/Setup.php:132
-msgid "All Resources"
-msgstr "Wszystkie Materiały"
-
-#: includes/Setup.php:133
-msgid "Search Resources"
-msgstr "Szukaj Materiałów"
-
-#: includes/Setup.php:134
-msgid "No Resources found."
-msgstr "Nie znaleziono materiałów."
-
-#: includes/Setup.php:135
-msgid "No Resources found in trash."
-msgstr "Nie znaleziono materiałów w koszu."
-
-#: includes/Setup.php:149
-msgid "Add Collection"
-msgstr "Dodaj Kolekcję"
-
-#: includes/Setup.php:150
-msgid "New Collection Name"
-msgstr "Nazwa Nowej Kolekcji"
-
-#: includes/Setup.php:151
-msgid "Edit Collection"
-msgstr "Edytuj Kolekcję"
-
-#: includes/Setup.php:152
-msgid "Update Collection"
-msgstr "Zaktualizuj Kolekcję"
-
-#: includes/Setup.php:153
-msgid "Parent Collection"
-msgstr "Kolekcja Rodzica"
-
-#: includes/Setup.php:154
-msgid "Parent Collection:"
-msgstr "Kolekcja Rodzica:"
-
-#: includes/Setup.php:155
-msgid "All Collections"
-msgstr "Wszystkie Kolekcje"
-
-#: includes/Setup.php:156
-msgid "Search Collections"
-msgstr "Szukaj Kolekcji"
-
-#: includes/Setup.php:161
-msgid "Tag"
-msgstr "Tag"
-
-#: includes/Setup.php:162
-msgid "Tags"
-msgstr "Tags"
-
-#: includes/Setup.php:164
-msgid "Resource Tag"
-msgstr "Tag materiału"
-
-#: includes/Setup.php:167
-msgid "Add Tag"
-msgstr "Dodaj Tag"
-
-#: includes/Setup.php:168
-msgid "New Tag Name"
-msgstr "New Tag Name"
-
-#: includes/Setup.php:169
-msgid "Edit Tag"
-msgstr "Edit Tag"
-
-#: includes/Setup.php:170
-msgid "Update Tag"
-msgstr "Update Tag"
-
-#: includes/Setup.php:171
-msgid "Parent Tag"
-msgstr "Parent Tag"
-
-#: includes/Setup.php:172
-msgid "Parent Tag:"
-msgstr "Parent Tag:"
-
-#: includes/Setup.php:173
-msgid "All Tags"
-msgstr "All Tags"
-
-#: includes/Setup.php:174
-msgid "Search Tags"
-msgstr "Search Tags"
-
 #: search.php:20
 msgid "Search results for:"
 msgstr "Wyniki wyszukiwania dla:"
@@ -1364,9 +1558,106 @@ msgstr "Wyniki wyszukiwania dla:"
 msgid "Sorry, your search did not match any resources."
 msgstr "Przepraszamy, nie udało nam się znaleźć żadnych pasujących materiałów."
 
-#: taxonomy.php:39 templates/sections/loop-resource.php:33
+#: taxonomy.php:38 templates/addons/members/dashboard/bookmarked.php:24
+#: templates/addons/members/dashboard/submitted.php:18
+#: templates/addons/members/dashboard/upvoted.php:24
+#: templates/sections/loop-resource.php:31
 msgid "Sorry, there are no resources to display yet."
 msgstr "Brak materiałów do wyświetlenia."
+
+#: templates/addons/members/dashboard.php:21
+msgid "Upvoted"
+msgstr "Zagłosowane"
+
+#: templates/addons/members/dashboard.php:33
+msgid "Submitted"
+msgstr "Zgłaszający"
+
+#: templates/addons/members/login-form.php:15
+#: templates/addons/members/lost-password-form.php:19
+msgid "Username or Email Address"
+msgstr "Nazwa użytkownika lub e-mail"
+
+#: templates/addons/members/login-form.php:19
+#: templates/addons/members/register-form.php:23
+msgid "Password"
+msgstr "Hasło"
+
+#: templates/addons/members/login-form.php:25
+msgid "Remember me"
+msgstr "Zapamiętaj mnie"
+
+#: templates/addons/members/login-form.php:30
+msgid "Forgot your password?"
+msgstr "Zapomniałeś hasła?"
+
+#: templates/addons/members/login-form.php:35
+msgid "Register an account"
+msgstr "Zarejestruj konto"
+
+#: templates/addons/members/lost-password-form.php:15
+msgid ""
+"Enter your username or email address and we'll send you a link you can use "
+"to pick a new password."
+msgstr ""
+"Wprowadź swoją nazwę użytkownika lub adres e-mail, a my wyślemy Ci link, za "
+"pomocą którego możesz wybrać nowe hasło."
+
+#: templates/addons/members/profile-form.php:15
+#: templates/addons/members/register-form.php:19
+#: templates/partials/newsletter.php:33
+msgid "Email address"
+msgstr "Adres e-mail"
+
+#: templates/addons/members/profile-form.php:19
+msgid "First name"
+msgstr "Imię"
+
+#: templates/addons/members/profile-form.php:23
+msgid "Last name"
+msgstr "Nazwisko"
+
+#: templates/addons/members/profile-form.php:31
+#: templates/emails/submission.php:20 templates/sections/submit.php:47
+msgid "Description"
+msgstr "Opis"
+
+#: templates/addons/members/profile-form.php:35
+msgid "Socials"
+msgstr "Społeczności"
+
+#: templates/addons/members/profile-form.php:48
+msgid "Update"
+msgstr "Aktualizuj"
+
+#: templates/addons/members/register-form.php:15
+msgid "Username"
+msgstr "Nazwa użytkownika"
+
+#: templates/addons/members/register-form.php:27
+#: templates/addons/members/reset-password-form.php:19
+msgid "Confirm password"
+msgstr "Potwierdź hasło"
+
+#: templates/addons/members/register-form.php:42
+msgid "Already have an account?"
+msgstr "Posiadasz już konto?"
+
+#: templates/addons/members/reset-password-form.php:15
+msgid "New password"
+msgstr "Nowe hasło"
+
+#: templates/addons/ratings/rating-form.php:2
+msgid " Rate"
+msgstr "Oceń"
+
+#: templates/addons/ratings/rating-form.php:8
+#, php-format
+msgid "%d star"
+msgid_plural "%d stars"
+msgstr[0] "%d gwiazdka"
+msgstr[1] "%d gwiazdki"
+msgstr[2] "%d gwiazdek"
 
 #: templates/emails/submission.php:4
 msgid "Title"
@@ -1376,14 +1667,10 @@ msgstr "Tytuł"
 msgid "Website URL"
 msgstr "Adres strony WWW"
 
-#: templates/emails/submission.php:15 templates/sections/entry-resource.php:63
-#: templates/sections/resource-tile.php:66
+#: templates/emails/submission.php:15 templates/sections/entry-resource.php:69
+#: templates/sections/tile-resource.php:64
 msgid "Visit website"
 msgstr "Odwiedź stronę"
-
-#: templates/emails/submission.php:20 templates/sections/submit.php:47
-msgid "Description"
-msgstr "Opis"
 
 #: templates/emails/submission.php:26
 msgid "Review submission"
@@ -1396,10 +1683,6 @@ msgstr "Filtruj wg"
 #: templates/partials/filters.php:15
 msgid "Choose topic"
 msgstr "Wybierz temat"
-
-#: templates/partials/newsletter.php:33
-msgid "Email address"
-msgstr "Adres e-mail"
 
 #: templates/partials/page-bottom.php:7
 msgid "About"
@@ -1421,29 +1704,13 @@ msgstr "Motyw WordPressa: Chipmunk"
 msgid "Search"
 msgstr "Szukaj"
 
-#: templates/partials/page-head.php:48
-msgid "Dashboard"
-msgstr "Kokpit"
-
 #: templates/partials/page-head.php:50
 msgid "Profile"
 msgstr "Profil"
 
-#: templates/partials/page-head.php:52
-msgid "Edit Profile"
-msgstr "Edytuj profil"
-
 #: templates/partials/page-head.php:54
 msgid "Logout"
 msgstr "Wyloguj"
-
-#: templates/partials/page-head.php:59 templates/partials/page-overlay.php:21
-msgid "Login"
-msgstr "Logowanie"
-
-#: templates/partials/page-head.php:64 templates/partials/page-overlay.php:25
-msgid "Register"
-msgstr "Rejestracja"
 
 #: templates/partials/page-head.php:83 templates/partials/popup.php:9
 msgid "Close"
@@ -1454,14 +1721,6 @@ msgstr "Zamknij"
 msgid "Submit"
 msgstr "Zgłoś materiał"
 
-#: templates/partials/post-stats.php:32
-msgid "Author"
-msgstr "Autor"
-
-#: templates/partials/post-stats.php:45
-msgid "Published"
-msgstr "Opublikowany"
-
 #: templates/partials/search-form.php:3
 msgid "Search query..."
 msgstr "Wyszukiwana fraza…"
@@ -1469,6 +1728,22 @@ msgstr "Wyszukiwana fraza…"
 #: templates/partials/share-box.php:21
 msgid "Share"
 msgstr "Podziel się"
+
+#: templates/partials/stats/author.php:2
+msgid "Author"
+msgstr "Autor"
+
+#: templates/partials/stats/count-collections.php:2
+msgid "Sub collections"
+msgstr "Podkolekcje"
+
+#: templates/partials/stats/date.php:2
+msgid "Published"
+msgstr "Opublikowany"
+
+#: templates/partials/stats/terms.php:6
+msgid "Terms"
+msgstr "Regulamin"
 
 #: templates/partials/toolbox.php:10
 msgid "Follow us"
@@ -1484,14 +1759,6 @@ msgstr "%s"
 msgid "Joined: %s"
 msgstr "Dołączył: %s"
 
-#: templates/sections/collection-tile.php:61
-msgid "View this collection"
-msgstr "Zobacz kolekcję"
-
-#: templates/sections/collection-tile.php:70
-msgid "Sub collections"
-msgstr "Podkolekcje"
-
 #: templates/sections/collections.php:22
 msgid "Sorry, there are no collections to display yet."
 msgstr "Brak kolekcji do wyświetlenia."
@@ -1504,12 +1771,7 @@ msgstr "Starsze"
 msgid "Newer"
 msgstr "Nowsze"
 
-#: templates/sections/entry-resource.php:76
-#: templates/sections/post-excerpt.php:22 templates/sections/post-tile.php:37
-msgid "Read more"
-msgstr "Czytaj więcej"
-
-#: templates/sections/loop-post.php:9 templates/sections/loop-resource.php:22
+#: templates/sections/loop-post.php:9 templates/sections/loop-resource.php:20
 msgid "Related"
 msgstr "Podobne"
 
@@ -1544,18 +1806,6 @@ msgstr "Poprzednie"
 msgid "Page %d of %d"
 msgstr "Strona %d z %d"
 
-#: templates/sections/resources-tabs.php:8
-msgid "Featured"
-msgstr "Promowane"
-
-#: templates/sections/resources-tabs.php:12
-msgid "Latest"
-msgstr "Najnowsze"
-
-#: templates/sections/resources-tabs.php:16
-msgid "Popular"
-msgstr "Popularne"
-
 #: templates/sections/submit.php:20
 msgid "Resource name"
 msgstr "Nazwa materiału"
@@ -1567,6 +1817,41 @@ msgstr "Twoje imię"
 #: templates/sections/submit.php:56
 msgid "Your email"
 msgstr "Twój e-mail"
+
+#: templates/sections/tabs.php:8
+msgid "Featured"
+msgstr "Promowane"
+
+#: templates/sections/tabs.php:27
+msgid "Latest"
+msgstr "Najnowsze"
+
+#: templates/sections/tabs.php:35
+msgid "Popular"
+msgstr "Popularne"
+
+#: templates/sections/tile-collection.php:63
+msgid "View this collection"
+msgstr "Zobacz kolekcję"
+
+#~ msgid "Disable post sharing"
+#~ msgstr "Wyłącz udostępnianie postów"
+
+#~ msgid "Disable post tags"
+#~ msgstr "Wyłącz tagi dla postów"
+
+#~ msgid "Disable post date"
+#~ msgstr "Wyłącz datowanie postów"
+
+#, php-format
+#~ msgid "Error locating %s for inclusion"
+#~ msgstr "Błąd podczas ładowania %s"
+
+#~ msgid "Lifetime License."
+#~ msgstr "Dożywotnia licencja."
+
+#~ msgid "Your license is not active for this URL."
+#~ msgstr "Twój klucz licencji nie został aktywowany dla tego adresu URL."
 
 #, fuzzy
 #~| msgid "Custom fields"
@@ -1662,11 +1947,6 @@ msgstr "Twój e-mail"
 #~ msgstr "All Tags"
 
 #, fuzzy
-#~| msgid "Update Tag"
-#~ msgid "Update"
-#~ msgstr "Update Tag"
-
-#, fuzzy
 #~| msgid "Implications failed:"
 #~ msgid "Validation failed"
 #~ msgstr "Implications failed:"
@@ -1685,11 +1965,6 @@ msgstr "Twój e-mail"
 #~| msgid "Menu"
 #~ msgid "Menus"
 #~ msgstr "Menu"
-
-#, fuzzy
-#~| msgid "Theme Options"
-#~ msgid "Options"
-#~ msgstr "Ustawienia motywu"
 
 #, fuzzy
 #~| msgid "Collection"
@@ -1922,11 +2197,6 @@ msgstr "Twój e-mail"
 #~ msgstr "Dodatkowy kod CSS"
 
 #, fuzzy
-#~| msgid "Choose topic"
-#~ msgid "Choose Time"
-#~ msgstr "Wybierz temat"
-
-#, fuzzy
 #~| msgid "Narrow"
 #~ msgid "Now"
 #~ msgstr "Wąski"
@@ -2077,11 +2347,6 @@ msgstr "Twój e-mail"
 #~ msgstr "Tag"
 
 #, fuzzy
-#~| msgid "Load More"
-#~ msgid "Load Terms"
-#~ msgstr "Załaduj więcej"
-
-#, fuzzy
 #~| msgid "Ads"
 #~ msgid "Add"
 #~ msgstr "Reklamy"
@@ -2105,11 +2370,6 @@ msgstr "Twój e-mail"
 #~| msgid "Error locating %s for inclusion"
 #~ msgid "Error loading field."
 #~ msgstr "Błąd podczas ładowania %s"
-
-#, fuzzy
-#~| msgid "Wide content"
-#~ msgid "Invalid request."
-#~ msgstr "Szeroka kolumna treści"
 
 #, fuzzy
 #~| msgid "Visuals"
@@ -2423,9 +2683,6 @@ msgstr "Twój e-mail"
 
 #~ msgid "Add New Curator"
 #~ msgstr "Dodaj Nowego Redaktora"
-
-#~ msgid "New Curator"
-#~ msgstr "Nowy Redaktor"
 
 #~ msgid "Edit Curator"
 #~ msgstr "Edytuj Redaktora"
