@@ -882,6 +882,13 @@ sub {
 .l-section--intro + .l-section:not([class*=theme]) {
   padding-top: 0;
 }
+.l-section--sticky {
+  margin-top: auto;
+}
+.l-section--sticky + .l-section--sticky {
+  margin-top: 0;
+}
+
 .l-section__title {
   margin-right: auto;
 }

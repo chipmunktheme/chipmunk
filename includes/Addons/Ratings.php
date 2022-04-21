@@ -13,6 +13,14 @@ use Chipmunk\Helpers;
 class Ratings {
 
 	/**
+	 * Allowed post types supporting ChipmunkRatings
+	 *
+	 * @since 1.0
+	 * @var array
+	 */
+	private $allowed_types = array( 'post', 'resource' );
+
+	/**
 	 * Initializes the addon.
 	 *
 	 * To keep the initialization fast, only add filter and action
