@@ -642,6 +642,10 @@ button:focus {
   word-break: break-all;
   word-break: break-word;
 }
+:root :where(img) {
+  height: auto;
+  max-width: 100%;
+}
 
 button {
   background: none;
@@ -2778,8 +2782,13 @@ sub {
   justify-content: space-between;
   gap: calc(var(--chipmunk--spacer) * 1);
   flex: 1;
-  padding: calc(var(--chipmunk--spacer) * 1.5);
+  padding: calc(var(--chipmunk--spacer) * 1);
   color: var(--chipmunk--color--black);
+}
+@media (min-width: 680px) {
+  .c-tile__content {
+    padding: calc(var(--chipmunk--spacer) * 1.5);
+  }
 }
 .c-tile__content--dimmed {
   background-color: rgba(0, 0, 0, 0.75);
@@ -2794,9 +2803,11 @@ sub {
   inset: 0;
   z-index: var(--chipmunk--layer--base);
 }
-.c-tile--card .c-tile__content:not(:first-child) {
-  padding: calc(var(--chipmunk--spacer) * 1);
-  padding-top: 0;
+@media (min-width: 680px) {
+  .c-tile--card .c-tile__content:not(:first-child) {
+    padding: calc(var(--chipmunk--spacer) * 1);
+    padding-top: 0;
+  }
 }
 .c-tile--blank .c-tile__content {
   padding: 0;

@@ -265,10 +265,9 @@ body {
 }
 .chipmunk__title > span {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 100%;
-  margin-left: 0.25em;
-  transform: translateY(-50%);
+  transform: translate3d(-25%, -50%, 0);
 }
 
 .chipmunk__settings {

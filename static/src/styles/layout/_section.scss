@@ -34,6 +34,14 @@
   &:not([class*='theme']):not([class*='intro']) + &:not([class*='theme']) {
     @extend %bordered-box;
   }
+
+  &--sticky {
+    margin-top: auto;
+
+    & + & {
+      margin-top: 0;
+    }
+  }
 }
 
 .l-section__title {

@@ -13,7 +13,7 @@ $has_content = ( $has_image || ! empty( $ad_code ) );
 ?>
 
 <?php if ( $enabled && $enabled_home && $has_content ) : ?>
-	<div class="l-section l-section--theme-light l-section--compact">
+	<div class="<?php echo Chipmunk\Helpers::class_name( 'l-section', array( 'theme-light', 'compact', 'sticky' ) ); ?>">
 		<div class="l-container">
 			<?php if ( $has_image && ! empty( $ad_link ) ) : ?>
 
