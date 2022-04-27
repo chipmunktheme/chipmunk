@@ -1,5 +1,4 @@
 import Flickity from 'flickity';
-import 'flickity-imagesloaded';
 
 const Carousel = {
   defaults: {
@@ -7,24 +6,19 @@ const Carousel = {
     draggable: true,
     contain: true,
     groupCells: true,
-    imagesLoaded: true,
     pageDots: false,
     arrowShape:
       'M43.536 11.464a5 5 0 0 1 .415 6.6l-.415.472L17.075 45H95a5 5 0 0 1 .583 9.966L95 55H17.075l26.46 26.464a5 5 0 0 1-6.6 7.487l-.47-.415-35-35a5.04 5.04 0 0 1-.483-.56l-.359-.556-.267-.563-.177-.527-.145-.743L0 50l.014-.376.087-.628.148-.557.22-.555.261-.488.335-.481.4-.45 35-35a5 5 0 0 1 7.07 0Z',
   },
 
   init(element = document) {
-    this.carousels = Array.from(element.querySelectorAll('[data-carousel]'));
+    const carousels = Array.from(element.querySelectorAll('[data-carousel]'));
 
-    this.carousels.forEach((carousel) => {
-      if (carousel.childElementCount > 1) {
-        const options = carousel.dataset.carousel ? JSON.parse(carousel.dataset.carousel) : {};
-
-        new Flickity(carousel, {
-          ...this.defaults,
-          ...options,
-        });
-      }
+    // Defer initializing the carousel to make sure the fonts and images are loaded
+    window.addEventListener('load', () => {
+      carousels.forEach((carousel) => {
+        this.initCarousel(carousel, carousel.dataset.carousel ? JSON.parse(carousel.dataset.carousel) : {});
+      });
     });
 
     // Refresh carousel on tab change
@@ -54,6 +48,15 @@ const Carousel = {
       resize.call(this);
       this.element.classList.add('flickity-resize');
     };
+  },
+
+  initCarousel(carousel, options = {}) {
+    if (carousel.childElementCount > 1) {
+      new Flickity(carousel, {
+        ...Carousel.defaults,
+        ...options,
+      });
+    }
   },
 };
 
