@@ -7,7 +7,7 @@
 
 <?php if ( is_single() ) : ?>
 	<?php $title = esc_html__( 'Related', 'chipmunk' ); ?>
-	<?php $query = Chipmunk\Query::get_related( get_the_ID(), apply_filters( 'chipmunk_related_posts_count', 3 ) ); ?>
+	<?php $query = Chipmunk\Query::get_related( get_the_ID(), array( 'posts_per_page' => apply_filters( 'chipmunk_related_posts_count', 3 ) ) ); ?>
 <?php elseif ( is_front_page() ) : ?>
 	<?php $title = esc_html__( 'Latest Posts', 'chipmunk' ); ?>
 	<?php $query = Chipmunk\Query::get_posts( array( 'posts_per_page' => apply_filters( 'chipmunk_latest_posts_count', 3 ) ) ); ?>

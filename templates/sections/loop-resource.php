@@ -1,5 +1,5 @@
 <?php if ( is_singular( 'resource' ) ) : ?>
-	<?php $query = Chipmunk\Query::get_related( get_the_ID(), apply_filters( 'chipmunk_related_resources_count', 3 ) ); ?>
+	<?php $query = Chipmunk\Query::get_related( get_the_ID(), array( 'posts_per_page' => apply_filters( 'chipmunk_related_resources_count', 3 ) ) ); ?>
 <?php elseif ( is_author() && get_query_var( 'author_name' ) ) : ?>
 	<?php $query = Chipmunk\Query::get_resources( array( 'author_name' => get_query_var( 'author_name' ) ) ); ?>
 <?php else : ?>

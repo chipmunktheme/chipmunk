@@ -895,7 +895,7 @@ class Customizer {
 				'name'        => $slug,
 				'type'        => 'url',
 				'label'       => $social,
-				'default'     => 'tiles',
+				'default'     => '#',
 			);
 		}
 

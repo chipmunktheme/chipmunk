@@ -47,17 +47,20 @@ class Query {
 	/**
 	 * Get related resources
 	 */
-	public static function get_related( $post_id, $limit = 3 ) {
-		$tax_query = array();
+	public static function get_related( $post_id, $args = array() ) {
+		$defaults = array(
+			'post_type'         => get_post_type( $post_id ),
+			'post_status'       => 'publish',
+			'post__not_in'      => array( $post_id ),
+			'posts_per_page'    => 3,
+			'orderby'           => 'rand',
+		);
 
-		$post = get_post( $post_id );
-		$taxonomies = get_object_taxonomies( $post, 'names' );
-
-		foreach ( $taxonomies as $taxonomy ) {
+		foreach ( get_object_taxonomies( get_post( $post_id ), 'names' ) as $taxonomy ) {
 			$terms = get_the_terms( $post_id, $taxonomy );
 
 			if ( ! empty( $terms ) ) {
-				$tax_query[] = array(
+				$args['tax_query'][] = array(
 					'taxonomy'    => $taxonomy,
 					'field'       => 'term_id',
 					'terms'       => array_column( $terms, 'term_id' ),
@@ -66,20 +69,11 @@ class Query {
 			};
 		}
 
-		if ( count( $tax_query ) > 1 ) {
-			$tax_query['relation'] = 'OR';
+		if ( ! empty( $args['tax_query'] ) && count( $args['tax_query'] ) > 1 ) {
+			$args['tax_query']['relation'] = 'OR';
 		}
 
-		$args = array(
-			'post_type'         => get_post_type( $post_id ),
-			'post_status'       => 'publish',
-			'post__not_in'      => array( $post_id ),
-			'posts_per_page'    => $limit,
-			'tax_query'         => $tax_query,
-			'orderby'           => 'rand',
-		);
-
-		return new \WP_Query( $args );
+		return new \WP_Query( wp_parse_args( $args, $defaults ) );
 	}
 
 	/**
@@ -88,6 +82,7 @@ class Query {
 	public static function get_resources( $args = array(), $term = null ) {
 		$defaults = array(
 			'post_type'         => 'resource',
+			'post_status'       => 'publish',
 			'posts_per_page'    => Helpers::get_theme_option( 'posts_per_page' ),
 			'paged'             => Helpers::get_current_page(),
 		);
