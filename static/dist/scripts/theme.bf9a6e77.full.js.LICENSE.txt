@@ -1,9 +1,4 @@
 /*!
- * Flickity imagesLoaded v2.0.0
- * enables imagesLoaded option for Flickity
- */
-
-/*!
  * Flickity v2.3.0
  * Touch, responsive, flickable carousels
  *
@@ -30,12 +25,6 @@
  * getSize v2.0.3
  * measure size of elements
  * MIT license
- */
-
-/*!
- * imagesLoaded v4.1.4
- * JavaScript is all like "You images are done yet or what?"
- * MIT License
  */
 
 /*!

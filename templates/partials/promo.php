@@ -17,7 +17,7 @@ $has_content = ( $has_image || ! empty( $ad_code ) );
 		<div class="l-container">
 			<?php if ( $has_image && ! empty( $ad_link ) ) : ?>
 
-				<a href="<?php echo esc_url( $ad_link ); ?>" target="_blank">
+				<a href="<?php echo esc_url( $ad_link ); ?>" target="_blank" class="c-promo">
 					<?php if ( ! empty( $ad_image_lg ) ) : ?>
 						<img src="<?php echo esc_url( $ad_image_lg ); ?>" alt="" class="u-visible-<?php echo ( $ad_image_md ? 'lg' : ( $ad_image_sm ? 'md' : 'sm' ) ); ?>-block">
 					<?php endif; ?>
