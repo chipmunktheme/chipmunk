@@ -39,6 +39,10 @@
     outline: none;
     box-shadow: none;
   }
+
+  .notice + & {
+    margin-top: 1.5rem;
+  }
 }
 
 .chipmunk__wrap {
@@ -59,7 +63,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.75em;
+  gap: 0.5em;
   margin: 0;
   padding: 0;
   color: inherit;

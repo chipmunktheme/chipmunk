@@ -133,7 +133,9 @@ class Helpers {
 		}
 
 		return implode( ' ', $classes );
-	}/**
+	}
+
+	/**
 	 * Checks that the reCAPTCHA parameter sent with the registration
 	 * request is valid.
 	 *
@@ -539,6 +541,27 @@ class Helpers {
 		);
 
 		return $extensions[$mime];
+	}
+
+    /**
+     * Pulls the image content into the svg markup
+     */
+	public static function get_svg_content( $path ) {
+		if ( ! empty( $path ) && $svg_file = @file_get_contents( $path ) ) {
+			$position = strpos( $svg_file, '<svg' );
+			return substr( $svg_file, $position );
+		}
+
+		return "<img src='$path' alt='' />";
+	}
+
+    /**
+     * Converts svg content to base64 encoded
+     */
+	public static function svg_to_base64( $path ) {
+		if ( ! empty( $path ) && $svg_file = @file_get_contents( $path ) ) {
+			return 'data:image/svg+xml;base64,' . base64_encode( $svg_file );
+		}
 	}
 
 	/**

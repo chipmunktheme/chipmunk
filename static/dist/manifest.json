@@ -1,17 +1,18 @@
 {
   "scripts/theme.js": "scripts/theme.bf9a6e77.js",
   "scripts/theme.js.map": "scripts/theme.bf9a6e77.js.map",
-  "styles/admin.css": "styles/admin.c5e29ccd.css",
-  "styles/admin.css.map": "styles/admin.c5e29ccd.css.map",
+  "styles/admin.css": "styles/admin.3169e3c5.css",
+  "styles/admin.css.map": "styles/admin.3169e3c5.css.map",
   "styles/theme.css": "styles/theme.a17a0179.css",
   "styles/theme.css.map": "styles/theme.a17a0179.css.map",
+  "assets/.DS_Store": "assets/.DS_Store.be6e71ce",
   "assets/images/.DS_Store": "assets/images/.DS_Store.40d34992",
-  "assets/images/chipmunk.png": "assets/images/chipmunk.766d8945.png",
-  "assets/images/chipmunk.svg": "assets/images/chipmunk.b372af53.svg",
   "assets/images/icons.svg": "assets/images/icons.09b158a1.svg",
+  "assets/images/logo.svg": "assets/images/logo.306d559e.svg",
+  "assets/images/logo.png": "assets/images/logo.436e372b.png",
   "scripts/theme.bf9a6e77.full.js": "scripts/theme.bf9a6e77.full.js",
   "scripts/theme.bf9a6e77.full.js.LICENSE.txt": "scripts/theme.bf9a6e77.full.js.LICENSE.txt",
   "scripts/theme.bf9a6e77.js.LICENSE.txt": "scripts/theme.bf9a6e77.js.LICENSE.txt",
-  "styles/admin.c5e29ccd.full.css": "styles/admin.c5e29ccd.full.css",
+  "styles/admin.3169e3c5.full.css": "styles/admin.3169e3c5.full.css",
   "styles/theme.a17a0179.full.css": "styles/theme.a17a0179.full.css"
 }
