@@ -1,0 +1,12 @@
+{
+  "scripts/theme.js": "scripts/theme.js",
+  "styles/admin.css": "styles/admin.css",
+  "styles/admin.js": "styles/admin.js",
+  "styles/theme.css": "styles/theme.css",
+  "styles/theme.js": "styles/theme.js",
+  "assets/.DS_Store": "assets/.DS_Store.93aafada",
+  "assets/images/.DS_Store": "assets/images/.DS_Store.349ea440",
+  "assets/images/icons.svg": "assets/images/icons.09b158a1.svg",
+  "assets/images/logo.svg": "assets/images/logo.306d559e.svg",
+  "assets/images/logo.png": "assets/images/logo.436e372b.png"
+}

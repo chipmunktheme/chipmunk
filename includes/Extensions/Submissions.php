@@ -95,7 +95,9 @@ class Submissions {
 			$og_data = OpenGraph::fetch( $website );
 
 			if ( ! empty( $og_data ) && ! empty( $og_data->image ) ) {
-				if ( $attachment_id = $this->upload_attachment( $og_data->image ) ) {
+				$og_image = str_starts_with( $og_data->image, '/' ) ? $website . $og_data->image : $og_data->image;
+
+				if ( $attachment_id = $this->upload_attachment( $og_image ) ) {
 					return set_post_thumbnail( $post_id, $attachment_id );
 				}
 			}
@@ -125,20 +127,14 @@ class Submissions {
 	private function upload_attachment( $url ) {
 		require_once ABSPATH . 'wp-admin/includes/image.php';
 
-		if ( ! class_exists( '\WP_Http' ) ) {
-			include_once( ABSPATH . WPINC . '/class-http.php' );
-		}
+		$response = wp_remote_request( $url );
 
-		$http = new \WP_Http();
-		$response = $http->request( $url );
-		$file_extension = Helpers::get_extension_by_mime( $response['headers']['content-type'] );
-
-		$wp_upload_dir = wp_upload_dir();
-
-		if ( $response['response']['code'] != 200 ) {
+		if ( is_wp_error( $response ) || $response['response']['code'] != 200 ) {
 			return false;
 		}
 
+		$file_extension = Helpers::get_extension_by_mime( $response['headers']['content-type'] );
+		$wp_upload_dir = wp_upload_dir();
 		$upload = wp_upload_bits( basename( $url ) . $file_extension, null, $response['body'] );
 
 		if ( ! empty( $upload['error'] ) ) {
@@ -187,6 +183,7 @@ class Submissions {
 		$submitter_email    = wp_filter_nohtml_kses( isset( $this->data['submitter_email'] ) ? $this->data['submitter_email'] : '' );
 		$submitter_name     = wp_filter_nohtml_kses( isset( $this->data['submitter_name'] ) ? $this->data['submitter_name'] : '' );
 
+		$website 			= rtrim( $website, '/' );
 		$author_id          = $this->get_submitter_id( $submitter_email );
 
 		if ( empty( $author_id ) ) {
