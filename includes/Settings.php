@@ -65,6 +65,8 @@ class Settings {
 
 		<div class="chipmunk">
 			<div class="chipmunk__head chipmunk__wrap">
+				<h2 style="display: none;"></h2>
+
 				<h1 class="chipmunk__title">
 					<?php echo Helpers::get_svg_content( Assets::asset_path( 'images/logo.svg' ) ); ?>
 					<?php echo THEME_TITLE; ?>

@@ -1,8 +1,8 @@
 <?php
 
-namespace Chipmunk\Addons;
+namespace Chipmunk\Addons\Ratings;
 
-use Chipmunk\Helpers;
+use Chipmunk\Helpers as ChipmunkHelpers;
 
 /**
  * Adds a 5-star rating system to the theme
@@ -10,7 +10,7 @@ use Chipmunk\Helpers;
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Ratings {
+class Init {
 
 	/**
 	 * Allowed post types supporting ChipmunkRatings
@@ -83,7 +83,7 @@ class Ratings {
 			'_' . THEME_SLUG . '_rating_rank'    => 0,
 		);
 
-		return \Chipmunk\Helpers::add_post_meta( $post_ID, $defaut_values, $allowed_types );
+		return ChipmunkHelpers::add_post_meta( $post_ID, $defaut_values, $allowed_types );
 	}
 
 	/**
@@ -92,7 +92,7 @@ class Ratings {
 	 * @return void
 	 */
 	public function setup_addon() {
-		if ( ! Helpers::is_addon_enabled( $this->config['slug'] ) ) {
+		if ( ! ChipmunkHelpers::is_addon_enabled( $this->config['slug'] ) ) {
 			return;
 		}
 
@@ -104,8 +104,8 @@ class Ratings {
 			set_transient( $this->transient, true );
 		}
 
-		new Ratings\Actions();
-		new Ratings\Renderers();
+		new Actions();
+		new Renderers();
 	}
 
 	/**

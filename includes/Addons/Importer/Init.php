@@ -1,16 +1,16 @@
 <?php
 
-namespace Chipmunk\Addons;
+namespace Chipmunk\Addons\Importer;
 
-use Chipmunk\Helpers;
+use Chipmunk\Helpers as ChipmunkHelpers;
 
 /**
- * Allows users to sign-up and improve the experience of the theme
+ * Imports a large amount of resources from a CSV file.
  *
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Members {
+class Init {
 
 	/**
 	 * Initializes the addon.
@@ -51,7 +51,7 @@ class Members {
 	 * Creates all WordPress pages needed by the addon.
 	 */
 	private function register_pages() {
-		$options = Members\Helpers::get_options( 'pages' );
+		$options = Helpers::get_options( 'pages' );
 
 		// Information needed for creating the addon's pages
 		$page_definitions = array(
@@ -97,7 +97,7 @@ class Members {
 			$option_slug = "chipmunk_{$normalized_slug}_page_id";
 			$current_page = $options[$option_slug];
 
-			if ( empty( $current_page ) || ! get_page( $current_page ) || get_post_status( $current_page ) != 'publish' ) {
+			if ( empty( $current_page ) || ! get_post( $current_page ) || get_post_status( $current_page ) != 'publish' ) {
 				// Add the page using the data from the array above
 				$post_id = wp_insert_post(
 					array(
@@ -113,7 +113,7 @@ class Members {
 				);
 
 				$options[$option_slug] = $post_id;
-			} elseif ( get_page( $current_page ) && get_post_status( $current_page ) != 'publish' ) {
+			} elseif ( get_post( $current_page ) && get_post_status( $current_page ) != 'publish' ) {
 				wp_update_post(
 					array(
 						'ID'             => $current_page,
@@ -127,7 +127,7 @@ class Members {
 		flush_rewrite_rules();
 
 		// Update page options
-		Members\Helpers::set_options( 'pages', $options );
+		Helpers::set_options( 'pages', $options );
 	}
 
 	/**
@@ -136,7 +136,7 @@ class Members {
 	 * @return void
 	 */
 	public function setup_addon() {
-		if ( ! Helpers::is_addon_enabled( $this->config['slug'] ) ) {
+		if ( ! ChipmunkHelpers::is_addon_enabled( $this->config['slug'] ) ) {
 			return;
 		}
 
@@ -148,11 +148,11 @@ class Members {
 			set_transient( $this->transient, true );
 		}
 
-		new Members\Actions();
-		new Members\Config();
-		new Members\Redirects();
-		new Members\Renderers();
-		new Members\Settings( $this->config );
+		new Actions();
+		new Config();
+		new Redirects();
+		new Renderers();
+		new Settings( $this->config );
 	}
 
 	/**

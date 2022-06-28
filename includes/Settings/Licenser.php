@@ -213,7 +213,7 @@ class Licenser extends Settings {
 	/**
 	 * Returns the license data (either from db or API call)
 	 *
-	 * @return array
+	 * @return object
 	 */
 	public function get_license_data() {
 		$license_data = get_transient( $this->license_data_option );
@@ -414,28 +414,30 @@ class Licenser extends Settings {
 		?>
 
 		<form action="options.php" method="post">
-			<div class="chipmunk__license chipmunk__box">
-				<h3 class="chipmunk__license-head">
-					<?php echo $this->item_name; ?>
-				</h3>
+			<div class="chipmunk__grid">
+				<div class="chipmunk__license chipmunk__box">
+					<h3 class="chipmunk__license-head">
+						<?php echo $this->item_name; ?>
+					</h3>
 
-				<div class="chipmunk__license-body">
-					<?php settings_fields( $this->license_key_option ); ?>
+					<div class="chipmunk__license-body">
+						<?php settings_fields( $this->license_key_option ); ?>
 
-					<input id="<?php echo $this->license_key_option; ?>" name="<?php echo $this->license_key_option; ?>" type="text" class="regular-text" value="<?php echo esc_attr( $this->license_key ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
+						<input id="<?php echo $this->license_key_option; ?>" name="<?php echo $this->license_key_option; ?>" type="text" class="regular-text" value="<?php echo esc_attr( $this->license_key ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
 
-					<?php if ( ! empty( $license_data ) && 'valid' == $license_data->license ) : ?>
-						<button type="submit" class="button-secondary" name="<?php echo $this->license_key_option; ?>_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
-					<?php else : ?>
-						<button type="submit" class="button-primary" name="<?php echo $this->license_key_option; ?>_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
-					<?php endif; ?>
+						<?php if ( ! empty( $license_data ) && 'valid' == $license_data->license ) : ?>
+							<button type="submit" class="button-secondary" name="<?php echo $this->license_key_option; ?>_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
+						<?php else : ?>
+							<button type="submit" class="button-primary" name="<?php echo $this->license_key_option; ?>_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
+						<?php endif; ?>
+					</div>
+
+					<div class="chipmunk__license-data is-<?php echo $license_data->license ?? ''; ?>">
+						<p class="description"><?php echo $license_status; ?></p>
+					</div>
+
+					<?php do_action( 'chipmunk_license_content' ); ?>
 				</div>
-
-				<div class="chipmunk__license-data is-<?php echo $license_data->license ?? ''; ?>">
-					<p class="description"><?php echo $license_status; ?></p>
-				</div>
-
-				<?php do_action( 'chipmunk_license_content' ); ?>
 			</div>
 		</form>
 

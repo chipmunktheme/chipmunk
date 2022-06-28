@@ -82,31 +82,34 @@ class Addons extends Settings {
 		<form action="options.php" method="post">
 			<?php settings_fields( self::$option ); ?>
 
-			<div class="chipmunk__addons">
+			<div class="chipmunk__grid">
 				<?php foreach ( $addons as $addon ) : ?>
 					<?php $setting_name = self::$option . "[{$addon['slug']}]"; ?>
 
-					<div class="chipmunk__addons-item chipmunk__box">
-						<h3 class="chipmunk__addons-title"><?php echo esc_html( $addon['name'] ); ?></h3>
+					<div class="chipmunk__addon chipmunk__box">
+						<h3 class="chipmunk__addon-title">
+							<?php echo esc_html( $addon['icon'] ); ?>
+							<?php echo esc_html( $addon['name'] ); ?>
+						</h3>
 
-						<p class="chipmunk__addons-excerpt">
+						<p class="chipmunk__addon-excerpt">
 							<?php echo esc_html( $addon['excerpt'] ); ?>
 							<a href="<?php echo esc_attr( $addon['url'] ); ?>" target="_blank" class="link"><?php esc_html_e( 'Read more', 'chipmunk' ); ?> &rarr;</a>
 						</p>
 
 						<?php if ( ! self::is_valid_license() ) : ?>
-							<p class="chipmunk__addons-error">
+							<p class="chipmunk__addon-error">
 								<?php esc_html_e( 'Please use a valid license to enable.', 'chipmunk' ); ?>
 							</p>
 						<?php elseif ( ! self::is_addon_allowed( $addon['slug'] ) ) : ?>
-							<p class="chipmunk__addons-error">
+							<p class="chipmunk__addon-error">
 								<a href="<?php echo esc_url( THEME_SHOP_URL ); ?>/account/licenses" target="_blank" class="button-secondary"><?php esc_html_e( 'Upgrade now', 'chipmunk' ); ?></a>
 								<?php printf( esc_html__( 'Available in the %s plan.', 'chipmunk' ), THEME_PLANS[ THEME_ADDONS[ $addon['slug'] ] ] ); ?>
 							</p>
 						<?php else : ?>
 							<label for="<?php echo esc_attr( $addon['slug'] ); ?>">
 								<input type="checkbox" name="<?php echo esc_attr( $setting_name ); ?>" id="<?php echo esc_attr( $addon['slug'] ); ?>" value="1" <?php checked( 1, $options[ $addon['slug'] ] ?? '0' ); ?> />
-								<?php printf( esc_html__( 'Enable %s Addon', 'chipmunk' ), $addon['name'] ); ?>
+								<?php esc_html_e( 'Enable Addon', 'chipmunk' ); ?>
 							</label>
 						<?php endif; ?>
 					</div>

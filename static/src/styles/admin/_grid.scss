@@ -1,0 +1,9 @@
+/*
+** Admin / Grid
+** ----------------------------------------------------------------------------- */
+
+.chipmunk__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(1.5em, 2.5vw, 3em);
+}

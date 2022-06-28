@@ -207,8 +207,6 @@ class Setup {
 	 * @return void
 	 */
 	public static function setup_theme() {
-		global $customizer;
-
 		new Actions();
 		new Assets();
 		new Features();
@@ -226,18 +224,28 @@ class Setup {
 		new Vendors\ThemeUpdater\Init();
 
 		// Addons
-		new Addons\Members( array(
+		new Addons\Members\Init( array(
 			'name'      => 'Members',
 			'slug'      => 'members',
+			'icon'		=> '🙋',
 			'excerpt'   => 'Makes it a breeze for users to sign-up and become members of your website.',
 			'url'       => THEME_SHOP_URL . '/addons/members',
 		) );
 
-		new Addons\Ratings( array(
+		new Addons\Ratings\Init( array(
 			'name'      => 'Ratings',
 			'slug'      => 'ratings',
+			'icon'		=> '⭐️',
 			'excerpt'   => 'Adds 5-star rating system to your website and increases user engagement.',
 			'url'       => THEME_SHOP_URL . '/addons/ratings',
+		) );
+
+		new Addons\Importer\Init( array(
+			'name'      => 'Importer',
+			'slug'      => 'importer',
+			'icon'		=> '⏱',
+			'excerpt'   => 'Easily import a large amount of resources from a CSV file with a single click.',
+			'url'       => THEME_SHOP_URL . '/addons/importer',
 		) );
 
 		// Customizer

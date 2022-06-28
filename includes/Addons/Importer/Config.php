@@ -1,6 +1,6 @@
 <?php
 
-namespace Chipmunk\Addons\Members;
+namespace Chipmunk\Addons\Importer;
 
 /**
  * Main plugin configuration

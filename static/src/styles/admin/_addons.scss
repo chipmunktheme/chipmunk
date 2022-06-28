@@ -2,30 +2,24 @@
 ** Admin / Addons
 ** ----------------------------------------------------------------------------- */
 
-.chipmunk__addons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.5em, 2.5vw, 3em);
-}
-
-.chipmunk__addons-item {
+.chipmunk__addon {
   align-items: flex-start;
   gap: 1.5em;
   padding: 1.5em;
 }
 
-.chipmunk__addons-head {
+.chipmunk__addon-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5em;
 }
 
-.chipmunk__addons-title {
+.chipmunk__addon-title {
   margin: 0;
 }
 
-.chipmunk__addons-error {
+.chipmunk__addon-error {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
