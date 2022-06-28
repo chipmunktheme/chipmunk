@@ -316,7 +316,7 @@ class Helpers {
 	 */
 	public static function display_terms( $terms, $level = 0 ) {
 		foreach ( $terms as $term ) {
-			echo '<option value="'. $term->term_id . '">' . str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' ) . $term->name . '</option>';
+			echo '<option value="'. $term->name . '">' . str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' ) . $term->name . '</option>';
 
 			if ( $term->children ) {
 				self::display_terms( $term->children, $level + 1 );

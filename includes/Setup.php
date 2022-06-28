@@ -250,5 +250,21 @@ class Setup {
 
 		// Customizer
 		Customizer::register_sections();
+
+
+		if ( isset( $_GET['submit'] ) ) {
+			$post_data = array(
+				'name' 				=> wp_filter_nohtml_kses( 'Testing resource submissions' ),
+				'content' 			=> wp_kses_post( wpautop( 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien.' ) ),
+				'url' 				=> wp_filter_nohtml_kses( 'https://chipmunktheme.com' ),
+				'status' 			=> 'pending',
+				'collections' 		=> 'Test collection',
+				'tags' 				=> 'testing, chipmunk, importer',
+				'featured'			=> 1,
+			);
+
+			$submitter = new Submitter( 'resource', true );
+			$submitter->submit( (object) $post_data );
+		}
 	}
 }

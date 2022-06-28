@@ -79,6 +79,7 @@ class ACF {
 						'type' => 'text',
 						'width' => '50',
 						'instructions' => __( 'Deprecated. Please use "Links" functionality above.', 'chipmunk' ),
+						'readonly' => 1,
 					),
 					array(
 						'key' => 'submitter',

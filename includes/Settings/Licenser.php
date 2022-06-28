@@ -194,7 +194,7 @@ class Licenser extends Settings {
 	 *
 	 * @param bool $force_refresh Force connecting to the API and retrieving new license data
 	 *
-	 * @return array
+	 * @return object
 	 */
 	public function check_license( $force_refresh = false ) {
 		if ( ! $force_refresh && $license_data = $this->get_license_data() ) {

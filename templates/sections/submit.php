@@ -1,7 +1,7 @@
 <?php $action = 'submit_resource'; ?>
 <?php $salt = Chipmunk\Helpers::get_salt( 5 ); ?>
 <?php $alignment = isset( $popup ) ? 'center' : 'left'; ?>
-<?php $required_fields = apply_filters( 'chipmunk_submission_required_fields', array( 'name', 'collection', 'website' ) ); ?>
+<?php $required_fields = apply_filters( 'chipmunk_submission_required_fields', array( 'name', 'collection', 'url' ) ); ?>
 
 <?php if ( ! empty( $title ) ) : ?>
 	<div class="l-component">
@@ -40,7 +40,7 @@
 		</div>
 
 		<div class="c-form__field">
-			<input type="url" name="website" placeholder="<?php esc_attr_e( 'Website URL', 'chipmunk' ); ?>" class="c-form__input" <?php echo in_array( 'website', $required_fields ) ? 'required' : ''; ?>>
+			<input type="url" name="url" placeholder="<?php esc_attr_e( 'Website URL', 'chipmunk' ); ?>" class="c-form__input" <?php echo in_array( 'url', $required_fields ) ? 'required' : ''; ?>>
 		</div>
 
 		<div class="c-form__field">
