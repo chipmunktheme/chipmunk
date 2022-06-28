@@ -9,7 +9,7 @@
 	<div class="c-tile__list" data-action-element="load_posts">
 		<?php while ( $resources->have_posts() ) : $resources->the_post(); ?>
 
-			<?php Chipmunk\Helpers::get_template_part( 'sections/tile-resource', array( 'display_status' => ( get_post_status() != 'publish' ) ) ); ?>
+			<?php Chipmunk\Helpers::get_template_part( 'sections/tile-resource' ); ?>
 
 		<?php endwhile; wp_reset_postdata(); ?>
 	</div>

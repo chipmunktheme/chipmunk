@@ -32,7 +32,7 @@
 					<?php the_post_thumbnail( '640x480' ); ?>
 				<?php endif; ?>
 
-				<?php if ( ! empty( $display_status ) && $options['display_as'] != 'tile' ) : ?>
+				<?php if ( get_post_status() != 'publish' && $options['display_as'] != 'tile' ) : ?>
 					<span class="c-tile__status c-tile__status--<?php echo esc_attr( get_post_status() ); ?>">
 						<?php echo esc_html( ucfirst( get_post_status() ) ); ?>
 					</span>
@@ -45,7 +45,7 @@
 				<<?php echo ( is_front_page() || is_single() ) ? 'h3' : 'h2'; ?> class="c-tile__title c-heading c-heading--h5">
 					<?php the_title(); ?>
 
-					<?php if ( ! empty( $display_status ) && $options['display_as'] == 'tile' ) : ?>
+					<?php if ( get_post_status() != 'publish' && $options['display_as'] == 'tile' ) : ?>
 						(<?php echo esc_html( ucfirst( get_post_status() ) ); ?>)
 					<?php endif; ?>
 				</<?php echo ( is_front_page() || is_single() ) ? 'h3' : 'h2'; ?>>

@@ -2,6 +2,7 @@
 
 namespace Chipmunk;
 
+use Chipmunk\Helpers;
 use Chipmunk\Vendors\OpenGraph;
 
 /**
