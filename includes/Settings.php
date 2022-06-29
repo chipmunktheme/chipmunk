@@ -74,15 +74,22 @@ class Settings {
 
 				<?php if ( ! empty( self::$license ) && 'valid' == self::$license->license ) : ?>
 					<a href="<?php echo THEME_SHOP_URL; ?>/account" target="_blank" class="chipmunk__status">
-						<div class="chipmunk__status-icon">
-							✓
-						</div>
+						<div class="chipmunk__status-icon chipmunk__status-icon--success">✓</div>
 
 						<div class="chipmunk__status-content">
 							<?php if ( ! empty( self::$license->price_id ) ) : ?>
-								<strong><?php printf( esc_html__( '%s License', 'chipmunk' ), THEME_PLANS[ self::$license->price_id ] ); ?></strong><br>
+								<strong><?php printf( esc_html__( '%s License', 'chipmunk' ), THEME_PLANS[ self::$license->price_id ] ); ?></strong>
 							<?php endif; ?>
 							<?php echo esc_html( self::$license->customer_email ); ?>
+						</div>
+					</a>
+				<?php else : ?>
+					<a href="?page=chipmunk&tab=license" class="chipmunk__status">
+						<div class="chipmunk__status-icon chipmunk__status-icon--error">⤫</div>
+
+						<div class="chipmunk__status-content">
+							<strong><?php esc_html_e( 'License is invalid', 'chipmunk' ); ?></strong>
+							<?php esc_html_e( 'Please activate your license', 'chipmunk' ); ?>
 						</div>
 					</a>
 				<?php endif; ?>
