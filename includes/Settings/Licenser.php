@@ -10,7 +10,7 @@ use \Chipmunk\Settings;
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Licenser extends Settings {
+class Licenser {
 
 	/**
 	 * License key
@@ -271,7 +271,7 @@ class Licenser extends Settings {
 		$message = is_wp_error( $response ) ? $response->get_error_message() : $error;
 
 		// Add proper error message
-		$this->add_settings_error( $this->slug, $message );
+		Settings::add_settings_error( $this->slug, $message );
 	}
 
 	/**

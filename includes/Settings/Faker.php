@@ -10,7 +10,7 @@ use \Chipmunk\Settings;
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Faker extends Settings {
+class Faker {
 
 	/**
 	 * Setting name
@@ -32,7 +32,7 @@ class Faker extends Settings {
 	 * @since 1.0.0
 	 */
 	function __construct( ) {
-		add_action( 'admin_init', array( $this, 'action' ) );
+		add_action( 'admin_init', array( $this, 'maybe_generate' ) );
 
 		// Output settings content
 		add_filter( 'chipmunk_settings_tabs', array( $this, 'add_settings_tab' ) );
@@ -41,7 +41,7 @@ class Faker extends Settings {
 	/**
 	 * Checks if a generator action was submitted.
 	 */
-	public function action() {
+	public function maybe_generate() {
 		if ( isset( $_POST[THEME_SLUG . '_generator_upvote'] ) ) {
 			self::generate( 'upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'], array( 'resource' ) );
 		}
@@ -56,7 +56,7 @@ class Faker extends Settings {
 	 */
 	private function generate( $type, $start, $end, $post_types ) {
 		if ( empty( $start ) && empty( $end ) ) {
-			$this->add_settings_error( $this->slug, __( 'You need to provide both values for the range!', 'chipmunk' ) );
+			Settings::add_settings_error( $this->slug, __( 'You need to provide both values for the range!', 'chipmunk' ) );
 			return;
 		}
 
@@ -76,7 +76,7 @@ class Faker extends Settings {
 			}
 		}
 
-		$this->add_settings_error( $this->slug, __( 'Fake counters successfully generated!', 'chipmunk' ), 'success' );
+		Settings::add_settings_error( $this->slug, __( 'Fake counters successfully generated!', 'chipmunk' ), 'success' );
 	}
 
 	/**
@@ -114,7 +114,7 @@ class Faker extends Settings {
 						<form method="post" action="">
 							<input type="number" class="small-text" name="<?php echo esc_attr( THEME_SLUG . '_generator_upvote_start' ); ?>" value="" min="0" placeholder="<?php esc_attr_e( 'Start', 'chipmunk' ); ?>" />
 							<input type="number" class="small-text" name="<?php echo esc_attr( THEME_SLUG . '_generator_upvote_end' ); ?>" value="" min="0" placeholder="<?php esc_attr_e( 'End', 'chipmunk' ); ?>" />
-							<button type="submit" class="button-primary" name="<?php echo esc_attr( THEME_SLUG . '_generator_upvote' ); ?>"><?php esc_html_e( 'Generate', 'chipmunk' ); ?></button>
+							<?php submit_button( esc_html__( 'Generate', 'chipmunk' ), 'primary', THEME_SLUG . '_generator_upvote', false ); ?>
 						</form>
 
 						<p class="description">
@@ -130,7 +130,7 @@ class Faker extends Settings {
 						<form method="post" action="">
 							<input type="number" class="small-text" name="<?php echo esc_attr( THEME_SLUG . '_generator_view_start' ); ?>" value="" min="0" placeholder="<?php esc_attr_e( 'Start', 'chipmunk' ); ?>" />
 							<input type="number" class="small-text" name="<?php echo esc_attr( THEME_SLUG . '_generator_view_end' ); ?>" value="" min="0" placeholder="<?php esc_attr_e( 'End', 'chipmunk' ); ?>" />
-							<button type="submit" class="button-primary" name="<?php echo esc_attr( THEME_SLUG . '_generator_view' ); ?>"><?php esc_html_e( 'Generate', 'chipmunk' ); ?></button>
+							<?php submit_button( esc_html__( 'Generate', 'chipmunk' ), 'primary', THEME_SLUG . '_generator_view', false ); ?>
 						</form>
 
 						<p class="description">

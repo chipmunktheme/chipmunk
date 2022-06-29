@@ -237,16 +237,16 @@ class Submitter {
 				'target' 	=> '_blank',
 			);
 
-			$data->meta[$this->meta_prefix . $meta_key_links] = '1';
-			$data->meta[$this->meta_prefix . $meta_key_links . '_0_link'] = $link;
+			$data->meta[ $this->meta_prefix . $meta_key_links ] = '1';
+			$data->meta[ $this->meta_prefix . $meta_key_links . '_0_link' ] = $link;
 		}
 
 		if ( ! ( $data->author = $this->get_submitter_id( $data->submitter_email ?? '' ) ) && ! empty( $data->submitter_email ) && ! empty( $data->submitter_name ) ) {
-			$data->meta[$this->meta_prefix . $meta_key_submitter] = "{$data->submitter_name} <{$data->submitter_email}>";
+			$data->meta[ $this->meta_prefix . $meta_key_submitter ] = "{$data->submitter_name} <{$data->submitter_email}>";
 		}
 
 		if ( ! empty( $data->featured ) ) {
-			$data->meta[$this->meta_prefix . $meta_key_featured] = $data->featured ?? 0;
+			$data->meta[ $this->meta_prefix . $meta_key_featured ] = $data->featured ?? 0;
 		}
 
 		// Post array

@@ -827,8 +827,8 @@ class Customizer {
 		$options = ( get_option( self::$settings_name ) ) ? get_option( self::$settings_name ) : null;
 
 		// return the option if it exists
-		if ( isset( $options[$name] ) ) {
-			return apply_filters( self::$settings_name . '_$name', $options[$name] );
+		if ( isset( $options[ $name ] ) ) {
+			return apply_filters( self::$settings_name . '_$name', $options[ $name ] );
 		}
 
 		// return default if it exists

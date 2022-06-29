@@ -81,7 +81,7 @@ class Settings {
 			</option>
 
 			<?php foreach ( $args['pages'] as $page ) : ?>
-				<option value="<?php echo $page->ID; ?>" <?php echo ( isset( $options[$args['field']] ) ? selected( $options[$args['field']], $page->ID, false ) : '' ); ?>>
+				<option value="<?php echo $page->ID; ?>" <?php echo ( isset( $options[ $args['field'] ] ) ? selected( $options[ $args['field'] ], $page->ID, false ) : '' ); ?>>
 					<?php echo esc_html( $page->post_title ); ?>
 				</option>
 			<?php endforeach; ?>
@@ -108,15 +108,41 @@ class Settings {
 	 */
 	private function get_settings_content() {
 		ob_start();
+
 		?>
+		<form method="post" action="">
+			<h2><?php esc_html_e( 'Bulk resource importer', 'chipmunk' ); ?></h2>
 
-		<form action="options.php" method="post">
-			<?php
-				settings_fields( 'chipmunk_members_pages' );
-				do_settings_sections( 'chipmunk_members_pages' );
-			?>
+			<p class="description">
+				<?php echo esc_html( $this->config['excerpt'] ); ?>
+			</p>
 
-			<?php submit_button(); ?>
+			<table class="form-table">
+				<tbody>
+					<tr>
+						<th><?php esc_html_e( 'CSV File', 'chipmunk' ); ?></th>
+
+						<td>
+							<input type="file" name="<?php echo esc_attr( THEME_SLUG . '_import_csv' ); ?>" />
+							<p class="description">
+								<?php esc_html_e( '', 'chipmunk' ); ?>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<th><?php esc_html_e( 'Thumbnails', 'chipmunk' ); ?></th>
+
+						<td>
+							<input type="file" name="<?php echo esc_attr( THEME_SLUG . '_import_thumbnails' ); ?>" />
+							<p class="description">
+								<?php esc_html_e( '', 'chipmunk' ); ?>
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<?php submit_button( esc_html__( 'Import', 'chipmunk' ), 'primary', 'import' ); ?>
 		</form>
 
 		<?php

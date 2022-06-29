@@ -10,7 +10,7 @@ use \Chipmunk\Settings;
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Addons extends Settings {
+class Addons {
 
 	/**
 	 * Option name
@@ -97,7 +97,7 @@ class Addons extends Settings {
 							<a href="<?php echo esc_attr( $addon['url'] ); ?>" target="_blank" class="link"><?php esc_html_e( 'Read more', 'chipmunk' ); ?> &rarr;</a>
 						</p>
 
-						<?php if ( ! self::is_valid_license() ) : ?>
+						<?php if ( ! Settings::is_valid_license() ) : ?>
 							<p class="chipmunk__addon-error">
 								<?php esc_html_e( 'Please use a valid license to enable.', 'chipmunk' ); ?>
 							</p>
@@ -127,11 +127,11 @@ class Addons extends Settings {
 	 * Check if Chipmunk plugin is allowed
 	 */
 	public static function is_addon_allowed( $addon ) {
-		if ( ! self::is_valid_license() ) {
+		if ( ! Settings::is_valid_license() ) {
 			return false;
 		}
 
-		return self::get_license_price() >= THEME_ADDONS[ $addon ];
+		return Settings::get_license_price() >= THEME_ADDONS[ $addon ];
 	}
 
 	/**

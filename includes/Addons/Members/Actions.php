@@ -2,6 +2,8 @@
 
 namespace Chipmunk\Addons\Members;
 
+use Chipmunk\Addons\Members\Helpers;
+
 /**
  * AJAX action callbacks
  *
@@ -209,17 +211,17 @@ class Actions {
 		// Email address is used as both username and email. It is also the only
 		// parameter we need to validate
 		if ( ! is_email( $email ) ) {
-			$errors->add( 'email', $this->get_error_message( 'email' ) );
+			$errors->add( 'email', Helpers::get_error_message( 'email' ) );
 			return $errors;
 		}
 
 		if ( email_exists( $email ) ) {
-			$errors->add( 'existing_user_email', $this->get_error_message( 'existing_user_email') );
+			$errors->add( 'existing_user_email', Helpers::get_error_message( 'existing_user_email') );
 			return $errors;
 		}
 
 		if ( username_exists( $username ) ) {
-			$errors->add( 'existing_user_login', $this->get_error_message( 'existing_user_login') );
+			$errors->add( 'existing_user_login', Helpers::get_error_message( 'existing_user_login') );
 			return $errors;
 		}
 
@@ -253,12 +255,12 @@ class Actions {
 		// Email address is used as both username and email. It is also the only
 		// parameter we need to validate
 		if ( ! is_email( $email ) ) {
-			$errors->add( 'email', $this->get_error_message( 'email' ) );
+			$errors->add( 'email', Helpers::get_error_message( 'email' ) );
 			return $errors;
 		}
 
 		if ( ! empty( $first_name ) || ! empty( $last_name ) ) {
-			$display_name = join( ' ', array_filter( [$first_name, $last_name] ) );
+			$display_name = join( ' ', array_filter( array( $first_name, $last_name ) ) );
 		}
 
 		$user_data = array(

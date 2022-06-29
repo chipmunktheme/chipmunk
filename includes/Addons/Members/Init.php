@@ -95,7 +95,7 @@ class Init {
 		foreach ( $page_definitions as $slug => $page ) {
 			$normalized_slug = str_replace( '-', '_', $slug );
 			$option_slug = "chipmunk_{$normalized_slug}_page_id";
-			$current_page = $options[$option_slug];
+			$current_page = $options[ $option_slug ];
 
 			if ( empty( $current_page ) || ! get_post( $current_page ) || get_post_status( $current_page ) != 'publish' ) {
 				// Add the page using the data from the array above
@@ -112,7 +112,7 @@ class Init {
 					)
 				);
 
-				$options[$option_slug] = $post_id;
+				$options[ $option_slug ] = $post_id;
 			} elseif ( get_post( $current_page ) && get_post_status( $current_page ) != 'publish' ) {
 				wp_update_post(
 					array(

@@ -195,7 +195,7 @@ class Helpers {
 			$value = self::get_theme_option( strtolower( $social ) );
 
 			if ( $value ) {
-				$socials[$social] = $value;
+				$socials[ $social ] = $value;
 			}
 		}
 
@@ -278,8 +278,8 @@ class Helpers {
 	 * Get menu items
 	 */
 	public static function get_menu_items( $location ) {
-		if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[$location] ) ) {
-			$menu = wp_get_nav_menu_object( $locations[$location] );
+		if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $location ] ) ) {
+			$menu = wp_get_nav_menu_object( $locations[ $location ] );
 
 			if ( $menu ) {
 				return wp_get_nav_menu_items( $menu->term_id );
@@ -302,7 +302,7 @@ class Helpers {
 			foreach ( $terms as $term ) {
 				$term->children = self::get_taxonomy_hierarchy( $taxonomy, $args, $term->term_id );
 
-				$children[$term->term_id] = $term;
+				$children[ $term->term_id ] = $term;
 			}
 
 			return $children;
@@ -514,7 +514,7 @@ class Helpers {
 
 		foreach ( $fonts as $font ) {
 			if ( ! array_key_exists( $font, $font_families ) ) {
-				$font_families[$font] = "{$font}:400,700";
+				$font_families[ $font ] = "{$font}:400,700";
 			}
 		}
 
@@ -540,7 +540,7 @@ class Helpers {
 			'image/svg+xml' => '.svg',
 		);
 
-		return $extensions[$mime];
+		return $extensions[ $mime ];
 	}
 
     /**

@@ -2,6 +2,8 @@
 
 namespace Chipmunk\Addons\Ratings;
 
+use Chipmunk\Helpers;
+
 /**
  * Initializes the plugin renderers.
  *
@@ -16,13 +18,13 @@ class Renderers {
 	 * @return void
 	 */
 	public function __construct() {
-		// if ( \Chipmunk\Helpers::is_feature_enabled( 'ratings', 'resource' ) ) {
+		if ( Helpers::is_feature_enabled( 'ratings', 'resource', false ) ) {
 			add_action( 'chipmunk_resource_extras', array( $this, 'render_rating_form' ) );
-		// }
+		}
 
-		// if ( \Chipmunk\Helpers::is_feature_enabled( 'ratings', 'post' ) ) {
+		if ( Helpers::is_feature_enabled( 'ratings', 'post', false ) ) {
 			add_action( 'chipmunk_post_extras', array( $this, 'render_rating_form' ) );
-		// }
+		}
 	}
 
 	/**
@@ -34,7 +36,7 @@ class Renderers {
 		$ratings = new Ratings( get_the_ID() );
 
 		// Render form template
-		\Chipmunk\Helpers::get_template_part( 'addons/ratings/rating-form', array(
+		Helpers::get_template_part( 'addons/ratings/rating-form', array(
 			'ratings'    => $ratings->get_ratings(),
 			'summary'    => $ratings->get_ratings_summary(),
 			'max_rating' => $ratings->get_max_rating(),

@@ -81,7 +81,7 @@ class Settings {
 			</option>
 
 			<?php foreach ( $args['pages'] as $page ) : ?>
-				<option value="<?php echo $page->ID; ?>" <?php echo ( isset( $options[$args['field']] ) ? selected( $options[$args['field']], $page->ID, false ) : '' ); ?>>
+				<option value="<?php echo $page->ID; ?>" <?php echo ( isset( $options[ $args['field'] ] ) ? selected( $options[ $args['field'] ], $page->ID, false ) : '' ); ?>>
 					<?php echo esc_html( $page->post_title ); ?>
 				</option>
 			<?php endforeach; ?>

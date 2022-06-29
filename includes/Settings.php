@@ -140,7 +140,7 @@ class Settings {
 	 *
 	 * @return bool
 	 */
-	protected static function is_valid_license() {
+	public static function is_valid_license() {
 		return ! empty( self::$license ) && 'valid' == self::$license->license;
 	}
 
@@ -149,7 +149,7 @@ class Settings {
 	 *
 	 * @return int
 	 */
-	protected static function get_license_price() {
+	public static function get_license_price() {
 		return self::is_valid_license() ? (int) self::$license->price_id : 0;
 	}
 
@@ -159,7 +159,7 @@ class Settings {
 	 * @param string $message Error message
 	 * @param string $type Error type
 	 */
-	protected function add_settings_error( $setting, $message, $type = 'error' ) {
+	public static function add_settings_error( $setting, $message, $type = 'error' ) {
 		$setting = THEME_SLUG . '_' . $setting;
 		$errors = get_settings_errors( $setting );
 

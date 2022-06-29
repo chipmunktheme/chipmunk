@@ -92,14 +92,14 @@ class OpenGraph implements \Iterator {
 			if ( $tag->hasAttribute( 'property' ) &&
 				strpos( $tag->getAttribute( 'property' ), 'og:' ) === 0 ) {
 				$key = strtr( substr( $tag->getAttribute( 'property' ), 3 ), '-', '_' );
-				$page->_values[$key] = $tag->getAttribute( 'content' );
+				$page->_values[ $key ] = $tag->getAttribute( 'content' );
 			}
 
 			// Added this if loop to retrieve description values from sites like the New York Times who have malformed it.
 			if ( $tag ->hasAttribute( 'value' ) && $tag->hasAttribute( 'property' ) &&
 				strpos( $tag->getAttribute( 'property' ), 'og:' ) === 0 ) {
 				$key = strtr( substr( $tag->getAttribute( 'property' ), 3 ), '-', '_' );
-				$page->_values[$key] = $tag->getAttribute( 'value' );
+				$page->_values[ $key ] = $tag->getAttribute( 'value' );
 			}
 
 			// Based on modifications at https://github.com/bashofmann/opengraph/blob/master/src/OpenGraph/OpenGraph.php
@@ -150,7 +150,7 @@ class OpenGraph implements \Iterator {
 	 */
 	public function __get( $key ) {
 		if ( array_key_exists( $key, $this->_values ) ) {
-			return $this->_values[$key];
+			return $this->_values[ $key ];
 		}
 
 		if ( $key === 'schema' ) {
