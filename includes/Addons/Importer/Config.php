@@ -17,16 +17,16 @@ class Config {
 	 */
 	public function __construct() {
 		// Custom URL
-		add_filter( 'login_url', array( $this, 'custom_login_page' ), 10, 3 );
+		add_filter( 'login_url', [ $this, 'custom_login_page' ], 10, 3 );
 
 		// Custom login redirect
-		add_filter( 'login_redirect', array( $this, 'custom_login_redirect' ), 10, 3 );
+		add_filter( 'login_redirect', [ $this, 'custom_login_redirect' ], 10, 3 );
 
 		// Other customizations
-		add_filter( 'retrieve_password_message', array( $this, 'replace_retrieve_password_message' ), 10, 4 );
+		add_filter( 'retrieve_password_message', [ $this, 'replace_retrieve_password_message' ], 10, 4 );
 
 		// Remove the admin bar on the frontend
-		add_action( 'wp', array( $this, 'remove_admin_bar' ) );
+		add_action( 'wp', [ $this, 'remove_admin_bar' ] );
 
 		// Disable the admin email address verification
 		add_filter( 'admin_email_check_interval', '__return_zero' );

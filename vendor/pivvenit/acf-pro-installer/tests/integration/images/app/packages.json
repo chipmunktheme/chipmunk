@@ -31,7 +31,7 @@
         },
         "require": {
           "pivvenit/acf-pro-installer": "*",
-          "composer/installers": "~1.0"
+          "composer/installers": "^1.0 || ^2.0"
         }
       },
       "5.8.7": {
@@ -64,7 +64,7 @@
         },
         "require": {
           "pivvenit/acf-pro-installer": "*",
-          "composer/installers": "~1.0"
+          "composer/installers": "^1.0 || ^2.0"
         }
       }
     }

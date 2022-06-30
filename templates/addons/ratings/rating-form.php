@@ -12,7 +12,7 @@
 				data-action-post-id="<?php echo esc_attr( get_the_ID() ); ?>">
 
 				<div class="c-ratings__icon">
-					<?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'star' ) ); ?>
+					<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'star' ] ); ?>
 				</div>
 			</button>
 		<?php endfor; ?>

@@ -5,11 +5,11 @@
 <?php endif; ?>
 
 <?php if ( ! empty( $blocker ) ) : ?>
-	<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', array( 'errors' => array( $blocker ) ), true ); ?>
+	<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', [ 'errors' => [ $blocker ] ], true ); ?>
 <?php else : ?>
 	<form class="c-form" action="<?php echo esc_url( wp_lostpassword_url( $redirect_to ) ); ?>" method="post" novalidate data-validate>
-		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', array( 'errors' => $errors ), true ); ?>
-		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/alerts', array( 'alerts' => $alerts ), true ); ?>
+		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', [ 'errors' => $errors ], true ); ?>
+		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/alerts', [ 'alerts' => $alerts ], true ); ?>
 
 		<div class="c-form__field c-form__field--wide">
 			<p class="c-form__info"><?php esc_html_e( 'Enter your username or email address and we\'ll send you a link you can use to pick a new password.', 'chipmunk' ); ?></p>

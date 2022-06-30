@@ -16,10 +16,10 @@ $paged = Chipmunk\Helpers::get_current_page();
 			</button>
 		<?php else : ?>
 			<?php
-				$previous_content = Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'arrow-left' ), false ) . '<span class="u-visible-md-inline">' . esc_html__( 'Previous', 'chipmunk' ) . '</span>';
+				$previous_content = Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'arrow-left' ], false ) . '<span class="u-visible-md-inline">' . esc_html__( 'Previous', 'chipmunk' ) . '</span>';
 				$previous_link = get_previous_posts_link( $previous_content );
 
-				$next_content = '<span class="u-visible-md-inline">' . esc_html__( 'Next', 'chipmunk' ) . '</span>' . Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'arrow-right' ), false );
+				$next_content = '<span class="u-visible-md-inline">' . esc_html__( 'Next', 'chipmunk' ) . '</span>' . Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'arrow-right' ], false );
 				$next_link = get_next_posts_link( $next_content, $query->max_num_pages );
 			?>
 

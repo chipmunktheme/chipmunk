@@ -1,14 +1,14 @@
 <?php
-	$options = array(
+	$options = [
 		'display_as' => Chipmunk\Helpers::get_theme_option( 'display_collection_as' ),
-	);
+	];
 
-	$tile_classes = array(
-		''           => array( 'card' ),
-		'tile'       => array( 'tile' ),
-		'card'       => array( 'card' ),
-		'card_blank' => array( 'blank' ),
-	);
+	$tile_classes = [
+		''           => [ 'card' ],
+		'tile'       => [ 'tile' ],
+		'card'       => [ 'card' ],
+		'card_blank' => [ 'blank' ],
+	];
 
 	$tile_class = Chipmunk\Helpers::class_name( 'c-tile', $tile_classes[ $options['display_as'] ] );
 ?>
@@ -26,17 +26,17 @@
 						<?php echo wp_get_attachment_image( $collection_image, '640x480' ); ?>
 					<?php else : ?>
 						<?php
-						$resources = new WP_Query( array(
+						$resources = new WP_Query( [
 							'posts_per_archive_page' => 3,
 							'post_type'       => 'resource',
-							'tax_query'       => array(
-								array(
+							'tax_query'       => [
+								[
 									'taxonomy'    => 'resource-collection',
 									'field'       => 'term_id',
 									'terms'       => $collection->term_id,
-								),
-							),
-						) );
+								],
+							],
+						] );
 						?>
 
 						<?php if ( $resources->have_posts() ) : ?>
@@ -67,17 +67,17 @@
 			</div>
 
 			<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_collection_stats' ) ) : ?>
-				<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+				<?php Chipmunk\Helpers::get_template_part( 'partials/stats', [
 					'class' => 'c-tile__stats',
-					'stats' => array(
-						'count-collections' => array(
+					'stats' => [
+						'count-collections' => [
 							'term_id' => $collection->term_id,
-						),
-						'count-resources' => array(
+						],
+						'count-resources' => [
 							'count' => $collection->count,
-						),
-					),
-				) ); ?>
+						],
+					],
+				] ); ?>
 			<?php endif; ?>
 		</div>
 	</a>

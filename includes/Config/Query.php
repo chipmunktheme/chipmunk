@@ -18,9 +18,9 @@ class Query {
 	 * @return void
 	 */
 	function __construct() {
-		add_filter( 'pre_get_posts', array( $this, 'update_main_query' ) );
-		add_filter( 'pre_get_posts', array( $this, 'update_search_query' ) );
-		add_filter( 'pre_get_posts', array( $this, 'exclude_tax_children' ) );
+		add_filter( 'pre_get_posts', [ $this, 'update_main_query' ] );
+		add_filter( 'pre_get_posts', [ $this, 'update_search_query' ] );
+		add_filter( 'pre_get_posts', [ $this, 'exclude_tax_children' ] );
 	}
 
 	/**
@@ -47,10 +47,10 @@ class Query {
 			$query->set( 'posts_per_page', Helpers::get_theme_option( 'results_per_page' ) );
 
 			// Include resources
-			$query->set( 'post_type', array( 'post', 'resource' ) );
+			$query->set( 'post_type', [ 'post', 'resource' ] );
 
 			// Include only published posts
-			$query->set( 'post_status', array( 'publish' ) );
+			$query->set( 'post_status', [ 'publish' ] );
 		}
 
 		return $query;
@@ -63,12 +63,12 @@ class Query {
 	 */
 	public static function exclude_tax_children( $query ) {
 		if ( ! is_admin() && isset( $query->query_vars['resource-collection'] ) ) {
-			$query->set( 'tax_query', array( array(
+			$query->set( 'tax_query', [ [
 				'taxonomy'          => 'resource-collection',
 				'field'             => 'slug',
 				'terms'             => $query->query_vars['resource-collection'],
 				'include_children'  => false,
-			) ) );
+			] ] );
 		}
 	}
 }

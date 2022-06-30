@@ -17,12 +17,12 @@ class Renderers {
 	 */
 	public function __construct() {
 		// Shortcodes
-		add_shortcode( 'chipmunk-login-form', array( $this, 'render_login_form' ) );
-		add_shortcode( 'chipmunk-register-form', array( $this, 'render_register_form' ) );
-		add_shortcode( 'chipmunk-lost-password-form', array( $this, 'render_lost_password_form' ) );
-		add_shortcode( 'chipmunk-reset-password-form', array( $this, 'render_reset_password_form' ) );
-		add_shortcode( 'chipmunk-profile-form', array( $this, 'render_profile_form' ) );
-		add_shortcode( 'chipmunk-dashboard', array( $this, 'render_dashboard' ) );
+		add_shortcode( 'chipmunk-login-form', [ $this, 'render_login_form' ] );
+		add_shortcode( 'chipmunk-register-form', [ $this, 'render_register_form' ] );
+		add_shortcode( 'chipmunk-lost-password-form', [ $this, 'render_lost_password_form' ] );
+		add_shortcode( 'chipmunk-reset-password-form', [ $this, 'render_reset_password_form' ] );
+		add_shortcode( 'chipmunk-profile-form', [ $this, 'render_profile_form' ] );
+		add_shortcode( 'chipmunk-dashboard', [ $this, 'render_dashboard' ] );
 	}
 
 	/**
@@ -35,14 +35,14 @@ class Renderers {
 	 */
 	public function render_login_form( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$attributes = shortcode_atts( array(
+		$attributes = shortcode_atts( [
 			'show_title' => false,
-			'errors'     => array(),
-		), $atts );
+			'errors'     => [],
+		], $atts );
 
-		$attributes['blocker'] = Helpers::retrieve_request_blockers( array(
+		$attributes['blocker'] = Helpers::retrieve_request_blockers( [
 			'guest_required',
-		) );
+		] );
 
 		if ( empty( $attributes['blocker'] ) ) {
 			$attributes['redirect_to'] = wp_validate_redirect( $_REQUEST['redirect_to'] ?? '' );
@@ -66,15 +66,15 @@ class Renderers {
 	 */
 	public function render_register_form( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$attributes = shortcode_atts( array(
+		$attributes = shortcode_atts( [
 			'show_title' => false,
-			'errors'     => array(),
-		), $atts );
+			'errors'     => [],
+		], $atts );
 
-		$attributes['blocker'] = Helpers::retrieve_request_blockers( array(
+		$attributes['blocker'] = Helpers::retrieve_request_blockers( [
 			'guest_required',
 			'registration_closed',
-		) );
+		] );
 
 		if ( empty( $attributes['blocker'] ) ) {
 			// Retrieve possible errors/alerts from request parameters
@@ -96,13 +96,13 @@ class Renderers {
 	 */
 	public function render_lost_password_form( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$attributes = shortcode_atts( array(
+		$attributes = shortcode_atts( [
 			'show_title' => false,
-		), $atts );
+		], $atts );
 
-		$attributes['blocker'] = Helpers::retrieve_request_blockers( array(
+		$attributes['blocker'] = Helpers::retrieve_request_blockers( [
 			'guest_required',
-		) );
+		] );
 
 		if ( empty( $attributes['blocker'] ) ) {
 			$attributes['redirect_to'] = wp_validate_redirect( $_REQUEST['redirect_to'] ?? '' );
@@ -126,14 +126,14 @@ class Renderers {
 	*/
 	public function render_reset_password_form( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$attributes = shortcode_atts( array(
+		$attributes = shortcode_atts( [
 			'show_title' => false,
-		), $atts );
+		], $atts );
 
-		$attributes['blocker'] = Helpers::retrieve_request_blockers( array(
+		$attributes['blocker'] = Helpers::retrieve_request_blockers( [
 			'guest_required',
 			'invalid_link',
-		) );
+		] );
 
 		if ( empty( $attributes['blocker'] ) ) {
 			$attributes['action'] = $_REQUEST['action'];
@@ -159,13 +159,13 @@ class Renderers {
 	*/
 	public function render_profile_form( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$attributes = shortcode_atts( array(
+		$attributes = shortcode_atts( [
 			'show_title' => false,
-		), $atts );
+		], $atts );
 
-		$attributes['blocker'] = Helpers::retrieve_request_blockers( array(
+		$attributes['blocker'] = Helpers::retrieve_request_blockers( [
 			'user_required',
-		) );
+		] );
 
 		if ( empty( $attributes['blocker'] ) ) {
 			// Retrieve user meta and data
@@ -197,13 +197,13 @@ class Renderers {
 	*/
 	public function render_dashboard( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$attributes = shortcode_atts( array(
+		$attributes = shortcode_atts( [
 			'show_title' => false,
-		), $atts );
+		], $atts );
 
-		$attributes['blocker'] = Helpers::retrieve_request_blockers( array(
+		$attributes['blocker'] = Helpers::retrieve_request_blockers( [
 			'user_required',
-		) );
+		] );
 
 		// Render form template
 		return \Chipmunk\Helpers::get_template_part( 'addons/members/dashboard', $attributes );

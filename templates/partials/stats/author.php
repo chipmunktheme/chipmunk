@@ -3,7 +3,7 @@
 		<?php if ( ! empty( $show_avatar ) ) : ?>
 			<div class="u-avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 32 ); ?></div>
 		<?php else : ?>
-			<?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'user' ) ); ?>
+			<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'user' ] ); ?>
 		<?php endif; ?>
 
 		<span itemprop="author">

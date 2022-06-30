@@ -1,7 +1,7 @@
 <?php $action = 'submit_resource'; ?>
 <?php $salt = Chipmunk\Helpers::get_salt( 5 ); ?>
 <?php $alignment = isset( $popup ) ? 'center' : 'left'; ?>
-<?php $required_fields = apply_filters( 'chipmunk_submission_required_fields', array( 'name', 'collection', 'url' ) ); ?>
+<?php $required_fields = apply_filters( 'chipmunk_submission_required_fields', [ 'name', 'collection', 'url' ] ); ?>
 
 <?php if ( ! empty( $title ) ) : ?>
 	<div class="l-component">
@@ -25,9 +25,9 @@
 				<select name="collection" class="c-form__input" <?php echo in_array( 'collection', $required_fields ) ? 'required' : ''; ?>>
 					<option value=""><?php esc_html_e( 'Collection', 'chipmunk' ); ?></option>
 					<?php
-						$collections = Chipmunk\Helpers::get_taxonomy_hierarchy( 'resource-collection', array(
+						$collections = Chipmunk\Helpers::get_taxonomy_hierarchy( 'resource-collection', [
 							'hide_empty' => false,
-						) );
+						] );
 					?>
 
 					<?php if ( ! empty( $collections ) ) : ?>

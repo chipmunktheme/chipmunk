@@ -18,10 +18,10 @@ class Nav {
 	 * @return void
 	 */
 	function __construct() {
-		add_filter( 'nav_menu_css_class', array( $this, 'menu_item_classes' ), 1, 3 );
-		add_filter( 'nav_menu_link_attributes', array( $this, 'menu_link_classes' ), 1, 3 );
-		add_filter( 'walker_nav_menu_start_el', array( $this, 'menu_item_toggle' ), 10, 4 );
-		add_action( 'nav_menu_submenu_css_class', array( $this, 'extra_submenu_classes' ) );
+		add_filter( 'nav_menu_css_class', [ $this, 'menu_item_classes' ], 1, 3 );
+		add_filter( 'nav_menu_link_attributes', [ $this, 'menu_link_classes' ], 1, 3 );
+		add_filter( 'walker_nav_menu_start_el', [ $this, 'menu_item_toggle' ], 10, 4 );
+		add_action( 'nav_menu_submenu_css_class', [ $this, 'extra_submenu_classes' ] );
 	}
 
 	/**
@@ -61,7 +61,7 @@ class Nav {
 	 */
 	public static function menu_item_toggle( $item_output, $item, $depth, $args ) {
 		if ( $args->theme_location == 'nav-primary' && property_exists( $args, 'show_toggles' ) && in_array( 'menu-item-has-children', $item->classes ) ) {
-			$icon = Helpers::get_template_part( 'partials/icon', array( 'icon' => 'chevron-down', 'size' => 'lg' ), false );
+			$icon = Helpers::get_template_part( 'partials/icon', [ 'icon' => 'chevron-down', 'size' => 'lg' ], false );
 			$classes = implode( '.', explode( ' ', $args->menu_class ) );
 
 			$button = "<button class='menu-toggle' data-expand='.{$classes} .menu-item-{$item->ID}'>{$icon}</button>";

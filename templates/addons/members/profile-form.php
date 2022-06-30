@@ -5,11 +5,11 @@
 <?php endif; ?>
 
 <?php if ( ! empty( $blocker ) ) : ?>
-	<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', array( 'errors' => array( $blocker ) ), true ); ?>
+	<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', [ 'errors' => [ $blocker ] ], true ); ?>
 <?php else : ?>
 	<form class="c-form" action="<?php the_permalink(); ?>" method="post" novalidate data-validate>
-		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', array( 'errors' => $errors ), true ); ?>
-		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/alerts', array( 'alerts' => $alerts ), true ); ?>
+		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', [ 'errors' => $errors ], true ); ?>
+		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/alerts', [ 'alerts' => $alerts ], true ); ?>
 
 		<div class="c-form__field c-form__field--wide">
 			<input type="email" name="email" placeholder="<?php esc_attr_e( 'Email address', 'chimpunk' ); ?>*" value="<?php echo esc_attr( $userdata->user_email ); ?>" required class="c-form__input">

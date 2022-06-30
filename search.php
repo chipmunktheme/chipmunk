@@ -21,7 +21,7 @@ get_header(); ?>
 					<?php echo get_search_query(); ?>
 				</h1>
 
-				<?php Chipmunk\Helpers::get_template_part( 'partials/search-form', array( 'narrow' => true ) ); ?>
+				<?php Chipmunk\Helpers::get_template_part( 'partials/search-form', [ 'narrow' => true ] ); ?>
 
 				<?php if ( ! have_posts() ) : ?>
 					<p class="l-header__copy">
@@ -36,7 +36,7 @@ get_header(); ?>
 		<div data-action-element="load_posts">
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php Chipmunk\Helpers::get_template_part( array( 'sections/entry', 'resource' ) ); ?>
+				<?php Chipmunk\Helpers::get_template_part( [ 'sections/entry', 'resource' ] ); ?>
 
 			<?php endwhile; ?>
 		</div>

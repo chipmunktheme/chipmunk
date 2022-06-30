@@ -3,7 +3,7 @@
 
 	<?php if ( ! empty( $average_rating ) ) : ?>
 		<li class="c-stats__item c-stats__item--ratings" title="<?php esc_attr_e( 'Ratings', 'chipmunk' ); ?>">
-			<?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'star' ) ); ?>
+			<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'star' ] ); ?>
 			<?php echo esc_html( $average_rating ); ?>
 		</li>
 	<?php endif; ?>

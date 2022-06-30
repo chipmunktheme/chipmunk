@@ -24,7 +24,7 @@ get_header(); ?>
 	<?php endif; ?>
 
 	<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_homepage_posts' ) ) : ?>
-		<?php Chipmunk\Helpers::get_template_part( array( 'sections/loop', 'post' ) ); ?>
+		<?php Chipmunk\Helpers::get_template_part( [ 'sections/loop', 'post' ] ); ?>
 	<?php endif; ?>
 
 <?php get_footer(); ?>

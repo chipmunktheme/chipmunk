@@ -23,16 +23,16 @@ class Settings {
 	 * @return void
 	 */
 	function __construct() {
-		add_action( 'admin_menu', array( $this, 'add_menu_page' ), 1 );
-		add_action( 'chipmunk_settings_nav', array( $this, 'add_menu_page' ), 1 );
+		add_action( 'admin_menu', [ $this, 'add_menu_page' ], 1 );
+		add_action( 'chipmunk_settings_nav', [ $this, 'add_menu_page' ], 1 );
 
 		// Initialize theme licenser
-		$licenser = new Settings\Licenser( array(
+		$licenser = new Settings\Licenser( [
 			'remote_api_url' => THEME_SHOP_URL,
 			'item_id'        => THEME_ITEM_ID,
 			'item_name'      => THEME_TITLE,
 			'item_slug'      => THEME_SLUG,
-		) );
+		] );
 
 		// Store license data
 		self::$license = $licenser->get_license_data();
@@ -51,7 +51,7 @@ class Settings {
 			THEME_TITLE,
 			'edit_theme_options',
 			THEME_SLUG,
-			array( $this, 'admin_settings' ),
+			[ $this, 'admin_settings' ],
 			Helpers::svg_to_base64( Assets::asset_path( 'images/logo.svg' ) ),
 		);
 	}
@@ -60,7 +60,7 @@ class Settings {
 	 * Outputs the markup used on the theme settings page.
 	 */
 	public function admin_settings() {
-		$tabs = apply_filters( 'chipmunk_settings_tabs', array() );
+		$tabs = apply_filters( 'chipmunk_settings_tabs', [] );
 		?>
 
 		<div class="chipmunk">

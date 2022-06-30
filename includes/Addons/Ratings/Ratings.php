@@ -65,10 +65,10 @@ class Ratings {
 		$ratings = $this->get_post_ratings();
 		$old_rating = $this->get_user_rating( $ratings );
 
-		$new_rating = array(
+		$new_rating = [
 			'rating'    => $this->rating,
 			'user_id'   => $this->user_id,
-		);
+		];
 
 		if ( ! empty( $old_rating ) ) {
 			// Update user rating
@@ -96,10 +96,10 @@ class Ratings {
 		update_post_meta( $this->post_id, self::$db_key_rank, $rank );
 
 		// Return proper resounse params
-		return array(
+		return [
 			'post'      => $this->post_id,
 			'content'   => $this->get_ratings_summary(),
-		);
+		];
 	}
 
 	/**
@@ -188,11 +188,11 @@ class Ratings {
 		$average = $this->get_rating_average( $ratings );
 		$rating = $this->get_user_rating( $ratings );
 
-		return array(
+		return [
 			'rating'    => $rating,
 			'average'   => $average,
 			'count'     => count( $ratings ),
-		);
+		];
 	}
 
 	/**

@@ -17,20 +17,20 @@ class Actions {
 	 */
 	function __construct() {
 		// Lazy loading posts
-		add_action( 'wp_ajax_chipmunk_load_posts', array( $this, 'load_posts' ) );
-		add_action( 'wp_ajax_nopriv_chipmunk_load_posts', array( $this, 'load_posts' ) );
+		add_action( 'wp_ajax_chipmunk_load_posts', [ $this, 'load_posts' ] );
+		add_action( 'wp_ajax_nopriv_chipmunk_load_posts', [ $this, 'load_posts' ] );
 
 		// Submissions
-		add_action( 'wp_ajax_chipmunk_submit_resource', array( $this, 'submit_resource' ) );
-		add_action( 'wp_ajax_nopriv_chipmunk_submit_resource', array( $this, 'submit_resource' ) );
+		add_action( 'wp_ajax_chipmunk_submit_resource', [ $this, 'submit_resource' ] );
+		add_action( 'wp_ajax_nopriv_chipmunk_submit_resource', [ $this, 'submit_resource' ] );
 
 		// Bookmarks
-		add_action( 'wp_ajax_chipmunk_toggle_bookmark', array( $this, 'toggle_bookmark' ) );
-		add_action( 'wp_ajax_nopriv_chipmunk_toggle_bookmark', array( $this, 'toggle_bookmark' ) );
+		add_action( 'wp_ajax_chipmunk_toggle_bookmark', [ $this, 'toggle_bookmark' ] );
+		add_action( 'wp_ajax_nopriv_chipmunk_toggle_bookmark', [ $this, 'toggle_bookmark' ] );
 
 		// Upvotes
-		add_action( 'wp_ajax_chipmunk_toggle_upvote', array( $this, 'toggle_upvote' ) );
-		add_action( 'wp_ajax_nopriv_chipmunk_toggle_upvote', array( $this, 'toggle_upvote' ) );
+		add_action( 'wp_ajax_chipmunk_toggle_upvote', [ $this, 'toggle_upvote' ] );
+		add_action( 'wp_ajax_nopriv_chipmunk_toggle_upvote', [ $this, 'toggle_upvote' ] );
 	}
 
 	/**
@@ -48,10 +48,10 @@ class Actions {
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) : $query->the_post();
 				if ( isset( $query->query['s'] ) ) {
-					$template .= Helpers::get_template_part( array( 'sections/entry', 'resource' ), array(), false );
+					$template .= Helpers::get_template_part( [ 'sections/entry', 'resource' ], [], false );
 				}
 				else {
-					$template .= Helpers::get_template_part( 'sections/tile-' . get_post_type(), array(), false );
+					$template .= Helpers::get_template_part( 'sections/tile-' . get_post_type(), [], false );
 				}
 			endwhile;
 		}

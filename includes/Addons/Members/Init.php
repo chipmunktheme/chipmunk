@@ -20,14 +20,14 @@ class Init {
 	 *
 	 * @return void
 	 */
-	public function __construct( $config = array() ) {
+	public function __construct( $config = [] ) {
 		// Set config defaults
-		$this->config = wp_parse_args( $config, array(
+		$this->config = wp_parse_args( $config, [
 			'name'         => '',
 			'slug'         => '',
 			'excerpt'      => '',
 			'url'          => '',
-		) );
+		] );
 
 		$this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
 
@@ -41,8 +41,8 @@ class Init {
 	 * @return  void
 	 */
 	private function hooks() {
-		add_action( 'init', array( $this, 'setup_addon' ) );
-		add_filter( 'chipmunk_settings_addons', array( $this, 'add_settings_addon' ) );
+		add_action( 'init', [ $this, 'setup_addon' ] );
+		add_filter( 'chipmunk_settings_addons', [ $this, 'add_settings_addon' ] );
 	}
 
 	/**
@@ -54,43 +54,43 @@ class Init {
 		$options = Helpers::get_options( 'pages' );
 
 		// Information needed for creating the addon's pages
-		$page_definitions = array(
-			'login' => array(
+		$page_definitions = [
+			'login' => [
 				'title' => __( 'Login', 'chipmunk' ),
 				'content' => '[chipmunk-login-form]',
 				'template' => 'page-narrow-width.php',
-			),
+			],
 
-			'register' => array(
+			'register' => [
 				'title' => __( 'Register', 'chipmunk' ),
 				'content' => '[chipmunk-register-form]',
 				'template' => 'page-narrow-width.php',
-			),
+			],
 
-			'lost-password' => array(
+			'lost-password' => [
 				'title' => __( 'Forgot Your Password?', 'chipmunk' ),
 				'content' => '[chipmunk-lost-password-form]',
 				'template' => 'page-narrow-width.php',
-			),
+			],
 
-			'reset-password' => array(
+			'reset-password' => [
 				'title' => __( 'Reset Password', 'chipmunk' ),
 				'content' => '[chipmunk-reset-password-form]',
 				'template' => 'page-narrow-width.php',
-			),
+			],
 
-			'profile' => array(
+			'profile' => [
 				'title' => __( 'Edit Profile', 'chipmunk' ),
 				'content' => '[chipmunk-profile-form]',
 				'template' => 'page-narrow-width.php',
-			),
+			],
 
-			'dashboard' => array(
+			'dashboard' => [
 				'title' => __( 'Dashboard', 'chipmunk' ),
 				'content' => '[chipmunk-dashboard]',
 				'template' => 'page-full-width.php',
-			),
-		);
+			],
+		];
 
 		foreach ( $page_definitions as $slug => $page ) {
 			$normalized_slug = str_replace( '-', '_', $slug );
@@ -100,7 +100,7 @@ class Init {
 			if ( empty( $current_page ) || ! get_post( $current_page ) || get_post_status( $current_page ) != 'publish' ) {
 				// Add the page using the data from the array above
 				$post_id = wp_insert_post(
-					array(
+					[
 						'post_content'   => "<!-- wp:shortcode -->{$page['content']}<!-- /wp:shortcode -->",
 						'post_name'      => $slug,
 						'post_title'     => $page['title'],
@@ -109,16 +109,16 @@ class Init {
 						'ping_status'    => 'closed',
 						'comment_status' => 'closed',
 						'page_template'  => $page['template'],
-					)
+					]
 				);
 
 				$options[ $option_slug ] = $post_id;
 			} elseif ( get_post( $current_page ) && get_post_status( $current_page ) != 'publish' ) {
 				wp_update_post(
-					array(
+					[
 						'ID'             => $current_page,
 						'post_status'    => 'publish',
-					),
+					],
 				);
 			}
 		}

@@ -1,5 +1,5 @@
 <?php
-	$tile_class = Chipmunk\Helpers::class_name( 'c-tile', array( 'blank' ) );
+	$tile_class = Chipmunk\Helpers::class_name( 'c-tile', [ 'blank' ] );
 ?>
 
 <div class="<?php echo esc_attr( $tile_class ); ?>">
@@ -21,19 +21,19 @@
 				<p class="c-tile__copy"><?php echo esc_html( get_the_excerpt() ); ?></p>
 			</div>
 
-			<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+			<?php Chipmunk\Helpers::get_template_part( 'partials/stats', [
 				'class' => 'c-tile__stats',
-				'stats' => array(
-					'terms' => array(
-						'term_args' => array(
+				'stats' => [
+					'terms' => [
+						'term_args' => [
 							'quantity' => 1,
-						),
-					),
-					'date' => array(),
-					'views' => array(),
-					'ratings' => array(),
-				),
-			) ); ?>
+						],
+					],
+					'date' => [],
+					'views' => [],
+					'ratings' => [],
+				],
+			] ); ?>
 
 			<a href="<?php the_permalink(); ?>" class="c-tile__button c-button c-button--primary-outline u-visible-lg-block">
 				<?php esc_html_e( 'Read more', 'chipmunk' ); ?>

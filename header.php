@@ -17,7 +17,7 @@
 
 <body <?php body_class( 'l-body' ); ?>
 	data-ajax-source="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
-    data-login-url="<?php echo wp_login_url( home_url( add_query_arg( array(), $wp->request ) ) ); ?>">
+    data-login-url="<?php echo wp_login_url( home_url( add_query_arg( [], $wp->request ) ) ); ?>">
 
 	<?php wp_body_open(); ?>
 

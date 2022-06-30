@@ -32,10 +32,10 @@ class Faker {
 	 * @since 1.0.0
 	 */
 	function __construct( ) {
-		add_action( 'admin_init', array( $this, 'maybe_generate' ) );
+		add_action( 'admin_init', [ $this, 'maybe_generate' ] );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', array( $this, 'add_settings_tab' ) );
+		add_filter( 'chipmunk_settings_tabs', [ $this, 'add_settings_tab' ] );
 	}
 
 	/**
@@ -43,11 +43,11 @@ class Faker {
 	 */
 	public function maybe_generate() {
 		if ( isset( $_POST[THEME_SLUG . '_generator_upvote'] ) ) {
-			self::generate( 'upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'], array( 'resource' ) );
+			self::generate( 'upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'], [ 'resource' ] );
 		}
 
 		if ( isset( $_POST[THEME_SLUG . '_generator_view'] ) ) {
-			self::generate( 'post_view', (int) $_POST[THEME_SLUG . '_generator_view_start'], (int) $_POST[THEME_SLUG . '_generator_view_end'], array( 'post', 'resource' ) );
+			self::generate( 'post_view', (int) $_POST[THEME_SLUG . '_generator_view_start'], (int) $_POST[THEME_SLUG . '_generator_view_end'], [ 'post', 'resource' ] );
 		}
 	}
 
@@ -62,11 +62,11 @@ class Faker {
 
 		$db_key = '_' . THEME_SLUG . '_' . $type . '_count';
 
-		$posts = get_posts( array(
+		$posts = get_posts( [
 			'post_type'         => $post_types,
 			'post_status'       => 'any',
 			'posts_per_page'    => -1,
-		) );
+		] );
 
 		foreach ( $posts as $post ) {
 			$count = (int) get_post_meta( $post->ID, $db_key, true );
@@ -83,11 +83,11 @@ class Faker {
 	 * Adds settings tab to the list
 	 */
 	public function add_settings_tab( $tabs ) {
-		$tabs[] = array(
+		$tabs[] = [
 			'name'      => $this->name,
 			'slug'      => $this->slug,
 			'content'   => $this->get_settings_content(),
-		);
+		];
 
 		return $tabs;
 	}

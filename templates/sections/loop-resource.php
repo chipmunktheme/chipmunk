@@ -1,7 +1,7 @@
 <?php if ( is_singular( 'resource' ) ) : ?>
-	<?php $query = Chipmunk\Query::get_related( get_the_ID(), array( 'posts_per_page' => apply_filters( 'chipmunk_related_resources_count', 3 ) ) ); ?>
+	<?php $query = Chipmunk\Query::get_related( get_the_ID(), [ 'posts_per_page' => apply_filters( 'chipmunk_related_resources_count', 3 ) ] ); ?>
 <?php elseif ( is_author() && get_query_var( 'author_name' ) ) : ?>
-	<?php $query = Chipmunk\Query::get_resources( array( 'author_name' => get_query_var( 'author_name' ) ) ); ?>
+	<?php $query = Chipmunk\Query::get_resources( [ 'author_name' => get_query_var( 'author_name' ) ] ); ?>
 <?php else : ?>
 	<?php $query = Chipmunk\Query::get_resources(); ?>
 <?php endif; ?>
@@ -45,7 +45,7 @@
 				</div>
 			<?php endif; ?>
 
-			<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', array( 'query' => $query ) ); ?>
+			<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', [ 'query' => $query ] ); ?>
 		</div>
 	</div>
 <?php endif; ?>

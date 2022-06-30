@@ -18,7 +18,7 @@ class Merlin {
 	function __construct() {
 		new \Merlin(
 			// Config settings
-			array(
+			[
 				'directory'            => 'vendor/richtabor/merlin-wp', // Location / directory where Merlin WP is placed in your theme.
 				'child_action_btn_url' => 'https://developer.wordpress.org/themes/advanced-topics/child-themes', // URL for the 'child-action-link'.
 				'dev_mode'             => false, // Enable development mode for testing.
@@ -28,10 +28,10 @@ class Merlin {
 				'edd_remote_api_url'   => THEME_SHOP_URL, // EDD_Theme_Updater_Admin remote_api_url.
 				'edd_item_name'        => THEME_TITLE, // EDD_Theme_Updater_Admin item_name.
 				'edd_theme_slug'       => THEME_SLUG, // EDD_Theme_Updater_Admin item_slug.
-			),
+			],
 
 			// Strings
-			array(
+			[
 				'admin-menu'               => esc_html__( 'Theme Setup', 'chipmunk' ),
 
 				/* translators: 1: Title Tag 2: Theme Name 3: Closing Title Tag */
@@ -91,12 +91,12 @@ class Merlin {
 				'ready%s'                  => esc_html__( 'Your theme has been all set up. Enjoy your new theme.', 'chipmunk' ),
 				'ready-action-link'        => esc_html__( 'Extras', 'chipmunk' ),
 				'ready-big-button'         => esc_html__( 'View your website', 'chipmunk' ),
-			)
+			]
 		);
 
-		add_action( 'admin_head', array( $this, 'add_merlin_styles' ) );
-		add_filter( 'merlin_import_files', array( $this, 'import_merlin_files' ) );
-		add_action( 'merlin_after_all_import', array( $this, 'after_import_merlin_files' ) );
+		add_action( 'admin_head', [ $this, 'add_merlin_styles' ] );
+		add_filter( 'merlin_import_files', [ $this, 'import_merlin_files' ] );
+		add_action( 'merlin_after_all_import', [ $this, 'after_import_merlin_files' ] );
 	}
 
 	/**
@@ -141,14 +141,14 @@ class Merlin {
 	 * @return array
 	 */
 	public static function import_merlin_files() {
-		return array(
-			array(
+		return [
+			[
 				'import_file_name'           => __( 'Demo Import', 'chipmunk' ),
 				'import_file_url'            => THEME_SHOP_URL . '/wp-content/uploads/chipmunk-theme-demo-content.xml',
 				'import_customizer_file_url' => THEME_SHOP_URL . '/wp-content/uploads/chipmunk-theme-customizer.dat',
 				'preview_url'                => THEME_DEMO_URL,
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -161,10 +161,10 @@ class Merlin {
 		$footer_nav = get_term_by( 'name', 'Footer nav', 'nav_menu' );
 
 		set_theme_mod(
-			'nav_menu_locations', array(
+			'nav_menu_locations', [
 				'nav-primary' => $header_nav->term_id,
 				'nav-secondary' => $footer_nav->term_id,
-			)
+			]
 		);
 	}
 }

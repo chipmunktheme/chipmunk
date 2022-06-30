@@ -42,16 +42,16 @@
 					<?php endif; ?>
 
 					<?php if ( ! is_search() ) : ?>
-						<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+						<?php Chipmunk\Helpers::get_template_part( 'partials/stats', [
 							'class' => 'c-resource__tags',
-							'stats' => array(
-								'terms' => array(
-									'term_args' => array(
+							'stats' => [
+								'terms' => [
+									'term_args' => [
 										'taxonomy' => 'resource-tag',
-									),
-								),
-							),
-						) ); ?>
+									],
+								],
+							],
+						] ); ?>
 					<?php endif; ?>
 				</div>
 
@@ -73,7 +73,7 @@
 							<?php while ( have_rows( '_' . THEME_SLUG . '_resource_links' ) ) : the_row(); ?>
 
 								<?php if ( ! empty( get_sub_field( 'link' ) ) ) : ?>
-									<?php Chipmunk\Helpers::get_template_part( 'partials/button', array( 'link' => get_sub_field( 'link' ), 'class' => 'resource__button c-button c-button--primary-outline' ) ); ?>
+									<?php Chipmunk\Helpers::get_template_part( 'partials/button', [ 'link' => get_sub_field( 'link' ), 'class' => 'resource__button c-button c-button--primary-outline' ] ); ?>
 								<?php endif; ?>
 
 							<?php endwhile; ?>
@@ -91,11 +91,11 @@
 				<?php $media_class = "c-resource__media $media_class"; ?>
 
 				<?php if ( ! is_single() ) : ?>
-					<a href="<?php the_permalink(); ?>" class="<?php echo esc_attr( $media_class ); ?>"><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
+					<a href="<?php the_permalink(); ?>" class="<?php echo esc_attr( $media_class ); ?>"><?php the_post_thumbnail( '1280x960', [ 'itemprop' => 'image' ] ); ?></a>
 				<?php elseif ( ! empty( $primary_website ) ) : ?>
-					<a href="<?php echo Chipmunk\Helpers::render_external_link( $primary_website ); ?>" class="<?php echo esc_attr( $media_class ); ?>" target="_blank"<?php echo Chipmunk\Helpers::get_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></a>
+					<a href="<?php echo Chipmunk\Helpers::render_external_link( $primary_website ); ?>" class="<?php echo esc_attr( $media_class ); ?>" target="_blank"<?php echo Chipmunk\Helpers::get_theme_option( 'disable_nofollow' ) ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail( '1280x960', [ 'itemprop' => 'image' ] ); ?></a>
 				<?php else : ?>
-					<div class="<?php echo esc_attr( $media_class ); ?>"><?php the_post_thumbnail( '1280x960', array( 'itemprop' => 'image' ) ); ?></div>
+					<div class="<?php echo esc_attr( $media_class ); ?>"><?php the_post_thumbnail( '1280x960', [ 'itemprop' => 'image' ] ); ?></div>
 				<?php endif; ?>
 			<?php endif; ?>
 
@@ -103,24 +103,24 @@
 				<div class="c-resource__head">
 					<?php do_action( 'chipmunk_before_resource_head' ); ?>
 
-					<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+					<?php Chipmunk\Helpers::get_template_part( 'partials/stats', [
 						'class' => 'c-resource__stats',
-						'stats' => array(
-							'upvotes' => array(),
-							'bookmarks' => array(),
-							'author' => array(
+						'stats' => [
+							'upvotes' => [],
+							'bookmarks' => [],
+							'author' => [
 								'show_link' => true,
-							),
-							'terms' => array(
-								'term_args' => array(
+							],
+							'terms' => [
+								'term_args' => [
 									'taxonomy' => 'resource-collection',
 									'quantity' => 1,
-								),
-							),
-							'date' => array(),
-							'views' => array(),
-						),
-					) ); ?>
+								],
+							],
+							'date' => [],
+							'views' => [],
+						],
+					] ); ?>
 
 					<?php if ( Chipmunk\Helpers::is_feature_enabled( 'sharing', 'resource' ) ) : ?>
 						<div class="c-resource__share">

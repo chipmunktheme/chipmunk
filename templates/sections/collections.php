@@ -1,13 +1,13 @@
 <?php
-	$collections = get_terms( array(
+	$collections = get_terms( [
 		'taxonomy'    => 'resource-collection',
 		'orderby'     => 'name',
 		'pad_counts'  => true,
-	) );
+	] );
 
 	// Remove children from the listing
 	// http://wordpress.stackexchange.com/a/48630/58550
-	$collections = wp_list_filter( $collections, array( 'parent' => 0 ) );
+	$collections = wp_list_filter( $collections, [ 'parent' => 0 ] );
 ?>
 
 <div class="l-section">
@@ -28,7 +28,7 @@
 			<div class="l-component">
 				<div class="c-tile__list">
 					<?php foreach ( $collections as $collection ) : ?>
-						<?php Chipmunk\Helpers::get_template_part( 'sections/tile-collection', array( 'collection' => $collection ) ); ?>
+						<?php Chipmunk\Helpers::get_template_part( 'sections/tile-collection', [ 'collection' => $collection ] ); ?>
 					<?php endforeach; ?>
 				</div>
 			</div>

@@ -32,7 +32,7 @@ class Submitter {
 	 *
 	 * @var array
 	 */
-	private $required = array( 'name' );
+	private $required = [ 'name' ];
 
 	/**
 	 * A meta field name to store post info in
@@ -120,13 +120,13 @@ class Submitter {
 		$attachment_title = sanitize_file_name( pathinfo( $file_name, PATHINFO_FILENAME ) );
 
 		// Set up our images post data
-		$attachment_info = array(
+		$attachment_info = [
 			'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
 			'post_mime_type' => $file_type['type'],
 			'post_title'     => $attachment_title,
 			'post_content'   => '',
 			'post_status'    => 'inherit',
-		);
+		];
 
 		// Attach/upload image
 		$attachment_id = wp_insert_attachment( $attachment_info, $file_path );
@@ -231,11 +231,11 @@ class Submitter {
 		if ( ! empty( $data->url ) ) {
 			$data->url = rtrim( $data->url, '/' );
 
-			$link = array(
+			$link = [
 				'title' 	=> apply_filters( 'chipmunk_submission_website_label', __( 'Visit website', 'chipmunk' ) ),
 				'url' 		=> $data->url,
 				'target' 	=> '_blank',
-			);
+			];
 
 			$data->meta[ $this->meta_prefix . $meta_key_links ] = '1';
 			$data->meta[ $this->meta_prefix . $meta_key_links . '_0_link' ] = $link;
@@ -250,14 +250,14 @@ class Submitter {
 		}
 
 		// Post array
-		$post_array = array(
+		$post_array = [
 			'post_type'     => $this->post_type ?? 'post',
 			'post_status'   => $data->status ?? 'pending',
 			'post_title'    => $data->name ?? '',
 			'post_content'  => $data->content ?? '',
 			'post_author'   => $data->author ?? '',
 			'meta_input'    => $data->meta ?? null,
-		);
+		];
 
 		if ( $post_id = @wp_insert_post( $post_array) ) {
 			// Set thumbnail
@@ -270,8 +270,8 @@ class Submitter {
 			}
 
 			// Set terms
-			$this->set_terms( $post_id, $data->collections ?? array(), 'resource-collection' );
-			$this->set_terms( $post_id, $data->tags ?? array(), 'resource-tag' );
+			$this->set_terms( $post_id, $data->collections ?? [], 'resource-collection' );
+			$this->set_terms( $post_id, $data->tags ?? [], 'resource-tag' );
 
 			// Return inserted post ID
 			return $post_id;

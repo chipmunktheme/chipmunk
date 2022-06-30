@@ -8,17 +8,17 @@
 	</h2>
 <?php endif; ?>
 
-<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+<?php Chipmunk\Helpers::get_template_part( 'partials/stats', [
 	'class' => 'c-entry__stats',
-	'stats' => array(
-		'author' => array(
+	'stats' => [
+		'author' => [
 			'show_avatar' => true,
-		),
-		'terms' => array(
-			'term_args' => $term_args ?? array(),
-		),
-		'date' => array(),
-		'views' => array(),
-		'ratings' => ! is_single() ? array() : null,
-	),
-) ); ?>
+		],
+		'terms' => [
+			'term_args' => $term_args ?? [],
+		],
+		'date' => [],
+		'views' => [],
+		'ratings' => ! is_single() ? [] : null,
+	],
+] ); ?>

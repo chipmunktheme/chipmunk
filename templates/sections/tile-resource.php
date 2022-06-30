@@ -1,23 +1,23 @@
 <?php
 	// Cache resource customizer options
-	$options = array(
+	$options = [
 		'display_as'             => Chipmunk\Helpers::get_theme_option( 'display_resource_as' ),
 		'disable_thumbs'         => ! Chipmunk\Helpers::is_feature_enabled( 'thumbs', 'resource', false ),
 		'disable_website_button' => ! Chipmunk\Helpers::is_feature_enabled( 'website_button', 'resource', false ),
 		'disable_desc'           => ! Chipmunk\Helpers::is_feature_enabled( 'desc', 'resource', false ),
-	);
+	];
 
 	// Resource website - custom post meta
 	$website = Chipmunk\Helpers::get_resource_website( get_the_ID() );
 
 	// Resource tile classes
-	$tile_classes = array(
-		''           => array( 'card' ),
-		'tile'       => array( 'tile' ),
-		'card'       => array( 'card' ),
-		'card_blank' => array( 'blank' ),
-		'card_wide'  => array( 'wide' ),
-	);
+	$tile_classes = [
+		''           => [ 'card' ],
+		'tile'       => [ 'tile' ],
+		'card'       => [ 'card' ],
+		'card_blank' => [ 'blank' ],
+		'card_wide'  => [ 'wide' ],
+	];
 
 	$tile_class = Chipmunk\Helpers::class_name( 'c-tile', $tile_classes[ $options['display_as'] ] );
 ?>
@@ -61,7 +61,7 @@
 						}
 					</script>
 
-					<div onclick="openURL(event, '<?php echo Chipmunk\Helpers::render_external_link( $website ); ?>');" class="c-tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'external-link' ) ); ?></div>
+					<div onclick="openURL(event, '<?php echo Chipmunk\Helpers::render_external_link( $website ); ?>');" class="c-tile__icon" title="<?php esc_attr_e( 'Visit website', 'chipmunk' ); ?>"><?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'external-link' ] ); ?></div>
 				<?php endif; ?>
 
 				<?php if ( ! $options['disable_desc'] && ! empty( get_the_excerpt() ) ) : ?>
@@ -69,23 +69,23 @@
 				<?php endif; ?>
 			</div>
 
-			<?php Chipmunk\Helpers::get_template_part( 'partials/stats', array(
+			<?php Chipmunk\Helpers::get_template_part( 'partials/stats', [
 				'class' => 'c-tile__stats',
-				'stats' => array(
-					'upvotes' => array(),
-					'terms' => $options['display_as'] != 'card_wide' ? null : array(
-						'term_args' => array(
+				'stats' => [
+					'upvotes' => [],
+					'terms' => $options['display_as'] != 'card_wide' ? null : [
+						'term_args' => [
 							'taxonomy'     => 'resource-collection',
 							'type'         => 'text',
 							'quantity'     => 1,
 							'desktop_only' => true,
-						),
-					),
-					'date' => array(),
-					'views' => array(),
-					'ratings' => array(),
-				),
-			) ); ?>
+						],
+					],
+					'date' => [],
+					'views' => [],
+					'ratings' => [],
+				],
+			] ); ?>
 		</div>
 	</<?php echo get_post_status() == 'publish' ? 'a' : 'div'; ?>>
 </div>

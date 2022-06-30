@@ -14,31 +14,31 @@ class Query {
 	 * Get posts
 	 */
 	public static function get_posts( $args, $tax = null, $date = null ) {
-		$defaults = array(
+		$defaults = [
 			'post_type'         => 'post',
 			'posts_per_page'    => -1,
-		);
+		];
 
 		// Apply taxonomy params
 		if ( ! empty( $tax ) ) {
-			$defaults['tax_query'] = array(
-				array(
+			$defaults['tax_query'] = [
+				[
 					'taxonomy'          => $tax->taxonomy,
 					'field'             => 'id',
 					'terms'             => $tax->term_id,
 					'include_children'  => false,
-				),
-			);
+				],
+			];
 		}
 
 		// Apply date params
 		if ( ! empty( $date ) ) {
-			$defaults['date_query'] = array(
-				array(
+			$defaults['date_query'] = [
+				[
 					'year'  => $date['year'],
 					'month' => $date['month'],
-				),
-			);
+				],
+			];
 		}
 
 		return new \WP_Query( wp_parse_args( $args, $defaults ) );
@@ -47,25 +47,25 @@ class Query {
 	/**
 	 * Get related resources
 	 */
-	public static function get_related( $post_id, $args = array() ) {
-		$defaults = array(
+	public static function get_related( $post_id, $args = [] ) {
+		$defaults = [
 			'post_type'         => get_post_type( $post_id ),
 			'post_status'       => 'publish',
-			'post__not_in'      => array( $post_id ),
+			'post__not_in'      => [ $post_id ],
 			'posts_per_page'    => 3,
 			'orderby'           => 'rand',
-		);
+		];
 
 		foreach ( get_object_taxonomies( get_post( $post_id ), 'names' ) as $taxonomy ) {
 			$terms = get_the_terms( $post_id, $taxonomy );
 
 			if ( ! empty( $terms ) ) {
-				$args['tax_query'][] = array(
+				$args['tax_query'][] = [
 					'taxonomy'    => $taxonomy,
 					'field'       => 'term_id',
 					'terms'       => array_column( $terms, 'term_id' ),
 					'operator'    => 'IN',
-				);
+				];
 			};
 		}
 
@@ -79,13 +79,13 @@ class Query {
 	/**
 	 * Get resources
 	 */
-	public static function get_resources( $args = array(), $term = null ) {
-		$defaults = array(
+	public static function get_resources( $args = [], $term = null ) {
+		$defaults = [
 			'post_type'         => 'resource',
 			'post_status'       => 'publish',
 			'posts_per_page'    => Helpers::get_theme_option( 'posts_per_page' ),
 			'paged'             => Helpers::get_current_page(),
-		);
+		];
 
 		// Add default ordering args
 		if ( empty( $args['orderby'] ) ) {
@@ -104,12 +104,12 @@ class Query {
 	 * Get users
 	 */
 	public static function get_users( $limit = -1 ) {
-		$args = array(
-			'role__in' => array( 'Administrator', 'Editor', 'Author' ),
+		$args = [
+			'role__in' => [ 'Administrator', 'Editor', 'Author' ],
 			'number'   => $limit,
 			'orderby'  => 'ID',
 			'order'    => 'ASC',
-		);
+		];
 
 		return new \WP_User_Query( $args );
 	}
@@ -118,7 +118,7 @@ class Query {
 	 * Get resources sort WP_Query arguments
 	 */
 	private static function get_resources_sort_args() {
-		$sort_args = array();
+		$sort_args = [];
 
 		// Apply sorting options
 		if ( ! empty( $_GET['sort'] ) && Helpers::is_feature_enabled( 'sorting', 'resource', false ) ) {
@@ -133,32 +133,32 @@ class Query {
 
 		switch ( $sort_orderby ) {
 			case 'date':
-				$sort_args = array(
+				$sort_args = [
 					'orderby'   => 'date',
-				);
+				];
 				break;
 			case 'name':
-				$sort_args = array(
+				$sort_args = [
 					'orderby'   => 'title',
-				);
+				];
 				break;
 			case 'views':
-				$sort_args = array(
+				$sort_args = [
 					'orderby'   => 'meta_value_num date',
 					'meta_key'  => '_' . THEME_SLUG . '_post_view_count',
-				);
+				];
 				break;
 			case 'upvotes':
-				$sort_args = array(
+				$sort_args = [
 					'orderby'   => 'meta_value_num date',
 					'meta_key'  => '_' . THEME_SLUG . '_upvote_count',
-				);
+				];
 				break;
 			case 'ratings':
-				$sort_args = array(
+				$sort_args = [
 					'orderby'   => 'meta_value_num date',
 					'meta_key'  => '_' . THEME_SLUG . '_rating_rank',
-				);
+				];
 				break;
 		}
 
@@ -171,30 +171,30 @@ class Query {
 	 * Get resources tax WP_Query arguments
 	 */
 	private static function get_resources_tax_args( $term = null ) {
-		$tax_query = array();
+		$tax_query = [];
 
 		// Apply taxonomy options
 		if ( is_tax() && ! empty( $term ) ) {
-			$tax_query[] = array(
+			$tax_query[] = [
 				'taxonomy'          => $term->taxonomy,
 				'field'             => 'slug',
 				'terms'             => $term->slug,
-			);
+			];
 		}
 
 		// Apply tag filters
 		if ( ! empty( $_GET['tag'] ) && Helpers::is_feature_enabled( 'filters', 'resources', false ) ) {
-			$tax_query[] = array(
+			$tax_query[] = [
 				'taxonomy'          => 'resource-tag',
 				'field'             => 'slug',
 				'terms'             => $_GET['tag'],
-			);
+			];
 		}
 
 		if ( count( $tax_query ) > 1 ) {
 			$tax_query['relation'] = 'AND';
 		}
 
-		return array( 'tax_query' => $tax_query );
+		return [ 'tax_query' => $tax_query ];
 	}
 }

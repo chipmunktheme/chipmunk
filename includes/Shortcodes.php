@@ -16,8 +16,8 @@ class Shortcodes {
 	 * @return void
 	 */
 	function __construct() {
-		add_shortcode( 'chipmunk-counter', array( $this, 'render_counter' ) );
-		add_shortcode( 'chipmunk-submit', array( $this, 'render_submit' ) );
+		add_shortcode( 'chipmunk-counter', [ $this, 'render_counter' ] );
+		add_shortcode( 'chipmunk-submit', [ $this, 'render_submit' ] );
 	}
 
 	/**
@@ -27,10 +27,10 @@ class Shortcodes {
 	 */
 	public static function render_counter( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$attributes = shortcode_atts( array(
+		$attributes = shortcode_atts( [
 			'type'      => 'resource',
 			'status'    => 'publish',
-		), $atts );
+		], $atts );
 
 		// Render the login form using an external template
 		return self::get_shortcode_template( 'counter', $attributes );
@@ -43,9 +43,9 @@ class Shortcodes {
 	 */
 	public static function render_submit( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$attributes = shortcode_atts( array(
+		$attributes = shortcode_atts( [
 			'title' => '',
-		), $atts );
+		], $atts );
 
 		// Render the login form using an external template
 		return self::get_shortcode_template( 'submit', $attributes );
@@ -61,14 +61,14 @@ class Shortcodes {
 	 */
 	private static function get_shortcode_template( $template_name, $attributes = null ) {
 		if ( ! $attributes ) {
-			$attributes = array();
+			$attributes = [];
 		}
 
 		ob_start();
 
 		do_action( 'chipmunk_shortcode_template_before_' . $template_name );
 
-		Helpers::get_template_part( 'shortcodes/' . $template_name, array( 'attributes' => $attributes ) );
+		Helpers::get_template_part( 'shortcodes/' . $template_name, [ 'attributes' => $attributes ] );
 
 		do_action( 'chipmunk_shortcode_template_after_' . $template_name );
 

@@ -21,7 +21,7 @@ class Helpers {
 	public static function get_options( $section, $default = false ) {
 		$options = get_option( THEME_SLUG . '_members_' . $section, $default );
 
-		return is_array( $options ) ? $options : array();
+		return is_array( $options ) ? $options : [];
 	}
 
 	/**
@@ -75,7 +75,7 @@ class Helpers {
 	 * Retrieve possible errors from request parameters
 	 */
 	public static function retrieve_request_errors() {
-		$errors = array();
+		$errors = [];
 
 		if ( isset( $_REQUEST['errors'] ) ) {
 			$error_codes = explode( ',', $_REQUEST['errors'] );
@@ -92,15 +92,15 @@ class Helpers {
 	 * Retrieve possible alerts from request parameters
 	 */
 	public static function retrieve_request_alerts() {
-		$possible_alerts = array(
+		$possible_alerts = [
 			'logged_out',
 			'registered',
 			'lost_password_sent',
 			'password_changed',
 			'profile_updated',
-		);
+		];
 
-		$alerts = array();
+		$alerts = [];
 
 		foreach ( $possible_alerts as $possible_alert ) {
 			if ( isset( $_REQUEST[ $possible_alert ] ) ) {
@@ -206,34 +206,34 @@ class Helpers {
 	private static function get_alert_message( $alert_code ) {
 		switch ( $alert_code ) {
 			case 'logged_out':
-				return array(
+				return [
 					'type' => 'warning',
 					'message' => __( 'You have signed out. Would you like to sign in again?', 'chipmunk' ),
-				);
+				];
 
 			case 'registered':
-				return array(
+				return [
 					'type' => 'success',
 					'message' => __( 'You have successfully registered your account. You can login now.', 'chipmunk' ),
-				);
+				];
 
 			case 'lost_password_sent':
-				return array(
+				return [
 					'type' => 'warning',
 					'message' => __( 'Check your email for a link to reset your password.', 'chipmunk' ),
-				);
+				];
 
 			case 'password_changed':
-				return array(
+				return [
 					'type' => 'success',
 					'message' => __( 'Your password has been changed. You can sign in now.', 'chipmunk' ),
-				);
+				];
 
 			case 'profile_updated':
-				return array(
+				return [
 					'type' => 'success',
 					'message' => __( 'Your profile has been updated successfully.', 'chipmunk' ),
-				);
+				];
 
 			default:
 				break;

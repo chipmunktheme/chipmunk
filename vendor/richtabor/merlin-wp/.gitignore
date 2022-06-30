@@ -1,5 +1,0 @@
-.github/
-/dist/merlin/
-*.cache
-/vendor/
-/node_modules/

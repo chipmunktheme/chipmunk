@@ -36,18 +36,18 @@ class Licenser {
 	/**
 	 * Initialize the class
 	 */
-	function __construct( $config = array(), $strings = array(), $errors = array() ) {
+	function __construct( $config = [], $strings = [], $errors = [] ) {
 		// Set config defaults
-		$config = wp_parse_args( $config, array(
+		$config = wp_parse_args( $config, [
 			'remote_api_url'    => '',
 			'item_id'           => '',
 			'item_name'         => '',
 			'item_slug'         => '',
 			'renew_url'         => '',
-		) );
+		] );
 
 		// Set default strings
-		$this->strings = wp_parse_args( $strings, array(
+		$this->strings = wp_parse_args( $strings, [
 			'enter-key'                 => __( 'To receive updates, please enter your valid license key.', 'chipmunk' ),
 			'license-key'               => __( 'License Key', 'chipmunk' ),
 			'license-action'            => __( 'License Action', 'chipmunk' ),
@@ -67,10 +67,10 @@ class Licenser {
 			'license-key-is-disabled'   => __( 'License key is disabled.', 'chipmunk' ),
 			'site-is-inactive'          => __( 'Site is inactive.', 'chipmunk' ),
 			'license-status-unknown'    => __( 'License status is unknown.', 'chipmunk' ),
-		) );
+		] );
 
 		// Set default errors
-		$this->errors = wp_parse_args( $errors, array(
+		$this->errors = wp_parse_args( $errors, [
 			'license-expired'           => __( 'Your license key expired on %s.', 'chipmunk' ),
 			'license-disabled'          => __( 'Your license key has been disabled.', 'chipmunk' ),
 			'license-missing'           => __( 'Your license key is invalid.', 'chipmunk' ),
@@ -78,7 +78,7 @@ class Licenser {
 			'license-name-mismatch'     => __( 'This appears to be an invalid license key for %s.', 'chipmunk' ),
 			'license-exceeded'          => __( 'Your license key has reached its activation limit.', 'chipmunk' ),
 			'license-unknown'           => __( 'An error occurred, please try again.', 'chipmunk' ),
-		) );
+		] );
 
 		// Set config arguments
 		foreach ( $config as $key => $value ) {
@@ -103,13 +103,13 @@ class Licenser {
 	 */
 	private function hooks() {
 		// Licensing hooks
-		add_action( 'admin_init', array( $this, 'register_option' ) );
-		add_action( 'admin_init', array( $this, 'activate_license' ) );
-		add_action( 'admin_init', array( $this, 'deactivate_license' ) );
-		add_action( 'admin_init', array( $this, 'check_license' ) );
+		add_action( 'admin_init', [ $this, 'register_option' ] );
+		add_action( 'admin_init', [ $this, 'activate_license' ] );
+		add_action( 'admin_init', [ $this, 'deactivate_license' ] );
+		add_action( 'admin_init', [ $this, 'check_license' ] );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', array( $this, 'add_settings_tab' ) );
+		add_filter( 'chipmunk_settings_tabs', [ $this, 'add_settings_tab' ] );
 	}
 
 	/**
@@ -231,16 +231,16 @@ class Licenser {
 	 * @return array Encoded JSON response.
 	 */
 	private function get_api_response( $action ) {
-		$response = wp_remote_post( $this->remote_api_url, array(
+		$response = wp_remote_post( $this->remote_api_url, [
 			'timeout'   => 15,
 			'sslverify' => false,
-			'body'      => array(
+			'body'      => [
 				'edd_action' => $action,
 				'license'    => trim( $this->license_key ),
 				'item_id'    => $this->item_id,
 				'url'        => home_url(),
-			),
-		) );
+			],
+		] );
 
 		if ( ! $this->is_valid_response( $response ) ) {
 			$this->display_settings_error( $response, $this->errors['license-unknown'] );
@@ -286,10 +286,10 @@ class Licenser {
 		}
 
 		if ( ! empty( $this->item_id ) && ! empty( $this->license_key ) ) {
-			$renew_url = add_query_arg( array(
+			$renew_url = add_query_arg( [
 				'edd_license_key'   => $this->license_key,
 				'download_id'       => $this->item_id,
-			), $this->remote_api_url . '/checkout/' );
+			], $this->remote_api_url . '/checkout/' );
 
 			return esc_url( $renew_url );
 		}
@@ -306,7 +306,7 @@ class Licenser {
 	 * @return string/object License status.
 	 */
 	public function get_license_status( $license_data ) {
-		$messages = array();
+		$messages = [];
 
 		// If response doesn't include license data, return
 		if ( ! isset( $license_data->license ) ) {
@@ -394,11 +394,11 @@ class Licenser {
 	 * Adds settings tab to the list
 	 */
 	public function add_settings_tab( $tabs ) {
-		$tabs[] = array(
+		$tabs[] = [
 			'name'      => $this->name,
 			'slug'      => $this->slug,
 			'content'   => $this->get_settings_content(),
-		);
+		];
 
 		return $tabs;
 	}

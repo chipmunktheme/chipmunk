@@ -3,49 +3,49 @@
 	$disable_sliders    = Chipmunk\Helpers::get_theme_option( 'disable_homepage_listings_sliders' );
 	$infinite_sliders   = Chipmunk\Helpers::get_theme_option( 'infinite_sliders' );
 
-	$sections = array(
-		'featured'  => array(
+	$sections = [
+		'featured'  => [
 			'label'     => esc_html__( 'Featured', 'chipmunk' ),
 			'results'   => Chipmunk\Helpers::get_theme_option( 'disable_featured' )
 				? new \WP_Query
-				: Chipmunk\Query::get_resources( array(
+				: Chipmunk\Query::get_resources( [
 					'posts_per_page'    => $resources_count,
-					'meta_query'        => array(
-						'featured'          => array(
+					'meta_query'        => [
+						'featured'          => [
 							'key'               => '_' . THEME_SLUG . '_resource_is_featured',
-							'value'             => array( '1', 'on' ),
+							'value'             => [ '1', 'on' ],
 							'compare'           => 'IN',
-						),
-						'views'             => array(
+						],
+						'views'             => [
 							'key'               => '_' . THEME_SLUG . '_post_view_count',
-						),
-					),
+						],
+					],
 					'orderby'           => 'rand',
-				) ),
-		),
-		'latest'    => array(
+				] ),
+		],
+		'latest'    => [
 			'label'     => esc_html__( 'Latest', 'chipmunk' ),
-			'results'   => Chipmunk\Query::get_resources( array(
+			'results'   => Chipmunk\Query::get_resources( [
 				'posts_per_page'    => $resources_count,
 				'orderby'           => 'date',
 				'order'             => 'DESC',
-			) ),
-		),
-		'popular'   => array(
+			] ),
+		],
+		'popular'   => [
 			'label'     => esc_html__( 'Popular', 'chipmunk' ),
 			'results'   => ! Chipmunk\Helpers::is_feature_enabled( 'views', 'resource', false )
 				? new \WP_Query
-				: Chipmunk\Query::get_resources( array(
+				: Chipmunk\Query::get_resources( [
 					'posts_per_page'    => $resources_count,
 					'meta_key'          => '_' . THEME_SLUG . '_post_view_count',
 					'orderby'           => 'meta_value_num',
 					'order'             => 'DESC',
-				) ),
-		),
-	);
+				] ),
+		],
+	];
 
 	// Get the proper tab order
-	$tabs = apply_filters( 'chipmunk_resource_tabs', array( 'featured', 'latest', 'popular' ) );
+	$tabs = apply_filters( 'chipmunk_resource_tabs', [ 'featured', 'latest', 'popular' ] );
 
 	// Filter out empty resource tabs
 	$tabs = array_filter( $tabs, function ( $tab ) use ( $sections ) {

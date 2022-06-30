@@ -1,7 +1,7 @@
 <?php $socials = Chipmunk\Helpers::get_socials(); ?>
 
 <?php if ( ! empty( $socials ) || ! Chipmunk\Helpers::get_theme_option( 'disable_submissions' ) ) : ?>
-	<div class="<?php echo Chipmunk\Helpers::class_name( 'l-section', array( 'theme-light', 'compact', 'sticky' ) ); ?>">
+	<div class="<?php echo Chipmunk\Helpers::class_name( 'l-section', [ 'theme-light', 'compact', 'sticky' ] ); ?>">
 		<div class="l-container c-toolbox">
 			<?php if ( ! empty( $socials ) ) : ?>
 				<div class="c-toolbox__share">
@@ -12,7 +12,7 @@
 							<?php foreach ( $socials as $social_key => $social_value ) : ?>
 								<li class="c-menu-socials__item">
 									<a href="<?php echo esc_url( $social_value ); ?>" class="c-menu-socials__link" title="<?php echo $social_key; ?>" target="_blank">
-										<?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'social-' . strtolower( $social_key ) ) ); ?>
+										<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'social-' . strtolower( $social_key ) ] ); ?>
 										<span class="u-hidden-visually"><?php echo $social_key; ?></span>
 									</a>
 								</li>
@@ -25,7 +25,7 @@
 			<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_submissions' ) ) : ?>
 				<div class="c-toolbox__cta<?php echo ! empty( $socials ) ? ' u-visible-md-flex ' : ''; ?>">
 					<p<?php echo ! empty( $socials ) ? ' class="u-visible-lg-block"': ''; ?>><?php echo esc_html( Chipmunk\Helpers::get_theme_option( 'submit_tagline' ) ); ?></p>
-					<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', array( 'class' => 'c-toolbox__button c-button c-button--primary' ) ); ?>
+					<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', [ 'class' => 'c-toolbox__button c-button c-button--primary' ] ); ?>
 				</div>
 			<?php endif; ?>
 		</div>

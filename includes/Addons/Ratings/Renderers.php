@@ -19,11 +19,11 @@ class Renderers {
 	 */
 	public function __construct() {
 		if ( Helpers::is_feature_enabled( 'ratings', 'resource', false ) ) {
-			add_action( 'chipmunk_resource_extras', array( $this, 'render_rating_form' ) );
+			add_action( 'chipmunk_resource_extras', [ $this, 'render_rating_form' ] );
 		}
 
 		if ( Helpers::is_feature_enabled( 'ratings', 'post', false ) ) {
-			add_action( 'chipmunk_post_extras', array( $this, 'render_rating_form' ) );
+			add_action( 'chipmunk_post_extras', [ $this, 'render_rating_form' ] );
 		}
 	}
 
@@ -36,10 +36,10 @@ class Renderers {
 		$ratings = new Ratings( get_the_ID() );
 
 		// Render form template
-		Helpers::get_template_part( 'addons/ratings/rating-form', array(
+		Helpers::get_template_part( 'addons/ratings/rating-form', [
 			'ratings'    => $ratings->get_ratings(),
 			'summary'    => $ratings->get_ratings_summary(),
 			'max_rating' => $ratings->get_max_rating(),
-		), true );
+		], true );
 	}
 }

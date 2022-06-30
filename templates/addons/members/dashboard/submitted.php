@@ -1,9 +1,9 @@
-<?php $resources = Chipmunk\Query::get_resources( array(
+<?php $resources = Chipmunk\Query::get_resources( [
 	'post_status'       => 'any, trash',
 	'author'            => get_current_user_id(),
 	'order'             => 'DESC',
 	'orderby'           => 'date',
-) ); ?>
+] ); ?>
 
 <?php if ( $resources->have_posts() ) : ?>
 	<div class="c-tile__list" data-action-element="load_posts">
@@ -19,4 +19,4 @@
 	</p>
 <?php endif; ?>
 
-<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', array( 'query' => $resources ) ); ?>
+<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', [ 'query' => $resources ] ); ?>

@@ -16,17 +16,17 @@
 
 			<?php if ( has_nav_menu( 'nav-primary' ) ) : ?>
 				<nav class="c-page-head__menu c-menu-primary u-visible-lg-block">
-					<?php wp_nav_menu( array(
+					<?php wp_nav_menu( [
 						'theme_location' => 'nav-primary',
 						'container'      => '',
-					) ); ?>
+					] ); ?>
 				</nav>
 			<?php endif; ?>
 
 			<div class="c-page-head__cta">
 				<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_search' ) ) : ?>
 					<button class="c-page-head__icon" data-panel="search">
-						<?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'search', 'size' => 'lg' ) ); ?>
+						<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'search', 'size' => 'lg' ] ); ?>
 						<span class="u-hidden-visually"><?php esc_html_e( 'Search', 'chipmunk' ); ?></span>
 					</button>
 				<?php endif; ?>
@@ -41,7 +41,7 @@
 									<?php echo get_avatar( $current_user->ID, 64 ); ?>
 								</div>
 
-								<?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'chevron-down', 'size' => 'sm' ) ); ?>
+								<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'chevron-down', 'size' => 'sm' ] ); ?>
 							</button>
 
 							<ul class="u-dropdown u-dropdown--<?php echo esc_attr( Chipmunk\Helpers::get_theme_option( 'dropdown_theme' ) ); ?>">
@@ -50,7 +50,7 @@
 									<li class="u-dropdown__item"><a href="<?php echo esc_url( get_author_posts_url( $current_user->ID ) ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Profile', 'chipmunk' ); ?></a></li>
 								<?php endif; ?>
 								<li class="u-dropdown__item"><a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'profile' ) ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Edit Profile', 'chipmunk' ); ?></a></li>
-								<li class="u-dropdown__item"><?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', array( 'class' => 'u-dropdown__link' ) ); ?></li>
+								<li class="u-dropdown__item"><?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', [ 'class' => 'u-dropdown__link' ] ); ?></li>
 								<li class="u-dropdown__item"><a href="<?php echo esc_url( wp_logout_url() ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Logout', 'chipmunk' ); ?></a></li>
 							</ul>
 						</div>
@@ -67,7 +67,7 @@
 					<?php endif; ?>
 				<?php else : ?>
 					<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_submissions' ) ) : ?>
-						<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', array( 'class' => 'c-button c-button--primary-outline u-visible-lg-block' ) ); ?>
+						<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', [ 'class' => 'c-button c-button--primary-outline u-visible-lg-block' ] ); ?>
 					<?php endif; ?>
 				<?php endif; ?>
 
@@ -79,11 +79,11 @@
 			<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_search' ) ) : ?>
 				<div class="c-page-head__search">
 					<button type="button" data-panel="search">
-						<?php Chipmunk\Helpers::get_template_part( 'partials/icon', array( 'icon' => 'close', 'size' => 'lg' ) ); ?>
+						<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'close', 'size' => 'lg' ] ); ?>
 						<span class="u-hidden-visually"><?php esc_html_e( 'Close', 'chipmunk' ); ?></span>
 					</button>
 
-					<?php Chipmunk\Helpers::get_template_part( 'partials/search-form', array( 'default' => true ) ); ?>
+					<?php Chipmunk\Helpers::get_template_part( 'partials/search-form', [ 'default' => true ] ); ?>
 				</div>
 			<?php endif; ?>
 		</div>

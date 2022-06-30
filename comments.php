@@ -42,11 +42,11 @@ endif;
 					 * List comments acording to custom_comment function specified
 					 * in commentstemplate.php file
 					 */
-					wp_list_comments( array(
+					wp_list_comments( [
 						'avatar_size' => 40,
 						'type'        => 'comment',
-						'callback'    => array( Chipmunk\Helpers::class, 'comment_template' ),
-					) );
+						'callback'    => [ Chipmunk\Helpers::class, 'comment_template' ],
+					] );
 					?>
 				</ul>
 			</div>
@@ -70,7 +70,7 @@ endif;
 				$commenter = wp_get_current_commenter();
 				$req = get_option( 'require_name_email' ) ? " required" : '';
 
-				$fields = array(
+				$fields = [
 					'author' => '<div class="c-form__field">' .
 						'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) .
 						'" size="30" placeholder="' . esc_attr__( 'Name', 'chipmunk' ) . ( ! empty( $req ) ? '*' : '' ) . '" class="c-form__input"' . $req . ' /></div>',
@@ -80,9 +80,9 @@ endif;
 						'" size="30" placeholder="' . esc_attr__( 'Email', 'chipmunk' ) . ( ! empty( $req ) ? '*' : '' ) . '" class="c-form__input"' . $req . ' /></div>',
 
 					'url' => '',
-				);
+				];
 
-				comment_form( array(
+				comment_form( [
 					'class_form'           => 'l-component c-form',
 					'class_submit'         => 'c-button c-button--primary-outline',
 					'comment_notes_before' => '',
@@ -94,7 +94,7 @@ endif;
 					'fields'               => apply_filters( 'comment_form_fields', $fields ),
 					'comment_field'        => '<div class="c-form__field c-form__field--wide"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' . esc_attr__( 'Comment', 'chipmunk' ) . ( ! empty( $req ) ? '*' : '' ) . '" class="c-form__input"' . $req . ' data-dynamic-rows></textarea></div>',
 					'must_log_in'          => '<div class="l-component"><p class="l-header__copy">' . sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink() ) ) ) . '</p></div>',
-				) );
+				] );
 
 				?>
 			</div>

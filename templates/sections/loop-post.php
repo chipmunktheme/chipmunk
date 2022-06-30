@@ -7,22 +7,22 @@
 
 <?php if ( is_single() ) : ?>
 	<?php $title = esc_html__( 'Related', 'chipmunk' ); ?>
-	<?php $query = Chipmunk\Query::get_related( get_the_ID(), array( 'posts_per_page' => apply_filters( 'chipmunk_related_posts_count', 3 ) ) ); ?>
+	<?php $query = Chipmunk\Query::get_related( get_the_ID(), [ 'posts_per_page' => apply_filters( 'chipmunk_related_posts_count', 3 ) ] ); ?>
 <?php elseif ( is_front_page() ) : ?>
 	<?php $title = esc_html__( 'Latest Posts', 'chipmunk' ); ?>
-	<?php $query = Chipmunk\Query::get_posts( array( 'posts_per_page' => apply_filters( 'chipmunk_latest_posts_count', 3 ) ) ); ?>
+	<?php $query = Chipmunk\Query::get_posts( [ 'posts_per_page' => apply_filters( 'chipmunk_latest_posts_count', 3 ) ] ); ?>
 <?php elseif ( is_date() ) : ?>
 	<?php $title = date_i18n( 'F Y', strtotime( $year . '-' . $month ) ); ?>
-	<?php $query = Chipmunk\Query::get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ), null, array( 'year' => $year, 'month' => $month ) ); ?>
+	<?php $query = Chipmunk\Query::get_posts( [ 'posts_per_page' => $limit, 'paged' => $paged ], null, [ 'year' => $year, 'month' => $month ] ); ?>
 <?php elseif ( is_category() ) : ?>
 	<?php $title = sprintf( esc_html__( '%s Category', 'chipmunk' ), $tax->name ); ?>
-	<?php $query = Chipmunk\Query::get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ), $tax ); ?>
+	<?php $query = Chipmunk\Query::get_posts( [ 'posts_per_page' => $limit, 'paged' => $paged ], $tax ); ?>
 <?php elseif ( is_tag() ) : ?>
 	<?php $title = sprintf( esc_html__( '%s Tag', 'chipmunk' ), $tax->name ); ?>
-	<?php $query = Chipmunk\Query::get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ), $tax ); ?>
+	<?php $query = Chipmunk\Query::get_posts( [ 'posts_per_page' => $limit, 'paged' => $paged ], $tax ); ?>
 <?php else : ?>
 	<?php $title = esc_html__( 'Blog', 'chipmunk' ); ?>
-	<?php $query = Chipmunk\Query::get_posts( array( 'posts_per_page' => $limit, 'paged' => $paged ) ); ?>
+	<?php $query = Chipmunk\Query::get_posts( [ 'posts_per_page' => $limit, 'paged' => $paged ] ); ?>
 <?php endif; ?>
 
 <?php if ( ( ! is_front_page() && ! is_single() ) || $query->have_posts() ) : ?>
@@ -61,7 +61,7 @@
 			<?php endif; ?>
 
 			<?php if ( ! is_single() && ! is_front_page() ) : ?>
-				<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', array( 'query' => $query ) ); ?>
+				<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', [ 'query' => $query ] ); ?>
 			<?php endif; ?>
 		</div>
 	</div>

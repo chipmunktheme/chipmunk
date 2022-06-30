@@ -1,15 +1,15 @@
-<?php $resources = Chipmunk\Query::get_resources( array(
+<?php $resources = Chipmunk\Query::get_resources( [
 	'post_status'       => 'any, trash',
-	'meta_query'        => array(
+	'meta_query'        => [
 		'relation'          => 'OR',
 
-		array(
+		[
 			'key'           => Chipmunk\Extensions\Bookmarks::$db_key,
 			'value'         => get_current_user_id(),
 			'compare'       => '=',
-		),
-	),
-) ); ?>
+		],
+	],
+] ); ?>
 
 <?php if ( $resources->have_posts() ) : ?>
 	<div class="c-tile__list" data-action-element="load_posts">
@@ -25,4 +25,4 @@
 	</p>
 <?php endif; ?>
 
-<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', array( 'query' => $resources ) ); ?>
+<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', [ 'query' => $resources ] ); ?>

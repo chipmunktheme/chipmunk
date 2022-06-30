@@ -5,7 +5,7 @@
 <?php endif; ?>
 
 <?php if ( ! empty( $blocker ) ) : ?>
-	<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', array( 'errors' => array( $blocker ) ), true ); ?>
+	<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', [ 'errors' => [ $blocker ] ], true ); ?>
 <?php else : ?>
 	<?php
 		$first_tab = Chipmunk\Helpers::get_theme_option( 'disable_upvotes' ) ? ( Chipmunk\Helpers::get_theme_option( 'disable_bookmarks' ) ? 'submitted' : 'bookmarked' ) : 'upvoted';
@@ -37,7 +37,7 @@
 
 			<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_submissions' ) ) : ?>
 				<div class="c-filter__group u-visible-md-flex">
-					<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', array( 'class' => 'c-button c-button--primary' ) ); ?>
+					<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', [ 'class' => 'c-button c-button--primary' ] ); ?>
 				</div>
 			<?php endif; ?>
 		</div>

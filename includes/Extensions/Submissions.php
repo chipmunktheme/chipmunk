@@ -18,14 +18,14 @@ class Submissions {
 	 *
 	 * @var array
 	 */
-	private $required = array( 'name', 'collection', 'url' );
+	private $required = [ 'name', 'collection', 'url' ];
 
 	/**
 	 * Required fields to be left empty
 	 *
 	 * @var array
 	 */
-	private $required_empty = array( 'filter' );
+	private $required_empty = [ 'filter' ];
 
 	/**
 	 * Create a new submission form object
@@ -72,10 +72,10 @@ class Submissions {
 		$post       = get_post( $post_id );
 		$name       = get_bloginfo( 'name' );
 		$admin      = get_bloginfo( 'admin_email' );
-		$headers    = array( 'Content-Type: text/html; charset=UTF-8' );
+		$headers    = [ 'Content-Type: text/html; charset=UTF-8' ];
 
 		$subject    = sprintf( esc_html__( '%s: New user submission', 'chipmunk' ), $name );
-		$template   = Helpers::get_template_part( 'emails/submission', array( 'subject' => $subject, 'post' => $post ), false );
+		$template   = Helpers::get_template_part( 'emails/submission', [ 'subject' => $subject, 'post' => $post ], false );
 
 		wp_mail( $admin, $subject, $template, $headers );
 	}
@@ -86,7 +86,7 @@ class Submissions {
 	 * @return void
 	 */
 	private function submit() {
-		$data = array(
+		$data = [
 			'name' 				=> wp_filter_nohtml_kses( $this->data->name ),
 			'content' 			=> wp_kses_post( wpautop( $this->data->content ) ),
 			'url' 				=> wp_filter_nohtml_kses( $this->data->url ),
@@ -94,7 +94,7 @@ class Submissions {
 			'collections' 		=> wp_filter_nohtml_kses( $this->data->collection ),
 			'submitter_email'   => wp_filter_nohtml_kses( $this->data->submitter_email ),
 			'submitter_name'    => wp_filter_nohtml_kses( $this->data->submitter_name ),
-		);
+		];
 
 		if ( $post_id = $this->submitter->submit( (object) $data ) ) {
 			// Send email to website admin

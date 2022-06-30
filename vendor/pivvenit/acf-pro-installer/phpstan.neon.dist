@@ -8,6 +8,9 @@ parameters:
             message: "#has parameter \\$options with no value type specified in iterable type array.#"
             path: src/Download/RewriteUrlRemoteFilesystem.php
         -
+            message: "#Dotenv\\\\Dotenv constructor#"
+            path: src/LicenseKey/Providers/DotEnv/DotEnvV2Adapter.php
+        -
             message: "#Dotenv\\\\Dotenv\\:\\:create#"
             path: src/LicenseKey/Providers/DotEnv/DotEnvV3Adapter.php
         -

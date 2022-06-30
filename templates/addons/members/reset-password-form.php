@@ -5,11 +5,11 @@
 <?php endif; ?>
 
 <?php if ( ! empty( $blocker ) ) : ?>
-	<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', array( 'errors' => array( $blocker ) ), true ); ?>
+	<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', [ 'errors' => [ $blocker ] ], true ); ?>
 <?php else : ?>
 	<form class="c-form" action="<?php echo site_url( 'wp-login.php?action=' . $action ); ?>" method="post" novalidate data-validate>
-		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', array( 'errors' => $errors ), true ); ?>
-		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/alerts', array( 'alerts' => $alerts ), true ); ?>
+		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', [ 'errors' => $errors ], true ); ?>
+		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/alerts', [ 'alerts' => $alerts ], true ); ?>
 
 		<div class="c-form__field c-form__field--wide">
 			<input type="password" name="pass1" id="pass1" placeholder="<?php esc_attr_e( 'New password', 'chipmunk' ); ?>*" required class="c-form__input">

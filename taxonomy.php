@@ -9,8 +9,8 @@
 get_header(); ?>
 
 	<?php $term = get_queried_object(); ?>
-	<?php $query = Chipmunk\Query::get_resources( array(), $term ); ?>
-	<?php $children_collections = get_terms( 'resource-collection', array( 'parent' => $term->term_id ) ); ?>
+	<?php $query = Chipmunk\Query::get_resources( [], $term ); ?>
+	<?php $children_collections = get_terms( 'resource-collection', [ 'parent' => $term->term_id ] ); ?>
 
 	<div class="l-section">
 		<div class="l-container">
@@ -44,7 +44,7 @@ get_header(); ?>
 				<div class="l-component">
 					<div class="c-tile__list">
 						<?php foreach ( $children_collections as $collection ) : ?>
-							<?php Chipmunk\Helpers::get_template_part( 'sections/tile-collection', array( 'collection' => $collection ) ); ?>
+							<?php Chipmunk\Helpers::get_template_part( 'sections/tile-collection', [ 'collection' => $collection ] ); ?>
 						<?php endforeach; ?>
 					</div>
 				</div>
@@ -63,7 +63,7 @@ get_header(); ?>
 			</div>
 
 			<div class="l-component l-component--md">
-				<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', array( 'query' => $query ) ); ?>
+				<?php Chipmunk\Helpers::get_template_part( 'sections/pagination', [ 'query' => $query ] ); ?>
 			</div>
 		</div>
 	</div>

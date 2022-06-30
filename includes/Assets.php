@@ -15,7 +15,7 @@ class Assets {
 	 *
 	 * @var array
 	 */
-	public static $manifest = array();
+	public static $manifest = [];
 
 	/**
  	 * Used to register custom hooks
@@ -23,12 +23,12 @@ class Assets {
 	 * @return void
 	 */
 	function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_custom_assets' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_inline_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_google_fonts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_external_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
-		add_filter( 'script_loader_tag', array( $this, 'add_async_attribute' ), 10, 3 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_custom_assets' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_inline_styles' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_google_fonts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_external_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
+		add_filter( 'script_loader_tag', [ $this, 'add_async_attribute' ], 10, 3 );
 	}
 
 	/**
@@ -117,7 +117,7 @@ class Assets {
 	 * @return void
 	 */
 	public static function enqueue_google_fonts() {
-		$fonts = array();
+		$fonts = [];
 
 		$primary_font = Helpers::get_theme_option( 'primary_font' );
 		$heading_font = Helpers::get_theme_option( 'heading_font' );
@@ -188,10 +188,10 @@ class Assets {
 	 */
 	public static function add_async_attribute( $tag, $handle, $src ) {
 		// add script handles to the array below
-		$scripts = array(
-			'defer' => array( 'chipmunk-scripts' ),
-			'async' => array( 'chipmunk-recaptcha' ),
-		);
+		$scripts = [
+			'defer' => [ 'chipmunk-scripts' ],
+			'async' => [ 'chipmunk-recaptcha' ],
+		];
 
 		if ( in_array( $handle, $scripts['defer'] ) ) {
 			return str_replace( ' src=', ' defer src=', $tag );
