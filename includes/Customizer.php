@@ -2,6 +2,9 @@
 
 namespace Chipmunk;
 
+use WP_Customize_Color_Control;
+use WP_Customize_Image_Control;
+
 /**
  * WP Customizer settings.
  *
@@ -907,7 +910,7 @@ class Customizer {
 	private static function register_field( $customize, $section, $field ) {
 		// Plugin restricted fields
 		if ( ! empty( $field['restrict'] ) && ! Helpers::is_addon_enabled( $field['restrict'] ) ) {
-			return;
+			return null;
 		}
 
 		$setting_args = [
@@ -929,11 +932,11 @@ class Customizer {
 
 		switch ( $field['type'] ) {
 			case 'color':
-				$customize->add_control( new \WP_Customize_Color_Control( $customize, $field['name'], $control_args ) );
+				$customize->add_control( new WP_Customize_Color_Control( $customize, $field['name'], $control_args ) );
 				break;
 
 			case 'image':
-				$customize->add_control( new \WP_Customize_Image_Control( $customize, $field['name'], $control_args ) );
+				$customize->add_control( new WP_Customize_Image_Control( $customize, $field['name'], $control_args ) );
 				break;
 
 			default:

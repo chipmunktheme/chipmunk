@@ -24,7 +24,7 @@ $paged = Chipmunk\Helpers::get_current_page();
 			?>
 
 			<div class="c-pagination__item<?php echo empty( $previous_link ) ? ' c-pagination__item--disabled' : ''; ?>">
-				<?php echo $previous_link ?? "<span>$previous_content</span>"; ?>
+				<?php echo ( $previous_link ?? "<span>$previous_content</span>" ); ?>
 			</div>
 
 			<div class="c-pagination__title">
@@ -32,7 +32,7 @@ $paged = Chipmunk\Helpers::get_current_page();
 			</div>
 
 			<div class="c-pagination__item<?php echo empty( $next_link ) ? ' c-pagination__item--disabled' : ''; ?>">
-				<?php echo $next_link ?? "<span>$next_content</span>"; ?>
+				<?php echo ( $next_link ?? "<span>$next_content</span>" ); ?>
 			</div>
 		<?php endif; ?>
 	</nav>

@@ -12,8 +12,6 @@ class Assets {
 
 	/**
  	 * Used to register custom hooks
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		add_filter( 'script_loader_tag', [ $this, 'remove_type_attr' ], 10, 2 );

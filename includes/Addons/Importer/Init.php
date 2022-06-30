@@ -17,8 +17,6 @@ class Init {
 	 *
 	 * To keep the initialization fast, only add filter and action
 	 * hooks in the constructor.
-	 *
-	 * @return void
 	 */
 	public function __construct( $config = [] ) {
 		// Set config defaults
@@ -55,12 +53,10 @@ class Init {
 
 	/**
  	 * Setup main components and features of the addon
-	 *
-	 * @return void
 	 */
 	public function setup_addon() {
 		if ( ! ChipmunkHelpers::is_addon_enabled( $this->config['slug'] ) ) {
-			return;
+			return null;
 		}
 
 		if ( ! get_transient( $this->transient ) ) {
@@ -73,7 +69,6 @@ class Init {
 
 		new Actions();
 		new Config();
-		new Redirects();
 		new Renderers();
 		new Settings( $this->config );
 	}

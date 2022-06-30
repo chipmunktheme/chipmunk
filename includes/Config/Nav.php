@@ -14,8 +14,6 @@ class Nav {
 
 	/**
  	 * Used to register custom hooks
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		add_filter( 'nav_menu_css_class', [ $this, 'menu_item_classes' ], 1, 3 );

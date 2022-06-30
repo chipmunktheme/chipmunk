@@ -23,8 +23,6 @@ class Bookmarks {
 	 * Create a new bookmarks object
 	 *
 	 * @param  object $post_id
-	 *
-	 * @return void
 	 */
 	function __construct( $post_id ) {
 		global $current_user;
@@ -107,8 +105,6 @@ class Bookmarks {
 
 	/**
 	 * Processes the bookmark request
-	 *
-	 * @return void
 	 */
 	public function process() {
 		// Check required attributes

@@ -26,8 +26,6 @@ class Upvotes {
 	 * Create a new upvotes object
 	 *
 	 * @param  object $post_id
-	 *
-	 * @return void
 	 */
 	function __construct( $post_id ) {
 		global $current_user;
@@ -132,8 +130,6 @@ class Upvotes {
 
 	/**
 	 * Processes the upvote request
-	 *
-	 * @return void
 	 */
 	public function process() {
 		// Check required attributes

@@ -14,8 +14,6 @@ class Renderers {
 
 	/**
  	 * Class constructor
-	 *
-	 * @return void
 	 */
 	public function __construct() {
 		if ( Helpers::is_feature_enabled( 'ratings', 'resource', false ) ) {

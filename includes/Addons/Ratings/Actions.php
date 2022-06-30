@@ -12,8 +12,6 @@ class Actions {
 
 	/**
  	 * Class constructor
-	 *
-	 * @return void
 	 */
 	public function __construct() {
 		// Handlers for ajax actions

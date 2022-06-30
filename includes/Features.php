@@ -24,8 +24,6 @@ class Features {
 
 	/**
  	 * Used to register custom hooks
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		foreach( $this->features as $name => $callback ) {

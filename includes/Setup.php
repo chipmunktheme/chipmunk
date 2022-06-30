@@ -12,8 +12,6 @@ class Setup {
 
 	/**
  	 * Class constructor
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'setup_support' ] );
@@ -26,8 +24,6 @@ class Setup {
 	 * Note that this function is hooked into the after_setup_theme hook, which
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
-	 *
-	 * @return void
 	 */
 	public static function setup_support() {
 		/*
@@ -203,8 +199,6 @@ class Setup {
 
 	/**
  	 * Setup main components and features of the theme
-	 *
-	 * @return void
 	 */
 	public static function setup_theme() {
 		new Actions();

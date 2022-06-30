@@ -14,8 +14,6 @@ class Admin {
 
 	/**
  	 * Used to register custom hooks
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		add_action( 'admin_notices', [ $this, 'display_admin_notices' ] );
@@ -26,8 +24,6 @@ class Admin {
 
 	/**
 	 * Displays admin notices if there are any
-	 *
-	 * @return void
 	 */
 	public static function display_admin_notices() {
 		$notices = apply_filters( 'chipmunk_admin_notices', Helpers::check_requirements() );
@@ -41,8 +37,6 @@ class Admin {
 
 	/**
 	 * Add extra option to Permalinks settings page
-	 *
-	 * @return void
 	 */
 	public static function add_resource_permalink_setting() {
 		if ( isset( $_POST['chipmunk_resource_cpt_base'] ) ) {
@@ -65,8 +59,6 @@ class Admin {
 
 	/**
 	 * Add extra option to Permalinks settings page
-	 *
-	 * @return void
 	 */
 	public static function add_collection_permalink_setting() {
 		if ( isset( $_POST['chipmunk_collection_cpt_base'] ) ) {
@@ -89,8 +81,6 @@ class Admin {
 
 	/**
 	 * Add extra option to Permalinks settings page
-	 *
-	 * @return void
 	 */
 	public static function add_tag_permalink_setting() {
 		if ( isset( $_POST['chipmunk_tag_cpt_base'] ) ) {

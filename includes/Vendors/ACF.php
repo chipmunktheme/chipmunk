@@ -20,8 +20,6 @@ class ACF {
 
 	/**
 	 * Create a new ACF Config object
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		// Include the ACF plugin.
@@ -125,8 +123,6 @@ class ACF {
 
 	/**
 	 * Register the proper custom fields via ACF
-	 *
-	 * @return void
 	 */
 	private static function acf_normalize_fields( &$field, $key, $params ) {
 		// Generate proper field key

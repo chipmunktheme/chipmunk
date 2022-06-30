@@ -12,8 +12,6 @@ class Merlin {
 
 	/**
 	 * Create a new Merlin Config object
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		new \Merlin(
@@ -101,8 +99,6 @@ class Merlin {
 
 	/**
 	 * Set up custom styles for the Merlin wizard
-	 *
-	 * @return void
 	 */
 	public static function add_merlin_styles() {
 		echo '<style>
@@ -153,8 +149,6 @@ class Merlin {
 
 	/**
 	 * Execute custom code after the whole import has finished.
-	 *
-	 * @return void
 	 */
 	public static function after_import_merlin_files() {
 		$header_nav = get_term_by( 'name', 'Header nav', 'nav_menu' );

@@ -45,8 +45,6 @@ class Submitter {
  	 * Used to register custom hooks
 	 *
 	 * @param string $post_type
-	 *
-	 * @return void
 	 */
 	function __construct( $post_type, $allow_new_terms = false ) {
 		$this->post_type = $post_type;
@@ -62,7 +60,7 @@ class Submitter {
 	 */
 	private function fetch_og_image( $url ) {
 		if ( empty( $url ) ) {
-			return;
+			return null;
 		}
 
 		// Fetch the OG Data
@@ -163,12 +161,10 @@ class Submitter {
 	 * @param  int $object_id
 	 * @param  string/array $terms
 	 * @param  string $axonomy
-	 *
-	 * @return void
 	 */
 	private function set_terms( $object_id, $terms, $taxonomy ) {
 		if ( empty( $terms ) ) {
-			return;
+			return null;
 		}
 
 		if ( is_string( $terms ) ) {
@@ -190,7 +186,7 @@ class Submitter {
 			}, $terms ) );
 		}
 
-		@wp_set_object_terms( $object_id, $terms, $taxonomy );
+		@ wp_set_object_terms( $object_id, $terms, $taxonomy );
 	}
 
 	/**
@@ -198,23 +194,19 @@ class Submitter {
 	 *
 	 * @param  int $object_id
 	 * @param  int $thumbnail_id
-	 *
-	 * @return void
 	 */
 	private function set_thumbnail( $object_id, $thumbnail_id ) {
 		if ( empty( $thumbnail_id ) ) {
-			return;
+			return null;
 		}
 
-		@set_post_thumbnail( $object_id, $thumbnail_id );
+		@ set_post_thumbnail( $object_id, $thumbnail_id );
 	}
 
 	/**
 	 * Submit a post into the database and adds related terms and thumbnail
 	 *
 	 * @param  object $data
-	 *
-	 * @return void
 	 */
 	public function submit( $data ) {
 		// Validate data

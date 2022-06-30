@@ -31,7 +31,7 @@
 					?>
 
 					<?php if ( ! empty( $collections ) ) : ?>
-						<?php Chipmunk\Helpers::display_terms( $collections ); ?>
+						<?php echo Chipmunk\Helpers::get_term_options( $collections ); ?>
 					<?php endif; ?>
 				</select>
 			</div>

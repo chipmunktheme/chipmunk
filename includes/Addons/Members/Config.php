@@ -12,8 +12,6 @@ class Config {
 
 	/**
  	 * Class constructor
-	 *
-	 * @return void
 	 */
 	public function __construct() {
 		// Custom URL

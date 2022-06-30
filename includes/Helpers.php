@@ -15,6 +15,10 @@ class Helpers {
 
 	/**
 	 * Check if Chipmunk plugin is enabled
+	 *
+	 * @param string $addon Addon name
+	 *
+	 * @return bool
 	 */
 	public static function is_addon_enabled( $addon ) {
 		return Addons::is_addon_enabled( $addon );
@@ -22,6 +26,11 @@ class Helpers {
 
 	/**
 	 * Get theme option alias
+	 *
+	 * @param string $name 		Theme option name
+	 * @param mixed $default 	Optional. Default value for the option
+	 *
+	 * @return mixed
 	 */
 	public static function get_theme_option( $name, $default = false ) {
 		return Customizer::get_theme_option( $name, $default );
@@ -29,6 +38,12 @@ class Helpers {
 
 	/**
 	 * Check if feature is enabled in customizer
+	 *
+	 * @param string $feature 		Feature name
+	 * @param string $post_type 	Post type name
+	 * @param bool $check_type 		Optional. Whether or not to check post type
+	 *
+	 * @return bool
 	 */
 	public static function is_feature_enabled( $feature, $post_type, $check_type = true ) {
 		return ! self::get_theme_option( "disable_{$post_type}_{$feature}" ) && ( $check_type ? get_post_type() == $post_type : true );
@@ -41,7 +56,7 @@ class Helpers {
 	 * @param array  $params    The PHP variables for the template
 	 * @param bool   $output    Whether the result should be returned or outputted
 	 *
-	 * @return string           The contents of the template.
+	 * @return ?string
 	 */
 	public static function get_template_part( $template, $params = [], $output = true ) {
 		if ( ! $output ) {
@@ -64,10 +79,14 @@ class Helpers {
 		if ( ! $output ) {
 			return ob_get_clean();
 		}
+
+		return null;
 	}
 
 	/**
 	 * Checks if the technical requirements are met.
+	 *
+	 * @return array
 	 */
 	public static function check_requirements() {
 		global $wp_version;
@@ -105,13 +124,13 @@ class Helpers {
 	/**
 	 * Builds class string based on name and modifiers
 	 *
-	 * @param  string $name 			Base class name
-	 * @param  string[] $modifiers,... 	Class name modifiers
+	 * @param string $name 			Base class name
+	 * @param ?string[]|string $modifiers,... Class name modifiers
 	 *
 	 * @return string
 	 */
-	public static function class_name( $name = '', $modifiers = null ) {
-		if ( ! is_string( $name ) || empty( $name ) ) {
+	public static function class_name( $name, $modifiers = null ) {
+		if ( ! is_string( $name ) ) {
 			return '';
 		}
 
@@ -138,6 +157,8 @@ class Helpers {
 	/**
 	 * Checks that the reCAPTCHA parameter sent with the registration
 	 * request is valid.
+	 *
+	 * @param string $response Recaptcha response
 	 *
 	 * @return bool True if the CAPTCHA is OK, otherwise false.
 	 */
@@ -186,7 +207,9 @@ class Helpers {
 	}
 
 	/**
-	 * Get socials
+	 * Gets the array of socials
+	 *
+	 * @return array
 	 */
 	public static function get_socials() {
 		$socials = [];
@@ -204,29 +227,33 @@ class Helpers {
 
 	/**
 	 * Get post counter
+	 *
+	 * @param string $post_type 	Post type
+	 * @param string $post_status 	Post status
+	 *
+	 * @return int
 	 */
 	public static function get_post_count( $post_type, $post_status ) {
-		$counter = wp_count_posts( $post_type );
-
-		return $counter->$post_status;
+		return wp_count_posts( $post_type )->$post_status;
 	}
 
 	/**
-	 * Create title for post and pages OG tags
+	 * Creates a title for post and pages OG tags
+	 *
+	 * @return string
 	 */
 	public static function get_og_title() {
 		if ( ! self::get_theme_option( 'disable_og_branding' ) ) {
-			$title = sprintf( esc_html__( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) );
-		}
-		else {
-			$title = get_the_title();
+			return sprintf( esc_html__( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) );
 		}
 
-		return $title;
+		return get_the_title();
 	}
 
 	/**
-	 * Create meta description for post and pages
+	 * Creates meta description for post and pages
+	 *
+	 * @return string
 	 */
 	public static function get_meta_description() {
 		global $post;
@@ -241,14 +268,21 @@ class Helpers {
 			$description = str_replace( '"', '\'', $description );
 		}
 
-		return isset( $description ) ? $description : '';
+		return $description ?? '';
 	}
 
 	/**
-	 * Custom excerpt function
+	 * Creates a custom excerpt function
+	 *
+	 * @param string $text 		A fallback content text to make the excerpt from
+	 * @param string $excerpt 	The primary excerpt to return if not empty
+	 *
+	 * @return string
 	 */
 	public static function get_custom_excerpt( $text, $excerpt ) {
-		if ( $excerpt ) return $excerpt;
+		if ( ! empty( $excerpt ) ) {
+			return $excerpt;
+		}
 
 		$text = strip_shortcodes( $text );
 		$text = apply_filters( 'the_content', $text );
@@ -275,7 +309,11 @@ class Helpers {
 	}
 
 	/**
-	 * Get menu items
+	 * Gets menu items from specified location
+	 *
+	 * @param string $location Menu location
+	 *
+	 * @return array
 	 */
 	public static function get_menu_items( $location ) {
 		if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $location ] ) ) {
@@ -291,6 +329,12 @@ class Helpers {
 
 	/**
 	 * Recursively get taxonomy and its children
+	 *
+	 * @param string $taxonomy 	Taxonomy name
+	 * @param array $args 		A list of args used to query taxonomy
+	 * @param int $parent 		ID of a taxonomy parent to query from
+	 *
+	 * @return ?array
 	 */
 	public static function get_taxonomy_hierarchy( $taxonomy, $args = [], $parent = 0 ) {
 		$children = [];
@@ -312,26 +356,40 @@ class Helpers {
 	}
 
 	/**
-	 * Recursively display taxonomy and its children
+	 * Recursively returns taxonomy options
+	 *
+	 * @param array $terms 	Terms list
+	 * @param int $lever 	Current level of the recursive call
+	 *
+	 * @return string
 	 */
-	public static function display_terms( $terms, $level = 0 ) {
+	public static function get_term_options( $terms, $level = 0 ) {
+		$output = '';
+
 		foreach ( $terms as $term ) {
-			echo '<option value="'. $term->name . '">' . str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' ) . $term->name . '</option>';
+			$output .= '<option value="'. $term->name . '">' . str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' ) . $term->name . '</option>';
 
 			if ( $term->children ) {
-				self::display_terms( $term->children, $level + 1 );
+				$output .= self::get_term_options( $term->children, $level + 1 );
 			}
 		}
+
+		return $output;
 	}
 
 	/**
-	 * Conditionally display post terms
+	 * Conditionally returns post terms
+	 *
+	 * @param array $terms 	Terms list
+	 * @param array $args 	Argument list
+	 *
+	 * @return string
 	 */
-	public static function display_term_list( $terms, $args = [] ) {
-		$args = array_merge( [
+	public static function get_term_list( $terms, $args = [] ) {
+		$args = wp_parse_args( $args, [
 			'type'     => 'link',
 			'quantity' => -1,
-		], $args );
+		] );
 
 		$output = '';
 		$count = count( $terms );
@@ -360,6 +418,10 @@ class Helpers {
 
 	/**
 	 * Get primary resource website link
+	 *
+	 * @param int $resource_id ID of the resource
+	 *
+	 * @return ?string
 	 */
 	public static function get_resource_website( $resource_id ) {
 		$key_prefix = '_' . THEME_SLUG . '_resource_';
@@ -375,18 +437,22 @@ class Helpers {
 			return esc_url( $links[0]['link']['url'] );
 		}
 
-		return false;
+		return null;
 	}
 
 	/**
-	 * Create external links
+	 * Creates an external links
+	 *
+	 * @param string $url URL to convert to an external one
+	 *
+	 * @return string
 	 */
 	public static function render_external_link( $url ) {
 		if ( ! self::get_theme_option( 'disable_ref' ) ) {
 			$title = str_replace( '-', '', sanitize_title( get_bloginfo( 'name' ) ) );
 			$prefix = ( preg_match( '(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
 
-			return $url . $prefix . $title;
+			return esc_url( $url . $prefix . $title );
 		}
 
 		return esc_url( $url );
@@ -394,10 +460,16 @@ class Helpers {
 
 	/**
 	 * Template for comments, without pingbacks or trackbacks
+	 *
+	 * @param object $comment Comment object
+	 * @param array $args Argument list
+	 * @param int $depth Current depth of the comment
+	 *
+	 * @return void
 	 */
 	public static function comment_template( $comment, $args, $depth ) {
 		if ( $comment->comment_type == 'pingback' || $comment->comment_type == 'trackback' ) {
-			return;
+			return null;
 		}
 
 		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
@@ -436,21 +508,30 @@ class Helpers {
 
 	/**
 	 * Add post meta from the array
+	 *
+	 * @param int $post_id 		ID of the post
+	 * @param array $meta 		Array of key => value pairs of meta to add to the post
+	 * @param array $allowed 	Array of allowed post types
+	 * @param bool $unique 		Optional. Whether the same key should not be added.
+	 *
+	 * @return int
 	 */
-	public static function add_post_meta( $post_ID, $meta_values, $allowed_types, $unique = true ) {
-		if ( ! in_array( get_post_type( $post_ID ), $allowed_types ) ) {
+	public static function add_post_meta( $post_ID, $meta, $allowed, $unique = true ) {
+		if ( ! in_array( get_post_type( $post_ID ), $allowed ) ) {
 			return $post_ID;
 		}
 
-		foreach ( $meta_values as $meta => $value ) {
-			add_post_meta( $post_ID, $meta, $value, $unique );
+		foreach ( $meta as $key => $value ) {
+			add_post_meta( $post_ID, $key, $value, $unique );
 		}
 
 		return $post_ID;
 	}
 
 	/**
-	 * Get current page attribute
+	 * Gets current pagination page
+	 *
+	 * @return int
 	 */
 	public static function get_current_page() {
 		if ( get_query_var( 'paged' ) ) {
@@ -459,15 +540,21 @@ class Helpers {
 		elseif ( get_query_var( 'page' ) ) {
 			return get_query_var( 'page' );
 		}
-		else {
-			return 1;
-		}
+
+		return 1;
 	}
 
 	/**
-	 * Truncate long strings
+	 * Truncates long strings
+	 *
+	 * @param string $str 		String to be truncated
+	 * @param int $chars 		Character limit
+	 * @param bool $to_space 	Optional. Whether to cut the the closest space or not
+	 * @param string $suffix 	Optional. String to add to the end of truncated text
+	 *
+	 * @return string
 	 */
-	public static function truncate_string( $str, $chars, $to_space = true, $replacement = '&hellip;' ) {
+	public static function truncate_string( $str, $chars, $to_space = true, $suffix = '&hellip;' ) {
 		$str = strip_tags( $str );
 
 		if ( $chars == 0 || $chars > strlen( $str ) ) {
@@ -481,11 +568,16 @@ class Helpers {
 			$str = substr( $str, 0, strrpos( $str, ' ' ) );
 		}
 
-		return( $str . $replacement );
+		return $str . $suffix;
 	}
 
 	/**
-	 * Get popular fonts from Google Fonts API
+	 * Gets popular fonts from Google Fonts API
+	 *
+	 * @param string $api_key 	Google Fonts API Key
+	 * @param array $sort 		Optional. Sort option to pass to the Google Fonts API
+	 *
+	 * @return ?array
 	 */
 	public static function get_google_fonts( $api_key, $sort = 'popularity' ) {
 		$ch = curl_init( "https://www.googleapis.com/webfonts/v1/webfonts?key=$api_key&sort=$sort" );
@@ -507,9 +599,17 @@ class Helpers {
 	}
 
 	/**
-	 * Parse Google Fonts url
+	 * Parses Google Fonts url
+	 *
+	 * @param array $fonts Array of Google Font names
+	 *
+	 * @return ?string
 	 */
-	public static function get_google_fonts_url( $fonts = [] ) {
+	public static function get_google_fonts_url( $fonts ) {
+		if ( ! is_array( $fonts ) ) {
+			return null;
+		}
+
 		$font_families = [];
 
 		foreach ( $fonts as $font ) {
@@ -527,7 +627,11 @@ class Helpers {
 	}
 
 	/**
-	 * Get file extension by content mime type
+	 * Gets file extension by content mime type
+	 *
+	 * @param string $mime Mime type name to search
+	 *
+	 * @return ?string
 	 */
 	public static function get_extension_by_mime( $mime ) {
 		$extensions = [
@@ -540,14 +644,18 @@ class Helpers {
 			'image/svg+xml' => '.svg',
 		];
 
-		return $extensions[ $mime ];
+		return $extensions[ $mime ] ?? null;
 	}
 
     /**
      * Pulls the image content into the svg markup
+	 *
+	 * @param string $path File path
+	 *
+	 * @return string
      */
 	public static function get_svg_content( $path ) {
-		if ( ! empty( $path ) && $svg_file = @file_get_contents( $path ) ) {
+		if ( ! empty( $path ) && $svg_file = @ file_get_contents( $path ) ) {
 			$position = strpos( $svg_file, '<svg' );
 			return substr( $svg_file, $position );
 		}
@@ -557,15 +665,25 @@ class Helpers {
 
     /**
      * Converts svg content to base64 encoded
+	 *
+	 * @param string $path File path
+	 *
+	 * @return ?string
      */
 	public static function svg_to_base64( $path ) {
-		if ( ! empty( $path ) && $svg_file = @file_get_contents( $path ) ) {
+		if ( ! empty( $path ) && $svg_file = @ file_get_contents( $path ) ) {
 			return 'data:image/svg+xml;base64,' . base64_encode( $svg_file );
 		}
+
+		return null;
 	}
 
 	/**
 	 * Geneterates random string
+	 *
+	 * @param int $length Optional. Lenght of the generated string
+	 *
+	 * @return string
 	 */
 	public static function get_salt( $length = 5 ) {
 		return substr( md5( rand() ), 0, $length );
@@ -573,6 +691,12 @@ class Helpers {
 
 	/**
 	 * Utility to find if key/value pair exists in array
+	 *
+	 * @param array $array 		Haystack
+	 * @param string $key 		Needle key
+	 * @param string $value 	Needle value
+	 *
+	 * @return mixed
 	 */
 	public static function find_key_value( $array, $key, $val ) {
 		foreach ( $array as $item ) {
@@ -585,11 +709,13 @@ class Helpers {
 			}
 		}
 
-		return false;
+		return null;
 	}
 
 	/**
-	 * Utility to retrieve IP address
+	 * Retrieves user's IP address
+	 *
+	 * @return string
 	 */
 	public static function get_ip() {
 		if ( isset( $_SERVER['HTTP_CLIENT_IP'] ) && ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
@@ -599,11 +725,12 @@ class Helpers {
 			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 		}
 		else {
-			$ip = ( isset( $_SERVER['REMOTE_ADDR'] ) ) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0';
+			$ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
 		}
 
 		$ip = filter_var( $ip, FILTER_VALIDATE_IP );
 		$ip = ( $ip === false ) ? '0.0.0.0' : $ip;
+
 		return $ip;
 	}
 
@@ -613,7 +740,10 @@ class Helpers {
 	 * "M" if one million or greater,
 	 * and "B" if one billion or greater (unlikely).
 	 *
-	 * @param Number $precision - how many decimal points to display (1.25K)
+	 * @param int $number  		Number to format
+	 * @param int $precision 	How many decimal points to display (1.25K)
+	 *
+	 * @return string
 	 */
 	public static function format_number( $number, $precision = 1 ) {
 		if ( $number >= 1000 && $number < 1000000 ) {
@@ -636,8 +766,10 @@ class Helpers {
 	/**
 	 * Utility function to convert hex colors to RGB arrays
 	 *
-	 * @param String $color - Hex color value
-	 * @param Boolean $implode - Return color as a string
+	 * @param string $color 	Hex color value
+	 * @param bool $implode 	Return color as a string
+	 *
+	 * @return ?string
 	 */
 	public static function hex_to_rgb( $color, $implode = false ) {
 		$color = str_replace( '#', '', $color );
@@ -648,6 +780,6 @@ class Helpers {
 			return $implode ? implode( ', ', [ $r, $g, $b ] ) : [ $r, $g, $b ];
 		}
 
-		return false;
+		return null;
 	}
 }

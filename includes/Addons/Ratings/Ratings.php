@@ -42,8 +42,6 @@ class Ratings {
 	 *
 	 * @param  int $post_id
 	 * @param  int $rating
-	 *
-	 * @return void
 	 */
 	public function __construct( $post_id, $rating = null ) {
 		global $current_user;
@@ -206,8 +204,6 @@ class Ratings {
 
 	/**
 	 * Processes the upvote request
-	 *
-	 * @return void
 	 */
 	public function process() {
 		// Check required attributes

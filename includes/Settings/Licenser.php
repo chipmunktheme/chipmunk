@@ -114,16 +114,14 @@ class Licenser {
 
 	/**
 	 * Activates the license key.
-	 *
-	 * @return void
 	 */
 	public function activate_license() {
 		if ( ! isset( $_POST[ $this->license_key_option ] ) ) {
-			return;
+			return null;
 		}
 
 		if ( ! isset( $_POST["{$this->license_key_option}_activate"] ) ) {
-			return;
+			return null;
 		}
 
 		$this->license_key = sanitize_text_field( $_POST[ $this->license_key_option ] );
@@ -172,16 +170,14 @@ class Licenser {
 
 	/**
 	 * Deactivates the license key.
-	 *
-	 * @return void
 	 */
 	public function deactivate_license() {
 		if ( ! isset( $_POST[ $this->license_key_option ] ) ) {
-			return;
+			return null;
 		}
 
 		if ( ! isset( $_POST["{$this->license_key_option}_deactivate"] ) ) {
-			return;
+			return null;
 		}
 
 		if ( $this->get_api_response( 'deactivate_license' ) ) {
@@ -244,7 +240,7 @@ class Licenser {
 
 		if ( ! $this->is_valid_response( $response ) ) {
 			$this->display_settings_error( $response, $this->errors['license-unknown'] );
-			return;
+			return null;
 		}
 
 		return $response;

@@ -12,8 +12,6 @@ class Settings {
 
 	/**
  	 * Class constructor
-	 *
-	 * @return void
 	 */
 	public function __construct( $config ) {
 		$this->config = $config;
@@ -142,7 +140,8 @@ class Settings {
 				</tbody>
 			</table>
 
-			<?php submit_button( esc_html__( 'Import', 'chipmunk' ), 'primary', 'import' ); ?>
+			<?php submit_button( esc_html__( 'Import', 'chipmunk' ), 'primary', THEME_SLUG . '_import' ); ?>
+			<?php wp_nonce_field( THEME_SLUG . '_import_nonce' ); ?>
 		</form>
 
 		<?php

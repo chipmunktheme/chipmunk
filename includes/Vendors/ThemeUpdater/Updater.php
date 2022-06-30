@@ -62,8 +62,6 @@ class Updater {
 
 	/**
 	 * Remove the update data for the theme
-	 *
-	 * @return void
 	 */
 	public function delete_theme_update_transient() {
 		delete_transient( $this->response_key );

@@ -19,8 +19,6 @@ class Settings {
 
 	/**
  	 * Used to register custom hooks
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_menu_page' ], 1 );

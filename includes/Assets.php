@@ -19,8 +19,6 @@ class Assets {
 
 	/**
  	 * Used to register custom hooks
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_custom_assets' ] );
@@ -33,8 +31,6 @@ class Assets {
 
 	/**
 	 * Enqueue front end styles and scripts
-	 *
-	 * @return void
 	 */
 	public static function enqueue_custom_assets() {
 		// Load Chipmunk main stylesheet
@@ -50,8 +46,6 @@ class Assets {
 
 	/**
 	 * Enqueue custom CSS styles
-	 *
-	 * @return void
 	 */
 	public static function enqueue_inline_styles() {
 		$primary_font      = Helpers::get_theme_option( 'primary_font' );
@@ -113,8 +107,6 @@ class Assets {
 
 	/**
 	 * Enqueue Google Fonts styles
-	 *
-	 * @return void
 	 */
 	public static function enqueue_google_fonts() {
 		$fonts = [];
@@ -137,8 +129,6 @@ class Assets {
 
 	/**
 	 * Enqueue external scripts
-	 *
-	 * @return void
 	 */
 	public static function enqueue_external_scripts() {
 		$enabled = Helpers::get_theme_option( 'recaptcha_enabled' );
@@ -163,8 +153,6 @@ class Assets {
 
 	/**
 	 * Deregisters theme Gutenberg Block assets.
-	 *
-	 * @return void
 	 */
 	public static function deregister_block_styles() {
 		wp_dequeue_style( 'wp-block-library' );
@@ -172,8 +160,6 @@ class Assets {
 
 	/**
 	 * Enqueue admin end styles and scripts
-	 *
-	 * @return void
 	 */
 	public static function enqueue_admin_scripts() {
 		if ( self::has_file( 'styles/theme.css' ) ) {

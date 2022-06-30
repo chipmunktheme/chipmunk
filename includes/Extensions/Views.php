@@ -37,8 +37,6 @@ class Views {
 	 * Increase the view counter
 	 *
 	 * @param $id Post ID number
-	 *
-	 * @return void
 	 */
 	public static function set_views( $id ) {
 		$db_key = '_chipmunk_post_view_count';

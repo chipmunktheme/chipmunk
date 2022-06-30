@@ -14,8 +14,6 @@ class Misc {
 
 	/**
  	 * Used to register custom hooks
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		add_action( 'wp_insert_post', [ $this, 'add_default_meta' ] );
@@ -48,12 +46,10 @@ class Misc {
 
 	/**
 	 * Add Open Graph tags
-	 *
-	 * @return void
 	 */
 	public static function add_og_tags() {
 		if ( Helpers::get_theme_option( 'disable_og' ) ) {
-			return;
+			return null;
 		}
 
 		$site_image = Helpers::get_theme_option( 'og_image' );

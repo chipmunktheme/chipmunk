@@ -12,8 +12,6 @@ class Actions {
 
 	/**
  	 * Class constructor
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		// Lazy loading posts

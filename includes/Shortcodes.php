@@ -12,8 +12,6 @@ class Shortcodes {
 
 	/**
  	 * Used to register custom hooks
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		add_shortcode( 'chipmunk-counter', [ $this, 'render_counter' ] );

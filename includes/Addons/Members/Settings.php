@@ -12,8 +12,6 @@ class Settings {
 
 	/**
  	 * Class constructor
-	 *
-	 * @return void
 	 */
 	public function __construct( $config ) {
 		$this->config = $config;

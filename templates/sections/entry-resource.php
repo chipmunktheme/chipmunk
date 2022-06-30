@@ -1,4 +1,6 @@
 <?php
+	global $wp_query;
+
 	$content_separated = ( strlen( strip_tags( get_the_content() ) ) > 500 || Chipmunk\Helpers::get_theme_option( 'display_resource_content_separated' ) );
 	$primary_website = Chipmunk\Helpers::get_resource_website( get_the_ID() );
 	$website = get_post_meta( get_the_ID(), '_' . THEME_SLUG . '_resource_website', true );

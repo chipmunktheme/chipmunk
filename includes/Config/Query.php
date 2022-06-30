@@ -14,8 +14,6 @@ class Query {
 
 	/**
  	 * Used to register custom hooks
-	 *
-	 * @return void
 	 */
 	function __construct() {
 		add_filter( 'pre_get_posts', [ $this, 'update_main_query' ] );
@@ -58,8 +56,6 @@ class Query {
 
 	/**
 	 * Exclude children from taxonomy listing
-	 *
-	 * @return void
 	 */
 	public static function exclude_tax_children( $query ) {
 		if ( ! is_admin() && isset( $query->query_vars['resource-collection'] ) ) {

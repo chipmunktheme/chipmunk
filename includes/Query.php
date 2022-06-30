@@ -2,6 +2,9 @@
 
 namespace Chipmunk;
 
+use WP_Query;
+use WP_User_Query;
+
 /**
  * Theme helpers for retrieving data from DB.
  *
@@ -41,7 +44,7 @@ class Query {
 			];
 		}
 
-		return new \WP_Query( wp_parse_args( $args, $defaults ) );
+		return new WP_Query( wp_parse_args( $args, $defaults ) );
 	}
 
 	/**
@@ -73,7 +76,7 @@ class Query {
 			$args['tax_query']['relation'] = 'OR';
 		}
 
-		return new \WP_Query( wp_parse_args( $args, $defaults ) );
+		return new WP_Query( wp_parse_args( $args, $defaults ) );
 	}
 
 	/**
@@ -97,7 +100,7 @@ class Query {
 			$defaults = array_merge( $defaults, self::get_resources_tax_args( $term ) );
 		}
 
-		return new \WP_Query( wp_parse_args( $args, $defaults ) );
+		return new WP_Query( wp_parse_args( $args, $defaults ) );
 	}
 
 	/**
@@ -111,7 +114,7 @@ class Query {
 			'order'    => 'ASC',
 		];
 
-		return new \WP_User_Query( $args );
+		return new WP_User_Query( $args );
 	}
 
 	/**

@@ -12,8 +12,6 @@ class Redirects {
 
 	/**
  	 * Class constructor
-	 *
-	 * @return void
 	 */
 	public function __construct() {
 		// Redirects

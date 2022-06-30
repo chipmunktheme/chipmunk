@@ -12,8 +12,6 @@ class Renderers {
 
 	/**
  	 * Class constructor
-	 *
-	 * @return void
 	 */
 	public function __construct() {
 		// Shortcodes

@@ -82,8 +82,6 @@ class Submissions {
 
 	/**
 	 * Submit an post into the database
-	 *
-	 * @return void
 	 */
 	private function submit() {
 		$data = [
@@ -109,8 +107,6 @@ class Submissions {
 
 	/**
 	 * Submit a post into the database and sends info messages
-	 *
-	 * @return void
 	 */
 	public function process() {
 		try {
