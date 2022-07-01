@@ -4,6 +4,7 @@ namespace Chipmunk;
 
 use WP_Customize_Color_Control;
 use WP_Customize_Image_Control;
+use Chipmunk\Helpers;
 
 /**
  * WP Customizer settings.
@@ -29,7 +30,7 @@ class Customizer {
 	 * Define settings name
 	 * @var string
 	 */
-	private static $settings_name = 'chipmunk_settings';
+	private static $settingsName = 'chipmunk_settings';
 
 	/**
 	 * An array of available social profiles
@@ -51,21 +52,21 @@ class Customizer {
 	];
 
 	/**
-	 * Register the customizer sections
+	 * Initializes the Composer sections
 	 */
-	public static function register_sections() {
-		self::set_sections();
+	public static function init() {
+		self::setSections();
 
 		if ( is_customize_preview() ) {
-			add_action( 'customize_register', [ self::class, 'remove_sections' ] );
-			add_action( 'customize_register', [ self::class, 'add_sections' ] );
+			add_action( 'customize_register', [ self::class, 'removeSections' ] );
+			add_action( 'customize_register', [ self::class, 'addSections' ] );
 		}
 	}
 
 	/**
 	 * Set the customizer sections
 	 */
-	public static function set_sections() {
+	public static function setSections() {
 		self::$sections = [
 			[
 				'title'         => esc_html__( 'Site Identity', 'chipmunk' ),
@@ -119,14 +120,14 @@ class Customizer {
 						'type'        => 'select',
 						'label'       => esc_html__( 'Primary Font', 'chipmunk' ),
 						'default'     => '',
-						'choices'     => array_merge( [ '' => esc_html__( 'System font', 'chipmunk' ) ], self::get_google_fonts() ),
+						'choices'     => array_merge( [ '' => esc_html__( 'System font', 'chipmunk' ) ], self::getGoogleFonts() ),
 					],
 					[
 						'name'        => 'heading_font',
 						'type'        => 'select',
 						'label'       => esc_html__( 'Heading Font', 'chipmunk' ),
 						'default'     => '',
-						'choices'     => array_merge( [ '' => esc_html__( 'System font', 'chipmunk' ) ], self::get_google_fonts() ),
+						'choices'     => array_merge( [ '' => esc_html__( 'System font', 'chipmunk' ) ], self::getGoogleFonts() ),
 					],
 					[
 						'name'        => 'content_size',
@@ -427,7 +428,7 @@ class Customizer {
 							'name'        => esc_html__( 'Name', 'chipmunk' ),
 							'views'       => esc_html__( 'Views', 'chipmunk' ),
 							'upvotes'     => esc_html__( 'Upvotes', 'chipmunk' ),
-							'ratings'     => Helpers::is_addon_enabled( 'ratings' ) ? esc_html__( 'Ratings', 'chipmunk' ) : null,
+							'ratings'     => Helpers::isAddonEnabled( 'ratings' ) ? esc_html__( 'Ratings', 'chipmunk' ) : null,
 						],
 					],
 					[
@@ -638,7 +639,7 @@ class Customizer {
 			[
 				'title'         => esc_html__( 'Social Profiles', 'chipmunk' ),
 				'slug'          => 'socials_section',
-				'fields'        => self::get_socials_fields(),
+				'fields'        => self::getSocialsFields(),
 			],
 
 			[
@@ -817,7 +818,7 @@ class Customizer {
 
 			if ( ! empty( $section['fields'] ) ) {
 				foreach ( $section['fields'] as $field ) {
-					self::register_field( $customize, $section, $field );
+					self::registerField( $customize, $section, $field );
 				}
 			}
 		}
@@ -826,27 +827,27 @@ class Customizer {
 	/**
 	 * Get theme option
 	 */
-	public static function get_theme_option( $name, $default = false ) {
-		$options = ( get_option( self::$settings_name ) ) ? get_option( self::$settings_name ) : null;
+	public static function getOption( $name, $default = false ) {
+		$options = ( get_option( self::$settingsName ) ) ? get_option( self::$settingsName ) : null;
 
 		// return the option if it exists
 		if ( isset( $options[ $name ] ) ) {
-			return apply_filters( self::$settings_name . '_$name', $options[ $name ] );
+			return apply_filters( self::$settingsName . '_$name', $options[ $name ] );
 		}
 
 		// return default if it exists
 		if ( $default ) {
-			return apply_filters( self::$settings_name . '_$name', $default );
+			return apply_filters( self::$settingsName . '_$name', $default );
 		}
 
 		// return field default if it exists
-		return apply_filters( self::$settings_name . '_$name', self::find_default_by_name( $name ) );
+		return apply_filters( self::$settingsName . '_$name', self::findDefaultByName( $name ) );
 	}
 
 	/**
 	 * Search for field by given name
 	 */
-	private static function find_default_by_name( $name ) {
+	private static function findDefaultByName( $name ) {
 		foreach ( self::$sections as $section ) {
 			if ( ! empty( $section['fields'] ) ) {
 				foreach ( $section['fields'] as $field ) {
@@ -863,85 +864,85 @@ class Customizer {
 	/**
 	 * Get social list
 	 */
-	public static function get_socials() {
+	public static function getSocials() {
 		return apply_filters( 'chipmunk_socials', self::$socials );
 	}
 
 	/**
 	 * Get Google fonts list
 	 */
-	private static function get_google_fonts() {
+	private static function getGoogleFonts() {
 		if ( ! is_customize_preview() ) {
 			return [];
 		}
 
-		if ( false === ( $google_fonts = unserialize( get_transient( THEME_SLUG . '_google_fonts' ) ) ) ) {
-			$google_fonts = Helpers::get_google_fonts( 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE' ) ?? [];
-			$google_fonts = array_column( $google_fonts, 'family' );
+		if ( false === ( $googleFonts = unserialize( get_transient( THEME_SLUG . '_google_fonts' ) ) ) ) {
+			$googleFonts = Helpers::getGoogleFonts( 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE' ) ?? [];
+			$googleFonts = array_column( $googleFonts, 'family' );
 
-			set_transient( THEME_SLUG . '_google_fonts', serialize( $google_fonts ), WEEK_IN_SECONDS );
+			set_transient( THEME_SLUG . '_google_fonts', serialize( $googleFonts ), WEEK_IN_SECONDS );
 		}
 
-		return array_combine( $google_fonts, $google_fonts);
+		return array_combine( $googleFonts, $googleFonts);
 	}
 
 	/**
 	 * Get social fields list
 	 */
-	private static function get_socials_fields() {
-		$social_fields = [];
+	private static function getSocialsFields() {
+		$socialFields = [];
 
-		foreach ( self::get_socials() as $social ) {
+		foreach ( self::getSocials() as $social ) {
 			$slug = strtolower( $social );
 
-			$social_fields[] = [
+			$socialFields[] = [
 				'name'        => $slug,
 				'type'        => 'url',
 				'label'       => $social,
 			];
 		}
 
-		return $social_fields;
+		return $socialFields;
 	}
 
 	/**
 	 * Add setting and control for each field
 	 */
-	private static function register_field( $customize, $section, $field ) {
+	private static function registerField( $customize, $section, $field ) {
 		// Plugin restricted fields
-		if ( ! empty( $field['restrict'] ) && ! Helpers::is_addon_enabled( $field['restrict'] ) ) {
+		if ( ! empty( $field['restrict'] ) && ! Helpers::isAddonEnabled( $field['restrict'] ) ) {
 			return null;
 		}
 
-		$setting_args = [
+		$settingArgs = [
 			'capability'  => self::$capability,
 			'type'        => 'option',
-			'default'     => ! empty( $field['default'] ) ? $field['default'] : null,
+			'default'     => $field['default'] ?? null,
 		];
 
-		$control_args = [
+		$controlArgs = [
 			'label'       => $field['label'],
 			'section'     => $section['slug'],
-			'settings'    => self::$settings_name . '[' . $field['name'] . ']',
-			'description' => ! empty( $field['description'] ) ? $field['description'] : null,
-			'choices'     => ! empty( $field['choices'] ) ? array_filter( $field['choices'] ) : null,
-			'input_attrs' => ! empty( $field['input_attrs'] ) ? array_filter( $field['input_attrs'] ) : null,
+			'settings'    => self::$settingsName . '[' . $field['name'] . ']',
+			'description' => $field['description'] ?? null,
+			'choices'     => array_filter( $field['choices'] ) ?? null,
+			'input_attrs' => array_filter( $field['input_attrs'] ) ?? null,
 		];
 
-		$customize->add_setting( self::$settings_name . '[' . $field['name'] . ']', $setting_args );
+		$customize->add_setting( self::$settingsName . '[' . $field['name'] . ']', $settingArgs );
 
 		switch ( $field['type'] ) {
 			case 'color':
-				$customize->add_control( new WP_Customize_Color_Control( $customize, $field['name'], $control_args ) );
+				$customize->add_control( new WP_Customize_Color_Control( $customize, $field['name'], $controlArgs ) );
 				break;
 
 			case 'image':
-				$customize->add_control( new WP_Customize_Image_Control( $customize, $field['name'], $control_args ) );
+				$customize->add_control( new WP_Customize_Image_Control( $customize, $field['name'], $controlArgs ) );
 				break;
 
 			default:
-				$control_args['type'] = $field['type'];
-				$customize->add_control( $field['name'], $control_args );
+				$controlArgs['type'] = $field['type'];
+				$customize->add_control( $field['name'], $controlArgs );
 		}
 	}
 }

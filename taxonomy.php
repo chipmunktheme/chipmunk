@@ -17,7 +17,7 @@ get_header(); ?>
 			<?php $title = ucfirst( single_term_title( null, false ) ); ?>
 
 			<div class="l-component l-header">
-				<?php if ( Chipmunk\Helpers::is_feature_enabled( 'sorting', 'resource', false ) && $query->have_posts() ) : ?>
+				<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'sorting', 'resource', false ) && $query->have_posts() ) : ?>
 					<h1 class="c-heading c-heading--h4"><?php echo esc_html( $title ); ?></h1>
 
 					<?php Chipmunk\Helpers::get_template_part( 'partials/filters' ); ?>

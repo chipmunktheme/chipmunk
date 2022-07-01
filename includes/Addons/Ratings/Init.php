@@ -88,7 +88,7 @@ class Init {
  	 * Setup main components and features of the addon
 	 */
 	public function setup_addon() {
-		if ( ! ChipmunkHelpers::is_addon_enabled( $this->config['slug'] ) ) {
+		if ( ! ChipmunkHelpers::isAddonEnabled( $this->config['slug'] ) ) {
 			return null;
 		}
 

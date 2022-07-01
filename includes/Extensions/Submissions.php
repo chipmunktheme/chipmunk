@@ -96,13 +96,13 @@ class Submissions {
 
 		if ( $post_id = $this->submitter->submit( (object) $data ) ) {
 			// Send email to website admin
-			if ( Helpers::get_theme_option( 'inform_about_submissions' ) ) {
+			if ( Helpers::getOption( 'inform_about_submissions' ) ) {
 				$this->inform_admin( $post_id );
 			}
 		}
 
 		// Failure during wp_insert_post
-		else throw new \Exception( Helpers::get_theme_option( 'submission_failure' ) );
+		else throw new \Exception( Helpers::getOption( 'submission_failure' ) );
 	}
 
 	/**
@@ -117,7 +117,7 @@ class Submissions {
 			$this->submit();
 
 			// Return success message
-			wp_send_json_success( Helpers::get_theme_option( 'submission_thanks' ) );
+			wp_send_json_success( Helpers::getOption( 'submission_thanks' ) );
 
 		} catch ( \Exception $e ) {
 

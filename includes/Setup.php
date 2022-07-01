@@ -2,6 +2,9 @@
 
 namespace Chipmunk;
 
+use Timber\Timber;
+use Chipmunk\Customizer;
+
 /**
  * Main theme setup class
  *
@@ -206,7 +209,9 @@ class Setup {
 		new Assets();
 		new Features();
 		new Settings();
+		new Site();
 		new Shortcodes();
+		new Twig();
 
 		new Config\Admin();
 		new Config\Assets();
@@ -243,8 +248,11 @@ class Setup {
 			'url'       => THEME_SHOP_URL . '/addons/importer',
 		] );
 
-		// Customizer
-		Customizer::register_sections();
+		// Initialize Customizer
+		Customizer::init();
+
+		// Initialize Timber
+		Timber::init();
 	}
 
 	/**

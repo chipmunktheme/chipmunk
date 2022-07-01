@@ -1,0 +1,11 @@
+<meta charset="{{ site.charset }}">
+<meta name="robots" content="noodp">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="pingback" href="{{ site.pingback_url }}" />
+
+<script>
+  window.globals = {
+    ajax_url: '{{ fn('admin_url', 'admin-ajax.php') }}',
+    login_url: '{{ fn('wp_login_url', current_url) }}',
+  };
+</script>

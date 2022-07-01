@@ -11,7 +11,7 @@
 
 	<?php Chipmunk\Helpers::get_template_part( 'partials/promo' ); ?>
 
-	<?php if ( ! is_front_page() || Chipmunk\Helpers::get_theme_option( 'disable_homepage_listings' ) ) : ?>
+	<?php if ( ! is_front_page() || Chipmunk\Helpers::getOption( 'disable_homepage_listings' ) ) : ?>
 		<?php Chipmunk\Helpers::get_template_part( 'partials/toolbox' ); ?>
 	<?php endif; ?>
 
@@ -19,7 +19,7 @@
 	<?php Chipmunk\Helpers::get_template_part( 'partials/page-bottom' ); ?>
 	<?php Chipmunk\Helpers::get_template_part( 'partials/page-foot' ); ?>
 
-	<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_submissions' ) && empty( Chipmunk\Helpers::get_theme_option( 'submit_page' ) ) ) : ?>
+	<?php if ( ! Chipmunk\Helpers::getOption( 'disable_submissions' ) && empty( Chipmunk\Helpers::getOption( 'submit_page' ) ) ) : ?>
 		<?php Chipmunk\Helpers::get_template_part( 'partials/popup' ); ?>
 	<?php endif; ?>
 

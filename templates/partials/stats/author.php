@@ -1,4 +1,4 @@
-<?php if ( Chipmunk\Helpers::is_feature_enabled( 'author', get_post_type() ) ) : ?>
+<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'author', get_post_type() ) ) : ?>
 	<li class="c-stats__item c-stats__item--author" title="<?php esc_attr_e( 'Author', 'chipmunk' ); ?>">
 		<?php if ( ! empty( $show_avatar ) ) : ?>
 			<div class="u-avatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), 32 ); ?></div>

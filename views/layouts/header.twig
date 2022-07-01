@@ -1,0 +1,84 @@
+<header class="{{ class_name('c-page-head', get_option('sticky_header') ? 'sticky') }}" data-placehold-height="header">
+  <div class="l-container">
+    <div class="c-page-head__inner">
+      <{{ is_front_page ? 'h1' : 'div' }} class="c-page-head__logo">
+        <a href="{{ site.link }}" rel="index">
+          {% set logo = get_option('logo') %}
+
+          {% if logo %}
+            <span class="u-hidden-visually">{{ site.name }}</span>
+            <img src="{{ logo }}" alt="" />
+          {% else %}
+            {{ site.name }}
+          {% endif %}
+        </a>
+      </{{ is_front_page ? 'h1' : 'div' }}>
+
+      {% if menus.primary.items %}
+        <div class="c-page-head__menu u-visible-lg-block">
+          {% include 'partials/menu.twig' with { type: 'primary', items: menus.primary.items } %}
+        </div>
+      {% endif %}
+
+      <div class="c-page-head__cta">
+        {% if not get_option('disable_search') %}
+          <button class="c-page-head__icon" data-panel="search">
+            {% include 'partials/icon.twig' with { icon: 'search', size: 'lg' } only %}
+            <span class="u-hidden-visually">{{ __( 'Search', 'chipmunk' ) }}</span>
+          </button>
+        {% endif %}
+
+        {% if is_addon_enabled('members') %}
+          {% if user %}
+            <div class="c-menu-toolbox u-dropdown__trigger">
+              <button class="c-menu-toolbox__dropdown" data-dropdown="click">
+                <div class="u-avatar">
+                  <img src="{{ user.avatar({ size: 64 }) }}" alt="">
+                </div>
+
+                {% include 'partials/icon.twig' with { icon: 'chevron-down', size: 'sm' } only %}
+              </button>
+
+              <nav class="{{ class_name('u-dropdown', get_option('dropdown_theme')) }}">
+                <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'dashboard' ) ); ?>" class="u-dropdown__link">{{ __( 'Dashboard', 'chipmunk' ) }}</a>
+                {% if false | apply_filters('chipmunk_enable_user_profiles') %}
+                  <a href="{{ user.path }}" class="u-dropdown__link">{{ __( 'Profile', 'chipmunk' ) }}</a>
+                {% endif %}
+                <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'profile' ) ); ?>" class="u-dropdown__link">{{ __( 'Edit Profile', 'chipmunk' ) }}</a>
+                {% include 'partials/submit-button.twig' with { class: 'u-dropdown__link' } %}
+                <a href="{{ fn('wp_logout_url') }}" class="u-dropdown__link">{{ __( 'Logout', 'chipmunk' ) }}</a>
+              </nav>
+            </div>
+          {% else %}
+            <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'login' ) ); ?>" class="{{ class_name('c-button', 'primary-outline') }} u-visible-lg-block">
+              {{ __( 'Login', 'chipmunk' ) }}
+            </a>
+
+            {% if site.option('users_can_register') %}
+              <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'register' ) ); ?>" class="{{ class_name('c-button', 'primary-outline') }} u-visible-lg-block">
+                {{ __( 'Register', 'chipmunk' ) }}
+              </a>
+            {% endif %}
+          {% endif %}
+        {% elseif not get_option('disable_submissions') %}
+          {% include 'partials/submit-button.twig' with { class: class_name('c-button', 'primary-outline') ~ ' u-visible-lg-block' } %}
+        {% endif %}
+
+        <button class="c-page-head__icon u-hamburger u-hidden-lg" data-panel="nav">
+          <span></span>
+        </button>
+      </div>
+
+      {% if not get_option('disable_search') %}
+        <div class="c-page-head__search">
+          <button type="button" data-panel="search">
+            {% include 'partials/icon.twig' with { icon: 'close', size: 'lg' } only %}
+            <span class="u-hidden-visually">{{ __( 'Close', 'chipmunk' ) }}</span>
+          </button>
+
+          {% include 'partials/search.twig' with { default: true } %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</header>

@@ -47,7 +47,7 @@
 			<textarea rows="1" name="content" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>" class="c-form__input" <?php echo in_array( 'content', $required_fields ) ? 'required' : ''; ?> data-dynamic-rows></textarea>
 		</div>
 
-		<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_submitter_info' ) && ! is_user_logged_in() ) : ?>
+		<?php if ( ! Chipmunk\Helpers::getOption( 'disable_submitter_info' ) && ! is_user_logged_in() ) : ?>
 			<div class="c-form__field">
 				<input type="text" name="submitter_name" placeholder="<?php esc_attr_e( 'Your name', 'chipmunk' ); ?>" class="c-form__input" required>
 			</div>
@@ -57,14 +57,14 @@
 			</div>
 		<?php endif; ?>
 
-		<?php if ( ! empty( Chipmunk\Helpers::get_theme_option( 'submission_consent' ) ) ) : ?>
+		<?php if ( ! empty( Chipmunk\Helpers::getOption( 'submission_consent' ) ) ) : ?>
 			<label class="c-form__field c-form__field--wide c-form__checkbox" data-consent>
 				<input type="checkbox" name="consent" required>
-				<p><?php echo esc_html( Chipmunk\Helpers::get_theme_option( 'submission_consent' ) ); ?></p>
+				<p><?php echo esc_html( Chipmunk\Helpers::getOption( 'submission_consent' ) ); ?></p>
 			</label>
 		<?php endif; ?>
 
-		<?php if ( ! empty( Chipmunk\Helpers::get_theme_option( 'recaptcha_enabled' ) ) && ! is_user_logged_in() ) : ?>
+		<?php if ( ! empty( Chipmunk\Helpers::getOption( 'recaptcha_enabled' ) ) && ! is_user_logged_in() ) : ?>
 			<div class="c-form__field c-form__field--wide c-form__field--<?php echo esc_attr( $alignment ); ?>">
 				<div class="g-recaptcha" id="submit-recaptcha"></div>
 			</div>

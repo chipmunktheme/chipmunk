@@ -1,7 +1,7 @@
-<header class="c-page-head<?php echo Chipmunk\Helpers::get_theme_option( 'sticky_header' ) ? ' is-sticky' : ''; ?>" data-placehold-height="header">
+<header class="c-page-head<?php echo Chipmunk\Helpers::getOption( 'sticky_header' ) ? ' is-sticky' : ''; ?>" data-placehold-height="header">
 	<div class="l-container">
 		<div class="c-page-head__inner">
-			<?php $logo = Chipmunk\Helpers::get_theme_option( 'logo' ); ?>
+			<?php $logo = Chipmunk\Helpers::getOption( 'logo' ); ?>
 
 			<<?php echo is_front_page() ? 'h1' : 'div'; ?> class="c-page-head__logo">
 				<a href="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>" rel="index">
@@ -24,7 +24,7 @@
 			<?php endif; ?>
 
 			<div class="c-page-head__cta">
-				<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_search' ) ) : ?>
+				<?php if ( ! Chipmunk\Helpers::getOption( 'disable_search' ) ) : ?>
 					<button class="c-page-head__icon" data-panel="search">
 						<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'search', 'size' => 'lg' ] ); ?>
 						<span class="u-hidden-visually"><?php esc_html_e( 'Search', 'chipmunk' ); ?></span>
@@ -44,7 +44,7 @@
 								<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'chevron-down', 'size' => 'sm' ] ); ?>
 							</button>
 
-							<ul class="u-dropdown u-dropdown--<?php echo esc_attr( Chipmunk\Helpers::get_theme_option( 'dropdown_theme' ) ); ?>">
+							<ul class="u-dropdown u-dropdown--<?php echo esc_attr( Chipmunk\Helpers::getOption( 'dropdown_theme' ) ); ?>">
 								<li class="u-dropdown__item"><a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'dashboard' ) ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Dashboard', 'chipmunk' ); ?></a></li>
 								<?php if ( apply_filters( 'chipmunk_enable_user_profiles', false ) ) : ?>
 									<li class="u-dropdown__item"><a href="<?php echo esc_url( get_author_posts_url( $current_user->ID ) ); ?>" class="u-dropdown__link"><?php esc_html_e( 'Profile', 'chipmunk' ); ?></a></li>
@@ -66,7 +66,7 @@
 						<?php endif; ?>
 					<?php endif; ?>
 				<?php else : ?>
-					<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_submissions' ) ) : ?>
+					<?php if ( ! Chipmunk\Helpers::getOption( 'disable_submissions' ) ) : ?>
 						<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', [ 'class' => 'c-button c-button--primary-outline u-visible-lg-block' ] ); ?>
 					<?php endif; ?>
 				<?php endif; ?>
@@ -76,7 +76,7 @@
 				</button>
 			</div>
 
-			<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_search' ) ) : ?>
+			<?php if ( ! Chipmunk\Helpers::getOption( 'disable_search' ) ) : ?>
 				<div class="c-page-head__search">
 					<button type="button" data-panel="search">
 						<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'close', 'size' => 'lg' ] ); ?>
@@ -90,6 +90,6 @@
 	</div>
 </header>
 
-<?php if ( Chipmunk\Helpers::get_theme_option( 'sticky_header' ) ) : ?>
+<?php if ( Chipmunk\Helpers::getOption( 'sticky_header' ) ) : ?>
 	<div class="c-page-head__placeholder"></div>
 <?php endif; ?>

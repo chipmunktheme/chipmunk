@@ -253,7 +253,7 @@ class Submitter {
 
 		if ( $post_id = @wp_insert_post( $post_array) ) {
 			// Set thumbnail
-			if ( ! empty( $data->url ) && ! Helpers::get_theme_option( 'disable_submission_image_fetch' ) ) {
+			if ( ! empty( $data->url ) && ! Helpers::getOption( 'disable_submission_image_fetch' ) ) {
 				if ( $og_image = $this->fetch_og_image( $data->url ) ) {
 					if ( $thumbnail_id = $this->upload_thumbnail( $og_image ) ) {
 						$this->set_thumbnail( $post_id, $thumbnail_id );

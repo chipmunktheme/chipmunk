@@ -24,7 +24,8 @@
   ],
   "require": {
     "advanced-custom-fields/advanced-custom-fields-pro": "^5.12",
-    "richtabor/merlin-wp": "dev-master"
+    "richtabor/merlin-wp": "dev-master",
+    "timber/timber": "^2.0.0-alpha.5"
   },
   "config": {
     "allow-plugins": {

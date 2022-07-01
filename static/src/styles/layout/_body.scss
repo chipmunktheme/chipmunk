@@ -5,6 +5,7 @@
 .l-body {
   display: flex;
   flex-direction: column;
+  width: 100%;
   min-height: 100%;
   position: relative;
   background-color: var(--chipmunk--color--background);
@@ -39,3 +40,20 @@
     position: fixed;
   }
 }
+
+.l-body__bag {
+  position: relative;
+  z-index: var(--chipmunk--layer--base);
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.l-body__placeholder {
+  min-height: var(--header-height, 0);
+}
+
+.l-body__area {
+  flex: 1;
+}
+

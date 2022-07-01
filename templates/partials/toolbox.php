@@ -1,6 +1,6 @@
 <?php $socials = Chipmunk\Helpers::get_socials(); ?>
 
-<?php if ( ! empty( $socials ) || ! Chipmunk\Helpers::get_theme_option( 'disable_submissions' ) ) : ?>
+<?php if ( ! empty( $socials ) || ! Chipmunk\Helpers::getOption( 'disable_submissions' ) ) : ?>
 	<div class="<?php echo Chipmunk\Helpers::class_name( 'l-section', [ 'theme-light', 'compact', 'sticky' ] ); ?>">
 		<div class="l-container c-toolbox">
 			<?php if ( ! empty( $socials ) ) : ?>
@@ -22,9 +22,9 @@
 				</div>
 			<?php endif; ?>
 
-			<?php if ( ! Chipmunk\Helpers::get_theme_option( 'disable_submissions' ) ) : ?>
+			<?php if ( ! Chipmunk\Helpers::getOption( 'disable_submissions' ) ) : ?>
 				<div class="c-toolbox__cta<?php echo ! empty( $socials ) ? ' u-visible-md-flex ' : ''; ?>">
-					<p<?php echo ! empty( $socials ) ? ' class="u-visible-lg-block"': ''; ?>><?php echo esc_html( Chipmunk\Helpers::get_theme_option( 'submit_tagline' ) ); ?></p>
+					<p<?php echo ! empty( $socials ) ? ' class="u-visible-lg-block"': ''; ?>><?php echo esc_html( Chipmunk\Helpers::getOption( 'submit_tagline' ) ); ?></p>
 					<?php Chipmunk\Helpers::get_template_part( 'partials/submit-button', [ 'class' => 'c-toolbox__button c-button c-button--primary' ] ); ?>
 				</div>
 			<?php endif; ?>

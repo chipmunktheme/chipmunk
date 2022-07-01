@@ -1,0 +1,40 @@
+<!doctype html>
+<html {{ site.language_attributes }}>
+<head>
+  {% include 'layouts/head.twig' %}
+
+  {{ fn('wp_head') }}
+</head>
+
+<body class="{{ body_class }} l-body">
+  {{ fn('wp_body_open') }}
+
+  {% include 'layouts/header.twig' %}
+  {% include 'layouts/overlay.twig' %}
+
+  <main class="l-body__bag" id="top">
+    <div class="l-body__placeholder"></div>
+
+    <div class="l-body__area">
+      {% block content %}
+        No content
+      {% endblock %}
+    </div>
+
+    {% include 'sections/promo.twig' %}
+
+    {% if not is_front_page or get_option('disable_homepage_listings') %}
+      {% include 'sections/toolbox.twig' %}
+    {% endif %}
+
+    {% include 'sections/newsletter.twig' %}
+
+    {% include 'layouts/footer.twig' %}
+    {% include 'layouts/bottom.twig' %}
+  </main>
+
+  {{ fn('wp_footer') }}
+
+	<!-- Made with {{ theme.name }} v{{ theme.version }} -->
+</body>
+</html>

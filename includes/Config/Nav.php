@@ -75,7 +75,7 @@ class Nav {
 	 * @return array
 	 */
 	public static function extra_submenu_classes( $classes ) {
-		$classes[] = 'theme-' . Helpers::get_theme_option( 'dropdown_theme' );
+		$classes[] = 'theme-' . Helpers::getOption( 'dropdown_theme' );
 
 		return $classes;
 	}

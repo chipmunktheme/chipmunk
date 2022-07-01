@@ -21,98 +21,98 @@ class Assets {
  	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_custom_assets' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_inline_styles' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_google_fonts' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_external_scripts' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_scripts' ] );
-		add_filter( 'script_loader_tag', [ $this, 'add_async_attribute' ], 10, 3 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueCustomAssets' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueInlineStyles' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueGoogleFonts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueExternalScripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueueAdminScripts' ] );
+		add_filter( 'script_loader_tag', [ $this, 'addAsyncAttribute' ], 10, 3 );
 	}
 
 	/**
 	 * Enqueue front end styles and scripts
 	 */
-	public static function enqueue_custom_assets() {
+	public static function enqueueCustomAssets() {
 		// Load Chipmunk main stylesheet
-		if ( self::has_file( 'styles/theme.css' ) ) {
-			wp_enqueue_style( 'chipmunk-styles', self::revisioned_path( 'styles/theme.css' ) );
+		if ( self::hasFile( 'styles/theme.css' ) ) {
+			wp_enqueue_style( 'chipmunk-styles', self::revisionedPath( 'styles/theme.css' ) );
 		}
 
 		// Load Chipmunk main script
-		if ( self::has_file( 'scripts/theme.js' ) ) {
-			wp_enqueue_script( 'chipmunk-scripts', self::revisioned_path( 'scripts/theme.js' ) );
+		if ( self::hasFile( 'scripts/theme.js' ) ) {
+			wp_enqueue_script( 'chipmunk-scripts', self::revisionedPath( 'scripts/theme.js' ) );
 		}
 	}
 
 	/**
 	 * Enqueue custom CSS styles
 	 */
-	public static function enqueue_inline_styles() {
-		$primary_font      = Helpers::get_theme_option( 'primary_font' );
-		$heading_font      = Helpers::get_theme_option( 'heading_font' );
+	public static function enqueueInlineStyles() {
+		$primaryFont      = Helpers::getOption( 'primary_font' );
+		$headingFont      = Helpers::getOption( 'heading_font' );
 
-		$primary_color     = Helpers::get_theme_option( 'primary_color' );
-		$link_color        = Helpers::get_theme_option( 'link_color' );
-		$background_color  = Helpers::get_theme_option( 'background_color' );
-		$section_color     = Helpers::get_theme_option( 'section_color' );
-		$content_size      = Helpers::get_theme_option( 'content_size' );
-		$custom_css        = Helpers::get_theme_option( 'custom_css' );
+		$primaryColor     = Helpers::getOption( 'primary_color' );
+		$linkColor        = Helpers::getOption( 'link_color' );
+		$backgroundColor  = Helpers::getOption( 'background_color' );
+		$sectionColor     = Helpers::getOption( 'section_color' );
+		$contentSize      = Helpers::getOption( 'content_size' );
+		$customCss        = Helpers::getOption( 'custom_css' );
 
-		$logo_height       = Helpers::get_theme_option( 'logo_height' );
+		$logoHeight       = Helpers::getOption( 'logo_height' );
 
-		$custom_style      = ! empty( $custom_css ) ? $custom_css : '';
-		$primary_font      = ( ! empty( $primary_font ) && $primary_font != 'System' ) ? str_replace( '+', ' ', $primary_font ) : '';
-		$heading_font      = ( ! empty( $heading_font ) && $heading_font != 'System' ) ? str_replace( '+', ' ', $heading_font ) : '';
+		$customStyle      = ! empty( $customCss ) ? $customCss : '';
+		$primaryFont      = ( ! empty( $primaryFont ) && $primaryFont != 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
+		$headingFont      = ( ! empty( $headingFont ) && $headingFont != 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
 
-		$disable_borders   = Helpers::get_theme_option( 'disable_section_borders' );
+		$disableBorders   = Helpers::getOption( 'disable_section_borders' );
 
 		if ( is_page() ) {
 			switch ( get_page_template_slug() ) {
 				case 'page-full-width.php':
-					$content_width = 12;
+					$contentWidth = 12;
 					break;
 				case 'page-wide-width.php':
-					$content_width = 10;
+					$contentWidth = 10;
 					break;
 				case 'page-normal-width.php':
-					$content_width = 8;
+					$contentWidth = 8;
 					break;
 				case 'page-narrow-width.php':
-					$content_width = 6;
+					$contentWidth = 6;
 					break;
 				default:
-					$content_width = Helpers::get_theme_option( 'content_width' );
+					$contentWidth = Helpers::getOption( 'content_width' );
 			}
 		} else {
-			$content_width = Helpers::get_theme_option( 'content_width' );
+			$contentWidth = Helpers::getOption( 'content_width' );
 		}
 
-		$custom_style .= "
+		$customStyle .= "
 			body {
-				" . ( ! empty( $primary_font ) ? "--chipmunk--typography--font-family: '$primary_font';" : "" ) . "
-				" . ( ! empty( $heading_font ) ? "--chipmunk--typography--heading-font-family: '$heading_font';" : "" ) . "
-				--chipmunk--color--primary: $primary_color;
-				--chipmunk--color--link: $link_color;
-				--chipmunk--color--background: $background_color;
-				--chipmunk--color--section: $section_color;
-				--chipmunk--typography--content-size: $content_size;
-				--chipmunk--layout--content-width: $content_width;
-				--chipmunk--border-opacity: " . ( empty( $disable_borders ) ? "0.075" : "0" ) . ";
-				--chipmunk--logo-height: " . $logo_height / 10 . "rem;
+				" . ( ! empty( $primaryFont ) ? "--chipmunk--typography--font-family: '$primaryFont';" : "" ) . "
+				" . ( ! empty( $headingFont ) ? "--chipmunk--typography--heading-font-family: '$headingFont';" : "" ) . "
+				--chipmunk--color--primary: $primaryColor;
+				--chipmunk--color--link: $linkColor;
+				--chipmunk--color--background: $backgroundColor;
+				--chipmunk--color--section: $sectionColor;
+				--chipmunk--typography--content-size: $contentSize;
+				--chipmunk--layout--content-width: $contentWidth;
+				--chipmunk--border-opacity: " . ( empty( $disableBorders ) ? "0.075" : "0" ) . ";
+				--chipmunk--logo-height: " . $logoHeight / 10 . "rem;
 			}
 		";
 
-		wp_add_inline_style( 'chipmunk-styles', $custom_style );
+		wp_add_inline_style( 'chipmunk-styles', $customStyle );
 	}
 
 	/**
 	 * Enqueue Google Fonts styles
 	 */
-	public static function enqueue_google_fonts() {
+	public static function enqueueGoogleFonts() {
 		$fonts = [];
 
-		$primary_font = Helpers::get_theme_option( 'primary_font' );
-		$heading_font = Helpers::get_theme_option( 'heading_font' );
+		$primary_font = Helpers::getOption( 'primary_font' );
+		$heading_font = Helpers::getOption( 'heading_font' );
 
 		if ( ! empty( $primary_font ) && $primary_font != 'System' ) {
 			$fonts[] = $primary_font;
@@ -123,28 +123,28 @@ class Assets {
 		}
 
 		if ( ! empty( $fonts ) ) {
-			wp_enqueue_style( 'chipmunk-fonts', Helpers::get_google_fonts_url( $fonts ) );
+			wp_enqueue_style( 'chipmunk-fonts', Helpers::getGoogleFontsUrl( $fonts ) );
 		}
 	}
 
 	/**
 	 * Enqueue external scripts
 	 */
-	public static function enqueue_external_scripts() {
-		$enabled = Helpers::get_theme_option( 'recaptcha_enabled' );
-		$site_key = Helpers::get_theme_option( 'recaptcha_site_key' );
+	public static function enqueueExternalScripts() {
+		$enabled = Helpers::getOption( 'recaptcha_enabled' );
+		$siteKey = Helpers::getOption( 'recaptcha_site_key' );
 
-		if ( $enabled && $site_key ) {
+		if ( $enabled && $siteKey ) {
 			wp_enqueue_script( 'chipmunk-recaptcha', '//google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit', false, null, true );
 
 			wp_add_inline_script( 'chipmunk-recaptcha', "
 				var CaptchaCallback = function() {
 					if (document.getElementById('submit-recaptcha')) {
-						grecaptcha.render('submit-recaptcha', {'sitekey' : '$site_key'});
+						grecaptcha.render('submit-recaptcha', {'sitekey' : '$siteKey'});
 					}
 
 					if (document.getElementById('register-recaptcha')) {
-						grecaptcha.render('register-recaptcha', {'sitekey' : '$site_key'});
+						grecaptcha.render('register-recaptcha', {'sitekey' : '$siteKey'});
 					}
 				};
 			" );
@@ -154,16 +154,16 @@ class Assets {
 	/**
 	 * Deregisters theme Gutenberg Block assets.
 	 */
-	public static function deregister_block_styles() {
+	public static function deregisterBlockStyles() {
 		wp_dequeue_style( 'wp-block-library' );
 	}
 
 	/**
 	 * Enqueue admin end styles and scripts
 	 */
-	public static function enqueue_admin_scripts() {
-		if ( self::has_file( 'styles/theme.css' ) ) {
-			wp_enqueue_style( 'chipmunk-admin-styles', self::revisioned_path( 'styles/admin.css' ) );
+	public static function enqueueAdminScripts() {
+		if ( self::hasFile( 'styles/theme.css' ) ) {
+			wp_enqueue_style( 'chipmunk-admin-styles', self::revisionedPath( 'styles/admin.css' ) );
 		}
 	}
 
@@ -172,7 +172,7 @@ class Assets {
 	 *
 	 * @return string
 	 */
-	public static function add_async_attribute( $tag, $handle, $src ) {
+	public static function addAsyncAttribute( $tag, $handle, $src ) {
 		// add script handles to the array below
 		$scripts = [
 			'defer' => [ 'chipmunk-scripts' ],
@@ -195,9 +195,9 @@ class Assets {
 	 *
 	 * @return array
 	 */
-	private static function get_manifest() {
+	private static function getManifest() {
 		if ( empty( self::$manifest ) ) {
-			self::init_manifest();
+			self::initManifest();
 		}
 
 		return self::$manifest;
@@ -211,8 +211,8 @@ class Assets {
 	 *
 	 * @return string
 	 */
-	public static function revisioned_path( $asset ) {
-		$manifest = self::get_manifest();
+	public static function revisionedPath( $asset ) {
+		$manifest = self::getManifest();
 
 		if ( ! array_key_exists( $asset, $manifest ) ) {
 			return 'FILE-NOT-REVISIONED';
@@ -233,8 +233,8 @@ class Assets {
 	 *
 	 * @return string
 	 */
-	public static function asset_path( $asset ) {
-		return self::revisioned_path( THEME_ASSETS_PATH . $asset );
+	public static function assetPath( $asset ) {
+		return self::revisionedPath( THEME_ASSETS_PATH . $asset );
 	}
 
 	/**
@@ -242,8 +242,8 @@ class Assets {
 	 *
 	 * @return bool
 	 */
-	public static function has_file( $asset ) {
-		$manifest = self::get_manifest();
+	public static function hasFile( $asset ) {
+		$manifest = self::getManifest();
 
 		return array_key_exists( $asset, $manifest );
 	}
@@ -253,7 +253,7 @@ class Assets {
 	 *
 	 * @return string
 	 */
-	public static function get_dist_path() {
+	public static function getDistPath() {
 		return sprintf( '%s/%s', THEME_TEMPLATE_URI, THEME_DIST_PATH );
 	}
 
@@ -262,21 +262,21 @@ class Assets {
 	 *
 	 * @return boolean
 	 */
-	public static function is_dev() {
+	public static function isDev() {
 		return defined( 'THEME_DEV_ENV' );
 	}
 
 	/**
 	 * Loads data from manifest file.
 	 */
-	private static function init_manifest() {
-		$manifest_path = defined( 'THEME_DEV_ENV' )
+	private static function initManifest() {
+		$manifestPath = defined( 'THEME_DEV_ENV' )
 			? THEME_MANIFEST_DEV_PATH
 			: THEME_MANIFEST_PATH;
 
-		if ( file_exists( THEME_TEMPLATE_DIR . "/{$manifest_path}" ) ) {
+		if ( file_exists( THEME_TEMPLATE_DIR . "/{$manifestPath}" ) ) {
 			self::$manifest = json_decode(
-				file_get_contents( THEME_TEMPLATE_DIR . "/{$manifest_path}" ),
+				file_get_contents( THEME_TEMPLATE_DIR . "/{$manifestPath}" ),
 				true
 			);
 		}

@@ -1,0 +1,25 @@
+{% set salt = fn('bin2hex', fn('random_bytes', '5')) %}
+{% set level = level ?? 1 %}
+
+{% set items = items ?? menu.items %}
+
+<nav class="{{ class_name("c-menu-#{type}", modifiers) }}">
+  {% set link_class = "c-menu-#{type}__link" %}
+
+  {% for item in items %}
+    {# Not clickable button if there's no link... #}
+    {% if item.link == '#' %}
+      <button class="{{ link_class }} {{ item.classes | join(' ') }}">
+        {{ item.title }}
+      </button>
+
+    {# ...otherwise a standard link #}
+    {% else %}
+      <a href="{{ item.link }}" class="{{ link_class }} {{ item.classes | join(' ') }}" {{ item.target ? 'target=' ~ item.target }}>
+        {{ item.title }}
+      </a>
+    {% endif %}
+  {% endfor %}
+
+  {% block extra_items %}{% endblock %}
+</nav>

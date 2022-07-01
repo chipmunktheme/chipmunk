@@ -4,7 +4,7 @@
 
 <div class="<?php echo esc_attr( $tile_class ); ?>">
 	<div class="c-tile__inner">
-		<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Helpers::get_theme_option( 'post_image_aspect_ratio' ) ); ?>
+		<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Helpers::getOption( 'post_image_aspect_ratio' ) ); ?>
 
 		<a href="<?php the_permalink(); ?>" class="c-tile__image <?php echo esc_attr( $media_class ); ?>">
 			<?php if ( has_post_thumbnail() ) : ?>

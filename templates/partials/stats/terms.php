@@ -1,4 +1,4 @@
-<?php if ( Chipmunk\Helpers::is_feature_enabled( 'terms', get_post_type() ) ) : ?>
+<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'terms', get_post_type() ) ) : ?>
 	<?php $taxonomy = $term_args['taxonomy'] ?? 'category'; ?>
 	<?php $terms = wp_get_post_terms( get_the_ID(), $taxonomy ); ?>
 

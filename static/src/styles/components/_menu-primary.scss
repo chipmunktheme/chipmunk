@@ -3,28 +3,25 @@
 ** ----------------------------------------------------------------------------- */
 
 .c-menu-primary {
-  // Menu
-  .menu {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 0.25em spacer-clamped(2);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.25em spacer-clamped(2);
 
-    > .menu-item {
-      > a {
-        display: block;
+  > .menu-item {
+    > a {
+      display: block;
 
-        &:hover {
-          opacity: 0.8;
-        }
+      &:hover {
+        opacity: 0.8;
       }
+    }
 
-      &.current-menu-item > a,
-      &.current-menu-ancestor > a,
-      &.current-page-ancestor > a {
-        color: var(--chipmunk--color--black);
-      }
+    &.current-menu-item > a,
+    &.current-menu-ancestor > a,
+    &.current-page-ancestor > a {
+      color: var(--chipmunk--color--black);
     }
   }
 

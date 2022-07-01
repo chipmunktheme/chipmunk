@@ -1,12 +1,12 @@
 <?php
-	$resources_count    = Chipmunk\Helpers::get_theme_option( 'resources_count', 9 );
-	$disable_sliders    = Chipmunk\Helpers::get_theme_option( 'disable_homepage_listings_sliders' );
-	$infinite_sliders   = Chipmunk\Helpers::get_theme_option( 'infinite_sliders' );
+	$resources_count    = Chipmunk\Helpers::getOption( 'resources_count', 9 );
+	$disable_sliders    = Chipmunk\Helpers::getOption( 'disable_homepage_listings_sliders' );
+	$infinite_sliders   = Chipmunk\Helpers::getOption( 'infinite_sliders' );
 
 	$sections = [
 		'featured'  => [
 			'label'     => esc_html__( 'Featured', 'chipmunk' ),
-			'results'   => Chipmunk\Helpers::get_theme_option( 'disable_featured' )
+			'results'   => Chipmunk\Helpers::getOption( 'disable_featured' )
 				? new \WP_Query
 				: Chipmunk\Query::get_resources( [
 					'posts_per_page'    => $resources_count,
@@ -33,7 +33,7 @@
 		],
 		'popular'   => [
 			'label'     => esc_html__( 'Popular', 'chipmunk' ),
-			'results'   => ! Chipmunk\Helpers::is_feature_enabled( 'views', 'resource', false )
+			'results'   => ! Chipmunk\Helpers::isFeatureEnabled( 'views', 'resource', false )
 				? new \WP_Query
 				: Chipmunk\Query::get_resources( [
 					'posts_per_page'    => $resources_count,

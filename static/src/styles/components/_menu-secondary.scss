@@ -8,14 +8,10 @@
   gap: spacer-clamped(0.5);
 }
 
-.c-menu-secondary__item {
-  position: relative;
-  line-height: 1.4;
-}
-
 .c-menu-secondary__link {
   display: inline-block;
   color: var(--chipmunk--color--gray);
+  line-height: 1.4;
 
   &[href]:hover,
   &[title]:hover,

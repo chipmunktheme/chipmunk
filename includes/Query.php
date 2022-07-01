@@ -86,7 +86,7 @@ class Query {
 		$defaults = [
 			'post_type'         => 'resource',
 			'post_status'       => 'publish',
-			'posts_per_page'    => Helpers::get_theme_option( 'posts_per_page' ),
+			'posts_per_page'    => Helpers::getOption( 'posts_per_page' ),
 			'paged'             => Helpers::get_current_page(),
 		];
 
@@ -96,7 +96,7 @@ class Query {
 		}
 
 		// Add default taxonomy args
-		if ( ( is_tax() && ! empty( $term ) ) || ( ! empty( $_GET['tag'] ) && Helpers::is_feature_enabled( 'filters', 'resource', false ) ) ) {
+		if ( ( is_tax() && ! empty( $term ) ) || ( ! empty( $_GET['tag'] ) && Helpers::isFeatureEnabled( 'filters', 'resource', false ) ) ) {
 			$defaults = array_merge( $defaults, self::get_resources_tax_args( $term ) );
 		}
 
@@ -124,14 +124,14 @@ class Query {
 		$sort_args = [];
 
 		// Apply sorting options
-		if ( ! empty( $_GET['sort'] ) && Helpers::is_feature_enabled( 'sorting', 'resource', false ) ) {
+		if ( ! empty( $_GET['sort'] ) && Helpers::isFeatureEnabled( 'sorting', 'resource', false ) ) {
 			$sort_params = explode( '-', $_GET['sort'] );
 			$sort_orderby = $sort_params[0];
 			$sort_order = $sort_params[1];
 		}
 		else {
-			$sort_orderby = Helpers::get_theme_option( 'default_sort_by' );
-			$sort_order = Helpers::get_theme_option( 'default_sort_order' );
+			$sort_orderby = Helpers::getOption( 'default_sort_by' );
+			$sort_order = Helpers::getOption( 'default_sort_order' );
 		}
 
 		switch ( $sort_orderby ) {
@@ -186,7 +186,7 @@ class Query {
 		}
 
 		// Apply tag filters
-		if ( ! empty( $_GET['tag'] ) && Helpers::is_feature_enabled( 'filters', 'resources', false ) ) {
+		if ( ! empty( $_GET['tag'] ) && Helpers::isFeatureEnabled( 'filters', 'resources', false ) ) {
 			$tax_query[] = [
 				'taxonomy'          => 'resource-tag',
 				'field'             => 'slug',

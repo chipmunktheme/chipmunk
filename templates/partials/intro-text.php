@@ -1,4 +1,4 @@
-<?php $intro_text = Chipmunk\Helpers::get_theme_option( 'intro_text' ); ?>
+<?php $intro_text = Chipmunk\Helpers::getOption( 'intro_text' ); ?>
 
 <?php if ( ! empty( $intro_text ) ) : ?>
 	<div class="l-section l-section--intro">

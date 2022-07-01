@@ -20,8 +20,8 @@ class Helpers {
 	 *
 	 * @return bool
 	 */
-	public static function is_addon_enabled( $addon ) {
-		return Addons::is_addon_enabled( $addon );
+	public static function isAddonEnabled( $addon ) {
+		return Addons::isAddonEnabled( $addon );
 	}
 
 	/**
@@ -32,8 +32,8 @@ class Helpers {
 
 	 * @return mixed
 	 */
-	public static function get_theme_option( $name, $default = false ) {
-		return Customizer::get_theme_option( $name, $default );
+	public static function getOption( $name, $default = false ) {
+		return Customizer::getOption( $name, $default );
 	}
 
 	/**
@@ -45,8 +45,8 @@ class Helpers {
 	 *
 	 * @return bool
 	 */
-	public static function is_feature_enabled( $feature, $post_type, $check_type = true ) {
-		return ! self::get_theme_option( "disable_{$post_type}_{$feature}" ) && ( $check_type ? get_post_type() == $post_type : true );
+	public static function isFeatureEnabled( $feature, $post_type, $check_type = true ) {
+		return ! self::getOption( "disable_{$post_type}_{$feature}" ) && ( $check_type ? get_post_type() == $post_type : true );
 	}
 
 	/**
@@ -58,7 +58,7 @@ class Helpers {
 	 *
 	 * @return ?string
 	 */
-	public static function get_template_part( $template, $params = [], $output = true ) {
+	public static function getTemplatePart( $template, $params = [], $output = true ) {
 		if ( ! $output ) {
 			ob_start();
 		}
@@ -88,7 +88,7 @@ class Helpers {
 	 *
 	 * @return array
 	 */
-	public static function check_requirements() {
+	public static function checkRequirements() {
 		global $wp_version;
 
 		$php_version = phpversion();
@@ -129,7 +129,7 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function class_name( $name, $modifiers = null ) {
+	public static function className( $name, $modifiers = null ) {
 		if ( ! is_string( $name ) ) {
 			return '';
 		}
@@ -162,10 +162,10 @@ class Helpers {
 	 *
 	 * @return bool True if the CAPTCHA is OK, otherwise false.
 	 */
-	public static function verify_recaptcha( $response ) {
-		$enabled    = self::get_theme_option( 'recaptcha_enabled' );
-		$site_key   = self::get_theme_option( 'recaptcha_site_key' );
-		$secret_key = self::get_theme_option( 'recaptcha_secret_key' );
+	public static function verifyRecaptcha( $response ) {
+		$enabled    = self::getOption( 'recaptcha_enabled' );
+		$site_key   = self::getOption( 'recaptcha_site_key' );
+		$secret_key = self::getOption( 'recaptcha_secret_key' );
 
 		// Verify if user is logged in
 		if ( is_user_logged_in() ) {
@@ -211,11 +211,11 @@ class Helpers {
 	 *
 	 * @return array
 	 */
-	public static function get_socials() {
+	public static function getSocials() {
 		$socials = [];
 
-		foreach ( Customizer::get_socials() as $social ) {
-			$value = self::get_theme_option( strtolower( $social ) );
+		foreach ( Customizer::getSocials() as $social ) {
+			$value = self::getOption( strtolower( $social ) );
 
 			if ( $value ) {
 				$socials[ $social ] = $value;
@@ -233,7 +233,7 @@ class Helpers {
 	 *
 	 * @return int
 	 */
-	public static function get_post_count( $post_type, $post_status ) {
+	public static function getPostCount( $post_type, $post_status ) {
 		return wp_count_posts( $post_type )->$post_status;
 	}
 
@@ -242,8 +242,8 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function get_og_title() {
-		if ( ! self::get_theme_option( 'disable_og_branding' ) ) {
+	public static function getOgTitle() {
+		if ( ! self::getOption( 'disable_og_branding' ) ) {
 			return sprintf( esc_html__( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) );
 		}
 
@@ -255,7 +255,7 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function get_meta_description() {
+	public static function getMetaDescription() {
 		global $post;
 
 		if ( is_front_page() ) {
@@ -263,7 +263,7 @@ class Helpers {
 		}
 
 		elseif ( is_single() || is_page() ) {
-			$description = self::get_custom_excerpt( $post->post_content, $post->post_excerpt );
+			$description = self::getCustomExcerpt( $post->post_content, $post->post_excerpt );
 			$description = strip_tags( $description );
 			$description = str_replace( '"', '\'', $description );
 		}
@@ -273,13 +273,13 @@ class Helpers {
 
 	/**
 	 * Creates a custom excerpt function
-	 *
+
 	 * @param string $text 		A fallback content text to make the excerpt from
 	 * @param string $excerpt 	The primary excerpt to return if not empty
 	 *
 	 * @return string
 	 */
-	public static function get_custom_excerpt( $text, $excerpt ) {
+	public static function getCustomExcerpt( $text, $excerpt ) {
 		if ( ! empty( $excerpt ) ) {
 			return $excerpt;
 		}
@@ -315,7 +315,7 @@ class Helpers {
 	 *
 	 * @return array
 	 */
-	public static function get_menu_items( $location ) {
+	public static function getMenuItems( $location ) {
 		if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $location ] ) ) {
 			$menu = wp_get_nav_menu_object( $locations[ $location ] );
 
@@ -336,7 +336,7 @@ class Helpers {
 	 *
 	 * @return ?array
 	 */
-	public static function get_taxonomy_hierarchy( $taxonomy, $args = [], $parent = 0 ) {
+	public static function getTaxonomyHierarchy( $taxonomy, $args = [], $parent = 0 ) {
 		$children = [];
 		$taxonomy = is_array( $taxonomy ) ? array_shift( $taxonomy ) : $taxonomy;
 
@@ -344,7 +344,7 @@ class Helpers {
 
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			foreach ( $terms as $term ) {
-				$term->children = self::get_taxonomy_hierarchy( $taxonomy, $args, $term->term_id );
+				$term->children = self::getTaxonomyHierarchy( $taxonomy, $args, $term->term_id );
 
 				$children[ $term->term_id ] = $term;
 			}
@@ -363,14 +363,14 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function get_term_options( $terms, $level = 0 ) {
+	public static function getTermOptions( $terms, $level = 0 ) {
 		$output = '';
 
 		foreach ( $terms as $term ) {
 			$output .= '<option value="'. $term->name . '">' . str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' ) . $term->name . '</option>';
 
 			if ( $term->children ) {
-				$output .= self::get_term_options( $term->children, $level + 1 );
+				$output .= self::getTermOptions( $term->children, $level + 1 );
 			}
 		}
 
@@ -385,7 +385,7 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function get_term_list( $terms, $args = [] ) {
+	public static function getTermList( $terms, $args = [] ) {
 		$args = wp_parse_args( $args, [
 			'type'     => 'link',
 			'quantity' => -1,
@@ -404,11 +404,11 @@ class Helpers {
 		foreach ( $terms as $key => $term ) {
 			if ( $args['quantity'] < 0 || $args['quantity'] > $key ) {
 				if ( $args['type'] == 'link' ) {
-					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '">' . esc_html( self::truncate_string( $term->name, $term_max_length ) ) . '</a>';
+					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '">' . esc_html( self::truncateString( $term->name, $term_max_length ) ) . '</a>';
 				}
 
 				if ( $args['type'] == 'text' ) {
-					$output .= '<span>' . esc_html( self::truncate_string( $term->name, $term_max_length ) ) . '</span>';
+					$output .= '<span>' . esc_html( self::truncateString( $term->name, $term_max_length ) ) . '</span>';
 				}
 			}
 		}
@@ -423,18 +423,18 @@ class Helpers {
 	 *
 	 * @return ?string
 	 */
-	public static function get_resource_website( $resource_id ) {
+	public static function getResourceWebsite( $resource_id ) {
 		$key_prefix = '_' . THEME_SLUG . '_resource_';
 
 		$website = get_post_meta( $resource_id, $key_prefix . 'website', true );
 		$links = get_field( $key_prefix . 'links', $resource_id );
 
 		if ( ! empty( $website ) ) {
-			return esc_url( $website );
+			return $website;
 		}
 
 		if ( ! empty( $links ) ) {
-			return esc_url( $links[0]['link']['url'] );
+			return $links[0]['link']['url'];
 		}
 
 		return null;
@@ -447,15 +447,15 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function render_external_link( $url ) {
-		if ( ! self::get_theme_option( 'disable_ref' ) ) {
+	public static function getExternalUrl( $url ) {
+		if ( ! self::getOption( 'disable_ref' ) ) {
 			$title = str_replace( '-', '', sanitize_title( get_bloginfo( 'name' ) ) );
 			$prefix = ( preg_match( '(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
 
-			return esc_url( $url . $prefix . $title );
+			return $url . $prefix . $title;
 		}
 
-		return esc_url( $url );
+		return $url;
 	}
 
 	/**
@@ -467,7 +467,7 @@ class Helpers {
 	 *
 	 * @return void
 	 */
-	public static function comment_template( $comment, $args, $depth ) {
+	public static function commentTemplate( $comment, $args, $depth ) {
 		if ( $comment->comment_type == 'pingback' || $comment->comment_type == 'trackback' ) {
 			return null;
 		}
@@ -495,7 +495,7 @@ class Helpers {
 					</div>
 
 					<div class="c-comment__reply">
-						<?php comment_reply_link( array_merge( $args, [ 'reply_text' => self::get_template_part( 'partials/icon', [ 'icon' => 'reply' ], false ) . esc_html__( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ] ) ); ?>
+						<?php comment_reply_link( array_merge( $args, [ 'reply_text' => self::getTemplatePart( 'partials/icon', [ 'icon' => 'reply' ], false ) . esc_html__( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ] ) ); ?>
 					</div>
 
 					<?php if ( ! $comment->comment_approved ) : ?>
@@ -516,7 +516,7 @@ class Helpers {
 	 *
 	 * @return int
 	 */
-	public static function add_post_meta( $post_ID, $meta, $allowed, $unique = true ) {
+	public static function addPostMeta( $post_ID, $meta, $allowed, $unique = true ) {
 		if ( ! in_array( get_post_type( $post_ID ), $allowed ) ) {
 			return $post_ID;
 		}
@@ -533,7 +533,7 @@ class Helpers {
 	 *
 	 * @return int
 	 */
-	public static function get_current_page() {
+	public static function getCurrentPage() {
 		if ( get_query_var( 'paged' ) ) {
 			return get_query_var( 'paged' );
 		}
@@ -554,7 +554,7 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function truncate_string( $str, $chars, $to_space = true, $suffix = '&hellip;' ) {
+	public static function truncateString( $str, $chars, $to_space = true, $suffix = '&hellip;' ) {
 		$str = strip_tags( $str );
 
 		if ( $chars == 0 || $chars > strlen( $str ) ) {
@@ -579,7 +579,7 @@ class Helpers {
 	 *
 	 * @return ?array
 	 */
-	public static function get_google_fonts( $api_key, $sort = 'popularity' ) {
+	public static function getGoogleFonts( $api_key, $sort = 'popularity' ) {
 		$ch = curl_init( "https://www.googleapis.com/webfonts/v1/webfonts?key=$api_key&sort=$sort" );
 		curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Content-Type: application/json' ] );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
@@ -605,7 +605,7 @@ class Helpers {
 	 *
 	 * @return ?string
 	 */
-	public static function get_google_fonts_url( $fonts ) {
+	public static function getGoogleFontsUrl( $fonts ) {
 		if ( ! is_array( $fonts ) ) {
 			return null;
 		}
@@ -623,7 +623,7 @@ class Helpers {
 			'subset' => urlencode( 'latin,latin-ext' ),
 		];
 
-		return esc_url( add_query_arg( $query_args, '//fonts.googleapis.com/css' ) );
+		return add_query_arg( $query_args, '//fonts.googleapis.com/css' );
 	}
 
 	/**
@@ -633,7 +633,7 @@ class Helpers {
 	 *
 	 * @return ?string
 	 */
-	public static function get_extension_by_mime( $mime ) {
+	public static function getExtensionByMime( $mime ) {
 		$extensions = [
 			'image/jpeg' 	=> '.jpeg',
 			'image/jpg' 	=> '.jpg',
@@ -654,7 +654,7 @@ class Helpers {
 	 *
 	 * @return string
      */
-	public static function get_svg_content( $path ) {
+	public static function getSvgContent( $path ) {
 		if ( ! empty( $path ) && $svg_file = @ file_get_contents( $path ) ) {
 			$position = strpos( $svg_file, '<svg' );
 			return substr( $svg_file, $position );
@@ -670,7 +670,7 @@ class Helpers {
 	 *
 	 * @return ?string
      */
-	public static function svg_to_base64( $path ) {
+	public static function svgToBase64( $path ) {
 		if ( ! empty( $path ) && $svg_file = @ file_get_contents( $path ) ) {
 			return 'data:image/svg+xml;base64,' . base64_encode( $svg_file );
 		}
@@ -685,7 +685,7 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function get_salt( $length = 5 ) {
+	public static function getSalt( $length = 5 ) {
 		return substr( md5( rand() ), 0, $length );
 	}
 
@@ -698,9 +698,9 @@ class Helpers {
 	 *
 	 * @return mixed
 	 */
-	public static function find_key_value( $array, $key, $val ) {
+	public static function findKeyValue( $array, $key, $val ) {
 		foreach ( $array as $item ) {
-			if ( is_array( $item ) && self::find_key_value( $item, $key, $val ) ) {
+			if ( is_array( $item ) && self::findKeyValue( $item, $key, $val ) ) {
 				return $item;
 			}
 
@@ -717,7 +717,7 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function get_ip() {
+	public static function getIp() {
 		if ( isset( $_SERVER['HTTP_CLIENT_IP'] ) && ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
 			$ip = $_SERVER['HTTP_CLIENT_IP'];
 		}
@@ -745,7 +745,7 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function format_number( $number, $precision = 1 ) {
+	public static function formatNumber( $number, $precision = 1 ) {
 		if ( $number >= 1000 && $number < 1000000 ) {
 			$formatted = number_format( $number / 1000, $precision ) . 'K';
 		}
@@ -770,7 +770,7 @@ class Helpers {
 	 *
 	 * @return ?string
 	 */
-	public static function hex_to_rgb( $color, $implode = false ) {
+	public static function hexToRgb( $color, $implode = false ) {
 		$color = str_replace( '#', '', $color );
 
 		if ( strlen( $color ) == 6 ) {

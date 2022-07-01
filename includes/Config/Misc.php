@@ -48,11 +48,11 @@ class Misc {
 	 * Add Open Graph tags
 	 */
 	public static function add_og_tags() {
-		if ( Helpers::get_theme_option( 'disable_og' ) ) {
+		if ( Helpers::getOption( 'disable_og' ) ) {
 			return null;
 		}
 
-		$site_image = Helpers::get_theme_option( 'og_image' );
+		$site_image = Helpers::getOption( 'og_image' );
 
 		if ( is_front_page() ) {
 			?>

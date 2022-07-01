@@ -8,7 +8,7 @@
   z-index: var(--chipmunk--layer--head);
   background-color: var(--chipmunk--color--section);
 
-  &.is-sticky {
+  &--sticky {
     inset: 0 0 auto;
 
     .admin-bar & {
@@ -106,8 +106,4 @@
       justify-content: flex-end;
     }
   }
-}
-
-.c-page-head__placeholder {
-  height: var(--header-height, 0);
 }

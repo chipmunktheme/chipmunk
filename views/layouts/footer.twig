@@ -1,0 +1,51 @@
+{% set about = get_option('about_copy') %}
+
+<footer class="c-page-foot l-section l-section--theme-light">
+  <div class="l-container">
+    <div class="c-page-foot__inner">
+      {% if about %}
+        <div class="c-page-foot__column">
+          <h5 class="c-page-foot__heading {{ class_name('c-heading', 'h6') }}">
+            {{ __( 'About', 'chipmunk' ) }}
+          </h5>
+
+          <div class="c-page-foot__description c-content">
+            {{ about | wpautop | e('wp_kses_post') | shortcodes }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if menus.secondary.items or not get_option('disable_submissions') %}
+        <div class="c-page-foot__column">
+          <h5 class="c-page-foot__heading {{ class_name('c-heading', 'h6') }}">
+            {{ __( 'Navigation', 'chipmunk' ) }}
+          </h5>
+
+          {% embed 'partials/menu.twig' with { type: 'secondary', items: menus.secondary.items } %}
+            {% block extra_items %}
+              {% if not get_option('disable_submissions') %}
+                {% include 'partials/submit-button.twig' with { class: link_class } %}
+              {% endif %}
+            {% endblock %}
+          {% endembed %}
+        </div>
+      {% endif %}
+
+      {% if socials %}
+        <div class="c-page-foot__column u-visible-lg-flex">
+          <h5 class="c-page-foot__heading {{ class_name('c-heading', 'h6') }}">
+            {{ __( 'Follow', 'chipmunk' ) }}
+          </h5>
+
+          <nav class="c-menu-secondary">
+            {% for key, value in socials %}
+              <a href="{{ value | e('esc_url') }}" class="c-menu-secondary__link" target="_blank" rel="nofollow">
+                {{ key | e('esc_html') }}
+              </a>
+            {% endfor %}
+          </nav>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>

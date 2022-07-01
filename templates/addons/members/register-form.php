@@ -27,7 +27,7 @@
 			<input type="password" name="password2" id="pass2" placeholder="<?php esc_attr_e( 'Confirm password', 'chipmunk' ); ?>*" required minlength="6" data-parsley-equalto="#pass1" class="c-form__input">
 		</div>
 
-		<?php if ( ! empty( Chipmunk\Helpers::get_theme_option( 'recaptcha_enabled' ) ) && Chipmunk\Helpers::get_theme_option( 'recaptcha_site_key' ) ) : ?>
+		<?php if ( ! empty( Chipmunk\Helpers::getOption( 'recaptcha_enabled' ) ) && Chipmunk\Helpers::getOption( 'recaptcha_site_key' ) ) : ?>
 			<div class="c-form__field c-form__field--wide">
 				<div class="g-recaptcha" id="register-recaptcha"></div>
 			</div>

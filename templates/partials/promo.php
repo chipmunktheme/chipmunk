@@ -1,12 +1,12 @@
 <?php
-$ad_image_lg = Chipmunk\Helpers::get_theme_option( 'ad_image_lg' );
-$ad_image_md = Chipmunk\Helpers::get_theme_option( 'ad_image_md' );
-$ad_image_sm = Chipmunk\Helpers::get_theme_option( 'ad_image_sm' );
-$ad_link = Chipmunk\Helpers::get_theme_option( 'ad_link' );
-$ad_code = Chipmunk\Helpers::get_theme_option( 'ad_code' );
+$ad_image_lg = Chipmunk\Helpers::getOption( 'ad_image_lg' );
+$ad_image_md = Chipmunk\Helpers::getOption( 'ad_image_md' );
+$ad_image_sm = Chipmunk\Helpers::getOption( 'ad_image_sm' );
+$ad_link = Chipmunk\Helpers::getOption( 'ad_link' );
+$ad_code = Chipmunk\Helpers::getOption( 'ad_code' );
 
-$enabled = ! Chipmunk\Helpers::get_theme_option( 'disable_ads' );
-$enabled_home = ( is_front_page() || ! Chipmunk\Helpers::get_theme_option( 'ads_only_home' ) );
+$enabled = ! Chipmunk\Helpers::getOption( 'disable_ads' );
+$enabled_home = ( is_front_page() || ! Chipmunk\Helpers::getOption( 'ads_only_home' ) );
 
 $has_image = ( ! empty( $ad_image_lg ) || ! empty( $ad_image_md ) || ! empty( $ad_image_sm ) );
 $has_content = ( $has_image || ! empty( $ad_code ) );

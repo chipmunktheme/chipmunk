@@ -101,7 +101,7 @@ class Addons {
 							<p class="chipmunk__addon-error">
 								<?php esc_html_e( 'Please use a valid license to enable.', 'chipmunk' ); ?>
 							</p>
-						<?php elseif ( ! self::is_addon_allowed( $addon['slug'] ) ) : ?>
+						<?php elseif ( ! self::isAddonAllowed( $addon['slug'] ) ) : ?>
 							<p class="chipmunk__addon-error">
 								<a href="<?php echo esc_url( THEME_SHOP_URL ); ?>/account/licenses" target="_blank" class="button-secondary"><?php esc_html_e( 'Upgrade now', 'chipmunk' ); ?></a>
 								<?php printf( esc_html__( 'Available in the %s plan.', 'chipmunk' ), THEME_PLANS[ THEME_ADDONS[ $addon['slug'] ] ] ); ?>
@@ -126,7 +126,7 @@ class Addons {
 	/**
 	 * Check if Chipmunk plugin is allowed
 	 */
-	public static function is_addon_allowed( $addon ) {
+	public static function isAddonAllowed( $addon ) {
 		if ( ! Settings::is_valid_license() ) {
 			return false;
 		}
@@ -137,9 +137,9 @@ class Addons {
 	/**
 	 * Check if Chipmunk plugin is enabled
 	 */
-	public static function is_addon_enabled( $addon ) {
+	public static function isAddonEnabled( $addon ) {
 		$option = get_option( self::$option );
 
-		return self::is_addon_allowed( $addon ) && ! empty( $option[ $addon ] );
+		return self::isAddonAllowed( $addon ) && ! empty( $option[ $addon ] );
 	}
 }
