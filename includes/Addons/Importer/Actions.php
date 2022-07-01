@@ -3,6 +3,8 @@
 namespace Chipmunk\Addons\Importer;
 
 use \Chipmunk\Settings;
+use \Chipmunk\Errors;
+use \Chipmunk\FileHandler;
 
 /**
  * AJAX action callbacks
@@ -16,7 +18,7 @@ class Actions {
  	 * Class constructor
 	 */
 	public function __construct() {
-		add_action( 'admin_init', [ $this, 'maybe_import' ] );
+		add_action( 'admin_init', [ $this, 'maybe_import' ], 1 );
 	}
 
 	/**
@@ -24,19 +26,19 @@ class Actions {
 	 */
 	public function maybe_import() {
 		if ( isset( $_POST[THEME_SLUG . '_import'] ) ) {
-			self::import( 'resource', $_FILES[THEME_SLUG . '_import_csv'] );
+			$this->import( 'resource' );
 		}
 	}
 
 	/**
 	 * Imports the CSV file to the database
 	 */
-	private function import( $type, $csv_file ) {
+	private function import( $type ) {
 		check_admin_referer( THEME_SLUG . '_import_nonce' );
 
-		if ( empty( $csv_file ) ) {
-			Settings::add_settings_error( $this->slug, __( 'You have to provide a valid CSV file!', 'chipmunk' ) );
-			return null;
-		}
+		$handler = new FileHandler();
+		$handler->handleFile( $_FILES[THEME_SLUG . '_import_csv'], [ 'text/csv' ] );
+		$file = $handler->getUploadedFilePath();
+		var_dump( $file );
 	}
 }

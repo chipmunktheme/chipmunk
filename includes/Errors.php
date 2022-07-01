@@ -20,7 +20,7 @@ class Errors {
 	 * Returns global instance of WP_Error.
 	 */
 	public static function getInstance(): WP_Error {
-		if ( ! self::$instance ) {
+		if ( empty( self::$instance ) ) {
 			self::$instance = new WP_Error();
 		}
 

@@ -16,6 +16,7 @@ class Setup {
 	function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'setup_support' ] );
 		add_action( 'after_setup_theme', [ $this, 'setup_theme' ] );
+		add_action( 'admin_init', [ $this, 'create_uploads_dir' ] );
 	}
 
 	/**
@@ -244,5 +245,12 @@ class Setup {
 
 		// Customizer
 		Customizer::register_sections();
+	}
+
+	/**
+ 	 * Creates an empty directory for theme related uploads
+	 */
+	public static function create_uploads_dir() {
+		wp_mkdir_p( THEME_UPLOADS_DIR );
 	}
 }

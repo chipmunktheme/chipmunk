@@ -29,7 +29,7 @@ class Helpers {
 	 *
 	 * @param string $name 		Theme option name
 	 * @param mixed $default 	Optional. Default value for the option
-	 *
+
 	 * @return mixed
 	 */
 	public static function get_theme_option( $name, $default = false ) {
@@ -759,8 +759,7 @@ class Helpers {
 			$formatted = $number; // Number is less than 1000
 		}
 
-		$formatted = preg_replace( '/\.[0]+([KMB]?)$/i', '$1', $formatted );
-		return $formatted;
+		return preg_replace( '/\.[0]+([KMB]?)$/i', '$1', $formatted );
 	}
 
 	/**

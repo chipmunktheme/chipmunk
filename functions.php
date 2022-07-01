@@ -15,6 +15,7 @@ define( 'THEME_VERSION',			'1.17.0' );
 define( 'THEME_AUTHOR',				'Made by Less' );
 define( 'THEME_TEMPLATE_URI',		get_template_directory_uri() );
 define( 'THEME_TEMPLATE_DIR',		get_template_directory() );
+define( 'THEME_UPLOADS_DIR',		wp_upload_dir()['basedir'] . '/' . THEME_SLUG . '/' );
 define( 'THEME_DEMO_URL',			'https://demo.chipmunktheme.com' );
 define( 'THEME_SHOP_URL',			'https://chipmunktheme.com' );
 define( 'THEME_ITEM_ID',			'893' );

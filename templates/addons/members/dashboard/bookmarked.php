@@ -1,5 +1,6 @@
 <?php $resources = Chipmunk\Query::get_resources( [
 	'post_status'       => 'any, trash',
+	'perm' 				=> 'readable',
 	'meta_query'        => [
 		'relation'          => 'OR',
 

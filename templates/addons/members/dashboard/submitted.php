@@ -1,5 +1,6 @@
 <?php $resources = Chipmunk\Query::get_resources( [
 	'post_status'       => 'any, trash',
+	'perm' 				=> 'readable',
 	'author'            => get_current_user_id(),
 	'order'             => 'DESC',
 	'orderby'           => 'date',

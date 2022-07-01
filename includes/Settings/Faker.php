@@ -86,6 +86,7 @@ class Faker {
 		$posts = get_posts( [
 			'post_type'         => $post_types,
 			'post_status'       => 'any',
+			'perm' 				=> 'readable',
 			'posts_per_page'    => -1,
 		] );
 

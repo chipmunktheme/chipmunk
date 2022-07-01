@@ -48,9 +48,7 @@
 	$tabs = apply_filters( 'chipmunk_resource_tabs', [ 'featured', 'latest', 'popular' ] );
 
 	// Filter out empty resource tabs
-	$tabs = array_filter( $tabs, function ( $tab ) use ( $sections ) {
-		return $sections[ $tab ]['results']->have_posts();
-	} );
+	$tabs = array_filter( $tabs, fn ( $tab ) => $sections[ $tab ]['results']->have_posts() );
 ?>
 
 <?php if ( ! empty( $tabs ) || ! empty( $intro_text ) ) : ?>

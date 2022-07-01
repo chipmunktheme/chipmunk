@@ -2,6 +2,8 @@
 
 namespace Chipmunk;
 
+use Chipmunk\Errors;
+
 /**
  * Custom settings pages for the theme
  *
@@ -23,6 +25,7 @@ class Settings {
 	function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_menu_page' ], 1 );
 		add_action( 'chipmunk_settings_nav', [ $this, 'add_menu_page' ], 1 );
+		add_action( 'admin_init', [ $this, 'display_errors' ], 99 );
 
 		// Initialize theme licenser
 		$licenser = new Settings\Licenser( [
@@ -163,6 +166,17 @@ class Settings {
 
 		if ( ! empty( $message ) && ! Helpers::find_key_value( $errors, 'code', $setting ) ) {
 			add_settings_error( $setting, $setting, $message, $type );
+		}
+	}
+
+	/**
+	 * Checks if a import action was submitted.
+	 */
+	public function display_errors() {
+		$errors = Errors::getInstance();
+
+		foreach ( $errors->get_error_messages() as $error ) {
+			self::add_settings_error( '', $error );
 		}
 	}
 }
