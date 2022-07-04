@@ -1,5 +1,4 @@
 <?php
-
 namespace Chipmunk;
 
 use Timber\Timber;

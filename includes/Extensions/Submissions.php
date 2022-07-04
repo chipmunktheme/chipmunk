@@ -2,6 +2,9 @@
 
 namespace Chipmunk\Extensions;
 
+use Timber\Timber;
+use Timber\Post;
+
 use Chipmunk\Helpers;
 use Chipmunk\Submitter;
 
@@ -25,7 +28,7 @@ class Submissions {
 	 *
 	 * @var array
 	 */
-	private $required_empty = [ 'filter' ];
+	private $requiredEmpty = [ 'filter' ];
 
 	/**
 	 * Create a new submission form object
@@ -44,7 +47,7 @@ class Submissions {
 	 * @return bool
 	 */
 	private function validate() {
-		if ( isset( $this->data->{'g-recaptcha-response'} ) && ! Helpers::verify_recaptcha( $this->data->{'g-recaptcha-response'} ) ) {
+		if ( isset( $this->data->{'g-recaptcha-response'} ) && ! Helpers::verifyRecaptcha( $this->data->{'g-recaptcha-response'} ) ) {
 			throw new \Exception( esc_html__( 'Please verify that you are not a robot.', 'chipmunk' ) );
 		}
 
@@ -55,7 +58,7 @@ class Submissions {
 			}
 		}
 
-		foreach ( $this->required_empty as $field ) {
+		foreach ( $this->requiredEmpty as $field ) {
 			if ( ! empty( $this->data->{$field} ) ) {
 				throw new \Exception( esc_html__( 'Your request could not be processed.', 'chipmunk' ) );
 				return false;
@@ -68,14 +71,14 @@ class Submissions {
 	/**
 	 * Send email to website owner after resource is submitted
 	 */
-	private function inform_admin( $post_id ) {
-		$post       = get_post( $post_id );
+	private function informAdmin( $postId ) {
+		$post       = new Post( $postId );
 		$name       = get_bloginfo( 'name' );
 		$admin      = get_bloginfo( 'admin_email' );
 		$headers    = [ 'Content-Type: text/html; charset=UTF-8' ];
 
 		$subject    = sprintf( esc_html__( '%s: New user submission', 'chipmunk' ), $name );
-		$template   = Helpers::get_template_part( 'emails/submission', [ 'subject' => $subject, 'post' => $post ], false );
+		$template   = Timber::compile( 'emails/submission.twig', [ 'subject' => $subject, 'post' => $post ], false );
 
 		wp_mail( $admin, $subject, $template, $headers );
 	}
@@ -85,19 +88,19 @@ class Submissions {
 	 */
 	private function submit() {
 		$data = [
-			'name' 				=> wp_filter_nohtml_kses( $this->data->name ),
-			'content' 			=> wp_kses_post( wpautop( $this->data->content ) ),
-			'url' 				=> wp_filter_nohtml_kses( $this->data->url ),
-			'status' 			=> apply_filters( 'chipmunk_submission_post_status', 'pending' ),
-			'collections' 		=> wp_filter_nohtml_kses( $this->data->collection ),
-			'submitter_email'   => wp_filter_nohtml_kses( $this->data->submitter_email ),
-			'submitter_name'    => wp_filter_nohtml_kses( $this->data->submitter_name ),
+			'name'				=> wp_filter_nohtml_kses( $this->data->name ),
+			'content'			=> wp_kses_post( wpautop( $this->data->content ) ),
+			'url'				=> wp_filter_nohtml_kses( $this->data->url ),
+			'status'			=> apply_filters( 'chipmunk_submission_post_status', 'pending' ),
+			'collections'		=> wp_filter_nohtml_kses( $this->data->collection ),
+			'submitterEmail'	=> wp_filter_nohtml_kses( $this->data->submitterEmail ),
+			'submitterName'		=> wp_filter_nohtml_kses( $this->data->submitterName ),
 		];
 
-		if ( $post_id = $this->submitter->submit( (object) $data ) ) {
+		if ( $postId = $this->submitter->submit( (object) $data ) ) {
 			// Send email to website admin
 			if ( Helpers::getOption( 'inform_about_submissions' ) ) {
-				$this->inform_admin( $post_id );
+				$this->informAdmin( $postId );
 			}
 		}
 

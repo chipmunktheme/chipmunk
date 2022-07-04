@@ -1,0 +1,15 @@
+{% extends '_layout.twig' %}
+
+{% block content %}
+  <div class="{{ cn('l-section', 'double') }}">
+    <div class="l-container">
+      <div class="{{ cn('c-lead', 'center') }}">
+        <h1 class="c-lead__title {{ cn('c-heading', 'h1') }}">{{ __('Page not found!', 'chipmunk') }}</h1>
+        <p class="c-lead__content {{ cn('c-content', 'type') }}">{{ __('Sorry, we couldn\'t find what you\'re looking for.', 'chipmunk') }}</p>
+        <a href="<?php echo esc_url( home_url( '/', 'relative' ) ); ?>" class="c-lead__cta {{ cn('c-button', 'primary') }}">
+          {{ __('Bring me to the frontpage', 'chipmunk') }}
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -10,8 +10,6 @@ use Chipmunk\Addons\Ratings\Helpers as RatingsHelpers;
 /**
  * The Template for displaying all single posts
  *
- * Methods for TimberHelper can be found in the /lib sub-directory
- *
  * @package WordPress
  * @subpackage Chipmunk
  */

@@ -800,7 +800,7 @@ class Customizer {
 	/**
 	 * Remove unnecessary sections from Customize panel
 	 */
-	public static function remove_sections( $customize ) {
+	public static function removeSections( $customize ) {
 		$customize->remove_section( 'themes' );
 		$customize->remove_section( 'static_front_page' );
 	}
@@ -808,7 +808,7 @@ class Customizer {
 	/**
 	 * Add custom sections to Customize panel
 	 */
-	public static function add_sections( $customize ) {
+	public static function addSections( $customize ) {
 		foreach ( self::$sections as $index => $section ) {
 			$customize->add_section( $section['slug'], [
 				'capability'  => self::$capability,

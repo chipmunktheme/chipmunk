@@ -6,10 +6,16 @@
       </p>
 
       {% if not get_option('disable_credits') %}
-        <a href="{{ 'https://chipmunktheme.com' | external_url | e('esc_url') }}" class="c-page-foot__credits" target="_blank" title="{{ __('Chipmunk WordPress Theme', 'chipmunk') }}">
+        {% set credits %}
           {{ __('Made with Chipmunk', 'chipmunk') }}
           {{ asset_path('images/logo.svg') | svg_content }}
-        </a>
+        {% endset %}
+
+        {{ get_external_link('https://chipmunktheme.com', credits, {
+          class: 'c-page-foot__credits',
+          title: __('Chipmunk WordPress Theme', 'chipmunk'),
+          rel: null,
+        }) }}
       {% endif %}
     </div>
   </div>

@@ -1,0 +1,32 @@
+{% if post.comment_status == 'open' %}
+  {% set commenter = fn('wp_get_current_commenter') %}
+  {% set req = site.option('require_name_email') ? ' required' %}
+
+  {% set fields = {
+    author: '<div class="c-form__field">' ~
+      '<input id="author" name="author" type="text" value="' ~ commenter.comment_author ~
+      '" size="30" placeholder="' ~ __('Name', 'chipmunk') ~ (req ? '*') ~ '" class="c-form__input"' ~ req ~ ' /></div>',
+
+    email: '<div class="c-form__field">' ~
+      '<input id="email" name="email" type="email" value="' ~ commenter.comment_author_email ~
+      '" size="30" placeholder="' ~ __('Email', 'chipmunk') ~ (req ? '*') ~ '" class="c-form__input"' ~ req ~ ' /></div>',
+
+    url: '',
+  } %}
+
+  <div class="l-component l-component--md">
+    {{ post.comment_form({
+      class_form:           'l-component c-form',
+      class_submit:         cn('c-button', 'primary-outline'),
+      comment_notes_before: '',
+      comment_notes_after:  '',
+      title_reply_before:   '<h3 class="l-component c-heading c-heading--h4">',
+      title_reply_after:    '</h3>',
+      submit_field:         '%1$s %2$s',
+      submit_button:        '<div class="' ~ cn('c-form__field', 'wide', 'cta') ~ '"><button name="%1$s" type="submit" id="%2$s" class="%3$s">%4$s</button></div>',
+      fields:               fields | apply_filters('comment_form_fields'),
+      comment_field:        '<div class="' ~ cn('c-form__field', 'wide') ~ '"><textarea id="comment" name="comment" cols="45" rows="1" placeholder="' ~ __('Comment', 'chipmunk') ~ (req ? '*') ~ '" class="c-form__input"' ~ req ~ ' data-dynamic-rows></textarea></div>',
+      must_log_in:          '<div class="l-component"><p class="l-header__copy">' ~ __('You must be <a href="%s">logged in</a> to post a comment.', 'chipmunk') | format(fn('wp_login_url', post.link)) ~ '</p></div>',
+    }) }}
+  </div>
+{% endif %}

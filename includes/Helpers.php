@@ -194,7 +194,7 @@ class Helpers {
 	/**
 	 * Get post counter
 	 *
-	 * @param string $postType 	Post type
+	 * @param string $postType 		Post type
 	 * @param string $postStatus 	Post status
 	 *
 	 * @return int
@@ -416,7 +416,7 @@ class Helpers {
 	}
 
 	/**
-	 * Creates an external links
+	 * Creates an external URL
 	 *
 	 * @param string $url URL to convert to an external one
 	 *
@@ -434,51 +434,29 @@ class Helpers {
 	}
 
 	/**
-	 * Template for comments, without pingbacks or trackbacks
+	 * Creates an external links
 	 *
-	 * @param object $comment Comment object
-	 * @param array $args Argument list
-	 * @param int $depth Current depth of the comment
+	 * @param string $url 		URL to convert to an external one
+	 * @param string $title 	Link content
+	 * @param ?array $atts		A list of HTML attributes to apply
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public static function commentTemplate( $comment, $args, $depth ) {
-		if ( $comment->comment_type == 'pingback' || $comment->comment_type == 'trackback' ) {
-			return null;
+	public static function getExternalLink( $url, $title, $atts = [] ) {
+		$atts = wp_parse_args( $atts, [
+			'target' 	=> '_blank',
+			'rel' 		=> self::getOption( 'disable_nofollow' ) ? null : 'nofollow',
+		] );
+
+		$attributes = [];
+
+		foreach ( $atts as $name => $value ) {
+			if ( ! empty( $value ) ) {
+				$attributes[] = $name . '="' . esc_attr( $value ) . '"';
+			}
 		}
 
-		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
-		?>
-		<<?php echo $tag; ?> <?php comment_class( 'c-comment' ); ?> id="comment-<?php comment_ID(); ?>">
-			<article class="c-comment__body">
-				<?php if ( $args['avatar_size'] != 0 ) : ?>
-					<figure class="c-comment__image">
-						<?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
-					</figure>
-				<?php endif; ?>
-
-				<div class="c-comment__info">
-					<h4 class="c-comment__title c-heading c-heading--h5"><?php echo get_comment_author_link(); ?></h4>
-					<a href="<?php echo get_comment_link(); ?>">
-						<time class="c-comment__date" datetime="<?php comment_time( 'c' ); ?>" title="<?php comment_time( 'Y-m-d H:i' ); ?>">
-							<?php echo get_comment_time( get_option( 'date_format' ), false, true ); ?>
-						</time>
-					</a>
-
-					<div class="c-comment__content c-content c-content--type">
-						<?php comment_text(); ?>
-					</div>
-
-					<div class="c-comment__reply">
-						<?php comment_reply_link( array_merge( $args, [ 'reply_text' => Timber::compile( 'partials/icon.twig', [ 'icon' => 'reply' ] ) . esc_html__( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ] ) ); ?>
-					</div>
-
-					<?php if ( ! $comment->comment_approved ) : ?>
-						<p class="c-comment__note"><?php esc_html_e( 'Your comment is awaiting moderation.', 'chipmunk' ); ?></p>
-					<?php endif; ?>
-				</div>
-			</article>
-		<?php
+		return '<a href="' . esc_url( self::getExternalUrl( $url ) ) . '"' . implode( ' ', $attributes ) . '>' . $title . '</a>';
 	}
 
 	/**

@@ -1,7 +1,10 @@
 {% if post.comment_status == 'open' or post.comments %}
   <div class="{{ cn('l-section', 'theme-light') }}">
     <div class="l-container">
-      {{ post.comment_form }}
+      <div class="l-wrapper">
+        {% include 'sections/comments/list.twig' %}
+        {% include 'sections/comments/form.twig' %}
+      </div>
     </div>
   </div>
 {% endif %}

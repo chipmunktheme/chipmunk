@@ -1,0 +1,5 @@
+{% set counter = attribute(fn('wp_count_posts', type), status) %}
+
+{% if counter %}
+	{{ counter }}
+{% endif %}

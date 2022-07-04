@@ -8,7 +8,9 @@
       </a>
     {% else %}
       {% for link in links %}
-        {% include 'partials/button.twig' with link | merge({ class: 'c-resource__button ' ~ cn('c-button', 'primary-outline') }) %}
+        {{ get_external_link(link.url, link.title, {
+          class: 'c-resource__button ' ~ cn('c-button', 'primary-outline'),
+        }) }}
       {% endfor %}
     {% endif %}
   </div>

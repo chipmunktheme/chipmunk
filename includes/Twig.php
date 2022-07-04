@@ -53,17 +53,20 @@ class Twig {
 		$this->registerFunction( $twig, 'get_dist_path', 		[ Assets::class, 'getDistPath' ] );
 		$this->registerFunction( $twig, 'is_dev', 				[ Assets::class, 'isDev' ] );
 
+		// Theme Helpers
 		$this->registerFunction( $twig, 'cn', 					[ Helpers::class, 'className' ] );
 		$this->registerFunction( $twig, 'class_name', 			[ Helpers::class, 'className' ] );
 		$this->registerFunction( $twig, 'get_salt', 			[ Helpers::class, 'getSalt' ] );
 		$this->registerFunction( $twig, 'get_option', 			[ Helpers::class, 'getOption' ] );
 		$this->registerFunction( $twig, 'is_option_enabled',	[ Helpers::class, 'isOptionEnabled' ] );
 		$this->registerFunction( $twig, 'is_addon_enabled',		[ Helpers::class, 'isAddonEnabled' ] );
+		$this->registerFunction( $twig, 'get_external_link',	[ Helpers::class, 'getExternalLink' ] );
 		$this->registerFunction( $twig, 'get_resource_links',	[ Helpers::class, 'getResourceLinks' ] );
 		$this->registerFunction( $twig, 'get_term_list',		[ Helpers::class, 'getTermList' ] );
 		$this->registerFunction( $twig, 'get_term_options',		[ Helpers::class, 'getTermOptions' ] );
 		$this->registerFunction( $twig, 'get_views',			[ Views::class, 'getViews' ] );
 
+		// Third-party Helpers
 		$this->registerFunction( $twig, 'get_current_url', 		[ URLHelper::class, 'get_current_url' ] );
 		$this->registerFunction( $twig, 'is_external', 			[ URLHelper::class, 'is_external' ] );
 
@@ -88,7 +91,6 @@ class Twig {
 		$this->registerFilter( $twig, 'format_number', 			[ Helpers::class, 'formatNumber' ] );
 		$this->registerFilter( $twig, 'find_by_property', 		[ Helpers::class, 'findByProperty' ] );
 		$this->registerFilter( $twig, 'svg_content',			[ Helpers::class, 'getSvgContent' ] );
-		$this->registerFilter( $twig, 'external_url',			[ Helpers::class, 'getExternalUrl' ] );
 
 		return $twig;
 	}

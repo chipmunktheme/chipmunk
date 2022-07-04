@@ -7,9 +7,7 @@
       {{ thumbnail }}
     </a>
   {% elseif links | length %}
-    <a href="{{ (links | first).url | external_url | e('esc_url') }}" class="{{ media_class }}" target="_blank"{{ not get_option('disable_nofollow') ? ' rel="nofollow"' }}>
-      {{ thumbnail }}
-    </a>
+    {{ get_external_link((links | first).url, thumbnail, { class: media_class }) }}
   {% else %}
     <div class="{{ media_class }}">
       {{ thumbnail }}

@@ -3,5 +3,8 @@
 {% block content %}
   {% include "entry/#{post.type}.twig" %}
   {% include 'sections/comments.twig' %}
-  {% include "loop/#{post.type}.twig" %}
+
+  {% if post.type in ['post', 'resource'] %}
+    {% include "loop/#{post.type}.twig" %}
+  {% endif %}
 {% endblock %}

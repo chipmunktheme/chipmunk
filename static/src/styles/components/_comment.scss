@@ -4,12 +4,8 @@
 
 $comment-avatar-size: 3.2rem;
 
-.c-comment,
-.c-comment .children {
+.c-comment {
   @include spacer-clamped(2);
-}
-
-.c-comment__body {
   display: flex;
   flex-wrap: nowrap;
 
@@ -77,4 +73,8 @@ $comment-avatar-size: 3.2rem;
 .c-comment__note {
   color: var(--chipmunk--color--gray);
   font-size: 0.875em;
+}
+
+.c-comment__children {
+  @include spacer-clamped(2);
 }

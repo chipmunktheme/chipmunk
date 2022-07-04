@@ -2,6 +2,8 @@
 
 namespace Chipmunk;
 
+use Timber\Timber;
+
 /**
  * Custom shortcodes
  *
@@ -14,8 +16,8 @@ class Shortcodes {
  	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_shortcode( 'chipmunk-counter', [ $this, 'render_counter' ] );
-		add_shortcode( 'chipmunk-submit', [ $this, 'render_submit' ] );
+		add_shortcode( 'chipmunk-counter', [ $this, 'renderCounter' ] );
+		add_shortcode( 'chipmunk-submit', [ $this, 'renderSubmit' ] );
 	}
 
 	/**
@@ -23,15 +25,14 @@ class Shortcodes {
 	 *
 	 * @return string
 	 */
-	public static function render_counter( $atts, $content = null ) {
+	public static function renderCounter( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$attributes = shortcode_atts( [
+		$atts = shortcode_atts( [
 			'type'      => 'resource',
 			'status'    => 'publish',
 		], $atts );
 
-		// Render the login form using an external template
-		return self::get_shortcode_template( 'counter', $attributes );
+        return Timber::compile( 'shortcodes/counter.twig', array_merge( Timber::context(), $atts ) );
 	}
 
 	/**
@@ -39,37 +40,12 @@ class Shortcodes {
 	 *
 	 * @return string
 	 */
-	public static function render_submit( $atts, $content = null ) {
+	public static function renderSubmit( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$attributes = shortcode_atts( [
+		$atts = shortcode_atts( [
 			'title' => '',
 		], $atts );
 
-		// Render the login form using an external template
-		return self::get_shortcode_template( 'submit', $attributes );
-	}
-
-	/**
-	 * Renders the contents of the given template to a string and returns it.
-	 *
-	 * @param string $template_name The name of the template to render (without .php)
-	 * @param array  $attributes    The PHP variables for the template
-	 *
-	 * @return string               The contents of the template.
-	 */
-	private static function get_shortcode_template( $template_name, $attributes = null ) {
-		if ( ! $attributes ) {
-			$attributes = [];
-		}
-
-		ob_start();
-
-		do_action( 'chipmunk_shortcode_template_before_' . $template_name );
-
-		Helpers::get_template_part( 'shortcodes/' . $template_name, [ 'attributes' => $attributes ] );
-
-		do_action( 'chipmunk_shortcode_template_after_' . $template_name );
-
-		return trim( ob_get_clean() );
+        return Timber::compile( 'shortcodes/counter.twig', array_merge( Timber::context(), $atts ) );
 	}
 }

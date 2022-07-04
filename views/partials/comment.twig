@@ -1,0 +1,45 @@
+{% if comment.comment_type not in ['pingback', 'trackback'] %}
+  <article class="c-comment" id="comment-{{ comment.id }}">
+    <figure class="c-comment__image u-avatar">
+      <img src="{{ comment.author.avatar({ size: 64 }) }}" alt="">
+    </figure>
+
+    <div class="c-comment__info">
+      <h4 class="c-comment__title {{ cn('c-heading', 'h5') }}">
+        {% if comment.author.user_url %}
+          {{ get_external_link(comment.author.user_url, comment.author.name | e('esc_html')) }}
+        {% else %}
+          {{ comment.author.name | e('esc_html') }}
+        {% endif %}
+      </h4>
+
+      <a href="{{ comment.link | e('esc_url') }}">
+        <time class="c-comment__date" datetime="{{ comment.date('c') }}" title="{{ comment.date('Y-m-d H:i') }}">
+          {{ comment.date }}
+        </time>
+      </a>
+
+      <div class="c-comment__content {{ cn('c-content', 'type') }}">
+        {{ comment.content | e('wp_kses_post') }}
+      </div>
+
+      <div class="c-comment__reply">
+        {{ comment.reply_link(include('partials/icon.twig', { icon: 'reply' }) ~ __('Reply', 'chipmunk')) }}
+      </div>
+
+      {% if not comment.comment_approved %}
+        <p class="c-comment__note">
+          {{ __('Your comment is awaiting moderation.', 'chipmunk') }}
+        </p>
+      {% endif %}
+
+      {% if comment.children %}
+        <div class="c-comment__children">
+          {% for comment in comment.children %}
+            {% include 'partials/comment.twig' %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </article>
+{% endif %}
