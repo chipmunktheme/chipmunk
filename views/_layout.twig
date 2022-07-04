@@ -33,6 +33,10 @@
     {% include 'layouts/bottom.twig' %}
   </main>
 
+  {% if not get_option('disable_submissions') and not get_option('submit_page') %}
+    {% include 'sections/submit.twig' %}
+  {% endif %}
+
   {{ fn('wp_footer') }}
 
 	<!-- Made with {{ theme.name }} v{{ theme.version }} -->

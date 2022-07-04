@@ -1,0 +1,12 @@
+<div class="c-popup">
+	<div class="c-popup__content" data-popup-content>
+		<div class="c-popup__inner">
+      {% block content %}{% endblock %}
+		</div>
+
+		<button class="c-popup__close c-heading--h4" data-popup>
+      {% include 'partials/icon.twig' with { icon: 'close' } only %}
+			<span class="u-hidden-visually">{{ __('Close', 'chipmunk') }}</span>
+		</button>
+	</div>
+</div>

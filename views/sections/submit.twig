@@ -1,0 +1,8 @@
+{% embed 'partials/popup.twig' %}
+  {% block content %}
+    {% include 'partials/submit.twig' with {
+      title: __('Submit', 'chipmunk'),
+      popup: true,
+    } %}
+  {% endblock %}
+{% endembed %}

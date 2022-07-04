@@ -1,0 +1,72 @@
+{% set action = 'submit_resource' %}
+{% set alignment = popup ? 'center' : 'left' %}
+{% set required_fields = ['name', 'collection', 'url'] | apply_filters('chipmunk_submission_required_fields') %}
+
+{% if title %}
+  <div class="l-component">
+    <h4 class="{{ cn('c-heading', 'h1') }} u-text--{{ alignment }}">
+      {{ title }}
+    </h4>
+  </div>
+{% endif %}
+
+<form action="#" class="c-form u-loader {{ popup ? cn('l-component', 'md') }}" novalidate data-validate data-action="{{ action }}" data-action-event="submit">
+  <p class="c-form__message c-content c-content--type" data-action-message="{{ action }}"></p>
+
+  <input type="hidden" name="filter" value="">
+  {{ fn('wp_nonce_field', action, 'nonce', false, false) }}
+
+  <div class="c-form__content" data-action-element="{{ action }}">
+    <div class="c-form__field">
+      <input type="text" name="name" placeholder="{{ __('Resource name', 'chipmunk') }}" class="c-form__input" {{ 'name' in required_fields ? 'required' }}>
+    </div>
+
+    <div class="c-form__field">
+      <div class="c-form__select">
+        <select name="collection" class="c-form__input" {{ 'collection' in required_fields ? 'required' }}>
+          <option value="">{{ __('Collection', 'chipmunk') }}</option>
+          {{ get_term_options('resource-collection') }}
+        </select>
+      </div>
+
+      <div class="c-form__error" data-validate-message="collection"></div>
+    </div>
+
+    <div class="c-form__field">
+      <input type="url" name="url" placeholder="{{ __('Website URL', 'chipmunk') }}" class="c-form__input" {{ 'url' in required_fields ? 'required' }}>
+    </div>
+
+    <div class="c-form__field">
+      <textarea rows="1" name="content" placeholder="{{ __('Description', 'chipmunk') }}" class="c-form__input" {{ 'content' in required_fields ? 'required' }} data-dynamic-rows></textarea>
+    </div>
+
+    {% if not get_option('disable_submitter_info') and not user %}
+      <div class="c-form__field">
+        <input type="text" name="submitter_name" placeholder="{{ __('Your name', 'chipmunk') }}" class="c-form__input" required>
+      </div>
+
+      <div class="c-form__field">
+        <input type="email" name="submitter_email" placeholder="{{ __('Your email', 'chipmunk') }}" class="c-form__input" required>
+      </div>
+    {% endif %}
+
+    {% if get_option('submission_consent') %}
+      <label class="{{ cn('c-form__field', 'wide') }} c-form__checkbox" data-consent>
+        <input type="checkbox" name="consent" required>
+        <p>{{ get_option('submission_consent') }}</p>
+      </label>
+    {% endif %}
+
+    {% if get_option('recaptcha_enabled') and not user %}
+      <div class="{{ cn('c-form__field', 'wide', alignment) }}">
+        <div class="g-recaptcha" id="submit-recaptcha"></div>
+      </div>
+    {% endif %}
+
+    <div class="{{ cn('c-form__field', 'wide', 'cta', alignment) }}">
+      <button type="submit" class="c-button c-button--primary-outline">
+        {{ __('Submit', 'chipmunk') }}
+      </button>
+    </div>
+  </div>
+</form>

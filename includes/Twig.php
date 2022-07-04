@@ -55,11 +55,13 @@ class Twig {
 
 		$this->registerFunction( $twig, 'cn', 					[ Helpers::class, 'className' ] );
 		$this->registerFunction( $twig, 'class_name', 			[ Helpers::class, 'className' ] );
+		$this->registerFunction( $twig, 'get_salt', 			[ Helpers::class, 'getSalt' ] );
 		$this->registerFunction( $twig, 'get_option', 			[ Helpers::class, 'getOption' ] );
 		$this->registerFunction( $twig, 'is_option_enabled',	[ Helpers::class, 'isOptionEnabled' ] );
 		$this->registerFunction( $twig, 'is_addon_enabled',		[ Helpers::class, 'isAddonEnabled' ] );
 		$this->registerFunction( $twig, 'get_resource_links',	[ Helpers::class, 'getResourceLinks' ] );
 		$this->registerFunction( $twig, 'get_term_list',		[ Helpers::class, 'getTermList' ] );
+		$this->registerFunction( $twig, 'get_term_options',		[ Helpers::class, 'getTermOptions' ] );
 		$this->registerFunction( $twig, 'get_views',			[ Views::class, 'getViews' ] );
 
 		$this->registerFunction( $twig, 'get_current_url', 		[ URLHelper::class, 'get_current_url' ] );

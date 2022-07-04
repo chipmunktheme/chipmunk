@@ -324,19 +324,24 @@ class Helpers {
 	/**
 	 * Recursively returns taxonomy options
 	 *
-	 * @param array $terms 	Terms list
+	 * @param string $taxonomy 	Taxonomy name
+	 * @param array $terms 	Term list
 	 * @param int $lever 	Current level of the recursive call
 	 *
 	 * @return string
 	 */
-	public static function getTermOptions( $terms, $level = 0 ) {
+	public static function getTermOptions( $taxonomy, $terms = [], $level = 0 ) {
 		$output = '';
+
+		if ( empty( $terms ) ) {
+			$terms = self::getTaxonomyHierarchy( $taxonomy );
+		}
 
 		foreach ( $terms as $term ) {
 			$output .= '<option value="'. $term->name . '">' . str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' ) . $term->name . '</option>';
 
 			if ( $term->children ) {
-				$output .= self::getTermOptions( $term->children, $level + 1 );
+				$output .= self::getTermOptions( $taxonomy, $term->children, $level + 1 );
 			}
 		}
 
@@ -499,22 +504,6 @@ class Helpers {
 	}
 
 	/**
-	 * Gets current pagination page
-	 *
-	 * @return int
-	 */
-	public static function getCurrentPage() {
-		if ( get_query_var( 'paged' ) ) {
-			return get_query_var( 'paged' );
-		}
-		elseif ( get_query_var( 'page' ) ) {
-			return get_query_var( 'page' );
-		}
-
-		return 1;
-	}
-
-	/**
 	 * Truncates long strings
 	 *
 	 * @param string $str 		String to be truncated
@@ -656,7 +645,7 @@ class Helpers {
 	 * @return string
 	 */
 	public static function getSalt( $length = 5 ) {
-		return substr( md5( rand() ), 0, $length );
+		return bin2hex( random_bytes( $length ) );
 	}
 
 	/**

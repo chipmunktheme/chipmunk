@@ -1,0 +1,38 @@
+{% extends '_layout.twig' %}
+
+{% block content %}
+  <div class="{{ cn('l-section', posts ? 'compact-bottom') }}">
+    <div class="l-container">
+      <div class="l-header">
+        <h1 class="{{ cn('c-heading', 'h4') }}">
+          <small>{{ __('Search results for:', 'chipmunk') }}</small>
+          {{ search_query }}
+        </h1>
+
+        {% include 'partials/search.twig' with { narrow: true } %}
+
+        {% if not posts %}
+          <p class="l-header__copy">
+            {{ __('Sorry, your search did not match any resources.', 'chipmunk') }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% if posts %}
+    <div data-action-element="load_posts">
+      {% for post in posts %}
+        {% include "entry/#{post.type}.twig" %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if posts.pagination %}
+    <div class="l-section">
+      <div class="l-container">
+        {% include 'sections/pagination.twig' with { pagination: posts.pagination } %}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
