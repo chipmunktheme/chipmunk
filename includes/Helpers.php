@@ -40,14 +40,14 @@ class Helpers {
 	/**
 	 * Check if option is enabled in customizer
 	 *
-	 * @param string $feature 		Feature name
-	 * @param string $postType 	Post type name
-	 * @param bool $checkType 		Optional. Whether or not to check post type
+	 * @param string $feature 	Feature name
+	 * @param string $type 		Post type name
+	 * @param bool $checkType 	Optional. Whether or not to check post type
 	 *
 	 * @return bool
 	 */
-	public static function isOptionEnabled( $feature, $postType, $checkType = true ) {
-		return ! self::getOption( "disable_{$postType}_{$feature}" ) && ( $checkType ? get_post_type() == $postType : true );
+	public static function isOptionEnabled( $feature, $type, $checkType = true ) {
+		return ! self::getOption( "disable_{$type}_{$feature}" ) && ( $checkType ? get_post_type() == $type : true );
 	}
 
 	/**
@@ -479,6 +479,23 @@ class Helpers {
 		}
 
 		return $postId;
+	}
+
+	/**
+	 * Get current page attribute
+	 *
+	 * @return int
+	 */
+	public static function getCurrentPage() {
+		if ( get_query_var( 'paged' ) ) {
+			return get_query_var( 'paged' );
+		}
+		elseif ( get_query_var( 'page' ) ) {
+			return get_query_var( 'page' );
+		}
+		else {
+			return 1;
+		}
 	}
 
 	/**

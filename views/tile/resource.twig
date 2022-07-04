@@ -1,0 +1,87 @@
+{# Cache resource customizer options #}
+{% set options = {
+  display_as:      get_option('display_resource_as'),
+  disable_thumbs:  not is_option_enabled('thumbs', 'resource', false),
+  disable_website: not is_option_enabled('website_button', 'resource', false),
+  disable_desc:    not is_option_enabled('desc', 'resource', false),
+} %}
+
+{# Resource website - custom post meta #}
+{% set website = get_resource_links(post.id) | first %}
+
+{# Resource tile classes #}
+{% set tile_classes = {
+  '':           ['card'],
+  'tile':       ['tile'],
+  'card':       ['card'],
+  'card_blank': ['blank'],
+  'card_wide':  ['wide'],
+} %}
+
+<div class="{{ cn('c-tile', tile_classes[options.display_as]) }}">
+  <{{ post.status == 'publish' ? "a href='#{ post.link }'" : 'div' }} class="c-tile__inner">
+    {% if not options.disable_thumbs or options.display_as == 'tile' %}
+      <div class="c-tile__image {{ cn('c-media', get_option('resource_image_aspect_ratio')) }}>">
+        {% if not options.disable_thumbs and post.thumbnail %}
+          <img src="{{ post.thumbnail.src('640x480') }}" alt="" />
+        {% endif %}
+
+        {% if post.status != 'publish' and options.display_as != 'tile' %}
+          <span class="{{ cn('c-tile__status', post.status) }}">
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="{{ cn('c-tile__content', options.display_as == 'tile' ? (options.disable_thumbs or not post.thumbnail ? 'primary' : 'dimmed')) }}">
+      <div class="c-tile__head">
+        <{{ is_front_page or is_single ? 'h3' : 'h2' }} class="c-tile__title {{ cn('c-heading', 'h5') }}">
+          {{ post.title }}
+
+          {% if post.status != 'publish' and options.display_as == 'tile' %}
+            ({{ post.status }})
+          {% endif %}
+        </{{ is_front_page or is_single ? 'h3' : 'h2' }}>
+
+        {% if not options.disable_website and website %}<script>
+            function openURL(ev, url) {
+              ev.stopPropagation();
+              ev.preventDefault();
+
+              var win = window.open(url, '_blank');
+              win.focus();
+            }
+          </script>
+
+          <div onclick="openURL(event, '{{ website.url | external_url | e('esc_url') }}');" class="c-tile__icon" title="{{ website.title }}">
+            {% include 'partials/icon.twig' with { icon: 'external-link' } only %}
+          </div>
+        {% endif %}
+
+        {% if not options.disable_desc and post.excerpt %}
+          <p class="c-tile__copy">
+            {{ post.excerpt({ chars: 120 }).read_more(null) }}
+          </p>
+        {% endif %}
+      </div>
+
+      {% include 'partials/stats.twig' with {
+        class: 'c-tile__stats',
+        stats: {
+          upvotes: true,
+          terms: options.display_as == 'card_wide' ? {
+            term_args: {
+              taxonomy: 'resource-collection',
+              type: 'text',
+              quantity: 1,
+              desktop_only: true,
+            },
+          },
+          date: true,
+          views: true,
+          ratings: true,
+        },
+      } %}
+    </div>
+  </{{ post.status == 'publish' ? 'a' : 'div' }}>
+</div>

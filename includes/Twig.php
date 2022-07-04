@@ -6,6 +6,7 @@ use Twig\TwigFunction;
 use Twig\TwigFilter;
 use Twig\Environment;
 use Chipmunk\Helpers;
+use Chipmunk\Query;
 use Chipmunk\Extensions\Upvotes;
 use Chipmunk\Extensions\Views;
 
@@ -65,6 +66,7 @@ class Twig {
 		$this->registerFunction( $twig, 'get_term_list',		[ Helpers::class, 'getTermList' ] );
 		$this->registerFunction( $twig, 'get_term_options',		[ Helpers::class, 'getTermOptions' ] );
 		$this->registerFunction( $twig, 'get_views',			[ Views::class, 'getViews' ] );
+		$this->registerFunction( $twig, 'get_resources',		[ Query::class, 'getResources' ] );
 
 		// Third-party Helpers
 		$this->registerFunction( $twig, 'get_current_url', 		[ URLHelper::class, 'get_current_url' ] );
@@ -83,6 +85,7 @@ class Twig {
 	protected function registerTwigFilters( $twig ) {
 		$this->registerFilter( $twig, 'lcfirst', 				'lcfirst' );
 		$this->registerFilter( $twig, 'stripslashes', 			'stripslashes' );
+		$this->registerFilter( $twig, 'sanitize_title', 		'sanitize_title' );
 		$this->registerFilter( $twig, 'highlight', 				[ Helpers::class, 'highlight' ] );
 		$this->registerFilter( $twig, 'has_any', 				[ Helpers::class, 'hasAny' ] );
 		$this->registerFilter( $twig, 'inject', 				[ Helpers::class, 'inject' ] );
@@ -91,6 +94,7 @@ class Twig {
 		$this->registerFilter( $twig, 'format_number', 			[ Helpers::class, 'formatNumber' ] );
 		$this->registerFilter( $twig, 'find_by_property', 		[ Helpers::class, 'findByProperty' ] );
 		$this->registerFilter( $twig, 'svg_content',			[ Helpers::class, 'getSvgContent' ] );
+		$this->registerFilter( $twig, 'external_url',			[ Helpers::class, 'getExternalUrl' ] );
 
 		return $twig;
 	}

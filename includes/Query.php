@@ -4,6 +4,7 @@ namespace Chipmunk;
 
 use WP_Query;
 use WP_User_Query;
+use Timber\Timber;
 
 /**
  * Theme helpers for retrieving data from DB.
@@ -16,7 +17,7 @@ class Query {
 	/**
 	 * Get posts
 	 */
-	public static function get_posts( $args, $tax = null, $date = null ) {
+	public static function getPosts( $args, $tax = null, $date = null ) {
 		$defaults = [
 			'post_type'         => 'post',
 			'posts_per_page'    => -1,
@@ -44,23 +45,23 @@ class Query {
 			];
 		}
 
-		return new WP_Query( wp_parse_args( $args, $defaults ) );
+		return Timber::get_posts( wp_parse_args( $args, $defaults ) );
 	}
 
 	/**
 	 * Get related resources
 	 */
-	public static function get_related( $post_id, $args = [] ) {
+	public static function getRelated( $postId, $args = [] ) {
 		$defaults = [
-			'post_type'         => get_post_type( $post_id ),
+			'post_type'         => get_post_type( $postId ),
 			'post_status'       => 'publish',
-			'post__not_in'      => [ $post_id ],
+			'post__not_in'      => [ $postId ],
 			'posts_per_page'    => 3,
 			'orderby'           => 'rand',
 		];
 
-		foreach ( get_object_taxonomies( get_post( $post_id ), 'names' ) as $taxonomy ) {
-			$terms = get_the_terms( $post_id, $taxonomy );
+		foreach ( get_object_taxonomies( get_post( $postId ), 'names' ) as $taxonomy ) {
+			$terms = get_the_terms( $postId, $taxonomy );
 
 			if ( ! empty( $terms ) ) {
 				$args['tax_query'][] = [
@@ -76,31 +77,31 @@ class Query {
 			$args['tax_query']['relation'] = 'OR';
 		}
 
-		return new WP_Query( wp_parse_args( $args, $defaults ) );
+		return Timber::get_posts( wp_parse_args( $args, $defaults ) );
 	}
 
 	/**
 	 * Get resources
 	 */
-	public static function get_resources( $args = [], $term = null ) {
+	public static function getResources( $args = [], $term = null ) {
 		$defaults = [
 			'post_type'         => 'resource',
 			'post_status'       => 'publish',
 			'posts_per_page'    => Helpers::getOption( 'posts_per_page' ),
-			'paged'             => Helpers::get_current_page(),
+			'paged'             => Helpers::getCurrentPage(),
 		];
 
 		// Add default ordering args
 		if ( empty( $args['orderby'] ) ) {
-			$defaults = array_merge( $defaults, self::get_resources_sort_args() );
+			$defaults = array_merge( $defaults, self::getResourcesSortArgs() );
 		}
 
 		// Add default taxonomy args
 		if ( ( is_tax() && ! empty( $term ) ) || ( ! empty( $_GET['tag'] ) && Helpers::isOptionEnabled( 'filters', 'resource', false ) ) ) {
-			$defaults = array_merge( $defaults, self::get_resources_tax_args( $term ) );
+			$defaults = array_merge( $defaults, self::getResourcesTaxArgs( $term ) );
 		}
 
-		return new WP_Query( wp_parse_args( $args, $defaults ) );
+		return Timber::get_posts( wp_parse_args( $args, $defaults ) );
 	}
 
 	/**
@@ -120,65 +121,65 @@ class Query {
 	/**
 	 * Get resources sort WP_Query arguments
 	 */
-	private static function get_resources_sort_args() {
-		$sort_args = [];
+	private static function getResourcesSortArgs() {
+		$sortArgs = [];
 
 		// Apply sorting options
 		if ( ! empty( $_GET['sort'] ) && Helpers::isOptionEnabled( 'sorting', 'resource', false ) ) {
-			$sort_params = explode( '-', $_GET['sort'] );
-			$sort_orderby = $sort_params[0];
-			$sort_order = $sort_params[1];
+			$sortParams = explode( '-', $_GET['sort'] );
+			$sortOrderby = $sortParams[0];
+			$sortOrder = $sortParams[1];
 		}
 		else {
-			$sort_orderby = Helpers::getOption( 'default_sort_by' );
-			$sort_order = Helpers::getOption( 'default_sort_order' );
+			$sortOrderby = Helpers::getOption( 'default_sort_by' );
+			$sortOrder = Helpers::getOption( 'default_sort_order' );
 		}
 
-		switch ( $sort_orderby ) {
+		switch ( $sortOrderby ) {
 			case 'date':
-				$sort_args = [
+				$sortArgs = [
 					'orderby'   => 'date',
 				];
 				break;
 			case 'name':
-				$sort_args = [
+				$sortArgs = [
 					'orderby'   => 'title',
 				];
 				break;
 			case 'views':
-				$sort_args = [
+				$sortArgs = [
 					'orderby'   => 'meta_value_num date',
 					'meta_key'  => '_' . THEME_SLUG . '_post_view_count',
 				];
 				break;
 			case 'upvotes':
-				$sort_args = [
+				$sortArgs = [
 					'orderby'   => 'meta_value_num date',
 					'meta_key'  => '_' . THEME_SLUG . '_upvote_count',
 				];
 				break;
 			case 'ratings':
-				$sort_args = [
+				$sortArgs = [
 					'orderby'   => 'meta_value_num date',
 					'meta_key'  => '_' . THEME_SLUG . '_rating_rank',
 				];
 				break;
 		}
 
-		$sort_args['order'] = $sort_order;
+		$sortArgs['order'] = $sortOrder;
 
-		return $sort_args;
+		return $sortArgs;
 	}
 
 	/**
 	 * Get resources tax WP_Query arguments
 	 */
-	private static function get_resources_tax_args( $term = null ) {
-		$tax_query = [];
+	private static function getResourcesTaxArgs( $term = null ) {
+		$taxQuery = [];
 
 		// Apply taxonomy options
 		if ( is_tax() && ! empty( $term ) ) {
-			$tax_query[] = [
+			$taxQuery[] = [
 				'taxonomy'          => $term->taxonomy,
 				'field'             => 'slug',
 				'terms'             => $term->slug,
@@ -187,17 +188,17 @@ class Query {
 
 		// Apply tag filters
 		if ( ! empty( $_GET['tag'] ) && Helpers::isOptionEnabled( 'filters', 'resources', false ) ) {
-			$tax_query[] = [
+			$taxQuery[] = [
 				'taxonomy'          => 'resource-tag',
 				'field'             => 'slug',
 				'terms'             => $_GET['tag'],
 			];
 		}
 
-		if ( count( $tax_query ) > 1 ) {
-			$tax_query['relation'] = 'AND';
+		if ( count( $taxQuery ) > 1 ) {
+			$taxQuery['relation'] = 'AND';
 		}
 
-		return [ 'tax_query' => $tax_query ];
+		return [ 'tax_query' => $taxQuery ];
 	}
 }

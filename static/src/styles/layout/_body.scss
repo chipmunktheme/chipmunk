@@ -50,7 +50,9 @@
 }
 
 .l-body__placeholder {
-  min-height: var(--header-height, 0);
+  .c-page-head--sticky + * > & {
+    min-height: var(--header-height, 0);
+  }
 }
 
 .l-body__area {

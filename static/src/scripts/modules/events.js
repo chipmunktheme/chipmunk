@@ -34,13 +34,17 @@ const Events = {
     objects.forEach((object) => {
       const name = object.dataset.placeholdHeight;
       document.body.style.setProperty(`--${name}-height`, `${object.clientHeight}px`);
+
+      if (object.matches('[class*="sticky"]')) {
+        object.style.setProperty('position', 'fixed');
+      }
     });
 
     this.heightCalculated = true;
   },
 
   calculateScrollbarWidth() {
-    document.body.style.setProperty('--scrollbar-width', `${window.innerWidth - root.clientWidth}px`);
+    document.body.style.setProperty('--scrollbar-width', `${window.innerWidth - document.documentElement.clientWidth}px`);
   },
 
   handleScrollStatus() {
