@@ -1,0 +1,24 @@
+<div class="c-ratings">
+  <h4 class="c-ratings__title heading heading--h5">{{ __('Rate', 'chipmunk') }}</h4>
+
+  <div class="c-ratings__form {{ ratings.rating ? 'is-active' }}">
+    {% for i in max_rating..1 %}
+      <button
+        class="c-ratings__button{{ i == (ratings.average | round) ? ' is-selected' }}{{ ratings.rating and i == ratings.rating.rating ? ' is-active' }}"
+        title="{{ _n('%d star', '%d stars', i, 'chipmunk') | format(i) }}"
+        data-rating
+        data-action="submit_rating"
+        data-action-rating="{{ i }}"
+        data-action-post-id="{{ post.id }}">
+
+        <div class="c-ratings__icon">
+          {% include 'partials/icon.twig' with { icon: 'star' } only %}
+        </div>
+      </button>
+    {% endfor %}
+  </div>
+
+  <div class="c-ratings__result" data-action-rating="{{ post.id }}">
+    {{ summary }}
+  </div>
+</div>

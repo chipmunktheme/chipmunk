@@ -1,26 +1,29 @@
 <?php
+namespace Chipmunk;
+
+use Timber\Timber;
+use Chipmunk\Extensions\Views;
+use Chipmunk\Extensions\Upvotes;
+use Chipmunk\Extensions\Bookmarks;
+use Chipmunk\Addons\Ratings\Helpers as RatingsHelpers;
+
 /**
- * Chipmunk: Single template
+ * The Template for displaying all single posts
+ *
+ * Methods for TimberHelper can be found in the /lib sub-directory
  *
  * @package WordPress
  * @subpackage Chipmunk
  */
 
-Chipmunk\Extensions\Views::set_views( get_the_ID() );
-get_header(); ?>
+Views::setViews( get_the_ID() );
+$context = Timber::context();
+$upvotes = new Upvotes( get_the_ID() );
+$bookmarks = new Bookmarks( get_the_ID() );
 
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-		<?php Chipmunk\Helpers::get_template_part( [ 'sections/entry', get_post_type() ] ); ?>
-	<?php endwhile; endif; ?>
+$context['upvote_button'] = $upvotes->getButton( 'toggle_upvote', 'c-stats__button' );
+$context['upvote_counter'] = $upvotes->getContent();
+$context['bookmark_button'] = $bookmarks->getButton( 'toggle_bookmark', 'c-stats__button' );
+$context['average_rating'] = RatingsHelpers::get_post_rating( get_the_ID() );
 
-	<?php if ( comments_open() || get_comments_number() ) : ?>
-		<div class="l-section l-section--theme-light">
-			<div class="l-container">
-				<?php comments_template(); ?>
-			</div>
-		</div>
-	<?php endif; ?>
-
-	<?php Chipmunk\Helpers::get_template_part( [ 'sections/loop', get_post_type() ] ); ?>
-
-<?php get_footer(); ?>
+Timber::render( 'single.twig', $context );

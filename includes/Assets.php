@@ -111,15 +111,15 @@ class Assets {
 	public static function enqueueGoogleFonts() {
 		$fonts = [];
 
-		$primary_font = Helpers::getOption( 'primary_font' );
-		$heading_font = Helpers::getOption( 'heading_font' );
+		$primaryFont = Helpers::getOption( 'primary_font' );
+		$headingFont = Helpers::getOption( 'heading_font' );
 
-		if ( ! empty( $primary_font ) && $primary_font != 'System' ) {
-			$fonts[] = $primary_font;
+		if ( ! empty( $primaryFont ) && $primaryFont != 'System' ) {
+			$fonts[] = $primaryFont;
 		}
 
-		if ( ! empty( $heading_font ) && $heading_font != 'System' ) {
-			$fonts[] = $heading_font;
+		if ( ! empty( $headingFont ) && $headingFont != 'System' ) {
+			$fonts[] = $headingFont;
 		}
 
 		if ( ! empty( $fonts ) ) {

@@ -6,8 +6,8 @@
       </p>
 
       {% if not get_option('disable_credits') %}
-        <a href="{{ 'https://chipmunktheme.com' | external_url | e('esc_url') }}" class="c-page-foot__credits" target="_blank" title="{{ __( 'Chipmunk WordPress Theme', 'chipmunk' ) }}">
-          {{ __( 'Made with Chipmunk', 'chipmunk' ) }}
+        <a href="{{ 'https://chipmunktheme.com' | external_url | e('esc_url') }}" class="c-page-foot__credits" target="_blank" title="{{ __('Chipmunk WordPress Theme', 'chipmunk') }}">
+          {{ __('Made with Chipmunk', 'chipmunk') }}
           {{ asset_path('images/logo.svg') | svg_content }}
         </a>
       {% endif %}

@@ -1,5 +1,5 @@
 <div class="c-filter__group">
-	<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'filters', 'resource', false ) && ! is_tax() ) : ?>
+	<?php if ( Chipmunk\Helpers::isOptionEnabled( 'filters', 'resource', false ) && ! is_tax() ) : ?>
 		<?php
 			$tags = get_terms( [
 				'taxonomy'    => 'resource-tag',
@@ -24,7 +24,7 @@
 		<?php endif; ?>
 	<?php endif; ?>
 
-	<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'sorting', 'resource', false ) ) : ?>
+	<?php if ( Chipmunk\Helpers::isOptionEnabled( 'sorting', 'resource', false ) ) : ?>
 		<?php
 			$default_orderby = Chipmunk\Helpers::getOption( 'default_sort_by' );
 			$default_order = Chipmunk\Helpers::getOption( 'default_sort_order' );
@@ -52,7 +52,7 @@
 				],
 			];
 
-			if ( Chipmunk\Helpers::isFeatureEnabled( 'views', 'resource', false ) ) {
+			if ( Chipmunk\Helpers::isOptionEnabled( 'views', 'resource', false ) ) {
 				$options[] = [
 					'value' => 'views-desc',
 					'title' => __( 'Views', 'chipmunk' ),
@@ -60,7 +60,7 @@
 				];
 			}
 
-			if ( Chipmunk\Helpers::isFeatureEnabled( 'upvotes', 'resource', false ) ) {
+			if ( Chipmunk\Helpers::isOptionEnabled( 'upvotes', 'resource', false ) ) {
 				$options[] = [
 					'value' => 'upvotes-desc',
 					'title' => __( 'Upvotes', 'chipmunk' ),

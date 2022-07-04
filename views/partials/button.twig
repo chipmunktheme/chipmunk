@@ -1,0 +1,3 @@
+<a href="{{ url | external_url | e('esc_url') }}" class="{{ class ?? '' }}"{{ target ? " target='#{target}'" }}>
+	{{ title | e('esc_html') }}
+</a>

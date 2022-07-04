@@ -33,7 +33,7 @@ class Misc {
 			'_' . THEME_SLUG . '_upvote_count'      => 0,
 		];
 
-		if ( Helpers::is_addon_enabled( 'ratings' ) ) {
+		if ( Helpers::isAddonEnabled( 'ratings' ) ) {
 			$defaut_values = array_merge( $defaut_values, [
 				'_' . THEME_SLUG . '_rating_count'   => 0,
 				'_' . THEME_SLUG . '_rating_average' => 0,
@@ -41,7 +41,7 @@ class Misc {
 			] );
 		}
 
-		return Helpers::add_post_meta( $post_ID, $defaut_values, [ 'post', 'resource' ] );
+		return Helpers::addPostMeta( $post_ID, $defaut_values, [ 'post', 'resource' ] );
 	}
 
 	/**
@@ -90,8 +90,8 @@ class Misc {
 			<!-- / FB Open Graph -->
 			<meta property="og:type" content="article">
 			<meta property="og:url" content="<?php the_permalink(); ?>">
-			<meta property="og:title" content="<?php echo Helpers::get_og_title(); ?>">
-			<meta property="og:description" content="<?php echo Helpers::get_meta_description(); ?>">
+			<meta property="og:title" content="<?php echo Helpers::getOgTitle(); ?>">
+			<meta property="og:description" content="<?php echo Helpers::getMetaDescription(); ?>">
 			<meta property="og:image" content="<?php echo isset( $image ) ? $image : $site_image; ?>">
 			<meta property="og:image:width" content="1200">
 			<meta property="og:image:height" content="630">

@@ -1,4 +1,4 @@
-<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'ratings', get_post_type() ) && Chipmunk\Helpers::is_addon_enabled( 'ratings' ) ) : ?>
+<?php if ( Chipmunk\Helpers::isOptionEnabled( 'ratings', get_post_type() ) && Chipmunk\Helpers::is_addon_enabled( 'ratings' ) ) : ?>
 	<?php $average_rating = Chipmunk\Addons\Ratings\Helpers::get_post_rating( get_the_ID() ); ?>
 
 	<?php if ( ! empty( $average_rating ) ) : ?>

@@ -2,7 +2,7 @@
 
 namespace Chipmunk\Addons\Ratings;
 
-use Chipmunk\Helpers as ChipmunkHelpers;
+use Chipmunk\Helpers;
 
 /**
  * Adds a 5-star rating system to the theme
@@ -81,14 +81,14 @@ class Init {
 			'_' . THEME_SLUG . '_rating_rank'    => 0,
 		];
 
-		return ChipmunkHelpers::add_post_meta( $post_ID, $defaut_values, $allowed_types );
+		return Helpers::addPostMeta( $post_ID, $defaut_values, $allowed_types );
 	}
 
 	/**
  	 * Setup main components and features of the addon
 	 */
 	public function setup_addon() {
-		if ( ! ChipmunkHelpers::isAddonEnabled( $this->config['slug'] ) ) {
+		if ( ! Helpers::isAddonEnabled( $this->config['slug'] ) ) {
 			return null;
 		}
 

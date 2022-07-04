@@ -1,0 +1,37 @@
+{% set providers = [
+	{
+		'name': 'Facebook',
+		'href': 'https://facebook.com/sharer.php?u=%url%&amp;t=%title%+%url%',
+	},
+	{
+		'name': 'Twitter',
+		'href': 'https://twitter.com/share?url=%url%&amp;text=%title%',
+	},
+	{
+		'name': 'Pinterest',
+		'href': 'https://pinterest.com/pin/create/button/?url=%url%&media=%image%&description=%title%',
+	},
+	{
+		'name': 'Email',
+		'href': 'mailto:?subject=%title%&body=%url%',
+	},
+] %}
+
+<nav class="c-menu-socials">
+	<h5 class="c-menu-socials__title">{{ __('Share', 'chipmunk') }}</h5>
+
+	<nav class="c-menu-socials__list">
+    {% for provider in providers %}
+      {% set link = provider.href | replace({
+        '%url%': post.link,
+        '%image%': post.thumbnail,
+        '%title%': post.title | url_encode,
+      }) %}
+
+      <a href="{{ link | e('esc_url') }}" class="c-menu-socials__link" title="{{ provider.name }}" target="_blank">
+        {% include 'partials/icon.twig' with { icon: "social-#{provider.name | lower}" } %}
+        <span class="u-hidden-visually">{{ provider.name }}</span>
+      </a>
+    {% endfor %}
+	</ul>
+</nav>

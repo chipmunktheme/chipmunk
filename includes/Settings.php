@@ -2,7 +2,9 @@
 
 namespace Chipmunk;
 
+use Chipmunk\Assets;
 use Chipmunk\Errors;
+use Chipmunk\Helpers;
 
 /**
  * Custom settings pages for the theme
@@ -53,7 +55,7 @@ class Settings {
 			'edit_theme_options',
 			THEME_SLUG,
 			[ $this, 'admin_settings' ],
-			Helpers::svg_to_base64( Assets::asset_path( 'images/logo.svg' ) ),
+			Helpers::svgToBase64( Assets::assetPath( 'images/logo.svg' ) ),
 		);
 	}
 
@@ -69,7 +71,7 @@ class Settings {
 				<h2 style="display: none;"></h2>
 
 				<h1 class="chipmunk__title">
-					<?php echo Helpers::get_svg_content( Assets::asset_path( 'images/logo.svg' ) ); ?>
+					<?php echo Helpers::getSvgContent( Assets::assetPath( 'images/logo.svg' ) ); ?>
 					<?php echo THEME_TITLE; ?>
 				</h1>
 
@@ -164,7 +166,7 @@ class Settings {
 		$setting = THEME_SLUG . '_' . $setting;
 		$errors = get_settings_errors( $setting );
 
-		if ( ! empty( $message ) && ! Helpers::find_key_value( $errors, 'code', $setting ) ) {
+		if ( ! empty( $message ) && ! Helpers::findKeyValue( $errors, 'code', $setting ) ) {
 			add_settings_error( $setting, $setting, $message, $type );
 		}
 	}

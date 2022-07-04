@@ -2,6 +2,9 @@
 
 namespace Chipmunk\Addons\Ratings;
 
+use Chipmunk\Helpers;
+use Chipmunk\Addons\Ratings\Helpers as RatingsHelpers;
+
 /**
  * Main ratings class
  *
@@ -42,12 +45,14 @@ class Ratings {
 	 *
 	 * @param  int $post_id
 	 * @param  int $rating
+	 *
+	 * @return void
 	 */
 	public function __construct( $post_id, $rating = null ) {
 		global $current_user;
 
 		$this->post_id = intval( wp_filter_kses( $post_id ) );
-		$this->user_id = ! empty( $current_user->ID ) ? $current_user->ID : \Chipmunk\Helpers::get_ip();
+		$this->user_id = ! empty( $current_user->ID ) ? $current_user->ID : Helpers::getIp();
 
 		if ( ! empty( $rating ) ) {
 			$this->rating = intval( wp_filter_kses( $rating ) );
@@ -117,7 +122,7 @@ class Ratings {
 	 * @return boolean
 	 */
 	private function get_user_rating( $ratings ) {
-		return \Chipmunk\Helpers::find_key_value( $ratings, 'user_id', $this->user_id );
+		return Helpers::findKeyValue( $ratings, 'user_id', $this->user_id );
 	}
 
 	/**
@@ -153,7 +158,7 @@ class Ratings {
 			return 0;
 		}
 
-		$all_ratings = Helpers::get_meta_values( self::$db_key );
+		$all_ratings = RatingsHelpers::get_meta_values( self::$db_key );
 		$all_ratings_sum = array_sum( array_column( $all_ratings, 'rating' ) );
 		$all_ratings_average = ( $all_ratings_sum / count( $all_ratings ) );
 
@@ -204,6 +209,8 @@ class Ratings {
 
 	/**
 	 * Processes the upvote request
+	 *
+	 * @return void
 	 */
 	public function process() {
 		// Check required attributes

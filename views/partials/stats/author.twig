@@ -1,0 +1,19 @@
+{% if is_option_enabled('author', post.type) %}
+  <li class="{{ cn('c-stats__item', 'author') }}" title="{{ __('Author', 'chipmunk') }}">
+    {% if show_avatar %}
+      <div class="u-avatar">
+        <img src="{{ post.author.avatar({ size: 32 }) }}" alt="">
+      </div>
+    {% else %}
+      {% include 'partials/icon.twig' with { icon: 'user' } only %}
+    {% endif %}
+
+    <span itemprop="author">
+      {% if show_link %}
+        <a href="{{ post.author.link }}">{{ post.author.name }}</a>
+      {% else %}
+        {{ post.author.name }}
+      {% endif %}
+    </span>
+  </li>
+{% endif %}

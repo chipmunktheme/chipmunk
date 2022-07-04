@@ -1,4 +1,4 @@
-<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'date', get_post_type() ) ) : ?>
+<?php if ( Chipmunk\Helpers::isOptionEnabled( 'date', get_post_type() ) ) : ?>
 	<li class="c-stats__item c-stats__item--date" title="<?php esc_attr_e( 'Published', 'chipmunk' ); ?>: <?php the_time( 'Y-m-d H:i' ); ?>">
 		<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'clock' ] ); ?>
 

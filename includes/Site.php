@@ -35,6 +35,8 @@ class Site extends TimberSite {
 	public static function extend_context( $context ) {
 		$context['is_front_page']		= is_front_page();
 		$context['is_home']				= is_home();
+		$context['is_single']			= is_single();
+		$context['is_search']			= is_search();
 		$context['search_query']		= get_search_query();
 
 		$context['socials']				= Helpers::getSocials();

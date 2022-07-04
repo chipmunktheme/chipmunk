@@ -2,9 +2,9 @@
 	// Cache resource customizer options
 	$options = [
 		'display_as'             => Chipmunk\Helpers::getOption( 'display_resource_as' ),
-		'disable_thumbs'         => ! Chipmunk\Helpers::isFeatureEnabled( 'thumbs', 'resource', false ),
-		'disable_website_button' => ! Chipmunk\Helpers::isFeatureEnabled( 'website_button', 'resource', false ),
-		'disable_desc'           => ! Chipmunk\Helpers::isFeatureEnabled( 'desc', 'resource', false ),
+		'disable_thumbs'         => ! Chipmunk\Helpers::isOptionEnabled( 'thumbs', 'resource', false ),
+		'disable_website_button' => ! Chipmunk\Helpers::isOptionEnabled( 'website_button', 'resource', false ),
+		'disable_desc'           => ! Chipmunk\Helpers::isOptionEnabled( 'desc', 'resource', false ),
 	];
 
 	// Resource website - custom post meta

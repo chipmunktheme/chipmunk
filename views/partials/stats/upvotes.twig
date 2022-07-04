@@ -1,0 +1,11 @@
+{% if is_option_enabled('upvotes', post.type) %}
+  {% if is_single or get_option('display_resource_as') != 'tile' %}
+    <li class="{{ cn('c-stats__item', 'upvotes') }}">
+      {{ upvote_button }}
+    </li>
+  {% else %}
+    <li class="{{ cn('c-stats__item', 'upvotes') }}" title="{{ __('Upvotes', 'chipmunk') }}">
+      {{ upvote_counter }}
+    </li>
+  {% endif %}
+{% endif %}

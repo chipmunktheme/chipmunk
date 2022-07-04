@@ -1,15 +1,15 @@
 {% if socials or not get_option('disable_submissions') %}
-  <div class="{{ class_name('l-section', ['theme-light', 'compact', 'sticky']) }}">
+  <div class="{{ cn('l-section', ['theme-light', 'compact', 'sticky']) }}">
     <div class="l-container c-toolbox">
       {% if socials %}
         <div class="c-toolbox__share">
           <nav class="c-menu-socials">
-            <h5 class="c-menu-socials__title"><?php esc_html_e( 'Follow us', 'chipmunk' ); ?></h5>
+            <h5 class="c-menu-socials__title">{{ __('Follow us', 'chipmunk') }}</h5>
 
             <nav class="c-menu-socials__list">
               {% for key, value in socials %}
                 <a href="{{ value | e('esc_url') }}" class="c-menu-socials__link" target="_blank" rel="nofollow" title="{{ key | e('esc_html') }}">
-                  {% include 'partials/icon.twig' with { icon: 'social-' ~ key | lower } only %}
+                  {% include 'partials/icon.twig' with { icon: "social-#{key | lower}" } only %}
                   <span class="u-hidden-visually">{{ key | e('esc_html') }}</span>
                 </a>
               {% endfor %}
@@ -21,7 +21,7 @@
       {% if not get_option('disable_submissions') %}
         <div class="c-toolbox__cta {{ socials ? 'u-visible-md-flex' }}">
           <p class="{{ socials ? 'u-visible-lg-block' }}">{{ get_option('submit_tagline') | e('esc_html') }}</p>
-          {% include 'partials/submit-button.twig' with { class: 'c-toolbox__button ' ~ class_name('c-button', 'primary') } %}
+          {% include 'partials/submit-button.twig' with { class: 'c-toolbox__button ' ~ cn('c-button', 'primary') } %}
         </div>
       {% endif %}
     </div>

@@ -1,0 +1,40 @@
+{% do action('chipmunk_before_resource_info') %}
+
+<div class="c-resource__info">
+  {% if is_single %}
+    <h1 class="c-resource__title {{ cn('c-heading', 'h2') }}">
+      {{ post.title }}
+    </h1>
+  {% else %}
+    <h2 class="c-resource__title {{ cn('c-heading', 'h3') }}">
+      <a href="{{ post.link }}">{{ post.title }}</a>
+    </h2>
+  {% endif %}
+
+  {% if post.content %}
+    <div class="c-resource__description {{ cn('c-content', 'type') }}" itemprop="description">
+      {% apply apply_filters('the_content') %}
+        {% if is_search or ((is_content_separated or not post.content) and post.post_excerpt and (post.post_excerpt != post.content)) %}
+          {{ post.excerpt({ chars: 120 }).read_more(null) }}
+        {% else %}
+          {{ post.content }}
+        {% endif %}
+      {% endapply %}
+    </div>
+  {% endif %}
+
+  {% if not is_search %}
+    {% include 'partials/stats.twig' with {
+      class: 'c-resource__tags',
+      stats: {
+        terms: {
+          term_args: {
+            taxonomy: 'resource-tag',
+          },
+        },
+      },
+    } %}
+  {% endif %}
+</div>
+
+{% do action('chipmunk_after_resource_info') %}

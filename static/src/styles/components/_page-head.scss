@@ -5,10 +5,12 @@
 .c-page-head {
   @extend %bordered-box;
 
+  position: absolute;
   z-index: var(--chipmunk--layer--head);
   background-color: var(--chipmunk--color--section);
 
   &--sticky {
+    position: fixed;
     inset: 0 0 auto;
 
     .admin-bar & {
@@ -33,7 +35,7 @@
   transition-property: padding;
   transition-duration: var(--chipmunk--transition-duration);
 
-  .is-condensed .is-sticky & {
+  .is-condensed .c-page-head--sticky & {
     padding-top: spacer-clamped(1);
     padding-bottom: spacer-clamped(1);
   }

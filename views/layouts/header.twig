@@ -1,4 +1,4 @@
-<header class="{{ class_name('c-page-head', get_option('sticky_header') ? 'sticky') }}" data-placehold-height="header">
+<header class="{{ cn('c-page-head', get_option('sticky_header') ? 'sticky') }}" data-placehold-height="header">
   <div class="l-container">
     <div class="c-page-head__inner">
       <{{ is_front_page ? 'h1' : 'div' }} class="c-page-head__logo">
@@ -24,7 +24,7 @@
         {% if not get_option('disable_search') %}
           <button class="c-page-head__icon" data-panel="search">
             {% include 'partials/icon.twig' with { icon: 'search', size: 'lg' } only %}
-            <span class="u-hidden-visually">{{ __( 'Search', 'chipmunk' ) }}</span>
+            <span class="u-hidden-visually">{{ __('Search', 'chipmunk') }}</span>
           </button>
         {% endif %}
 
@@ -39,29 +39,29 @@
                 {% include 'partials/icon.twig' with { icon: 'chevron-down', size: 'sm' } only %}
               </button>
 
-              <nav class="{{ class_name('u-dropdown', get_option('dropdown_theme')) }}">
-                <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'dashboard' ) ); ?>" class="u-dropdown__link">{{ __( 'Dashboard', 'chipmunk' ) }}</a>
+              <nav class="{{ cn('u-dropdown', get_option('dropdown_theme')) }}">
+                <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'dashboard' ) ); ?>" class="u-dropdown__link">{{ __('Dashboard', 'chipmunk') }}</a>
                 {% if false | apply_filters('chipmunk_enable_user_profiles') %}
-                  <a href="{{ user.path }}" class="u-dropdown__link">{{ __( 'Profile', 'chipmunk' ) }}</a>
+                  <a href="{{ user.path }}" class="u-dropdown__link">{{ __('Profile', 'chipmunk') }}</a>
                 {% endif %}
-                <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'profile' ) ); ?>" class="u-dropdown__link">{{ __( 'Edit Profile', 'chipmunk' ) }}</a>
+                <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'profile' ) ); ?>" class="u-dropdown__link">{{ __('Edit Profile', 'chipmunk') }}</a>
                 {% include 'partials/submit-button.twig' with { class: 'u-dropdown__link' } %}
-                <a href="{{ fn('wp_logout_url') }}" class="u-dropdown__link">{{ __( 'Logout', 'chipmunk' ) }}</a>
+                <a href="{{ fn('wp_logout_url') }}" class="u-dropdown__link">{{ __('Logout', 'chipmunk') }}</a>
               </nav>
             </div>
           {% else %}
-            <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'login' ) ); ?>" class="{{ class_name('c-button', 'primary-outline') }} u-visible-lg-block">
-              {{ __( 'Login', 'chipmunk' ) }}
+            <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'login' ) ); ?>" class="{{ cn('c-button', 'primary-outline') }} u-visible-lg-block">
+              {{ __('Login', 'chipmunk') }}
             </a>
 
             {% if site.option('users_can_register') %}
-              <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'register' ) ); ?>" class="{{ class_name('c-button', 'primary-outline') }} u-visible-lg-block">
-                {{ __( 'Register', 'chipmunk' ) }}
+              <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'register' ) ); ?>" class="{{ cn('c-button', 'primary-outline') }} u-visible-lg-block">
+                {{ __('Register', 'chipmunk') }}
               </a>
             {% endif %}
           {% endif %}
         {% elseif not get_option('disable_submissions') %}
-          {% include 'partials/submit-button.twig' with { class: class_name('c-button', 'primary-outline') ~ ' u-visible-lg-block' } %}
+          {% include 'partials/submit-button.twig' with { class: cn('c-button', 'primary-outline') ~ ' u-visible-lg-block' } %}
         {% endif %}
 
         <button class="c-page-head__icon u-hamburger u-hidden-lg" data-panel="nav">
@@ -73,7 +73,7 @@
         <div class="c-page-head__search">
           <button type="button" data-panel="search">
             {% include 'partials/icon.twig' with { icon: 'close', size: 'lg' } only %}
-            <span class="u-hidden-visually">{{ __( 'Close', 'chipmunk' ) }}</span>
+            <span class="u-hidden-visually">{{ __('Close', 'chipmunk') }}</span>
           </button>
 
           {% include 'partials/search.twig' with { default: true } %}

@@ -23,7 +23,7 @@
 		<article class="c-resource" itemscope itemtype="http://schema.org/Product">
 			<meta itemprop="name" content="<?php echo esc_attr( strip_tags( get_the_title() ) ); ?>" />
 
-			<div class="c-resource__content<?php echo esc_attr( ( ! has_post_thumbnail() || ! Chipmunk\Helpers::isFeatureEnabled( 'single_thumbs', 'resource' ) ) ? ' c-resource__content--full' : '' ); ?>">
+			<div class="c-resource__content<?php echo esc_attr( ( ! has_post_thumbnail() || ! Chipmunk\Helpers::isOptionEnabled( 'single_thumbs', 'resource' ) ) ? ' c-resource__content--full' : '' ); ?>">
 				<?php do_action( 'chipmunk_before_resource_info' ); ?>
 
 				<div class="c-resource__info">
@@ -88,7 +88,7 @@
 				<?php do_action( 'chipmunk_after_resource_actions' ); ?>
 			</div>
 
-			<?php if ( has_post_thumbnail() && Chipmunk\Helpers::isFeatureEnabled( 'single_thumbs', 'resource' ) ) : ?>
+			<?php if ( has_post_thumbnail() && Chipmunk\Helpers::isOptionEnabled( 'single_thumbs', 'resource' ) ) : ?>
 				<?php $media_class = Chipmunk\Helpers::class_name( 'c-media', Chipmunk\Helpers::getOption( 'resource_image_aspect_ratio' ) ); ?>
 				<?php $media_class = "c-resource__media $media_class"; ?>
 
@@ -124,7 +124,7 @@
 						],
 					] ); ?>
 
-					<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'sharing', 'resource' ) ) : ?>
+					<?php if ( Chipmunk\Helpers::isOptionEnabled( 'sharing', 'resource' ) ) : ?>
 						<div class="c-resource__share">
 							<?php Chipmunk\Helpers::get_template_part( 'partials/share-box' ); ?>
 						</div>

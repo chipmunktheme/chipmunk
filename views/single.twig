@@ -1,0 +1,7 @@
+{% extends '_layout.twig' %}
+
+{% block content %}
+  {% include "entry/#{post.type}.twig" %}
+  {% include 'sections/comments.twig' %}
+  {% include "loop/#{post.type}.twig" %}
+{% endblock %}

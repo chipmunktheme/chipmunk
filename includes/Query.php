@@ -96,7 +96,7 @@ class Query {
 		}
 
 		// Add default taxonomy args
-		if ( ( is_tax() && ! empty( $term ) ) || ( ! empty( $_GET['tag'] ) && Helpers::isFeatureEnabled( 'filters', 'resource', false ) ) ) {
+		if ( ( is_tax() && ! empty( $term ) ) || ( ! empty( $_GET['tag'] ) && Helpers::isOptionEnabled( 'filters', 'resource', false ) ) ) {
 			$defaults = array_merge( $defaults, self::get_resources_tax_args( $term ) );
 		}
 
@@ -124,7 +124,7 @@ class Query {
 		$sort_args = [];
 
 		// Apply sorting options
-		if ( ! empty( $_GET['sort'] ) && Helpers::isFeatureEnabled( 'sorting', 'resource', false ) ) {
+		if ( ! empty( $_GET['sort'] ) && Helpers::isOptionEnabled( 'sorting', 'resource', false ) ) {
 			$sort_params = explode( '-', $_GET['sort'] );
 			$sort_orderby = $sort_params[0];
 			$sort_order = $sort_params[1];
@@ -186,7 +186,7 @@ class Query {
 		}
 
 		// Apply tag filters
-		if ( ! empty( $_GET['tag'] ) && Helpers::isFeatureEnabled( 'filters', 'resources', false ) ) {
+		if ( ! empty( $_GET['tag'] ) && Helpers::isOptionEnabled( 'filters', 'resources', false ) ) {
 			$tax_query[] = [
 				'taxonomy'          => 'resource-tag',
 				'field'             => 'slug',

@@ -26,7 +26,7 @@ class Admin {
 	 * Displays admin notices if there are any
 	 */
 	public static function display_admin_notices() {
-		$notices = apply_filters( 'chipmunk_admin_notices', Helpers::check_requirements() );
+		$notices = apply_filters( 'chipmunk_admin_notices', Helpers::checkRequirements() );
 
 		foreach ( $notices as $notice ) { ?>
 			<div class="notice notice-<?php echo esc_attr( $notice['type'] ?? 'error' ); ?>">

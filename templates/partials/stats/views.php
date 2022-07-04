@@ -1,4 +1,4 @@
-<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'views', get_post_type() ) ) : ?>
+<?php if ( Chipmunk\Helpers::isOptionEnabled( 'views', get_post_type() ) ) : ?>
 	<li class="c-stats__item c-stats__item--views" title="<?php esc_attr_e( 'Views', 'chipmunk' ); ?>">
 		<?php Chipmunk\Helpers::get_template_part( 'partials/icon', [ 'icon' => 'eye' ] ); ?>
 

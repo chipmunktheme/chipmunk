@@ -41,9 +41,9 @@
 
 					<?php do_action( 'chipmunk_before_post_footer' ); ?>
 
-					<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'sharing', 'post' ) || Chipmunk\Helpers::isFeatureEnabled( 'tags', 'post' ) ) : ?>
+					<?php if ( Chipmunk\Helpers::isOptionEnabled( 'sharing', 'post' ) || Chipmunk\Helpers::isOptionEnabled( 'tags', 'post' ) ) : ?>
 						<div class="c-entry__footer">
-							<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'sharing', 'post' ) ) : ?>
+							<?php if ( Chipmunk\Helpers::isOptionEnabled( 'sharing', 'post' ) ) : ?>
 								<?php Chipmunk\Helpers::get_template_part( 'partials/share-box' ); ?>
 							<?php endif; ?>
 

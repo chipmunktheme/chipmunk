@@ -2,8 +2,8 @@
 
 namespace Chipmunk\Extensions;
 
+use Timber\Timber;
 use Chipmunk\Helpers;
-use Chipmunk\Customizer;
 
 /**
  * Upvotes class
@@ -18,20 +18,20 @@ class Upvotes {
 	 *
 	 * @var string
 	 */
-	public static $db_key = '_' . THEME_SLUG . '_upvote';
-	public static $db_key_count = '_' . THEME_SLUG . '_upvote_count';
-	public static $db_old_key = '_' . THEME_SLUG . '_post_upvote_count';
+	public static $dbKey = '_' . THEME_SLUG . '_upvote';
+	public static $dbKeyCount = '_' . THEME_SLUG . '_upvote_count';
+	public static $dbOldKey = '_' . THEME_SLUG . '_post_upvote_count';
 
 	/**
 	 * Create a new upvotes object
 	 *
-	 * @param  object $post_id
+	 * @param  object $postId
 	 */
-	function __construct( $post_id ) {
+	function __construct( $postId ) {
 		global $current_user;
 
-		$this->post_id = intval( wp_filter_kses( $post_id ) );
-		$this->user_id = ! empty( $current_user->ID ) ? $current_user->ID : ( Helpers::is_addon_enabled( 'members' ) && Helpers::getOption( 'restrict_guest_upvotes' ) ? null : Helpers::get_ip() );
+		$this->postId = intval( wp_filter_kses( $postId ) );
+		$this->userId = $current_user->ID ?? ( Helpers::isAddonEnabled( 'members' ) && Helpers::getOption( 'restrict_guest_upvotes' ) ? null : Helpers::getIp() );
 	}
 
 	/**
@@ -41,20 +41,19 @@ class Upvotes {
 	 *
 	 * @return string
 	 */
-	public function get_button( $action, $class = '' ) {
-		$upvoted = $this->is_upvoted();
-		$content = $this->get_content( $upvoted );
+	public function getButton( $action, $class = '' ) {
+		$upvoted = $this->isUpvoted();
+		$content = $this->getContent( $upvoted );
 
 		if ( $upvoted ) {
-			$class = $class . ' is-active';
+			$class .= ' is-active';
 			$title = esc_html__( 'Remove upvote', 'chipmunk' );
 		}
 		else {
 			$title = esc_html__( 'Upvote', 'chipmunk' );
 		}
 
-		$button = "<span class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$content</span>";
-		return $button;
+		return "<span class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->postId'>$content</span>";
 	}
 
 	/**
@@ -62,13 +61,11 @@ class Upvotes {
 	 *
 	 * @return string
 	 */
-	public function get_content() {
-		$icon = Helpers::get_template_part( 'partials/icon', [ 'icon' => 'thumbs-up' ], false );
+	public function getContent() {
+		$icon = Timber::compile( 'partials/icon.twig', [ 'icon' => 'thumbs-up' ] );
+		$label = Helpers::formatNumber( $this->getUpvoteCount() ?? 0 );
 
-		$count = $this->get_upvote_count();
-		$label = ( is_numeric( $count ) && $count > 0 ) ? Helpers::format_number( $count ) : 0;
-
-		return "<span>$icon$label</span";
+		return '<span>' . $icon . $label . '</span>';
 	}
 
 	/**
@@ -76,29 +73,29 @@ class Upvotes {
 	 *
 	 * @return object
 	 */
-	private function toggle_upvote() {
-		$upvoted = $this->is_upvoted();
-		$current_counter = (int) get_post_meta( $this->post_id, self::$db_key_count, true );
+	private function toggleUpvote() {
+		$upvoted = $this->isUpvoted();
+		$current_counter = (int) get_post_meta( $this->postId, self::$dbKeyCount, true );
 
 		// Remove upvote from the post
 		if ( $upvoted ) {
-			delete_post_meta( $this->post_id, self::$db_key, $this->user_id );
-			update_post_meta( $this->post_id, self::$db_key_count, ( $current_counter == 0 ? 0 : $current_counter - 1 ) );
+			delete_post_meta( $this->postId, self::$dbKey, $this->userId );
+			update_post_meta( $this->postId, self::$dbKeyCount, ( $current_counter == 0 ? 0 : $current_counter - 1 ) );
 
 			$response['status'] = 'remove';
 		}
 
 		// Upvote the post
 		else {
-			add_post_meta( $this->post_id, self::$db_key, $this->user_id );
-			update_post_meta( $this->post_id, self::$db_key_count, ( $current_counter + 1 ) );
+			add_post_meta( $this->postId, self::$dbKey, $this->userId );
+			update_post_meta( $this->postId, self::$dbKeyCount, ( $current_counter + 1 ) );
 
 			$response['status'] = 'add';
 		}
 
 		// Set proper resounse params
-		$response['post'] = $this->post_id;
-		$response['content'] = $this->get_content( ! $upvoted );
+		$response['post'] = $this->postId;
+		$response['content'] = $this->getContent( ! $upvoted );
 
 		return $response;
 	}
@@ -108,8 +105,8 @@ class Upvotes {
 	 *
 	 * @return boolean
 	 */
-	private function is_upvoted() {
-		return in_array( $this->user_id, get_post_meta( $this->post_id, self::$db_key ) );
+	private function isUpvoted() {
+		return in_array( $this->userId, get_post_meta( $this->postId, self::$dbKey ) );
 	}
 
 	/**
@@ -118,12 +115,9 @@ class Upvotes {
 	 *
 	 * @return integer
 	 */
-	private function get_upvote_count() {
-		$old_count = (int) get_post_meta( $this->post_id, self::$db_old_key, true );
-		$old_count = ( isset( $old_count ) && is_numeric( $old_count ) ) ? $old_count : 0;
-
-		$count = (int) get_post_meta( $this->post_id, self::$db_key_count, true );
-		$count = ( isset( $count ) && is_numeric( $count ) ) ? $count : 0;
+	private function getUpvoteCount() {
+		$old_count = (int) get_post_meta( $this->postId, self::$dbOldKey, true ) ?? 0;
+		$count = (int) get_post_meta( $this->postId, self::$dbKeyCount, true ) ?? 0;
 
 		return $count + $old_count;
 	}
@@ -133,12 +127,12 @@ class Upvotes {
 	 */
 	public function process() {
 		// Check required attributes
-		if ( ! $this->post_id || ! $this->user_id ) {
+		if ( ! $this->postId || ! $this->userId ) {
 			wp_send_json_error( __( 'Not permitted.', 'chipmunk' ) );
 		}
 
 		// Set proper Post meta values
-		$params = $this->toggle_upvote();
+		$params = $this->toggleUpvote();
 
 		// Return success response
 		wp_send_json_success( $params );

@@ -1,0 +1,13 @@
+{% set output %}
+  {% for stat, args in stats %}
+    {% if args %}
+      {% include "partials/stats/#{stat}.twig" with (args is iterable ? args : {}) %}
+    {% endif %}
+  {% endfor %}
+{% endset %}
+
+{% if output %}
+	<ul class="c-stats {{ class ?? '' }}">
+		{{ output }}
+	</ul>
+{% endif %}

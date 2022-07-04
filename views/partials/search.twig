@@ -1,6 +1,6 @@
-<form action="{{ site.link }}" method="get" class="{{ class_name('c-form', 'inline', narrow ? 'narrow') }}" role="search" novalidate data-validate autocomplete="off">
+<form action="{{ site.link }}" method="get" class="{{ cn('c-form', 'inline', narrow ? 'narrow') }}" role="search" novalidate data-validate autocomplete="off">
 	<div class="c-form__field">
-		<input type="text" name="s" placeholder="{{ __( 'Search query...', 'chipmunk' ) }}" value="{{ search_query }}" class="{{ class_name('c-form__input', default ? 'default') }}" required minlength="3">
+		<input type="text" name="s" placeholder="{{ __('Search query...', 'chipmunk') }}" value="{{ search_query }}" class="{{ cn('c-form__input', default ? 'default') }}" required minlength="3">
 
 		<button type="submit" class="c-form__button">
       {% include 'partials/icon.twig' with { icon: 'search' } only %}

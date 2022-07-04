@@ -1,0 +1,49 @@
+{% set action = get_option('newsletter_action') %}
+{% set email_field = 'email' %}
+{% set args = [] %}
+
+{# Mailchimp #}
+{% if 'list-manage.com' in action %}
+	{% set email_field = 'EMAIL' %}
+{% endif %}
+
+{# Convertkit #}
+{% if 'convertkit.com' in action %}
+	{% set email_field = 'email_address' %}
+{% endif %}
+
+{# Revue #}
+{% if 'getrevue.co' in action %}
+	{% set email_field = 'member[email]' %}
+{% endif %}
+
+{% if not get_option('disable_newsletter') and action %}
+	<div class="{{ cn('l-section', 'theme-primary') }}">
+		<div class="l-container">
+			<div class="l-wrapper">
+				<div class="{{ cn('c-lead', 'center') }}">
+					<h4 class="c-lead__title {{ cn('c-heading', 'h1') }}">{{ __('Newsletter', 'chipmunk') }}</h4>
+					<p class="c-lead__content {{ cn('c-content', 'type') }}">{{ get_option('newsletter_tagline') | e('esc_html') }}</p>
+
+					<form action="{{ action | stripslashes | trim('" ') | e('esc_url') }}" method="post" class="c-lead__cta {{ cn('c-form', 'inline', 'narrow') }}" target="_blank" novalidate data-validate>
+						<div class="c-form__field">
+							<input type="email" name="{{ email_field | apply_filters('chipmunk_newsletter_email_field') | e('esc_html') }}" placeholder="{{ __('Email address', 'chipmunk') }}" class="c-form__input" required autocomplete="off">
+							<button type="submit" class="c-form__button">{% include 'partials/icon.twig' with { icon: 'arrow-right' } only %}</button>
+						</div>
+
+            {% if get_option('newsletter_consent') %}
+							<label class="c-form__field c-form__checkbox" data-consent>
+								<input type="checkbox" name="consent" required>
+								<p>{{ get_option('newsletter_consent') | e('esc_html') }}</p>
+							</label>
+            {% endif %}
+
+            {% for key, value in args | apply_filters('chipmunk_newsletter_args') %}
+              <input type="hidden" name="{{ key }}" value="{{ value }}">
+            {% endfor %}
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}

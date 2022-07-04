@@ -2,7 +2,7 @@
 
 namespace Chipmunk\Extensions;
 
-use Chipmunk\Helpers;
+use Timber\Timber;
 
 /**
  * Bookmarks class
@@ -17,18 +17,18 @@ class Bookmarks {
 	 *
 	 * @var string
 	 */
-	public static $db_key = '_chipmunk_bookmark';
+	public static $dbKey = '_chipmunk_bookmark';
 
 	/**
 	 * Create a new bookmarks object
 	 *
-	 * @param  object $post_id
+	 * @param  object $postId
 	 */
-	function __construct( $post_id ) {
+	function __construct( $postId ) {
 		global $current_user;
 
-		$this->post_id = intval( wp_filter_kses( $post_id ) );
-		$this->user_id = $current_user->ID;
+		$this->postId = intval( wp_filter_kses( $postId ) );
+		$this->userId = $current_user->ID;
 	}
 
 	/**
@@ -38,20 +38,19 @@ class Bookmarks {
 	 *
 	 * @return string
 	 */
-	public function get_button( $action, $class = '' ) {
-		$bookmarked  = $this->is_bookmarked();
-		$content     = $this->get_content( $bookmarked );
+	public function getButton( $action, $class = '' ) {
+		$bookmarked  = $this->isBookmarked();
+		$content     = $this->getContent( $bookmarked );
 
 		if ( $bookmarked ) {
-			$class = $class . ' is-active';
+			$class .= ' is-active';
 			$title = esc_html__( 'Remove bookmark', 'chipmunk' );
 		}
 		else {
 			$title = esc_html__( 'Bookmark', 'chipmunk' );
 		}
 
-		$button = "<span class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$content</span>";
-		return $button;
+		return "<span class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->postId'>$content</span>";
 	}
 
 	/**
@@ -59,23 +58,23 @@ class Bookmarks {
 	 *
 	 * @return object
 	 */
-	private function toggle_bookmark() {
-		$bookmarked = $this->is_bookmarked();
+	private function toggleBookmark() {
+		$bookmarked = $this->isBookmarked();
 
 		// Remove bookmark from the post
 		if ( $bookmarked ) {
-			delete_post_meta( $this->post_id, self::$db_key, $this->user_id );
+			delete_post_meta( $this->postId, self::$dbKey, $this->userId );
 			$response['status'] = 'remove';
 		}
 
 		// Bookmark the post
 		else {
-			add_post_meta( $this->post_id, self::$db_key, $this->user_id );
+			add_post_meta( $this->postId, self::$dbKey, $this->userId );
 			$response['status'] = 'add';
 		}
 
-		$response['post'] = $this->post_id;
-		$response['content'] = $this->get_content( ! $bookmarked );
+		$response['post'] = $this->postId;
+		$response['content'] = $this->getContent( ! $bookmarked );
 
 		return $response;
 	}
@@ -83,21 +82,21 @@ class Bookmarks {
 	/**
 	 * Tests if the post is already bookmarked
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
-	private function is_bookmarked() {
-		return in_array( $this->user_id, get_post_meta( $this->post_id, self::$db_key ) );
+	private function isBookmarked() {
+		return in_array( $this->userId, get_post_meta( $this->postId, self::$dbKey ) );
 	}
 
 	/**
 	 * Retrieves proper content template
 	 *
-	 * @param  boolean  $active
+	 * @param  bool  $active
 	 *
 	 * @return string
 	 */
-	private function get_content( $active ) {
-		$icon = Helpers::get_template_part( 'partials/icon', [ 'icon' => 'bookmark' ], false );
+	private function getContent( $active ) {
+		$icon = Timber::compile( 'partials/icon.twig', [ 'icon' => 'bookmark' ] );
 		$label = $active ? __( 'Bookmarked', 'chipmunk' ) : __( 'Bookmark', 'chipmunk' );
 
 		return '<span>' . $icon . $label . '</span>';
@@ -108,12 +107,12 @@ class Bookmarks {
 	 */
 	public function process() {
 		// Check required attributes
-		if ( ! $this->post_id || ! $this->user_id ) {
+		if ( ! $this->postId || ! $this->userId ) {
 			wp_send_json_error( __( 'Not permitted.', 'chipmunk' ) );
 		}
 
 		// Set proper Post meta values
-		$params = $this->toggle_bookmark();
+		$params = $this->toggleBookmark();
 
 		// Return success response
 		wp_send_json_success( $params );

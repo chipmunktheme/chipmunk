@@ -2,6 +2,7 @@
 
 namespace Chipmunk\Addons\Ratings;
 
+use Timber\Timber;
 use Chipmunk\Helpers;
 
 /**
@@ -16,11 +17,11 @@ class Renderers {
  	 * Class constructor
 	 */
 	public function __construct() {
-		if ( Helpers::isFeatureEnabled( 'ratings', 'resource', false ) ) {
+		if ( Helpers::isOptionEnabled( 'ratings', 'resource', false ) ) {
 			add_action( 'chipmunk_resource_extras', [ $this, 'render_rating_form' ] );
 		}
 
-		if ( Helpers::isFeatureEnabled( 'ratings', 'post', false ) ) {
+		if ( Helpers::isOptionEnabled( 'ratings', 'post', false ) ) {
 			add_action( 'chipmunk_post_extras', [ $this, 'render_rating_form' ] );
 		}
 	}
@@ -31,13 +32,14 @@ class Renderers {
 	 * @return string  The template output
 	 */
 	public function render_rating_form() {
+		$context = Timber::context();
 		$ratings = new Ratings( get_the_ID() );
 
+		$context['ratings'] 	= $ratings->get_ratings();
+		$context['summary'] 	= $ratings->get_ratings_summary();
+		$context['max_rating'] 	= $ratings->get_max_rating();
+
 		// Render form template
-		Helpers::get_template_part( 'addons/ratings/rating-form', [
-			'ratings'    => $ratings->get_ratings(),
-			'summary'    => $ratings->get_ratings_summary(),
-			'max_rating' => $ratings->get_max_rating(),
-		], true );
+		Timber::render( 'addons/ratings/rating-form.twig', $context );
 	}
 }

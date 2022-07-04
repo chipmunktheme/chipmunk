@@ -33,7 +33,7 @@
 		],
 		'popular'   => [
 			'label'     => esc_html__( 'Popular', 'chipmunk' ),
-			'results'   => ! Chipmunk\Helpers::isFeatureEnabled( 'views', 'resource', false )
+			'results'   => ! Chipmunk\Helpers::isOptionEnabled( 'views', 'resource', false )
 				? new \WP_Query
 				: Chipmunk\Query::get_resources( [
 					'posts_per_page'    => $resources_count,

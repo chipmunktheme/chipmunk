@@ -1,0 +1,13 @@
+{% if not is_search %}
+  {% if post.content and is_content_separated %}
+		<div class="l-section">
+			<div class="l-container">
+				<div class="l-wrapper">
+					<div class="c-entry__content {{ cn('c-content', 'type') }}">
+						{{ post.content }}
+					</div>
+				</div>
+			</div>
+		</div>
+  {% endif %}
+{% endif %}

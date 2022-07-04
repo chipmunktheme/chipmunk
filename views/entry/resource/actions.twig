@@ -1,0 +1,17 @@
+{% do action('chipmunk_before_resource_actions') %}
+
+{% if is_search or links %}
+  <div class="c-resource__actions">
+    {% if is_search %}
+      <a href="{{ post.link }}" class="{{ cn('c-button', 'primary-outline') }}">
+        {{ __('Read more', 'chipmunk') }}
+      </a>
+    {% else %}
+      {% for link in links %}
+        {% include 'partials/button.twig' with link | merge({ class: 'c-resource__button ' ~ cn('c-button', 'primary-outline') }) %}
+      {% endfor %}
+    {% endif %}
+  </div>
+{% endif %}
+
+{% do action('chipmunk_after_resource_actions') %}

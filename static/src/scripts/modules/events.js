@@ -29,24 +29,18 @@ const Events = {
 
   /* Private functions */
   calculatePlaceholderHeight() {
-    const root = document.documentElement;
     const objects = Array.from(document.querySelectorAll('[data-placehold-height]'));
 
     objects.forEach((object) => {
       const name = object.dataset.placeholdHeight;
-      root.style.setProperty(`--${name}-height`, `${object.clientHeight}px`);
-
-      if (object.classList.contains('is-sticky')) {
-        object.style.setProperty('position', 'fixed');
-      }
+      document.body.style.setProperty(`--${name}-height`, `${object.clientHeight}px`);
     });
 
     this.heightCalculated = true;
   },
 
   calculateScrollbarWidth() {
-    const root = document.documentElement;
-    root.style.setProperty('--scrollbar-width', `${window.innerWidth - root.clientWidth}px`);
+    document.body.style.setProperty('--scrollbar-width', `${window.innerWidth - root.clientWidth}px`);
   },
 
   handleScrollStatus() {
@@ -54,12 +48,11 @@ const Events = {
       return;
     }
 
-    const body = document.documentElement;
     const scrolledClass = 'is-condensed';
     const offset = 50;
-    const currentScroll = body.scrollTop;
+    const currentScroll = document.documentElement.scrollTop;
 
-    body.classList.toggle(scrolledClass, currentScroll > offset);
+    document.body.classList.toggle(scrolledClass, currentScroll > offset);
   },
 };
 

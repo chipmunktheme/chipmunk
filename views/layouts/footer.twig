@@ -5,8 +5,8 @@
     <div class="c-page-foot__inner">
       {% if about %}
         <div class="c-page-foot__column">
-          <h5 class="c-page-foot__heading {{ class_name('c-heading', 'h6') }}">
-            {{ __( 'About', 'chipmunk' ) }}
+          <h5 class="c-page-foot__heading {{ cn('c-heading', 'h6') }}">
+            {{ __('About', 'chipmunk') }}
           </h5>
 
           <div class="c-page-foot__description c-content">
@@ -17,8 +17,8 @@
 
       {% if menus.secondary.items or not get_option('disable_submissions') %}
         <div class="c-page-foot__column">
-          <h5 class="c-page-foot__heading {{ class_name('c-heading', 'h6') }}">
-            {{ __( 'Navigation', 'chipmunk' ) }}
+          <h5 class="c-page-foot__heading {{ cn('c-heading', 'h6') }}">
+            {{ __('Navigation', 'chipmunk') }}
           </h5>
 
           {% embed 'partials/menu.twig' with { type: 'secondary', items: menus.secondary.items } %}
@@ -33,8 +33,8 @@
 
       {% if socials %}
         <div class="c-page-foot__column u-visible-lg-flex">
-          <h5 class="c-page-foot__heading {{ class_name('c-heading', 'h6') }}">
-            {{ __( 'Follow', 'chipmunk' ) }}
+          <h5 class="c-page-foot__heading {{ cn('c-heading', 'h6') }}">
+            {{ __('Follow', 'chipmunk') }}
           </h5>
 
           <nav class="c-menu-secondary">

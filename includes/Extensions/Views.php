@@ -20,13 +20,13 @@ class Views {
 	 *
 	 * @return int
 	 */
-	public static function get_views( $id ) {
-		$db_key = '_chipmunk_post_view_count';
-		$count = get_post_meta( $id, $db_key, true );
+	public static function getViews( $id ) {
+		$dbKey = '_chipmunk_post_view_count';
+		$count = get_post_meta( $id, $dbKey, true );
 
 		if ( $count == '' ) {
-			delete_post_meta( $id, $db_key );
-			add_post_meta( $id, $db_key, '0' );
+			delete_post_meta( $id, $dbKey );
+			add_post_meta( $id, $dbKey, '0' );
 			return 0;
 		}
 
@@ -38,22 +38,22 @@ class Views {
 	 *
 	 * @param $id Post ID number
 	 */
-	public static function set_views( $id ) {
-		$db_key = '_chipmunk_post_view_count';
-		$count = get_post_meta( $id, $db_key, true );
+	public static function setViews( $id ) {
+		$dbKey = '_chipmunk_post_view_count';
+		$count = get_post_meta( $id, $dbKey, true );
 
 		if ( $count == '' ) {
 			$count = 0;
-			delete_post_meta( $id, $db_key );
-			add_post_meta( $id, $db_key, 0 );
+			delete_post_meta( $id, $dbKey );
+			add_post_meta( $id, $dbKey, 0 );
 		}
 		else {
-			if ( ! isset( $_COOKIE[ $db_key . '-' . $id ] ) ) {
+			if ( ! isset( $_COOKIE[ $dbKey . '-' . $id ] ) ) {
 				$count++;
-				update_post_meta( $id, $db_key, $count );
+				update_post_meta( $id, $dbKey, $count );
 
 				if ( ! Helpers::getOption( 'disable_cookies' ) ) {
-					setcookie( $db_key . '-' . $id, true );
+					setcookie( $dbKey . '-' . $id, true );
 				}
 			}
 		}

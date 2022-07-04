@@ -2,6 +2,7 @@
 
 namespace Chipmunk;
 
+use Timber\Timber;
 use Chipmunk\Customizer;
 use Chipmunk\Settings\Addons;
 
@@ -37,50 +38,16 @@ class Helpers {
 	}
 
 	/**
-	 * Check if feature is enabled in customizer
+	 * Check if option is enabled in customizer
 	 *
 	 * @param string $feature 		Feature name
-	 * @param string $post_type 	Post type name
-	 * @param bool $check_type 		Optional. Whether or not to check post type
+	 * @param string $postType 	Post type name
+	 * @param bool $checkType 		Optional. Whether or not to check post type
 	 *
 	 * @return bool
 	 */
-	public static function isFeatureEnabled( $feature, $post_type, $check_type = true ) {
-		return ! self::getOption( "disable_{$post_type}_{$feature}" ) && ( $check_type ? get_post_type() == $post_type : true );
-	}
-
-	/**
-	 * Renders the contents of the given template and return or outputs it
-	 *
-	 * @param string $template 	The name of the template to render (without .php)
-	 * @param array  $params    The PHP variables for the template
-	 * @param bool   $output    Whether the result should be returned or outputted
-	 *
-	 * @return ?string
-	 */
-	public static function getTemplatePart( $template, $params = [], $output = true ) {
-		if ( ! $output ) {
-			ob_start();
-		}
-
-		if ( is_array( $template ) ) {
-			$template = implode( '-', $template );
-		}
-
-		if ( empty( $params ) ) {
-			get_template_part( THEME_TEMPLATES_PATH . $template );
-		}
-
-		elseif ( $template_file = locate_template( THEME_TEMPLATES_PATH . "{$template}.php", false, false ) ) {
-			extract( $params, EXTR_SKIP );
-			require( $template_file );
-		}
-
-		if ( ! $output ) {
-			return ob_get_clean();
-		}
-
-		return null;
+	public static function isOptionEnabled( $feature, $postType, $checkType = true ) {
+		return ! self::getOption( "disable_{$postType}_{$feature}" ) && ( $checkType ? get_post_type() == $postType : true );
 	}
 
 	/**
@@ -89,31 +56,30 @@ class Helpers {
 	 * @return array
 	 */
 	public static function checkRequirements() {
-		global $wp_version;
-
-		$php_version = phpversion();
-		$php_min_version = '7.4.0';
-		$wp_min_version = '5.0';
+		$phpVersion = phpversion();
+		$wpVersion = get_bloginfo('version');
+		$phpMinVersion = '7.4.0';
+		$wpMinVersion = '5.0';
 		$notices = [];
 
-		if ( version_compare( $php_min_version, $php_version, '>' ) ) {
+		if ( version_compare( $phpMinVersion, $phpVersion, '>' ) ) {
 			$notices[] = [
 				'type' => 'error',
 				'message' => sprintf(
 					__( 'Chipmunk requires PHP %1$s or greater. You have %2$s.', 'chipmunk' ),
-					$php_min_version,
-					$php_version
+					$phpMinVersion,
+					$phpVersion
 				),
 			];
 		}
 
-		if ( version_compare( $wp_min_version, $wp_version, '>' ) ) {
+		if ( version_compare( $wpMinVersion, $wpVersion, '>' ) ) {
 			$notices[] = [
 				'type' => 'error',
 				'message' => sprintf(
 					__( 'Chipmunk requires WordPress %1$s or greater. You have %2$s.', 'chipmunk' ),
-					$wp_min_version,
-					$wp_version
+					$wpMinVersion,
+					$wpVersion
 				),
 			];
 		}
@@ -163,9 +129,9 @@ class Helpers {
 	 * @return bool True if the CAPTCHA is OK, otherwise false.
 	 */
 	public static function verifyRecaptcha( $response ) {
-		$enabled    = self::getOption( 'recaptcha_enabled' );
-		$site_key   = self::getOption( 'recaptcha_site_key' );
-		$secret_key = self::getOption( 'recaptcha_secret_key' );
+		$enabled	= self::getOption( 'recaptcha_enabled' );
+		$siteKey	= self::getOption( 'recaptcha_site_key' );
+		$secretKey	= self::getOption( 'recaptcha_secret_key' );
 
 		// Verify if user is logged in
 		if ( is_user_logged_in() ) {
@@ -173,7 +139,7 @@ class Helpers {
 		}
 
 		// Verify if recaptcha is disabled
-		if ( ! $enabled or ! $site_key ) {
+		if ( ! $enabled or ! $siteKey ) {
 			return true;
 		}
 
@@ -181,13 +147,13 @@ class Helpers {
 			return false;
 		}
 
-		if ( $secret_key ) {
+		if ( $secretKey ) {
 			// Verify the captcha response from Google
-			$remote_response = wp_remote_post(
+			$remoteResponse = wp_remote_post(
 				'https://www.google.com/recaptcha/api/siteverify',
 				[
 					'body' => [
-						'secret' => $secret_key,
+						'secret' => $secretKey,
 						'response' => $response
 					]
 				]
@@ -195,9 +161,9 @@ class Helpers {
 
 			$success = false;
 
-			if ( $remote_response && is_array( $remote_response ) ) {
-				$decoded_response = json_decode( $remote_response['body'] );
-				$success = $decoded_response->success;
+			if ( $remoteResponse && is_array( $remoteResponse ) ) {
+				$decodedResponse = json_decode( $remoteResponse['body'] );
+				$success = $decodedResponse->success;
 			}
 
 			return $success;
@@ -228,13 +194,13 @@ class Helpers {
 	/**
 	 * Get post counter
 	 *
-	 * @param string $post_type 	Post type
-	 * @param string $post_status 	Post status
+	 * @param string $postType 	Post type
+	 * @param string $postStatus 	Post status
 	 *
 	 * @return int
 	 */
-	public static function getPostCount( $post_type, $post_status ) {
-		return wp_count_posts( $post_type )->$post_status;
+	public static function getPostCount( $postType, $postStatus ) {
+		return wp_count_posts( $postType )->$postStatus;
 	}
 
 	/**
@@ -289,15 +255,15 @@ class Helpers {
 		$text = str_replace( ']]>', ']]&gt;', $text );
 		$text = strip_tags( $text );
 
-		$excerpt_length = apply_filters( 'excerpt_length', 55 );
-		$excerpt_more = apply_filters( 'excerpt_more', ' ' . '[...]' );
+		$excerptLength = apply_filters( 'excerpt_length', 55 );
+		$excerptMore = apply_filters( 'excerpt_more', ' ' . '[...]' );
 		$words = preg_split( "/[\n
-			]+/", $text, $excerpt_length + 1, PREG_SPLIT_NO_EMPTY );
+			]+/", $text, $excerptLength + 1, PREG_SPLIT_NO_EMPTY );
 
-		if ( count( $words ) > $excerpt_length ) {
+		if ( count( $words ) > $excerptLength ) {
 			array_pop( $words );
 			$text = implode( ' ', $words );
-			$text = $text . $excerpt_more;
+			$text = $text . $excerptMore;
 		}
 		else {
 			$text = implode( ' ', $words );
@@ -392,23 +358,22 @@ class Helpers {
 		] );
 
 		$output = '';
-		$count = count( $terms );
 
 		// Max length of post term (set 0 to display full term)
-		$term_max_length = apply_filters( 'chipmunk_term_max_length', 25 );
+		$termMaxLength = apply_filters( 'chipmunk_term_max_length', 25 );
 
-		if ( $args['quantity'] > 0 && $args['quantity'] < $count && apply_filters( 'chipmunk_shuffle_terms', false ) ) {
+		if ( $args['quantity'] > 0 && $args['quantity'] < count( $terms ) && apply_filters( 'chipmunk_shuffle_terms', false ) ) {
 			shuffle( $terms );
 		}
 
 		foreach ( $terms as $key => $term ) {
 			if ( $args['quantity'] < 0 || $args['quantity'] > $key ) {
 				if ( $args['type'] == 'link' ) {
-					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '">' . esc_html( self::truncateString( $term->name, $term_max_length ) ) . '</a>';
+					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '">' . esc_html( self::truncateString( $term->name, $termMaxLength ) ) . '</a>';
 				}
 
 				if ( $args['type'] == 'text' ) {
-					$output .= '<span>' . esc_html( self::truncateString( $term->name, $term_max_length ) ) . '</span>';
+					$output .= '<span>' . esc_html( self::truncateString( $term->name, $termMaxLength ) ) . '</span>';
 				}
 			}
 		}
@@ -417,27 +382,32 @@ class Helpers {
 	}
 
 	/**
-	 * Get primary resource website link
+	 * Get resource links
 	 *
-	 * @param int $resource_id ID of the resource
+	 * @param int $postId ID of the resource
 	 *
 	 * @return ?string
 	 */
-	public static function getResourceWebsite( $resource_id ) {
-		$key_prefix = '_' . THEME_SLUG . '_resource_';
+	public static function getResourceLinks( $postId ) {
+		$keyPrefix = '_' . THEME_SLUG . '_resource_';
+		$links = [];
 
-		$website = get_post_meta( $resource_id, $key_prefix . 'website', true );
-		$links = get_field( $key_prefix . 'links', $resource_id );
+		$metaWebsite = get_post_meta( $postId, $keyPrefix . 'website', true );
+		$metaLinks = get_field( $keyPrefix . 'links',  $postId );
 
-		if ( ! empty( $website ) ) {
-			return $website;
+		if ( ! empty( $metaWebsite ) ) {
+			$links[] = [
+				'title' 	=> apply_filters( 'chipmunk_submission_website_label', __( 'Visit website', 'chipmunk' ) ),
+				'url' 		=> $metaWebsite,
+				'target' 	=> '_blank',
+			];
 		}
 
-		if ( ! empty( $links ) ) {
-			return $links[0]['link']['url'];
+		if ( ! empty( $metaLinks ) ) {
+			$links = array_merge( $links, array_column( $metaLinks, 'link' ) );
 		}
 
-		return null;
+		return $links;
 	}
 
 	/**
@@ -495,7 +465,7 @@ class Helpers {
 					</div>
 
 					<div class="c-comment__reply">
-						<?php comment_reply_link( array_merge( $args, [ 'reply_text' => self::getTemplatePart( 'partials/icon', [ 'icon' => 'reply' ], false ) . esc_html__( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ] ) ); ?>
+						<?php comment_reply_link( array_merge( $args, [ 'reply_text' => Timber::compile( 'partials/icon.twig', [ 'icon' => 'reply' ] ) . esc_html__( 'Reply', 'chipmunk' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ] ) ); ?>
 					</div>
 
 					<?php if ( ! $comment->comment_approved ) : ?>
@@ -509,23 +479,23 @@ class Helpers {
 	/**
 	 * Add post meta from the array
 	 *
-	 * @param int $post_id 		ID of the post
+	 * @param int $postId 		ID of the post
 	 * @param array $meta 		Array of key => value pairs of meta to add to the post
 	 * @param array $allowed 	Array of allowed post types
 	 * @param bool $unique 		Optional. Whether the same key should not be added.
 	 *
 	 * @return int
 	 */
-	public static function addPostMeta( $post_ID, $meta, $allowed, $unique = true ) {
-		if ( ! in_array( get_post_type( $post_ID ), $allowed ) ) {
-			return $post_ID;
+	public static function addPostMeta( $postId, $meta, $allowed, $unique = true ) {
+		if ( ! in_array( get_post_type( $postId ), $allowed ) ) {
+			return $postId;
 		}
 
 		foreach ( $meta as $key => $value ) {
-			add_post_meta( $post_ID, $key, $value, $unique );
+			add_post_meta( $postId, $key, $value, $unique );
 		}
 
-		return $post_ID;
+		return $postId;
 	}
 
 	/**
@@ -549,12 +519,12 @@ class Helpers {
 	 *
 	 * @param string $str 		String to be truncated
 	 * @param int $chars 		Character limit
-	 * @param bool $to_space 	Optional. Whether to cut the the closest space or not
+	 * @param bool $toSpace 	Optional. Whether to cut the the closest space or not
 	 * @param string $suffix 	Optional. String to add to the end of truncated text
 	 *
 	 * @return string
 	 */
-	public static function truncateString( $str, $chars, $to_space = true, $suffix = '&hellip;' ) {
+	public static function truncateString( $str, $chars, $toSpace = true, $suffix = '&hellip;' ) {
 		$str = strip_tags( $str );
 
 		if ( $chars == 0 || $chars > strlen( $str ) ) {
@@ -562,9 +532,9 @@ class Helpers {
 		}
 
 		$str = substr( $str, 0, $chars );
-		$space_pos = strrpos( $str, ' ' );
+		$spacePos = strrpos( $str, ' ' );
 
-		if ( $to_space && $space_pos >= 0 ) {
+		if ( $toSpace && $spacePos >= 0 ) {
 			$str = substr( $str, 0, strrpos( $str, ' ' ) );
 		}
 
@@ -574,24 +544,24 @@ class Helpers {
 	/**
 	 * Gets popular fonts from Google Fonts API
 	 *
-	 * @param string $api_key 	Google Fonts API Key
+	 * @param string $apiKey 	Google Fonts API Key
 	 * @param array $sort 		Optional. Sort option to pass to the Google Fonts API
 	 *
 	 * @return ?array
 	 */
-	public static function getGoogleFonts( $api_key, $sort = 'popularity' ) {
-		$ch = curl_init( "https://www.googleapis.com/webfonts/v1/webfonts?key=$api_key&sort=$sort" );
+	public static function getGoogleFonts( $apiKey, $sort = 'popularity' ) {
+		$ch = curl_init( "https://www.googleapis.com/webfonts/v1/webfonts?key=$apiKey&sort=$sort" );
 		curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Content-Type: application/json' ] );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, FALSE );
 
 		$response = curl_exec( $ch );
-		$http_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+		$httpCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
 		curl_close( $ch );
 
 		$fonts = json_decode( $response, true );
 
-		if ( $http_code == 200 && ! empty( $fonts ) ) {
+		if ( $httpCode == 200 && ! empty( $fonts ) ) {
 			return $fonts['items'];
 		}
 
@@ -610,20 +580,20 @@ class Helpers {
 			return null;
 		}
 
-		$font_families = [];
+		$fontFamilies = [];
 
 		foreach ( $fonts as $font ) {
-			if ( ! array_key_exists( $font, $font_families ) ) {
-				$font_families[ $font ] = "{$font}:400,700";
+			if ( ! array_key_exists( $font, $fontFamilies ) ) {
+				$fontFamilies[ $font ] = "{$font}:400,700";
 			}
 		}
 
-		$query_args = [
-			'family' => urlencode( implode( '|', array_values( $font_families ) ) ),
+		$args = [
+			'family' => urlencode( implode( '|', array_values( $fontFamilies ) ) ),
 			'subset' => urlencode( 'latin,latin-ext' ),
 		];
 
-		return add_query_arg( $query_args, '//fonts.googleapis.com/css' );
+		return add_query_arg( $args, '//fonts.googleapis.com/css' );
 	}
 
 	/**
@@ -655,9 +625,9 @@ class Helpers {
 	 * @return string
      */
 	public static function getSvgContent( $path ) {
-		if ( ! empty( $path ) && $svg_file = @ file_get_contents( $path ) ) {
-			$position = strpos( $svg_file, '<svg' );
-			return substr( $svg_file, $position );
+		if ( ! empty( $path ) && $svgFile = @ file_get_contents( $path ) ) {
+			$position = strpos( $svgFile, '<svg' );
+			return substr( $svgFile, $position );
 		}
 
 		return "<img src='$path' alt='' />";
@@ -671,8 +641,8 @@ class Helpers {
 	 * @return ?string
      */
 	public static function svgToBase64( $path ) {
-		if ( ! empty( $path ) && $svg_file = @ file_get_contents( $path ) ) {
-			return 'data:image/svg+xml;base64,' . base64_encode( $svg_file );
+		if ( ! empty( $path ) && $svgFile = @ file_get_contents( $path ) ) {
+			return 'data:image/svg+xml;base64,' . base64_encode( $svgFile );
 		}
 
 		return null;

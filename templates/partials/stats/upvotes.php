@@ -1,4 +1,4 @@
-<?php if ( Chipmunk\Helpers::isFeatureEnabled( 'upvotes', 'resource' ) ) : ?>
+<?php if ( Chipmunk\Helpers::isOptionEnabled( 'upvotes', 'resource' ) ) : ?>
 	<?php $upvotes = new Chipmunk\Extensions\Upvotes( get_the_ID() ); ?>
 	<?php $upvote_button = $upvotes->get_button( 'toggle_upvote', 'c-stats__button' ); ?>
 	<?php $upvote_counter = $upvotes->get_content(); ?>

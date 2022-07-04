@@ -3,7 +3,7 @@
 
 {% set items = items ?? menu.items %}
 
-<nav class="{{ class_name("c-menu-#{type}", modifiers) }}">
+<nav class="{{ cn("c-menu-#{type}", modifiers) }}">
   {% set link_class = "c-menu-#{type}__link" %}
 
   {% for item in items %}
