@@ -13,7 +13,7 @@
         {% endif %}
       </h4>
 
-      <a href="{{ comment.link | e('esc_url') }}">
+      <a href="#comment-{{ comment.id }}">
         <time class="c-comment__date" datetime="{{ comment.date('c') }}" title="{{ comment.date('Y-m-d H:i') }}">
           {{ comment.date }}
         </time>

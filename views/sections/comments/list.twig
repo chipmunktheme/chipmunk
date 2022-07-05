@@ -1,4 +1,4 @@
-{% if post.comments %}
+{% if post.comments | length %}
   <div class="l-component">
     <h3 class="{{ cn('c-heading', 'h4') }}">
       {{ _n( '%s Comment', '%s Comments', post.comments | length, 'chipmunk' ) | format(fn('number_format_i18n', post.comments | length ) ) }}

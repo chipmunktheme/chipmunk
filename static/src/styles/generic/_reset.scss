@@ -21,6 +21,7 @@
   line-height: inherit;
   text-align: inherit;
   text-transform: inherit;
+  scroll-margin-top: var(--header-height, 0);
 }
 
 :root {
@@ -37,6 +38,7 @@
   -ms-word-break: break-all;
   word-break: break-all;
   word-break: break-word;
+  scroll-behavior: smooth;
 
   :where(img) {
     height: auto;
