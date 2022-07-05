@@ -37,6 +37,11 @@ class Site extends TimberSite {
 		$context['is_home']				= is_home();
 		$context['is_single']			= is_single();
 		$context['is_search']			= is_search();
+		$context['is_author']			= is_author();
+		$context['is_tax']				= is_tax();
+		$context['is_date']				= is_date();
+		$context['is_category']			= is_category();
+		$context['is_tag']				= is_tag();
 		$context['search_query']		= get_search_query();
 
 		$context['socials']				= Helpers::getSocials();

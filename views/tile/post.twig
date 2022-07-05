@@ -1,0 +1,39 @@
+<div class="{{ cn('c-tile', 'blank') }}">
+	<div class="c-tile__inner">
+		<a href="{{ post.link }}" class="c-tile__image  {{ cn('c-media', get_option('post_image_aspect_ratio')) }}">
+			{% if post.thumbnail %}
+        <img src="{{ post.thumbnail.src('640x480') }}" alt="" />
+      {% endif %}
+		</a>
+
+		<div class="c-tile__content">
+			<div class="c-tile__head">
+				<h2 class="c-tile__title c-heading c-heading--h5">
+					<a href="{{ post.link }}">{{ post.title }}</a>
+				</h2>
+
+				<p class="c-tile__copy">
+          {{ post.excerpt({ chars: 120 }).read_more(null) }}
+        </p>
+			</div>
+
+      {% include 'partials/stats.twig' with {
+        class: 'c-tile__stats',
+        stats: {
+          terms: {
+            term_args: {
+              quantity: 1,
+            },
+          },
+          date: true,
+          views: true,
+          ratings: true,
+        },
+      } %}
+
+			<a href="{{ post.link }}" class="c-tile__button {{ cn('c-button', 'primary-outline') }} u-visible-lg-block">
+				{{ __('Read more', 'chipmunk') }}
+			</a>
+		</div>
+	</div>
+</div>

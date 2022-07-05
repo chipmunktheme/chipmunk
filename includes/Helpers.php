@@ -88,6 +88,29 @@ class Helpers {
 	}
 
 	/**
+	 * Retrieves the server param if not empty
+	 *
+	 * @param string $key Key of the param
+	 *
+	 * @return ?string
+	 */
+	public static function getParam( $key ) {
+		return $_REQUEST[ $key ] ?? null;
+	}
+
+	/**
+	 * Retrieves the server param if not empty
+	 *
+	 * @param string $key Key of the param
+	 *
+	 * @return ?string
+	 */
+	public static function getQuery() {
+		global $wp_query;
+		return $wp_query->query ?? null;
+	}
+
+	/**
 	 * Builds class string based on name and modifiers
 	 *
 	 * @param string $name 			Base class name

@@ -2,6 +2,7 @@
 namespace Chipmunk;
 
 use Timber\Timber;
+use Timber\User;
 
 /**
  * The main template file
@@ -14,4 +15,18 @@ use Timber\Timber;
  * @subpackage Chipmunk
  */
 
-Timber::render( 'index.twig', Timber::context() );
+global $wp_query;
+
+$context = Timber::context();
+$context['queried_object'] = ['name' => 'post'];
+$context['title'] = get_the_archive_title();
+$context['description'] = get_the_archive_description();
+$context['posts'] = Timber::get_posts();
+
+if ( get_query_var( 'author_name' ) ) {
+	$author            = User::build( get_user_by( 'slug', get_query_var( 'author_name' ) ) );
+	$context['author'] = $author;
+	$context['title']  = 'Author Archives: ' . $author->name();
+}
+
+Timber::render( 'archive.twig', $context );

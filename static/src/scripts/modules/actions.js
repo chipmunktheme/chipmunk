@@ -4,6 +4,9 @@ const Actions = {
   http: null,
 
   init(element = document) {
+    const { ajaxUrl, loginUrl } = window.globals;
+
+    this.settings = { ajaxUrl, loginUrl };
     this.triggers = Array.from(element.querySelectorAll('[data-action]:not([data-type])'));
 
     this.http = axios.create({
@@ -67,7 +70,7 @@ const Actions = {
         action.callback = action.callback || this.callbacks[action.data.action] || (() => {});
 
         // Assign new request
-        requests.push(this.http.post(document.body.dataset.ajaxSource, formData));
+        requests.push(this.http.post(this.settings.ajaxUrl, formData));
       });
 
       // Run concurrent action
@@ -99,10 +102,8 @@ const Actions = {
           target.innerHTML = data.content;
         });
       } else {
-        const { loginUrl } = document.body.dataset;
-
-        if (loginUrl) {
-          window.location = loginUrl;
+        if (this.settings.loginUrl) {
+          window.location = this.settings.loginUrl;
         }
       }
     },

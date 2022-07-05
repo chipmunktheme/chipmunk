@@ -4,7 +4,7 @@
   {% include "entry/#{ post.type }.twig" %}
   {% include 'sections/comments.twig' %}
 
-  {% if post.type in ['post', 'resource'] %}
+  {% if post.post_type in ['post', 'resource'] %}
     {% include "loop/#{ post.type }.twig" %}
   {% endif %}
 {% endblock %}

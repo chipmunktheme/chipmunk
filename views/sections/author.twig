@@ -1,0 +1,68 @@
+{% if author %}
+  {% do action('chipmunk_author_before', author.id) %}
+
+	{% set author_socials = fn('wp_get_user_contact_methods') | filter((value, key) => author.meta(key)) %}
+
+	<div class="{{ cn('l-section', 'theme-light') }}" id="author-profile">
+		<div class="l-container">
+			<div class="l-wrapper">
+				<div class="l-component">
+					<h1 class="{{ cn('c-heading', 'h4') }}">
+						{{ __( '%s', 'chipmunk' ) | apply_filters('chipmunk_author_title') | format(author.name) }}
+					</h1>
+				</div>
+
+				<div class="c-profile l-component">
+					<div class="c-profile__avatar {{ cn('u-avatar', 'lg') }}">
+            <img src="{{ author.avatar({ size: 256 }) }}" alt="">
+					</div>
+
+					<div class="c-profile__content">
+            {% set description %}
+              {{ author.meta('description') }}
+
+              {% if author.user_url %}
+                {{ get_external_link(author.user_url, author.user_url | e('esc_html')) }}
+              {% endif %}
+            {% endset %}
+
+						{% if description %}
+							<div class="c-profile__description c-content">
+								{{ description }}
+							</div>
+            {% endif %}
+
+						<div class="c-profile__meta">
+							{% if author_socials %}
+                <nav class="c-profile__socials c-menu-socials">
+                  {% for key, value in author_socials %}
+                    <a href="{{ author.meta(key) | e('esc_url') }}" class="c-menu-socials__link" title="{{ value }}" target="_blank">
+                      {% include 'partials/icon.twig' with { icon: "social-#{ value | lower }" } only %}
+                      <span class="u-hidden-visually">{{ value }}</span>
+                    </a>
+                  {% endfor %}
+								</nav>
+              {% endif %}
+
+							<ul class="c-profile__stats c-stats">
+								{% do action('chipmunk_user_profile_stats_before', author.id) %}
+
+								<li class="c-stats__item">
+                  {% include 'partials/icon.twig' with { icon: 'clock' } only %}
+
+									<time datetime="{{ author.user_registered | date('c') }}">
+                    {{ __('Joined: %s', 'chipmunk') | format(author.user_registered | date()) }}
+                  </time>
+								</li>
+
+								{% do action('chipmunk_user_profile_stats_after', author.id) %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% do action('chipmunk_author_after', author.id) %}
+{% endif %}

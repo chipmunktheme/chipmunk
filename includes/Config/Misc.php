@@ -2,6 +2,7 @@
 
 namespace Chipmunk\Config;
 
+use Chipmunk\Customizer;
 use Chipmunk\Helpers;
 
 /**
@@ -16,10 +17,11 @@ class Misc {
  	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_action( 'wp_insert_post', [ $this, 'add_default_meta' ] );
-		add_action( 'wp_head', [ $this, 'add_og_tags' ] );
-		add_action( 'after_setup_theme', [ $this, 'setup_comments' ] );
-		add_filter( 'the_content', [ $this, 'normalize_content_whitespace' ], 10, 1 );
+		add_action( 'wp_insert_post', [ $this, 'addDefaultMeta' ] );
+		add_action( 'wp_head', [ $this, 'addOgTags' ] );
+		add_action( 'after_setup_theme', [ $this, 'setupComments' ] );
+		add_filter( 'the_content', [ $this, 'normalizeContentWhitespace' ], 10, 1 );
+		add_filter( 'user_contactmethods', [ $this, 'addContactMethods' ], 99, 2 );
 	}
 
 	/**
@@ -27,32 +29,32 @@ class Misc {
 	 *
 	 * @return mixed
 	 */
-	public static function add_default_meta( $post_ID ) {
-		$defaut_values = [
+	public static function addDefaultMeta( $postId ) {
+		$defaut = [
 			'_' . THEME_SLUG . '_post_view_count'   => 0,
 			'_' . THEME_SLUG . '_upvote_count'      => 0,
 		];
 
 		if ( Helpers::isAddonEnabled( 'ratings' ) ) {
-			$defaut_values = array_merge( $defaut_values, [
+			$defaut = array_merge( $defaut, [
 				'_' . THEME_SLUG . '_rating_count'   => 0,
 				'_' . THEME_SLUG . '_rating_average' => 0,
 				'_' . THEME_SLUG . '_rating_rank'    => 0,
 			] );
 		}
 
-		return Helpers::addPostMeta( $post_ID, $defaut_values, [ 'post', 'resource' ] );
+		return Helpers::addPostMeta( $postId, $defaut, [ 'post', 'resource' ] );
 	}
 
 	/**
 	 * Add Open Graph tags
 	 */
-	public static function add_og_tags() {
+	public static function addOgTags() {
 		if ( Helpers::getOption( 'disable_og' ) ) {
 			return null;
 		}
 
-		$site_image = Helpers::getOption( 'og_image' );
+		$siteImage = Helpers::getOption( 'og_image' );
 
 		if ( is_front_page() ) {
 			?>
@@ -66,8 +68,8 @@ class Misc {
 			<meta property="og:url" content="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<meta property="og:title" content="<?php bloginfo( 'name' ); ?>">
 			<meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
-			<?php if ( ! empty( $site_image ) ) : ?>
-				<meta property="og:image" content="<?php echo $site_image; ?>">
+			<?php if ( ! empty( $siteImage ) ) : ?>
+				<meta property="og:image" content="<?php echo $siteImage; ?>">
 				<meta property="og:image:width" content="1200">
 				<meta property="og:image:height" content="630">
 			<?php endif; ?>
@@ -78,9 +80,9 @@ class Misc {
 			global $post;
 
 			if ( get_the_post_thumbnail( $post->ID, 'xl' ) ) {
-				$thumbnail_id     = get_post_thumbnail_id( $post->ID );
-				$thumbnail_object = wp_get_attachment_image_src( $thumbnail_id, 'xl' );
-				$image            = $thumbnail_object[0];
+				$thumbnailId	= get_post_thumbnail_id( $post->ID );
+				$thumbnail		= wp_get_attachment_image_src( $thumbnailId, 'xl' );
+				$image			= $thumbnail[0];
 			}
 			?>
 
@@ -92,7 +94,7 @@ class Misc {
 			<meta property="og:url" content="<?php the_permalink(); ?>">
 			<meta property="og:title" content="<?php echo Helpers::getOgTitle(); ?>">
 			<meta property="og:description" content="<?php echo Helpers::getMetaDescription(); ?>">
-			<meta property="og:image" content="<?php echo isset( $image ) ? $image : $site_image; ?>">
+			<meta property="og:image" content="<?php echo isset( $image ) ? $image : $siteImage; ?>">
 			<meta property="og:image:width" content="1200">
 			<meta property="og:image:height" content="630">
 			<meta property="og:site_name" content="<?php bloginfo( 'name' ); ?>">
@@ -108,7 +110,7 @@ class Misc {
 	 *
 	 * @hook after_setup_theme
 	 */
-	public static function setup_comments() {
+	public static function setupComments() {
 		// add threaded comments
 		if ( ! is_admin() ) {
 			if ( is_singular() && get_option( 'thread_comments' ) ) {
@@ -122,7 +124,20 @@ class Misc {
 	 *
 	 * @return string
 	 */
-	public static function normalize_content_whitespace( $content ) {
+	public static function normalizeContentWhitespace( $content ) {
 		return normalize_whitespace( $content );
+	}
+
+	/**
+	 * Changes the user contact methods
+	 *
+	 * @return array
+	 */
+	public static function addContactMethods() {
+		$socials = Customizer::getSocials();
+		$socials = array_filter( $socials, fn( $el ) => $el != 'Email' );
+		$socialKeys = array_map( fn( $el ) => sanitize_title( $socials[ $el ] ), array_keys( $socials ) );
+
+		return array_combine( $socialKeys, $socials );
 	}
 }

@@ -47,6 +47,9 @@ class Twig {
 	 * @return Environment $twig
 	 */
 	protected function registerTwigFunctions( $twig ) {
+		// WordPress Helpers
+		$this->registerFunction( $twig, 'is_singular', 			'is_singular' );
+
 		// Generic Helpers
 		$this->registerFunction( $twig, 'revisioned_path', 		[ Assets::class, 'revisionedPath' ] );
 		$this->registerFunction( $twig, 'asset_path', 			[ Assets::class, 'assetPath' ] );
@@ -58,6 +61,8 @@ class Twig {
 		$this->registerFunction( $twig, 'cn', 					[ Helpers::class, 'className' ] );
 		$this->registerFunction( $twig, 'class_name', 			[ Helpers::class, 'className' ] );
 		$this->registerFunction( $twig, 'get_salt', 			[ Helpers::class, 'getSalt' ] );
+		$this->registerFunction( $twig, 'get_param', 			[ Helpers::class, 'getParam' ] );
+		$this->registerFunction( $twig, 'get_query', 			[ Helpers::class, 'getQuery' ] );
 		$this->registerFunction( $twig, 'get_option', 			[ Helpers::class, 'getOption' ] );
 		$this->registerFunction( $twig, 'is_option_enabled',	[ Helpers::class, 'isOptionEnabled' ] );
 		$this->registerFunction( $twig, 'is_addon_enabled',		[ Helpers::class, 'isAddonEnabled' ] );
@@ -67,6 +72,7 @@ class Twig {
 		$this->registerFunction( $twig, 'get_term_options',		[ Helpers::class, 'getTermOptions' ] );
 		$this->registerFunction( $twig, 'get_views',			[ Views::class, 'getViews' ] );
 		$this->registerFunction( $twig, 'get_resources',		[ Query::class, 'getResources' ] );
+		$this->registerFunction( $twig, 'get_related',			[ Query::class, 'getRelated' ] );
 
 		// Third-party Helpers
 		$this->registerFunction( $twig, 'get_current_url', 		[ URLHelper::class, 'get_current_url' ] );

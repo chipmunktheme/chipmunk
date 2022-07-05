@@ -15,7 +15,15 @@
 
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
     border-radius: 50%;
+  }
+
+  &--md {
+    font-size: 2em;
+  }
+
+  &--lg {
+    font-size: clamp(3em, 10vw, 4em);
   }
 }

@@ -1,5 +1,9 @@
 {% extends '_layout.twig' %}
 
 {% block content %}
-  archive
+  {% if is_author %}
+    {% include 'sections/author.twig' %}
+  {% endif %}
+
+  {# {% include "loop/#{ (posts | first).post_type }.twig" %} #}
 {% endblock %}

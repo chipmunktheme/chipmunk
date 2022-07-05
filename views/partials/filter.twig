@@ -1,0 +1,19 @@
+<div class="c-filter">
+  {% if title %}
+    <h4 class="c-filter__title">{{ title }}:</h4>
+  {% endif %}
+
+  <div class="c-filter__select c-form__select">
+    <select data-filter="{{ filter }}" class="{{ cn('c-form__input', 'default') }}">
+      {% if placeholder %}
+        <option value="">{{ placeholder }}</option>
+      {% endif %}
+
+      {% for option in options %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected' }}>
+          {{ option.title }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+</div>

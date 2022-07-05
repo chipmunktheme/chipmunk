@@ -5,6 +5,7 @@ namespace Chipmunk;
 use WP_Query;
 use WP_User_Query;
 use Timber\Timber;
+use Timber\PostQuery;
 
 /**
  * Theme helpers for retrieving data from DB.
@@ -53,18 +54,19 @@ class Query {
 	 */
 	public static function getRelated( $postId, $args = [] ) {
 		$defaults = [
-			'post_type'         => get_post_type( $postId ),
-			'post_status'       => 'publish',
-			'post__not_in'      => [ $postId ],
-			'posts_per_page'    => 3,
-			'orderby'           => 'rand',
+			'post_type'			=> get_post_type( $postId ),
+			'post_status'		=> 'publish',
+			'post__not_in'		=> [ $postId ],
+			'posts_per_page'	=> apply_filters( 'chipmunk_related_resources_count', 3 ),
+			'orderby'			=> 'rand',
+			'related'			=> true,
 		];
 
 		foreach ( get_object_taxonomies( get_post( $postId ), 'names' ) as $taxonomy ) {
 			$terms = get_the_terms( $postId, $taxonomy );
 
 			if ( ! empty( $terms ) ) {
-				$args['tax_query'][] = [
+				$defaults['tax_query'][] = [
 					'taxonomy'    => $taxonomy,
 					'field'       => 'term_id',
 					'terms'       => array_column( $terms, 'term_id' ),
@@ -73,8 +75,8 @@ class Query {
 			};
 		}
 
-		if ( ! empty( $args['tax_query'] ) && count( $args['tax_query'] ) > 1 ) {
-			$args['tax_query']['relation'] = 'OR';
+		if ( ! empty( $defaults['tax_query'] ) && count( $defaults['tax_query'] ) > 1 ) {
+			$defaults['tax_query']['relation'] = 'OR';
 		}
 
 		return Timber::get_posts( wp_parse_args( $args, $defaults ) );
@@ -102,20 +104,6 @@ class Query {
 		}
 
 		return Timber::get_posts( wp_parse_args( $args, $defaults ) );
-	}
-
-	/**
-	 * Get users
-	 */
-	public static function get_users( $limit = -1 ) {
-		$args = [
-			'role__in' => [ 'Administrator', 'Editor', 'Author' ],
-			'number'   => $limit,
-			'orderby'  => 'ID',
-			'order'    => 'ASC',
-		];
-
-		return new WP_User_Query( $args );
 	}
 
 	/**

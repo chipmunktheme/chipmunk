@@ -1,30 +1,23 @@
 <?php
+namespace Chipmunk;
+
+use Exception;
+use Timber\Timber;
+
 /**
- * Chipmunk: Footer
+ * Third party plugins that hijack the theme will call wp_footer() to get the footer template.
+ * We use this to end our output buffer (started in header.php) and render into the view/page-plugin.twig template.
  *
- * Remember to always include the wp_footer() call before the </body> tag
- *
- * @package WordPress
- * @subpackage Chipmunk
+ * @package  WordPress
+ * @subpackage  Timber
+ * @since   Timber 0.1
  */
-?>
 
-	<?php Chipmunk\Helpers::get_template_part( 'partials/promo' ); ?>
+$timberContext = $GLOBALS['timberContext']; // @codingStandardsIgnoreFile
+if ( ! isset( $timberContext ) ) {
+	throw new Exception( 'Timber context not set in footer.' );
+}
+$timberContext['content'] = ob_get_contents();
+ob_end_clean();
 
-	<?php if ( ! is_front_page() || Chipmunk\Helpers::getOption( 'disable_homepage_listings' ) ) : ?>
-		<?php Chipmunk\Helpers::get_template_part( 'partials/toolbox' ); ?>
-	<?php endif; ?>
-
-	<?php Chipmunk\Helpers::get_template_part( 'partials/newsletter' ); ?>
-	<?php Chipmunk\Helpers::get_template_part( 'partials/page-bottom' ); ?>
-	<?php Chipmunk\Helpers::get_template_part( 'partials/page-foot' ); ?>
-
-	<?php if ( ! Chipmunk\Helpers::getOption( 'disable_submissions' ) && empty( Chipmunk\Helpers::getOption( 'submit_page' ) ) ) : ?>
-		<?php Chipmunk\Helpers::get_template_part( 'partials/popup' ); ?>
-	<?php endif; ?>
-
-	<?php wp_footer(); ?>
-
-	<!-- Chipmunk Theme: Version <?php echo wp_get_theme()->get( 'Version' ); ?> -->
-</body>
-</html>
+Timber::render( 'single.twig', $timberContext );

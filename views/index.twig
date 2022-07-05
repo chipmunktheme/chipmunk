@@ -1,5 +1,5 @@
 {% extends '_layout.twig' %}
 
 {% block content %}
-  index
+  {% include "loop/#{ queried_object.name }.twig" %}
 {% endblock %}

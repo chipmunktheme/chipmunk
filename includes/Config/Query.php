@@ -27,8 +27,14 @@ class Query {
 	 * @return object
 	 */
 	public static function update_main_query( $query ) {
-		if ( ! is_admin() && $query->is_tax && is_tax() ) {
-			$query->set( 'posts_per_page', Helpers::getOption( 'posts_per_page' ) );
+		if ( ! is_admin() and ! is_front_page() and ! $query->get('related' ) ) {
+			if ( $query->get( 'post_type' ) == 'post' ) {
+				$query->set( 'posts_per_page', Helpers::getOption( 'blog_posts_per_page' ) );
+			}
+
+			if ( $query->get( 'post_type' ) == 'resource' ) {
+				$query->set( 'posts_per_page', Helpers::getOption( 'posts_per_page' ) );
+			}
 		}
 
 		return $query;

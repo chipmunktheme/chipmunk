@@ -9,15 +9,7 @@
 }
 
 .c-profile__avatar {
-  max-width: 10rem;
-
-  @include bp(md) {
-    max-width: 12.8rem;
-  }
-
-  img {
-    height: auto;
-  }
+  flex-shrink: 1;
 }
 
 .c-profile__content {
@@ -27,15 +19,11 @@
   gap: spacer-clamped(1.5);
 }
 
-.c-profile__description {
-  @extend %copy;
-}
-
 .c-profile__meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: spacer-clamped(2.5);
+  gap: spacer-clamped(1.5);
 }
 
 .c-profile__stats {
