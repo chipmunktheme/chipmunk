@@ -3,8 +3,8 @@
 
 {% set items = items ?? menu.items %}
 
-<nav class="{{ cn("c-menu-#{type}", modifiers) }}">
-  {% set link_class = "c-menu-#{type}__link" %}
+<nav class="{{ cn("c-menu-#{ type }", modifiers) }}">
+  {% set link_class = "c-menu-#{ type }__link" %}
 
   {% for item in items %}
     {# Not clickable button if there's no link... #}

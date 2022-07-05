@@ -1,4 +1,5 @@
 {% if is_option_enabled('upvotes', post.type) %}
+  {# TODO: Generate the upvote on the fly using post ID #}
   {% if is_single or get_option('display_resource_as') != 'tile' %}
     <li class="{{ cn('c-stats__item', 'upvotes') }}">
       {{ upvote_button }}

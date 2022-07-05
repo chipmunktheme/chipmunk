@@ -29,7 +29,7 @@
       }) %}
 
       <a href="{{ link | e('esc_url') }}" class="c-menu-socials__link" title="{{ provider.name }}" target="_blank">
-        {% include 'partials/icon.twig' with { icon: "social-#{provider.name | lower}" } %}
+        {% include 'partials/icon.twig' with { icon: "social-#{ provider.name | lower }" } %}
         <span class="u-hidden-visually">{{ provider.name }}</span>
       </a>
     {% endfor %}

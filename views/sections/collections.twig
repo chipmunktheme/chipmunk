@@ -1,0 +1,33 @@
+{% set collections = get_terms({
+  taxonomy: 'resource-collection',
+  orderby: 'name',
+  pad_counts: true,
+}) %}
+
+{% set collections = collections | filter(collection => not collection.parent) %}
+
+<div class="l-section">
+	<div class="l-container">
+		<div class="l-component l-header">
+			<{{ is_front_page ? 'h2' : 'h1' }} class="{{ cn('c-heading', 'h4') }}">
+				{{ __('Collections', 'chipmunk') }}
+			</{{ is_front_page ? 'h2' : 'h1' }}>
+
+      {% if not collections %}
+				<p class="l-header__copy">
+					{{ __('Sorry, there are no collections to display yet.', 'chipmunk') }}
+				</p>
+      {% endif %}
+		</div>
+
+    {% if collections %}
+			<div class="l-component">
+				<div class="c-tile__list">
+          {% for collection in collections %}
+            {% include 'tile/collection.twig' %}
+          {% endfor %}
+				</div>
+			</div>
+		{% endif %}
+	</div>
+</div>

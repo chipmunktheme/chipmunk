@@ -1,0 +1,4 @@
+<li class="{{ cn('c-stats__item', 'count-' ~ title | sanitize) }}" title="{{ title }}">
+  {% include 'partials/icon.twig' with { icon } only %}
+  {{ count }}
+</li>

@@ -2,6 +2,7 @@
 {% set disable_sliders    = get_option('disable_homepage_listings_sliders') %}
 {% set infinite_sliders   = get_option('infinite_sliders') %}
 
+{# TODO: Pull the proper resource lists based on the tab #}
 {% set sections = {
   featured: {
     label: __('Featured', 'chipmunk'),
@@ -65,7 +66,7 @@
           <div class="c-tabs__item{{ loop.first ? ' is-active' }}" data-tabs-panel role="tabpanel" id="{{ sections[tab].label | sanitize_title }}">
             <div class="c-tile__list"{{ not disable_sliders ? " data-carousel='{ \"wrapAround\": " ~ infinite_sliders | json_encode ~ " }'" }}>
               {% for post in sections[tab].results %}
-                {% include "tile/#{post.type}.twig" %}
+                {% include "tile/#{ post.type }.twig" %}
               {% endfor %}
             </div>
           </div>

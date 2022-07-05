@@ -1,0 +1,74 @@
+{# Cache customizer options #}
+{% set options = {
+  display_as:       get_option('display_collection_as'),
+  disable_thumbs:   not is_option_enabled('thumbs', 'collection', false),
+  disable_stats:    not is_option_enabled('stats', 'collection', false),
+} %}
+
+{# Tile classes #}
+{% set tile_classes = {
+  '':           ['card'],
+  'tile':       ['tile'],
+  'card':       ['card'],
+  'card_blank': ['blank']
+} %}
+
+<div class="{{ cn('c-tile', tile_classes[options.display_as]) }}">
+	<a href="{{ collection.link }}" class="c-tile__inner">
+    {% if not options.disable_thumbs or options.display_as == 'tile' %}
+      <div class="c-tile__image {{ cn('c-media', get_option('resource_image_aspect_ratio')) }}">
+        {% if not options.disable_thumbs %}
+          {# TODO: Pull the proper collection image from the DB #}
+          {% set collection_image = collection.meta('_' ~ THEME_SLUG ~ '_collection_image') %}
+
+          {% if collection_image %}
+            <img src="{{ get_attachment(collection_image).src('640x480') }}" alt="" />
+          {% else %}
+            {% for post in collection.posts(3) %}
+              <img src="{{ post.thumbnail.src('640x480') }}" alt="" />
+            {% endfor %}
+          {% endif %}
+				{% endif %}
+      </div>
+    {% endif %}
+
+		<div class="{{ cn('c-tile__content', options.display_as == 'tile' ? (options.disable_thumbs ? 'primary' : 'dimmed')) }}">
+			<div class="c-tile__head">
+				<{{ is_front_page or is_single ? 'h3' : 'h2' }} class="c-tile__title {{ cn('c-heading', 'h5') }}">
+					{{ collection.name }}
+				</{{ is_front_page or is_single ? 'h3' : 'h2' }}>
+
+        <p class="c-tile__copy">
+          {% if options.display_as == 'tile' %}
+            {{ __('View this collection', 'chipmunk') }}
+          {% elseif collection.description %}
+            {{ collection.description }}
+          {% endif %}
+        </p>
+			</div>
+
+      {% if not options.disable_stats %}
+        {% set term_count = collection.children | length %}
+        {% set post_count = collection.posts | length %}
+
+        {% include 'partials/stats.twig' with {
+          class: 'c-tile__stats',
+          stats: {
+            count: [
+              term_count ? {
+                title: __('Collections', 'chipmunk'),
+                count: term_count,
+                icon: 'collection',
+              },
+              post_count ? {
+                title: __('Resources', 'chipmunk'),
+                count: post_count,
+                icon: 'link',
+              },
+            ],
+          },
+        } %}
+      {% endif %}
+		</div>
+	</a>
+</div>

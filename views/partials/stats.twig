@@ -1,7 +1,14 @@
 {% set output %}
   {% for stat, args in stats %}
-    {% if args %}
-      {% include "partials/stats/#{stat}.twig" with (args is iterable ? args : {}) %}
+    {# Checks if it's array of stat objects #}
+    {% if args | keys | first matches '/^\\d+$/' %}
+      {% for arg in args %}
+        {% if arg %}
+          {% include "partials/stats/#{ stat }.twig" with (arg is iterable ? arg : {}) %}
+        {% endif %}
+      {% endfor %}
+    {% elseif args %}
+      {% include "partials/stats/#{ stat }.twig" with (args is iterable ? args : {}) %}
     {% endif %}
   {% endfor %}
 {% endset %}

@@ -9,7 +9,7 @@
             <nav class="c-menu-socials__list">
               {% for key, value in socials %}
                 <a href="{{ value | e('esc_url') }}" class="c-menu-socials__link" target="_blank" rel="nofollow" title="{{ key | e('esc_html') }}">
-                  {% include 'partials/icon.twig' with { icon: "social-#{key | lower}" } only %}
+                  {% include 'partials/icon.twig' with { icon: "social-#{ key | lower }" } only %}
                   <span class="u-hidden-visually">{{ key | e('esc_html') }}</span>
                 </a>
               {% endfor %}

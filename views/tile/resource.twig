@@ -1,4 +1,4 @@
-{# Cache resource customizer options #}
+{# Cache customizer options #}
 {% set options = {
   display_as:      get_option('display_resource_as'),
   disable_thumbs:  not is_option_enabled('thumbs', 'resource', false),
@@ -6,10 +6,10 @@
   disable_desc:    not is_option_enabled('desc', 'resource', false),
 } %}
 
-{# Resource website - custom post meta #}
+{# Website - custom post meta #}
 {% set website = get_resource_links(post.id) | first %}
 
-{# Resource tile classes #}
+{# Tile classes #}
 {% set tile_classes = {
   '':           ['card'],
   'tile':       ['tile'],
@@ -21,7 +21,7 @@
 <div class="{{ cn('c-tile', tile_classes[options.display_as]) }}">
   <{{ post.status == 'publish' ? "a href='#{ post.link }'" : 'div' }} class="c-tile__inner">
     {% if not options.disable_thumbs or options.display_as == 'tile' %}
-      <div class="c-tile__image {{ cn('c-media', get_option('resource_image_aspect_ratio')) }}>">
+      <div class="c-tile__image {{ cn('c-media', get_option('resource_image_aspect_ratio')) }}">
         {% if not options.disable_thumbs and post.thumbnail %}
           <img src="{{ post.thumbnail.src('640x480') }}" alt="" />
         {% endif %}
