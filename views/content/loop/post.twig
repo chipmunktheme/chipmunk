@@ -1,0 +1,19 @@
+{% if posts %}
+  <div class="l-component">
+    <div class="{{ cn('c-tile__list', 'separated') }}" data-action-element="load_posts">
+      {% for post in posts %}
+        {% if layout == 'excerpts' or (layout == 'mixed' and loop.index0 % 4 == 0 and posts.pagination.current == 1) %}
+          {% include "excerpt/#{ post.type }.twig" %}
+        {% else %}
+          {% include "content/tile/#{ post.type }.twig" %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% include 'sections/pagination.twig' with { pagination: posts.pagination } %}
+{% else %}
+  <p class="l-header__copy">
+    {{ __('Sorry, there are no posts to display yet.', 'chipmunk') }}
+  </p>
+{% endif %}

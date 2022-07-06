@@ -1,0 +1,9 @@
+{% set resources = get_resources({
+	post_status: 'any, trash',
+	perm: 'readable',
+	author: user.id,
+	order: 'DESC',
+	orderby: 'date',
+}) %}
+
+{% include 'content/loop/resource.twig' %}

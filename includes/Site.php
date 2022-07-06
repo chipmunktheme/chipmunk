@@ -2,8 +2,6 @@
 
 namespace Chipmunk;
 
-use Timber\Timber;
-use Timber\User;
 use Timber\Site as TimberSite;
 use Chipmunk\Helpers;
 
@@ -33,20 +31,27 @@ class Site extends TimberSite {
 	 * @return array
 	 */
 	public static function extend_context( $context ) {
-		$context['is_front_page']		= is_front_page();
-		$context['is_home']				= is_home();
-		$context['is_single']			= is_single();
-		$context['is_page']				= is_page();
-		$context['is_search']			= is_search();
-		$context['is_author']			= is_author();
-		$context['is_tax']				= is_tax();
-		$context['is_date']				= is_date();
-		$context['is_category']			= is_category();
-		$context['is_tag']				= is_tag();
-		$context['search_query']		= get_search_query();
+		$conditionals = [
+			'is_home',
+			'is_front_page',
+			'is_single',
+			'is_attachment',
+			'is_page',
+			'is_category',
+			'is_search',
+			'is_tag',
+			'is_tax',
+			'is_author',
+			'is_archive',
+		];
 
+		foreach ( $conditionals as $conditional ) {
+			$context[ $conditional ] = $conditional();
+		}
+
+		$context['search_query']		= get_search_query();
 		$context['socials']				= Helpers::getSocials();
-		$context['menus']               = self::getRegisteredMenus();
+		$context['menus']               = Helpers::getRegisteredMenus();
 
 		return $context;
 	}
@@ -62,19 +67,5 @@ class Site extends TimberSite {
 		$paths[] = [ THEME_TEMPLATE_DIR . '/views' ];
 
 		return $paths;
-	}
-
-	private static function getRegisteredMenus() {
-		$menus = [];
-
-		// Set all nav menus in context.
-		foreach ( array_keys( get_registered_nav_menus() ) as $location ) {
-			// Bail out if menu has no location.
-			if ( $menu = Timber::get_menu( $location ) ) {
-				$menus[ str_replace( 'nav-', '', $location ) ] = $menu;
-			}
-		}
-
-		return $menus;
 	}
 }

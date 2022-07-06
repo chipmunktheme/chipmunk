@@ -23,7 +23,7 @@
   {% if posts %}
     <div data-action-element="load_posts">
       {% for post in posts %}
-        {% include "entry/#{ post.type }.twig" %}
+        {% include "content/entry/#{ post.type }.twig" %}
       {% endfor %}
     </div>
   {% endif %}

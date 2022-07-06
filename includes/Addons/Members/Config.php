@@ -44,7 +44,7 @@ class Config {
 	 * Change default login url to My Account
 	 */
 	public function custom_login_page( $login_url, $redirect, $force_reauth ) {
-		return Helpers::get_page_permalink( 'login' ) . '?redirect_to=' . $redirect;
+		return Helpers::getPagePermalink( 'login' ) . '?redirect_to=' . $redirect;
 	}
 
 	/**
@@ -54,7 +54,7 @@ class Config {
 		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
 			$redirect_to = $_REQUEST['redirect_to'];
 		} elseif ( ! is_super_admin( $user->ID ) && ! wp_doing_ajax() ) {
-			$redirect_to = Helpers::get_page_permalink( 'dashboard' );
+			$redirect_to = Helpers::getPagePermalink( 'dashboard' );
 		} else {
 			$redirect_to = get_admin_url();
 		}
@@ -74,7 +74,7 @@ class Config {
 	 * @return string   The mail message to send.
 	 */
 	public function replace_retrieve_password_message( $message, $key, $user_login, $user_data ) {
-		$reset_url = Helpers::get_page_permalink( 'reset_password' );
+		$reset_url = Helpers::getPagePermalink( 'reset_password' );
 		$reset_url = add_query_arg( 'action', 'rp', $reset_url );
 		$reset_url = add_query_arg( 'key', $key, $reset_url );
 		$reset_url = add_query_arg( 'login', rawurlencode( $user_login ), $reset_url );

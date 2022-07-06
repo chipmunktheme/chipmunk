@@ -447,6 +447,25 @@ class Helpers {
 	}
 
 	/**
+	 * Get a list of registered menus
+	 *
+	 * @return array
+	 */
+	public static function getRegisteredMenus() {
+		$menus = [];
+
+		// Set all nav menus in context.
+		foreach ( array_keys( get_registered_nav_menus() ) as $location ) {
+			// Bail out if menu has no location.
+			if ( $menu = Timber::get_menu( $location ) ) {
+				$menus[ str_replace( 'nav-', '', $location ) ] = $menu;
+			}
+		}
+
+		return $menus;
+	}
+
+	/**
 	 * Get current page attribute
 	 *
 	 * @return int

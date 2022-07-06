@@ -1,0 +1,48 @@
+{% embed 'wrappers/shortcode.twig' %}
+  {% block content %}
+    {% if show_title %}
+      <h2 class="{{ cn('c-heading', 'h2') }}">
+        {{ __('Dashboard', 'chipmunk') }}
+      </h2>
+    {% endif %}
+
+    {% if blocker %}
+      {% include 'addons/members/partials/errors.twig' with { errors: blocker } %}
+    {% else %}
+      {% set tabs = [
+        { name: __('Upvoted', 'chipmunk'), option: 'disable_upvotes' },
+        { name: __('Bookmarked', 'chipmunk'), option: 'disable_bookmarked' },
+        { name: __('Submitted', 'chipmunk'), option: 'disable_submissions' },
+      ] %}
+      {% set first_tab = get_option('disable_upvotes') ? (get_option('disable_bookmarks') ? 'submitted' : 'bookmarked') : (tabs | first).name | sanitize_title %}
+      {% set current_tab = get_param('tab') ? get_param('tab') : first_tab %}
+      {# {% set dashboard_link = Chipmunk\Addons\Members\Helpers::get_page_permalink( 'dashboard' ) %} #}
+
+      <div class="c-tabs" data-tabs role="tablist">
+        <div class="l-component l-header">
+          <div class="c-tabs__title {{ cn('c-heading', 'h6') }}">
+            {% for tab in tabs %}
+              {% if not get_option(tab.option) %}
+                <a href="<?php echo esc_url( add_query_arg( 'tab', tab.name | sanitize_title, dashboard_link ) ); ?>" class="c-heading__link{{ current_tab == tab.name | sanitize_title ? ' is-active' }}">
+                  {{ tab.name }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          {% if not get_option('disable_submissions') %}
+            <div class="c-filter__group u-visible-md-flex">
+              {% include 'partials/submit-button.twig' with { class: cn('c-button', 'primary') } %}
+            </div>
+          {% endif %}
+        </div>
+
+        {% for tab in tabs %}
+          {% if not get_option(tab.option) and current_tab == tab.name | sanitize_title %}
+            {% include "addons/members/dashboard/#{ tab.name | sanitize_title }.twig" %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endblock %}
+{% endembed %}

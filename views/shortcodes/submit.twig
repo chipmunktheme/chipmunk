@@ -1,5 +1,5 @@
-</div>{#  End of .c-entry__content class #}
-
-{% include 'partials/submit.twig' %}
-
-<div class="c-entry__content {{ cn('c-content', 'type') }}">{# Beginning of .c-entry__content class #}
+{% embed 'wrappers/shortcode.twig' %}
+  {% block content %}
+    {% include 'partials/submit.twig' %}
+  {% endblock %}
+{% endembed %}

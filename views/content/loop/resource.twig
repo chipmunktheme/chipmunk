@@ -1,0 +1,15 @@
+{% if posts %}
+  <div class="l-component">
+    <div class="c-tile__list" data-action-element="load_posts">
+      {% for post in posts %}
+        {% include "content/tile/#{ post.type }.twig" %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% include 'sections/pagination.twig' with { pagination: posts.pagination } %}
+{% else %}
+  <p class="l-header__copy">
+    {{ __('Sorry, there are no resources to display yet.', 'chipmunk') }}
+  </p>
+{% endif %}

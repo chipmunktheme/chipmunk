@@ -239,13 +239,13 @@ class Setup {
 			'url'       => THEME_SHOP_URL . '/addons/ratings',
 		] );
 
-		new Addons\Importer\Init( [
-			'name'      => 'Importer',
-			'slug'      => 'importer',
-			'icon'		=> '⏱',
-			'excerpt'   => 'Easily import a large amount of resources from a CSV file with a single click.',
-			'url'       => THEME_SHOP_URL . '/addons/importer',
-		] );
+		// new Addons\Importer\Init( [
+		// 	'name'      => 'Importer',
+		// 	'slug'      => 'importer',
+		// 	'icon'		=> '⏱',
+		// 	'excerpt'   => 'Easily import a large amount of resources from a CSV file with a single click.',
+		// 	'url'       => THEME_SHOP_URL . '/addons/importer',
+		// ] );
 
 		// Initialize Customizer
 		Customizer::init();

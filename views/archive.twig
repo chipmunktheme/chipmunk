@@ -5,5 +5,6 @@
     {% include 'sections/author.twig' %}
   {% endif %}
 
-  {# {% include "loop/#{ (posts | first).post_type }.twig" %} #}
+  {# TODO: Find a way to get the proper post type of the archive #}
+  {% include "content/archive/#{ (posts | first).post_type }.twig" %}
 {% endblock %}

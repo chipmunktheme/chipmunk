@@ -1,0 +1,29 @@
+{% set layout = is_single or is_front_page ? 'tiles' : get_option('blog_layout') %}
+
+{% if is_singular('post') %}
+  {% set posts = get_related(post.id) %}
+{% endif %}
+
+{% if is_singular('page') %}
+  {% set title = post.title %}
+{% elseif is_singular('post') %}
+  {% set title = __('Related', 'chipmunk') %}
+{% elseif is_front_page %}
+  {% set title = __('Latest Posts', 'chipmunk') %}
+{% else %}
+  {% set title = __('Blog', 'chipmunk') %}
+{% endif %}
+
+{% if (not is_front_page and not is_single) or posts %}
+  <div class="l-section">
+    <div class="l-container">
+      {% if title and layout == 'tiles' %}
+        <div class="l-component l-header">
+          <h2 class="{{ cn('c-heading', 'h4') }}">{{ title }}</h2>
+        </div>
+      {% endif %}
+
+      {% include 'content/loop/post.twig' %}
+    </div>
+  </div>
+{% endif %}

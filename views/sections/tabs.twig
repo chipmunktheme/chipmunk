@@ -22,6 +22,7 @@
         orderby: 'rand',
       }),
   },
+
   latest: {
     label: __('Latest', 'chipmunk'),
     results: get_resources({
@@ -30,6 +31,7 @@
       order: 'DESC',
     }),
   },
+
   popular: {
     label: __('Popular', 'chipmunk'),
     results: is_option_enabled('views', 'resource', false)
@@ -66,7 +68,7 @@
           <div class="c-tabs__item{{ loop.first ? ' is-active' }}" data-tabs-panel role="tabpanel" id="{{ sections[tab].label | sanitize_title }}">
             <div class="c-tile__list"{{ not disable_sliders ? " data-carousel='{ \"wrapAround\": " ~ infinite_sliders | json_encode ~ " }'" }}>
               {% for post in sections[tab].results %}
-                {% include "tile/#{ post.type }.twig" %}
+                {% include "content/tile/#{ post.type }.twig" %}
               {% endfor %}
             </div>
           </div>

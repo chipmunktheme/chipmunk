@@ -1,0 +1,7 @@
+{% for alert in alerts %}
+  <div class="{{ cn('c-form__field', 'wide') }}">
+    <p class="{{ cn('c-form__info', alert.type) }}">
+      {{ alert.message }}
+    </p>
+  </div>
+{% endfor %}

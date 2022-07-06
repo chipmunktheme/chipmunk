@@ -1,0 +1,30 @@
+<article itemscope itemtype="http://schema.org/BlogPosting">
+  {% if post.thumbnail and get_option('blog_post_layout') == 'hero' %}
+    <section class="c-entry__hero">
+      <img src="{{ post.thumbnail.src('1920x1080') }}" alt="" itemprop="image" />
+
+      <div class="c-entry__details l-section">
+        <div class="l-container">
+          <div class="l-wrapper">
+            {% include 'content/entry/post/head.twig' %}
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="l-section">
+    <div class="l-container">
+      <div class="l-wrapper">
+        <div class="c-entry">
+          {% include 'content/entry/post/intro.twig' %}
+          {% include 'content/entry/post/content.twig' %}
+
+          <div class="c-entry__extras">{% do action('chipmunk_post_extras') %}</div>
+
+          {% include 'content/entry/post/foot.twig' %}
+        </div>
+      </div>
+    </div>
+  </section>
+</article>

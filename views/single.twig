@@ -1,10 +1,10 @@
 {% extends '_layout.twig' %}
 
 {% block content %}
-  {% include "entry/#{ post.type }.twig" %}
+  {% include "content/entry/#{ post.type }.twig" %}
   {% include 'sections/comments.twig' %}
 
   {% if post.post_type in ['post', 'resource'] %}
-    {% include "loop/#{ post.type }.twig" %}
+    {% include "content/archive/#{ post.type }.twig" %}
   {% endif %}
 {% endblock %}

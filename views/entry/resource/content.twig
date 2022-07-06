@@ -1,9 +1,0 @@
-<div class="{{ cn('c-resource__content', (not post.thumbnail or not is_option_enabled('single_thumbs', 'resource')) ? 'full') }}">
-  {% include 'entry/resource/info.twig' %}
-
-  {% if not is_search %}
-    <div class="c-resource__extras">{% do action('chipmunk_resource_extras') %}</div>
-  {% endif %}
-
-  {% include 'entry/resource/actions.twig' %}
-</div>

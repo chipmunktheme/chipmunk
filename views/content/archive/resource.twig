@@ -1,0 +1,35 @@
+{% if is_singular('resource') %}
+  {% set posts = get_related(post.id) %}
+{% endif %}
+
+{% if is_singular('page') %}
+  {% set title = post.title %}
+{% elseif is_singular('resource') %}
+  {% set title = __('Related', 'chipmunk') %}
+{% else %}
+  {% set title = __('Resources', 'chipmunk') %}
+{% endif %}
+
+{% if posts or not is_singular('resource') %}
+  <div class="l-section">
+    <div class="l-container">
+      <div class="l-component l-header">
+        <h2 class="l-section__title {{ cn('c-heading', 'h4') }}">
+          {{ title }}
+        </h2>
+
+        {% if not is_singular('resource') and posts %}
+          {% include 'sections/filters.twig' %}
+        {% endif %}
+
+        {% if description %}
+          <p class="l-header__copy">
+            {{ description | striptags }}
+          </p>
+        {% endif %}
+      </div>
+
+      {% include 'content/loop/resource.twig' %}
+    </div>
+  </div>
+{% endif %}

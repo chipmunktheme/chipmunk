@@ -1,0 +1,16 @@
+{# TODO: Set proper DB key Chipmunk\Extensions\UpvoBookmarkstes::$db_key #}
+{% set resources = get_resources({
+	post_status: 'any, trash',
+	perm: 'readable',
+	meta_query: {
+		relation: 'OR',
+
+		bookmarks: {
+			key: '',
+			value: user.id,
+			compare: '=',
+		},
+	},
+}) %}
+
+{% include 'content/loop/resource.twig' %}
