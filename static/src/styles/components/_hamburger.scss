@@ -21,7 +21,7 @@
   > * {
     position: relative;
     height: var(--hamburger-weight);
-    transition-property: color, background-color;
+    transition-property: color, background-color, transform;
     transition-duration: var(--hamburger-duration);
 
     &,
@@ -60,6 +60,7 @@
   .has-nav-open & {
     > * {
       background-color: transparent;
+      transform: scale(0.825);
 
       &::before,
       &::after {

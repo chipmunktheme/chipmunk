@@ -1,0 +1,22 @@
+{% do action('chipmunk_before_post_footer') %}
+
+{% if is_option_enabled('sharing', 'post') or is_option_enabled('tags', 'post') %}
+  <div class="c-entry__footer">
+    {% if is_option_enabled('sharing', 'post') %}
+      {% include 'partials/share.twig' %}
+    {% endif %}
+
+    {% if is_option_enabled('tags', 'post') %}
+      {% include 'partials/stats.twig' with {
+        class: 'c-entry__stats',
+        stats: {
+          terms: {
+            term_args: { taxonomy: 'post_tag' },
+          },
+        },
+      } %}
+    {% endif %}
+  </div>
+{% endif %}
+
+{% do action('chipmunk_after_post_footer') %}

@@ -69,10 +69,10 @@
       color: var(--chipmunk--color--black);
     }
   }
-}
 
-.c-entry__stats {
-  @include spacer-clamped(1.5);
+  + .c-entry__stats {
+    @include spacer-fixed;
+  }
 }
 
 .c-entry__author {

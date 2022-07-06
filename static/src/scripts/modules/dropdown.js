@@ -1,3 +1,5 @@
+import helpers from '../utils/helpers';
+
 const Dropdown = {
   blockClosing: false,
 
@@ -12,14 +14,14 @@ const Dropdown = {
           this.handleListener(trigger, event);
           break;
         case 'responsive':
-          this.handleListener(trigger, this.isTouchDevice() ? 'click' : 'hover');
+          this.handleListener(trigger, this.isTouchDevice() || helpers.getBreakpoint() !== 'lg' ? 'click' : 'hover');
           break;
         default:
           this.handleListener(trigger, 'hover');
       }
     });
 
-    element.addEventListener('dropdown:close', () => this.closeDropdowns(), false);
+    element.addEventListener('dropdown:close', () => this.closeDropdowns(null, true), false);
   },
 
   handleListener(trigger, event) {
@@ -56,13 +58,13 @@ const Dropdown = {
     element.classList[method]('is-open');
   },
 
-  closeDropdowns(exclude = null) {
-    if (this.blockClosing) {
+  closeDropdowns(exclude = null, force = false) {
+    if (this.blockClosing && !force) {
       return;
     }
 
     this.triggers.forEach((trigger) => {
-      if ((!exclude || trigger.parentNode !== exclude) && !trigger.dataset.dropdownBlock) {
+      if (force || (!exclude || trigger.parentNode !== exclude) && !trigger.dataset.dropdownBlock) {
         this.handleDropdown(null, trigger.parentNode, 'remove');
       }
     });

@@ -46,6 +46,20 @@
   }
 }
 
+body {
+  // These values will not show up in content, but can be
+  // queried by JavaScript to know which breakpoint is active.
+  &::before {
+    display: none;
+
+    @each $breakpoint, $size in $breakpoints {
+      @include bp($breakpoint) {
+        content: '#{$breakpoint}';
+      }
+    }
+  }
+}
+
 a,
 button {
   @extend %link-transition;
