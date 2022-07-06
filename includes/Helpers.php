@@ -240,64 +240,6 @@ class Helpers {
 	}
 
 	/**
-	 * Creates meta description for post and pages
-	 *
-	 * @return string
-	 */
-	public static function getMetaDescription() {
-		global $post;
-
-		if ( is_front_page() ) {
-			$description = get_bloginfo( 'description' );
-		}
-
-		elseif ( is_single() || is_page() ) {
-			$description = self::getCustomExcerpt( $post->post_content, $post->post_excerpt );
-			$description = strip_tags( $description );
-			$description = str_replace( '"', '\'', $description );
-		}
-
-		return $description ?? '';
-	}
-
-	/**
-	 * Creates a custom excerpt function
-
-	 * @param string $text 		A fallback content text to make the excerpt from
-	 * @param string $excerpt 	The primary excerpt to return if not empty
-	 *
-	 * @return string
-	 */
-	public static function getCustomExcerpt( $text, $excerpt ) {
-		if ( ! empty( $excerpt ) ) {
-			return $excerpt;
-		}
-
-		$text = strip_shortcodes( $text );
-		$text = apply_filters( 'the_content', $text );
-		$text = str_replace( ']]>', ']]&gt;', $text );
-		$text = strip_tags( $text );
-
-		$excerptLength = apply_filters( 'excerpt_length', 55 );
-		$excerptMore = apply_filters( 'excerpt_more', ' ' . '[...]' );
-		$words = preg_split( "/[\n
-			]+/", $text, $excerptLength + 1, PREG_SPLIT_NO_EMPTY );
-
-		if ( count( $words ) > $excerptLength ) {
-			array_pop( $words );
-			$text = implode( ' ', $words );
-			$text = $text . $excerptMore;
-		}
-		else {
-			$text = implode( ' ', $words );
-		}
-
-		$text = str_replace( '"', '\'', strip_tags( $text ) );
-
-		return apply_filters( 'wp_trim_excerpt', $text );
-	}
-
-	/**
 	 * Gets menu items from specified location
 	 *
 	 * @param string $location Menu location

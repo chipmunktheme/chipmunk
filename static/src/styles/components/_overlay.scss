@@ -34,15 +34,17 @@
   justify-content: center;
   height: calc(100% - var(--header-height, 0px));
   margin-top: var(--header-height, 0);
-  padding-top: spacer-clamped(5);
-  padding-bottom: spacer-clamped(5);
+  padding-top: 5vh;
+  padding-bottom: 5vh;
 }
 
 .c-overlay__menu {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .c-overlay__bottom {

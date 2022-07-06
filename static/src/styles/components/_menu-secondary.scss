@@ -8,6 +8,10 @@
   gap: spacer-clamped(0.5);
 }
 
+.c-menu-secondary__item {
+  display: contents;
+}
+
 .c-menu-secondary__link {
   display: inline-block;
   color: var(--chipmunk--color--gray);

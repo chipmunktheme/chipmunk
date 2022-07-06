@@ -1,6 +1,5 @@
 import panel from '../modules/panel';
 import dropdown from '../modules/dropdown';
-import expander from '../modules/expander';
 import carousel from '../modules/carousel';
 import popup from '../modules/popup';
 import validate from '../modules/validate';
@@ -17,7 +16,6 @@ const Ui = {
   init(element) {
     panel.init(element);
     dropdown.init(element);
-    expander.init(element);
     carousel.init(element);
     popup.init(element);
     validate.init(element);

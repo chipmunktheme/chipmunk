@@ -9,3 +9,7 @@
     loginUrl: '{{ fn('wp_login_url', current_url) }}',
   };
 </script>
+
+{% if not get_option('disable_og') %}
+  {% include 'layouts/meta.twig' %}
+{% endif %}

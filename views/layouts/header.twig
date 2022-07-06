@@ -15,9 +15,13 @@
       </{{ is_front_page ? 'h1' : 'div' }}>
 
       {% if menus.primary.items %}
-        <div class="c-page-head__menu u-visible-lg-block">
-          {% include 'partials/menu.twig' with { type: 'primary', items: menus.primary.items } %}
-        </div>
+        <nav class="c-page-head__menu u-visible-lg-block">
+          {% include 'partials/menu.twig' with {
+            type: 'primary',
+            items: menus.primary.items,
+            expandable: true,
+          } %}
+        </nav>
       {% endif %}
 
       <div class="c-page-head__cta">
@@ -27,6 +31,10 @@
             <span class="u-hidden-visually">{{ __('Search', 'chipmunk') }}</span>
           </button>
         {% endif %}
+
+        <button class="c-page-head__icon c-hamburger u-hidden-lg" data-panel="nav">
+          <span></span>
+        </button>
 
         {% if is_addon_enabled('members') %}
           {% if user %}
@@ -39,6 +47,7 @@
                 {% include 'partials/icon.twig' with { icon: 'chevron-down', size: 'sm' } only %}
               </button>
 
+              {# TODO: Add correct profile links #}
               <nav class="{{ cn('u-dropdown', get_option('dropdown_theme')) }}">
                 <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'dashboard' ) ); ?>" class="u-dropdown__link">{{ __('Dashboard', 'chipmunk') }}</a>
                 {% if false | apply_filters('chipmunk_enable_user_profiles') %}
@@ -50,6 +59,7 @@
               </nav>
             </div>
           {% else %}
+            {# TODO: Add correct user form links #}
             <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'login' ) ); ?>" class="{{ cn('c-button', 'primary-outline') }} u-visible-lg-block">
               {{ __('Login', 'chipmunk') }}
             </a>
@@ -63,10 +73,6 @@
         {% elseif not get_option('disable_submissions') %}
           {% include 'partials/submit-button.twig' with { class: cn('c-button', 'primary-outline') ~ ' u-visible-lg-block' } %}
         {% endif %}
-
-        <button class="c-page-head__icon u-hamburger u-hidden-lg" data-panel="nav">
-          <span></span>
-        </button>
       </div>
 
       {% if not get_option('disable_search') %}

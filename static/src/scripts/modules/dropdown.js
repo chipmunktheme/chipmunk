@@ -1,27 +1,47 @@
 const Dropdown = {
+  blockClosing: false,
+
   init(element = document) {
     this.triggers = Array.from(element.querySelectorAll('[data-dropdown]'));
 
     this.triggers.forEach((trigger) => {
       const event = trigger.dataset.dropdown;
 
-      if (event === 'click') {
-        trigger.addEventListener(event, (ev) => this.handleDropdown.call(this, ev, ev.currentTarget.parentNode), false);
-      } else {
-        trigger.addEventListener(
-          'mouseover',
-          (ev) => this.handleDropdown.call(this, ev, ev.currentTarget, 'add'),
-          false,
-        );
-        trigger.addEventListener(
-          'mouseout',
-          (ev) => this.handleDropdown.call(this, ev, ev.currentTarget, 'remove'),
-          false,
-        );
+      switch (event) {
+        case 'click':
+          this.handleListener(trigger, event);
+          break;
+        case 'responsive':
+          this.handleListener(trigger, this.isTouchDevice() ? 'click' : 'hover');
+          break;
+        default:
+          this.handleListener(trigger, 'hover');
       }
     });
 
-    element.addEventListener('dropdown:close', this.closeDropdowns.bind(this), false);
+    element.addEventListener('dropdown:close', () => this.closeDropdowns(), false);
+  },
+
+  handleListener(trigger, event) {
+    if (event === 'click') {
+      trigger.addEventListener(event, (ev) => {
+        this.handleDropdown(ev, trigger.parentNode);
+      });
+    }
+
+    if (event === 'hover') {
+      trigger.parentNode.addEventListener('mouseenter', (ev) => {
+        trigger.style.pointerEvents = 'none';
+        this.handleDropdown(ev, trigger.parentNode, 'add');
+        this.blockClosing = true;
+      });
+
+      trigger.parentNode.addEventListener('mouseleave', (ev) => {
+        trigger.style.pointerEvents = 'all';
+        this.handleDropdown(ev, trigger.parentNode, 'remove');
+        this.blockClosing = false;
+      });
+    }
   },
 
   handleDropdown(ev, element, method = 'toggle') {
@@ -36,13 +56,22 @@ const Dropdown = {
     element.classList[method]('is-open');
   },
 
-  closeDropdowns(exclude) {
+  closeDropdowns(exclude = null) {
+    if (this.blockClosing) {
+      return;
+    }
+
     this.triggers.forEach((trigger) => {
-      if (trigger !== exclude && trigger.parentNode !== exclude) {
-        this.handleDropdown(null, trigger, 'remove');
+      if ((!exclude || trigger.parentNode !== exclude) && !trigger.dataset.dropdownBlock) {
         this.handleDropdown(null, trigger.parentNode, 'remove');
       }
     });
+  },
+
+  isTouchDevice() {
+    return (('ontouchstart' in window) ||
+       (navigator.maxTouchPoints > 0) ||
+       (navigator.msMaxTouchPoints > 0));
   },
 };
 

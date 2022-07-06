@@ -1,0 +1,34 @@
+{# TODO: Add overlay content #}
+<div class="c-overlay u-hidden-lg">
+  <div class="c-overlay__inner">
+    {% if menus.primary.items %}
+      <nav class="c-overlay__menu">
+        {% include 'partials/menu.twig' with {
+          type: 'primary',
+          items: menus.primary.items,
+          expandable: true,
+        } %}
+      </nav>
+    {% endif %}
+
+    {% if is_addon_enabled('members') %}
+      <div class="c-overlay__bottom">
+        {% if user %}
+          {% include 'partials/submit-button.twig' with { class: cn('c-button', 'primary-outline') } %}
+        {% else %}
+          <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'login' ) ); ?>" class="c-button c-button--primary-outline">
+            {{ __('Login', 'chipmunk') }}
+          </a>
+
+          <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'register' ) ); ?>" class="c-button c-button--primary-outline">
+            {{ __('Register', 'chipmunk') }}
+          </a>
+        {% endif %}
+      </div>
+    {% elseif not get_option('disable_submissions') %}
+      <div class="c-overlay__bottom">
+        {% include 'partials/submit-button.twig' with { class: cn('c-button', 'primary-outline') } %}
+      </div>
+    {% endif %}
+  </div>
+</div>

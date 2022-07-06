@@ -66,6 +66,7 @@ class Assets {
 
 		$disableBorders   = Helpers::getOption( 'disable_section_borders' );
 
+		// TODO: Change this to be a custom field set via ACF per page
 		if ( is_page() ) {
 			switch ( get_page_template_slug() ) {
 				case 'page-full-width.php':

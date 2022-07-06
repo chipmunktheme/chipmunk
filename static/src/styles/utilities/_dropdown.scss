@@ -17,9 +17,7 @@
 }
 
 .u-dropdown__link {
-  @extend %dropdown-link;
-
-  min-width: 12.5rem;
+  min-width: 10rem;
   white-space: nowrap;
 }
 

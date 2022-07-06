@@ -50,7 +50,7 @@
 }
 
 .l-body__placeholder {
-  .c-page-head--sticky + * > & {
+  .c-page-head--sticky ~ * > & {
     min-height: var(--header-height, 0);
   }
 }

@@ -215,7 +215,6 @@ class Setup {
 
 		new Config\Admin();
 		new Config\Assets();
-		new Config\Nav();
 		new Config\Query();
 		new Config\Misc();
 

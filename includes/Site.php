@@ -36,6 +36,7 @@ class Site extends TimberSite {
 		$context['is_front_page']		= is_front_page();
 		$context['is_home']				= is_home();
 		$context['is_single']			= is_single();
+		$context['is_page']				= is_page();
 		$context['is_search']			= is_search();
 		$context['is_author']			= is_author();
 		$context['is_tax']				= is_tax();

@@ -1,0 +1,36 @@
+{% set og_image = get_option('og_image') %}
+
+{% if is_front_page %}
+  <!-- / Twitter Card -->
+  <meta name="twitter:card" content="summary">
+
+  <!-- / FB Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:url" content="{{ site.link }}">
+  <meta property="og:title" content="{{ site.name }}">
+  <meta property="og:description" content="{{ site.description }}">
+  {% if og_image %}
+    <meta property="og:image" content="{{ og_image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+  {% endif %}
+
+{% elseif is_single or is_page %}
+  {% set og_title = get_option('disable_og_branding') ? post.title : __('%s on %s', 'chipmunk') | format(post.title, site.name) %}
+
+  <!-- / Twitter Card -->
+  <meta name="twitter:card" content="{{ post.thumbnail ? 'summary_large_image' : 'summary' }}">
+
+  <!-- / FB Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:url" content="{{ post.link }}">
+  <meta property="og:title" content="{{ og_title }}">
+  <meta property="og:description" content="{{ post.excerpt({ chars: 150 }).read_more(null) }}">
+  {% if post.thumbnail or og_image %}
+    <meta property="og:image" content="{{ post.thumbnail ?? og_image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+  {% endif %}
+{% endif %}

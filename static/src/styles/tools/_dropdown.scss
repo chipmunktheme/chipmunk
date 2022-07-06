@@ -4,10 +4,12 @@
 
 @mixin dropdown($margin, $theme: 'dark', $position: 'left', $offset: 1.5rem) {
   position: absolute;
-  top: calc(100% + #{$offset});
+  top: calc(100% + #{$offset} - 1px);
   z-index: var(--chipmunk--layer--dropdown);
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75em 1em;
+  gap: 0.5em;
   background-color: if($theme == 'dark', var(--chipmunk--color--black), var(--chipmunk--color--section));
   border-radius: var(--chipmunk--border-radius);
   border: 1px solid if($theme == 'dark', transparent, var(--chipmunk--color--gray-lighter));
@@ -57,22 +59,32 @@
     }
   }
 
+  [class*="link"] {
+    position: relative;
+    display: block;
+    text-align: inherit;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
   ul {
     top: calc(0.5em - #{$margin});
 
     @if ($position == 'left') {
       right: auto;
-      left: calc(100% + #{$offset});
+      left: calc(100% + #{$offset} + 1em - 1px);
     }
 
     @if ($position == 'right') {
-      right: calc(100% + #{$offset});
+      right: calc(100% + #{$offset} + 1em - 1px);
       left: auto;
     }
 
     &::before {
       height: auto;
-      width: $offset;
+      width: calc(#{$offset} + 1em);
       top: 0;
       bottom: 0;
 

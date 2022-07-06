@@ -925,8 +925,8 @@ class Customizer {
 			'section'     => $section['slug'],
 			'settings'    => self::$settingsName . '[' . $field['name'] . ']',
 			'description' => $field['description'] ?? null,
-			'choices'     => array_filter( $field['choices'] ) ?? null,
-			'input_attrs' => array_filter( $field['input_attrs'] ) ?? null,
+			'choices'     => array_filter( $field['choices'] ?? [] ),
+			'input_attrs' => array_filter( $field['input_attrs'] ?? [] ),
 		];
 
 		$customize->add_setting( self::$settingsName . '[' . $field['name'] . ']', $settingArgs );
