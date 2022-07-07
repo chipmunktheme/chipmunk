@@ -18,7 +18,7 @@ use Timber\User;
 global $wp_query;
 
 $context = Timber::context();
-$context['queried_object'] = ['name' => 'post'];
+$context['queried_object'] = get_queried_object();
 $context['title'] = get_the_archive_title();
 $context['description'] = get_the_archive_description();
 $context['posts'] = Timber::get_posts();

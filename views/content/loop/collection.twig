@@ -1,0 +1,13 @@
+{% if collections %}
+  <div class="{{ cn('l-component', spacer ?? 'sm') }}">
+    <div class="c-tile__list">
+      {% for collection in collections %}
+        {% include 'content/tile/collection.twig' %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="l-header__copy">
+      {{ __('Sorry, there are no collections to display yet.', 'chipmunk') }}
+    </p>
+  </div>
+{% endif %}

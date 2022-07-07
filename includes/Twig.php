@@ -50,6 +50,7 @@ class Twig {
 	protected function registerTwigFunctions( $twig ) {
 		// WordPress Helpers
 		$this->registerFunction( $twig, 'is_singular', 			'is_singular' );
+		$this->registerFunction( $twig, 'is_tax', 				'is_tax' );
 
 		// Generic Helpers
 		$this->registerFunction( $twig, 'revisioned_path', 		[ Assets::class, 'revisionedPath' ] );

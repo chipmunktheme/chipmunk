@@ -18,7 +18,7 @@ class Query {
 	function __construct() {
 		add_filter( 'pre_get_posts', [ $this, 'updateResultsPerPage' ] );
 		add_filter( 'pre_get_posts', [ $this, 'updateSearchParams' ] );
-		// add_filter( 'pre_get_posts', [ $this, 'excludeTaxChildren' ] );
+		add_filter( 'pre_get_posts', [ $this, 'excludeTaxChildren' ] );
 	}
 
 	/**

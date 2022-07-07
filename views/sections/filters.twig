@@ -1,6 +1,6 @@
 {# TODO: Make sure the filters actually work #}
 <div class="c-filter__group">
-  {% if is_option_enabled('filters', 'resource', false) and not is_tax %}
+  {% if is_option_enabled('filters', 'resource', false) and not is_tax() %}
     {% set tags = get_terms({
       taxonomy: 'resource-tag',
       orderby: 'name',

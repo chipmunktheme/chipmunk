@@ -12,22 +12,8 @@
 			<{{ is_front_page ? 'h2' : 'h1' }} class="{{ cn('c-heading', 'h4') }}">
 				{{ __('Collections', 'chipmunk') }}
 			</{{ is_front_page ? 'h2' : 'h1' }}>
-
-      {% if not collections %}
-				<p class="l-header__copy">
-					{{ __('Sorry, there are no collections to display yet.', 'chipmunk') }}
-				</p>
-      {% endif %}
 		</div>
 
-    {% if collections %}
-			<div class="l-component">
-				<div class="c-tile__list">
-          {% for collection in collections %}
-            {% include 'content/tile/collection.twig' %}
-          {% endfor %}
-				</div>
-			</div>
-		{% endif %}
+    {% include 'content/loop/collection.twig' %}
 	</div>
 </div>

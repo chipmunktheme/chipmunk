@@ -10,6 +10,13 @@
   {% set title = title | replace({ 'Archives: ': '' }) %}
 {% endif %}
 
+{% if is_tax('resource-collection') and queried_object %}
+  {% set collections = get_terms({
+    taxonomy: 'resource-collection',
+    parent: queried_object.term_id,
+  }) %}
+{% endif %}
+
 {% if posts or not is_singular('resource') %}
   <div class="l-section">
     <div class="l-container">
@@ -29,7 +36,11 @@
         {% endif %}
       </div>
 
-      {% include 'content/loop/resource.twig' %}
+      {% if collections %}
+        {% include 'content/loop/collection.twig' %}
+      {% endif %}
+
+      {% include 'content/loop/resource.twig' with { spacer: collections ? 'lg' } %}
     </div>
   </div>
 {% endif %}
