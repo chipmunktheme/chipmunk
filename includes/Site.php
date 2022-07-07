@@ -17,8 +17,8 @@ class Site extends TimberSite {
 	 */
 	function __construct() {
 		// Timber config
-		add_filter( 'timber/locations', [ $this, 'set_templates_directory' ] );
-		add_filter( 'timber/context', [ $this, 'extend_context' ] );
+		add_filter( 'timber/locations', [ $this, 'setTemplatesDirectory' ] );
+		add_filter( 'timber/context', [ $this, 'extendContext' ] );
 
 		parent::__construct();
 	}
@@ -30,7 +30,7 @@ class Site extends TimberSite {
 	 *
 	 * @return array
 	 */
-	public static function extend_context( $context ) {
+	public function extendContext( $context ) {
 		$conditionals = [
 			'is_home',
 			'is_front_page',
@@ -63,7 +63,7 @@ class Site extends TimberSite {
 	 *
 	 * @return array
 	 */
-	public static function set_templates_directory( $paths ) {
+	public function setTemplatesDirectory( $paths ) {
 		$paths[] = [ THEME_TEMPLATE_DIR . '/views' ];
 
 		return $paths;

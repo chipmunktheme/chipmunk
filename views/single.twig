@@ -4,7 +4,5 @@
   {% include "content/entry/#{ post.type }.twig" %}
   {% include 'sections/comments.twig' %}
 
-  {% if post.post_type in ['post', 'resource'] %}
-    {% include "content/archive/#{ post.type }.twig" %}
-  {% endif %}
+  {% include "content/archive/#{ post.type }.twig" ignore missing %}
 {% endblock %}

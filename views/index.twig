@@ -1,5 +1,11 @@
 {% extends '_layout.twig' %}
 
 {% block content %}
-  {% include "content/archive/#{ queried_object.name }.twig" %}
+  {% if is_author %}
+    {% include 'sections/author.twig' %}
+  {% endif %}
+
+  {# TODO: Find a way to get the proper post type of the archive #}
+  {# {% include "content/archive/#{ queried_object.name }.twig" ignore missing %} #}
+  {% include "content/archive/#{ (posts | first).post_type }.twig" ignore missing %}
 {% endblock %}

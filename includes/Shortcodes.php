@@ -25,7 +25,7 @@ class Shortcodes {
 	 *
 	 * @return string
 	 */
-	public static function renderCounter( $atts, $content = null ) {
+	public function renderCounter( $atts, $content = null ) {
 		// Parse shortcode attributes
 		$atts = shortcode_atts( [
 			'type'      => 'resource',
@@ -40,7 +40,7 @@ class Shortcodes {
 	 *
 	 * @return string
 	 */
-	public static function renderSubmit( $atts, $content = null ) {
+	public function renderSubmit( $atts, $content = null ) {
 		// Parse shortcode attributes
 		$atts = shortcode_atts( [
 			'title' => '',

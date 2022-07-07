@@ -17,9 +17,9 @@ class Setup {
  	 * Class constructor
 	 */
 	function __construct() {
-		add_action( 'after_setup_theme', [ $this, 'setup_support' ] );
-		add_action( 'after_setup_theme', [ $this, 'setup_theme' ] );
-		add_action( 'admin_init', [ $this, 'create_uploads_dir' ] );
+		add_action( 'after_setup_theme', [ $this, 'setupSupport' ] );
+		add_action( 'after_setup_theme', [ $this, 'setupTheme' ] );
+		add_action( 'admin_init', [ $this, 'createUploadsDir' ] );
 	}
 
 	/**
@@ -29,7 +29,7 @@ class Setup {
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	public static function setup_support() {
+	public function setupSupport() {
 		/*
 		 * Makes theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -204,7 +204,7 @@ class Setup {
 	/**
  	 * Setup main components and features of the theme
 	 */
-	public static function setup_theme() {
+	public function setupTheme() {
 		new Actions();
 		new Assets();
 		new Features();
@@ -257,7 +257,7 @@ class Setup {
 	/**
  	 * Creates an empty directory for theme related uploads
 	 */
-	public static function create_uploads_dir() {
+	public function createUploadsDir() {
 		wp_mkdir_p( THEME_UPLOADS_DIR );
 	}
 }

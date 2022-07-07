@@ -2,10 +2,7 @@
 
 namespace Chipmunk;
 
-use WP_Query;
-use WP_User_Query;
 use Timber\Timber;
-use Timber\PostQuery;
 
 /**
  * Theme helpers for retrieving data from DB.
@@ -21,7 +18,6 @@ class Query {
 	public static function getPosts( $args, $tax = null, $date = null ) {
 		$defaults = [
 			'post_type'         => 'post',
-			'posts_per_page'    => -1,
 		];
 
 		// Apply taxonomy params

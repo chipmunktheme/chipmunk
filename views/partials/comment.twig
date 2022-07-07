@@ -24,6 +24,7 @@
       </div>
 
       <div class="c-comment__reply">
+        {# TODO: Add some spacing to the form once Reply button is clicked #}
         {{ comment.reply_link(include('partials/icon.twig', { icon: 'reply' }) ~ __('Reply', 'chipmunk')) }}
       </div>
 

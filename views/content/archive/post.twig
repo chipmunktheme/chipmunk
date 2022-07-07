@@ -10,7 +10,7 @@
   {% set title = __('Related', 'chipmunk') %}
 {% elseif is_front_page %}
   {% set title = __('Latest Posts', 'chipmunk') %}
-{% else %}
+{% elseif title == 'Archives' %}
   {% set title = __('Blog', 'chipmunk') %}
 {% endif %}
 

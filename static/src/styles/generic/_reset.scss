@@ -60,6 +60,10 @@ body {
   }
 }
 
+[data-action-element]:not([class]) {
+  display: contents;
+}
+
 a,
 button {
   @extend %link-transition;

@@ -6,8 +6,8 @@
   {% set title = post.title %}
 {% elseif is_singular('resource') %}
   {% set title = __('Related', 'chipmunk') %}
-{% else %}
-  {% set title = __('Resources', 'chipmunk') %}
+{% elseif 'Archives:' in title  %}
+  {% set title = title | replace({ 'Archives: ': '' }) %}
 {% endif %}
 
 {% if posts or not is_singular('resource') %}

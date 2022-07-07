@@ -97,7 +97,7 @@ class Addons {
 							<a href="<?php echo esc_attr( $addon['url'] ); ?>" target="_blank" class="link"><?php esc_html_e( 'Read more', 'chipmunk' ); ?> &rarr;</a>
 						</p>
 
-						<?php if ( ! Settings::is_valid_license() ) : ?>
+						<?php if ( ! Settings::isValidLicense() ) : ?>
 							<p class="chipmunk__addon-error">
 								<?php esc_html_e( 'Please use a valid license to enable.', 'chipmunk' ); ?>
 							</p>
@@ -127,11 +127,11 @@ class Addons {
 	 * Check if Chipmunk plugin is allowed
 	 */
 	public static function isAddonAllowed( $addon ) {
-		if ( ! Settings::is_valid_license() ) {
+		if ( ! Settings::isValidLicense() ) {
 			return false;
 		}
 
-		return Settings::get_license_price() >= THEME_ADDONS[ $addon ];
+		return Settings::getLicensePrice() >= THEME_ADDONS[ $addon ];
 	}
 
 	/**

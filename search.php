@@ -16,4 +16,4 @@ if ( strlen( get_search_query() ) < 3 || Helpers::getOption( 'disable_search' ) 
 	wp_redirect( home_url( '/', 'relative' ) ); exit;
 }
 
-Timber::render( [ 'search.twig', 'archive.twig', 'index.twig' ], Timber::context() );
+Timber::render( [ 'search.twig', 'index.twig' ], Timber::context() );

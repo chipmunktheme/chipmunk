@@ -25,9 +25,9 @@ class Settings {
  	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_action( 'admin_menu', [ $this, 'add_menu_page' ], 1 );
-		add_action( 'chipmunk_settings_nav', [ $this, 'add_menu_page' ], 1 );
-		add_action( 'admin_init', [ $this, 'display_errors' ], 99 );
+		add_action( 'admin_menu', [ $this, 'addMenuPage' ], 1 );
+		add_action( 'chipmunk_settings_nav', [ $this, 'addMenuPage' ], 1 );
+		add_action( 'admin_init', [ $this, 'displayErrors' ], 99 );
 
 		// Initialize theme licenser
 		$licenser = new Settings\Licenser( [
@@ -48,7 +48,7 @@ class Settings {
 	/**
 	 * Register settings page to the admin_menu action hook
 	 */
-	public function add_menu_page() {
+	public function addMenuPage() {
 		add_menu_page(
 			THEME_TITLE,
 			THEME_TITLE,
@@ -62,7 +62,7 @@ class Settings {
 	/**
 	 * Outputs the markup used on the theme settings page.
 	 */
-	public function admin_settings() {
+	public function adminSettings() {
 		$tabs = apply_filters( 'chipmunk_settings_tabs', [] );
 		?>
 
@@ -101,7 +101,11 @@ class Settings {
 			<div class="chipmunk__nav chipmunk__wrap">
 				<ul>
 					<?php foreach ( $tabs as $tab ) : ?>
-						<li><a href="?page=chipmunk&tab=<?php echo esc_attr( $tab['slug'] ); ?>" <?php echo $this->is_active_tab( $tabs, $tab ) ? 'class="active"' : ''; ?>><?php echo esc_html( $tab['name'] ); ?></a></li>
+						<li>
+							<a href="?page=chipmunk&tab=<?php echo esc_attr( $tab['slug'] ); ?>" <?php echo $this->isActiveTab( $tabs, $tab ) ? 'class="active"' : ''; ?>>
+								<?php echo esc_html( $tab['name'] ); ?>
+							</a>
+						</li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
@@ -110,7 +114,7 @@ class Settings {
 				<?php settings_errors(); ?>
 
 				<?php foreach ( $tabs as $index => $tab ) : ?>
-					<?php if ( $this->is_active_tab( $tabs, $tab ) && ! empty( $tab['content'] ) ) : ?>
+					<?php if ( $this->isActiveTab( $tabs, $tab ) && ! empty( $tab['content'] ) ) : ?>
 						<?php echo $tab['content']; ?>
 					<?php endif; ?>
 				<?php endforeach; ?>
@@ -134,7 +138,7 @@ class Settings {
 	 * @param array $tabs Tabs array list
 	 * @param array $tab Single tab instance
 	 */
-	private function is_active_tab( $tabs, $tab ) {
+	private function isActiveTab( $tabs, $tab ) {
 		return ( ! empty( $_GET['tab'] ) && $_GET['tab'] == $tab['slug'] ) || ( empty( $_GET['tab'] ) && $tabs[0] == $tab );
 	}
 
@@ -143,7 +147,7 @@ class Settings {
 	 *
 	 * @return bool
 	 */
-	public static function is_valid_license() {
+	public static function isValidLicense() {
 		return ! empty( self::$license ) && 'valid' == self::$license->license;
 	}
 
@@ -152,8 +156,8 @@ class Settings {
 	 *
 	 * @return int
 	 */
-	public static function get_license_price() {
-		return self::is_valid_license() ? (int) self::$license->price_id : 0;
+	public static function getLicensePrice() {
+		return self::isValidLicense() ? (int) self::$license->price_id : 0;
 	}
 
 	/**
@@ -162,7 +166,7 @@ class Settings {
 	 * @param string $message Error message
 	 * @param string $type Error type
 	 */
-	public static function add_settings_error( $setting, $message, $type = 'error' ) {
+	public static function addSettingsError( $setting, $message, $type = 'error' ) {
 		$setting = THEME_SLUG . '_' . $setting;
 		$errors = get_settings_errors( $setting );
 
@@ -174,11 +178,11 @@ class Settings {
 	/**
 	 * Checks if a import action was submitted.
 	 */
-	public function display_errors() {
+	public function displayErrors() {
 		$errors = Errors::getInstance();
 
 		foreach ( $errors->get_error_messages() as $error ) {
-			self::add_settings_error( '', $error );
+			self::addSettingsError( '', $error );
 		}
 	}
 }

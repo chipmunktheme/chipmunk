@@ -29,4 +29,4 @@ if ( get_query_var( 'author_name' ) ) {
 	$context['title']  = 'Author Archives: ' . $author->name();
 }
 
-Timber::render( 'archive.twig', $context );
+Timber::render( 'index.twig', $context );

@@ -16,10 +16,10 @@ class Features {
 	 * @var array
 	 */
 	private $features = [
-		'posts' 		=> 'add_posts_support',
-		'taxonomies' 	=> 'add_taxonomies_support',
-		'images' 		=> 'add_images_support',
-		'menus' 		=> 'add_menus_support',
+		'posts' 		=> 'addPostsSupport',
+		'taxonomies' 	=> 'addTaxonomiesSupport',
+		'images' 		=> 'addImagesSupport',
+		'menus' 		=> 'addMenusSupport',
 	];
 
 	/**
@@ -36,7 +36,7 @@ class Features {
 	/*
 	 * Custom posts support
 	 */
-	public function add_posts_support( $name ) {
+	public function addPostsSupport( $name ) {
 		$posts = get_theme_support( $name );
 
 		// have we defined any posts?
@@ -80,7 +80,7 @@ class Features {
 	/*
 	 * Custom taxonomies support
 	 */
-	public function add_taxonomies_support( $name ) {
+	public function addTaxonomiesSupport( $name ) {
 		$taxonomies = get_theme_support( $name );
 
 		// have we defined any posts?
@@ -116,7 +116,7 @@ class Features {
 	/*
 	 * Custom images support
 	 */
-	public function add_images_support( $name ) {
+	public function addImagesSupport( $name ) {
 		$images = get_theme_support( $name );
 
 		// if some parameters have been added to the images
@@ -136,7 +136,7 @@ class Features {
 	/*
 	 * Custom menus support
 	 */
-	public function add_menus_support( $name ) {
+	public function addMenusSupport( $name ) {
 		$menus = get_theme_support( $name );
 
 		// if some parameters have been added to the menus
