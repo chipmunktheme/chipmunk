@@ -1,7 +1,15 @@
-{% for alert in alerts %}
+{% macro alert(alert) %}
   <div class="{{ cn('c-form__field', 'wide') }}">
     <p class="{{ cn('c-form__info', alert.type) }}">
       {{ alert.message }}
     </p>
   </div>
-{% endfor %}
+{% endmacro %}
+
+{% if 'type' in alerts | keys %}
+  {{ _self.alert(alerts) }}
+{% else %}
+  {% for alert in alerts %}
+    {{ _self.alert(alert) }}
+  {% endfor %}
+{% endif %}

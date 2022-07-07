@@ -2,6 +2,8 @@
 
 namespace Chipmunk\Addons\Members;
 
+use Chipmunk\Addons\Members\Helpers as MembersHelpers;
+
 /**
  * Initializes the plugin redirects.
  *
@@ -13,42 +15,42 @@ class Redirects {
 	/**
  	 * Class constructor
 	 */
-	public function __construct() {
+	function __construct() {
 		// Redirects
-		add_action( 'login_form_login', [ $this, 'redirect_to_login_form' ] );
-		add_action( 'login_form_register', [ $this, 'redirect_to_register_form' ] );
-		add_action( 'login_form_lostpassword', [ $this, 'redirect_to_lost_password_form' ] );
-		add_action( 'login_form_rp', [ $this, 'redirect_to_reset_password_form' ] );
-		add_action( 'login_form_resetpass', [ $this, 'redirect_to_reset_password_form' ] );
+		add_action( 'login_form_login', [ $this, 'redirectToLoginForm' ] );
+		add_action( 'login_form_register', [ $this, 'redirectToRegisterForm' ] );
+		add_action( 'login_form_lostpassword', [ $this, 'redirectToLostPasswordForm' ] );
+		add_action( 'login_form_rp', [ $this, 'redirectToResetPasswordForm' ] );
+		add_action( 'login_form_resetpass', [ $this, 'redirectToResetPasswordForm' ] );
 
-		add_filter( 'login_redirect', [ $this, 'redirect_after_login' ], 1, 3 );
-		add_action( 'wp_logout', [ $this, 'redirect_after_logout' ] );
+		add_filter( 'login_redirect', [ $this, 'redirectAfterLogin' ], 1, 3 );
+		add_action( 'wp_logout', [ $this, 'redirectAfterLogout' ] );
 
 		// Authentication
-		add_filter( 'authenticate', [ $this, 'redirect_at_authenticate_errors' ], 101, 3 );
+		add_filter( 'authenticate', [ $this, 'redirectAtAuthenticateErrors' ], 101, 3 );
 	}
 
 	/**
 	 * Redirect the user to the custom login page instead of
 	 * wp-login.php.
 	 */
-	public function redirect_to_login_form() {
+	public function redirectToLoginForm() {
 		if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
-			$redirect_to = $_REQUEST['redirect_to'] ?? null;
+			$redirectTo = $_REQUEST['redirect_to'] ?? null;
 
 			if ( is_user_logged_in() ) {
-				$this->redirect_logged_in_user( $redirect_to );
+				$this->redirectLoggedInUser( $redirectTo );
 				exit;
 			}
 
 			// The rest are redirected to the login page
-			$login_url = Helpers::get_page_permalink( 'login' );
+			$loginUrl = MembersHelpers::getPagePermalink( 'login' );
 
-			if ( ! empty( $redirect_to ) ) {
-				$login_url = add_query_arg( 'redirect_to', $redirect_to, $login_url );
+			if ( ! empty( $redirectTo ) ) {
+				$loginUrl = add_query_arg( 'redirect_to', $redirectTo, $loginUrl );
 			}
 
-			wp_safe_redirect( $login_url );
+			wp_safe_redirect( $loginUrl );
 			exit;
 		}
 	}
@@ -57,14 +59,14 @@ class Redirects {
 	 * Redirects the user to the custom registration page instead of
 	 * wp-login.php?action=register.
 	 */
-	public function redirect_to_register_form() {
+	public function redirectToRegisterForm() {
 		if ( 'GET' == $_SERVER['REQUEST_METHOD'] ) {
 			if ( is_user_logged_in() ) {
-				$this->redirect_logged_in_user();
+				$this->redirectLoggedInUser();
 				exit;
 			}
 
-			wp_safe_redirect( Helpers::get_page_permalink( 'register' ) );
+			wp_safe_redirect( MembersHelpers::getPagePermalink( 'register' ) );
 			exit;
 		}
 	}
@@ -73,23 +75,23 @@ class Redirects {
 	 * Redirects the user to the custom "Forgot your password?" page instead of
 	 * wp-login.php?action=lostpassword.
 	 */
-	public function redirect_to_lost_password_form() {
+	public function redirectToLostPasswordForm() {
 		if ( 'GET' == $_SERVER['REQUEST_METHOD'] ) {
-			$redirect_to = $_REQUEST['redirect_to'] ?? null;
+			$redirectTo = $_REQUEST['redirect_to'] ?? null;
 
 			if ( is_user_logged_in() ) {
-				$this->redirect_logged_in_user( $redirect_to );
+				$this->redirectLoggedInUser( $redirectTo );
 				exit;
 			}
 
 			// The rest are redirected to the lost password page
-			$pass_url = Helpers::get_page_permalink( 'lost_password' );
+			$passUrl = MembersHelpers::getPagePermalink( 'lost_password' );
 
-			if ( ! empty( $redirect_to ) ) {
-				$pass_url = add_query_arg( 'redirect_to', $redirect_to, $pass_url );
+			if ( ! empty( $redirectTo ) ) {
+				$passUrl = add_query_arg( 'redirect_to', $redirectTo, $passUrl );
 			}
 
-			wp_safe_redirect( $pass_url );
+			wp_safe_redirect( $passUrl );
 			exit;
 		}
 	}
@@ -98,24 +100,24 @@ class Redirects {
 	 * Redirects to the custom password reset page, or the login page
 	 * if there are errors.
 	 */
-	public function redirect_to_reset_password_form() {
+	public function redirectToResetPasswordForm() {
 		if ( 'GET' == $_SERVER['REQUEST_METHOD'] ) {
 			// Verify key / login combo
-			$user = check_reset_password_key( $_REQUEST['key'], $_REQUEST['login'] );
+			$user = check_password_reset_key( $_REQUEST['key'], $_REQUEST['login'] );
 
 			if ( ! $user || is_wp_error( $user ) ) {
-				$redirect_url = Helpers::get_page_permalink( 'login' );
-				$redirect_url = add_query_arg( 'errors', $user->get_error_code(), $redirect_url );
+				$redirectUrl = MembersHelpers::getPagePermalink( 'login' );
+				$redirectUrl = add_query_arg( 'errors', $user->get_error_code(), $redirectUrl );
 
-				wp_safe_redirect( $redirect_url );
+				wp_safe_redirect( $redirectUrl );
 				exit;
 			}
 
-			$redirect_url = Helpers::get_page_permalink( 'reset_password' );
-			$redirect_url = add_query_arg( 'login', esc_attr( $_REQUEST['login'] ), $redirect_url );
-			$redirect_url = add_query_arg( 'key', esc_attr( $_REQUEST['key'] ), $redirect_url );
+			$redirectUrl = MembersHelpers::getPagePermalink( 'reset_password' );
+			$redirectUrl = add_query_arg( 'login', esc_attr( $_REQUEST['login'] ), $redirectUrl );
+			$redirectUrl = add_query_arg( 'key', esc_attr( $_REQUEST['key'] ), $redirectUrl );
 
-			wp_safe_redirect( $redirect_url );
+			wp_safe_redirect( $redirectUrl );
 			exit;
 		}
 	}
@@ -123,28 +125,28 @@ class Redirects {
 	/**
 	 * Returns the URL to which the user should be redirected after the (successful) login.
 	 *
-	 * @param string           $redirect_to           The redirect destination URL.
-	 * @param string           $requested_redirect_to The requested redirect destination URL passed as a parameter.
-	 * @param WP_User|WP_Error $user                  WP_User object if login was successful, WP_Error object otherwise.
+	 * @param string           $redirectTo      The redirect destination URL.
+	 * @param string           $request         The requested redirect destination URL passed as a parameter.
+	 * @param WP_User|WP_Error $user            WP_User object if login was successful, WP_Error object otherwise.
 	 *
 	 * @return string Redirect URL
 	 */
-	public function redirect_after_login( $redirect_to, $requested_redirect_to, $user ) {
+	public function redirectAfterLogin( $redirectTo, $request, $user ) {
 		// Get the redirect path for logged in user
-		$redirect_url = $this->get_login_redirect_path( $user, $_REQUEST['redirect_to'] );
+		$redirectUrl = $this->getLoginRedirectPath( $user, $_REQUEST['redirect_to'] );
 
 		// Return updated redirect path
-		return $redirect_url;
+		return $redirectUrl;
 	}
 
 	/**
 	 * Redirect to custom login page after the user has been logged out.
 	 */
-	public function redirect_after_logout() {
-		$login_url = Helpers::get_page_permalink( 'login' );
-		$login_url = add_query_arg( 'logged_out', true, $login_url );
+	public function redirectAfterLogout() {
+		$loginUrl = MembersHelpers::getPagePermalink( 'login' );
+		$loginUrl = add_query_arg( 'logged_out', true, $loginUrl );
 
-		wp_safe_redirect( $login_url );
+		wp_safe_redirect( $loginUrl );
 		exit;
 	}
 
@@ -152,23 +154,23 @@ class Redirects {
 	 * Redirects the user to the correct page depending on whether he / she
 	 * is an admin or not.
 	 *
-	 * @param string $redirect_to   An optional redirect_to URL for admin users
+	 * @param string $redirectTo   An optional redirect_to URL for admin users
 	 */
-	private function redirect_logged_in_user( $redirect_to = null ) {
-		wp_safe_redirect( $this->get_login_redirect_path( wp_get_current_user(), $redirect_to ) );
+	private function redirectLoggedInUser( $redirectTo = null ) {
+		wp_safe_redirect( $this->getLoginRedirectPath( wp_get_current_user(), $redirectTo ) );
 	}
 
 	/**
 	 * Get proper redirect path for logged in users
 	 *
 	 * @param Wp_User|Wp_Error  $user          The signed in user, or the errors that have occurred during login.
-	 * @param string            $redirect_to   An optional redirect_to URL for admin users
+	 * @param string            $redirectTo   An optional redirect_to URL for admin users
 	 *
 	 * @return string           The redirect path
 	 */
-	public function get_login_redirect_path( $user, $redirect_to = null ) {
-		if ( ! empty( $redirect_to ) ) {
-			return $redirect_to;
+	public function getLoginRedirectPath( $user, $redirectTo = null ) {
+		if ( ! empty( $redirectTo ) ) {
+			return $redirectTo;
 		}
 
 		if ( ! isset( $user->ID ) ) {
@@ -179,7 +181,7 @@ class Redirects {
 			return admin_url();
 		}
 
-		return Helpers::get_page_permalink( 'dashboard' );
+		return MembersHelpers::getPagePermalink( 'dashboard' );
 	}
 
 	/**
@@ -191,17 +193,17 @@ class Redirects {
 	 *
 	 * @return Wp_User|Wp_Error The logged in user, or error information if there were errors.
 	 */
-	public function redirect_at_authenticate_errors( $user, $username, $password ) {
+	public function redirectAtAuthenticateErrors( $user ) {
 		// Check if the earlier authenticate filter (most likely,
 		// the default WordPress authentication) functions have found errors
 		if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 			if ( is_wp_error( $user ) ) {
-				$error_codes = join( ',', $user->get_error_codes() );
+				$errorCodes = join( ',', $user->get_error_codes() );
 
-				$login_url = Helpers::get_page_permalink( 'login' );
-				$login_url = add_query_arg( 'errors', $error_codes, $login_url );
+				$loginUrl = MembersHelpers::getPagePermalink( 'login' );
+				$loginUrl = add_query_arg( 'errors', $errorCodes, $loginUrl );
 
-				wp_safe_redirect( $login_url );
+				wp_safe_redirect( $loginUrl );
 				exit;
 			}
 		}

@@ -9,23 +9,19 @@
 				<span>{{ __('Load more', 'chipmunk') }}</span>
 			</button>
     {% else %}
-			<div class="{{ cn('c-pagination__item', pagination.prev ? 'disabled') }}">
-        {{ pagination.prev ? "<a href='#{ pagination.prev.link }'>" }}
-          {% include 'partials/icon.twig' with { icon: 'arrow-left' } only %}
-          <span class="u-visible-md-inline">{{ __('Previous', 'chipmunk') }}</span>
-        {{ pagination.prev ? '</a>' }}
-			</div>
+      <{{ pagination.prev ? "a href='#{ pagination.prev.link }'" : 'div' }} class="{{ cn('c-pagination__item', not pagination.prev ? 'disabled') }}">
+        {% include 'partials/icon.twig' with { icon: 'arrow-left' } only %}
+        <span class="u-visible-md-inline">{{ __('Previous', 'chipmunk') }}</span>
+      </{{ pagination.prev ? 'a' : 'div' }}>
 
 			<div class="c-pagination__title">
 				{{ __('Page %d of %d', 'chipmunk') | format(pagination.current, pagination.total) }}
 			</div>
 
-			<div class="{{ cn('c-pagination__item', pagination.next ? 'disabled') }}">
-        {{ pagination.next ? "<a href='#{ pagination.next.link }'>" }}
-          <span class="u-visible-md-inline">{{ __('Next', 'chipmunk') }}</span>
-          {% include 'partials/icon.twig' with { icon: 'arrow-right' } only %}
-        {{ pagination.next ? '</a>' }}
-			</div>
+      <{{ pagination.next ? "a href='#{ pagination.next.link }'" : 'div' }} class="{{ cn('c-pagination__item', not pagination.next ? 'disabled') }}">
+        <span class="u-visible-md-inline">{{ __('Next', 'chipmunk') }}</span>
+        {% include 'partials/icon.twig' with { icon: 'arrow-right' } only %}
+      </{{ pagination.next ? 'a' : 'div' }}>
     {% endif %}
 	</nav>
 {% endif %}

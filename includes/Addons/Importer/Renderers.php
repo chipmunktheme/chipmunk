@@ -13,7 +13,7 @@ class Renderers {
 	/**
  	 * Class constructor
 	 */
-	public function __construct() {
+	function __construct() {
 		// Shortcodes
 		add_shortcode( 'chipmunk-login-form', [ $this, 'render_login_form' ] );
 		add_shortcode( 'chipmunk-register-form', [ $this, 'render_register_form' ] );

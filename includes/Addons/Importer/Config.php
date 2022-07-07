@@ -13,7 +13,7 @@ class Config {
 	/**
  	 * Class constructor
 	 */
-	public function __construct() {
+	function __construct() {
 
 	}
 }

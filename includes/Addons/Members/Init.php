@@ -2,7 +2,8 @@
 
 namespace Chipmunk\Addons\Members;
 
-use Chipmunk\Helpers as ChipmunkHelpers;
+use Chipmunk\Helpers;
+use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 
 /**
  * Allows users to sign-up and improve the experience of the theme
@@ -20,7 +21,7 @@ class Init {
 	 *
 	 * @param array $config
 	 */
-	public function __construct( $config = [] ) {
+	function __construct( $config = [] ) {
 		// Set config defaults
 		$this->config = wp_parse_args( $config, [
 			'name'         => '',
@@ -41,8 +42,8 @@ class Init {
 	 * @return  void
 	 */
 	private function hooks() {
-		add_action( 'init', [ $this, 'setup_addon' ] );
-		add_filter( 'chipmunk_settings_addons', [ $this, 'add_settings_addon' ] );
+		add_action( 'init', [ $this, 'setupAddon' ] );
+		add_filter( 'chipmunk_settings_addons', [ $this, 'addSettingsAddon' ] );
 	}
 
 	/**
@@ -50,11 +51,11 @@ class Init {
 	 *
 	 * Creates all WordPress pages needed by the addon.
 	 */
-	private function register_pages() {
-		$options = Helpers::get_options( 'pages' );
+	private function registerPages() {
+		$options = MembersHelpers::getOptions( 'pages' );
 
 		// Information needed for creating the addon's pages
-		$page_definitions = [
+		$pages = [
 			'login' => [
 				'title' => __( 'Login', 'chipmunk' ),
 				'content' => '[chipmunk-login-form]',
@@ -92,12 +93,12 @@ class Init {
 			],
 		];
 
-		foreach ( $page_definitions as $slug => $page ) {
-			$normalized_slug = str_replace( '-', '_', $slug );
-			$option_slug = "chipmunk_{$normalized_slug}_page_id";
-			$current_page = $options[ $option_slug ];
+		foreach ( $pages as $slug => $page ) {
+			$normalizedSlug = str_replace( '-', '_', $slug );
+			$optionSlug = "chipmunk_{$normalizedSlug}_page_id";
+			$currentPage = $options[ $optionSlug ];
 
-			if ( empty( $current_page ) || ! get_post( $current_page ) || get_post_status( $current_page ) != 'publish' ) {
+			if ( empty( $currentPage ) || ! get_post( $currentPage ) || get_post_status( $currentPage ) != 'publish' ) {
 				// Add the page using the data from the array above
 				$post_id = wp_insert_post(
 					[
@@ -112,11 +113,11 @@ class Init {
 					]
 				);
 
-				$options[ $option_slug ] = $post_id;
-			} elseif ( get_post( $current_page ) && get_post_status( $current_page ) != 'publish' ) {
+				$options[ $optionSlug ] = $post_id;
+			} elseif ( get_post( $currentPage ) && get_post_status( $currentPage ) != 'publish' ) {
 				wp_update_post(
 					[
-						'ID'             => $current_page,
+						'ID'             => $currentPage,
 						'post_status'    => 'publish',
 					],
 				);
@@ -127,20 +128,20 @@ class Init {
 		flush_rewrite_rules();
 
 		// Update page options
-		Helpers::set_options( 'pages', $options );
+		MembersHelpers::setOptions( 'pages', $options );
 	}
 
 	/**
  	 * Setup main components and features of the addon
 	 */
-	public function setup_addon() {
-		if ( ! ChipmunkHelpers::isAddonEnabled( $this->config['slug'] ) ) {
+	public function setupAddon() {
+		if ( ! Helpers::isAddonEnabled( $this->config['slug'] ) ) {
 			return null;
 		}
 
 		if ( ! get_transient( $this->transient ) ) {
 			// Register post meta
-			$this->register_pages();
+			$this->registerPages();
 
 			// Set transient
 			set_transient( $this->transient, true );
@@ -158,7 +159,7 @@ class Init {
 	 *
 	 * @return array
 	 */
-	public function add_settings_addon( $addons ) {
+	public function addSettingsAddon( $addons ) {
 		$addons[] = $this->config;
 
 		return $addons;

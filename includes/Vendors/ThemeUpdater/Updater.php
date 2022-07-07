@@ -16,7 +16,7 @@ class Updater {
 	 * @param array $config    Array of arguments from the theme requesting an update check
 	 * @param array $strings Strings for the update process
 	 */
-	public function __construct( $config = [], $strings = [] ) {
+	function __construct( $config = [], $strings = [] ) {
 		$config = wp_parse_args( $config, [] );
 
 		$this->license        = $config['license'];

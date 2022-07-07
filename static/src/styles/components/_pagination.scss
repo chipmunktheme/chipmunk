@@ -7,26 +7,31 @@
   align-items: center;
   justify-content: space-between;
   gap: spacer-clamped(0.5) spacer-clamped(1);
+
+  > * {
+    @include bp(md) {
+      flex: 1;
+    }
+  }
 }
 
 .c-pagination__title {
   color: var(--chipmunk--color--gray);
+  text-align: center;
 }
 
 .c-pagination__item {
+  display: flex;
+  align-items: center;
+  gap: spacer-clamped(0.5);
+
   &:last-child {
+    justify-content: end;
     text-align: right;
   }
 
-  a,
-  span {
-    display: inline-flex;
-    align-items: center;
-    gap: spacer-clamped(0.5);
-
-    &[href]:hover {
-      color: var(--chipmunk--color--primary);
-    }
+  &[href]:hover {
+    color: var(--chipmunk--color--primary);
   }
 
   .u-icon {

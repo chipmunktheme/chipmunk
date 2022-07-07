@@ -13,7 +13,7 @@ class Init {
 	/**
 	 * Initiate the Theme Updater classes
 	 */
-	public function __construct() {
+	function __construct() {
 		// Initialize theme updater
 		new Admin( [
 			'remote_api_url' => THEME_SHOP_URL,

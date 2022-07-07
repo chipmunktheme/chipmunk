@@ -150,61 +150,77 @@ class Helpers {
 			case 'empty_username':
 			case 'empty_email':
 				$error = __( 'You need to enter your username or email address to continue.', 'chipmunk' );
+				break;
 
 			case 'invalid_username':
 			case 'invalid_email':
 			case 'invalidcombo':
 				$error = __('There is no account with that username or email address.', 'chipmunk' );
+				break;
 
 			case 'empty_password':
 				$error = __( 'You need to enter a password to login.', 'chipmunk' );
+				break;
 
 			case 'incorrect_password':
 				$error = __('The password you entered wasn\'t quite right. Did you forget your password?', 'chipmunk' );
+				break;
 
 			case 'email':
 				$error = __( 'The email address you entered is not valid.', 'chipmunk' );
+				break;
 
 			case 'existing_user_email':
 				$error = __( 'An account exists with this email address. Please choose a different one.', 'chipmunk' );
+				break;
 
 			case 'existing_user_login':
 				$error = __('An account exists with this username. Please choose a different one.', 'chipmunk' );
+				break;
 
 			case 'closed':
 				$error = __( 'Registering new users is currently not allowed.', 'chipmunk' );
+				break;
 
 			case 'captcha':
 				$error = __( 'Please verify that you are not a robot.', 'chipmunk' );
+				break;
 
 			case 'expiredkey':
 			case 'invalidkey':
 				$error = __( 'The password reset link you used is not valid anymore.', 'chipmunk' );
+				break;
 
 			case 'password_mismatch':
 				$error = __( 'The two passwords you entered don\'t match.', 'chipmunk' );
+				break;
 
 			case 'reset_password_empty':
 				$error = __( 'Sorry, we don\'t accept empty passwords.', 'chipmunk' );
+				break;
 
 			case 'login_required':
 				$error = __( 'You have to be signed in to view this page.', 'chipmunk' );
+				break;
 
 			case 'guest_required':
 				$error = __( 'You are already signed in.', 'chipmunk' );
+				break;
 
 			case 'user_required':
 				$error = __( 'You have to be signed in to view this page.', 'chipmunk' );
+				break;
 
 			case 'registration_closed':
 				$error = __( 'Registering new users is currently not allowed.', 'chipmunk' );
+				break;
 
 			case 'invalid_link':
 				$error = __( 'Invalid password reset link.', 'chipmunk' );
+				break;
 
 			default:
 				$error = __( 'An unknown error occurred. Please try again later.', 'chipmunk' );
-				break;
 		}
 
 		return [
@@ -227,32 +243,34 @@ class Helpers {
 					'type' => 'warning',
 					'message' => __( 'You have signed out. Would you like to sign in again?', 'chipmunk' ),
 				];
+				break;
 
 			case 'registered':
 				return [
 					'type' => 'success',
 					'message' => __( 'You have successfully registered your account. You can login now.', 'chipmunk' ),
 				];
+				break;
 
 			case 'lost_password_sent':
 				return [
 					'type' => 'warning',
 					'message' => __( 'Check your email for a link to reset your password.', 'chipmunk' ),
 				];
+				break;
 
 			case 'password_changed':
 				return [
 					'type' => 'success',
 					'message' => __( 'Your password has been changed. You can sign in now.', 'chipmunk' ),
 				];
+				break;
 
 			case 'profile_updated':
 				return [
 					'type' => 'success',
 					'message' => __( 'Your profile has been updated successfully.', 'chipmunk' ),
 				];
-
-			default:
 				break;
 		}
 	}

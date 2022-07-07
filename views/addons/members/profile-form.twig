@@ -1,53 +1,60 @@
-</div><?php /* End of .c-entry__content class */ ?>
+{% embed 'wrappers/shortcode.twig' %}
+  {% block content %}
+    {% if show_title %}
+      <h2 class="{{ cn('c-heading', 'h2') }}">
+        {{ __('Edit Profile', 'chipmunk') }}
+      </h2>
+    {% endif %}
 
-<?php if ( $show_title ) : ?>
-	<h2 class="c-heading c-heading--h2"><?php esc_html_e( 'Edit Profile', 'chipmunk' ); ?></h2>
-<?php endif; ?>
+    {% if blocker %}
+      {% include 'partials/alerts.twig' with { alerts: blocker } %}
+    {% else %}
+      {% set socials = fn('wp_get_user_contact_methods') %}
 
-<?php if ( ! empty( $blocker ) ) : ?>
-	<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', [ 'errors' => [ $blocker ] ], true ); ?>
-<?php else : ?>
-	<form class="c-form" action="<?php the_permalink(); ?>" method="post" novalidate data-validate>
-		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/errors', [ 'errors' => $errors ], true ); ?>
-		<?php Chipmunk\Helpers::get_template_part( 'addons/members/partials/alerts', [ 'alerts' => $alerts ], true ); ?>
+      <form class="c-form" action="{{ post.link }}" method="post" novalidate data-validate>
+        {% include 'partials/alerts.twig' %}
 
-		<div class="c-form__field c-form__field--wide">
-			<input type="email" name="email" placeholder="<?php esc_attr_e( 'Email address', 'chimpunk' ); ?>*" value="<?php echo esc_attr( $userdata->user_email ); ?>" required class="c-form__input">
-		</div>
+        <div class="{{ cn('c-form__field', 'wide') }}">
+          <input type="email" name="email" placeholder="{{ __('Email address', 'chimpunk') }}*" value="{{ user.user_email }}" required class="c-form__input">
+        </div>
 
-		<div class="c-form__field">
-			<input type="text" name="first_name" placeholder="<?php esc_attr_e( 'First name', 'chimpunk' ); ?>" value="<?php echo esc_attr( $usermeta['first_name'] ); ?>" class="c-form__input">
-		</div>
+        <div class="{{ cn('c-form__field') }}">
+          <input type="text" name="first_name" placeholder="{{ __('First name', 'chimpunk') }}" value="{{ user.meta('first_name') }}" class="c-form__input">
+        </div>
 
-		<div class="c-form__field">
-			<input type="text" name="last_name" placeholder="<?php esc_attr_e( 'Last name', 'chimpunk' ); ?>" value="<?php echo esc_attr( $usermeta['last_name'] ); ?>" class="c-form__input">
-		</div>
+        <div class="{{ cn('c-form__field') }}">
+          <input type="text" name="last_name" placeholder="{{ __('Last name', 'chimpunk') }}" value="{{ user.meta('last_name') }}" class="c-form__input">
+        </div>
 
-		<div class="c-form__field c-form__field--wide">
-			<input type="url" name="url" placeholder="<?php esc_attr_e( 'Website', 'chimpunk' ); ?>" value="<?php echo esc_attr( $userdata->user_url ); ?>" class="c-form__input">
-		</div>
+        <div class="{{ cn('c-form__field', 'wide') }}">
+          <input type="url" name="url" placeholder="{{ __('Website', 'chimpunk') }}" value="{{ user.user_url }}" class="c-form__input">
+        </div>
 
-		<div class="c-form__field c-form__field--wide">
-			<textarea rows="1" name="description" placeholder="<?php esc_attr_e( 'Description', 'chipmunk' ); ?>" class="c-form__input" data-dynamic-rows="10"><?php echo esc_attr( $usermeta['description'] ); ?></textarea>
-		</div>
+        <div class="{{ cn('c-form__field', 'wide') }}">
+          <textarea rows="1" name="description" placeholder="{{ __('Description', 'chipmunk') }}" class="c-form__input" data-dynamic-rows="10">{{ user.meta('description') }}</textarea>
+        </div>
 
-		<?php if ( ! empty( $usersocials ) ) : ?>
-			<h3 class="c-form__field c-form__field--wide c-form__field--separated c-heading c-heading--h3"><?php esc_html_e( 'Socials', 'chipmunk' ); ?></h3>
+        {% if socials %}
+          <h3 class="{{ cn('c-form__field', 'wide', 'separated') }} {{ cn('c-heading', 'h3') }}">
+            {{ __('Socials', 'chipmunk') }}
+          </h3>
 
-			<?php foreach ( $usersocials as $social_key => $social ) : ?>
-				<div class="c-form__field c-form__field--wide">
-					<input type="url" name="<?php echo esc_attr( $social_key ); ?>" placeholder="<?php echo esc_attr( $social ); ?>" value="<?php echo esc_attr( isset( $usermeta[$social_key] ) ? $usermeta[$social_key] : '' ); ?>" class="c-form__input">
-				</div>
-			<?php endforeach; ?>
-		<?php endif; ?>
+          {% for key, value in socials %}
+            <div class="{{ cn('c-form__field', 'wide') }}">
+              <input type="url" name="{{ key | e }}" placeholder="{{ value | e }}" value="{{ user.meta(key) | e }}" class="c-form__input">
+            </div>
+          {% endfor %}
+        {% endif %}
 
-		<div class="c-form__field c-form__field--wide c-form__field--cta">
-			<input type="hidden" name="action" value="chipmunk_update_user" />
-			<input type="hidden" name="user_id" value="<?php echo $userdata->ID; ?>">
+        <div class="{{ cn('c-form__field', 'wide', 'cta') }}">
+          <input type="hidden" name="action" value="chipmunk_update_user" />
+          <input type="hidden" name="user_id" value="{{ user.id }}">
 
-			<button type="submit" class="c-button c-button--primary-outline"><?php esc_html_e( 'Update', 'chipmunk' ); ?></button>
-		</div>
-	</form>
-<?php endif; ?>
-
-<div class="c-entry__content c-content c-content--type"><?php /* Beginning of .c-entry__content class */ ?>
+          <button type="submit" class="{{ cn('c-button', 'primary-outline') }}">
+            {{ __('Update', 'chipmunk') }}
+          </button>
+        </div>
+      </form>
+    {% endif %}
+  {% endblock %}
+{% endembed %}

@@ -15,7 +15,7 @@ class Site extends TimberSite {
 	/**
 	 * Site constructor.
 	 */
-	public function __construct() {
+	function __construct() {
 		// Timber config
 		add_filter( 'timber/locations', [ $this, 'set_templates_directory' ] );
 		add_filter( 'timber/context', [ $this, 'extend_context' ] );

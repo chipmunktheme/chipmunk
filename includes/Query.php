@@ -89,7 +89,6 @@ class Query {
 		$defaults = [
 			'post_type'         => 'resource',
 			'post_status'       => 'publish',
-			'posts_per_page'    => Helpers::getOption( 'posts_per_page' ),
 			'paged'             => Helpers::getCurrentPage(),
 		];
 

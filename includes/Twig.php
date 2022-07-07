@@ -9,6 +9,7 @@ use Chipmunk\Helpers;
 use Chipmunk\Query;
 use Chipmunk\Extensions\Upvotes;
 use Chipmunk\Extensions\Views;
+use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 
 /**
  * Use this class to extend twig functionality
@@ -73,6 +74,9 @@ class Twig {
 		$this->registerFunction( $twig, 'get_views',			[ Views::class, 'getViews' ] );
 		$this->registerFunction( $twig, 'get_resources',		[ Query::class, 'getResources' ] );
 		$this->registerFunction( $twig, 'get_related',			[ Query::class, 'getRelated' ] );
+
+		// Addon Helpers
+		$this->registerFunction( $twig, 'get_members_link',		[ MembersHelpers::class, 'getPagePermalink' ] );
 
 		// Third-party Helpers
 		$this->registerFunction( $twig, 'get_current_url', 		[ URLHelper::class, 'get_current_url' ] );

@@ -2,6 +2,8 @@
 
 namespace Chipmunk\Addons\Members;
 
+use Chipmunk\Addons\Members\Helpers as MembersHelpers;
+
 /**
  * Main plugin configuration
  *
@@ -13,18 +15,18 @@ class Config {
 	/**
  	 * Class constructor
 	 */
-	public function __construct() {
+	function __construct() {
 		// Custom URL
-		add_filter( 'login_url', [ $this, 'custom_login_page' ], 10, 3 );
+		add_filter( 'login_url', [ $this, 'customLoginPage' ], 10, 3 );
 
 		// Custom login redirect
-		add_filter( 'login_redirect', [ $this, 'custom_login_redirect' ], 10, 3 );
+		add_filter( 'login_redirect', [ $this, 'customLoginRedirect' ], 10, 3 );
 
 		// Other customizations
-		add_filter( 'retrieve_password_message', [ $this, 'replace_retrieve_password_message' ], 10, 4 );
+		add_filter( 'retrieve_password_message', [ $this, 'replaceRetrievePasswordMessage' ], 10, 4 );
 
 		// Remove the admin bar on the frontend
-		add_action( 'wp', [ $this, 'remove_admin_bar' ] );
+		add_action( 'wp', [ $this, 'removeAdminBar' ] );
 
 		// Disable the admin email address verification
 		add_filter( 'admin_email_check_interval', '__return_zero' );
@@ -34,7 +36,7 @@ class Config {
 	/**
 	 * Removes admin bar for non-admin users
 	 */
-	public function remove_admin_bar() {
+	public function removeAdminBar() {
 		if ( ! current_user_can( 'edit_posts' ) && ! is_admin() ) {
 			show_admin_bar( false );
 		}
@@ -43,23 +45,23 @@ class Config {
 	/**
 	 * Change default login url to My Account
 	 */
-	public function custom_login_page( $login_url, $redirect, $force_reauth ) {
-		return Helpers::getPagePermalink( 'login' ) . '?redirect_to=' . $redirect;
+	public function customLoginPage( $loginUrl, $redirect, $forceReauth ) {
+		return MembersHelpers::getPagePermalink( 'login' ) . '?redirect_to=' . $redirect;
 	}
 
 	/**
 	 * Set custom login redirect URL
 	 */
-	public function custom_login_redirect( $redirect_to, $request, $user ) {
+	public function customLoginRedirect( $redirectTo, $request, $user ) {
 		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
-			$redirect_to = $_REQUEST['redirect_to'];
+			$redirectTo = $_REQUEST['redirect_to'];
 		} elseif ( ! is_super_admin( $user->ID ) && ! wp_doing_ajax() ) {
-			$redirect_to = Helpers::getPagePermalink( 'dashboard' );
+			$redirectTo = MembersHelpers::getPagePermalink( 'dashboard' );
 		} else {
-			$redirect_to = get_admin_url();
+			$redirectTo = get_admin_url();
 		}
 
-		return $redirect_to;
+		return $redirectTo;
 	}
 
 	/**
@@ -68,23 +70,23 @@ class Config {
 	 *
 	 * @param string  $message    Default mail message.
 	 * @param string  $key        The activation key.
-	 * @param string  $user_login The username for the user.
-	 * @param WP_User $user_data  WP_User object.
+	 * @param string  $userLogin  The username for the user.
+	 * @param WP_User $userData   WP_User object.
 	 *
 	 * @return string   The mail message to send.
 	 */
-	public function replace_retrieve_password_message( $message, $key, $user_login, $user_data ) {
-		$reset_url = Helpers::getPagePermalink( 'reset_password' );
-		$reset_url = add_query_arg( 'action', 'rp', $reset_url );
-		$reset_url = add_query_arg( 'key', $key, $reset_url );
-		$reset_url = add_query_arg( 'login', rawurlencode( $user_login ), $reset_url );
+	public function replaceRetrievePasswordMessage( $message, $key, $userLogin, $userData ) {
+		$resetUrl = MembersHelpers::getPagePermalink( 'reset_password' );
+		$resetUrl = add_query_arg( 'action', 'rp', $resetUrl );
+		$resetUrl = add_query_arg( 'key', $key, $resetUrl );
+		$resetUrl = add_query_arg( 'login', rawurlencode( $userLogin ), $resetUrl );
 
 		// Create new message
 		$msg  = __( 'Hello!', 'chipmunk' ) . "\r\n\r\n";
-		$msg .= sprintf( __( 'You asked us to reset your password for your account using the email address %s.', 'chipmunk' ), $user_login ) . "\r\n\r\n";
+		$msg .= sprintf( __( 'You asked us to reset your password for your account using the email address %s.', 'chipmunk' ), $userLogin ) . "\r\n\r\n";
 		$msg .= __( "If this was a mistake, or you didn't ask for a password reset, just ignore this email and nothing will happen.", 'chipmunk' ) . "\r\n\r\n";
 		$msg .= __( 'To reset your password, visit the following address:', 'chipmunk' ) . "\r\n\r\n";
-		$msg .= $reset_url . "\r\n\r\n";
+		$msg .= $resetUrl . "\r\n\r\n";
 		$msg .= __( 'Thanks!', 'chipmunk' ) . "\r\n";
 
 		return $msg;

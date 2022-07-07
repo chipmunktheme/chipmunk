@@ -48,7 +48,7 @@ class Ratings {
 	 *
 	 * @return void
 	 */
-	public function __construct( $post_id, $rating = null ) {
+	function __construct( $post_id, $rating = null ) {
 		global $current_user;
 
 		$this->post_id = intval( wp_filter_kses( $post_id ) );

@@ -17,7 +17,7 @@ class Actions {
 	/**
  	 * Class constructor
 	 */
-	public function __construct() {
+	function __construct() {
 		add_action( 'admin_init', [ $this, 'maybe_import' ], 1 );
 	}
 

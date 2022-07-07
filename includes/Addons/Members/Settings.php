@@ -13,20 +13,20 @@ class Settings {
 	/**
  	 * Class constructor
 	 */
-	public function __construct( $config ) {
+	function __construct( $config ) {
 		$this->config = $config;
 
-		add_action( 'admin_init', [ $this, 'register_settings_init' ], 20 );
+		add_action( 'admin_init', [ $this, 'registerSettingsInit' ], 20 );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', [ $this, 'add_settings_tab' ] );
+		add_filter( 'chipmunk_settings_tabs', [ $this, 'addSettingsTab' ] );
 	}
 
 	/**
 	 * Register a settings for Members tab
 	 */
-	public function register_settings_init() {
-		$setting_name = THEME_SLUG . '_members_pages';
+	public function registerSettingsInit() {
+		$settingName = THEME_SLUG . '_members_pages';
 		$pages = get_pages();
 
 		$fields = [
@@ -39,16 +39,16 @@ class Settings {
 		];
 
 		// If the option don't exist, create it.
-		if ( false == get_option( $setting_name ) ) {
-			add_option( $setting_name );
+		if ( false == get_option( $settingName ) ) {
+			add_option( $settingName );
 		}
 
 		// Register section
 		add_settings_section(
-			$setting_name . '_section',
+			$settingName . '_section',
 			__( 'Page Options', 'chipmunk' ),
 			null,
-			$setting_name
+			$settingName
 		);
 
 		foreach ( $fields as $field => $title ) {
@@ -56,20 +56,20 @@ class Settings {
 				$field,
 				$title,
 				[ $this, 'page_settings_cb' ],
-				$setting_name,
-				$setting_name . '_section',
+				$settingName,
+				$settingName . '_section',
 				[
-					'option' => $setting_name,
+					'option' => $settingName,
 					'pages' => $pages,
 					'field' => $field,
 				]
 			);
 		}
 
-		register_setting( $setting_name, $setting_name );
+		register_setting( $settingName, $settingName );
 	}
 
-	public function page_settings_cb( $args ) {
+	public function pageSettingsCb( $args ) {
 		$options = get_option( $args['option'] );
 		?>
 
@@ -91,11 +91,11 @@ class Settings {
 	/**
 	 * Adds settings tab to the list
 	 */
-	public function add_settings_tab( $tabs ) {
+	public function addSettingsTab( $tabs ) {
 		$tabs[] = [
 			'name'      => $this->config['name'],
 			'slug'      => $this->config['slug'],
-			'content'   => $this->get_settings_content(),
+			'content'   => $this->getSettingsContent(),
 		];
 
 		return $tabs;
@@ -104,7 +104,7 @@ class Settings {
 	/**
 	 * Returns the settings markup for upvote faker
 	 */
-	private function get_settings_content() {
+	private function getSettingsContent() {
 		ob_start();
 		?>
 

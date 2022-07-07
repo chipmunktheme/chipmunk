@@ -18,7 +18,7 @@ class Init {
 	 * To keep the initialization fast, only add filter and action
 	 * hooks in the constructor.
 	 */
-	public function __construct( $config = [] ) {
+	function __construct( $config = [] ) {
 		// Set config defaults
 		$this->config = wp_parse_args( $config, [
 			'name'         => '',

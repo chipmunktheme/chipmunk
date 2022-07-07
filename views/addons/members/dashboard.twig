@@ -7,7 +7,7 @@
     {% endif %}
 
     {% if blocker %}
-      {% include 'addons/members/partials/errors.twig' with { errors: blocker } %}
+      {% include 'partials/alerts.twig' with { alerts: blocker } %}
     {% else %}
       {% set tabs = [
         { name: __('Upvoted', 'chipmunk'), option: 'disable_upvotes' },
@@ -16,14 +16,14 @@
       ] %}
       {% set first_tab = get_option('disable_upvotes') ? (get_option('disable_bookmarks') ? 'submitted' : 'bookmarked') : (tabs | first).name | sanitize_title %}
       {% set current_tab = get_param('tab') ? get_param('tab') : first_tab %}
-      {# {% set dashboard_link = Chipmunk\Addons\Members\Helpers::get_page_permalink( 'dashboard' ) %} #}
+      {% set dashboard_link = get_members_link('dashboard') %}
 
       <div class="c-tabs" data-tabs role="tablist">
         <div class="l-component l-header">
           <div class="c-tabs__title {{ cn('c-heading', 'h6') }}">
             {% for tab in tabs %}
               {% if not get_option(tab.option) %}
-                <a href="<?php echo esc_url( add_query_arg( 'tab', tab.name | sanitize_title, dashboard_link ) ); ?>" class="c-heading__link{{ current_tab == tab.name | sanitize_title ? ' is-active' }}">
+                <a href="{{ fn('add_query_arg', 'tab', tab.name | sanitize_title, dashboard_link) | e('esc_url') }}" class="c-heading__link{{ current_tab == tab.name | sanitize_title ? ' is-active' }}">
                   {{ tab.name }}
                 </a>
               {% endif %}

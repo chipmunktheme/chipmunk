@@ -13,7 +13,7 @@ class Settings {
 	/**
  	 * Class constructor
 	 */
-	public function __construct( $config ) {
+	function __construct( $config ) {
 		$this->config = $config;
 
 		// Output settings content

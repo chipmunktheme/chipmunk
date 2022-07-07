@@ -3,6 +3,7 @@
 namespace Chipmunk\Addons\Members;
 
 use Timber\Timber;
+use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 
 /**
  * Initializes the plugin renderers.
@@ -39,7 +40,7 @@ class Renderers {
 			'show_title' => false,
 		], $atts );
 
-		$atts['blocker'] = Helpers::retrieveRequestBlockers( [
+		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers( [
 			'guest_required',
 		] );
 
@@ -48,8 +49,8 @@ class Renderers {
 
 			// Retrieve possible errors/alerts from request parameters
 			$atts['alerts'] = array_merge(
-				Helpers::retrieveRequestErrors(),
-				Helpers::retrieveRequestAlerts()
+				MembersHelpers::retrieveRequestErrors(),
+				MembersHelpers::retrieveRequestAlerts()
 			);
 		}
 
@@ -71,7 +72,7 @@ class Renderers {
 			'show_title' => false,
 		], $atts );
 
-		$atts['blocker'] = Helpers::retrieveRequestBlockers( [
+		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers( [
 			'guest_required',
 			'registration_closed',
 		] );
@@ -79,8 +80,8 @@ class Renderers {
 		if ( empty( $atts['blocker'] ) ) {
 			// Retrieve possible errors/alerts from request parameters
 			$atts['alerts'] = array_merge(
-				Helpers::retrieveRequestErrors(),
-				Helpers::retrieveRequestAlerts()
+				MembersHelpers::retrieveRequestErrors(),
+				MembersHelpers::retrieveRequestAlerts()
 			);
 		}
 
@@ -102,17 +103,18 @@ class Renderers {
 			'show_title' => false,
 		], $atts );
 
-		$atts['blocker'] = Helpers::retrieveRequestBlockers( [
+		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers( [
 			'guest_required',
 		] );
 
 		if ( empty( $atts['blocker'] ) ) {
+			$atts['action'] = 'lostpassword';
 			$atts['redirect_to'] = wp_validate_redirect( $_REQUEST['redirect_to'] ?? '' );
 
 			// Retrieve possible errors/alerts from request parameters
 			$atts['alerts'] = array_merge(
-				Helpers::retrieveRequestErrors(),
-				Helpers::retrieveRequestAlerts()
+				MembersHelpers::retrieveRequestErrors(),
+				MembersHelpers::retrieveRequestAlerts()
 			);
 		}
 
@@ -134,7 +136,7 @@ class Renderers {
 			'show_title' => false,
 		], $atts );
 
-		$atts['blocker'] = Helpers::retrieveRequestBlockers( [
+		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers( [
 			'guest_required',
 			'invalid_link',
 		] );
@@ -146,8 +148,8 @@ class Renderers {
 
 			// Retrieve possible errors/alerts from request parameters
 			$atts['alerts'] = array_merge(
-				Helpers::retrieveRequestErrors(),
-				Helpers::retrieveRequestAlerts()
+				MembersHelpers::retrieveRequestErrors(),
+				MembersHelpers::retrieveRequestAlerts()
 			);
 		}
 
@@ -169,7 +171,7 @@ class Renderers {
 			'show_title' => false,
 		], $atts );
 
-		$atts['blocker'] = Helpers::retrieveRequestBlockers( [
+		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers( [
 			'user_required',
 		] );
 
@@ -186,8 +188,8 @@ class Renderers {
 
 			// Retrieve possible errors/alerts from request parameters
 			$atts['alerts'] = array_merge(
-				Helpers::retrieveRequestErrors(),
-				Helpers::retrieveRequestAlerts()
+				MembersHelpers::retrieveRequestErrors(),
+				MembersHelpers::retrieveRequestAlerts()
 			);
 		}
 
@@ -209,7 +211,7 @@ class Renderers {
 			'show_title' => false,
 		], $atts );
 
-		$atts['blocker'] = Helpers::retrieveRequestBlockers( [
+		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers( [
 			'user_required',
 		] );
 

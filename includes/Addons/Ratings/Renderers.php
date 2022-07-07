@@ -16,7 +16,7 @@ class Renderers {
 	/**
  	 * Class constructor
 	 */
-	public function __construct() {
+	function __construct() {
 		if ( Helpers::isOptionEnabled( 'ratings', 'resource', false ) ) {
 			add_action( 'chipmunk_resource_extras', [ $this, 'render_rating_form' ] );
 		}

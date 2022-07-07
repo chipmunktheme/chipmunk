@@ -390,9 +390,8 @@ class Helpers {
 	public static function getExternalUrl( $url ) {
 		if ( ! self::getOption( 'disable_ref' ) ) {
 			$title = str_replace( '-', '', sanitize_title( get_bloginfo( 'name' ) ) );
-			$prefix = ( preg_match( '(\&|\?)', $url ) === 1 ) ? '&ref=' : '?ref=';
 
-			return $url . $prefix . $title;
+			return add_query_arg( 'ref', $title, $url );
 		}
 
 		return $url;
