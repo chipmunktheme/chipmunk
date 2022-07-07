@@ -18,7 +18,7 @@ class Init {
 	 * @since 1.0
 	 * @var array
 	 */
-	private $allowed_types = [ 'post', 'resource' ];
+	private $allowedTypes = [ 'post', 'resource' ];
 
 	/**
 	 * Initializes the addon.
@@ -47,8 +47,8 @@ class Init {
 	 * @return  void
 	 */
 	private function hooks() {
-		add_action( 'init', [ $this, 'setup_addon' ] );
-		add_filter( 'chipmunk_settings_addons', [ $this, 'add_settings_addon' ] );
+		add_action( 'init', [ $this, 'setupAddon' ] );
+		add_filter( 'chipmunk_settings_addons', [ $this, 'addSettingsAddon' ] );
 	}
 
 	/**
@@ -56,45 +56,45 @@ class Init {
 	 *
 	 * Generates default post meta for all posts
 	 */
-	private function register_post_meta() {
+	private function registerPostMeta() {
 		$posts = get_posts( [
 			'posts_per_page' => -1,
-			'post_type'      => $this->allowed_types,
+			'post_type'      => $this->allowedTypes,
 		] );
 
 		foreach ( $posts as $post ) {
-			$this->add_default_meta( $post->ID, $this->allowed_types );
+			$this->addDefaultMeta( $post->ID, $this->allowedTypes );
 		}
 	}
 
 	/**
 	 * Sets the default values for posts
 	 *
-	 * @param string $post_id Post ID
+	 * @param string $postId Post ID
 	 *
 	 * @return array
 	*/
-	private function add_default_meta( $post_ID, $allowed_types ) {
-		$defaut_values = [
+	private function addDefaultMeta( $postId, $allowedTypes ) {
+		$defaut = [
 			'_' . THEME_SLUG . '_rating_count'   => 0,
 			'_' . THEME_SLUG . '_rating_average' => 0,
 			'_' . THEME_SLUG . '_rating_rank'    => 0,
 		];
 
-		return Helpers::addPostMeta( $post_ID, $defaut_values, $allowed_types );
+		return Helpers::addPostMeta( $postId, $defaut, $allowedTypes );
 	}
 
 	/**
  	 * Setup main components and features of the addon
 	 */
-	public function setup_addon() {
+	public function setupAddon() {
 		if ( ! Helpers::isAddonEnabled( $this->config['slug'] ) ) {
 			return null;
 		}
 
 		if ( ! get_transient( $this->transient ) ) {
 			// Register post meta
-			$this->register_post_meta();
+			$this->registerPostMeta();
 
 			// Set transient
 			set_transient( $this->transient, true );
@@ -109,7 +109,7 @@ class Init {
 	 *
 	 * @return array
 	 */
-	public function add_settings_addon( $addons ) {
+	public function addSettingsAddon( $addons ) {
 		$addons[] = $this->config;
 
 		return $addons;

@@ -13,10 +13,10 @@ class Assets {
 	/**
  	 * Used to register custom hooks
 	 */
-	function __construct() {
-		add_filter( 'script_loader_tag', [ $this, 'remove_type_attr' ], 10, 2 );
-		add_filter( 'style_loader_tag', [ $this, 'remove_type_attr' ], 10, 2 );
-		add_filter( 'upload_mimes',  [ $this, 'custom_mime_types' ], 99, 1 );
+	function construct() {
+		add_filter( 'script_loader_tag', [ $this, 'removeTypeAttr' ], 10, 2 );
+		add_filter( 'style_loader_tag', [ $this, 'removeTypeAttr' ], 10, 2 );
+		add_filter( 'upload_mimes',  [ $this, 'customMimeTypes' ], 99, 1 );
 	}
 
 	/**
@@ -24,7 +24,7 @@ class Assets {
 	 *
 	 * @return string
 	 */
-	public static function remove_type_attr( $tag, $handle ) {
+	public function removeTypeAttr( $tag ) {
 		return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", '', $tag );
 	}
 
@@ -33,7 +33,7 @@ class Assets {
 	*
 	* @param $mimes
 	*/
-	public function custom_mime_types( $mimes ) {
+	public function customMimeTypes( $mimes ) {
         $mimes['svg'] = 'image/svg+xml';
 		$mimes['svgz'] = 'image/svg+xml';
 		return $mimes;

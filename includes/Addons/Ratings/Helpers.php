@@ -17,7 +17,7 @@ class Helpers {
 	 *
 	 * @return array
 	*/
-	public static function get_meta_values( $key ) {
+	public static function getMetaValues( $key ) {
 		global $wpdb;
 
 		return $wpdb->get_col( "SELECT meta_value FROM $wpdb->postmeta WHERE meta_key = '{$key}'" );
@@ -30,7 +30,7 @@ class Helpers {
 	 *
 	 * @return array
 	*/
-	public static function get_post_rating( $post_id ) {
-		return get_post_meta( $post_id, Ratings::$db_key_average, true );
+	public static function getPostRating( $postId ) {
+		return get_post_meta( $postId, Ratings::$dbKeyAverage, true );
 	}
 }

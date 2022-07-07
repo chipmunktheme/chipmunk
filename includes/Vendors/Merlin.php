@@ -92,15 +92,15 @@ class Merlin {
 			]
 		);
 
-		add_action( 'admin_head', [ $this, 'add_merlin_styles' ] );
-		add_filter( 'merlin_import_files', [ $this, 'import_merlin_files' ] );
-		add_action( 'merlin_after_all_import', [ $this, 'after_import_merlin_files' ] );
+		add_action( 'admin_head', [ $this, 'addMerlinStyles' ] );
+		add_filter( 'merlin_import_files', [ $this, 'importMerlinFiles' ] );
+		add_action( 'merlin_after_all_import', [ $this, 'afterImportMerlinFiles' ] );
 	}
 
 	/**
 	 * Set up custom styles for the Merlin wizard
 	 */
-	public static function add_merlin_styles() {
+	public function addMerlinStyles() {
 		echo '<style>
 			.merlin__button--knockout {
 				margin-top: 1em;
@@ -136,7 +136,7 @@ class Merlin {
 	 *
 	 * @return array
 	 */
-	public static function import_merlin_files() {
+	public function importMerlinFiles() {
 		return [
 			[
 				'import_file_name'           => __( 'Demo Import', 'chipmunk' ),
@@ -150,14 +150,14 @@ class Merlin {
 	/**
 	 * Execute custom code after the whole import has finished.
 	 */
-	public static function after_import_merlin_files() {
-		$header_nav = get_term_by( 'name', 'Header nav', 'nav_menu' );
-		$footer_nav = get_term_by( 'name', 'Footer nav', 'nav_menu' );
+	public function afterImportMerlinFiles() {
+		$headerNav = get_term_by( 'name', 'Header nav', 'nav_menu' );
+		$footerNav = get_term_by( 'name', 'Footer nav', 'nav_menu' );
 
 		set_theme_mod(
 			'nav_menu_locations', [
-				'nav-primary' => $header_nav->term_id,
-				'nav-secondary' => $footer_nav->term_id,
+				'nav-primary' => $headerNav->term_id,
+				'nav-secondary' => $footerNav->term_id,
 			]
 		);
 	}

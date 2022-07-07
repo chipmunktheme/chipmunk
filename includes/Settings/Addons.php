@@ -39,16 +39,16 @@ class Addons {
 	function __construct( ) {
 		self::$option = THEME_SLUG . '_' . self::$slug;
 
-		add_action( 'admin_init', [ $this, 'register_option' ] );
+		add_action( 'admin_init', [ $this, 'registerOption' ] );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', [ $this, 'add_settings_tab' ] );
+		add_filter( 'chipmunk_settings_tabs', [ $this, 'addSettingsTab' ] );
 	}
 
 	/**
 	 * Registers the option used to store the license key in the options table.
 	 */
-	public function register_option() {
+	public function registerOption() {
 		register_setting(
 			self::$option,
 			self::$option
@@ -58,11 +58,11 @@ class Addons {
 	/**
 	 * Adds settings tab to the list
 	 */
-	public function add_settings_tab( $tabs ) {
+	public function addSettingsTab( $tabs ) {
 		$tabs[] = [
 			'name'      => self::$name,
 			'slug'      => self::$slug,
-			'content'   => $this->get_settings_content(),
+			'content'   => $this->getSettingsContent(),
 		];
 
 		return $tabs;
@@ -71,7 +71,7 @@ class Addons {
 	/**
 	 * Returns the settings markup for upvote faker
 	 */
-	private function get_settings_content() {
+	private function getSettingsContent() {
 		$addons = apply_filters( 'chipmunk_settings_addons', [] );
 		$options = get_option( self::$option );
 
@@ -84,7 +84,7 @@ class Addons {
 
 			<div class="chipmunk__grid">
 				<?php foreach ( $addons as $addon ) : ?>
-					<?php $setting_name = self::$option . "[{$addon['slug']}]"; ?>
+					<?php $settingName = self::$option . "[{$addon['slug']}]"; ?>
 
 					<div class="chipmunk__addon chipmunk__box">
 						<h3 class="chipmunk__addon-title">
@@ -108,7 +108,7 @@ class Addons {
 							</p>
 						<?php else : ?>
 							<label for="<?php echo esc_attr( $addon['slug'] ); ?>">
-								<input type="checkbox" name="<?php echo esc_attr( $setting_name ); ?>" id="<?php echo esc_attr( $addon['slug'] ); ?>" value="1" <?php checked( 1, $options[ $addon['slug'] ] ?? '0' ); ?> />
+								<input type="checkbox" name="<?php echo esc_attr( $settingName ); ?>" id="<?php echo esc_attr( $addon['slug'] ); ?>" value="1" <?php checked( 1, $options[ $addon['slug'] ] ?? '0' ); ?> />
 								<?php esc_html_e( 'Enable Addon', 'chipmunk' ); ?>
 							</label>
 						<?php endif; ?>

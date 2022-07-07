@@ -22,6 +22,6 @@ $bookmarks = new Bookmarks( get_the_ID() );
 $context['upvote_button'] = $upvotes->getButton( 'toggle_upvote', 'c-stats__button' );
 $context['upvote_counter'] = $upvotes->getContent();
 $context['bookmark_button'] = $bookmarks->getButton( 'toggle_bookmark', 'c-stats__button' );
-$context['average_rating'] = RatingsHelpers::get_post_rating( get_the_ID() );
+$context['average_rating'] = RatingsHelpers::getPostRating( get_the_ID() );
 
 Timber::render( 'single.twig', $context );

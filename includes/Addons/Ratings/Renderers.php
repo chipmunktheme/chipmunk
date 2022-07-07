@@ -18,11 +18,11 @@ class Renderers {
 	 */
 	function __construct() {
 		if ( Helpers::isOptionEnabled( 'ratings', 'resource', false ) ) {
-			add_action( 'chipmunk_resource_extras', [ $this, 'render_rating_form' ] );
+			add_action( 'chipmunk_resource_extras', [ $this, 'renderRatingForm' ] );
 		}
 
 		if ( Helpers::isOptionEnabled( 'ratings', 'post', false ) ) {
-			add_action( 'chipmunk_post_extras', [ $this, 'render_rating_form' ] );
+			add_action( 'chipmunk_post_extras', [ $this, 'renderRatingForm' ] );
 		}
 	}
 
@@ -31,13 +31,13 @@ class Renderers {
 	 *
 	 * @return string  The template output
 	 */
-	public function render_rating_form() {
+	public function renderRatingForm() {
 		$context = Timber::context();
 		$ratings = new Ratings( get_the_ID() );
 
-		$context['ratings'] 	= $ratings->get_ratings();
-		$context['summary'] 	= $ratings->get_ratings_summary();
-		$context['max_rating'] 	= $ratings->get_max_rating();
+		$context['ratings'] 	= $ratings->getRatings();
+		$context['summary'] 	= $ratings->getRatingsSummary();
+		$context['max_rating'] 	= $ratings->getMaxRating();
 
 		// Render form template
 		Timber::render( 'addons/ratings/rating-form.twig', $context );

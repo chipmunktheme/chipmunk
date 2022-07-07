@@ -2,6 +2,8 @@
 
 namespace Chipmunk\Vendors\ThemeUpdater;
 
+use stdClass;
+
 /**
  * Theme updater class.
  *
@@ -39,7 +41,7 @@ class Updater {
 	/**
 	 * Update the theme update transient with the response from the version check
 	 *
-	 * @param  array $value   The default update values.
+	 * @param  object $value   The default update values.
 	 * @return array|boolean  If an update is available, returns the update parameters, if no update is needed returns false, if
 	 *                        the request fails returns false.
 	 */

@@ -41,13 +41,13 @@ class Admin {
 
 		// Updater
 		add_action( 'init', [ $this, 'updater' ] );
-		add_filter( 'http_request_args', [ $this, 'disable_wporg_request' ], 5, 2 );
+		add_filter( 'http_request_args', [ $this, 'disableWporgRequest' ], 5, 2 );
 	}
 
 	/**
 	 * Creates the updater class.
 	 */
-	function updater() {
+	public function updater() {
 		if ( ! current_user_can( 'update_themes' ) ) {
 			return false;
 		}
@@ -78,7 +78,7 @@ class Admin {
 	 *
 	 * @since 1.0.0
 	 */
-	function disable_wporg_request( $r, $url ) {
+	public function disableWporgRequest( $r, $url ) {
 		// If it's not a theme update request, bail.
 		if ( 0 !== strpos( $url, 'https://api.wordpress.org/themes/update-check/1.1/' ) ) {
  			return $r;

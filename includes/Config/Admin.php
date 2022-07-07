@@ -16,16 +16,16 @@ class Admin {
  	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_action( 'admin_notices', [ $this, 'display_admin_notices' ] );
-		add_action( 'admin_init', [ $this, 'add_resource_permalink_setting' ] );
-		add_action( 'admin_init', [ $this, 'add_collection_permalink_setting' ] );
-		add_action( 'admin_init', [ $this, 'add_tag_permalink_setting' ] );
+		add_action( 'admin_notices', [ $this, 'displayAdminNotices' ] );
+		add_action( 'admin_init', [ $this, 'addResourcePermalinkSetting' ] );
+		add_action( 'admin_init', [ $this, 'addCollectionPermalinkSetting' ] );
+		add_action( 'admin_init', [ $this, 'addTagPermalinkSetting' ] );
 	}
 
 	/**
 	 * Displays admin notices if there are any
 	 */
-	public static function display_admin_notices() {
+	public static function displayAdminNotices() {
 		$notices = apply_filters( 'chipmunk_admin_notices', Helpers::checkRequirements() );
 
 		foreach ( $notices as $notice ) { ?>
@@ -38,7 +38,7 @@ class Admin {
 	/**
 	 * Add extra option to Permalinks settings page
 	 */
-	public static function add_resource_permalink_setting() {
+	public static function addResourcePermalinkSetting() {
 		if ( isset( $_POST['chipmunk_resource_cpt_base'] ) ) {
 			update_option( 'chipmunk_resource_cpt_base', $_POST['chipmunk_resource_cpt_base'] );
 		}
@@ -52,7 +52,7 @@ class Admin {
 		);
 	}
 
-	public static function add_resource_permalink_setting_callback() {
+	public static function addResourcePermalinkSettingCallback() {
 		$value = get_option( 'chipmunk_resource_cpt_base' );
 		echo '<input type="text" value="' . esc_attr( $value ) . '" name="chipmunk_resource_cpt_base" id="chipmunk_resource_cpt_base" class="regular-text code" />';
 	}
@@ -60,7 +60,7 @@ class Admin {
 	/**
 	 * Add extra option to Permalinks settings page
 	 */
-	public static function add_collection_permalink_setting() {
+	public static function addCollectionPermalinkSetting() {
 		if ( isset( $_POST['chipmunk_collection_cpt_base'] ) ) {
 			update_option( 'chipmunk_collection_cpt_base', $_POST['chipmunk_collection_cpt_base'] );
 		}
@@ -74,7 +74,7 @@ class Admin {
 		);
 	}
 
-	public static function add_collection_permalink_setting_callback() {
+	public static function addCollectionPermalinkSettingCallback() {
 		$value = get_option( 'chipmunk_collection_cpt_base' );
 		echo '<input type="text" value="' . esc_attr( $value ) . '" name="chipmunk_collection_cpt_base" id="chipmunk_collection_cpt_base" class="regular-text code" />';
 	}
@@ -82,7 +82,7 @@ class Admin {
 	/**
 	 * Add extra option to Permalinks settings page
 	 */
-	public static function add_tag_permalink_setting() {
+	public static function addTagPermalinkSetting() {
 		if ( isset( $_POST['chipmunk_tag_cpt_base'] ) ) {
 			update_option( 'chipmunk_tag_cpt_base', $_POST['chipmunk_tag_cpt_base'] );
 		}
@@ -96,7 +96,7 @@ class Admin {
 		);
 	}
 
-	public static function add_tag_permalink_setting_callback() {
+	public static function addTagPermalinkSettingCallback() {
 		$value = get_option( 'chipmunk_tag_cpt_base' );
 		echo '<input type="text" value="' . esc_attr( $value ) . '" name="chipmunk_tag_cpt_base" id="chipmunk_tag_cpt_base" class="regular-text code" />';
 	}

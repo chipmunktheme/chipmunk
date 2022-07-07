@@ -53,16 +53,16 @@ class Faker {
 		];
 
 		// Handle form action
-		add_action( 'admin_init', [ $this, 'maybe_generate' ] );
+		add_action( 'admin_init', [ $this, 'maybeGenerate' ] );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', [ $this, 'add_settings_tab' ] );
+		add_filter( 'chipmunk_settings_tabs', [ $this, 'addSettingsTab' ] );
 	}
 
 	/**
 	 * Checks if a generator action was submitted.
 	 */
-	public function maybe_generate() {
+	public function maybeGenerate() {
 		foreach ( $this->types as $type ) {
 			if ( isset( $_POST[THEME_SLUG . '_generator_' . $type['slug']] ) ) {
 				self::generate( $type['slug'], (int) $_POST[THEME_SLUG . '_generator_' . $type['slug'] . '_start'], (int) $_POST[THEME_SLUG . '_generator_' . $type['slug'] . '_end'], $type['types'] );
@@ -73,42 +73,42 @@ class Faker {
 	/**
 	 * Generate fake values for upvote and view counters
 	 */
-	private function generate( $type, $start, $end, $post_types ) {
+	private function generate( $type, $start, $end, $postTypes ) {
 		check_admin_referer( THEME_SLUG . '_generator_' . $type . '_nonce' );
 
 		if ( empty( $start ) && empty( $end ) ) {
-			Settings::add_settings_error( $this->slug, __( 'You need to provide both values for the range!', 'chipmunk' ) );
+			Settings::addSettingsError( $this->slug, __( 'You need to provide both values for the range!', 'chipmunk' ) );
 			return null;
 		}
 
-		$db_key = '_' . THEME_SLUG . '_' . $type . '_count';
+		$dbKey = '_' . THEME_SLUG . '_' . $type . '_count';
 
 		$posts = get_posts( [
-			'post_type'         => $post_types,
+			'post_type'         => $postTypes,
 			'post_status'       => 'any',
 			'perm' 				=> 'readable',
 			'posts_per_page'    => -1,
 		] );
 
 		foreach ( $posts as $post ) {
-			$count = (int) get_post_meta( $post->ID, $db_key, true );
+			$count = (int) get_post_meta( $post->ID, $dbKey, true );
 
 			if ( isset( $count ) && is_numeric( $count ) ) {
-				update_post_meta( $post->ID, $db_key, $count + rand( $start, ( $start > $end ? $start : $end ) ) );
+				update_post_meta( $post->ID, $dbKey, $count + rand( $start, ( $start > $end ? $start : $end ) ) );
 			}
 		}
 
-		Settings::add_settings_error( $this->slug, __( 'Fake counters successfully generated!', 'chipmunk' ), 'success' );
+		Settings::addSettingsError( $this->slug, __( 'Fake counters successfully generated!', 'chipmunk' ), 'success' );
 	}
 
 	/**
 	 * Adds settings tab to the list
 	 */
-	public function add_settings_tab( $tabs ) {
+	public function addSettingsTab( $tabs ) {
 		$tabs[] = [
 			'name'      => $this->name,
 			'slug'      => $this->slug,
-			'content'   => $this->get_settings_content(),
+			'content'   => $this->getSettingsContent(),
 		];
 
 		return $tabs;
@@ -117,7 +117,7 @@ class Faker {
 	/**
 	 * Returns the settings markup for upvote faker
 	 */
-	private function get_settings_content() {
+	private function getSettingsContent() {
 		ob_start();
 
 		?>

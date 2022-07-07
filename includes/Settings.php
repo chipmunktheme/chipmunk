@@ -31,14 +31,14 @@ class Settings {
 
 		// Initialize theme licenser
 		$licenser = new Settings\Licenser( [
-			'remote_api_url' => THEME_SHOP_URL,
-			'item_id'        => THEME_ITEM_ID,
-			'item_name'      => THEME_TITLE,
-			'item_slug'      => THEME_SLUG,
+			'remoteApiUrl'  => THEME_SHOP_URL,
+			'itemId'        => THEME_ITEM_ID,
+			'itemName'      => THEME_TITLE,
+			'itemSlug'      => THEME_SLUG,
 		] );
 
 		// Store license data
-		self::$license = $licenser->get_license_data();
+		self::$license = $licenser->getLicenseData();
 
 		// Initialize other settings
 		new Settings\Faker();

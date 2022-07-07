@@ -25,15 +25,15 @@ class ACF {
 		// Include the ACF plugin.
 		include_once( self::ACF_PATH . 'acf.php' );
 
-		add_filter( 'acf/init', [ $this, 'acf_register_fields' ] );
-		add_filter( 'acf/settings/url', [ $this, 'acf_settings_url' ] );
-		add_filter( 'acf/settings/show_admin', [ $this, 'acf_settings_show_admin' ] );
+		add_filter( 'acf/init', [ $this, 'acfRegisterFields' ] );
+		add_filter( 'acf/settings/url', [ $this, 'acfSettingsUrl' ] );
+		add_filter( 'acf/settings/show_admin', [ $this, 'acfSettingsShowAdmin' ] );
 	}
 
 	/**
 	 * Register the proper custom fields via ACF
 	 */
-	public static function acf_register_fields() {
+	public function acfRegisterFields() {
 		$groups = [
 
 			// Resource
@@ -111,9 +111,9 @@ class ACF {
 			],
 		];
 
-		foreach ( $groups as $key => $group ) {
+		foreach ( $groups as $group ) {
 			// Normalize group fields
-			array_walk( $group['fields'], [ self::class, 'acf_normalize_fields' ], [ 'group' => $group, 'prefix_key' => true ] );
+			array_walk( $group['fields'], [ $this, 'acfNormalizeFields' ], [ 'group' => $group, 'prefix_key' => true ] );
 
 			// Register ACF Group
 			acf_add_local_field_group( $group );
@@ -123,19 +123,19 @@ class ACF {
 	/**
 	 * Register the proper custom fields via ACF
 	 */
-	private static function acf_normalize_fields( &$field, $key, $params ) {
+	private function acfNormalizeFields( &$field, $key, $params ) {
 		// Generate proper field key
 		$key = ( isset( $params['prefix_key'] ) && isset( $params['group'] ) ? '_' . THEME_SLUG . '_' . $params['group']['key'] . '_' : '' ) . $field['key'];
 
 		// Normalized field
-		$norm_field = [
+		$normField = [
 			'key' => $key,
 			'name' => $key,
 			'label' => $field['label'],
 			'type' => $field['type'],
 		];
 
-		$optional_values = [
+		$values = [
 			'required',
 			'readonly',
 			'instructions',
@@ -146,34 +146,25 @@ class ACF {
 			'preview_size',
 		];
 
-		foreach ( $optional_values as $value ) {
+		foreach ( $values as $value ) {
 			if ( isset( $field[ $value ] ) ) {
-				$norm_field[ $value ] = $field[ $value ];
+				$normField[ $value ] = $field[ $value ];
 			}
 		}
 
 		if ( isset( $field['width'] ) ) {
-			$norm_field['wrapper'] = [ 'width' => $field['width'] ];
+			$normField['wrapper'] = [ 'width' => $field['width'] ];
 		}
 
 		if ( isset( $field['sub_fields'] ) ) {
 			// Normalize sub-fields
-			array_walk( $field['sub_fields'], [ self::class, 'acf_normalize_fields' ], [ 'group' => $params['group'] ] );
+			array_walk( $field['sub_fields'], [ $this, 'acfNormalizeFields' ], [ 'group' => $params['group'] ] );
 
-			$norm_field['sub_fields'] = $field['sub_fields'];
+			$normField['sub_fields'] = $field['sub_fields'];
 		}
 
 		// Alter the original field
-		$field = $norm_field;
-	}
-
-	/**
-	 * Hide the ACF admin menu item.
-	 *
-	 * @return bool
-	 */
-	function acf_settings_show_admin( $show_admin ) {
-		return false;
+		$field = $normField;
 	}
 
 	/**
@@ -181,7 +172,16 @@ class ACF {
 	 *
 	 * @return string
 	 */
-	function acf_settings_url( $url ) {
+	public function acfSettingsUrl( $url ) {
 		return self::ACF_URL;
+	}
+
+	/**
+	 * Hide the ACF admin menu item.
+	 *
+	 * @return bool
+	 */
+	public function acfSettingsShowAdmin( $show_admin ) {
+		return false;
 	}
 }

@@ -18,24 +18,24 @@ class Ratings {
 	 *
 	 * @var string
 	 */
-	public static $db_key         = '_' . THEME_SLUG . '_rating';
-	public static $db_key_count   = '_' . THEME_SLUG . '_rating_count';
-	public static $db_key_average = '_' . THEME_SLUG . '_rating_average';
-	public static $db_key_rank    = '_' . THEME_SLUG . '_rating_rank';
+	public static $dbKey        = '_' . THEME_SLUG . '_rating';
+	public static $dbKeyCount   = '_' . THEME_SLUG . '_rating_count';
+	public static $dbKeyAverage = '_' . THEME_SLUG . '_rating_average';
+	public static $dbKeyRank    = '_' . THEME_SLUG . '_rating_rank';
 
 	/**
 	 * Maximun rating value
 	 *
 	 * @var int
 	 */
-	protected $max_rating = 5;
+	protected $maxRating = 5;
 
 	/**
 	 * Minimum ratings required to be listed
 	 *
 	 * @var string
 	 */
-	private $min_ratings = 5;
+	private $minRatings = 5;
 
 	/**
 	 * Initializes the plugin config.
@@ -43,16 +43,16 @@ class Ratings {
 	 * To keep the initialization fast, only add filter and action
 	 * hooks in the constructor.
 	 *
-	 * @param  int $post_id
+	 * @param  int $postId
 	 * @param  int $rating
 	 *
 	 * @return void
 	 */
-	function __construct( $post_id, $rating = null ) {
+	function __construct( $postId, $rating = null ) {
 		global $current_user;
 
-		$this->post_id = intval( wp_filter_kses( $post_id ) );
-		$this->user_id = ! empty( $current_user->ID ) ? $current_user->ID : Helpers::getIp();
+		$this->postId = intval( wp_filter_kses( $postId ) );
+		$this->userId = ! empty( $current_user->ID ) ? $current_user->ID : Helpers::getIp();
 
 		if ( ! empty( $rating ) ) {
 			$this->rating = intval( wp_filter_kses( $rating ) );
@@ -64,44 +64,44 @@ class Ratings {
 	 *
 	 * @return object
 	 */
-	private function submit_rating() {
-		$ratings = $this->get_post_ratings();
-		$old_rating = $this->get_user_rating( $ratings );
+	private function submitRating() {
+		$ratings = $this->getPostRatings();
+		$oldRating = $this->getUserRating( $ratings );
 
-		$new_rating = [
+		$newRating = [
 			'rating'    => $this->rating,
-			'user_id'   => $this->user_id,
+			'user_id'   => $this->userId,
 		];
 
-		if ( ! empty( $old_rating ) ) {
+		if ( ! empty( $oldRating ) ) {
 			// Update user rating
-			update_post_meta( $this->post_id, self::$db_key, $new_rating, $old_rating );
+			update_post_meta( $this->postId, self::$dbKey, $newRating, $oldRating );
 		}
 
 		else {
 			// Add new user rating
-			add_post_meta( $this->post_id, self::$db_key, $new_rating );
+			add_post_meta( $this->postId, self::$dbKey, $newRating );
 		}
 
 		// ------------------------------
 
-		$ratings = $this->get_post_ratings();
-		$average = $this->get_rating_average( $ratings );
-		$rank = $this->get_rating_rank( $ratings, $average );
+		$ratings = $this->getPostRatings();
+		$average = $this->getRatingAverage( $ratings );
+		$rank = $this->getRatingRank( $ratings, $average );
 
 		// Update rating counter
-		update_post_meta( $this->post_id, self::$db_key_count, count( $ratings ) );
+		update_post_meta( $this->postId, self::$dbKeyCount, count( $ratings ) );
 
 		// Update rating average
-		update_post_meta( $this->post_id, self::$db_key_average, $average );
+		update_post_meta( $this->postId, self::$dbKeyAverage, $average );
 
 		// Update rating rank
-		update_post_meta( $this->post_id, self::$db_key_rank, $rank );
+		update_post_meta( $this->postId, self::$dbKeyRank, $rank );
 
 		// Return proper resounse params
 		return [
-			'post'      => $this->post_id,
-			'content'   => $this->get_ratings_summary(),
+			'post'      => $this->postId,
+			'content'   => $this->getRatingsSummary(),
 		];
 	}
 
@@ -110,8 +110,8 @@ class Ratings {
 	 *
 	 * @return array
 	 */
-	private function get_post_ratings() {
-		return get_post_meta( $this->post_id, self::$db_key );
+	private function getPostRatings() {
+		return get_post_meta( $this->postId, self::$dbKey );
 	}
 
 	/**
@@ -121,8 +121,8 @@ class Ratings {
 	 *
 	 * @return boolean
 	 */
-	private function get_user_rating( $ratings ) {
-		return Helpers::findKeyValue( $ratings, 'user_id', $this->user_id );
+	private function getUserRating( $ratings ) {
+		return Helpers::findKeyValue( $ratings, 'user_id', $this->userId );
 	}
 
 	/**
@@ -133,15 +133,15 @@ class Ratings {
 	 *
 	 * @return float
 	 */
-	private function get_rating_average( $ratings ) {
+	private function getRatingAverage( $ratings ) {
 		if ( empty( $ratings ) ) {
 			return 0;
 		}
 
-		$ratings_sum = array_sum( array_column( $ratings, 'rating' ) );
-		$ratings_count = count( $ratings );
+		$ratingsSum = array_sum( array_column( $ratings, 'rating' ) );
+		$ratingsCount = count( $ratings );
 
-		return ( number_format( $ratings_sum / $ratings_count, 1 ) * 100 ) / 100;
+		return ( number_format( $ratingsSum / $ratingsCount, 1 ) * 100 ) / 100;
 	}
 
 	/**
@@ -153,16 +153,16 @@ class Ratings {
 	 *
 	 * @return float
 	 */
-	private function get_rating_rank( $ratings, $average ) {
+	private function getRatingRank( $ratings, $average ) {
 		if ( empty( $ratings ) ) {
 			return 0;
 		}
 
-		$all_ratings = RatingsHelpers::get_meta_values( self::$db_key );
-		$all_ratings_sum = array_sum( array_column( $all_ratings, 'rating' ) );
-		$all_ratings_average = ( $all_ratings_sum / count( $all_ratings ) );
+		$allRatings = RatingsHelpers::getMetaValues( self::$dbKey );
+		$allRatingsSum = array_sum( array_column( $allRatings, 'rating' ) );
+		$allRatingsAverage = ( $allRatingsSum / count( $allRatings ) );
 
-		return ( $average * count( $ratings ) + $all_ratings_average * $this->min_ratings ) / ( count( $ratings ) + $this->min_ratings );
+		return ( $average * count( $ratings ) + $allRatingsAverage * $this->minRatings ) / ( count( $ratings ) + $this->minRatings );
 	}
 
 	/**
@@ -170,11 +170,11 @@ class Ratings {
 	 *
 	 * @return string
 	 */
-	public function get_ratings_summary() {
-		$ratings = $this->get_ratings();
+	public function getRatingsSummary() {
+		$ratings = $this->getRatings();
 
 		$summary = "<div itemprop='aggregateRating' itemscope itemtype='http://schema.org/AggregateRating' " . ( $ratings['count'] == 0 ? "style='display: none'" : "" ) . ">"
-				. "<strong itemprop='ratingValue'>{$ratings['average']}</strong> " . __( 'out of', 'chipmunk' ) . " <span itemprop='bestRating'>" . $this->max_rating . "</span> " . __( 'stars', 'chipmunk' )
+				. "<strong itemprop='ratingValue'>{$ratings['average']}</strong> " . __( 'out of', 'chipmunk' ) . " <span itemprop='bestRating'>" . $this->maxRating . "</span> " . __( 'stars', 'chipmunk' )
 				. "<small class='u-visible-md-inline'>(<span itemprop='ratingCount'>" . $ratings['count'] . "</span> " . _n( 'rating', 'ratings', $ratings['count'], 'chipmunk' ) . ")</small>"
 			. "</div>";
 
@@ -186,10 +186,10 @@ class Ratings {
 	 *
 	 * @return array
 	 */
-	public function get_ratings() {
-		$ratings = $this->get_post_ratings();
-		$average = $this->get_rating_average( $ratings );
-		$rating = $this->get_user_rating( $ratings );
+	public function getRatings() {
+		$ratings = $this->getPostRatings();
+		$average = $this->getRatingAverage( $ratings );
+		$rating = $this->getUserRating( $ratings );
 
 		return [
 			'rating'    => $rating,
@@ -203,8 +203,8 @@ class Ratings {
 	 *
 	 * @return int
 	 */
-	public function get_max_rating() {
-		return $this->max_rating;
+	public function getMaxRating() {
+		return $this->maxRating;
 	}
 
 	/**
@@ -214,12 +214,12 @@ class Ratings {
 	 */
 	public function process() {
 		// Check required attributes
-		if ( ! $this->post_id || ! $this->user_id || ! $this->rating ) {
+		if ( ! $this->postId || ! $this->userId || ! $this->rating ) {
 			wp_send_json_error( __( 'Not permitted.', 'chipmunk' ) );
 		}
 
 		// Set proper Post meta values
-		$params = $this->submit_rating();
+		$params = $this->submitRating();
 
 		// Return success response
 		wp_send_json_success( $params );

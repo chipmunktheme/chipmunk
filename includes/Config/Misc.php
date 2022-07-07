@@ -28,7 +28,7 @@ class Misc {
 	 *
 	 * @return mixed
 	 */
-	public static function addDefaultMeta( $postId ) {
+	public function addDefaultMeta( $postId ) {
 		$defaut = [
 			'_' . THEME_SLUG . '_post_view_count'   => 0,
 			'_' . THEME_SLUG . '_upvote_count'      => 0,
@@ -52,7 +52,7 @@ class Misc {
 	 *
 	 * @hook after_setup_theme
 	 */
-	public static function setupComments() {
+	public function setupComments() {
 		// add threaded comments
 		if ( ! is_admin() ) {
 			if ( is_singular() && get_option( 'thread_comments' ) ) {
@@ -66,7 +66,7 @@ class Misc {
 	 *
 	 * @return string
 	 */
-	public static function normalizeContentWhitespace( $content ) {
+	public function normalizeContentWhitespace( $content ) {
 		return normalize_whitespace( $content );
 	}
 
@@ -75,7 +75,7 @@ class Misc {
 	 *
 	 * @return array
 	 */
-	public static function addContactMethods() {
+	public function addContactMethods() {
 		$socials = Customizer::getSocials();
 		$socials = array_filter( $socials, fn( $el ) => $el != 'Email' );
 		$socialKeys = array_map( fn( $el ) => sanitize_title( $socials[ $el ] ), array_keys( $socials ) );
