@@ -12,4 +12,8 @@
   &--lg {
     @include spacer-fixed(5);
   }
+
+  &--none {
+    @include spacer-fixed(0);
+  }
 }

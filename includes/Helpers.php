@@ -99,18 +99,6 @@ class Helpers {
 	}
 
 	/**
-	 * Retrieves the server param if not empty
-	 *
-	 * @param string $key Key of the param
-	 *
-	 * @return ?string
-	 */
-	public static function getQuery() {
-		global $wp_query;
-		return $wp_query->query ?? null;
-	}
-
-	/**
 	 * Builds class string based on name and modifiers
 	 *
 	 * @param string $name 			Base class name
@@ -479,6 +467,26 @@ class Helpers {
 		else {
 			return 1;
 		}
+	}
+
+	/**
+	 * Get related posts query
+	 *
+	 * @param array $args   Arguments to pass to the query
+	 *
+	 * @return array
+	 */
+	public static function getRelatedPosts( $args = [] ) {
+		global $post;
+
+		$defaults = [
+			'post_type'			=> $post->post_type,
+			'post__not_in'		=> [ $post->ID ],
+			'orderby'			=> 'rand',
+			'related'			=> true,
+		];
+
+		return Timber::get_posts( wp_parse_args( $args, $defaults ) );
 	}
 
 	/**

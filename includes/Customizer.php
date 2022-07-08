@@ -271,7 +271,7 @@ class Customizer {
 				'slug'          => 'resources_section',
 				'fields'        => [
 					[
-						'name'        => 'posts_per_page',
+						'name'        => 'resources_per_page',
 						'type'        => 'number',
 						'label'       => esc_html__( 'Number of resources per page', 'chipmunk' ),
 						'default'     => 18,
@@ -400,9 +400,9 @@ class Customizer {
 						'restrict'    => 'ratings',
 					],
 					[
-						'name'        => 'disable_resource_sorting',
+						'name'        => 'disable_resource_ordering',
 						'type'        => 'checkbox',
-						'label'       => esc_html__( 'Disable sorting', 'chipmunk' ),
+						'label'       => esc_html__( 'Disable ordering', 'chipmunk' ),
 						'default'     => false,
 					],
 					[
@@ -419,22 +419,22 @@ class Customizer {
 						'restrict'    => 'members',
 					],
 					[
-						'name'        => 'default_sort_by',
+						'name'        => 'default_resource_orderby',
 						'type'        => 'select',
-						'label'       => esc_html__( 'Sort by', 'chipmunk' ),
+						'label'       => esc_html__( 'Default order by', 'chipmunk' ),
 						'default'     => 'date',
 						'choices'     => [
 							'date'        => esc_html__( 'Date', 'chipmunk' ),
-							'name'        => esc_html__( 'Name', 'chipmunk' ),
+							'title'       => esc_html__( 'Title', 'chipmunk' ),
 							'views'       => esc_html__( 'Views', 'chipmunk' ),
 							'upvotes'     => esc_html__( 'Upvotes', 'chipmunk' ),
 							'ratings'     => Helpers::isAddonEnabled( 'ratings' ) ? esc_html__( 'Ratings', 'chipmunk' ) : null,
 						],
 					],
 					[
-						'name'        => 'default_sort_order',
+						'name'        => 'default_resource_order',
 						'type'        => 'select',
-						'label'       => esc_html__( 'Sort order', 'chipmunk' ),
+						'label'       => esc_html__( 'Default order', 'chipmunk' ),
 						'default'     => 'desc',
 						'choices'     => [
 							'asc'         => esc_html__( 'Ascending', 'chipmunk' ),
@@ -560,7 +560,7 @@ class Customizer {
 						],
 					],
 					[
-						'name'        => 'blog_posts_per_page',
+						'name'        => 'posts_per_page',
 						'type'        => 'number',
 						'label'       => esc_html__( 'Number of blog posts per page', 'chipmunk' ),
 						'default'     => 12,

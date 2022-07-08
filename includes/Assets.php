@@ -48,6 +48,8 @@ class Assets {
 	 * Enqueue custom CSS styles
 	 */
 	public static function enqueueInlineStyles() {
+		global $post;
+
 		$primaryFont      = Helpers::getOption( 'primary_font' );
 		$headingFont      = Helpers::getOption( 'heading_font' );
 
@@ -65,28 +67,7 @@ class Assets {
 		$headingFont      = ( ! empty( $headingFont ) && $headingFont != 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
 
 		$disableBorders   = Helpers::getOption( 'disable_section_borders' );
-
-		// TODO: Change this to be a custom field set via ACF per page
-		if ( is_page() ) {
-			switch ( get_page_template_slug() ) {
-				case 'page-full-width.php':
-					$contentWidth = 12;
-					break;
-				case 'page-wide-width.php':
-					$contentWidth = 10;
-					break;
-				case 'page-normal-width.php':
-					$contentWidth = 8;
-					break;
-				case 'page-narrow-width.php':
-					$contentWidth = 6;
-					break;
-				default:
-					$contentWidth = Helpers::getOption( 'content_width' );
-			}
-		} else {
-			$contentWidth = Helpers::getOption( 'content_width' );
-		}
+		$contentWidth     = isset( $post ) ? get_field( '_' . THEME_SLUG . '_page_content_width', $post->ID ) : Helpers::getOption( 'content_width' );
 
 		$customStyle .= "
 			body {

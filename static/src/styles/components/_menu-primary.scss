@@ -54,6 +54,7 @@
   position: relative;
   z-index: var(--chipmunk--layer--base);
   padding: 0 0.5em;
+  margin-left: -0.125em;
 
   &[data-expand]:hover {
     opacity: 0.75;

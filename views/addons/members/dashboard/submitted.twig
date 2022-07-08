@@ -1,9 +1,11 @@
-{% set posts = get_resources({
+{% set posts = get_posts({
+  post_type: 'resource',
 	post_status: 'any, trash',
 	perm: 'readable',
 	author: user.id,
 	order: 'DESC',
 	orderby: 'date',
+  paged: get_current_page(),
 }) %}
 
 {% include 'content/loop/resource.twig' %}

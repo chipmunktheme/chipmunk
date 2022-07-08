@@ -1,81 +1,77 @@
 {# TODO: Make sure the filters actually work #}
 <div class="c-filter__group">
-  {% if is_option_enabled('filters', 'resource', false) and not is_tax() %}
-    {% set tags = get_terms({
-      taxonomy: 'resource-tag',
-      orderby: 'name',
-      hide_empty: true,
-    }) %}
+  {% if is_option_enabled('filters', 'resource', false) and (not is_tax() or get_param('resource-tag')) %}
+    {% set tags = get_terms('resource-tag') %}
 
     {% if tags %}
       {% include 'partials/filter.twig' with {
-        filter: 'tag',
+        filter: 'resource-tag',
         title: __('Filter by', 'chipmunk'),
         placeholder: __('Choose topic', 'chipmunk'),
         options: tags | map(tag => {
           value: tag.slug,
           title: tag.name | capitalize,
-          selected: tag.slug == get_param('tag'),
+          selected: tag.slug == get_param('resource-tag'),
         }),
       } %}
     {% endif %}
   {% endif %}
 
-  {% if is_option_enabled('sorting', 'resource', false) %}
-    {% set orderby = get_option('default_sort_by') %}
-    {% set order = get_option('default_sort_order') %}
+  {% if is_option_enabled('ordering', 'resource', false) %}
+    {% set orderby = get_param('orderby') ?: get_option('default_resource_orderby') %}
+    {% set order = get_param('order') ?: get_option('default_resource_order') %}
 
     {% set options = [
       {
         value: 'date-desc',
         title: __('Date', 'chipmunk') ~ ' &uarr;',
-        selected: get_param('sort') == 'date-desc' or (not get_param('sort') and orderby == 'date' and order == 'desc'),
+        selected: orderby == 'date' and order == 'desc',
       },
       {
         value: 'date-asc',
         title: __('Date', 'chipmunk') ~ ' &darr;',
-        selected: get_param('sort') == 'date-asc' or (not get_param('sort') and orderby == 'date' and order == 'asc'),
+        selected: orderby == 'date' and order == 'asc',
       },
       {
-        value: 'name-desc',
-        title: __('Name', 'chipmunk') ~ ' &uarr;',
-        selected: get_param('sort') == 'name-desc' or (not get_param('sort') and orderby == 'name' and order == 'desc'),
+        value: 'title-desc',
+        title: __('Title', 'chipmunk') ~ ' &uarr;',
+        selected: orderby == 'title' and order == 'desc',
       },
       {
-        value: 'name-asc',
-        title: __('Name', 'chipmunk') ~ ' &darr;',
-        selected: get_param('sort') == 'name-asc' or (not get_param('sort') and orderby == 'name' and order == 'asc'),
+        value: 'title-asc',
+        title: __('Title', 'chipmunk') ~ ' &darr;',
+        selected: orderby == 'title' and order == 'asc',
       },
     ] %}
 
     {% if is_option_enabled('views', 'resource', false) %}
       {% set options = options | merge([{
-        value: 'views-desc',
+        value: 'views',
         title: __('Views', 'chipmunk'),
-        selected: get_param('sort') == 'views-desc' or (not get_param('sort') and orderby == 'views'),
+        selected: orderby == 'views',
       }]) %}
     {% endif %}
 
     {% if is_option_enabled('upvotes', 'resource', false) %}
       {% set options = options | merge([{
-        value: 'upvotes-desc',
+        value: 'upvotes',
         title: __('Upvotes', 'chipmunk'),
-        selected: get_param('sort') == 'upvotes-desc' or (not get_param('sort') and orderby == 'upvotes'),
+        selected: orderby == 'upvotes',
       }]) %}
     {% endif %}
 
     {% if is_option_enabled('ratings', 'resource', false) and is_addon_enabled('ratings') %}
       {% set options = options | merge([{
-        value: 'ratings-desc',
+        value: 'ratings',
         title: __('Ratings', 'chipmunk'),
-        selected: get_param('sort') == 'ratings-desc' or (not get_param('sort') and orderby == 'ratings'),
+        selected: orderby == 'ratings',
       }]) %}
     {% endif %}
 
     {% include 'partials/filter.twig' with {
-      filter: 'sort',
-      title: __('Sort by', 'chipmunk'),
-      options: options,
+      filter: 'order',
+      title: __('Order by', 'chipmunk'),
+      options,
     } %}
   {% endif %}
 </div>

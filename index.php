@@ -21,12 +21,5 @@ $context = Timber::context();
 $context['queried_object'] = get_queried_object();
 $context['title'] = get_the_archive_title();
 $context['description'] = get_the_archive_description();
-$context['posts'] = Timber::get_posts();
-
-if ( get_query_var( 'author_name' ) ) {
-	$author            = User::build( get_user_by( 'slug', get_query_var( 'author_name' ) ) );
-	$context['author'] = $author;
-	$context['title']  = 'Author Archives: ' . $author->name();
-}
 
 Timber::render( 'index.twig', $context );

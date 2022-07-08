@@ -2,6 +2,8 @@
 
 namespace Chipmunk\Vendors;
 
+use Chipmunk\Helpers;
+
 /**
  * Configure ACF plugin
  *
@@ -38,16 +40,18 @@ class ACF {
 
 			// Resource
 			[
-				'key'      => 'resource',
-				'title'     => __( 'Resource', 'chipmunk' ),
+				'key' => 'resource',
+				'title' => __( 'Resource', 'chipmunk' ),
 
-				'location' => [ [ [
-					'param'     => 'post_type',
-					'operator'  => '==',
-					'value'     => 'resource',
-				] ] ],
+				'location' => [ [
+					[
+						'param' => 'post_type',
+						'operator' => '==',
+						'value' => 'resource',
+					],
+				] ],
 
-				'fields'   => [
+				'fields' => [
 					[
 						'key' => 'is_featured',
 						'label' => __( 'Featured on homepage', 'chipmunk' ),
@@ -91,21 +95,64 @@ class ACF {
 
 			// Collection
 			[
-				'key'      => 'collection',
-				'title'     => __( 'Collection', 'chipmunk' ),
+				'key' => 'collection',
+				'title' => __( 'Collection', 'chipmunk' ),
 
-				'location' => [ [ [
-					'param'     => 'taxonomy',
-					'operator'  => '==',
-					'value'     => 'resource-collection',
-				] ] ],
+				'location' => [ [
+					[
+						'param' => 'taxonomy',
+						'operator' => '==',
+						'value' => 'resource-collection',
+					],
+				] ],
 
-				'fields'   => [
+				'fields' => [
 					[
 						'key' => 'image',
 						'label' => __( 'Image', 'chipmunk' ),
 						'type' => 'image',
 						'return_format' => 'id',
+					],
+				],
+			],
+
+			// Page/Post
+			[
+				'key' => 'page',
+				'title' => __( 'Page', 'chipmunk' ),
+				'position' => 'side',
+
+				'location' => [
+					[
+						[
+							'param' => 'post_type',
+							'operator' => '==',
+							'value' => 'page',
+						],
+					],
+					[
+						[
+							'param' => 'post_type',
+							'operator' => '==',
+							'value' => 'post',
+						],
+					],
+				],
+
+				'fields' => [
+					[
+						'key' => 'content_width',
+						'label' => __( 'Content width', 'chipmunk' ),
+						'type' => 'select',
+						'choices' => [
+							'6' => sprintf( __( 'Narrow (%d%%)', 'chipmunk' ), ( 6 / 12 * 100 ) ),
+							'8' => sprintf( __( 'Normal (%d%%)', 'chipmunk' ), ( 8 / 12 * 100 ) ),
+							'10' => sprintf( __( 'Wide (%d%%)', 'chipmunk' ), ( 10 / 12 * 100 ) ),
+							'12' => sprintf( __( 'Full (%d%%)', 'chipmunk' ), ( 12 / 12 * 100 ) ),
+						],
+						'default_value' => Helpers::getOption( 'content_width' ),
+						'required' => true,
+						'ui' => true,
 					],
 				],
 			],
@@ -136,6 +183,7 @@ class ACF {
 		];
 
 		$values = [
+			'choices',
 			'required',
 			'readonly',
 			'instructions',
@@ -144,6 +192,7 @@ class ACF {
 			'button_label',
 			'return_format',
 			'preview_size',
+			'default_value',
 		];
 
 		foreach ( $values as $value ) {

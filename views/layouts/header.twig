@@ -47,15 +47,26 @@
                 {% include 'partials/icon.twig' with { icon: 'chevron-down', size: 'sm' } only %}
               </button>
 
-              {# TODO: Add correct profile links #}
               <nav class="{{ cn('u-dropdown', get_option('dropdown_theme')) }}">
-                <a href="{{ get_members_link('dashboard') | e('esc_url') }}" class="u-dropdown__link">{{ __('Dashboard', 'chipmunk') }}</a>
+                <a href="{{ get_members_link('dashboard') | e('esc_url') }}" class="u-dropdown__link">
+                  {{ __('Dashboard', 'chipmunk') }}
+                </a>
+
                 {% if false | apply_filters('chipmunk_enable_user_profiles') %}
-                  <a href="{{ user.path }}" class="u-dropdown__link">{{ __('Profile', 'chipmunk') }}</a>
+                  <a href="{{ user.path }}" class="u-dropdown__link">
+                    {{ __('Profile', 'chipmunk') }}
+                  </a>
                 {% endif %}
-                <a href="{{ get_members_link('profile') | e('esc_url') }}" class="u-dropdown__link">{{ __('Edit Profile', 'chipmunk') }}</a>
+
+                <a href="{{ get_members_link('profile') | e('esc_url') }}" class="u-dropdown__link">
+                  {{ __('Edit Profile', 'chipmunk') }}
+                </a>
+
                 {% include 'partials/submit-button.twig' with { class: 'u-dropdown__link' } %}
-                <a href="{{ fn('wp_logout_url') }}" class="u-dropdown__link">{{ __('Logout', 'chipmunk') }}</a>
+
+                <a href="{{ fn('wp_logout_url') }}" class="u-dropdown__link">
+                  {{ __('Logout', 'chipmunk') }}
+                </a>
               </nav>
             </div>
           {% else %}

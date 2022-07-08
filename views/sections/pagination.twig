@@ -1,11 +1,9 @@
-{% set query = get_query() %}
-
 {# TODO: return a proper query from posts #}
-{% if pagination.pages and not query.related %}
+{% if pagination.pages and not query.related and not query.latest %}
   <nav class="c-pagination {{ cn('l-component', 'md') }}">
     {% if get_option('pagination_type') in ['load_more', 'infinite'] %}
       {# TODO: Set a correct query vars to the button #}
-      <button class="c-pagination__button c-button c-button--primary-outline u-loader" data-action="load_posts" data-query-vars="{{ query.query_vars | json_encode }}" data-page="{{ pagination.current + 1 }}"{{ get_option('pagination_type') == 'infinite' ? ' data-view-trigger="click"' }}>
+      <button class="c-pagination__button {{ cn('c-button', 'primary-outline') }} u-loader" data-action="load_posts" data-query-vars="{{ query.query_vars | json_encode }}" data-page="{{ pagination.current + 1 }}"{{ get_option('pagination_type') == 'infinite' ? ' data-view-trigger="click"' }}>
 				<span>{{ __('Load more', 'chipmunk') }}</span>
 			</button>
     {% else %}

@@ -1,7 +1,9 @@
 {# TODO: Set proper DB key Chipmunk\Extensions\UpvoBookmarkstes::$db_key #}
-{% set posts = get_resources({
+{% set posts = get_posts({
+  post_type: 'resource',
 	post_status: 'any, trash',
 	perm: 'readable',
+  paged: get_current_page(),
 	meta_query: {
 		relation: 'OR',
 

@@ -1,6 +1,5 @@
 {% set items = items ?? menu.items %}
 
-{# TODO: Add support for multi-level menus and dropdowns #}
 <ul class="{{ cn("c-menu-#{ type }", modifiers) }}">
   {% set class = "c-menu-#{ type }#{ modifiers ? '-' : '__' }" %}
   {% set item_class = class ~ 'item' %}

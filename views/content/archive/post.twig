@@ -1,16 +1,18 @@
 {% set layout = is_single or is_front_page ? 'tiles' : get_option('blog_layout') %}
 
 {% if is_singular('post') %}
-  {% set posts = get_related(post.id) %}
+  {% set posts = get_related_posts() %}
+{% elseif is_front_page %}
+  {% set posts = get_posts({ latest: true }) %}
 {% endif %}
 
-{% if is_singular('page') %}
-  {% set title = post.title %}
+{% if is_front_page %}
+  {% set title = __('Latest Posts', 'chipmunk') %}
 {% elseif is_singular('post') %}
   {% set title = __('Related', 'chipmunk') %}
-{% elseif is_front_page %}
-  {% set title = __('Latest Posts', 'chipmunk') %}
-{% elseif title == 'Archives' %}
+{% elseif is_singular('page') %}
+  {% set title = post.title %}
+{% elseif 'Archives' in title  %}
   {% set title = __('Blog', 'chipmunk') %}
 {% endif %}
 

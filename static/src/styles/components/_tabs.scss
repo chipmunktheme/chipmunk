@@ -5,7 +5,6 @@
 .c-tabs {
   display: flex;
   flex-direction: column;
-  gap: var(--chipmunk--layout--column-gutter);
   width: 100%;
 }
 
@@ -19,6 +18,7 @@
 
 .c-tabs__item {
   display: none;
+  margin-top: var(--chipmunk--layout--column-gutter);
 
   &.is-active {
     display: block;

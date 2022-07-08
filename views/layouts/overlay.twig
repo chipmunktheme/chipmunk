@@ -1,4 +1,5 @@
-{# TODO: Add overlay content #}
+{% set button_class = cn('c-button', 'primary-outline') %}
+
 <div class="c-overlay u-hidden-lg">
   <div class="c-overlay__inner">
     {% if menus.primary.items %}
@@ -14,20 +15,20 @@
     {% if is_addon_enabled('members') %}
       <div class="c-overlay__bottom">
         {% if user %}
-          {% include 'partials/submit-button.twig' with { class: cn('c-button', 'primary-outline') } %}
+          {% include 'partials/submit-button.twig' with { class: button_class } %}
         {% else %}
-          <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'login' ) ); ?>" class="c-button c-button--primary-outline">
+          <a href="{{ get_members_link('login') | e('esc_url') }}" class="{{ button_class }}">
             {{ __('Login', 'chipmunk') }}
           </a>
 
-          <a href="<?php echo esc_url( Chipmunk\Addons\Members\Helpers::get_page_permalink( 'register' ) ); ?>" class="c-button c-button--primary-outline">
+          <a href="{{ get_members_link('register') | e('esc_url') }}" class="{{ button_class }}">
             {{ __('Register', 'chipmunk') }}
           </a>
         {% endif %}
       </div>
     {% elseif not get_option('disable_submissions') %}
       <div class="c-overlay__bottom">
-        {% include 'partials/submit-button.twig' with { class: cn('c-button', 'primary-outline') } %}
+        {% include 'partials/submit-button.twig' with { class: button_class } %}
       </div>
     {% endif %}
   </div>

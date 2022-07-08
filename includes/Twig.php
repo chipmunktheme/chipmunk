@@ -6,8 +6,6 @@ use Twig\TwigFunction;
 use Twig\TwigFilter;
 use Twig\Environment;
 use Chipmunk\Helpers;
-use Chipmunk\Query;
-use Chipmunk\Extensions\Upvotes;
 use Chipmunk\Extensions\Views;
 use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 
@@ -61,10 +59,8 @@ class Twig {
 
 		// Theme Helpers
 		$this->registerFunction( $twig, 'cn', 					[ Helpers::class, 'className' ] );
-		$this->registerFunction( $twig, 'class_name', 			[ Helpers::class, 'className' ] );
 		$this->registerFunction( $twig, 'get_salt', 			[ Helpers::class, 'getSalt' ] );
 		$this->registerFunction( $twig, 'get_param', 			[ Helpers::class, 'getParam' ] );
-		$this->registerFunction( $twig, 'get_query', 			[ Helpers::class, 'getQuery' ] );
 		$this->registerFunction( $twig, 'get_option', 			[ Helpers::class, 'getOption' ] );
 		$this->registerFunction( $twig, 'is_option_enabled',	[ Helpers::class, 'isOptionEnabled' ] );
 		$this->registerFunction( $twig, 'is_addon_enabled',		[ Helpers::class, 'isAddonEnabled' ] );
@@ -72,9 +68,9 @@ class Twig {
 		$this->registerFunction( $twig, 'get_resource_links',	[ Helpers::class, 'getResourceLinks' ] );
 		$this->registerFunction( $twig, 'get_term_list',		[ Helpers::class, 'getTermList' ] );
 		$this->registerFunction( $twig, 'get_term_options',		[ Helpers::class, 'getTermOptions' ] );
+		$this->registerFunction( $twig, 'get_related_posts',	[ Helpers::class, 'getRelatedPosts' ] );
+		$this->registerFunction( $twig, 'get_current_page',		[ Helpers::class, 'getCurrentPage' ] );
 		$this->registerFunction( $twig, 'get_views',			[ Views::class, 'getViews' ] );
-		$this->registerFunction( $twig, 'get_resources',		[ Query::class, 'getResources' ] );
-		$this->registerFunction( $twig, 'get_related',			[ Query::class, 'getRelated' ] );
 
 		// Addon Helpers
 		$this->registerFunction( $twig, 'get_members_link',		[ MembersHelpers::class, 'getPagePermalink' ] );

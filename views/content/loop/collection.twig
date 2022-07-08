@@ -5,9 +5,9 @@
         {% include 'content/tile/collection.twig' %}
       {% endfor %}
     </div>
-  {% else %}
-    <p class="l-header__copy">
-      {{ __('Sorry, there are no collections to display yet.', 'chipmunk') }}
-    </p>
   </div>
+{% else %}
+  <p class="l-header__copy">
+    {{ __('Sorry, there are no collections to display yet.', 'chipmunk') }}
+  </p>
 {% endif %}

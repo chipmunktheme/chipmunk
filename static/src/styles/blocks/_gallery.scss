@@ -3,5 +3,6 @@
 ** ----------------------------------------------------------------------------- */
 
 .wp-block-gallery {
+  // TODO: Fix issues with gallery block in gutenberg
   --gallery-block--gutter-size: var(--chipmunk--layout--column-gutter);
 }

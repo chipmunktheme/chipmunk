@@ -7,7 +7,8 @@
   featured: {
     label: __('Featured', 'chipmunk'),
     results: not get_option('disable_featured')
-      ? get_resources({
+      ? get_posts({
+        post_type: 'resource',
         posts_per_page: resources_count,
         meta_query: {
           featured: {
@@ -25,7 +26,8 @@
 
   latest: {
     label: __('Latest', 'chipmunk'),
-    results: get_resources({
+    results: get_posts({
+      post_type: 'resource',
       posts_per_page: resources_count,
       orderby: 'date',
       order: 'DESC',
@@ -35,7 +37,8 @@
   popular: {
     label: __('Popular', 'chipmunk'),
     results: is_option_enabled('views', 'resource', false)
-      ? get_resources({
+      ? get_posts({
+        post_type: 'resource',
         posts_per_page: resources_count,
         meta_key: '_' ~ THEME_SLUG ~ '_post_view_count',
         orderby: 'meta_value_num',
@@ -48,7 +51,7 @@
 {% set tabs = ['featured', 'latest', 'popular'] | apply_filters('chipmunk_resource_tabs') %}
 
 {# Filter out empty resource tabs #}
-{% set tabs = tabs | filter(tab => sections[tab].results) %}
+{% set tabs = tabs | filter(tab => sections[tab].results | length) %}
 
 {% if tabs %}
 	<div class="l-section">

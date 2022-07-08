@@ -15,7 +15,7 @@
         { name: __('Submitted', 'chipmunk'), option: 'disable_submissions' },
       ] %}
       {% set first_tab = get_option('disable_upvotes') ? (get_option('disable_bookmarks') ? 'submitted' : 'bookmarked') : (tabs | first).name | sanitize_title %}
-      {% set current_tab = get_param('tab') ? get_param('tab') : first_tab %}
+      {% set current_tab = get_param('tab') ?: first_tab %}
       {% set dashboard_link = get_members_link('dashboard') %}
 
       <div class="c-tabs" data-tabs role="tablist">
