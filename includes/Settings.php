@@ -54,7 +54,7 @@ class Settings {
 			THEME_TITLE,
 			'edit_theme_options',
 			THEME_SLUG,
-			[ $this, 'admin_settings' ],
+			[ $this, 'adminSettings' ],
 			Helpers::svgToBase64( Assets::assetPath( 'images/logo.svg' ) ),
 		);
 	}

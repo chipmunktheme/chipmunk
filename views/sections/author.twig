@@ -1,4 +1,4 @@
-{% if author %}
+{% if author and not get_option('disable_user_profiles') %}
   {% do action('chipmunk_author_before', author.id) %}
 
 	{% set author_socials = fn('wp_get_user_contact_methods') | filter((value, key) => author.meta(key)) %}

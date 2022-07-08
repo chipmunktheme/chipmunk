@@ -1,4 +1,4 @@
-{% if collections %}
+{% if collections | length %}
   <div class="{{ cn('l-component', spacer ?? 'sm') }}">
     <div class="c-tile__list">
       {% for collection in collections %}
@@ -7,7 +7,7 @@
     </div>
   </div>
 {% else %}
-  <p class="l-header__copy">
+  <p class="l-header__copy l-component">
     {{ __('Sorry, there are no collections to display yet.', 'chipmunk') }}
   </p>
 {% endif %}

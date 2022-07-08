@@ -1,4 +1,4 @@
-{% if posts %}
+{% if posts | length %}
   <div class="{{ cn('l-component', spacer ?? 'sm') }}">
     <div class="{{ cn('c-tile__list', 'separated') }}" data-action-element="load_posts">
       {% for post in posts %}
@@ -13,7 +13,7 @@
 
   {% include 'sections/pagination.twig' with { pagination: posts.pagination } %}
 {% else %}
-  <p class="l-header__copy">
+  <p class="l-header__copy l-component">
     {{ __('Sorry, there are no posts to display yet.', 'chipmunk') }}
   </p>
 {% endif %}

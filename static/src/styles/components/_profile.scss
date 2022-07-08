@@ -14,6 +14,7 @@
 
 .c-profile__content {
   flex: 1;
+  align-self: center;
   display: flex;
   flex-direction: column;
   gap: spacer-clamped(1.5);

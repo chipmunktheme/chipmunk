@@ -55,7 +55,7 @@ class Settings {
 			add_settings_field(
 				$field,
 				$title,
-				[ $this, 'page_settings_cb' ],
+				[ $this, 'pageSettingsCb' ],
 				$settingName,
 				$settingName . '_section',
 				[

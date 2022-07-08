@@ -52,7 +52,7 @@
                   {{ __('Dashboard', 'chipmunk') }}
                 </a>
 
-                {% if false | apply_filters('chipmunk_enable_user_profiles') %}
+                {% if not get_option('disable_user_profiles') %}
                   <a href="{{ user.path }}" class="u-dropdown__link">
                     {{ __('Profile', 'chipmunk') }}
                   </a>

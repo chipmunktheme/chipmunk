@@ -6,6 +6,9 @@
   {% set title = post.title %}
 {% elseif is_singular('resource') %}
   {% set title = __('Related', 'chipmunk') %}
+{% elseif is_author and not get_option('disable_user_profiles') %}
+  {% set title = __('Resources', 'chipmunk') %}
+  {% set description = '' %}
 {% elseif 'Archives:' in title  %}
   {% set title = title | replace({ 'Archives: ': '' }) %}
 {% endif %}
@@ -17,7 +20,7 @@
   }) %}
 {% endif %}
 
-{% if posts or not is_singular('resource') %}
+{% if posts | length or not is_singular('resource') %}
   <div class="l-section">
     <div class="l-container">
       <div class="l-component l-header">
@@ -25,7 +28,7 @@
           {{ title }}
         </h2>
 
-        {% if not is_singular('resource') and posts %}
+        {% if not is_singular('resource') and posts | length %}
           {% include 'sections/filters.twig' %}
         {% endif %}
 

@@ -22,4 +22,8 @@ $context['queried_object'] = get_queried_object();
 $context['title'] = get_the_archive_title();
 $context['description'] = get_the_archive_description();
 
+if ( get_query_var( 'author_name' ) && empty( $context['author'] ) ) {
+	$context['author'] = User::build( get_user_by( 'slug', get_query_var( 'author_name' ) ) );
+}
+
 Timber::render( 'index.twig', $context );

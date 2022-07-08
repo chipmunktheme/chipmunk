@@ -16,7 +16,7 @@
   {% set title = __('Blog', 'chipmunk') %}
 {% endif %}
 
-{% if (not is_front_page and not is_single) or posts %}
+{% if (not is_front_page and not is_single) or posts | length %}
   <div class="l-section">
     <div class="l-container">
       {% if title and layout == 'tiles' %}
