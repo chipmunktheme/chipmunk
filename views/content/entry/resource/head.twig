@@ -1,32 +1,30 @@
-{% if not is_search %}
-  <div class="c-resource__head">
-    {% do action('chipmunk_before_resource_head') %}
+<div class="c-resource__head">
+  {% do action('chipmunk_before_resource_head') %}
 
-    {% include 'partials/stats.twig' with {
-      class: 'c-resource__stats',
-      stats: {
-        upvotes: true,
-        bookmarks: true,
-        author: {
-          show_link: true,
-        },
-        terms: {
-          term_args: {
-            taxonomy: 'resource-collection',
-            quantity: 1,
-          },
-        },
-        date: true,
-        views: true,
+  {% include 'partials/stats.twig' with {
+    class: 'c-resource__stats',
+    stats: {
+      upvotes: true,
+      bookmarks: true,
+      author: {
+        show_link: true,
       },
-    } %}
+      terms: {
+        term_args: {
+          taxonomy: 'resource-collection',
+          quantity: 1,
+        },
+      },
+      date: true,
+      views: true,
+    },
+  } %}
 
-    {% if is_option_enabled('sharing', 'resource') %}
-      <div class="c-resource__share">
-        {% include 'partials/share.twig' %}
-      </div>
-    {% endif %}
+  {% if is_option_enabled('sharing', 'resource') %}
+    <div class="c-resource__share">
+      {% include 'partials/share.twig' %}
+    </div>
+  {% endif %}
 
-    {% do action('chipmunk_after_resource_head') %}
-  </div>
-{% endif %}
+  {% do action('chipmunk_after_resource_head') %}
+</div>

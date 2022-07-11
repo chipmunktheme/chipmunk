@@ -12,11 +12,9 @@
   {% endif %}
 
   {% if post.content %}
-    <div class="c-resource__description {{ cn('c-content', 'type', is_search ? 'clamp-3') }}" itemprop="description">
+    <div class="c-resource__description {{ cn('c-content', 'type') }}" itemprop="description">
       {% apply apply_filters('the_content') %}
-        {% if is_search %}
-          {{ post.excerpt({ chars: 300 }).read_more(null) }}
-        {% elseif (is_content_separated or not post.content) and post.post_excerpt and (post.post_excerpt != post.content) %}
+        {% if (is_content_separated or not post.content) and post.post_excerpt and (post.post_excerpt != post.content) %}
           {{ post.excerpt({ chars: 120 }).read_more(null) }}
         {% else %}
           {{ post.content }}
@@ -25,18 +23,16 @@
     </div>
   {% endif %}
 
-  {% if not is_search %}
-    {% include 'partials/stats.twig' with {
-      class: 'c-resource__tags',
-      stats: {
-        terms: {
-          term_args: {
-            taxonomy: 'resource-tag',
-          },
+  {% include 'partials/stats.twig' with {
+    class: 'c-resource__tags',
+    stats: {
+      terms: {
+        term_args: {
+          taxonomy: 'resource-tag',
         },
       },
-    } %}
-  {% endif %}
+    },
+  } %}
 </div>
 
 {% do action('chipmunk_after_resource_info') %}

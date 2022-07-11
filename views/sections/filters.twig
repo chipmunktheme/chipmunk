@@ -1,4 +1,3 @@
-{# TODO: Make sure the filters actually work #}
 <div class="c-filter__group">
   {% if is_option_enabled('filters', 'resource', false) and (not is_tax() or get_param('resource-tag')) %}
     {% set tags = get_terms('resource-tag') %}
