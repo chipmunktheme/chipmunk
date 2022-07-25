@@ -21,7 +21,7 @@ class Helpers {
 	public static function getOptions( $section, $default = false ) {
 		$options = get_option( THEME_SLUG . '_members_' . $section, $default );
 
-		return is_array( $options ) ? $options : array();
+		return is_array( $options ) ? $options : [];
 	}
 
 	/**
@@ -75,7 +75,7 @@ class Helpers {
 	 * Retrieve possible errors from request parameters
 	 */
 	public static function retrieveRequestErrors() {
-		$errors = array();
+		$errors = [];
 
 		if ( isset( $_REQUEST['errors'] ) ) {
 			$errorCodes = explode( ',', $_REQUEST['errors'] );
@@ -92,15 +92,15 @@ class Helpers {
 	 * Retrieve possible alerts from request parameters
 	 */
 	public static function retrieveRequestAlerts() {
-		$possibleAlerts = array(
+		$possibleAlerts = [
 			'logged_out',
 			'registered',
 			'lost_password_sent',
 			'password_changed',
 			'profile_updated',
-		);
+		];
 
-		$alerts = array();
+		$alerts = [];
 
 		foreach ( $possibleAlerts as $possibleAlert ) {
 			if ( isset( $_REQUEST[ $possibleAlert ] ) ) {
@@ -223,10 +223,10 @@ class Helpers {
 				$error = __( 'An unknown error occurred. Please try again later.', 'chipmunk' );
 		}
 
-		return array(
+		return [
 			'type'    => 'error',
 			'message' => $error,
-		);
+		];
 	}
 
 	/**
@@ -239,38 +239,38 @@ class Helpers {
 	private static function getAlertMessage( $alertCode ) {
 		switch ( $alertCode ) {
 			case 'logged_out':
-				return array(
+				return [
 					'type'    => 'warning',
 					'message' => __( 'You have signed out. Would you like to sign in again?', 'chipmunk' ),
-				);
+				];
 				break;
 
 			case 'registered':
-				return array(
+				return [
 					'type'    => 'success',
 					'message' => __( 'You have successfully registered your account. You can login now.', 'chipmunk' ),
-				);
+				];
 				break;
 
 			case 'lost_password_sent':
-				return array(
+				return [
 					'type'    => 'warning',
 					'message' => __( 'Check your email for a link to reset your password.', 'chipmunk' ),
-				);
+				];
 				break;
 
 			case 'password_changed':
-				return array(
+				return [
 					'type'    => 'success',
 					'message' => __( 'Your password has been changed. You can sign in now.', 'chipmunk' ),
-				);
+				];
 				break;
 
 			case 'profile_updated':
-				return array(
+				return [
 					'type'    => 'success',
 					'message' => __( 'Your profile has been updated successfully.', 'chipmunk' ),
-				);
+				];
 				break;
 		}
 	}

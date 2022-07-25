@@ -31,32 +31,32 @@ class Faker {
 	 *
 	 * @var array
 	 */
-	private $types = array();
+	private $types = [];
 
 	/**
 	 * Initialize the class.
 	 *
 	 * @since 1.0.0
 	 */
-	function __construct() {
-		$this->types = array(
-			array(
+	public function __construct() {
+		$this->types = [
+			[
 				'name'  => __( 'Upvotes', 'chipmunk' ),
 				'slug'  => 'upvote',
-				'types' => array( 'resource' ),
-			),
-			array(
+				'types' => [ 'resource' ],
+			],
+			[
 				'name'  => __( 'Post views', 'chipmunk' ),
 				'slug'  => 'post_view',
-				'types' => array( 'post', 'resource' ),
-			),
-		);
+				'types' => [ 'post', 'resource' ],
+			],
+		];
 
 		// Handle form action
-		add_action( 'admin_init', array( $this, 'maybeGenerate' ) );
+		add_action( 'admin_init', [ $this, 'maybeGenerate' ] );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', array( $this, 'addSettingsTab' ) );
+		add_filter( 'chipmunk_settings_tabs', [ $this, 'addSettingsTab' ] );
 	}
 
 	/**
@@ -84,12 +84,12 @@ class Faker {
 		$dbKey = '_' . THEME_SLUG . '_' . $type . '_count';
 
 		$posts = get_posts(
-			array(
+			[
 				'post_type'      => $postTypes,
 				'post_status'    => 'any',
 				'perm'           => 'readable',
 				'posts_per_page' => -1,
-			)
+			]
 		);
 
 		foreach ( $posts as $post ) {
@@ -107,11 +107,11 @@ class Faker {
 	 * Adds settings tab to the list
 	 */
 	public function addSettingsTab( $tabs ) {
-		$tabs[] = array(
+		$tabs[] = [
 			'name'    => $this->name,
 			'slug'    => $this->slug,
 			'content' => $this->getSettingsContent(),
-		);
+		];
 
 		return $tabs;
 	}

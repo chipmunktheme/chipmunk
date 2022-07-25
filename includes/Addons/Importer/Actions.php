@@ -17,8 +17,8 @@ class Actions {
 	/**
 	 * Class constructor
 	 */
-	function __construct() {
-		add_action( 'admin_init', array( $this, 'maybe_import' ), 1 );
+	public function __construct() {
+		add_action( 'admin_init', [ $this, 'maybe_import' ], 1 );
 	}
 
 	/**
@@ -37,7 +37,7 @@ class Actions {
 		check_admin_referer( THEME_SLUG . '_import_nonce' );
 
 		$handler = new FileHandler();
-		$handler->handleFile( $_FILES[ THEME_SLUG . '_import_csv' ], array( 'text/csv' ) );
+		$handler->handleFile( $_FILES[ THEME_SLUG . '_import_csv' ], [ 'text/csv' ] );
 		$file = $handler->getUploadedFilePath();
 		var_dump( $file );
 	}

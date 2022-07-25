@@ -16,15 +16,15 @@ class Actions {
 	/**
 	 * Class constructor
 	 */
-	function __construct() {
+	public function __construct() {
 		// Handlers for form posting actions
-		add_action( 'login_form_register', array( $this, 'doRegisterUser' ) );
-		add_action( 'login_form_lostpassword', array( $this, 'doLostPassword' ) );
-		add_action( 'login_form_rp', array( $this, 'doResetPassword' ) );
-		add_action( 'login_form_resetpass', array( $this, 'doResetPassword' ) );
+		add_action( 'login_form_register', [ $this, 'doRegisterUser' ] );
+		add_action( 'login_form_lostpassword', [ $this, 'doLostPassword' ] );
+		add_action( 'login_form_rp', [ $this, 'doResetPassword' ] );
+		add_action( 'login_form_resetpass', [ $this, 'doResetPassword' ] );
 
 		// Custom user account handles
-		add_action( 'wp_loaded', array( $this, 'doUpdateUser' ) );
+		add_action( 'wp_loaded', [ $this, 'doUpdateUser' ] );
 	}
 
 	/**
@@ -224,11 +224,11 @@ class Actions {
 			return $errors;
 		}
 
-		$userData = array(
+		$userData = [
 			'user_email' => $email,
 			'user_login' => $username,
 			'user_pass'  => $password,
-		);
+		];
 
 		$userId = wp_insert_user( $userData );
 		// wp_new_user_notification( $userId, $password );
@@ -259,11 +259,11 @@ class Actions {
 		}
 
 		if ( ! empty( $firstName ) || ! empty( $lastName ) ) {
-			$displayName = join( ' ', array_filter( array( $firstName, $lastName ) ) );
+			$displayName = join( ' ', array_filter( [ $firstName, $lastName ] ) );
 		}
 
 		return wp_update_user(
-			array(
+			[
 				'ID'           => $userId,
 				'user_email'   => $email,
 				'first_name'   => $firstName,
@@ -272,7 +272,7 @@ class Actions {
 				'nickname'     => $firstName,
 				'user_url'     => $url,
 				'description'  => $description,
-			)
+			]
 		);
 	}
 

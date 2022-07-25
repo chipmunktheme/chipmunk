@@ -48,7 +48,7 @@ class Ratings {
 	 *
 	 * @return void
 	 */
-	function __construct( $postId, $rating = null ) {
+	public function __construct( $postId, $rating = null ) {
 		global $current_user;
 
 		$this->postId = intval( wp_filter_kses( $postId ) );
@@ -68,10 +68,10 @@ class Ratings {
 		$ratings   = $this->getPostRatings();
 		$oldRating = $this->getUserRating( $ratings );
 
-		$newRating = array(
+		$newRating = [
 			'rating'  => $this->rating,
 			'user_id' => $this->userId,
-		);
+		];
 
 		if ( ! empty( $oldRating ) ) {
 			// Update user rating
@@ -97,10 +97,10 @@ class Ratings {
 		update_post_meta( $this->postId, self::$dbKeyRank, $rank );
 
 		// Return proper resounse params
-		return array(
+		return [
 			'post'    => $this->postId,
 			'content' => $this->getRatingsSummary(),
-		);
+		];
 	}
 
 	/**
@@ -189,11 +189,11 @@ class Ratings {
 		$average = $this->getRatingAverage( $ratings );
 		$rating  = $this->getUserRating( $ratings );
 
-		return array(
+		return [
 			'rating'  => $rating,
 			'average' => $average,
 			'count'   => count( $ratings ),
-		);
+		];
 	}
 
 	/**

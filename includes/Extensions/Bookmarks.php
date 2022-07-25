@@ -24,7 +24,7 @@ class Bookmarks {
 	 *
 	 * @param  object $postId
 	 */
-	function __construct( $postId ) {
+	public function __construct( $postId ) {
 		global $current_user;
 
 		$this->postId = intval( wp_filter_kses( $postId ) );
@@ -95,7 +95,7 @@ class Bookmarks {
 	 * @return string
 	 */
 	private function getContent( $active ) {
-		$icon  = Timber::compile( 'partials/icon.twig', array( 'icon' => 'bookmark' ) );
+		$icon  = Timber::compile( 'partials/icon.twig', [ 'icon' => 'bookmark' ] );
 		$label = $active ? __( 'Bookmarked', 'chipmunk' ) : __( 'Bookmark', 'chipmunk' );
 
 		return '<span>' . $icon . $label . '</span>';

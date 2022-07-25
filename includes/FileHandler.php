@@ -25,7 +25,7 @@ class FileHandler {
 	/**
 	 * Class constructor.
 	 */
-	function __construct() {
+	public function __construct() {
 		WP_Filesystem();
 	}
 

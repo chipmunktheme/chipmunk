@@ -27,7 +27,7 @@ class Upvotes {
 	 *
 	 * @param  object $postId
 	 */
-	function __construct( $postId ) {
+	public function __construct( $postId ) {
 		global $current_user;
 
 		$this->postId = intval( wp_filter_kses( $postId ) );
@@ -61,7 +61,7 @@ class Upvotes {
 	 * @return string
 	 */
 	public function getContent() {
-		$icon  = Timber::compile( 'partials/icon.twig', array( 'icon' => 'thumbs-up' ) );
+		$icon  = Timber::compile( 'partials/icon.twig', [ 'icon' => 'thumbs-up' ] );
 		$label = Helpers::formatNumber( $this->getUpvoteCount() ?? 0 );
 
 		return '<span>' . $icon . $label . '</span>';

@@ -13,10 +13,10 @@ class Actions {
 	/**
 	 * Class constructor
 	 */
-	function __construct() {
+	public function __construct() {
 		// Handlers for ajax actions
-		add_action( 'wp_ajax_chipmunk_submit_rating', array( $this, 'submitRating' ) );
-		add_action( 'wp_ajax_nopriv_chipmunk_submit_rating', array( $this, 'submitRating' ) );
+		add_action( 'wp_ajax_chipmunk_submit_rating', [ $this, 'submitRating' ] );
+		add_action( 'wp_ajax_nopriv_chipmunk_submit_rating', [ $this, 'submitRating' ] );
 	}
 
 	/**

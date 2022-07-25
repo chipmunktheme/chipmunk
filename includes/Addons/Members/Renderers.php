@@ -16,14 +16,14 @@ class Renderers {
 	/**
 	 * Class constructor
 	 */
-	function __construct() {
+	public function __construct() {
 		// Shortcodes
-		add_shortcode( 'chipmunk-login-form', array( $this, 'renderLoginForm' ) );
-		add_shortcode( 'chipmunk-register-form', array( $this, 'renderRegisterForm' ) );
-		add_shortcode( 'chipmunk-lost-password-form', array( $this, 'renderLostPasswordForm' ) );
-		add_shortcode( 'chipmunk-reset-password-form', array( $this, 'renderResetPasswordForm' ) );
-		add_shortcode( 'chipmunk-profile-form', array( $this, 'renderProfileForm' ) );
-		add_shortcode( 'chipmunk-dashboard', array( $this, 'renderDashboard' ) );
+		add_shortcode( 'chipmunk-login-form', [ $this, 'renderLoginForm' ] );
+		add_shortcode( 'chipmunk-register-form', [ $this, 'renderRegisterForm' ] );
+		add_shortcode( 'chipmunk-lost-password-form', [ $this, 'renderLostPasswordForm' ] );
+		add_shortcode( 'chipmunk-reset-password-form', [ $this, 'renderResetPasswordForm' ] );
+		add_shortcode( 'chipmunk-profile-form', [ $this, 'renderProfileForm' ] );
+		add_shortcode( 'chipmunk-dashboard', [ $this, 'renderDashboard' ] );
 	}
 
 	/**
@@ -37,16 +37,16 @@ class Renderers {
 	public function renderLoginForm( $atts, $content = null ) {
 		// Parse shortcode attributes
 		$atts = shortcode_atts(
-			array(
+			[
 				'show_title' => false,
-			),
+			],
 			$atts
 		);
 
 		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers(
-			array(
+			[
 				'guest_required',
-			)
+			]
 		);
 
 		if ( empty( $atts['blocker'] ) ) {
@@ -74,17 +74,17 @@ class Renderers {
 	public function renderRegisterForm( $atts, $content = null ) {
 		// Parse shortcode attributes
 		$atts = shortcode_atts(
-			array(
+			[
 				'show_title' => false,
-			),
+			],
 			$atts
 		);
 
 		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers(
-			array(
+			[
 				'guest_required',
 				'registration_closed',
-			)
+			]
 		);
 
 		if ( empty( $atts['blocker'] ) ) {
@@ -110,16 +110,16 @@ class Renderers {
 	public function renderLostPasswordForm( $atts, $content = null ) {
 		// Parse shortcode attributes
 		$atts = shortcode_atts(
-			array(
+			[
 				'show_title' => false,
-			),
+			],
 			$atts
 		);
 
 		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers(
-			array(
+			[
 				'guest_required',
-			)
+			]
 		);
 
 		if ( empty( $atts['blocker'] ) ) {
@@ -148,17 +148,17 @@ class Renderers {
 	public function renderResetPasswordForm( $atts, $content = null ) {
 		// Parse shortcode attributes
 		$atts = shortcode_atts(
-			array(
+			[
 				'show_title' => false,
-			),
+			],
 			$atts
 		);
 
 		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers(
-			array(
+			[
 				'guest_required',
 				'invalid_link',
-			)
+			]
 		);
 
 		if ( empty( $atts['blocker'] ) ) {
@@ -188,16 +188,16 @@ class Renderers {
 	public function renderProfileForm( $atts, $content = null ) {
 		// Parse shortcode attributes
 		$atts = shortcode_atts(
-			array(
+			[
 				'show_title' => false,
-			),
+			],
 			$atts
 		);
 
 		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers(
-			array(
+			[
 				'user_required',
-			)
+			]
 		);
 
 		if ( empty( $atts['blocker'] ) ) {
@@ -238,16 +238,16 @@ class Renderers {
 	public function renderDashboard( $atts, $content = null ) {
 		// Parse shortcode attributes
 		$atts = shortcode_atts(
-			array(
+			[
 				'show_title' => false,
-			),
+			],
 			$atts
 		);
 
 		$atts['blocker'] = MembersHelpers::retrieveRequestBlockers(
-			array(
+			[
 				'user_required',
-			)
+			]
 		);
 
 		// Render form template

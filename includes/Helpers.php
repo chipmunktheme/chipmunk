@@ -60,28 +60,28 @@ class Helpers {
 		$wpVersion     = get_bloginfo( 'version' );
 		$phpMinVersion = '7.4.0';
 		$wpMinVersion  = '5.0';
-		$notices       = array();
+		$notices       = [];
 
 		if ( version_compare( $phpMinVersion, $phpVersion, '>' ) ) {
-			$notices[] = array(
+			$notices[] = [
 				'type'    => 'error',
 				'message' => sprintf(
 					__( 'Chipmunk requires PHP %1$s or greater. You have %2$s.', 'chipmunk' ),
 					$phpMinVersion,
 					$phpVersion
 				),
-			);
+			];
 		}
 
 		if ( version_compare( $wpMinVersion, $wpVersion, '>' ) ) {
-			$notices[] = array(
+			$notices[] = [
 				'type'    => 'error',
 				'message' => sprintf(
 					__( 'Chipmunk requires WordPress %1$s or greater. You have %2$s.', 'chipmunk' ),
 					$wpMinVersion,
 					$wpVersion
 				),
-			);
+			];
 		}
 
 		return $notices;
@@ -112,7 +112,7 @@ class Helpers {
 		}
 
 		$modifiers = array_slice( func_get_args(), 1 );
-		$classes   = array( $name );
+		$classes   = [ $name ];
 
 		foreach ( $modifiers as $modifier ) {
 			if ( ! empty( $modifier ) ) {
@@ -162,12 +162,12 @@ class Helpers {
 			// Verify the captcha response from Google
 			$remoteResponse = wp_remote_post(
 				'https://www.google.com/recaptcha/api/siteverify',
-				array(
-					'body' => array(
+				[
+					'body' => [
 						'secret'   => $secretKey,
 						'response' => $response,
-					),
-				)
+					],
+				]
 			);
 
 			$success = false;
@@ -189,7 +189,7 @@ class Helpers {
 	 * @return array
 	 */
 	public static function getSocials() {
-		$socials = array();
+		$socials = [];
 
 		foreach ( Customizer::getSocials() as $social ) {
 			$value = self::getOption( strtolower( $social ) );
@@ -224,11 +224,11 @@ class Helpers {
 	 *
 	 * @return ?array
 	 */
-	public static function getTaxonomyHierarchy( $taxonomy, $args = array(), $parent = 0 ) {
-		$children = array();
+	public static function getTaxonomyHierarchy( $taxonomy, $args = [], $parent = 0 ) {
+		$children = [];
 		$taxonomy = is_array( $taxonomy ) ? array_shift( $taxonomy ) : $taxonomy;
 
-		$terms = get_terms( $taxonomy, wp_parse_args( $args, array( 'parent' => $parent ) ) );
+		$terms = get_terms( $taxonomy, wp_parse_args( $args, [ 'parent' => $parent ] ) );
 
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			foreach ( $terms as $term ) {
@@ -252,7 +252,7 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function getTermOptions( $taxonomy, $terms = array(), $level = 0 ) {
+	public static function getTermOptions( $taxonomy, $terms = [], $level = 0 ) {
 		$output = '';
 
 		if ( empty( $terms ) ) {
@@ -278,13 +278,13 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function getTermList( $terms, $args = array() ) {
+	public static function getTermList( $terms, $args = [] ) {
 		$args = wp_parse_args(
 			$args,
-			array(
+			[
 				'type'     => 'link',
 				'quantity' => -1,
-			)
+			]
 		);
 
 		$output = '';
@@ -320,17 +320,17 @@ class Helpers {
 	 */
 	public static function getResourceLinks( $postId ) {
 		$keyPrefix = '_' . THEME_SLUG . '_resource_';
-		$links     = array();
+		$links     = [];
 
 		$metaWebsite = get_post_meta( $postId, $keyPrefix . 'website', true );
 		$metaLinks   = get_field( $keyPrefix . 'links', $postId );
 
 		if ( ! empty( $metaWebsite ) ) {
-			$links[] = array(
+			$links[] = [
 				'title'  => apply_filters( 'chipmunk_submission_website_label', __( 'Visit website', 'chipmunk' ) ),
 				'url'    => $metaWebsite,
 				'target' => '_blank',
-			);
+			];
 		}
 
 		if ( ! empty( $metaLinks ) ) {
@@ -366,16 +366,16 @@ class Helpers {
 	 *
 	 * @return string
 	 */
-	public static function getExternalLink( $url, $title, $atts = array() ) {
+	public static function getExternalLink( $url, $title, $atts = [] ) {
 		$atts = wp_parse_args(
 			$atts,
-			array(
+			[
 				'target' => '_blank',
 				'rel'    => self::getOption( 'disable_nofollow' ) ? null : 'nofollow',
-			)
+			]
 		);
 
-		$attributes = array();
+		$attributes = [];
 
 		foreach ( $atts as $name => $value ) {
 			if ( ! empty( $value ) ) {
@@ -414,7 +414,7 @@ class Helpers {
 	 * @return array
 	 */
 	public static function getRegisteredMenus() {
-		$menus = array();
+		$menus = [];
 
 		// Set all nav menus in context.
 		foreach ( array_keys( get_registered_nav_menus() ) as $location ) {
@@ -449,15 +449,15 @@ class Helpers {
 	 *
 	 * @return array
 	 */
-	public static function getRelatedPosts( $args = array() ) {
+	public static function getRelatedPosts( $args = [] ) {
 		global $post;
 
-		$defaults = array(
+		$defaults = [
 			'post_type'    => $post->post_type,
-			'post__not_in' => array( $post->ID ),
+			'post__not_in' => [ $post->ID ],
 			'orderby'      => 'rand',
 			'related'      => true,
-		);
+		];
 
 		return Timber::get_posts( wp_parse_args( $args, $defaults ) );
 	}
@@ -499,7 +499,7 @@ class Helpers {
 	 */
 	public static function getGoogleFonts( $apiKey, $sort = 'popularity' ) {
 		$ch = curl_init( "https://www.googleapis.com/webfonts/v1/webfonts?key=$apiKey&sort=$sort" );
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/json' ) );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Content-Type: application/json' ] );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
 
@@ -528,7 +528,7 @@ class Helpers {
 			return null;
 		}
 
-		$fontFamilies = array();
+		$fontFamilies = [];
 
 		foreach ( $fonts as $font ) {
 			if ( ! array_key_exists( $font, $fontFamilies ) ) {
@@ -536,10 +536,10 @@ class Helpers {
 			}
 		}
 
-		$args = array(
+		$args = [
 			'family' => urlencode( implode( '|', array_values( $fontFamilies ) ) ),
 			'subset' => urlencode( 'latin,latin-ext' ),
-		);
+		];
 
 		return add_query_arg( $args, '//fonts.googleapis.com/css' );
 	}
@@ -552,7 +552,7 @@ class Helpers {
 	 * @return ?string
 	 */
 	public static function getExtensionByMime( $mime ) {
-		$extensions = array(
+		$extensions = [
 			'image/jpeg'    => '.jpeg',
 			'image/jpg'     => '.jpg',
 			'image/png'     => '.png',
@@ -560,7 +560,7 @@ class Helpers {
 			'image/bmp'     => '.bmp',
 			'image/webp'    => '.webp',
 			'image/svg+xml' => '.svg',
-		);
+		];
 
 		return $extensions[ $mime ] ?? null;
 	}

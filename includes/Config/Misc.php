@@ -16,11 +16,11 @@ class Misc {
 	/**
 	 * Used to register custom hooks
 	 */
-	function __construct() {
-		add_action( 'wp_insert_post', array( $this, 'addDefaultMeta' ) );
-		add_action( 'after_setup_theme', array( $this, 'setupComments' ) );
-		add_filter( 'the_content', array( $this, 'normalizeContentWhitespace' ), 10, 1 );
-		add_filter( 'user_contactmethods', array( $this, 'addContactMethods' ), 99, 2 );
+	public function __construct() {
+		add_action( 'wp_insert_post', [ $this, 'addDefaultMeta' ] );
+		add_action( 'after_setup_theme', [ $this, 'setupComments' ] );
+		add_filter( 'the_content', [ $this, 'normalizeContentWhitespace' ], 10, 1 );
+		add_filter( 'user_contactmethods', [ $this, 'addContactMethods' ], 99, 2 );
 	}
 
 	/**
@@ -29,23 +29,23 @@ class Misc {
 	 * @return mixed
 	 */
 	public function addDefaultMeta( $postId ) {
-		$defaut = array(
+		$defaut = [
 			'_' . THEME_SLUG . '_post_view_count' => 0,
 			'_' . THEME_SLUG . '_upvote_count'    => 0,
-		);
+		];
 
 		if ( Helpers::isAddonEnabled( 'ratings' ) ) {
 			$defaut = array_merge(
 				$defaut,
-				array(
+				[
 					'_' . THEME_SLUG . '_rating_count'   => 0,
 					'_' . THEME_SLUG . '_rating_average' => 0,
 					'_' . THEME_SLUG . '_rating_rank'    => 0,
-				)
+				]
 			);
 		}
 
-		return Helpers::addPostMeta( $postId, $defaut, array( 'post', 'resource' ) );
+		return Helpers::addPostMeta( $postId, $defaut, [ 'post', 'resource' ] );
 	}
 
 	/**

@@ -19,22 +19,22 @@ class Actions {
 	/**
 	 * Class constructor
 	 */
-	function __construct() {
+	public function __construct() {
 		// Lazy loading posts
-		add_action( 'wp_ajax_chipmunk_load_posts', array( $this, 'loadPosts' ) );
-		add_action( 'wp_ajax_nopriv_chipmunk_load_posts', array( $this, 'loadPosts' ) );
+		add_action( 'wp_ajax_chipmunk_load_posts', [ $this, 'loadPosts' ] );
+		add_action( 'wp_ajax_nopriv_chipmunk_load_posts', [ $this, 'loadPosts' ] );
 
 		// Submissions
-		add_action( 'wp_ajax_chipmunk_submit_resource', array( $this, 'submitResource' ) );
-		add_action( 'wp_ajax_nopriv_chipmunk_submit_resource', array( $this, 'submitResource' ) );
+		add_action( 'wp_ajax_chipmunk_submit_resource', [ $this, 'submitResource' ] );
+		add_action( 'wp_ajax_nopriv_chipmunk_submit_resource', [ $this, 'submitResource' ] );
 
 		// Bookmarks
-		add_action( 'wp_ajax_chipmunk_toggle_bookmark', array( $this, 'toggleBookmark' ) );
-		add_action( 'wp_ajax_nopriv_chipmunk_toggle_bookmark', array( $this, 'toggleBookmark' ) );
+		add_action( 'wp_ajax_chipmunk_toggle_bookmark', [ $this, 'toggleBookmark' ] );
+		add_action( 'wp_ajax_nopriv_chipmunk_toggle_bookmark', [ $this, 'toggleBookmark' ] );
 
 		// Upvotes
-		add_action( 'wp_ajax_chipmunk_toggle_upvote', array( $this, 'toggleUpvote' ) );
-		add_action( 'wp_ajax_nopriv_chipmunk_toggle_upvote', array( $this, 'toggleUpvote' ) );
+		add_action( 'wp_ajax_chipmunk_toggle_upvote', [ $this, 'toggleUpvote' ] );
+		add_action( 'wp_ajax_nopriv_chipmunk_toggle_upvote', [ $this, 'toggleUpvote' ] );
 	}
 
 	/**

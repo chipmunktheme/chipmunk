@@ -15,19 +15,19 @@ class Redirects {
 	/**
 	 * Class constructor
 	 */
-	function __construct() {
+	public function __construct() {
 		// Redirects
-		add_action( 'login_form_login', array( $this, 'redirectToLoginForm' ) );
-		add_action( 'login_form_register', array( $this, 'redirectToRegisterForm' ) );
-		add_action( 'login_form_lostpassword', array( $this, 'redirectToLostPasswordForm' ) );
-		add_action( 'login_form_rp', array( $this, 'redirectToResetPasswordForm' ) );
-		add_action( 'login_form_resetpass', array( $this, 'redirectToResetPasswordForm' ) );
+		add_action( 'login_form_login', [ $this, 'redirectToLoginForm' ] );
+		add_action( 'login_form_register', [ $this, 'redirectToRegisterForm' ] );
+		add_action( 'login_form_lostpassword', [ $this, 'redirectToLostPasswordForm' ] );
+		add_action( 'login_form_rp', [ $this, 'redirectToResetPasswordForm' ] );
+		add_action( 'login_form_resetpass', [ $this, 'redirectToResetPasswordForm' ] );
 
-		add_filter( 'login_redirect', array( $this, 'redirectAfterLogin' ), 1, 3 );
-		add_action( 'wp_logout', array( $this, 'redirectAfterLogout' ) );
+		add_filter( 'login_redirect', [ $this, 'redirectAfterLogin' ], 1, 3 );
+		add_action( 'wp_logout', [ $this, 'redirectAfterLogout' ] );
 
 		// Authentication
-		add_filter( 'authenticate', array( $this, 'redirectAtAuthenticateErrors' ), 101, 3 );
+		add_filter( 'authenticate', [ $this, 'redirectAtAuthenticateErrors' ], 101, 3 );
 	}
 
 	/**

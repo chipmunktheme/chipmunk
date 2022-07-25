@@ -18,16 +18,16 @@ class Init {
 	 * To keep the initialization fast, only add filter and action
 	 * hooks in the constructor.
 	 */
-	function __construct( $config = array() ) {
+	public function __construct( $config = [] ) {
 		// Set config defaults
 		$this->config = wp_parse_args(
 			$config,
-			array(
+			[
 				'name'    => '',
 				'slug'    => '',
 				'excerpt' => '',
 				'url'     => '',
-			)
+			]
 		);
 
 		$this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
@@ -42,8 +42,8 @@ class Init {
 	 * @return  void
 	 */
 	private function hooks() {
-		add_action( 'init', array( $this, 'setup_addon' ) );
-		add_filter( 'chipmunk_settings_addons', array( $this, 'add_settings_addon' ) );
+		add_action( 'init', [ $this, 'setup_addon' ] );
+		add_filter( 'chipmunk_settings_addons', [ $this, 'add_settings_addon' ] );
 	}
 
 	/**

@@ -32,7 +32,7 @@ class Submitter {
 	 *
 	 * @var array
 	 */
-	private $required = array( 'name' );
+	private $required = [ 'name' ];
 
 	/**
 	 * A meta field name to store post info in
@@ -46,7 +46,7 @@ class Submitter {
 	 *
 	 * @param string $postType
 	 */
-	function __construct( $postType, $allowNewTerms = false ) {
+	public function __construct( $postType, $allowNewTerms = false ) {
 		$this->postType      = $postType;
 		$this->allowNewTerms = $allowNewTerms;
 	}
@@ -118,13 +118,13 @@ class Submitter {
 		$attachmentTitle = sanitize_file_name( pathinfo( $fileName, PATHINFO_FILENAME ) );
 
 		// Set up our images post data
-		$attachmentInfo = array(
+		$attachmentInfo = [
 			'guid'           => $wpUploadDir['url'] . '/' . $fileName,
 			'post_mime_type' => $fileType['type'],
 			'post_title'     => $attachmentTitle,
 			'post_content'   => '',
 			'post_status'    => 'inherit',
-		);
+		];
 
 		// Attach/upload image
 		$attachmentId = wp_insert_attachment( $attachmentInfo, $filePath );
@@ -228,11 +228,11 @@ class Submitter {
 		if ( ! empty( $data->url ) ) {
 			$data->url = rtrim( $data->url, '/' );
 
-			$link = array(
+			$link = [
 				'title'  => apply_filters( 'chipmunk_submission_website_label', __( 'Visit website', 'chipmunk' ) ),
 				'url'    => $data->url,
 				'target' => '_blank',
-			);
+			];
 
 			$data->meta[ $this->metaPrefix . $metaKeyLinks ]             = '1';
 			$data->meta[ $this->metaPrefix . $metaKeyLinks . '_0_link' ] = $link;
@@ -247,14 +247,14 @@ class Submitter {
 		}
 
 		// Post array
-		$post_array = array(
+		$post_array = [
 			'postType'     => $this->postType ?? 'post',
 			'post_status'  => $data->status ?? 'pending',
 			'post_title'   => $data->name ?? '',
 			'post_content' => $data->content ?? '',
 			'post_author'  => $data->author ?? '',
 			'meta_input'   => $data->meta ?? null,
-		);
+		];
 
 		if ( $postId = @wp_insert_post( $post_array ) ) {
 			// Set thumbnail
@@ -267,8 +267,8 @@ class Submitter {
 			}
 
 			// Set terms
-			$this->setTerms( $postId, $data->collections ?? array(), 'resource-collection' );
-			$this->setTerms( $postId, $data->tags ?? array(), 'resource-tag' );
+			$this->setTerms( $postId, $data->collections ?? [], 'resource-collection' );
+			$this->setTerms( $postId, $data->tags ?? [], 'resource-tag' );
 
 			// Return inserted post ID
 			return $postId;

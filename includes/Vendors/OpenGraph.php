@@ -19,21 +19,21 @@ class OpenGraph implements \Iterator {
 	 * There are base schema's based on type, this is just
 	 * a map so that the schema can be obtained
 	 */
-	public static $TYPES = array(
-		'activity'     => array( 'activity', 'sport' ),
-		'business'     => array( 'bar', 'company', 'cafe', 'hotel', 'restaurant' ),
-		'group'        => array( 'cause', 'sports_league', 'sports_team' ),
-		'organization' => array( 'band', 'government', 'non_profit', 'school', 'university' ),
-		'person'       => array( 'actor', 'athlete', 'author', 'director', 'musician', 'politician', 'public_figure' ),
-		'place'        => array( 'city', 'country', 'landmark', 'state_province' ),
-		'product'      => array( 'album', 'book', 'drink', 'food', 'game', 'movie', 'product', 'song', 'tv_show' ),
-		'website'      => array( 'blog', 'website' ),
-	);
+	public static $TYPES = [
+		'activity'     => [ 'activity', 'sport' ],
+		'business'     => [ 'bar', 'company', 'cafe', 'hotel', 'restaurant' ],
+		'group'        => [ 'cause', 'sports_league', 'sports_team' ],
+		'organization' => [ 'band', 'government', 'non_profit', 'school', 'university' ],
+		'person'       => [ 'actor', 'athlete', 'author', 'director', 'musician', 'politician', 'public_figure' ],
+		'place'        => [ 'city', 'country', 'landmark', 'state_province' ],
+		'product'      => [ 'album', 'book', 'drink', 'food', 'game', 'movie', 'product', 'song', 'tv_show' ],
+		'website'      => [ 'blog', 'website' ],
+	];
 
 	/**
 	 * Holds all the Open Graph values we've parsed from a page
 	 */
-	private $_values = array();
+	private $_values = [];
 
 	/**
 	 * Fetches a URI and parses it for Open Graph data, returns
@@ -189,7 +189,7 @@ class OpenGraph implements \Iterator {
 			return true;
 		}
 
-		$address_keys  = array( 'street_address', 'locality', 'region', 'postal_code', 'country_name' );
+		$address_keys  = [ 'street_address', 'locality', 'region', 'postal_code', 'country_name' ];
 		$valid_address = true;
 
 		foreach ( $address_keys as $key ) {

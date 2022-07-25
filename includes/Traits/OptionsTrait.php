@@ -11,7 +11,7 @@ namespace Chipmunk\Traits;
  */
 trait OptionsTrait {
 
-	private array $optionsCache   = array();
+	private array $optionsCache   = [];
 	private bool $useOptionsCache = true;
 
 	/**
@@ -199,7 +199,7 @@ trait OptionsTrait {
 		// operator to ensure that we return an empty array in the event that
 		// $options is not defined in the above loop.
 
-		return $options ?? array();
+		return $options ?? [];
 	}
 
 	/**

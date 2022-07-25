@@ -18,8 +18,8 @@ class Updater {
 	 * @param array $config    Array of arguments from the theme requesting an update check
 	 * @param array $strings Strings for the update process
 	 */
-	function __construct( $config = array(), $strings = array() ) {
-		$config = wp_parse_args( $config, array() );
+	public function __construct( $config = [], $strings = [] ) {
+		$config = wp_parse_args( $config, [] );
 
 		$this->license        = $config['license'];
 		$this->item_name      = $config['item_name'];
@@ -32,10 +32,10 @@ class Updater {
 		$this->strings        = $strings;
 
 		// Theme Version Checker
-		add_filter( 'pre_set_site_transient_update_themes', array( $this, 'theme_update_transient' ), 10, 2 );
-		add_filter( 'delete_site_transient_update_themes', array( $this, 'delete_theme_update_transient' ) );
-		add_action( 'load-update-core.php', array( $this, 'delete_theme_update_transient' ) );
-		add_action( 'load-themes.php', array( $this, 'delete_theme_update_transient' ) );
+		add_filter( 'pre_set_site_transient_update_themes', [ $this, 'theme_update_transient' ], 10, 2 );
+		add_filter( 'delete_site_transient_update_themes', [ $this, 'delete_theme_update_transient' ] );
+		add_action( 'load-update-core.php', [ $this, 'delete_theme_update_transient' ] );
+		add_action( 'load-themes.php', [ $this, 'delete_theme_update_transient' ] );
 	}
 
 	/**
@@ -51,12 +51,12 @@ class Updater {
 		}
 
 		if ( $data = $this->check_for_update() ) {
-			$value->response[ $this->item_slug ] = array(
+			$value->response[ $this->item_slug ] = [
 				'theme'       => $this->item_slug,
 				'new_version' => $data['new_version'],
 				'url'         => $data['url'],
 				'package'     => $data['package'],
-			);
+			];
 		}
 
 		return $value;
@@ -83,9 +83,9 @@ class Updater {
 
 			$response = wp_remote_post(
 				$this->remote_api_url,
-				array(
+				[
 					'timeout' => 15,
-					'body'    => array(
+					'body'    => [
 						'edd_action' => 'get_version',
 						'license'    => $this->license,
 						'name'       => $this->item_name,
@@ -93,8 +93,8 @@ class Updater {
 						'version'    => $this->version,
 						'author'     => $this->author,
 						'beta'       => $this->beta,
-					),
-				)
+					],
+				]
 			);
 
 			// Make sure the response was successful

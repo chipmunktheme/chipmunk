@@ -16,13 +16,13 @@ class Renderers {
 	/**
 	 * Class constructor
 	 */
-	function __construct() {
+	public function __construct() {
 		if ( Helpers::isOptionEnabled( 'ratings', 'resource', false ) ) {
-			add_action( 'chipmunk_resource_extras', array( $this, 'renderRatingForm' ) );
+			add_action( 'chipmunk_resource_extras', [ $this, 'renderRatingForm' ] );
 		}
 
 		if ( Helpers::isOptionEnabled( 'ratings', 'post', false ) ) {
-			add_action( 'chipmunk_post_extras', array( $this, 'renderRatingForm' ) );
+			add_action( 'chipmunk_post_extras', [ $this, 'renderRatingForm' ] );
 		}
 	}
 

@@ -36,23 +36,23 @@ class Licenser {
 	/**
 	 * Initialize the class
 	 */
-	function __construct( $config = array(), $strings = array(), $errors = array() ) {
+	public function __construct( $config = [], $strings = [], $errors = [] ) {
 		// Set config defaults
 		$config = wp_parse_args(
 			$config,
-			array(
+			[
 				'remoteApiUrl' => '',
 				'itemId'       => '',
 				'itemName'     => '',
 				'itemSlug'     => '',
 				'renewUrl'     => '',
-			)
+			]
 		);
 
 		// Set default strings
 		$this->strings = wp_parse_args(
 			$strings,
-			array(
+			[
 				'enter-key'                 => __( 'To receive updates, please enter your valid license key.', 'chipmunk' ),
 				'license-key'               => __( 'License Key', 'chipmunk' ),
 				'license-action'            => __( 'License Action', 'chipmunk' ),
@@ -72,13 +72,13 @@ class Licenser {
 				'license-key-is-disabled'   => __( 'License key is disabled.', 'chipmunk' ),
 				'site-is-inactive'          => __( 'Site is inactive.', 'chipmunk' ),
 				'license-status-unknown'    => __( 'License status is unknown.', 'chipmunk' ),
-			)
+			]
 		);
 
 		// Set default errors
 		$this->errors = wp_parse_args(
 			$errors,
-			array(
+			[
 				'license-expired'       => __( 'Your license key expired on %s.', 'chipmunk' ),
 				'license-disabled'      => __( 'Your license key has been disabled.', 'chipmunk' ),
 				'license-missing'       => __( 'Your license key is invalid.', 'chipmunk' ),
@@ -86,7 +86,7 @@ class Licenser {
 				'license-name-mismatch' => __( 'This appears to be an invalid license key for %s.', 'chipmunk' ),
 				'license-exceeded'      => __( 'Your license key has reached its activation limit.', 'chipmunk' ),
 				'license-unknown'       => __( 'An error occurred, please try again.', 'chipmunk' ),
-			)
+			]
 		);
 
 		// Set config arguments
@@ -112,13 +112,13 @@ class Licenser {
 	 */
 	private function hooks() {
 		// Licensing hooks
-		add_action( 'admin_init', array( $this, 'registerOption' ) );
-		add_action( 'admin_init', array( $this, 'activateLicense' ) );
-		add_action( 'admin_init', array( $this, 'deactivateLicense' ) );
-		add_action( 'admin_init', array( $this, 'checkLicense' ) );
+		add_action( 'admin_init', [ $this, 'registerOption' ] );
+		add_action( 'admin_init', [ $this, 'activateLicense' ] );
+		add_action( 'admin_init', [ $this, 'deactivateLicense' ] );
+		add_action( 'admin_init', [ $this, 'checkLicense' ] );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', array( $this, 'addSettingsTab' ) );
+		add_filter( 'chipmunk_settings_tabs', [ $this, 'addSettingsTab' ] );
 	}
 
 	/**
@@ -238,16 +238,16 @@ class Licenser {
 	private function getApiResponse( $action ) {
 		$response = wp_remote_post(
 			$this->remoteApiUrl,
-			array(
+			[
 				'timeout'   => 15,
 				'sslverify' => false,
-				'body'      => array(
+				'body'      => [
 					'edd_action' => $action,
 					'license'    => trim( $this->licenseKey ),
 					'item_id'    => $this->itemId,
 					'url'        => home_url(),
-				),
-			)
+				],
+			]
 		);
 
 		if ( ! $this->isValidResponse( $response ) ) {
@@ -295,10 +295,10 @@ class Licenser {
 
 		if ( ! empty( $this->itemId ) && ! empty( $this->licenseKey ) ) {
 			$renewUrl = add_query_arg(
-				array(
+				[
 					'edd_license_key' => $this->licenseKey,
 					'download_id'     => $this->itemId,
-				),
+				],
 				$this->remoteApiUrl . '/checkout/'
 			);
 
@@ -317,7 +317,7 @@ class Licenser {
 	 * @return string/object License status.
 	 */
 	public function getLicenseStatus( $licenseData ) {
-		$messages = array();
+		$messages = [];
 
 		// If response doesn't include license data, return
 		if ( ! isset( $licenseData->license ) ) {
@@ -404,11 +404,11 @@ class Licenser {
 	 * Adds settings tab to the list
 	 */
 	public function addSettingsTab( $tabs ) {
-		$tabs[] = array(
+		$tabs[] = [
 			'name'    => $this->name,
 			'slug'    => $this->slug,
 			'content' => $this->getSettingsContent(),
-		);
+		];
 
 		return $tabs;
 	}

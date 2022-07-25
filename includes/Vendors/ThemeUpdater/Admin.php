@@ -15,10 +15,10 @@ class Admin {
 	 *
 	 * @since 1.0.0
 	 */
-	function __construct( $config = array(), $strings = array() ) {
+	public function __construct( $config = [], $strings = [] ) {
 		$config = wp_parse_args(
 			$config,
-			array(
+			[
 				'remote_api_url' => '',
 				'item_id'        => '',
 				'item_name'      => '',
@@ -28,16 +28,16 @@ class Admin {
 				'download_id'    => '',
 				'renew_url'      => '',
 				'beta'           => false,
-			)
+			]
 		);
 
 		// Set default strings
 		$this->strings = wp_parse_args(
 			$strings,
-			array(
+			[
 				'update-notice'    => __( 'Updating this theme may lose the customizations you have made directly in the source code.', 'chipmunk' ),
 				'update-available' => __( '<strong>%1$s %2$s</strong> is available. <a href="%3$s" class="thickbox" title="%4s">Check out what\'s new</a> or <a href="%5$s"%6$s>update now</a>.', 'chipmunk' ),
-			)
+			]
 		);
 
 		// Set config arguments
@@ -46,8 +46,8 @@ class Admin {
 		}
 
 		// Updater
-		add_action( 'init', array( $this, 'updater' ) );
-		add_filter( 'http_request_args', array( $this, 'disableWporgRequest' ), 5, 2 );
+		add_action( 'init', [ $this, 'updater' ] );
+		add_filter( 'http_request_args', [ $this, 'disableWporgRequest' ], 5, 2 );
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Admin {
 		}
 
 		new Updater(
-			array(
+			[
 				'remote_api_url' => $this->remote_api_url,
 				'version'        => $this->version,
 				'license'        => get_option( $this->item_slug . '_license_key' ),
@@ -73,7 +73,7 @@ class Admin {
 				'item_slug'      => $this->item_slug,
 				'author'         => $this->author,
 				'beta'           => $this->beta,
-			),
+			],
 			$this->strings
 		);
 	}

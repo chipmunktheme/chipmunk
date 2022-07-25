@@ -15,18 +15,18 @@ class Assets {
 	 *
 	 * @var array
 	 */
-	public static $manifest = array();
+	public static $manifest = [];
 
 	/**
 	 * Used to register custom hooks
 	 */
-	function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueCustomAssets' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueInlineStyles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueGoogleFonts' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueExternalScripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueueAdminScripts' ) );
-		add_filter( 'script_loader_tag', array( $this, 'addAsyncAttribute' ), 10, 3 );
+	public function __construct() {
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueCustomAssets' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueInlineStyles' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueGoogleFonts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueExternalScripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueueAdminScripts' ] );
+		add_filter( 'script_loader_tag', [ $this, 'addAsyncAttribute' ], 10, 3 );
 	}
 
 	/**
@@ -91,7 +91,7 @@ class Assets {
 	 * Enqueue Google Fonts styles
 	 */
 	public static function enqueueGoogleFonts() {
-		$fonts = array();
+		$fonts = [];
 
 		$primaryFont = Helpers::getOption( 'primary_font' );
 		$headingFont = Helpers::getOption( 'heading_font' );
@@ -159,10 +159,10 @@ class Assets {
 	 */
 	public static function addAsyncAttribute( $tag, $handle, $src ) {
 		// add script handles to the array below
-		$scripts = array(
-			'defer' => array( 'chipmunk-scripts' ),
-			'async' => array( 'chipmunk-recaptcha' ),
-		);
+		$scripts = [
+			'defer' => [ 'chipmunk-scripts' ],
+			'async' => [ 'chipmunk-recaptcha' ],
+		];
 
 		if ( in_array( $handle, $scripts['defer'] ) ) {
 			return str_replace( ' src=', ' defer src=', $tag );

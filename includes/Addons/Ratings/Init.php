@@ -18,7 +18,7 @@ class Init {
 	 * @since 1.0
 	 * @var array
 	 */
-	private $allowedTypes = array( 'post', 'resource' );
+	private $allowedTypes = [ 'post', 'resource' ];
 
 	/**
 	 * Initializes the addon.
@@ -26,16 +26,16 @@ class Init {
 	 * To keep the initialization fast, only add filter and action
 	 * hooks in the constructor.
 	 */
-	function __construct( $config = array() ) {
+	public function __construct( $config = [] ) {
 		// Set config defaults
 		$this->config = wp_parse_args(
 			$config,
-			array(
+			[
 				'name'    => '',
 				'slug'    => '',
 				'excerpt' => '',
 				'url'     => '',
-			)
+			]
 		);
 
 		$this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
@@ -50,8 +50,8 @@ class Init {
 	 * @return  void
 	 */
 	private function hooks() {
-		add_action( 'init', array( $this, 'setupAddon' ) );
-		add_filter( 'chipmunk_settings_addons', array( $this, 'addSettingsAddon' ) );
+		add_action( 'init', [ $this, 'setupAddon' ] );
+		add_filter( 'chipmunk_settings_addons', [ $this, 'addSettingsAddon' ] );
 	}
 
 	/**
@@ -61,10 +61,10 @@ class Init {
 	 */
 	private function registerPostMeta() {
 		$posts = get_posts(
-			array(
+			[
 				'posts_per_page' => -1,
 				'post_type'      => $this->allowedTypes,
-			)
+			]
 		);
 
 		foreach ( $posts as $post ) {
@@ -80,11 +80,11 @@ class Init {
 	 * @return array
 	 */
 	private function addDefaultMeta( $postId, $allowedTypes ) {
-		$defaut = array(
+		$defaut = [
 			'_' . THEME_SLUG . '_rating_count'   => 0,
 			'_' . THEME_SLUG . '_rating_average' => 0,
 			'_' . THEME_SLUG . '_rating_rank'    => 0,
-		);
+		];
 
 		return Helpers::addPostMeta( $postId, $defaut, $allowedTypes );
 	}

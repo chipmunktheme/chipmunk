@@ -13,22 +13,22 @@ class Settings {
 	/**
 	 * Class constructor
 	 */
-	function __construct( $config ) {
+	public function __construct( $config ) {
 		$this->config = $config;
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', array( $this, 'add_settings_tab' ) );
+		add_filter( 'chipmunk_settings_tabs', [ $this, 'add_settings_tab' ] );
 	}
 
 	/**
 	 * Adds settings tab to the list
 	 */
 	public function add_settings_tab( $tabs ) {
-		$tabs[] = array(
+		$tabs[] = [
 			'name'    => $this->config['name'],
 			'slug'    => $this->config['slug'],
 			'content' => $this->get_settings_content(),
-		);
+		];
 
 		return $tabs;
 	}
