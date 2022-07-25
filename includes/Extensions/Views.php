@@ -46,8 +46,7 @@ class Views {
 			$count = 0;
 			delete_post_meta( $id, $dbKey );
 			add_post_meta( $id, $dbKey, 0 );
-		}
-		else {
+		} else {
 			if ( ! isset( $_COOKIE[ $dbKey . '-' . $id ] ) ) {
 				$count++;
 				update_post_meta( $id, $dbKey, $count );

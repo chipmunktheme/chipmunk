@@ -21,14 +21,17 @@ class Init {
 	 *
 	 * @param array $config
 	 */
-	function __construct( $config = [] ) {
+	function __construct( $config = array() ) {
 		// Set config defaults
-		$this->config = wp_parse_args( $config, [
-			'name'         => '',
-			'slug'         => '',
-			'excerpt'      => '',
-			'url'          => '',
-		] );
+		$this->config = wp_parse_args(
+			$config,
+			array(
+				'name'    => '',
+				'slug'    => '',
+				'excerpt' => '',
+				'url'     => '',
+			)
+		);
 
 		$this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
 
@@ -42,8 +45,8 @@ class Init {
 	 * @return  void
 	 */
 	private function hooks() {
-		add_action( 'init', [ $this, 'setupAddon' ] );
-		add_filter( 'chipmunk_settings_addons', [ $this, 'addSettingsAddon' ] );
+		add_action( 'init', array( $this, 'setupAddon' ) );
+		add_filter( 'chipmunk_settings_addons', array( $this, 'addSettingsAddon' ) );
 	}
 
 	/**
@@ -55,53 +58,53 @@ class Init {
 		$options = MembersHelpers::getOptions( 'pages' );
 
 		// Information needed for creating the addon's pages
-		$pages = [
-			'login' => [
-				'title' => __( 'Login', 'chipmunk' ),
-				'content' => '[chipmunk-login-form]',
+		$pages = array(
+			'login'          => array(
+				'title'    => __( 'Login', 'chipmunk' ),
+				'content'  => '[chipmunk-login-form]',
 				'template' => 'page-narrow-width.php',
-			],
+			),
 
-			'register' => [
-				'title' => __( 'Register', 'chipmunk' ),
-				'content' => '[chipmunk-register-form]',
+			'register'       => array(
+				'title'    => __( 'Register', 'chipmunk' ),
+				'content'  => '[chipmunk-register-form]',
 				'template' => 'page-narrow-width.php',
-			],
+			),
 
-			'lost-password' => [
-				'title' => __( 'Forgot Your Password?', 'chipmunk' ),
-				'content' => '[chipmunk-lost-password-form]',
+			'lost-password'  => array(
+				'title'    => __( 'Forgot Your Password?', 'chipmunk' ),
+				'content'  => '[chipmunk-lost-password-form]',
 				'template' => 'page-narrow-width.php',
-			],
+			),
 
-			'reset-password' => [
-				'title' => __( 'Reset Password', 'chipmunk' ),
-				'content' => '[chipmunk-reset-password-form]',
+			'reset-password' => array(
+				'title'    => __( 'Reset Password', 'chipmunk' ),
+				'content'  => '[chipmunk-reset-password-form]',
 				'template' => 'page-narrow-width.php',
-			],
+			),
 
-			'profile' => [
-				'title' => __( 'Edit Profile', 'chipmunk' ),
-				'content' => '[chipmunk-profile-form]',
+			'profile'        => array(
+				'title'    => __( 'Edit Profile', 'chipmunk' ),
+				'content'  => '[chipmunk-profile-form]',
 				'template' => 'page-narrow-width.php',
-			],
+			),
 
-			'dashboard' => [
-				'title' => __( 'Dashboard', 'chipmunk' ),
-				'content' => '[chipmunk-dashboard]',
+			'dashboard'      => array(
+				'title'    => __( 'Dashboard', 'chipmunk' ),
+				'content'  => '[chipmunk-dashboard]',
 				'template' => 'page-full-width.php',
-			],
-		];
+			),
+		);
 
 		foreach ( $pages as $slug => $page ) {
 			$normalizedSlug = str_replace( '-', '_', $slug );
-			$optionSlug = "chipmunk_{$normalizedSlug}_page_id";
-			$currentPage = $options[ $optionSlug ];
+			$optionSlug     = "chipmunk_{$normalizedSlug}_page_id";
+			$currentPage    = $options[ $optionSlug ];
 
 			if ( empty( $currentPage ) || ! get_post( $currentPage ) || get_post_status( $currentPage ) != 'publish' ) {
 				// Add the page using the data from the array above
 				$post_id = wp_insert_post(
-					[
+					array(
 						'post_content'   => "<!-- wp:shortcode -->{$page['content']}<!-- /wp:shortcode -->",
 						'post_name'      => $slug,
 						'post_title'     => $page['title'],
@@ -110,16 +113,16 @@ class Init {
 						'ping_status'    => 'closed',
 						'comment_status' => 'closed',
 						'page_template'  => $page['template'],
-					]
+					)
 				);
 
 				$options[ $optionSlug ] = $post_id;
 			} elseif ( get_post( $currentPage ) && get_post_status( $currentPage ) != 'publish' ) {
 				wp_update_post(
-					[
-						'ID'             => $currentPage,
-						'post_status'    => 'publish',
-					],
+					array(
+						'ID'          => $currentPage,
+						'post_status' => 'publish',
+					),
 				);
 			}
 		}
@@ -132,7 +135,7 @@ class Init {
 	}
 
 	/**
- 	 * Setup main components and features of the addon
+	 * Setup main components and features of the addon
 	 */
 	public function setupAddon() {
 		if ( ! Helpers::isAddonEnabled( $this->config['slug'] ) ) {
@@ -155,7 +158,7 @@ class Init {
 	}
 
 	/**
- 	 * Add settings addon component
+	 * Add settings addon component
 	 *
 	 * @return array
 	 */

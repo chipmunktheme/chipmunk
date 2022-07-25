@@ -31,32 +31,32 @@ class Faker {
 	 *
 	 * @var array
 	 */
-	private $types = [];
+	private $types = array();
 
 	/**
 	 * Initialize the class.
 	 *
 	 * @since 1.0.0
 	 */
-	function __construct( ) {
-		$this->types = [
-			[
-				'name' => __( 'Upvotes', 'chipmunk' ),
-				'slug' => 'upvote',
-				'types' => [ 'resource' ],
-			],
-			[
-				'name' => __( 'Post views', 'chipmunk' ),
-				'slug' => 'post_view',
-				'types' => [ 'post', 'resource' ],
-			],
-		];
+	function __construct() {
+		$this->types = array(
+			array(
+				'name'  => __( 'Upvotes', 'chipmunk' ),
+				'slug'  => 'upvote',
+				'types' => array( 'resource' ),
+			),
+			array(
+				'name'  => __( 'Post views', 'chipmunk' ),
+				'slug'  => 'post_view',
+				'types' => array( 'post', 'resource' ),
+			),
+		);
 
 		// Handle form action
-		add_action( 'admin_init', [ $this, 'maybeGenerate' ] );
+		add_action( 'admin_init', array( $this, 'maybeGenerate' ) );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', [ $this, 'addSettingsTab' ] );
+		add_filter( 'chipmunk_settings_tabs', array( $this, 'addSettingsTab' ) );
 	}
 
 	/**
@@ -64,8 +64,8 @@ class Faker {
 	 */
 	public function maybeGenerate() {
 		foreach ( $this->types as $type ) {
-			if ( isset( $_POST[THEME_SLUG . '_generator_' . $type['slug']] ) ) {
-				self::generate( $type['slug'], (int) $_POST[THEME_SLUG . '_generator_' . $type['slug'] . '_start'], (int) $_POST[THEME_SLUG . '_generator_' . $type['slug'] . '_end'], $type['types'] );
+			if ( isset( $_POST[ THEME_SLUG . '_generator_' . $type['slug'] ] ) ) {
+				self::generate( $type['slug'], (int) $_POST[ THEME_SLUG . '_generator_' . $type['slug'] . '_start' ], (int) $_POST[ THEME_SLUG . '_generator_' . $type['slug'] . '_end' ], $type['types'] );
 			}
 		}
 	}
@@ -83,12 +83,14 @@ class Faker {
 
 		$dbKey = '_' . THEME_SLUG . '_' . $type . '_count';
 
-		$posts = get_posts( [
-			'post_type'         => $postTypes,
-			'post_status'       => 'any',
-			'perm' 				=> 'readable',
-			'posts_per_page'    => -1,
-		] );
+		$posts = get_posts(
+			array(
+				'post_type'      => $postTypes,
+				'post_status'    => 'any',
+				'perm'           => 'readable',
+				'posts_per_page' => -1,
+			)
+		);
 
 		foreach ( $posts as $post ) {
 			$count = (int) get_post_meta( $post->ID, $dbKey, true );
@@ -105,11 +107,11 @@ class Faker {
 	 * Adds settings tab to the list
 	 */
 	public function addSettingsTab( $tabs ) {
-		$tabs[] = [
-			'name'      => $this->name,
-			'slug'      => $this->slug,
-			'content'   => $this->getSettingsContent(),
-		];
+		$tabs[] = array(
+			'name'    => $this->name,
+			'slug'    => $this->slug,
+			'content' => $this->getSettingsContent(),
+		);
 
 		return $tabs;
 	}

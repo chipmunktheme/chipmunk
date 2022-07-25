@@ -13,21 +13,21 @@ use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 class Redirects {
 
 	/**
- 	 * Class constructor
+	 * Class constructor
 	 */
 	function __construct() {
 		// Redirects
-		add_action( 'login_form_login', [ $this, 'redirectToLoginForm' ] );
-		add_action( 'login_form_register', [ $this, 'redirectToRegisterForm' ] );
-		add_action( 'login_form_lostpassword', [ $this, 'redirectToLostPasswordForm' ] );
-		add_action( 'login_form_rp', [ $this, 'redirectToResetPasswordForm' ] );
-		add_action( 'login_form_resetpass', [ $this, 'redirectToResetPasswordForm' ] );
+		add_action( 'login_form_login', array( $this, 'redirectToLoginForm' ) );
+		add_action( 'login_form_register', array( $this, 'redirectToRegisterForm' ) );
+		add_action( 'login_form_lostpassword', array( $this, 'redirectToLostPasswordForm' ) );
+		add_action( 'login_form_rp', array( $this, 'redirectToResetPasswordForm' ) );
+		add_action( 'login_form_resetpass', array( $this, 'redirectToResetPasswordForm' ) );
 
-		add_filter( 'login_redirect', [ $this, 'redirectAfterLogin' ], 1, 3 );
-		add_action( 'wp_logout', [ $this, 'redirectAfterLogout' ] );
+		add_filter( 'login_redirect', array( $this, 'redirectAfterLogin' ), 1, 3 );
+		add_action( 'wp_logout', array( $this, 'redirectAfterLogout' ) );
 
 		// Authentication
-		add_filter( 'authenticate', [ $this, 'redirectAtAuthenticateErrors' ], 101, 3 );
+		add_filter( 'authenticate', array( $this, 'redirectAtAuthenticateErrors' ), 101, 3 );
 	}
 
 	/**
@@ -163,8 +163,8 @@ class Redirects {
 	/**
 	 * Get proper redirect path for logged in users
 	 *
-	 * @param Wp_User|Wp_Error  $user          The signed in user, or the errors that have occurred during login.
-	 * @param string            $redirectTo   An optional redirect_to URL for admin users
+	 * @param Wp_User|Wp_Error $user          The signed in user, or the errors that have occurred during login.
+	 * @param string           $redirectTo   An optional redirect_to URL for admin users
 	 *
 	 * @return string           The redirect path
 	 */
@@ -187,9 +187,9 @@ class Redirects {
 	/**
 	 * Redirect the user after authentication if there were any errors.
 	 *
-	 * @param Wp_User|Wp_Error  $user       The signed in user, or the errors that have occurred during login.
-	 * @param string            $username   The user name used to log in.
-	 * @param string            $password   The password used to log in.
+	 * @param Wp_User|Wp_Error $user       The signed in user, or the errors that have occurred during login.
+	 * @param string           $username   The user name used to log in.
+	 * @param string           $password   The password used to log in.
 	 *
 	 * @return Wp_User|Wp_Error The logged in user, or error information if there were errors.
 	 */

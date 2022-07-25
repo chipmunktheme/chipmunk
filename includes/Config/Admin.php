@@ -13,13 +13,13 @@ use Chipmunk\Helpers;
 class Admin {
 
 	/**
- 	 * Used to register custom hooks
+	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_action( 'admin_notices', [ $this, 'displayAdminNotices' ] );
-		add_action( 'admin_init', [ $this, 'addResourcePermalinkSetting' ] );
-		add_action( 'admin_init', [ $this, 'addCollectionPermalinkSetting' ] );
-		add_action( 'admin_init', [ $this, 'addTagPermalinkSetting' ] );
+		add_action( 'admin_notices', array( $this, 'displayAdminNotices' ) );
+		add_action( 'admin_init', array( $this, 'addResourcePermalinkSetting' ) );
+		add_action( 'admin_init', array( $this, 'addCollectionPermalinkSetting' ) );
+		add_action( 'admin_init', array( $this, 'addTagPermalinkSetting' ) );
 	}
 
 	/**
@@ -32,7 +32,8 @@ class Admin {
 			<div class="notice notice-<?php echo esc_attr( $notice['type'] ?? 'error' ); ?>">
 				<p><?php echo esc_html( $notice['message'] ); ?></p>
 			</div>
-		<?php }
+			<?php
+		}
 	}
 
 	/**
@@ -45,8 +46,8 @@ class Admin {
 
 		add_settings_field(
 			'chipmunk_resource_cpt_base',
-			__('Resource base', 'chipmunk'),
-			[ self::class, 'add_resource_permalink_setting_callback' ],
+			__( 'Resource base', 'chipmunk' ),
+			array( self::class, 'add_resource_permalink_setting_callback' ),
 			'permalink',
 			'optional'
 		);
@@ -67,8 +68,8 @@ class Admin {
 
 		add_settings_field(
 			'chipmunk_collection_cpt_base',
-			__('Collection base', 'chipmunk'),
-			[ self::class, 'add_collection_permalink_setting_callback' ],
+			__( 'Collection base', 'chipmunk' ),
+			array( self::class, 'add_collection_permalink_setting_callback' ),
 			'permalink',
 			'optional'
 		);
@@ -89,8 +90,8 @@ class Admin {
 
 		add_settings_field(
 			'chipmunk_tag_cpt_base',
-			__('Resource tag base', 'chipmunk'),
-			[ self::class, 'add_tag_permalink_setting_callback' ],
+			__( 'Resource tag base', 'chipmunk' ),
+			array( self::class, 'add_tag_permalink_setting_callback' ),
 			'permalink',
 			'optional'
 		);

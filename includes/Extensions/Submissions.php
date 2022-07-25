@@ -21,14 +21,14 @@ class Submissions {
 	 *
 	 * @var array
 	 */
-	private $required = [ 'name', 'collection', 'url' ];
+	private $required = array( 'name', 'collection', 'url' );
 
 	/**
 	 * Required fields to be left empty
 	 *
 	 * @var array
 	 */
-	private $requiredEmpty = [ 'filter' ];
+	private $requiredEmpty = array( 'filter' );
 
 	/**
 	 * Create a new submission form object
@@ -37,7 +37,7 @@ class Submissions {
 	 * @return void
 	 */
 	function __construct( $data ) {
-		$this->data = (object) $data;
+		$this->data      = (object) $data;
 		$this->submitter = new Submitter( 'resource' );
 	}
 
@@ -72,13 +72,20 @@ class Submissions {
 	 * Send email to website owner after resource is submitted
 	 */
 	private function informAdmin( $postId ) {
-		$post       = new Post( $postId );
-		$name       = get_bloginfo( 'name' );
-		$admin      = get_bloginfo( 'admin_email' );
-		$headers    = [ 'Content-Type: text/html; charset=UTF-8' ];
+		$post    = new Post( $postId );
+		$name    = get_bloginfo( 'name' );
+		$admin   = get_bloginfo( 'admin_email' );
+		$headers = array( 'Content-Type: text/html; charset=UTF-8' );
 
-		$subject    = sprintf( esc_html__( '%s: New user submission', 'chipmunk' ), $name );
-		$template   = Timber::compile( 'emails/submission.twig', [ 'subject' => $subject, 'post' => $post ], false );
+		$subject  = sprintf( esc_html__( '%s: New user submission', 'chipmunk' ), $name );
+		$template = Timber::compile(
+			'emails/submission.twig',
+			array(
+				'subject' => $subject,
+				'post'    => $post,
+			),
+			false
+		);
 
 		wp_mail( $admin, $subject, $template, $headers );
 	}
@@ -87,15 +94,15 @@ class Submissions {
 	 * Submit an post into the database
 	 */
 	private function submit() {
-		$data = [
-			'name'				=> wp_filter_nohtml_kses( $this->data->name ),
-			'content'			=> wp_kses_post( wpautop( $this->data->content ) ),
-			'url'				=> wp_filter_nohtml_kses( $this->data->url ),
-			'status'			=> apply_filters( 'chipmunk_submission_post_status', 'pending' ),
-			'collections'		=> wp_filter_nohtml_kses( $this->data->collection ),
-			'submitterEmail'	=> wp_filter_nohtml_kses( $this->data->submitterEmail ),
-			'submitterName'		=> wp_filter_nohtml_kses( $this->data->submitterName ),
-		];
+		$data = array(
+			'name'           => wp_filter_nohtml_kses( $this->data->name ),
+			'content'        => wp_kses_post( wpautop( $this->data->content ) ),
+			'url'            => wp_filter_nohtml_kses( $this->data->url ),
+			'status'         => apply_filters( 'chipmunk_submission_post_status', 'pending' ),
+			'collections'    => wp_filter_nohtml_kses( $this->data->collection ),
+			'submitterEmail' => wp_filter_nohtml_kses( $this->data->submitterEmail ),
+			'submitterName'  => wp_filter_nohtml_kses( $this->data->submitterName ),
+		);
 
 		if ( $postId = $this->submitter->submit( (object) $data ) ) {
 			// Send email to website admin
@@ -105,7 +112,9 @@ class Submissions {
 		}
 
 		// Failure during wp_insert_post
-		else throw new \Exception( Helpers::getOption( 'submission_failure' ) );
+		else {
+			throw new \Exception( Helpers::getOption( 'submission_failure' ) );
+		}
 	}
 
 	/**

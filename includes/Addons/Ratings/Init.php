@@ -18,7 +18,7 @@ class Init {
 	 * @since 1.0
 	 * @var array
 	 */
-	private $allowedTypes = [ 'post', 'resource' ];
+	private $allowedTypes = array( 'post', 'resource' );
 
 	/**
 	 * Initializes the addon.
@@ -26,14 +26,17 @@ class Init {
 	 * To keep the initialization fast, only add filter and action
 	 * hooks in the constructor.
 	 */
-	function __construct( $config = [] ) {
+	function __construct( $config = array() ) {
 		// Set config defaults
-		$this->config = wp_parse_args( $config, [
-			'name'         => '',
-			'slug'         => '',
-			'excerpt'      => '',
-			'url'          => '',
-		] );
+		$this->config = wp_parse_args(
+			$config,
+			array(
+				'name'    => '',
+				'slug'    => '',
+				'excerpt' => '',
+				'url'     => '',
+			)
+		);
 
 		$this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
 
@@ -47,8 +50,8 @@ class Init {
 	 * @return  void
 	 */
 	private function hooks() {
-		add_action( 'init', [ $this, 'setupAddon' ] );
-		add_filter( 'chipmunk_settings_addons', [ $this, 'addSettingsAddon' ] );
+		add_action( 'init', array( $this, 'setupAddon' ) );
+		add_filter( 'chipmunk_settings_addons', array( $this, 'addSettingsAddon' ) );
 	}
 
 	/**
@@ -57,10 +60,12 @@ class Init {
 	 * Generates default post meta for all posts
 	 */
 	private function registerPostMeta() {
-		$posts = get_posts( [
-			'posts_per_page' => -1,
-			'post_type'      => $this->allowedTypes,
-		] );
+		$posts = get_posts(
+			array(
+				'posts_per_page' => -1,
+				'post_type'      => $this->allowedTypes,
+			)
+		);
 
 		foreach ( $posts as $post ) {
 			$this->addDefaultMeta( $post->ID, $this->allowedTypes );
@@ -73,19 +78,19 @@ class Init {
 	 * @param string $postId Post ID
 	 *
 	 * @return array
-	*/
+	 */
 	private function addDefaultMeta( $postId, $allowedTypes ) {
-		$defaut = [
+		$defaut = array(
 			'_' . THEME_SLUG . '_rating_count'   => 0,
 			'_' . THEME_SLUG . '_rating_average' => 0,
 			'_' . THEME_SLUG . '_rating_rank'    => 0,
-		];
+		);
 
 		return Helpers::addPostMeta( $postId, $defaut, $allowedTypes );
 	}
 
 	/**
- 	 * Setup main components and features of the addon
+	 * Setup main components and features of the addon
 	 */
 	public function setupAddon() {
 		if ( ! Helpers::isAddonEnabled( $this->config['slug'] ) ) {
@@ -105,7 +110,7 @@ class Init {
 	}
 
 	/**
- 	 * Add settings addon component
+	 * Add settings addon component
 	 *
 	 * @return array
 	 */

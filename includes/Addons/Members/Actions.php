@@ -14,17 +14,17 @@ use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 class Actions {
 
 	/**
- 	 * Class constructor
+	 * Class constructor
 	 */
 	function __construct() {
 		// Handlers for form posting actions
-		add_action( 'login_form_register', [ $this, 'doRegisterUser' ] );
-		add_action( 'login_form_lostpassword', [ $this, 'doLostPassword' ] );
-		add_action( 'login_form_rp', [ $this, 'doResetPassword' ] );
-		add_action( 'login_form_resetpass', [ $this, 'doResetPassword' ] );
+		add_action( 'login_form_register', array( $this, 'doRegisterUser' ) );
+		add_action( 'login_form_lostpassword', array( $this, 'doLostPassword' ) );
+		add_action( 'login_form_rp', array( $this, 'doResetPassword' ) );
+		add_action( 'login_form_resetpass', array( $this, 'doResetPassword' ) );
 
 		// Custom user account handles
-		add_action( 'wp_loaded', [ $this, 'doUpdateUser' ] );
+		add_action( 'wp_loaded', array( $this, 'doUpdateUser' ) );
 	}
 
 	/**
@@ -45,9 +45,9 @@ class Actions {
 				$redirectUrl = add_query_arg( 'errors', 'captcha', $redirectUrl );
 			} else {
 				$username = $_POST['username'];
-				$email = $_POST['email'];
+				$email    = $_POST['email'];
 
-				$password = esc_attr( $_POST['password'] );
+				$password  = esc_attr( $_POST['password'] );
 				$password2 = esc_attr( $_POST['password2'] );
 
 				if ( empty( $password ) || ( $password !== $password2 ) ) {
@@ -58,7 +58,7 @@ class Actions {
 
 					if ( is_wp_error( $result ) ) {
 						// Parse errors into a string and append as parameter to redirect
-						$errors = join( ',', $result->get_error_codes() );
+						$errors      = join( ',', $result->get_error_codes() );
 						$redirectUrl = add_query_arg( 'errors', $errors, $redirectUrl );
 					} else {
 						// Success, redirect to login page.
@@ -85,7 +85,7 @@ class Actions {
 
 			if ( is_wp_error( $result ) ) {
 				// Errors found
-				$errors = join( ',', $result->get_error_codes() );
+				$errors      = join( ',', $result->get_error_codes() );
 				$redirectUrl = MembersHelpers::getPagePermalink( 'lost_password' );
 				$redirectUrl = add_query_arg( 'errors', $errors, $redirectUrl );
 			} else {
@@ -104,7 +104,7 @@ class Actions {
 	 */
 	public function doResetPassword() {
 		if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
-			$rpKey = $_REQUEST['rp_key'];
+			$rpKey   = $_REQUEST['rp_key'];
 			$rpLogin = $_REQUEST['rp_login'];
 
 			$user = check_password_reset_key( $rpKey, $rpLogin );
@@ -175,7 +175,7 @@ class Actions {
 				$result = $this->updateUser( $userId, $email, $firstName, $lastName, $url, $description );
 
 				if ( is_wp_error( $result ) ) {
-					$errors = join( ',', $result->get_error_codes() );
+					$errors      = join( ',', $result->get_error_codes() );
 					$redirectUrl = add_query_arg( 'errors', $errors, $redirectUrl );
 				} else {
 					foreach ( $userSocials as $key => $value ) {
@@ -215,20 +215,20 @@ class Actions {
 		}
 
 		if ( email_exists( $email ) ) {
-			$errors->add( 'existing_user_email', MembersHelpers::getErrorMessage( 'existing_user_email') );
+			$errors->add( 'existing_user_email', MembersHelpers::getErrorMessage( 'existing_user_email' ) );
 			return $errors;
 		}
 
 		if ( username_exists( $username ) ) {
-			$errors->add( 'existing_user_login', MembersHelpers::getErrorMessage( 'existing_user_login') );
+			$errors->add( 'existing_user_login', MembersHelpers::getErrorMessage( 'existing_user_login' ) );
 			return $errors;
 		}
 
-		$userData = [
-			'user_email'    => $email,
-			'user_login'    => $username,
-			'user_pass'     => $password,
-		];
+		$userData = array(
+			'user_email' => $email,
+			'user_login' => $username,
+			'user_pass'  => $password,
+		);
 
 		$userId = wp_insert_user( $userData );
 		// wp_new_user_notification( $userId, $password );
@@ -259,19 +259,21 @@ class Actions {
 		}
 
 		if ( ! empty( $firstName ) || ! empty( $lastName ) ) {
-			$displayName = join( ' ', array_filter( [ $firstName, $lastName ] ) );
+			$displayName = join( ' ', array_filter( array( $firstName, $lastName ) ) );
 		}
 
-		return wp_update_user( [
-			'ID'            => $userId,
-			'user_email'    => $email,
-			'first_name'    => $firstName,
-			'last_name'     => $lastName,
-			'display_name'  => $displayName,
-			'nickname'      => $firstName,
-			'user_url'      => $url,
-			'description'   => $description,
-		] );
+		return wp_update_user(
+			array(
+				'ID'           => $userId,
+				'user_email'   => $email,
+				'first_name'   => $firstName,
+				'last_name'    => $lastName,
+				'display_name' => $displayName,
+				'nickname'     => $firstName,
+				'user_url'     => $url,
+				'description'  => $description,
+			)
+		);
 	}
 
 	/**

@@ -15,24 +15,30 @@ class Admin {
 	 *
 	 * @since 1.0.0
 	 */
-	function __construct( $config = [], $strings = [] ) {
-		$config = wp_parse_args( $config, [
-			'remote_api_url'    => '',
-			'item_id'           => '',
-			'item_name'         => '',
-			'item_slug'         => '',
-			'version'           => '',
-			'author'            => '',
-			'download_id'       => '',
-			'renew_url'         => '',
-			'beta'              => false,
-		] );
+	function __construct( $config = array(), $strings = array() ) {
+		$config = wp_parse_args(
+			$config,
+			array(
+				'remote_api_url' => '',
+				'item_id'        => '',
+				'item_name'      => '',
+				'item_slug'      => '',
+				'version'        => '',
+				'author'         => '',
+				'download_id'    => '',
+				'renew_url'      => '',
+				'beta'           => false,
+			)
+		);
 
 		// Set default strings
-		$this->strings = wp_parse_args( $strings, [
-			'update-notice'     => __( 'Updating this theme may lose the customizations you have made directly in the source code.', 'chipmunk' ),
-			'update-available'  => __( '<strong>%1$s %2$s</strong> is available. <a href="%3$s" class="thickbox" title="%4s">Check out what\'s new</a> or <a href="%5$s"%6$s>update now</a>.', 'chipmunk' ),
-		] );
+		$this->strings = wp_parse_args(
+			$strings,
+			array(
+				'update-notice'    => __( 'Updating this theme may lose the customizations you have made directly in the source code.', 'chipmunk' ),
+				'update-available' => __( '<strong>%1$s %2$s</strong> is available. <a href="%3$s" class="thickbox" title="%4s">Check out what\'s new</a> or <a href="%5$s"%6$s>update now</a>.', 'chipmunk' ),
+			)
+		);
 
 		// Set config arguments
 		foreach ( $config as $key => $value ) {
@@ -40,8 +46,8 @@ class Admin {
 		}
 
 		// Updater
-		add_action( 'init', [ $this, 'updater' ] );
-		add_filter( 'http_request_args', [ $this, 'disableWporgRequest' ], 5, 2 );
+		add_action( 'init', array( $this, 'updater' ) );
+		add_filter( 'http_request_args', array( $this, 'disableWporgRequest' ), 5, 2 );
 	}
 
 	/**
@@ -58,17 +64,16 @@ class Admin {
 		}
 
 		new Updater(
-			[
-				'remote_api_url'    => $this->remote_api_url,
-				'version'           => $this->version,
-				'license'           => get_option( $this->item_slug . '_license_key' ),
-				'item_id'           => $this->item_id,
-				'item_name'         => $this->item_name,
-				'item_slug'         => $this->item_slug,
-				'author'            => $this->author,
-				'beta'              => $this->beta,
-			],
-
+			array(
+				'remote_api_url' => $this->remote_api_url,
+				'version'        => $this->version,
+				'license'        => get_option( $this->item_slug . '_license_key' ),
+				'item_id'        => $this->item_id,
+				'item_name'      => $this->item_name,
+				'item_slug'      => $this->item_slug,
+				'author'         => $this->author,
+				'beta'           => $this->beta,
+			),
 			$this->strings
 		);
 	}
@@ -81,22 +86,22 @@ class Admin {
 	public function disableWporgRequest( $r, $url ) {
 		// If it's not a theme update request, bail.
 		if ( 0 !== strpos( $url, 'https://api.wordpress.org/themes/update-check/1.1/' ) ) {
- 			return $r;
- 		}
+			return $r;
+		}
 
- 		// Decode the JSON response
- 		$themes = json_decode( $r['body']['themes'] );
+		// Decode the JSON response
+		$themes = json_decode( $r['body']['themes'] );
 
- 		// Remove the active parent and child themes from the check
- 		$parent = get_option( 'template' );
- 		$child = get_option( 'stylesheet' );
- 		unset( $themes->themes->$parent );
- 		unset( $themes->themes->$child );
+		// Remove the active parent and child themes from the check
+		$parent = get_option( 'template' );
+		$child  = get_option( 'stylesheet' );
+		unset( $themes->themes->$parent );
+		unset( $themes->themes->$child );
 
- 		// Encode the updated JSON response
- 		$r['body']['themes'] = json_encode( $themes );
+		// Encode the updated JSON response
+		$r['body']['themes'] = json_encode( $themes );
 
- 		return $r;
+		return $r;
 	}
 
 }

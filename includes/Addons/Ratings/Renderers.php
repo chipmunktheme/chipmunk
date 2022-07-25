@@ -14,15 +14,15 @@ use Chipmunk\Helpers;
 class Renderers {
 
 	/**
- 	 * Class constructor
+	 * Class constructor
 	 */
 	function __construct() {
 		if ( Helpers::isOptionEnabled( 'ratings', 'resource', false ) ) {
-			add_action( 'chipmunk_resource_extras', [ $this, 'renderRatingForm' ] );
+			add_action( 'chipmunk_resource_extras', array( $this, 'renderRatingForm' ) );
 		}
 
 		if ( Helpers::isOptionEnabled( 'ratings', 'post', false ) ) {
-			add_action( 'chipmunk_post_extras', [ $this, 'renderRatingForm' ] );
+			add_action( 'chipmunk_post_extras', array( $this, 'renderRatingForm' ) );
 		}
 	}
 
@@ -35,9 +35,9 @@ class Renderers {
 		$context = Timber::context();
 		$ratings = new Ratings( get_the_ID() );
 
-		$context['ratings'] 	= $ratings->getRatings();
-		$context['summary'] 	= $ratings->getRatingsSummary();
-		$context['max_rating'] 	= $ratings->getMaxRating();
+		$context['ratings']    = $ratings->getRatings();
+		$context['summary']    = $ratings->getRatingsSummary();
+		$context['max_rating'] = $ratings->getMaxRating();
 
 		// Render form template
 		Timber::render( 'addons/ratings/rating-form.twig', $context );

@@ -65,20 +65,18 @@ class Ratings {
 	 * @return object
 	 */
 	private function submitRating() {
-		$ratings = $this->getPostRatings();
+		$ratings   = $this->getPostRatings();
 		$oldRating = $this->getUserRating( $ratings );
 
-		$newRating = [
-			'rating'    => $this->rating,
-			'user_id'   => $this->userId,
-		];
+		$newRating = array(
+			'rating'  => $this->rating,
+			'user_id' => $this->userId,
+		);
 
 		if ( ! empty( $oldRating ) ) {
 			// Update user rating
 			update_post_meta( $this->postId, self::$dbKey, $newRating, $oldRating );
-		}
-
-		else {
+		} else {
 			// Add new user rating
 			add_post_meta( $this->postId, self::$dbKey, $newRating );
 		}
@@ -87,7 +85,7 @@ class Ratings {
 
 		$ratings = $this->getPostRatings();
 		$average = $this->getRatingAverage( $ratings );
-		$rank = $this->getRatingRank( $ratings, $average );
+		$rank    = $this->getRatingRank( $ratings, $average );
 
 		// Update rating counter
 		update_post_meta( $this->postId, self::$dbKeyCount, count( $ratings ) );
@@ -99,10 +97,10 @@ class Ratings {
 		update_post_meta( $this->postId, self::$dbKeyRank, $rank );
 
 		// Return proper resounse params
-		return [
-			'post'      => $this->postId,
-			'content'   => $this->getRatingsSummary(),
-		];
+		return array(
+			'post'    => $this->postId,
+			'content' => $this->getRatingsSummary(),
+		);
 	}
 
 	/**
@@ -138,7 +136,7 @@ class Ratings {
 			return 0;
 		}
 
-		$ratingsSum = array_sum( array_column( $ratings, 'rating' ) );
+		$ratingsSum   = array_sum( array_column( $ratings, 'rating' ) );
 		$ratingsCount = count( $ratings );
 
 		return ( number_format( $ratingsSum / $ratingsCount, 1 ) * 100 ) / 100;
@@ -158,8 +156,8 @@ class Ratings {
 			return 0;
 		}
 
-		$allRatings = RatingsHelpers::getMetaValues( self::$dbKey );
-		$allRatingsSum = array_sum( array_column( $allRatings, 'rating' ) );
+		$allRatings        = RatingsHelpers::getMetaValues( self::$dbKey );
+		$allRatingsSum     = array_sum( array_column( $allRatings, 'rating' ) );
 		$allRatingsAverage = ( $allRatingsSum / count( $allRatings ) );
 
 		return ( $average * count( $ratings ) + $allRatingsAverage * $this->minRatings ) / ( count( $ratings ) + $this->minRatings );
@@ -173,10 +171,10 @@ class Ratings {
 	public function getRatingsSummary() {
 		$ratings = $this->getRatings();
 
-		$summary = "<div itemprop='aggregateRating' itemscope itemtype='http://schema.org/AggregateRating' " . ( $ratings['count'] == 0 ? "style='display: none'" : "" ) . ">"
-				. "<strong itemprop='ratingValue'>{$ratings['average']}</strong> " . __( 'out of', 'chipmunk' ) . " <span itemprop='bestRating'>" . $this->maxRating . "</span> " . __( 'stars', 'chipmunk' )
-				. "<small class='u-visible-md-inline'>(<span itemprop='ratingCount'>" . $ratings['count'] . "</span> " . _n( 'rating', 'ratings', $ratings['count'], 'chipmunk' ) . ")</small>"
-			. "</div>";
+		$summary = "<div itemprop='aggregateRating' itemscope itemtype='http://schema.org/AggregateRating' " . ( $ratings['count'] == 0 ? "style='display: none'" : '' ) . '>'
+				. "<strong itemprop='ratingValue'>{$ratings['average']}</strong> " . __( 'out of', 'chipmunk' ) . " <span itemprop='bestRating'>" . $this->maxRating . '</span> ' . __( 'stars', 'chipmunk' )
+				. "<small class='u-visible-md-inline'>(<span itemprop='ratingCount'>" . $ratings['count'] . '</span> ' . _n( 'rating', 'ratings', $ratings['count'], 'chipmunk' ) . ')</small>'
+			. '</div>';
 
 		return $summary;
 	}
@@ -189,13 +187,13 @@ class Ratings {
 	public function getRatings() {
 		$ratings = $this->getPostRatings();
 		$average = $this->getRatingAverage( $ratings );
-		$rating = $this->getUserRating( $ratings );
+		$rating  = $this->getUserRating( $ratings );
 
-		return [
-			'rating'    => $rating,
-			'average'   => $average,
-			'count'     => count( $ratings ),
-		];
+		return array(
+			'rating'  => $rating,
+			'average' => $average,
+			'count'   => count( $ratings ),
+		);
 	}
 
 	/**

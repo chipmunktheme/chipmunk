@@ -14,13 +14,13 @@ use Chipmunk\Helpers;
 class Misc {
 
 	/**
- 	 * Used to register custom hooks
+	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_action( 'wp_insert_post', [ $this, 'addDefaultMeta' ] );
-		add_action( 'after_setup_theme', [ $this, 'setupComments' ] );
-		add_filter( 'the_content', [ $this, 'normalizeContentWhitespace' ], 10, 1 );
-		add_filter( 'user_contactmethods', [ $this, 'addContactMethods' ], 99, 2 );
+		add_action( 'wp_insert_post', array( $this, 'addDefaultMeta' ) );
+		add_action( 'after_setup_theme', array( $this, 'setupComments' ) );
+		add_filter( 'the_content', array( $this, 'normalizeContentWhitespace' ), 10, 1 );
+		add_filter( 'user_contactmethods', array( $this, 'addContactMethods' ), 99, 2 );
 	}
 
 	/**
@@ -29,20 +29,23 @@ class Misc {
 	 * @return mixed
 	 */
 	public function addDefaultMeta( $postId ) {
-		$defaut = [
-			'_' . THEME_SLUG . '_post_view_count'   => 0,
-			'_' . THEME_SLUG . '_upvote_count'      => 0,
-		];
+		$defaut = array(
+			'_' . THEME_SLUG . '_post_view_count' => 0,
+			'_' . THEME_SLUG . '_upvote_count'    => 0,
+		);
 
 		if ( Helpers::isAddonEnabled( 'ratings' ) ) {
-			$defaut = array_merge( $defaut, [
-				'_' . THEME_SLUG . '_rating_count'   => 0,
-				'_' . THEME_SLUG . '_rating_average' => 0,
-				'_' . THEME_SLUG . '_rating_rank'    => 0,
-			] );
+			$defaut = array_merge(
+				$defaut,
+				array(
+					'_' . THEME_SLUG . '_rating_count'   => 0,
+					'_' . THEME_SLUG . '_rating_average' => 0,
+					'_' . THEME_SLUG . '_rating_rank'    => 0,
+				)
+			);
 		}
 
-		return Helpers::addPostMeta( $postId, $defaut, [ 'post', 'resource' ] );
+		return Helpers::addPostMeta( $postId, $defaut, array( 'post', 'resource' ) );
 	}
 
 	/**
@@ -76,8 +79,8 @@ class Misc {
 	 * @return array
 	 */
 	public function addContactMethods() {
-		$socials = Customizer::getSocials();
-		$socials = array_filter( $socials, fn( $el ) => $el != 'Email' );
+		$socials    = Customizer::getSocials();
+		$socials    = array_filter( $socials, fn( $el ) => $el != 'Email' );
 		$socialKeys = array_map( fn( $el ) => sanitize_title( $socials[ $el ] ), array_keys( $socials ) );
 
 		return array_combine( $socialKeys, $socials );

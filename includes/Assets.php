@@ -15,18 +15,18 @@ class Assets {
 	 *
 	 * @var array
 	 */
-	public static $manifest = [];
+	public static $manifest = array();
 
 	/**
- 	 * Used to register custom hooks
+	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueCustomAssets' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueInlineStyles' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueGoogleFonts' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueExternalScripts' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueueAdminScripts' ] );
-		add_filter( 'script_loader_tag', [ $this, 'addAsyncAttribute' ], 10, 3 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueCustomAssets' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueInlineStyles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueGoogleFonts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueExternalScripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueueAdminScripts' ) );
+		add_filter( 'script_loader_tag', array( $this, 'addAsyncAttribute' ), 10, 3 );
 	}
 
 	/**
@@ -50,39 +50,39 @@ class Assets {
 	public static function enqueueInlineStyles() {
 		global $post;
 
-		$primaryFont		= Helpers::getOption( 'primary_font' );
-		$headingFont		= Helpers::getOption( 'heading_font' );
+		$primaryFont = Helpers::getOption( 'primary_font' );
+		$headingFont = Helpers::getOption( 'heading_font' );
 
-		$primaryColor		= Helpers::getOption( 'primary_color' );
-		$linkColor			= Helpers::getOption( 'link_color' );
-		$backgroundColor	= Helpers::getOption( 'background_color' );
-		$sectionColor		= Helpers::getOption( 'section_color' );
-		$contentSize		= Helpers::getOption( 'content_size' );
-		$customCss			= Helpers::getOption( 'custom_css' );
+		$primaryColor    = Helpers::getOption( 'primary_color' );
+		$linkColor       = Helpers::getOption( 'link_color' );
+		$backgroundColor = Helpers::getOption( 'background_color' );
+		$sectionColor    = Helpers::getOption( 'section_color' );
+		$contentSize     = Helpers::getOption( 'content_size' );
+		$customCss       = Helpers::getOption( 'custom_css' );
 
-		$logoHeight			= Helpers::getOption( 'logo_height' );
+		$logoHeight = Helpers::getOption( 'logo_height' );
 
-		$customStyle		= ! empty( $customCss ) ? $customCss : '';
-		$primaryFont		= ( ! empty( $primaryFont ) && $primaryFont != 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
-		$headingFont		= ( ! empty( $headingFont ) && $headingFont != 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
+		$customStyle = ! empty( $customCss ) ? $customCss : '';
+		$primaryFont = ( ! empty( $primaryFont ) && $primaryFont != 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
+		$headingFont = ( ! empty( $headingFont ) && $headingFont != 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
 
-		$disableBorders		= Helpers::getOption( 'disable_section_borders' );
-		$contentWidth		= isset( $post ) ? get_field( '_' . THEME_SLUG . '_page_content_width', $post->ID ) : Helpers::getOption( 'content_width' );
+		$disableBorders = Helpers::getOption( 'disable_section_borders' );
+		$contentWidth   = isset( $post ) ? get_field( '_' . THEME_SLUG . '_page_content_width', $post->ID ) : Helpers::getOption( 'content_width' );
 
-		$customStyle 		.= "
+		$customStyle .= '
 			body {
-				" . ( ! empty( $primaryFont ) ? "--chipmunk--typography--font-family: '$primaryFont';" : "" ) . "
-				" . ( ! empty( $headingFont ) ? "--chipmunk--typography--heading-font-family: '$headingFont';" : "" ) . "
+				' . ( ! empty( $primaryFont ) ? "--chipmunk--typography--font-family: '$primaryFont';" : '' ) . '
+				' . ( ! empty( $headingFont ) ? "--chipmunk--typography--heading-font-family: '$headingFont';" : '' ) . "
 				--chipmunk--color--primary: $primaryColor;
 				--chipmunk--color--link: $linkColor;
 				--chipmunk--color--background: $backgroundColor;
 				--chipmunk--color--section: $sectionColor;
 				--chipmunk--typography--content-size: $contentSize;
 				--chipmunk--layout--content-width: $contentWidth;
-				--chipmunk--border-opacity: " . ( empty( $disableBorders ) ? "0.075" : "0" ) . ";
-				--chipmunk--logo-height: " . $logoHeight / 10 . "rem;
+				--chipmunk--border-opacity: " . ( empty( $disableBorders ) ? '0.075' : '0' ) . ';
+				--chipmunk--logo-height: ' . $logoHeight / 10 . 'rem;
 			}
-		";
+		';
 
 		wp_add_inline_style( 'chipmunk-styles', $customStyle );
 	}
@@ -91,7 +91,7 @@ class Assets {
 	 * Enqueue Google Fonts styles
 	 */
 	public static function enqueueGoogleFonts() {
-		$fonts = [];
+		$fonts = array();
 
 		$primaryFont = Helpers::getOption( 'primary_font' );
 		$headingFont = Helpers::getOption( 'heading_font' );
@@ -119,7 +119,9 @@ class Assets {
 		if ( $enabled && $siteKey ) {
 			wp_enqueue_script( 'chipmunk-recaptcha', '//google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit', false, null, true );
 
-			wp_add_inline_script( 'chipmunk-recaptcha', "
+			wp_add_inline_script(
+				'chipmunk-recaptcha',
+				"
 				var CaptchaCallback = function() {
 					if (document.getElementById('submit-recaptcha')) {
 						grecaptcha.render('submit-recaptcha', {'sitekey' : '$siteKey'});
@@ -129,7 +131,8 @@ class Assets {
 						grecaptcha.render('register-recaptcha', {'sitekey' : '$siteKey'});
 					}
 				};
-			" );
+			"
+			);
 		}
 	}
 
@@ -156,10 +159,10 @@ class Assets {
 	 */
 	public static function addAsyncAttribute( $tag, $handle, $src ) {
 		// add script handles to the array below
-		$scripts = [
-			'defer' => [ 'chipmunk-scripts' ],
-			'async' => [ 'chipmunk-recaptcha' ],
-		];
+		$scripts = array(
+			'defer' => array( 'chipmunk-scripts' ),
+			'async' => array( 'chipmunk-recaptcha' ),
+		);
 
 		if ( in_array( $handle, $scripts['defer'] ) ) {
 			return str_replace( ' src=', ' defer src=', $tag );

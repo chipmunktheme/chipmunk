@@ -39,14 +39,13 @@ class Bookmarks {
 	 * @return string
 	 */
 	public function getButton( $action, $class = '' ) {
-		$bookmarked  = $this->isBookmarked();
-		$content     = $this->getContent( $bookmarked );
+		$bookmarked = $this->isBookmarked();
+		$content    = $this->getContent( $bookmarked );
 
 		if ( $bookmarked ) {
 			$class .= ' is-active';
-			$title = esc_html__( 'Remove bookmark', 'chipmunk' );
-		}
-		else {
+			$title  = esc_html__( 'Remove bookmark', 'chipmunk' );
+		} else {
 			$title = esc_html__( 'Bookmark', 'chipmunk' );
 		}
 
@@ -73,7 +72,7 @@ class Bookmarks {
 			$response['status'] = 'add';
 		}
 
-		$response['post'] = $this->postId;
+		$response['post']    = $this->postId;
 		$response['content'] = $this->getContent( ! $bookmarked );
 
 		return $response;
@@ -91,12 +90,12 @@ class Bookmarks {
 	/**
 	 * Retrieves proper content template
 	 *
-	 * @param  bool  $active
+	 * @param  bool $active
 	 *
 	 * @return string
 	 */
 	private function getContent( $active ) {
-		$icon = Timber::compile( 'partials/icon.twig', [ 'icon' => 'bookmark' ] );
+		$icon  = Timber::compile( 'partials/icon.twig', array( 'icon' => 'bookmark' ) );
 		$label = $active ? __( 'Bookmarked', 'chipmunk' ) : __( 'Bookmark', 'chipmunk' );
 
 		return '<span>' . $icon . $label . '</span>';

@@ -14,15 +14,15 @@ use Chipmunk\Helpers;
 class Query {
 
 	/**
- 	 * Used to register custom hooks
+	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_filter( 'pre_get_posts', [ $this, 'updatePerPageParams' ] );
-		add_filter( 'pre_get_posts', [ $this, 'updateSearchParams' ] );
-		add_filter( 'pre_get_posts', [ $this, 'updateAuthorParams' ] );
-		add_filter( 'pre_get_posts', [ $this, 'updateRelatedParams' ] );
-		add_filter( 'pre_get_posts', [ $this, 'updateOrderbyParams' ] );
-		add_filter( 'pre_get_posts', [ $this, 'excludeTaxChildren' ] );
+		add_filter( 'pre_get_posts', array( $this, 'updatePerPageParams' ) );
+		add_filter( 'pre_get_posts', array( $this, 'updateSearchParams' ) );
+		add_filter( 'pre_get_posts', array( $this, 'updateAuthorParams' ) );
+		add_filter( 'pre_get_posts', array( $this, 'updateRelatedParams' ) );
+		add_filter( 'pre_get_posts', array( $this, 'updateOrderbyParams' ) );
+		add_filter( 'pre_get_posts', array( $this, 'excludeTaxChildren' ) );
 	}
 
 	/**
@@ -89,10 +89,10 @@ class Query {
 		}
 
 		// Include resources
-		$query->set( 'post_type', [ 'post', 'resource' ] );
+		$query->set( 'post_type', array( 'post', 'resource' ) );
 
 		// Include only published posts
-		$query->set( 'post_status', [ 'publish' ] );
+		$query->set( 'post_status', array( 'publish' ) );
 
 		return $query;
 	}
@@ -128,18 +128,18 @@ class Query {
 			return $query;
 		}
 
-		$taxQuery = [];
+		$taxQuery = array();
 
 		foreach ( get_object_taxonomies( get_post( $post->ID ), 'names' ) as $taxonomy ) {
 			$terms = get_the_terms( $post->ID, $taxonomy );
 
 			if ( ! empty( $terms ) ) {
-				$taxQuery[] = [
-					'taxonomy'    => $taxonomy,
-					'field'       => 'term_id',
-					'terms'       => array_column( $terms, 'term_id' ),
-					'operator'    => 'IN',
-				];
+				$taxQuery[] = array(
+					'taxonomy' => $taxonomy,
+					'field'    => 'term_id',
+					'terms'    => array_column( $terms, 'term_id' ),
+					'operator' => 'IN',
+				);
 			};
 		}
 
@@ -165,14 +165,14 @@ class Query {
 		}
 
 		// TODO: Check if the custom ordering is working
-		$customOrderby = [
-			'views' 	=> '_' . THEME_SLUG . '_post_view_count',
-			'upvotes' 	=> '_' . THEME_SLUG . '_upvote_count',
-			'ratings' 	=> '_' . THEME_SLUG . '_rating_rank',
-		];
+		$customOrderby = array(
+			'views'   => '_' . THEME_SLUG . '_post_view_count',
+			'upvotes' => '_' . THEME_SLUG . '_upvote_count',
+			'ratings' => '_' . THEME_SLUG . '_rating_rank',
+		);
 
 		$orderby = $query->get( 'orderby' ) ?: Helpers::getOption( 'default_resource_orderby' );
-		$order = $query->get( 'order' ) ?: Helpers::getOption( 'default_resource_order' );
+		$order   = $query->get( 'order' ) ?: Helpers::getOption( 'default_resource_order' );
 
 		if ( array_key_exists( $orderby, $customOrderby ) ) {
 			$query->set( 'meta_key', $customOrderby[ $orderby ] );
@@ -198,12 +198,17 @@ class Query {
 			return $query;
 		}
 
-		$query->set( 'tax_query', [ [
-			'taxonomy'          => 'resource-collection',
-			'field'             => 'slug',
-			'terms'             => $query->query_vars['resource-collection'],
-			'include_children'  => false,
-		] ] );
+		$query->set(
+			'tax_query',
+			array(
+				array(
+					'taxonomy'         => 'resource-collection',
+					'field'            => 'slug',
+					'terms'            => $query->query_vars['resource-collection'],
+					'include_children' => false,
+				),
+			)
+		);
 
 		return $query;
 	}
@@ -212,7 +217,7 @@ class Query {
 	 * Checks if current query is quering given post type
 	 *
 	 * @param WP_Query $query
-	 * @param string $postType
+	 * @param string   $postType
 	 *
 	 * @return bool
 	 */

@@ -36,49 +36,58 @@ class Licenser {
 	/**
 	 * Initialize the class
 	 */
-	function __construct( $config = [], $strings = [], $errors = [] ) {
+	function __construct( $config = array(), $strings = array(), $errors = array() ) {
 		// Set config defaults
-		$config = wp_parse_args( $config, [
-			'remoteApiUrl'    => '',
-			'itemId'           => '',
-			'itemName'         => '',
-			'itemSlug'         => '',
-			'renewUrl'         => '',
-		] );
+		$config = wp_parse_args(
+			$config,
+			array(
+				'remoteApiUrl' => '',
+				'itemId'       => '',
+				'itemName'     => '',
+				'itemSlug'     => '',
+				'renewUrl'     => '',
+			)
+		);
 
 		// Set default strings
-		$this->strings = wp_parse_args( $strings, [
-			'enter-key'                 => __( 'To receive updates, please enter your valid license key.', 'chipmunk' ),
-			'license-key'               => __( 'License Key', 'chipmunk' ),
-			'license-action'            => __( 'License Action', 'chipmunk' ),
-			'deactivate-license'        => __( 'Deactivate License', 'chipmunk' ),
-			'activate-license'          => __( 'Activate License', 'chipmunk' ),
-			'status-unknown'            => __( 'License status is unknown.', 'chipmunk' ),
-			'renew'                     => __( 'Renew?', 'chipmunk' ),
-			'unlimited'                 => __( 'unlimited', 'chipmunk' ),
-			'license-key-is-active'     => __( 'License key is active.', 'chipmunk' ),
-			'expires%s'                 => __( 'Expires %s.', 'chipmunk' ),
-			'%1$s/%2$-sites'            => __( 'You have %1$s / %2$s sites activated.', 'chipmunk' ),
-			'license-key-expired-%s'    => __( 'License key expired %s.', 'chipmunk' ),
-			'license-key-expired'       => __( 'License key has expired.', 'chipmunk' ),
-			'license-keys-do-not-match' => __( 'License keys do not match.', 'chipmunk' ),
-			'license-is-invalid'        => __( 'License is invalid.', 'chipmunk' ),
-			'license-is-inactive'       => __( 'License is inactive.', 'chipmunk' ),
-			'license-key-is-disabled'   => __( 'License key is disabled.', 'chipmunk' ),
-			'site-is-inactive'          => __( 'Site is inactive.', 'chipmunk' ),
-			'license-status-unknown'    => __( 'License status is unknown.', 'chipmunk' ),
-		] );
+		$this->strings = wp_parse_args(
+			$strings,
+			array(
+				'enter-key'                 => __( 'To receive updates, please enter your valid license key.', 'chipmunk' ),
+				'license-key'               => __( 'License Key', 'chipmunk' ),
+				'license-action'            => __( 'License Action', 'chipmunk' ),
+				'deactivate-license'        => __( 'Deactivate License', 'chipmunk' ),
+				'activate-license'          => __( 'Activate License', 'chipmunk' ),
+				'status-unknown'            => __( 'License status is unknown.', 'chipmunk' ),
+				'renew'                     => __( 'Renew?', 'chipmunk' ),
+				'unlimited'                 => __( 'unlimited', 'chipmunk' ),
+				'license-key-is-active'     => __( 'License key is active.', 'chipmunk' ),
+				'expires%s'                 => __( 'Expires %s.', 'chipmunk' ),
+				'%1$s/%2$-sites'            => __( 'You have %1$s / %2$s sites activated.', 'chipmunk' ),
+				'license-key-expired-%s'    => __( 'License key expired %s.', 'chipmunk' ),
+				'license-key-expired'       => __( 'License key has expired.', 'chipmunk' ),
+				'license-keys-do-not-match' => __( 'License keys do not match.', 'chipmunk' ),
+				'license-is-invalid'        => __( 'License is invalid.', 'chipmunk' ),
+				'license-is-inactive'       => __( 'License is inactive.', 'chipmunk' ),
+				'license-key-is-disabled'   => __( 'License key is disabled.', 'chipmunk' ),
+				'site-is-inactive'          => __( 'Site is inactive.', 'chipmunk' ),
+				'license-status-unknown'    => __( 'License status is unknown.', 'chipmunk' ),
+			)
+		);
 
 		// Set default errors
-		$this->errors = wp_parse_args( $errors, [
-			'license-expired'           => __( 'Your license key expired on %s.', 'chipmunk' ),
-			'license-disabled'          => __( 'Your license key has been disabled.', 'chipmunk' ),
-			'license-missing'           => __( 'Your license key is invalid.', 'chipmunk' ),
-			'license-invalid'           => __( 'Your license key is invalid.', 'chipmunk' ),
-			'license-name-mismatch'     => __( 'This appears to be an invalid license key for %s.', 'chipmunk' ),
-			'license-exceeded'          => __( 'Your license key has reached its activation limit.', 'chipmunk' ),
-			'license-unknown'           => __( 'An error occurred, please try again.', 'chipmunk' ),
-		] );
+		$this->errors = wp_parse_args(
+			$errors,
+			array(
+				'license-expired'       => __( 'Your license key expired on %s.', 'chipmunk' ),
+				'license-disabled'      => __( 'Your license key has been disabled.', 'chipmunk' ),
+				'license-missing'       => __( 'Your license key is invalid.', 'chipmunk' ),
+				'license-invalid'       => __( 'Your license key is invalid.', 'chipmunk' ),
+				'license-name-mismatch' => __( 'This appears to be an invalid license key for %s.', 'chipmunk' ),
+				'license-exceeded'      => __( 'Your license key has reached its activation limit.', 'chipmunk' ),
+				'license-unknown'       => __( 'An error occurred, please try again.', 'chipmunk' ),
+			)
+		);
 
 		// Set config arguments
 		foreach ( $config as $key => $value ) {
@@ -86,7 +95,7 @@ class Licenser {
 		}
 
 		// Set license option names
-		$this->licenseKeyOption = "{$this->itemSlug}_license_key";
+		$this->licenseKeyOption  = "{$this->itemSlug}_license_key";
 		$this->licenseDataOption = "{$this->itemSlug}_license_data";
 
 		// Set license key
@@ -103,13 +112,13 @@ class Licenser {
 	 */
 	private function hooks() {
 		// Licensing hooks
-		add_action( 'admin_init', [ $this, 'registerOption' ] );
-		add_action( 'admin_init', [ $this, 'activateLicense' ] );
-		add_action( 'admin_init', [ $this, 'deactivateLicense' ] );
-		add_action( 'admin_init', [ $this, 'checkLicense' ] );
+		add_action( 'admin_init', array( $this, 'registerOption' ) );
+		add_action( 'admin_init', array( $this, 'activateLicense' ) );
+		add_action( 'admin_init', array( $this, 'deactivateLicense' ) );
+		add_action( 'admin_init', array( $this, 'checkLicense' ) );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', [ $this, 'addSettingsTab' ] );
+		add_filter( 'chipmunk_settings_tabs', array( $this, 'addSettingsTab' ) );
 	}
 
 	/**
@@ -120,7 +129,7 @@ class Licenser {
 			return null;
 		}
 
-		if ( ! isset( $_POST["{$this->licenseKeyOption}_activate"] ) ) {
+		if ( ! isset( $_POST[ "{$this->licenseKeyOption}_activate" ] ) ) {
 			return null;
 		}
 
@@ -176,7 +185,7 @@ class Licenser {
 			return null;
 		}
 
-		if ( ! isset( $_POST["{$this->licenseKeyOption}_deactivate"] ) ) {
+		if ( ! isset( $_POST[ "{$this->licenseKeyOption}_deactivate" ] ) ) {
 			return null;
 		}
 
@@ -227,16 +236,19 @@ class Licenser {
 	 * @return array Encoded JSON response.
 	 */
 	private function getApiResponse( $action ) {
-		$response = wp_remote_post( $this->remoteApiUrl, [
-			'timeout'   => 15,
-			'sslverify' => false,
-			'body'      => [
-				'edd_action' => $action,
-				'license'    => trim( $this->licenseKey ),
-				'item_id'    => $this->itemId,
-				'url'        => home_url(),
-			],
-		] );
+		$response = wp_remote_post(
+			$this->remoteApiUrl,
+			array(
+				'timeout'   => 15,
+				'sslverify' => false,
+				'body'      => array(
+					'edd_action' => $action,
+					'license'    => trim( $this->licenseKey ),
+					'item_id'    => $this->itemId,
+					'url'        => home_url(),
+				),
+			)
+		);
 
 		if ( ! $this->isValidResponse( $response ) ) {
 			$this->displaySettingsError( $response, $this->errors['license-unknown'] );
@@ -282,10 +294,13 @@ class Licenser {
 		}
 
 		if ( ! empty( $this->itemId ) && ! empty( $this->licenseKey ) ) {
-			$renewUrl = add_query_arg( [
-				'edd_license_key'   => $this->licenseKey,
-				'download_id'       => $this->itemId,
-			], $this->remoteApiUrl . '/checkout/' );
+			$renewUrl = add_query_arg(
+				array(
+					'edd_license_key' => $this->licenseKey,
+					'download_id'     => $this->itemId,
+				),
+				$this->remoteApiUrl . '/checkout/'
+			);
 
 			return esc_url( $renewUrl );
 		}
@@ -302,7 +317,7 @@ class Licenser {
 	 * @return string/object License status.
 	 */
 	public function getLicenseStatus( $licenseData ) {
-		$messages = [];
+		$messages = array();
 
 		// If response doesn't include license data, return
 		if ( ! isset( $licenseData->license ) ) {
@@ -310,12 +325,12 @@ class Licenser {
 		}
 
 		if ( isset( $licenseData->expires ) && 'lifetime' != $licenseData->expires ) {
-			$expires = date_i18n( 'F j, Y', strtotime( $licenseData->expires, current_time( 'timestamp' ) ) );
+			$expires   = date_i18n( 'F j, Y', strtotime( $licenseData->expires, current_time( 'timestamp' ) ) );
 			$renewLink = '<a href="' . esc_url( $this->getRenewalLink() ) . '" target="_blank">' . $this->strings['renew'] . '</a>';
 		}
 
 		// Get site counts
-		$siteCount = isset( $licenseData->site_count ) ? $licenseData->site_count : null;
+		$siteCount    = isset( $licenseData->site_count ) ? $licenseData->site_count : null;
 		$licenseLimit = isset( $licenseData->license_limit ) ? $licenseData->license_limit : null;
 
 		// If unlimited
@@ -340,8 +355,7 @@ class Licenser {
 			case 'expired':
 				if ( ! empty( $expires ) ) {
 					$messages[] = sprintf( $this->strings['license-key-expired-%s'], $expires );
-				}
-				else {
+				} else {
 					$messages[] = $this->strings['license-key-expired'];
 				}
 
@@ -390,11 +404,11 @@ class Licenser {
 	 * Adds settings tab to the list
 	 */
 	public function addSettingsTab( $tabs ) {
-		$tabs[] = [
-			'name'      => $this->name,
-			'slug'      => $this->slug,
-			'content'   => $this->getSettingsContent(),
-		];
+		$tabs[] = array(
+			'name'    => $this->name,
+			'slug'    => $this->slug,
+			'content' => $this->getSettingsContent(),
+		);
 
 		return $tabs;
 	}

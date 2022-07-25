@@ -36,13 +36,13 @@ class Addons {
 	/**
 	 * Initialize the class
 	 */
-	function __construct( ) {
+	function __construct() {
 		self::$option = THEME_SLUG . '_' . self::$slug;
 
-		add_action( 'admin_init', [ $this, 'registerOption' ] );
+		add_action( 'admin_init', array( $this, 'registerOption' ) );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', [ $this, 'addSettingsTab' ] );
+		add_filter( 'chipmunk_settings_tabs', array( $this, 'addSettingsTab' ) );
 	}
 
 	/**
@@ -59,11 +59,11 @@ class Addons {
 	 * Adds settings tab to the list
 	 */
 	public function addSettingsTab( $tabs ) {
-		$tabs[] = [
-			'name'      => self::$name,
-			'slug'      => self::$slug,
-			'content'   => $this->getSettingsContent(),
-		];
+		$tabs[] = array(
+			'name'    => self::$name,
+			'slug'    => self::$slug,
+			'content' => $this->getSettingsContent(),
+		);
 
 		return $tabs;
 	}
@@ -72,7 +72,7 @@ class Addons {
 	 * Returns the settings markup for upvote faker
 	 */
 	private function getSettingsContent() {
-		$addons = apply_filters( 'chipmunk_settings_addons', [] );
+		$addons  = apply_filters( 'chipmunk_settings_addons', array() );
 		$options = get_option( self::$option );
 
 		ob_start();

@@ -11,12 +11,12 @@ namespace Chipmunk\Config;
 class Assets {
 
 	/**
- 	 * Used to register custom hooks
+	 * Used to register custom hooks
 	 */
 	function construct() {
-		add_filter( 'script_loader_tag', [ $this, 'removeTypeAttr' ], 10, 2 );
-		add_filter( 'style_loader_tag', [ $this, 'removeTypeAttr' ], 10, 2 );
-		add_filter( 'upload_mimes',  [ $this, 'customMimeTypes' ], 99, 1 );
+		add_filter( 'script_loader_tag', array( $this, 'removeTypeAttr' ), 10, 2 );
+		add_filter( 'style_loader_tag', array( $this, 'removeTypeAttr' ), 10, 2 );
+		add_filter( 'upload_mimes', array( $this, 'customMimeTypes' ), 99, 1 );
 	}
 
 	/**
@@ -29,12 +29,12 @@ class Assets {
 	}
 
 	/**
-	* Allow SVG Upload
-	*
-	* @param $mimes
-	*/
+	 * Allow SVG Upload
+	 *
+	 * @param $mimes
+	 */
 	public function customMimeTypes( $mimes ) {
-        $mimes['svg'] = 'image/svg+xml';
+		$mimes['svg']  = 'image/svg+xml';
 		$mimes['svgz'] = 'image/svg+xml';
 		return $mimes;
 	}

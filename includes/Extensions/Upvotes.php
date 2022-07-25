@@ -18,9 +18,9 @@ class Upvotes {
 	 *
 	 * @var string
 	 */
-	public static $dbKey = '_' . THEME_SLUG . '_upvote';
+	public static $dbKey      = '_' . THEME_SLUG . '_upvote';
 	public static $dbKeyCount = '_' . THEME_SLUG . '_upvote_count';
-	public static $dbOldKey = '_' . THEME_SLUG . '_post_upvote_count';
+	public static $dbOldKey   = '_' . THEME_SLUG . '_post_upvote_count';
 
 	/**
 	 * Create a new upvotes object
@@ -47,9 +47,8 @@ class Upvotes {
 
 		if ( $upvoted ) {
 			$class .= ' is-active';
-			$title = esc_html__( 'Remove upvote', 'chipmunk' );
-		}
-		else {
+			$title  = esc_html__( 'Remove upvote', 'chipmunk' );
+		} else {
 			$title = esc_html__( 'Upvote', 'chipmunk' );
 		}
 
@@ -62,7 +61,7 @@ class Upvotes {
 	 * @return string
 	 */
 	public function getContent() {
-		$icon = Timber::compile( 'partials/icon.twig', [ 'icon' => 'thumbs-up' ] );
+		$icon  = Timber::compile( 'partials/icon.twig', array( 'icon' => 'thumbs-up' ) );
 		$label = Helpers::formatNumber( $this->getUpvoteCount() ?? 0 );
 
 		return '<span>' . $icon . $label . '</span>';
@@ -74,7 +73,7 @@ class Upvotes {
 	 * @return object
 	 */
 	private function toggleUpvote() {
-		$upvoted = $this->isUpvoted();
+		$upvoted         = $this->isUpvoted();
 		$current_counter = (int) get_post_meta( $this->postId, self::$dbKeyCount, true );
 
 		// Remove upvote from the post
@@ -94,7 +93,7 @@ class Upvotes {
 		}
 
 		// Set proper resounse params
-		$response['post'] = $this->postId;
+		$response['post']    = $this->postId;
 		$response['content'] = $this->getContent( ! $upvoted );
 
 		return $response;
@@ -117,7 +116,7 @@ class Upvotes {
 	 */
 	private function getUpvoteCount() {
 		$old_count = (int) get_post_meta( $this->postId, self::$dbOldKey, true ) ?? 0;
-		$count = (int) get_post_meta( $this->postId, self::$dbKeyCount, true ) ?? 0;
+		$count     = (int) get_post_meta( $this->postId, self::$dbKeyCount, true ) ?? 0;
 
 		return $count + $old_count;
 	}

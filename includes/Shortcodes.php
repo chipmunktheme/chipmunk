@@ -13,11 +13,11 @@ use Timber\Timber;
 class Shortcodes {
 
 	/**
- 	 * Used to register custom hooks
+	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_shortcode( 'chipmunk-counter', [ $this, 'renderCounter' ] );
-		add_shortcode( 'chipmunk-submit', [ $this, 'renderSubmit' ] );
+		add_shortcode( 'chipmunk-counter', array( $this, 'renderCounter' ) );
+		add_shortcode( 'chipmunk-submit', array( $this, 'renderSubmit' ) );
 	}
 
 	/**
@@ -27,12 +27,15 @@ class Shortcodes {
 	 */
 	public function renderCounter( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$atts = shortcode_atts( [
-			'type'      => 'resource',
-			'status'    => 'publish',
-		], $atts );
+		$atts = shortcode_atts(
+			array(
+				'type'   => 'resource',
+				'status' => 'publish',
+			),
+			$atts
+		);
 
-        return Timber::compile( 'shortcodes/counter.twig', array_merge( Timber::context(), $atts ) );
+		return Timber::compile( 'shortcodes/counter.twig', array_merge( Timber::context(), $atts ) );
 	}
 
 	/**
@@ -42,10 +45,13 @@ class Shortcodes {
 	 */
 	public function renderSubmit( $atts, $content = null ) {
 		// Parse shortcode attributes
-		$atts = shortcode_atts( [
-			'title' => '',
-		], $atts );
+		$atts = shortcode_atts(
+			array(
+				'title' => '',
+			),
+			$atts
+		);
 
-        return Timber::compile( 'shortcodes/counter.twig', array_merge( Timber::context(), $atts ) );
+		return Timber::compile( 'shortcodes/counter.twig', array_merge( Timber::context(), $atts ) );
 	}
 }

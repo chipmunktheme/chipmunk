@@ -32,7 +32,7 @@ class Submitter {
 	 *
 	 * @var array
 	 */
-	private $required = [ 'name' ];
+	private $required = array( 'name' );
 
 	/**
 	 * A meta field name to store post info in
@@ -42,12 +42,12 @@ class Submitter {
 	private $metaPrefix = '_' . THEME_SLUG . '_resource';
 
 	/**
- 	 * Used to register custom hooks
+	 * Used to register custom hooks
 	 *
 	 * @param string $postType
 	 */
 	function __construct( $postType, $allowNewTerms = false ) {
-		$this->postType = $postType;
+		$this->postType      = $postType;
 		$this->allowNewTerms = $allowNewTerms;
 	}
 
@@ -105,26 +105,26 @@ class Submitter {
 		}
 
 		$fileExtension = Helpers::getExtensionByMime( $response['headers']['content-type'] );
-		$wpUploadDir = wp_upload_dir();
-		$upload = wp_upload_bits( basename( $url ) . $fileExtension, null, $response['body'] );
+		$wpUploadDir   = wp_upload_dir();
+		$upload        = wp_upload_bits( basename( $url ) . $fileExtension, null, $response['body'] );
 
 		if ( ! empty( $upload['error'] ) ) {
 			return false;
 		}
 
-		$filePath = $upload['file'];
-		$fileName = basename( $filePath );
-		$fileType = wp_check_filetype( $fileName, null );
+		$filePath        = $upload['file'];
+		$fileName        = basename( $filePath );
+		$fileType        = wp_check_filetype( $fileName, null );
 		$attachmentTitle = sanitize_file_name( pathinfo( $fileName, PATHINFO_FILENAME ) );
 
 		// Set up our images post data
-		$attachmentInfo = [
+		$attachmentInfo = array(
 			'guid'           => $wpUploadDir['url'] . '/' . $fileName,
 			'post_mime_type' => $fileType['type'],
 			'post_title'     => $attachmentTitle,
 			'post_content'   => '',
 			'post_status'    => 'inherit',
-		];
+		);
 
 		// Attach/upload image
 		$attachmentId = wp_insert_attachment( $attachmentInfo, $filePath );
@@ -133,7 +133,7 @@ class Submitter {
 		$attachmentData = wp_generate_attachment_metadata( $attachmentId, $filePath );
 
 		// Add the above meta data data to our new image post
-		wp_update_attachment_metadata( $attachmentId,  $attachmentData );
+		wp_update_attachment_metadata( $attachmentId, $attachmentData );
 
 		return $attachmentId;
 	}
@@ -158,9 +158,9 @@ class Submitter {
 	/**
 	 * Sets post terms from an comma separated values
 	 *
-	 * @param  int $objectId
+	 * @param  int          $objectId
 	 * @param  string/array $terms
-	 * @param  string $axonomy
+	 * @param  string       $axonomy
 	 */
 	private function setTerms( $objectId, $terms, $taxonomy ) {
 		if ( empty( $terms ) ) {
@@ -172,18 +172,23 @@ class Submitter {
 			$terms = array_map( 'trim', explode( ',', $terms ) );
 
 			// Change the term names into the proper term ids from the DB
-			$terms = array_filter( array_map( function ( $term ) use ( $taxonomy ) {
-				if ( $tax = get_term_by( 'name', $term, $taxonomy ) ) {
-					return $tax->term_id;
-				}
+			$terms = array_filter(
+				array_map(
+					function ( $term ) use ( $taxonomy ) {
+						if ( $tax = get_term_by( 'name', $term, $taxonomy ) ) {
+							  return $tax->term_id;
+						}
 
-				if ( $this->allowNewTerms ) {
-					$tax = wp_insert_term( $term, $taxonomy );
-					return ! is_wp_error( $tax ) ? $tax['term_id'] : null;
-				}
+						if ( $this->allowNewTerms ) {
+							$tax = wp_insert_term( $term, $taxonomy );
+							return ! is_wp_error( $tax ) ? $tax['term_id'] : null;
+						}
 
-				return null;
-			}, $terms ) );
+						return null;
+					},
+					$terms
+				)
+			);
 		}
 
 		@ wp_set_object_terms( $objectId, $terms, $taxonomy );
@@ -215,21 +220,21 @@ class Submitter {
 		}
 
 		// Meta keys
-		$metaKeyLinks = '_links';
-		$metaKeyFeatured = '_is_featured';
+		$metaKeyLinks     = '_links';
+		$metaKeyFeatured  = '_is_featured';
 		$metaKeySubmitter = '_submitter';
 
 		// Meta values
 		if ( ! empty( $data->url ) ) {
 			$data->url = rtrim( $data->url, '/' );
 
-			$link = [
-				'title' 	=> apply_filters( 'chipmunk_submission_website_label', __( 'Visit website', 'chipmunk' ) ),
-				'url' 		=> $data->url,
-				'target' 	=> '_blank',
-			];
+			$link = array(
+				'title'  => apply_filters( 'chipmunk_submission_website_label', __( 'Visit website', 'chipmunk' ) ),
+				'url'    => $data->url,
+				'target' => '_blank',
+			);
 
-			$data->meta[ $this->metaPrefix . $metaKeyLinks ] = '1';
+			$data->meta[ $this->metaPrefix . $metaKeyLinks ]             = '1';
 			$data->meta[ $this->metaPrefix . $metaKeyLinks . '_0_link' ] = $link;
 		}
 
@@ -242,16 +247,16 @@ class Submitter {
 		}
 
 		// Post array
-		$post_array = [
+		$post_array = array(
 			'postType'     => $this->postType ?? 'post',
-			'post_status'   => $data->status ?? 'pending',
-			'post_title'    => $data->name ?? '',
-			'post_content'  => $data->content ?? '',
-			'post_author'   => $data->author ?? '',
-			'meta_input'    => $data->meta ?? null,
-		];
+			'post_status'  => $data->status ?? 'pending',
+			'post_title'   => $data->name ?? '',
+			'post_content' => $data->content ?? '',
+			'post_author'  => $data->author ?? '',
+			'meta_input'   => $data->meta ?? null,
+		);
 
-		if ( $postId = @wp_insert_post( $post_array) ) {
+		if ( $postId = @wp_insert_post( $post_array ) ) {
 			// Set thumbnail
 			if ( ! empty( $data->url ) && ! Helpers::getOption( 'disable_submission_image_fetch' ) ) {
 				if ( $ogImage = $this->fetchOgImage( $data->url ) ) {
@@ -262,8 +267,8 @@ class Submitter {
 			}
 
 			// Set terms
-			$this->setTerms( $postId, $data->collections ?? [], 'resource-collection' );
-			$this->setTerms( $postId, $data->tags ?? [], 'resource-tag' );
+			$this->setTerms( $postId, $data->collections ?? array(), 'resource-collection' );
+			$this->setTerms( $postId, $data->tags ?? array(), 'resource-tag' );
 
 			// Return inserted post ID
 			return $postId;

@@ -22,20 +22,22 @@ class Settings {
 	public static $license;
 
 	/**
- 	 * Used to register custom hooks
+	 * Used to register custom hooks
 	 */
 	function __construct() {
-		add_action( 'admin_menu', [ $this, 'addMenuPage' ], 1 );
-		add_action( 'chipmunk_settings_nav', [ $this, 'addMenuPage' ], 1 );
-		add_action( 'admin_init', [ $this, 'displayErrors' ], 99 );
+		add_action( 'admin_menu', array( $this, 'addMenuPage' ), 1 );
+		add_action( 'chipmunk_settings_nav', array( $this, 'addMenuPage' ), 1 );
+		add_action( 'admin_init', array( $this, 'displayErrors' ), 99 );
 
 		// Initialize theme licenser
-		$licenser = new Settings\Licenser( [
-			'remoteApiUrl'  => THEME_SHOP_URL,
-			'itemId'        => THEME_ITEM_ID,
-			'itemName'      => THEME_TITLE,
-			'itemSlug'      => THEME_SLUG,
-		] );
+		$licenser = new Settings\Licenser(
+			array(
+				'remoteApiUrl' => THEME_SHOP_URL,
+				'itemId'       => THEME_ITEM_ID,
+				'itemName'     => THEME_TITLE,
+				'itemSlug'     => THEME_SLUG,
+			)
+		);
 
 		// Store license data
 		self::$license = $licenser->getLicenseData();
@@ -54,7 +56,7 @@ class Settings {
 			THEME_TITLE,
 			'edit_theme_options',
 			THEME_SLUG,
-			[ $this, 'adminSettings' ],
+			array( $this, 'adminSettings' ),
 			Helpers::svgToBase64( Assets::assetPath( 'images/logo.svg' ) ),
 		);
 	}
@@ -63,7 +65,7 @@ class Settings {
 	 * Outputs the markup used on the theme settings page.
 	 */
 	public function adminSettings() {
-		$tabs = apply_filters( 'chipmunk_settings_tabs', [] );
+		$tabs = apply_filters( 'chipmunk_settings_tabs', array() );
 		?>
 
 		<div class="chipmunk">
@@ -168,7 +170,7 @@ class Settings {
 	 */
 	public static function addSettingsError( $setting, $message, $type = 'error' ) {
 		$setting = THEME_SLUG . '_' . $setting;
-		$errors = get_settings_errors( $setting );
+		$errors  = get_settings_errors( $setting );
 
 		if ( ! empty( $message ) && ! Helpers::findKeyValue( $errors, 'code', $setting ) ) {
 			add_settings_error( $setting, $setting, $message, $type );

@@ -28,8 +28,8 @@ class Helpers {
 	/**
 	 * Get theme option alias
 	 *
-	 * @param string $name 		Theme option name
-	 * @param mixed $default 	Optional. Default value for the option
+	 * @param string $name      Theme option name
+	 * @param mixed  $default    Optional. Default value for the option
 
 	 * @return mixed
 	 */
@@ -40,9 +40,9 @@ class Helpers {
 	/**
 	 * Check if option is enabled in customizer
 	 *
-	 * @param string $feature 	Feature name
-	 * @param string $type 		Post type name
-	 * @param bool $checkType 	Optional. Whether or not to check post type
+	 * @param string $feature   Feature name
+	 * @param string $type      Post type name
+	 * @param bool   $checkType   Optional. Whether or not to check post type
 	 *
 	 * @return bool
 	 */
@@ -56,32 +56,32 @@ class Helpers {
 	 * @return array
 	 */
 	public static function checkRequirements() {
-		$phpVersion = phpversion();
-		$wpVersion = get_bloginfo('version');
+		$phpVersion    = phpversion();
+		$wpVersion     = get_bloginfo( 'version' );
 		$phpMinVersion = '7.4.0';
-		$wpMinVersion = '5.0';
-		$notices = [];
+		$wpMinVersion  = '5.0';
+		$notices       = array();
 
 		if ( version_compare( $phpMinVersion, $phpVersion, '>' ) ) {
-			$notices[] = [
-				'type' => 'error',
+			$notices[] = array(
+				'type'    => 'error',
 				'message' => sprintf(
 					__( 'Chipmunk requires PHP %1$s or greater. You have %2$s.', 'chipmunk' ),
 					$phpMinVersion,
 					$phpVersion
 				),
-			];
+			);
 		}
 
 		if ( version_compare( $wpMinVersion, $wpVersion, '>' ) ) {
-			$notices[] = [
-				'type' => 'error',
+			$notices[] = array(
+				'type'    => 'error',
 				'message' => sprintf(
 					__( 'Chipmunk requires WordPress %1$s or greater. You have %2$s.', 'chipmunk' ),
 					$wpMinVersion,
 					$wpVersion
 				),
-			];
+			);
 		}
 
 		return $notices;
@@ -101,7 +101,7 @@ class Helpers {
 	/**
 	 * Builds class string based on name and modifiers
 	 *
-	 * @param string $name 			Base class name
+	 * @param string           $name          Base class name
 	 * @param ?string[]|string $modifiers,... Class name modifiers
 	 *
 	 * @return string
@@ -112,7 +112,7 @@ class Helpers {
 		}
 
 		$modifiers = array_slice( func_get_args(), 1 );
-		$classes   = [ $name ];
+		$classes   = array( $name );
 
 		foreach ( $modifiers as $modifier ) {
 			if ( ! empty( $modifier ) ) {
@@ -140,9 +140,9 @@ class Helpers {
 	 * @return bool True if the CAPTCHA is OK, otherwise false.
 	 */
 	public static function verifyRecaptcha( $response ) {
-		$enabled	= self::getOption( 'recaptcha_enabled' );
-		$siteKey	= self::getOption( 'recaptcha_site_key' );
-		$secretKey	= self::getOption( 'recaptcha_secret_key' );
+		$enabled   = self::getOption( 'recaptcha_enabled' );
+		$siteKey   = self::getOption( 'recaptcha_site_key' );
+		$secretKey = self::getOption( 'recaptcha_secret_key' );
 
 		// Verify if user is logged in
 		if ( is_user_logged_in() ) {
@@ -160,18 +160,21 @@ class Helpers {
 
 		if ( $secretKey ) {
 			// Verify the captcha response from Google
-			$remoteResponse = wp_remote_post( 'https://www.google.com/recaptcha/api/siteverify', [
-				'body' => [
-					'secret' => $secretKey,
-					'response' => $response
-				],
-			] );
+			$remoteResponse = wp_remote_post(
+				'https://www.google.com/recaptcha/api/siteverify',
+				array(
+					'body' => array(
+						'secret'   => $secretKey,
+						'response' => $response,
+					),
+				)
+			);
 
 			$success = false;
 
 			if ( $remoteResponse && is_array( $remoteResponse ) ) {
 				$decodedResponse = json_decode( $remoteResponse['body'] );
-				$success = $decodedResponse->success;
+				$success         = $decodedResponse->success;
 			}
 
 			return $success;
@@ -186,7 +189,7 @@ class Helpers {
 	 * @return array
 	 */
 	public static function getSocials() {
-		$socials = [];
+		$socials = array();
 
 		foreach ( Customizer::getSocials() as $social ) {
 			$value = self::getOption( strtolower( $social ) );
@@ -206,7 +209,7 @@ class Helpers {
 	 */
 	public static function getOgTitle() {
 		if ( ! self::getOption( 'disable_og_branding' ) ) {
-			return sprintf( esc_html__( '%s on %s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) );
+			return sprintf( esc_html__( '%1$s on %2$s', 'chipmunk' ), get_the_title(), get_bloginfo( 'name' ) );
 		}
 
 		return get_the_title();
@@ -215,17 +218,17 @@ class Helpers {
 	/**
 	 * Recursively get taxonomy and its children
 	 *
-	 * @param string $taxonomy 	Taxonomy name
-	 * @param array $args 		A list of args used to query taxonomy
-	 * @param int $parent 		ID of a taxonomy parent to query from
+	 * @param string $taxonomy  Taxonomy name
+	 * @param array  $args       A list of args used to query taxonomy
+	 * @param int    $parent       ID of a taxonomy parent to query from
 	 *
 	 * @return ?array
 	 */
-	public static function getTaxonomyHierarchy( $taxonomy, $args = [], $parent = 0 ) {
-		$children = [];
+	public static function getTaxonomyHierarchy( $taxonomy, $args = array(), $parent = 0 ) {
+		$children = array();
 		$taxonomy = is_array( $taxonomy ) ? array_shift( $taxonomy ) : $taxonomy;
 
-		$terms = get_terms( $taxonomy, wp_parse_args( $args, [ 'parent' => $parent ] ) );
+		$terms = get_terms( $taxonomy, wp_parse_args( $args, array( 'parent' => $parent ) ) );
 
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			foreach ( $terms as $term ) {
@@ -243,13 +246,13 @@ class Helpers {
 	/**
 	 * Recursively returns taxonomy options
 	 *
-	 * @param string $taxonomy 	Taxonomy name
-	 * @param array $terms 	Term list
-	 * @param int $lever 	Current level of the recursive call
+	 * @param string $taxonomy  Taxonomy name
+	 * @param array  $terms  Term list
+	 * @param int    $lever    Current level of the recursive call
 	 *
 	 * @return string
 	 */
-	public static function getTermOptions( $taxonomy, $terms = [], $level = 0 ) {
+	public static function getTermOptions( $taxonomy, $terms = array(), $level = 0 ) {
 		$output = '';
 
 		if ( empty( $terms ) ) {
@@ -257,7 +260,7 @@ class Helpers {
 		}
 
 		foreach ( $terms as $term ) {
-			$output .= '<option value="'. $term->name . '">' . str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' ) . $term->name . '</option>';
+			$output .= '<option value="' . $term->name . '">' . str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' ) . $term->name . '</option>';
 
 			if ( $term->children ) {
 				$output .= self::getTermOptions( $taxonomy, $term->children, $level + 1 );
@@ -270,16 +273,19 @@ class Helpers {
 	/**
 	 * Conditionally returns post terms
 	 *
-	 * @param array $terms 	Terms list
-	 * @param array $args 	Argument list
+	 * @param array $terms  Terms list
+	 * @param array $args   Argument list
 	 *
 	 * @return string
 	 */
-	public static function getTermList( $terms, $args = [] ) {
-		$args = wp_parse_args( $args, [
-			'type'     => 'link',
-			'quantity' => -1,
-		] );
+	public static function getTermList( $terms, $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'type'     => 'link',
+				'quantity' => -1,
+			)
+		);
 
 		$output = '';
 
@@ -314,17 +320,17 @@ class Helpers {
 	 */
 	public static function getResourceLinks( $postId ) {
 		$keyPrefix = '_' . THEME_SLUG . '_resource_';
-		$links = [];
+		$links     = array();
 
 		$metaWebsite = get_post_meta( $postId, $keyPrefix . 'website', true );
-		$metaLinks = get_field( $keyPrefix . 'links',  $postId );
+		$metaLinks   = get_field( $keyPrefix . 'links', $postId );
 
 		if ( ! empty( $metaWebsite ) ) {
-			$links[] = [
-				'title' 	=> apply_filters( 'chipmunk_submission_website_label', __( 'Visit website', 'chipmunk' ) ),
-				'url' 		=> $metaWebsite,
-				'target' 	=> '_blank',
-			];
+			$links[] = array(
+				'title'  => apply_filters( 'chipmunk_submission_website_label', __( 'Visit website', 'chipmunk' ) ),
+				'url'    => $metaWebsite,
+				'target' => '_blank',
+			);
 		}
 
 		if ( ! empty( $metaLinks ) ) {
@@ -354,19 +360,22 @@ class Helpers {
 	/**
 	 * Creates an external links
 	 *
-	 * @param string $url 		URL to convert to an external one
-	 * @param string $title 	Link content
-	 * @param ?array $atts		A list of HTML attributes to apply
+	 * @param string $url       URL to convert to an external one
+	 * @param string $title     Link content
+	 * @param ?array $atts      A list of HTML attributes to apply
 	 *
 	 * @return string
 	 */
-	public static function getExternalLink( $url, $title, $atts = [] ) {
-		$atts = wp_parse_args( $atts, [
-			'target' 	=> '_blank',
-			'rel' 		=> self::getOption( 'disable_nofollow' ) ? null : 'nofollow',
-		] );
+	public static function getExternalLink( $url, $title, $atts = array() ) {
+		$atts = wp_parse_args(
+			$atts,
+			array(
+				'target' => '_blank',
+				'rel'    => self::getOption( 'disable_nofollow' ) ? null : 'nofollow',
+			)
+		);
 
-		$attributes = [];
+		$attributes = array();
 
 		foreach ( $atts as $name => $value ) {
 			if ( ! empty( $value ) ) {
@@ -380,10 +389,10 @@ class Helpers {
 	/**
 	 * Add post meta from the array
 	 *
-	 * @param int $postId 		ID of the post
-	 * @param array $meta 		Array of key => value pairs of meta to add to the post
-	 * @param array $allowed 	Array of allowed post types
-	 * @param bool $unique 		Optional. Whether the same key should not be added.
+	 * @param int   $postId       ID of the post
+	 * @param array $meta       Array of key => value pairs of meta to add to the post
+	 * @param array $allowed    Array of allowed post types
+	 * @param bool  $unique      Optional. Whether the same key should not be added.
 	 *
 	 * @return int
 	 */
@@ -405,7 +414,7 @@ class Helpers {
 	 * @return array
 	 */
 	public static function getRegisteredMenus() {
-		$menus = [];
+		$menus = array();
 
 		// Set all nav menus in context.
 		foreach ( array_keys( get_registered_nav_menus() ) as $location ) {
@@ -426,11 +435,9 @@ class Helpers {
 	public static function getCurrentPage() {
 		if ( get_query_var( 'paged' ) ) {
 			return get_query_var( 'paged' );
-		}
-		elseif ( get_query_var( 'page' ) ) {
+		} elseif ( get_query_var( 'page' ) ) {
 			return get_query_var( 'page' );
-		}
-		else {
+		} else {
 			return 1;
 		}
 	}
@@ -442,15 +449,15 @@ class Helpers {
 	 *
 	 * @return array
 	 */
-	public static function getRelatedPosts( $args = [] ) {
+	public static function getRelatedPosts( $args = array() ) {
 		global $post;
 
-		$defaults = [
-			'post_type'			=> $post->post_type,
-			'post__not_in'		=> [ $post->ID ],
-			'orderby'			=> 'rand',
-			'related'			=> true,
-		];
+		$defaults = array(
+			'post_type'    => $post->post_type,
+			'post__not_in' => array( $post->ID ),
+			'orderby'      => 'rand',
+			'related'      => true,
+		);
 
 		return Timber::get_posts( wp_parse_args( $args, $defaults ) );
 	}
@@ -458,10 +465,10 @@ class Helpers {
 	/**
 	 * Truncates long strings
 	 *
-	 * @param string $str 		String to be truncated
-	 * @param int $chars 		Character limit
-	 * @param bool $toSpace 	Optional. Whether to cut the the closest space or not
-	 * @param string $suffix 	Optional. String to add to the end of truncated text
+	 * @param string $str       String to be truncated
+	 * @param int    $chars        Character limit
+	 * @param bool   $toSpace     Optional. Whether to cut the the closest space or not
+	 * @param string $suffix    Optional. String to add to the end of truncated text
 	 *
 	 * @return string
 	 */
@@ -472,7 +479,7 @@ class Helpers {
 			return $str;
 		}
 
-		$str = substr( $str, 0, $chars );
+		$str      = substr( $str, 0, $chars );
 		$spacePos = strrpos( $str, ' ' );
 
 		if ( $toSpace && $spacePos >= 0 ) {
@@ -485,16 +492,16 @@ class Helpers {
 	/**
 	 * Gets popular fonts from Google Fonts API
 	 *
-	 * @param string $apiKey 	Google Fonts API Key
-	 * @param array $sort 		Optional. Sort option to pass to the Google Fonts API
+	 * @param string $apiKey    Google Fonts API Key
+	 * @param array  $sort       Optional. Sort option to pass to the Google Fonts API
 	 *
 	 * @return ?array
 	 */
 	public static function getGoogleFonts( $apiKey, $sort = 'popularity' ) {
 		$ch = curl_init( "https://www.googleapis.com/webfonts/v1/webfonts?key=$apiKey&sort=$sort" );
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Content-Type: application/json' ] );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/json' ) );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, FALSE );
+		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
 
 		$response = curl_exec( $ch );
 		$httpCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
@@ -521,7 +528,7 @@ class Helpers {
 			return null;
 		}
 
-		$fontFamilies = [];
+		$fontFamilies = array();
 
 		foreach ( $fonts as $font ) {
 			if ( ! array_key_exists( $font, $fontFamilies ) ) {
@@ -529,10 +536,10 @@ class Helpers {
 			}
 		}
 
-		$args = [
+		$args = array(
 			'family' => urlencode( implode( '|', array_values( $fontFamilies ) ) ),
 			'subset' => urlencode( 'latin,latin-ext' ),
-		];
+		);
 
 		return add_query_arg( $args, '//fonts.googleapis.com/css' );
 	}
@@ -545,26 +552,26 @@ class Helpers {
 	 * @return ?string
 	 */
 	public static function getExtensionByMime( $mime ) {
-		$extensions = [
-			'image/jpeg' 	=> '.jpeg',
-			'image/jpg' 	=> '.jpg',
-			'image/png' 	=> '.png',
-			'image/gif' 	=> '.gif',
-			'image/bmp' 	=> '.bmp',
-			'image/webp' 	=> '.webp',
+		$extensions = array(
+			'image/jpeg'    => '.jpeg',
+			'image/jpg'     => '.jpg',
+			'image/png'     => '.png',
+			'image/gif'     => '.gif',
+			'image/bmp'     => '.bmp',
+			'image/webp'    => '.webp',
 			'image/svg+xml' => '.svg',
-		];
+		);
 
 		return $extensions[ $mime ] ?? null;
 	}
 
-    /**
-     * Pulls the image content into the svg markup
+	/**
+	 * Pulls the image content into the svg markup
 	 *
 	 * @param string $path File path
 	 *
 	 * @return string
-     */
+	 */
 	public static function getSvgContent( $path ) {
 		if ( ! empty( $path ) && $svgFile = @ file_get_contents( $path ) ) {
 			$position = strpos( $svgFile, '<svg' );
@@ -574,13 +581,13 @@ class Helpers {
 		return "<img src='$path' alt='' />";
 	}
 
-    /**
-     * Converts svg content to base64 encoded
+	/**
+	 * Converts svg content to base64 encoded
 	 *
 	 * @param string $path File path
 	 *
 	 * @return ?string
-     */
+	 */
 	public static function svgToBase64( $path ) {
 		if ( ! empty( $path ) && $svgFile = @ file_get_contents( $path ) ) {
 			return 'data:image/svg+xml;base64,' . base64_encode( $svgFile );
@@ -603,9 +610,9 @@ class Helpers {
 	/**
 	 * Utility to find if key/value pair exists in array
 	 *
-	 * @param array $array 		Haystack
-	 * @param string $key 		Needle key
-	 * @param string $value 	Needle value
+	 * @param array  $array      Haystack
+	 * @param string $key       Needle key
+	 * @param string $value     Needle value
 	 *
 	 * @return mixed
 	 */
@@ -631,11 +638,9 @@ class Helpers {
 	public static function getIp() {
 		if ( isset( $_SERVER['HTTP_CLIENT_IP'] ) && ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
 			$ip = $_SERVER['HTTP_CLIENT_IP'];
-		}
-		elseif ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+		} elseif ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		}
-		else {
+		} else {
 			$ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
 		}
 
@@ -651,22 +656,19 @@ class Helpers {
 	 * "M" if one million or greater,
 	 * and "B" if one billion or greater (unlikely).
 	 *
-	 * @param int $number  		Number to format
-	 * @param int $precision 	How many decimal points to display (1.25K)
+	 * @param int $number       Number to format
+	 * @param int $precision    How many decimal points to display (1.25K)
 	 *
 	 * @return string
 	 */
 	public static function formatNumber( $number, $precision = 1 ) {
 		if ( $number >= 1000 && $number < 1000000 ) {
 			$formatted = number_format( $number / 1000, $precision ) . 'K';
-		}
-		elseif ( $number >= 1000000 && $number < 1000000000 ) {
+		} elseif ( $number >= 1000000 && $number < 1000000000 ) {
 			$formatted = number_format( $number / 1000000, $precision ) . 'M';
-		}
-		elseif ( $number >= 1000000000 ) {
+		} elseif ( $number >= 1000000000 ) {
 			$formatted = number_format( $number / 1000000000, $precision ) . 'B';
-		}
-		else {
+		} else {
 			$formatted = $number; // Number is less than 1000
 		}
 

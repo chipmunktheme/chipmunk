@@ -18,14 +18,17 @@ class Init {
 	 * To keep the initialization fast, only add filter and action
 	 * hooks in the constructor.
 	 */
-	function __construct( $config = [] ) {
+	function __construct( $config = array() ) {
 		// Set config defaults
-		$this->config = wp_parse_args( $config, [
-			'name'         => '',
-			'slug'         => '',
-			'excerpt'      => '',
-			'url'          => '',
-		] );
+		$this->config = wp_parse_args(
+			$config,
+			array(
+				'name'    => '',
+				'slug'    => '',
+				'excerpt' => '',
+				'url'     => '',
+			)
+		);
 
 		$this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
 
@@ -39,8 +42,8 @@ class Init {
 	 * @return  void
 	 */
 	private function hooks() {
-		add_action( 'init', [ $this, 'setup_addon' ] );
-		add_filter( 'chipmunk_settings_addons', [ $this, 'add_settings_addon' ] );
+		add_action( 'init', array( $this, 'setup_addon' ) );
+		add_filter( 'chipmunk_settings_addons', array( $this, 'add_settings_addon' ) );
 	}
 
 	/**
@@ -52,7 +55,7 @@ class Init {
 	}
 
 	/**
- 	 * Setup main components and features of the addon
+	 * Setup main components and features of the addon
 	 */
 	public function setup_addon() {
 		if ( ! ChipmunkHelpers::isAddonEnabled( $this->config['slug'] ) ) {
@@ -74,7 +77,7 @@ class Init {
 	}
 
 	/**
- 	 * Add settings addon component
+	 * Add settings addon component
 	 *
 	 * @return array
 	 */

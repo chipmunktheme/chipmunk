@@ -16,7 +16,7 @@ class Helpers {
 	 * @param string $key Meta key to search for
 	 *
 	 * @return array
-	*/
+	 */
 	public static function getMetaValues( $key ) {
 		global $wpdb;
 
@@ -29,7 +29,7 @@ class Helpers {
 	 * @param string $post_id Post ID
 	 *
 	 * @return array
-	*/
+	 */
 	public static function getPostRating( $postId ) {
 		return get_post_meta( $postId, Ratings::$dbKeyAverage, true );
 	}

@@ -11,7 +11,7 @@ namespace Chipmunk\Addons\Importer;
 class Config {
 
 	/**
- 	 * Class constructor
+	 * Class constructor
 	 */
 	function __construct() {
 

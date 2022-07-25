@@ -11,15 +11,15 @@ namespace Chipmunk\Addons\Members;
 class Settings {
 
 	/**
- 	 * Class constructor
+	 * Class constructor
 	 */
 	function __construct( $config ) {
 		$this->config = $config;
 
-		add_action( 'admin_init', [ $this, 'registerSettingsInit' ], 20 );
+		add_action( 'admin_init', array( $this, 'registerSettingsInit' ), 20 );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', [ $this, 'addSettingsTab' ] );
+		add_filter( 'chipmunk_settings_tabs', array( $this, 'addSettingsTab' ) );
 	}
 
 	/**
@@ -27,16 +27,16 @@ class Settings {
 	 */
 	public function registerSettingsInit() {
 		$settingName = THEME_SLUG . '_members_pages';
-		$pages = get_pages();
+		$pages       = get_pages();
 
-		$fields = [
-			'chipmunk_login_page_id'            => __( 'Login Page', 'chipmunk' ),
-			'chipmunk_register_page_id'         => __( 'Register Page', 'chipmunk' ),
-			'chipmunk_lost_password_page_id'    => __( 'Forgot Password Page', 'chipmunk' ),
-			'chipmunk_reset_password_page_id'   => __( 'Reset Password Page', 'chipmunk' ),
-			'chipmunk_profile_page_id'          => __( 'Profile Page', 'chipmunk' ),
-			'chipmunk_dashboard_page_id'        => __( 'Dashboard Page', 'chipmunk' ),
-		];
+		$fields = array(
+			'chipmunk_login_page_id'          => __( 'Login Page', 'chipmunk' ),
+			'chipmunk_register_page_id'       => __( 'Register Page', 'chipmunk' ),
+			'chipmunk_lost_password_page_id'  => __( 'Forgot Password Page', 'chipmunk' ),
+			'chipmunk_reset_password_page_id' => __( 'Reset Password Page', 'chipmunk' ),
+			'chipmunk_profile_page_id'        => __( 'Profile Page', 'chipmunk' ),
+			'chipmunk_dashboard_page_id'      => __( 'Dashboard Page', 'chipmunk' ),
+		);
 
 		// If the option don't exist, create it.
 		if ( false == get_option( $settingName ) ) {
@@ -55,14 +55,14 @@ class Settings {
 			add_settings_field(
 				$field,
 				$title,
-				[ $this, 'pageSettingsCb' ],
+				array( $this, 'pageSettingsCb' ),
 				$settingName,
 				$settingName . '_section',
-				[
+				array(
 					'option' => $settingName,
-					'pages' => $pages,
-					'field' => $field,
-				]
+					'pages'  => $pages,
+					'field'  => $field,
+				)
 			);
 		}
 
@@ -92,11 +92,11 @@ class Settings {
 	 * Adds settings tab to the list
 	 */
 	public function addSettingsTab( $tabs ) {
-		$tabs[] = [
-			'name'      => $this->config['name'],
-			'slug'      => $this->config['slug'],
-			'content'   => $this->getSettingsContent(),
-		];
+		$tabs[] = array(
+			'name'    => $this->config['name'],
+			'slug'    => $this->config['slug'],
+			'content' => $this->getSettingsContent(),
+		);
 
 		return $tabs;
 	}

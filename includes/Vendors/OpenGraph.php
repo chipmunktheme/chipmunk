@@ -19,21 +19,21 @@ class OpenGraph implements \Iterator {
 	 * There are base schema's based on type, this is just
 	 * a map so that the schema can be obtained
 	 */
-	public static $TYPES = [
-		'activity'      => [ 'activity', 'sport' ],
-		'business'      => [ 'bar', 'company', 'cafe', 'hotel', 'restaurant' ],
-		'group'         => [ 'cause', 'sports_league', 'sports_team' ],
-		'organization'  => [ 'band', 'government', 'non_profit', 'school', 'university' ],
-		'person'        => [ 'actor', 'athlete', 'author', 'director', 'musician', 'politician', 'public_figure' ],
-		'place'         => [ 'city', 'country', 'landmark', 'state_province' ],
-		'product'       => [ 'album', 'book', 'drink', 'food', 'game', 'movie', 'product', 'song', 'tv_show' ],
-		'website'       => [ 'blog', 'website' ],
-	];
+	public static $TYPES = array(
+		'activity'     => array( 'activity', 'sport' ),
+		'business'     => array( 'bar', 'company', 'cafe', 'hotel', 'restaurant' ),
+		'group'        => array( 'cause', 'sports_league', 'sports_team' ),
+		'organization' => array( 'band', 'government', 'non_profit', 'school', 'university' ),
+		'person'       => array( 'actor', 'athlete', 'author', 'director', 'musician', 'politician', 'public_figure' ),
+		'place'        => array( 'city', 'country', 'landmark', 'state_province' ),
+		'product'      => array( 'album', 'book', 'drink', 'food', 'game', 'movie', 'product', 'song', 'tv_show' ),
+		'website'      => array( 'blog', 'website' ),
+	);
 
 	/**
 	 * Holds all the Open Graph values we've parsed from a page
 	 */
-	private $_values = [];
+	private $_values = array();
 
 	/**
 	 * Fetches a URI and parses it for Open Graph data, returns
@@ -42,7 +42,7 @@ class OpenGraph implements \Iterator {
 	 * @param $URI    URI to page to parse for Open Graph data
 	 * @return OpenGraph
 	 */
-	static public function fetch( $URI ) {
+	public static function fetch( $URI ) {
 		$curl = curl_init( $URI );
 
 		curl_setopt( $curl, CURLOPT_FAILONERROR, true );
@@ -71,7 +71,7 @@ class OpenGraph implements \Iterator {
 	 * @param $HTML    HTML to parse
 	 * @return OpenGraph
 	 */
-	static private function _parse( $HTML ) {
+	private static function _parse( $HTML ) {
 		$old_libxml_error = libxml_use_internal_errors( true );
 
 		$doc = new \DOMDocument();
@@ -91,14 +91,14 @@ class OpenGraph implements \Iterator {
 		foreach ( $tags as $tag ) {
 			if ( $tag->hasAttribute( 'property' ) &&
 				strpos( $tag->getAttribute( 'property' ), 'og:' ) === 0 ) {
-				$key = strtr( substr( $tag->getAttribute( 'property' ), 3 ), '-', '_' );
+				$key                   = strtr( substr( $tag->getAttribute( 'property' ), 3 ), '-', '_' );
 				$page->_values[ $key ] = $tag->getAttribute( 'content' );
 			}
 
 			// Added this if loop to retrieve description values from sites like the New York Times who have malformed it.
-			if ( $tag ->hasAttribute( 'value' ) && $tag->hasAttribute( 'property' ) &&
+			if ( $tag->hasAttribute( 'value' ) && $tag->hasAttribute( 'property' ) &&
 				strpos( $tag->getAttribute( 'property' ), 'og:' ) === 0 ) {
-				$key = strtr( substr( $tag->getAttribute( 'property' ), 3 ), '-', '_' );
+				$key                   = strtr( substr( $tag->getAttribute( 'property' ), 3 ), '-', '_' );
 				$page->_values[ $key ] = $tag->getAttribute( 'value' );
 			}
 
@@ -106,7 +106,6 @@ class OpenGraph implements \Iterator {
 			if ( $tag->hasAttribute( 'name' ) && $tag->getAttribute( 'name' ) === 'description' ) {
 				$nonOgDescription = $tag->getAttribute( 'content' );
 			}
-
 		}
 
 		// Based on modifications at https://github.com/bashofmann/opengraph/blob/master/src/OpenGraph/OpenGraph.php
@@ -128,7 +127,7 @@ class OpenGraph implements \Iterator {
 			if ( $elements->length > 0 ) {
 				$domattr = $elements->item( 0 )->attributes->getNamedItem( 'href' );
 				if ( $domattr ) {
-					$page->_values['image'] = $domattr->value;
+					$page->_values['image']     = $domattr->value;
 					$page->_values['image_src'] = $domattr->value;
 				}
 			}
@@ -190,7 +189,7 @@ class OpenGraph implements \Iterator {
 			return true;
 		}
 
-		$address_keys = [ 'street_address', 'locality', 'region', 'postal_code', 'country_name' ];
+		$address_keys  = array( 'street_address', 'locality', 'region', 'postal_code', 'country_name' );
 		$valid_address = true;
 
 		foreach ( $address_keys as $key ) {
@@ -204,9 +203,16 @@ class OpenGraph implements \Iterator {
 	 * Iterator code
 	 */
 	private $_position = 0;
-	public function rewind() { reset( $this->_values ); $this->_position = 0; }
-	public function current() { return current( $this->_values ); }
-	public function key() { return key( $this->_values ); }
-	public function next() { next( $this->_values ); ++$this->_position; }
-	public function valid() { return $this->_position < sizeof( $this->_values ); }
+	public function rewind() {
+		reset( $this->_values );
+		$this->_position = 0; }
+	public function current() {
+		return current( $this->_values ); }
+	public function key() {
+		return key( $this->_values ); }
+	public function next() {
+		next( $this->_values );
+		++$this->_position; }
+	public function valid() {
+		return $this->_position < sizeof( $this->_values ); }
 }
