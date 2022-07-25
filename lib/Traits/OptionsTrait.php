@@ -90,8 +90,8 @@ trait OptionsTrait {
 		// prefix if we need to for some reason.
 
 		return substr( $option, 0, 1 ) === '_'
-		? '_' . $this->getOptionNamePrefix() . substr( $option, 1 )
-		: $this->getOptionNamePrefix() . $option;
+			? '_' . $this->getOptionNamePrefix() . substr( $option, 1 )
+			: $this->getOptionNamePrefix() . $option;
 	}
 
 	/**
@@ -106,7 +106,7 @@ trait OptionsTrait {
 	 * @throws HandlerException
 	 */
 	protected function isOptionValid( string $option, bool $throw = true ): bool {
-		$isValid = in_array( $option, $this->getValidOptionNames() );
+		$isValid = in_array( $option, $this->getValidOptionNames(), true );
 
 		if ( ! $isValid && $throw ) {
 			throw new HandlerException(
@@ -257,7 +257,6 @@ trait OptionsTrait {
 	public function updateAllOptions( array $values ): bool {
 		$success = true;
 		foreach ( $values as $option => $value ) {
-
 			// the updateOption method returns true when it updates our option.
 			// we Boolean AND that value with the current value of $success
 			// which starts as true.  so, as long as updateOption return true,

@@ -2,6 +2,7 @@
 
 namespace Chipmunk;
 
+use Timber\Theme;
 use Chipmunk\Helpers;
 use Chipmunk\Extensions\Views;
 use Chipmunk\Addons\Members\Helpers as MembersHelpers;

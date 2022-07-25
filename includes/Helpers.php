@@ -59,7 +59,7 @@ class Helpers {
 		$phpVersion    = phpversion();
 		$wpVersion     = get_bloginfo( 'version' );
 		$phpMinVersion = '7.4.0';
-		$wpMinVersion  = '5.0';
+		$wpMinVersion  = '5.4';
 		$notices       = [];
 
 		if ( version_compare( $phpMinVersion, $phpVersion, '>' ) ) {
