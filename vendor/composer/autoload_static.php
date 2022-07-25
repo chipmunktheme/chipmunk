@@ -43,6 +43,14 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         'D' => 
         array (
             'Dotenv\\' => 7,
+            'Dashifen\\WPHandler\\' => 19,
+            'Dashifen\\WPDebugging\\' => 21,
+            'Dashifen\\Transformer\\' => 21,
+            'Dashifen\\Repository\\' => 20,
+            'Dashifen\\Exception\\' => 19,
+            'Dashifen\\Debugging\\' => 19,
+            'Dashifen\\Collection\\' => 20,
+            'Dashifen\\CaseChangingTrait\\' => 27,
         ),
         'C' => 
         array (
@@ -58,7 +66,7 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         ),
         'Timber\\' => 
         array (
-            0 => __DIR__ . '/..' . '/timber/timber/lib',
+            0 => __DIR__ . '/..' . '/timber/timber/src',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -99,6 +107,38 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
+        ),
+        'Dashifen\\WPHandler\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dashifen/wp-handler/src',
+        ),
+        'Dashifen\\WPDebugging\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dashifen/wp-debugging/src',
+        ),
+        'Dashifen\\Transformer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dashifen/transformer/src',
+        ),
+        'Dashifen\\Repository\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dashifen/repository/src',
+        ),
+        'Dashifen\\Exception\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dashifen/exception/src',
+        ),
+        'Dashifen\\Debugging\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dashifen/debugging/src',
+        ),
+        'Dashifen\\Collection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dashifen/collection/src',
+        ),
+        'Dashifen\\CaseChangingTrait\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dashifen/case-changing-trait/src',
         ),
         'Composer\\Installers\\' => 
         array (

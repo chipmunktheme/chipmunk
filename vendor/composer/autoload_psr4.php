@@ -7,7 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
-    'Timber\\' => array($vendorDir . '/timber/timber/lib'),
+    'Timber\\' => array($vendorDir . '/timber/timber/src'),
     'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
@@ -18,6 +18,14 @@ return array(
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
+    'Dashifen\\WPHandler\\' => array($vendorDir . '/dashifen/wp-handler/src'),
+    'Dashifen\\WPDebugging\\' => array($vendorDir . '/dashifen/wp-debugging/src'),
+    'Dashifen\\Transformer\\' => array($vendorDir . '/dashifen/transformer/src'),
+    'Dashifen\\Repository\\' => array($vendorDir . '/dashifen/repository/src'),
+    'Dashifen\\Exception\\' => array($vendorDir . '/dashifen/exception/src'),
+    'Dashifen\\Debugging\\' => array($vendorDir . '/dashifen/debugging/src'),
+    'Dashifen\\Collection\\' => array($vendorDir . '/dashifen/collection/src'),
+    'Dashifen\\CaseChangingTrait\\' => array($vendorDir . '/dashifen/case-changing-trait/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
     'Chipmunk\\' => array($baseDir . '/includes'),
 );

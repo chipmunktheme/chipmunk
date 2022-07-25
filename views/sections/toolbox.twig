@@ -8,9 +8,9 @@
 
             <nav class="c-menu-socials__list">
               {% for key, value in socials %}
-                <a href="{{ value | e('esc_url') }}" class="c-menu-socials__link" target="_blank" rel="nofollow" title="{{ key | e('esc_html') }}">
+                <a href="{{ value | esc_url }}" class="c-menu-socials__link" target="_blank" rel="nofollow" title="{{ key | esc_html }}">
                   {% include 'partials/icon.twig' with { icon: "social-#{ key | lower }" } only %}
-                  <span class="u-hidden-visually">{{ key | e('esc_html') }}</span>
+                  <span class="u-hidden-visually">{{ key | esc_html }}</span>
                 </a>
               {% endfor %}
             </nav>
@@ -20,7 +20,7 @@
 
       {% if not get_option('disable_submissions') %}
         <div class="c-toolbox__cta {{ socials ? 'u-visible-md-flex' }}">
-          <p class="{{ socials ? 'u-visible-lg-block' }}">{{ get_option('submit_tagline') | e('esc_html') }}</p>
+          <p class="{{ socials ? 'u-visible-lg-block' }}">{{ get_option('submit_tagline') | esc_html }}</p>
           {% include 'partials/submit-button.twig' with { class: 'c-toolbox__button ' ~ cn('c-button', 'primary') } %}
         </div>
       {% endif %}

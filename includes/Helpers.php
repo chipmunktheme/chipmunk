@@ -160,15 +160,12 @@ class Helpers {
 
 		if ( $secretKey ) {
 			// Verify the captcha response from Google
-			$remoteResponse = wp_remote_post(
-				'https://www.google.com/recaptcha/api/siteverify',
-				[
-					'body' => [
-						'secret' => $secretKey,
-						'response' => $response
-					]
-				]
-			);
+			$remoteResponse = wp_remote_post( 'https://www.google.com/recaptcha/api/siteverify', [
+				'body' => [
+					'secret' => $secretKey,
+					'response' => $response
+				],
+			] );
 
 			$success = false;
 
@@ -203,18 +200,6 @@ class Helpers {
 	}
 
 	/**
-	 * Get post counter
-	 *
-	 * @param string $postType 		Post type
-	 * @param string $postStatus 	Post status
-	 *
-	 * @return int
-	 */
-	public static function getPostCount( $postType, $postStatus ) {
-		return wp_count_posts( $postType )->$postStatus;
-	}
-
-	/**
 	 * Creates a title for post and pages OG tags
 	 *
 	 * @return string
@@ -225,25 +210,6 @@ class Helpers {
 		}
 
 		return get_the_title();
-	}
-
-	/**
-	 * Gets menu items from specified location
-	 *
-	 * @param string $location Menu location
-	 *
-	 * @return array
-	 */
-	public static function getMenuItems( $location ) {
-		if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $location ] ) ) {
-			$menu = wp_get_nav_menu_object( $locations[ $location ] );
-
-			if ( $menu ) {
-				return wp_get_nav_menu_items( $menu->term_id );
-			}
-		}
-
-		return false;
 	}
 
 	/**
@@ -705,25 +671,5 @@ class Helpers {
 		}
 
 		return preg_replace( '/\.[0]+([KMB]?)$/i', '$1', $formatted );
-	}
-
-	/**
-	 * Utility function to convert hex colors to RGB arrays
-	 *
-	 * @param string $color 	Hex color value
-	 * @param bool $implode 	Return color as a string
-	 *
-	 * @return ?string
-	 */
-	public static function hexToRgb( $color, $implode = false ) {
-		$color = str_replace( '#', '', $color );
-
-		if ( strlen( $color ) == 6 ) {
-			list( $r, $g, $b ) = array_map( 'hexdec', str_split( $color, 2 ) );
-
-			return $implode ? implode( ', ', [ $r, $g, $b ] ) : [ $r, $g, $b ];
-		}
-
-		return null;
 	}
 }

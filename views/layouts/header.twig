@@ -48,7 +48,7 @@
               </button>
 
               <nav class="{{ cn('u-dropdown', get_option('dropdown_theme')) }}">
-                <a href="{{ get_members_link('dashboard') | e('esc_url') }}" class="u-dropdown__link">
+                <a href="{{ get_members_link('dashboard') | esc_url }}" class="u-dropdown__link">
                   {{ __('Dashboard', 'chipmunk') }}
                 </a>
 
@@ -58,7 +58,7 @@
                   </a>
                 {% endif %}
 
-                <a href="{{ get_members_link('profile') | e('esc_url') }}" class="u-dropdown__link">
+                <a href="{{ get_members_link('profile') | esc_url }}" class="u-dropdown__link">
                   {{ __('Edit Profile', 'chipmunk') }}
                 </a>
 
@@ -70,12 +70,12 @@
               </nav>
             </div>
           {% else %}
-            <a href="{{ get_members_link('login') | e('esc_url') }}" class="{{ cn('c-button', 'primary-outline') }} u-visible-lg-block">
+            <a href="{{ get_members_link('login') | esc_url }}" class="{{ cn('c-button', 'primary-outline') }} u-visible-lg-block">
               {{ __('Login', 'chipmunk') }}
             </a>
 
             {% if site.option('users_can_register') %}
-              <a href="{{ get_members_link('register') | e('esc_url') }}" class="{{ cn('c-button', 'primary-outline') }} u-visible-lg-block">
+              <a href="{{ get_members_link('register') | esc_url }}" class="{{ cn('c-button', 'primary-outline') }} u-visible-lg-block">
                 {{ __('Register', 'chipmunk') }}
               </a>
             {% endif %}

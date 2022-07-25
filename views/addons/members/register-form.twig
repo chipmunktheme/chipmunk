@@ -9,7 +9,7 @@
     {% if blocker %}
       {% include 'partials/alerts.twig' with { alerts: blocker } %}
     {% else %}
-      <form class="c-form" action="{{ fn('wp_registration_url') | e('esc_url') }}" method="post" novalidate data-validate>
+      <form class="c-form" action="{{ fn('wp_registration_url') | esc_url }}" method="post" novalidate data-validate>
         {% include 'partials/alerts.twig' %}
 
         <div class="{{ cn('c-form__field', 'wide') }}">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="{{ cn('c-form__field', 'wide', 'cta') }}">
-          <a href="{{ fn('wp_login_url') | e('esc_url') }}" class="c-form__link">
+          <a href="{{ fn('wp_login_url') | esc_url }}" class="c-form__link">
             {{ __('Already have an account?', 'chipmunk') }}
           </a>
         </div>

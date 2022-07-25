@@ -41,8 +41,8 @@
 
           <nav class="c-menu-secondary">
             {% for key, value in socials %}
-              <a href="{{ value | e('esc_url') }}" class="c-menu-secondary__link" target="_blank" rel="nofollow">
-                {{ key | e('esc_html') }}
+              <a href="{{ value | esc_url }}" class="c-menu-secondary__link" target="_blank" rel="nofollow">
+                {{ key | esc_html }}
               </a>
             {% endfor %}
           </nav>

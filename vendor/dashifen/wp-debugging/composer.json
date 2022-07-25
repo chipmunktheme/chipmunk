@@ -1,0 +1,21 @@
+{
+  "name": "dashifen/wp-debugging",
+  "description": "A PHP trait that can be used by other objects for on-screen debugging within a WordPress environment.",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "David Dashifen Kees",
+      "email": "dashifen@dashifen.com",
+      "role": "developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Dashifen\\WPDebugging\\": "src"
+    }
+  },
+  "require": {
+    "dashifen/debugging": "^1.0"
+  }
+}

@@ -11,7 +11,7 @@ namespace Chipmunk;
 class Assets {
 
 	/**
- 	 * Stored manifest JSON file
+	 * Stored manifest JSON file
 	 *
 	 * @var array
 	 */
@@ -50,26 +50,26 @@ class Assets {
 	public static function enqueueInlineStyles() {
 		global $post;
 
-		$primaryFont      = Helpers::getOption( 'primary_font' );
-		$headingFont      = Helpers::getOption( 'heading_font' );
+		$primaryFont		= Helpers::getOption( 'primary_font' );
+		$headingFont		= Helpers::getOption( 'heading_font' );
 
-		$primaryColor     = Helpers::getOption( 'primary_color' );
-		$linkColor        = Helpers::getOption( 'link_color' );
-		$backgroundColor  = Helpers::getOption( 'background_color' );
-		$sectionColor     = Helpers::getOption( 'section_color' );
-		$contentSize      = Helpers::getOption( 'content_size' );
-		$customCss        = Helpers::getOption( 'custom_css' );
+		$primaryColor		= Helpers::getOption( 'primary_color' );
+		$linkColor			= Helpers::getOption( 'link_color' );
+		$backgroundColor	= Helpers::getOption( 'background_color' );
+		$sectionColor		= Helpers::getOption( 'section_color' );
+		$contentSize		= Helpers::getOption( 'content_size' );
+		$customCss			= Helpers::getOption( 'custom_css' );
 
-		$logoHeight       = Helpers::getOption( 'logo_height' );
+		$logoHeight			= Helpers::getOption( 'logo_height' );
 
-		$customStyle      = ! empty( $customCss ) ? $customCss : '';
-		$primaryFont      = ( ! empty( $primaryFont ) && $primaryFont != 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
-		$headingFont      = ( ! empty( $headingFont ) && $headingFont != 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
+		$customStyle		= ! empty( $customCss ) ? $customCss : '';
+		$primaryFont		= ( ! empty( $primaryFont ) && $primaryFont != 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
+		$headingFont		= ( ! empty( $headingFont ) && $headingFont != 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
 
-		$disableBorders   = Helpers::getOption( 'disable_section_borders' );
-		$contentWidth     = isset( $post ) ? get_field( '_' . THEME_SLUG . '_page_content_width', $post->ID ) : Helpers::getOption( 'content_width' );
+		$disableBorders		= Helpers::getOption( 'disable_section_borders' );
+		$contentWidth		= isset( $post ) ? get_field( '_' . THEME_SLUG . '_page_content_width', $post->ID ) : Helpers::getOption( 'content_width' );
 
-		$customStyle .= "
+		$customStyle 		.= "
 			body {
 				" . ( ! empty( $primaryFont ) ? "--chipmunk--typography--font-family: '$primaryFont';" : "" ) . "
 				" . ( ! empty( $headingFont ) ? "--chipmunk--typography--heading-font-family: '$headingFont';" : "" ) . "

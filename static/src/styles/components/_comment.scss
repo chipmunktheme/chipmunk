@@ -8,10 +8,6 @@ $comment-avatar-size: 3.2rem;
   @include spacer-clamped(2);
   display: flex;
   flex-wrap: nowrap;
-
-  + .children {
-    margin-left: calc(#{$comment-avatar-size} + #{spacer-fixed(1)});
-  }
 }
 
 .c-comment__image {
@@ -75,6 +71,7 @@ $comment-avatar-size: 3.2rem;
   font-size: 0.875em;
 }
 
-.c-comment__children {
+.c-comment__children,
+.comment-respond {
   @include spacer-clamped(2);
 }

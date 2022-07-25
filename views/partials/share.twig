@@ -28,7 +28,7 @@
         '%title%': post.title | url_encode,
       }) %}
 
-      <a href="{{ link | e('esc_url') }}" class="c-menu-socials__link" title="{{ provider.name }}" target="_blank">
+      <a href="{{ link | esc_url }}" class="c-menu-socials__link" title="{{ provider.name }}" target="_blank">
         {% include 'partials/icon.twig' with { icon: "social-#{ provider.name | lower }" } %}
         <span class="u-hidden-visually">{{ provider.name }}</span>
       </a>

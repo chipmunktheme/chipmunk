@@ -11,7 +11,7 @@
     </h2>
   {% endif %}
 
-  {% if post.content %}
+  {% if post.content or post.post_excerpt %}
     <div class="c-resource__description {{ cn('c-content', 'type') }}" itemprop="description">
       {% apply apply_filters('the_content') %}
         {% if (is_content_separated or not post.content) and post.post_excerpt and (post.post_excerpt != post.content) %}

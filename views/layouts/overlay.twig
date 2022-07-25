@@ -17,11 +17,11 @@
         {% if user %}
           {% include 'partials/submit-button.twig' with { class: button_class } %}
         {% else %}
-          <a href="{{ get_members_link('login') | e('esc_url') }}" class="{{ button_class }}">
+          <a href="{{ get_members_link('login') | esc_url }}" class="{{ button_class }}">
             {{ __('Login', 'chipmunk') }}
           </a>
 
-          <a href="{{ get_members_link('register') | e('esc_url') }}" class="{{ button_class }}">
+          <a href="{{ get_members_link('register') | esc_url }}" class="{{ button_class }}">
             {{ __('Register', 'chipmunk') }}
           </a>
         {% endif %}

@@ -1,0 +1,27 @@
+{
+    "name": "dashifen/transformer",
+    "description": "An interface and abstract class useful for the production of objects which transform data.",
+    "minimum-stability": "stable",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Dashifen Kees",
+            "email": "dashifen@dashifen.com",
+            "role": "developer"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Dashifen\\Transformer\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=7.3",
+        "dashifen/exception": "^1.2"
+    }
+}

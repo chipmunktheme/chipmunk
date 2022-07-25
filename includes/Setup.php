@@ -211,7 +211,6 @@ class Setup {
 		new Settings();
 		new Site();
 		new Shortcodes();
-		new Twig();
 
 		new Config\Admin();
 		new Config\Assets();

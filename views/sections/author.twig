@@ -22,7 +22,7 @@
               {{ author.meta('description') }}
 
               {% if author.user_url %}
-                {{ get_external_link(author.user_url, author.user_url | e('esc_html')) }}
+                {{ get_external_link(author.user_url, author.user_url | esc_html) }}
               {% endif %}
             {% endset %}
 
@@ -36,7 +36,7 @@
 							{% if author_socials %}
                 <nav class="c-profile__socials c-menu-socials">
                   {% for key, value in author_socials %}
-                    <a href="{{ author.meta(key) | e('esc_url') }}" class="c-menu-socials__link" title="{{ value }}" target="_blank">
+                    <a href="{{ author.meta(key) | esc_url }}" class="c-menu-socials__link" title="{{ value }}" target="_blank">
                       {% include 'partials/icon.twig' with { icon: "social-#{ value | lower }" } only %}
                       <span class="u-hidden-visually">{{ value }}</span>
                     </a>

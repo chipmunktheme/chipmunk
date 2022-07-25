@@ -4,5 +4,7 @@
 
 .wp-block-gallery {
   // TODO: Fix issues with gallery block in gutenberg
+  // https://github.com/WordPress/gutenberg/issues/41434
   --gallery-block--gutter-size: var(--chipmunk--layout--column-gutter);
+  --wp--style--gallery-gap-default: var(--chipmunk--layout--column-gutter);
 }

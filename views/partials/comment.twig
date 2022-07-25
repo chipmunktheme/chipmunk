@@ -7,9 +7,9 @@
     <div class="c-comment__info">
       <h4 class="c-comment__title {{ cn('c-heading', 'h5') }}">
         {% if comment.author.user_url %}
-          {{ get_external_link(comment.author.user_url, comment.author.name | e('esc_html')) }}
+          {{ get_external_link(comment.author.user_url, comment.author.name | esc_html) }}
         {% else %}
-          {{ comment.author.name | e('esc_html') }}
+          {{ comment.author.name | esc_html }}
         {% endif %}
       </h4>
 
@@ -24,7 +24,6 @@
       </div>
 
       <div class="c-comment__reply">
-        {# TODO: Add some spacing to the form once Reply button is clicked #}
         {{ comment.reply_link(include('partials/icon.twig', { icon: 'reply' }) ~ __('Reply', 'chipmunk')) }}
       </div>
 

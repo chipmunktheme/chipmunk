@@ -14,17 +14,17 @@
   <div class="{{ cn('l-section', ['theme-light', 'compact', 'sticky']) }}">
     <div class="l-container">
       {% if has_image and ad_link %}
-        <a href="{{ ad_link | e('esc_url') }}" target="_blank" class="c-promo">
+        <a href="{{ ad_link | esc_url }}" target="_blank" class="c-promo">
           {% if ad_image_lg %}
-            <img src="{{ ad_image_lg | e('esc_url') }}" alt="" class="u-visible-{{ ad_image_md ? 'lg' : (ad_image_sm ? 'md' : 'sm') }}-block">
+            <img src="{{ ad_image_lg | esc_url }}" alt="" class="u-visible-{{ ad_image_md ? 'lg' : (ad_image_sm ? 'md' : 'sm') }}-block">
           {% endif %}
 
           {% if ad_image_md %}
-            <img src="{{ ad_image_md | e('esc_url') }}" alt="" class="u-visible-{{ ad_image_sm ? 'md' : 'sm' }}-block u-hidden-{{ ad_image_lg ? 'lg' : 'xl' }}">
+            <img src="{{ ad_image_md | esc_url }}" alt="" class="u-visible-{{ ad_image_sm ? 'md' : 'sm' }}-block u-hidden-{{ ad_image_lg ? 'lg' : 'xl' }}">
           {% endif %}
 
           {% if ad_image_sm %}
-            <img src="{{ ad_image_sm | e('esc_url') }}" alt="" class="u-hidden-{{ ad_image_lg or ad_image_md ? 'md' : 'xl' }}">
+            <img src="{{ ad_image_sm | esc_url }}" alt="" class="u-hidden-{{ ad_image_lg or ad_image_md ? 'md' : 'xl' }}">
           {% endif %}
         </a>
       {% elseif ad_code %}

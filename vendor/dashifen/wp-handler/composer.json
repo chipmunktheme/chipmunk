@@ -1,0 +1,30 @@
+{
+  "name": "dashifen/wp-handler",
+  "description": "An object to define handlers for various WordPress action and filter hooks using protected methods. ",
+  "minimum-stability": "stable",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "David Dashifen Kees",
+      "email": "dashifen@dashifen.com",
+      "role": "developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Dashifen\\WPHandler\\": "src"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "dashifen/collection": "^2",
+    "dashifen/exception": "^1",
+    "dashifen/repository": "^3",
+    "dashifen/transformer": "^2",
+    "dashifen/wp-debugging": "^1"
+  },
+  "require-dev": {
+    "wp-cli/wp-cli": "^2.5"
+  }
+}

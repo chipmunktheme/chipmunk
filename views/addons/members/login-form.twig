@@ -9,7 +9,7 @@
     {% if blocker %}
       {% include 'partials/alerts.twig' with { alerts: blocker } %}
     {% else %}
-      <form class="c-form" action="{{ fn('site_url', 'wp-login.php') | e('esc_url') }}" method="post" novalidate data-validate>
+      <form class="c-form" action="{{ fn('site_url', 'wp-login.php') | esc_url }}" method="post" novalidate data-validate>
         {% include 'partials/alerts.twig' %}
 
         <div class="{{ cn('c-form__field', 'wide') }}">
@@ -32,18 +32,18 @@
         </div>
 
         <div class="{{ cn('c-form__field', 'wide', 'cta') }}">
-          <a href="{{ fn('wp_lostpassword_url', redirect_to) | e('esc_url') }}" class="c-form__link">
+          <a href="{{ fn('wp_lostpassword_url', redirect_to) | esc_url }}" class="c-form__link">
             {{ __('Forgot your password?', 'chipmunk') }}
           </a>
 
           {% if site.option('users_can_register') %}
-            <a href="{{ fn('wp_registration_url') | e('esc_url') }}" class="c-form__link">
+            <a href="{{ fn('wp_registration_url') | esc_url }}" class="c-form__link">
               {{ __('Register an account', 'chipmunk') }}
             </a>
           {% endif %}
         </div>
 
-        <input type="hidden" name="redirect_to" value="{{ redirect_to | e('esc_url') }}">
+        <input type="hidden" name="redirect_to" value="{{ redirect_to | esc_url }}">
       </form>
     {% endif %}
   {% endblock %}

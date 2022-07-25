@@ -53,7 +53,7 @@
             }
           </script>
 
-          <div onclick="openURL(event, '{{ website.url | external_url | e('esc_url') }}');" class="c-tile__icon" title="{{ website.title }}">
+          <div onclick="openURL(event, '{{ website.url | external_url | esc_url }}');" class="c-tile__icon" title="{{ website.title }}">
             {% include 'partials/icon.twig' with { icon: 'external-link' } only %}
           </div>
         {% endif %}

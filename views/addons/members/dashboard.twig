@@ -23,7 +23,7 @@
           <div class="c-tabs__title {{ cn('c-heading', 'h6') }}">
             {% for tab in tabs %}
               {% if not get_option(tab.option) %}
-                <a href="{{ fn('add_query_arg', 'tab', tab.name | sanitize_title, dashboard_link) | e('esc_url') }}" class="c-heading__link{{ current_tab == tab.name | sanitize_title ? ' is-active' }}">
+                <a href="{{ fn('add_query_arg', 'tab', tab.name | sanitize_title, dashboard_link) | esc_url }}" class="c-heading__link{{ current_tab == tab.name | sanitize_title ? ' is-active' }}">
                   {{ tab.name }}
                 </a>
               {% endif %}
