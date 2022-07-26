@@ -1,13 +1,11 @@
 <?php
 
-namespace Chipmunk\Traits;
+namespace Chipmunk\Helper;
 
-// use Dashifen\Transformer\TransformerException;
-// use Dashifen\WPHandler\Handlers\HandlerException;
-// use Dashifen\Transformer\StorageTransformer\StorageTransformerInterface;
+use Piotrkulpinski\Framework\Exception\HandlerException;
 
 /**
- *
+ * Provides methods to retrieve theme options in a better way
  */
 trait OptionsTrait {
 
@@ -264,7 +262,7 @@ trait OptionsTrait {
 			// it'll be reset and will remain so because false AND anything is
 			// false.
 
-			$success = $success && $this->updateOption( $option, $value, $transform );
+			$success = $success && $this->updateOption( $option, $value );
 		}
 
 		return $success;

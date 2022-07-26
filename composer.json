@@ -10,7 +10,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Chipmunk\\": "includes"
+      "Chipmunk\\": "src"
     },
     "files": [
       "vendor/richtabor/merlin-wp/class-merlin.php"
@@ -20,13 +20,18 @@
     {
       "type": "composer",
       "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/library/"
+    },
+    {
+      "type": "path",
+      "url": "./framework/"
     }
   ],
   "require": {
     "advanced-custom-fields/advanced-custom-fields-pro": "5.*",
     "richtabor/merlin-wp": "dev-master",
     "timber/timber": "^2.0.0-alpha.6",
-    "dashifen/wp-handler": "^10.11"
+    "dashifen/wp-handler": "^10.11",
+    "piotrkulpinski/framework": "@dev"
   },
   "config": {
     "allow-plugins": {

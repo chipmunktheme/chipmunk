@@ -14,6 +14,7 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'ProteusThemes\\WPContentImporter2\\' => array($vendorDir . '/proteusthemes/wp-content-importer-v2/src'),
     'PivvenIT\\Composer\\Installers\\ACFPro\\' => array($vendorDir . '/pivvenit/acf-pro-installer/src'),
+    'Piotrkulpinski\\Framework\\' => array($vendorDir . '/piotrkulpinski/framework/src'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
@@ -27,5 +28,5 @@ return array(
     'Dashifen\\Collection\\' => array($vendorDir . '/dashifen/collection/src'),
     'Dashifen\\CaseChangingTrait\\' => array($vendorDir . '/dashifen/case-changing-trait/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
-    'Chipmunk\\' => array($baseDir . '/includes'),
+    'Chipmunk\\' => array($baseDir . '/src'),
 );

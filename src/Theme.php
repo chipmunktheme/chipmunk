@@ -2,56 +2,26 @@
 
 namespace Chipmunk;
 
-use Chipmunk\Traits\ConfigTrait;
-use Dashifen\WPHandler\Handlers\Themes\AbstractThemeHandler;
+use Piotrkulpinski\Framework\Handler\ThemeHandler;
+use Chipmunk\Templates;
 
 /**
  * Main theme setup class
+ *
+ * @package Chipmunk
  */
-class Theme extends AbstractThemeHandler {
-
-	use ConfigTrait;
+class Theme extends ThemeHandler {
 
 	/**
-	 * Theme version.
-	 *
-	 * @var string
+	 * Theme constructor.
 	 */
-	const VERSION = '1.17.0';
-
-	/**
-	 * Theme textdomain.
-	 *
-	 * @var string
-	 */
-	const TEXTDOMAIN = 'chipmunk';
-
-	/**
-	 * Main config object
-	 *
-	 * @var object
-	 */
-	private $config;
-
-	/**
-	 * Constructs a new Theme object
-	 *
-	 * @param object $config
-	 */
-	public function __construct( $config ) {
-		$this->config = $config;
+	public function __construct() {
+		parent::__construct();
 	}
 
 	/**
-	 * Gets the version number of the application.
+	 * initialize
 	 *
-	 * @return string
-	 */
-	public function getVersion() {
-		return static::VERSION;
-	}
-
-	/**
 	 * Hooks methods of this object into the WordPress ecosystem
 	 *
 	 * @return void
@@ -59,11 +29,35 @@ class Theme extends AbstractThemeHandler {
 	 */
 	public function initialize(): void {
 		if ( ! $this->isInitialized() ) {
-			$this->addAction( 'init', 'startSession' );
-			$this->addFilter( 'timber/twig', 'addTwigFilters' );
-			$this->addAction( 'wp_enqueue_scripts', 'addAssets' );
-			$this->addAction( 'after_setup_theme', 'addThemeFeatures' );
-			$this->addAction( 'template_redirect', 'forceAuthentication' );
+			( new Templates() )->initialize();
+			( new Assets() )->initialize();
 		}
+	}
+
+	/**
+	 * Throw error on object clone.
+	 *
+	 * The whole idea of the singleton design pattern is that there is a single
+	 * object therefore, we don't want the object to be cloned.
+	 *
+	 * @since 2.0
+	 * @access protected
+	 * @return void
+	 */
+	public function __clone() {
+		// Cloning instances of the class is forbidden.
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'chipmunk' ), '2.0' );
+	}
+
+	/**
+	 * Disable unserializing of the class.
+	 *
+	 * @since 2.0
+	 * @access protected
+	 * @return void
+	 */
+	public function __wakeup() {
+		// Unserializing instances of the class is forbidden.
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'chipmunk' ), '2.0' );
 	}
 }

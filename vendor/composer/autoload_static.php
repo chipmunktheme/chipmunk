@@ -30,6 +30,7 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
             'Psr\\Log\\' => 8,
             'ProteusThemes\\WPContentImporter2\\' => 33,
             'PivvenIT\\Composer\\Installers\\ACFPro\\' => 36,
+            'Piotrkulpinski\\Framework\\' => 25,
             'PhpOption\\' => 10,
         ),
         'M' => 
@@ -92,6 +93,10 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         array (
             0 => __DIR__ . '/..' . '/pivvenit/acf-pro-installer/src',
         ),
+        'Piotrkulpinski\\Framework\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/piotrkulpinski/framework/src',
+        ),
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
@@ -146,7 +151,7 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         ),
         'Chipmunk\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/includes',
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 

@@ -776,6 +776,33 @@
             "install-path": "../phpoption/phpoption"
         },
         {
+            "name": "piotrkulpinski/framework",
+            "version": "2.0.x-dev",
+            "version_normalized": "2.0.9999999.9999999-dev",
+            "dist": {
+                "type": "path",
+                "url": "./framework",
+                "reference": "88061823fcd5fb257137149c3f21d6eb3d899539"
+            },
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Piotrkulpinski\\Framework\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Piotr Kulpinski",
+                    "email": "piotr@kulpinski.pl"
+                }
+            ],
+            "transport-options": {
+                "relative": true
+            },
+            "install-path": "../piotrkulpinski/framework"
+        },
+        {
             "name": "pivvenit/acf-pro-installer",
             "version": "3.1.0",
             "version_normalized": "3.1.0.0",
