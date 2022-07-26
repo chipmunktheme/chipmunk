@@ -34,7 +34,7 @@ class Site {
 	 * @return array
 	 */
 	public function setTimberLocation( $paths ) {
-		$paths[] = [ THEME_TEMPLATE_DIR . '/views' ];
+		$paths[] = [ THEME_TEMPLATE_DIR . '/templates' ];
 
 		return $paths;
 	}

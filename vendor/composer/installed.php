@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'chipmunk-theme/chipmunk-theme',
-        'pretty_version' => '1.18.x-dev',
-        'version' => '1.18.9999999.9999999-dev',
-        'reference' => '8994066610e608c1d348fb92c93d2f9fa676face',
+        'pretty_version' => '2.0.x-dev',
+        'version' => '2.0.9999999.9999999-dev',
+        'reference' => 'a29993561b745e28a7adb01f96f024b3a2fdafef',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,8 +11,8 @@
     ),
     'versions' => array(
         'advanced-custom-fields/advanced-custom-fields-pro' => array(
-            'pretty_version' => '5.12.2',
-            'version' => '5.12.2.0',
+            'pretty_version' => '5.12.3',
+            'version' => '5.12.3.0',
             'reference' => NULL,
             'type' => 'library',
             'install_path' => __DIR__ . '/../advanced-custom-fields/advanced-custom-fields-pro',
@@ -20,9 +20,9 @@
             'dev_requirement' => false,
         ),
         'chipmunk-theme/chipmunk-theme' => array(
-            'pretty_version' => '1.18.x-dev',
-            'version' => '1.18.9999999.9999999-dev',
-            'reference' => '8994066610e608c1d348fb92c93d2f9fa676face',
+            'pretty_version' => '2.0.x-dev',
+            'version' => '2.0.9999999.9999999-dev',
+            'reference' => 'a29993561b745e28a7adb01f96f024b3a2fdafef',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
