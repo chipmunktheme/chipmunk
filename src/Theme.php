@@ -3,6 +3,8 @@
 namespace Chipmunk;
 
 use Piotrkulpinski\Framework\Handler\ThemeHandler;
+use Chipmunk\Config;
+use Chipmunk\Core\Setup;
 use Chipmunk\Core\Options;
 use Chipmunk\Core\Templates;
 use Chipmunk\Core\Assets;
@@ -21,37 +23,44 @@ class Theme extends ThemeHandler {
 	use ShortcodesTrait;
 
 	/**
+	 * Theme setup
+	 *
+	 * @var Setup
+	 */
+	protected $setup;
+
+	/**
 	 * Theme options
 	 *
-	 * @var Theme
+	 * @var Options
 	 */
 	protected $options;
 
 	/**
 	 * Theme templates
 	 *
-	 * @var Theme
+	 * @var Templates
 	 */
 	protected $templates;
 
 	/**
 	 * Theme assets
 	 *
-	 * @var Theme
+	 * @var Assets
 	 */
 	protected $assets;
 
 	/**
 	 * Theme AJAX callbacks
 	 *
-	 * @var Theme
+	 * @var Actions
 	 */
 	protected $actions;
 
 	/**
 	 * Theme shortcodes
 	 *
-	 * @var Theme
+	 * @var Shortcodes
 	 */
 	protected $shortcodes;
 
@@ -59,7 +68,9 @@ class Theme extends ThemeHandler {
 	 * Theme constructor.
 	 */
 	public function __construct() {
-		$this->config     = new Config();
+		new Config();
+
+		$this->setup      = new Setup();
 		$this->options    = new Options();
 		$this->templates  = new Templates();
 		$this->assets     = new Assets();
@@ -68,15 +79,13 @@ class Theme extends ThemeHandler {
 	}
 
 	/**
-	 * initialize
-	 *
 	 * Hooks methods of this object into the WordPress ecosystem
 	 *
 	 * @return void
-	 * @throws HandlerException
 	 */
 	public function initialize(): void {
 		if ( ! $this->isInitialized() ) {
+			$this->setup->initialize();
 			$this->options->initialize();
 			$this->templates->initialize();
 			$this->assets->initialize();
