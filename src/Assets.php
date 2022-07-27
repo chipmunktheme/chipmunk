@@ -2,78 +2,66 @@
 
 namespace Chipmunk;
 
-use Piotrkulpinski\Framework\Handler\ThemeHandler;
 use Chipmunk\Helper\AssetsTrait;
+use Chipmunk\Helper\EnqueueTrait;
+use Chipmunk\Helper\HelpersTrait;
 
 /**
- * Timber Templates settigs class
- *
- * Use this class to setup whole Timber related configuration
- *
- * @package Chipmunk
+ * Theme assets
  */
-class Assets extends ThemeHandler {
+class Assets extends Theme {
 
 	use AssetsTrait;
+	use EnqueueTrait;
+	use HelpersTrait;
 
 	/**
-	 * Tempalate class constructor.
+	 * Assets class constructor.
 	 */
-	public function __construct() {
-		parent::__construct();
-	}
+	public function __construct() {}
 
 	/**
-	 * initialize
-	 *
 	 * Hooks methods of this object into the WordPress ecosystem
 	 *
 	 * @return void
-	 * @throws HandlerException
 	 */
 	public function initialize(): void {
-		if ( ! $this->isInitialized() ) {
-			$this->addAction( 'wp_enqueue_scripts', 'enqueueCustomAssets' );
-			$this->addAction( 'wp_enqueue_scripts', 'enqueueInlineStyles' );
-			$this->addAction( 'wp_enqueue_scripts', 'enqueueGoogleFonts' );
-			$this->addAction( 'wp_enqueue_scripts', 'enqueueExternalScripts' );
-			$this->addAction( 'admin_enqueue_scripts', 'enqueueAdminScripts' );
-			$this->addFilter( 'script_loader_tag', 'addAsyncAttribute', 10, 3 );
-		}
+		$this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueCustomAssets' ] );
+		// $this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueInlineStyles' ] );
+		// $this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueGoogleFonts' ] );
+		// $this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueExternalScripts' ] );
+		$this->addAction( 'admin_enqueue_scripts', [ $this, 'enqueueAdminScripts' ] );
+		$this->addFilter( 'script_loader_tag', [ $this, 'addAsyncAttribute' ], 10, 3 );
 	}
 
 	/**
 	 * Enqueue front end styles and scripts
 	 */
-	protected function enqueueCustomAssets() {
-		$this->enqueueStyle( 'chipmunk-styles', 'styles/theme.css' );
-		$this->enqueueScript( 'chipmunk-scripts', 'scripts/theme.js' );
+	public function enqueueCustomAssets() {
+		$this->addStyle( 'chipmunk-styles', 'styles/theme.css' );
+		$this->addScript( 'chipmunk-scripts', 'scripts/theme.js' );
 	}
 
 	/**
 	 * Enqueue custom CSS styles
 	 */
-	protected function enqueueInlineStyles() {
+	public function enqueueInlineStyles() {
 		global $post;
 
-		$primaryFont = Helpers::getOption( 'primary_font' );
-		$headingFont = Helpers::getOption( 'heading_font' );
-
+		$primaryFont     = Helpers::getOption( 'primary_font' );
+		$headingFont     = Helpers::getOption( 'heading_font' );
 		$primaryColor    = Helpers::getOption( 'primary_color' );
 		$linkColor       = Helpers::getOption( 'link_color' );
 		$backgroundColor = Helpers::getOption( 'background_color' );
 		$sectionColor    = Helpers::getOption( 'section_color' );
 		$contentSize     = Helpers::getOption( 'content_size' );
 		$customCss       = Helpers::getOption( 'custom_css' );
-
-		$logoHeight = Helpers::getOption( 'logo_height' );
-
-		$customStyle = ! empty( $customCss ) ? $customCss : '';
-		$primaryFont = ( ! empty( $primaryFont ) && $primaryFont != 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
-		$headingFont = ( ! empty( $headingFont ) && $headingFont != 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
-
-		$disableBorders = Helpers::getOption( 'disable_section_borders' );
-		$contentWidth   = isset( $post ) ? get_field( '_' . THEME_SLUG . '_page_content_width', $post->ID ) : Helpers::getOption( 'content_width' );
+		$logoHeight      = Helpers::getOption( 'logo_height' );
+		$disableBorders  = Helpers::getOption( 'disable_section_borders' );
+		$customStyle     = ( ! empty( $customCss ) ) ? $customCss : '';
+		$primaryFont     = ( ! empty( $primaryFont ) && $primaryFont != 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
+		$headingFont     = ( ! empty( $headingFont ) && $headingFont != 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
+		$contentWidth    = ( ! empty( $post ) ) ? get_field( $this->getThemeSlug( 'page_content_width' ), $post->ID ) : Helpers::getOption( 'content_width' );
 
 		$customStyle .= '
 			body {
@@ -90,42 +78,42 @@ class Assets extends ThemeHandler {
 			}
 		';
 
-		wp_add_inline_style( 'chipmunk-styles', $customStyle );
+		$this->addInlineStyle( 'chipmunk-styles', $customStyle );
 	}
 
 	/**
 	 * Enqueue Google Fonts styles
 	 */
-	protected function enqueueGoogleFonts() {
+	public function enqueueGoogleFonts() {
 		$fonts = [];
 
 		$primaryFont = Helpers::getOption( 'primary_font' );
 		$headingFont = Helpers::getOption( 'heading_font' );
 
-		if ( ! empty( $primaryFont ) && $primaryFont != 'System' ) {
+		if ( ! empty( $primaryFont ) && $primaryFont !== 'System' ) {
 			$fonts[] = $primaryFont;
 		}
 
-		if ( ! empty( $headingFont ) && $headingFont != 'System' ) {
+		if ( ! empty( $headingFont ) && $headingFont !== 'System' ) {
 			$fonts[] = $headingFont;
 		}
 
 		if ( ! empty( $fonts ) ) {
-			wp_enqueue_style( 'chipmunk-fonts', Helpers::getGoogleFontsUrl( $fonts ) );
+			$this->addStyle( 'chipmunk-fonts', Helpers::getGoogleFontsUrl( $fonts ) );
 		}
 	}
 
 	/**
 	 * Enqueue external scripts
 	 */
-	protected function enqueueExternalScripts() {
+	public function enqueueExternalScripts() {
 		$enabled = Helpers::getOption( 'recaptcha_enabled' );
 		$siteKey = Helpers::getOption( 'recaptcha_site_key' );
 
 		if ( $enabled && $siteKey ) {
-			wp_enqueue_script( 'chipmunk-recaptcha', '//google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit', false, null, true );
+			$this->addScript( 'chipmunk-recaptcha', 'https://google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit', false, null, true );
 
-			wp_add_inline_script(
+			$this->addInlineScript(
 				'chipmunk-recaptcha',
 				"
 				var CaptchaCallback = function() {
@@ -143,25 +131,22 @@ class Assets extends ThemeHandler {
 	}
 
 	/**
-	 * Deregisters theme Gutenberg Block assets.
-	 */
-	protected function deregisterBlockStyles() {
-		$this->dequeueStyle( 'wp-block-library' );
-	}
-
-	/**
 	 * Enqueue admin end styles and scripts
 	 */
-	protected function enqueueAdminScripts() {
-		$this->enqueueStyle( 'chipmunk-admin-styles', 'styles/admin.css' );
+	public function enqueueAdminScripts() {
+		$this->addStyle( 'chipmunk-admin-styles', 'styles/admin.css' );
 	}
 
 	/**
 	 * Add async attribute to WordPress scripts
 	 *
+	 * @param string $tag    The <script> tag for the enqueued script.
+	 * @param string $handle The script's registered handle.
+	 * @param string $src    The script's source URL.
+	 *
 	 * @return string
 	 */
-	protected function addAsyncAttribute( $tag, $handle, $src ) {
+	public function addAsyncAttribute( string $tag, string $handle, string $src ): string {
 		// add script handles to the array below
 		$scripts = [
 			'defer' => [ 'chipmunk-scripts' ],

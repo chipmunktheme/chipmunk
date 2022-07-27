@@ -2,45 +2,29 @@
 
 namespace Chipmunk;
 
-use Piotrkulpinski\Framework\Handler\ThemeHandler;
-use Chipmunk\Helper\FileTrait;
-use Chipmunk\Helper\ConfigTrait;
+use Chipmunk\Theme;
+use function Chipmunk\config;
 
 /**
- * Timber Templates settigs class
- *
- * Use this class to setup whole Timber related configuration
- *
- * @package Chipmunk
+ * Theme templates
  */
-class Templates extends ThemeHandler {
-
-	use FileTrait;
-
-	use ConfigTrait;
+class Templates extends Theme {
 
 	/**
 	 * Tempalate class constructor.
 	 */
-	public function __construct() {
-		parent::__construct();
-	}
+	public function __construct() {}
 
 	/**
-	 * initialize
-	 *
 	 * Hooks methods of this object into the WordPress ecosystem
 	 *
 	 * @return void
-	 * @throws HandlerException
 	 */
 	public function initialize(): void {
-		if ( ! $this->isInitialized() ) {
-			$this->addFilter( 'timber/locations', 'setTimberLocation' );
-			$this->addFilter( 'timber/context', 'setTimberContext' );
-			$this->addFilter( 'timber/twig/functions', 'setTwigFunctions' );
-			$this->addFilter( 'timber/twig/filters', 'setTwigFilters' );
-		}
+		$this->addFilter( 'timber/locations', [ $this, 'setTimberLocation' ] );
+		$this->addFilter( 'timber/context', [ $this, 'setTimberContext' ] );
+		$this->addFilter( 'timber/twig/functions', [ $this, 'setTwigFunctions' ] );
+		$this->addFilter( 'timber/twig/filters', [ $this, 'setTwigFilters' ] );
 	}
 
 	/**
@@ -50,8 +34,8 @@ class Templates extends ThemeHandler {
 	 *
 	 * @return array
 	 */
-	protected function setTimberLocation( array $paths ): array {
-		$paths[] = [ $this->buildPath( get_template_directory(), $this->getTemplatesPath() ) ];
+	public function setTimberLocation( array $paths ): array {
+		$paths[] = [ config()->getTemplatesPath() ];
 
 		return $paths;
 	}
@@ -63,7 +47,7 @@ class Templates extends ThemeHandler {
 	 *
 	 * @return array
 	 */
-	protected function setTimberContext( array $context ): array {
+	public function setTimberContext( array $context ): array {
 		$conditionals = [
 			'is_home',
 			'is_front_page',
@@ -96,7 +80,7 @@ class Templates extends ThemeHandler {
 	 *
 	 * @return array
 	 */
-	protected function setTwigFunctions( array $functions ): array {
+	public function setTwigFunctions( array $functions ): array {
 		$extend = [
 			// WordPress Helpers
 			'is_singular' => [ 'callable' => 'is_singular' ],
@@ -142,7 +126,7 @@ class Templates extends ThemeHandler {
 	 *
 	 * @return array
 	 */
-	protected function setTwigFilters( array $filters ): array {
+	public function setTwigFilters( array $filters ): array {
 		$extend = [
 			// PHP/WordPress built-in filters
 			'esc_url'        => [ 'callable' => 'esc_url' ],

@@ -1,7 +1,7 @@
 <!doctype html>
 <html {{ site.language_attributes }}>
 <head>
-  {% include 'layouts/head.twig' %}
+  {# {% include 'layouts/head.twig' %} #}
 
   {{ fn('wp_head') }}
 </head>
@@ -9,7 +9,7 @@
 <body class="{{ body_class }} l-body">
   {{ fn('wp_body_open') }}
 
-  {% include 'layouts/header.twig' %}
+  {# {% include 'layouts/header.twig' %}
   {% include 'layouts/overlay.twig' %}
 
   <main class="l-body__bag" id="top">
@@ -35,7 +35,7 @@
 
   {% if not get_option('disable_submissions') and not get_option('submit_page') %}
     {% include 'sections/submit.twig' %}
-  {% endif %}
+  {% endif %} #}
 
   {{ fn('wp_footer') }}
 

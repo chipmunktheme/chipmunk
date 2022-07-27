@@ -3,7 +3,10 @@
 namespace Chipmunk;
 
 use Piotrkulpinski\Framework\Handler\ThemeHandler;
+use Chipmunk\Options;
 use Chipmunk\Templates;
+use Chipmunk\Assets;
+use Chipmunk\Helper\HooksTrait;
 
 /**
  * Main theme setup class
@@ -11,12 +14,37 @@ use Chipmunk\Templates;
  * @package Chipmunk
  */
 class Theme extends ThemeHandler {
+	use HooksTrait;
+
+	/**
+	 * Theme options
+	 *
+	 * @var object
+	 */
+	protected $options;
+
+	/**
+	 * Theme templates
+	 *
+	 * @var object
+	 */
+	protected $templates;
+
+	/**
+	 * Theme assets
+	 *
+	 * @var object
+	 */
+	protected $assets;
 
 	/**
 	 * Theme constructor.
 	 */
 	public function __construct() {
-		parent::__construct();
+		$this->config    = new Config();
+		$this->options   = new Options();
+		$this->templates = new Templates();
+		$this->assets    = new Assets();
 	}
 
 	/**
@@ -29,35 +57,9 @@ class Theme extends ThemeHandler {
 	 */
 	public function initialize(): void {
 		if ( ! $this->isInitialized() ) {
-			( new Templates() )->initialize();
-			( new Assets() )->initialize();
+			$this->options->initialize();
+			$this->templates->initialize();
+			$this->assets->initialize();
 		}
-	}
-
-	/**
-	 * Throw error on object clone.
-	 *
-	 * The whole idea of the singleton design pattern is that there is a single
-	 * object therefore, we don't want the object to be cloned.
-	 *
-	 * @since 2.0
-	 * @access protected
-	 * @return void
-	 */
-	public function __clone() {
-		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'chipmunk' ), '2.0' );
-	}
-
-	/**
-	 * Disable unserializing of the class.
-	 *
-	 * @since 2.0
-	 * @access protected
-	 * @return void
-	 */
-	public function __wakeup() {
-		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'chipmunk' ), '2.0' );
 	}
 }

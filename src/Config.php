@@ -1,0 +1,243 @@
+<?php
+
+namespace Chipmunk;
+
+use Timber\Theme;
+use Chipmunk\Helper\FileTrait;
+use Chipmunk\Helper\HelpersTrait;
+use Chipmunk\Helper\HooksTrait;
+
+/**
+ * Provides methods for the getting config options
+ */
+final class Config {
+
+	use FileTrait;
+	use HelpersTrait;
+	use HooksTrait;
+
+	/**
+	 * @var Config The one true Config
+	 */
+	private static $instance;
+
+	/**
+	 * Insures that only one instance of Config exists in memory at any one
+	 * time. Also prevents needing to define globals all over the place.
+	 *
+	 * @return object|Config The one true Config
+	 */
+	public static function instance() {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Config ) ) {
+			self::$instance = new Config();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Method that returns project name.
+	 *
+	 * Generally used for naming assets handlers, languages, etc.
+	 *
+	 * @return string
+	 */
+	public function getName(): string {
+		return 'Chipmunk';
+	}
+
+	/**
+	 * Method that returns project slug.
+	 *
+	 * Generally used for naming settings, customizer options etc.
+	 *
+	 * @return string
+	 */
+	public function getSlug(): string {
+		return sanitize_title( $this->getName() );
+	}
+
+	/**
+	 * Method that returns project version.
+	 *
+	 * Generally used for versioning asset handlers while enqueueing them.
+	 *
+	 * @return string
+	 */
+	public function getVersion(): string {
+		return ( new Theme() )->version;
+	}
+
+	/**
+	 * Method that returns project author.
+	 *
+	 * Used for displaying author on theme settings.
+	 *
+	 * @return string
+	 */
+	public function getAuthor(): string {
+		return 'Made by Less';
+	}
+
+	/**
+	 * Method that returns templates path.
+	 *
+	 * Used for setting up template paths for Timber views.
+	 *
+	 * @return string
+	 */
+	public function getTemplatesPath(): string {
+		return $this->buildPath( get_template_directory(), 'templates' );
+	}
+
+	/**
+	 * Method that returns dist path.
+	 *
+	 * Used for enqueueing static resources.
+	 *
+	 * @return string
+	 */
+	public function getDistPath(): string {
+		return $this->buildPath( get_template_directory(), 'resources/output' );
+	}
+
+	/**
+	 * Method that returns assets path.
+	 *
+	 * Used for displaying static resources like images, fonts etc.
+	 *
+	 * @return string
+	 */
+	public function getAssetsPath(): string {
+		return $this->buildPath( $this->getDistPath(), 'assets' );
+	}
+
+	/**
+	 * Method that returns manifest file path.
+	 *
+	 * Used for reading the production manifest file.
+	 *
+	 * @return string
+	 */
+	public function getManifestPath(): string {
+		return $this->buildPath( $this->getDistPath(), 'manifest.json' );
+	}
+
+	/**
+	 * Method that returns manifest dev file path.
+	 *
+	 * Used for reading the development manifest file.
+	 *
+	 * @return string
+	 */
+	public function getManifestDevPath(): string {
+		return $this->buildPath( $this->getDistPath(), 'manifest-dev.json' );
+	}
+
+	/**
+	 * Method that returns theme demo url.
+	 *
+	 * Used for Merlin Theme Wizarf onboarding.
+	 *
+	 * @return string
+	 */
+	public function getDemoUrl(): string {
+		return 'https://demos.chipmunktheme.com';
+	}
+
+	/**
+	 * Method that returns theme shop url.
+	 *
+	 * Used for linking to the theme shop in various places.
+	 *
+	 * @return string
+	 */
+	public function getShopUrl(): string {
+		return 'https://chipmunktheme.com';
+	}
+
+	/**
+	 * Method that returns theme shop item id.
+	 *
+	 * Used for checking license status and theme updates.
+	 *
+	 * @return string
+	 */
+	public function getShopItemId(): string {
+		return '893';
+	}
+
+	/**
+	 * Method that returns project author.
+	 *
+	 * Used for determining theme user access to certain parts of the theme.
+	 *
+	 * @return array
+	 */
+	public function getPlans(): array {
+		return [
+			'1' => 'Basic',
+			'2' => 'Plus',
+			'3' => 'Pro',
+		];
+	}
+
+	/**
+	 * Method that returns supported social profiles.
+	 *
+	 * Used for creating option lists and displaying the list of socials.
+	 *
+	 * @return array
+	 */
+	public function getSocials(): array {
+		return $this->applyFilter(
+			'social',
+			[
+				'Facebook',
+				'Twitter',
+				'Instagram',
+				'LinkedIn',
+				'Pinterest',
+				'YouTube',
+				'Vimeo',
+				'TikTok',
+				'ProductHunt',
+				'Twitch',
+				'Discord',
+				'Email',
+			]
+		);
+	}
+
+	/**
+	 * Method that returns Google API key.
+	 *
+	 * Used for pulling the list of Google Fonts from their API.
+	 *
+	 * @return string
+	 */
+	public function getGoogleApiKey(): string {
+		return 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE';
+	}
+
+	/**
+	 * Method that returns settings name.
+	 *
+	 * Used for getting the name of the settings in Customizer.
+	 *
+	 * @return string
+	 */
+	public function getSettingsName(): string {
+		return $this->getThemeSlug( 'settings' );
+	}
+}
+
+/**
+ * The main function responsible for returning the one true Config
+ * Instance to functions everywhere.
+ *
+ * @return object|Config The one true Config
+ */
+function config() {
+	return Config::instance();
+}
