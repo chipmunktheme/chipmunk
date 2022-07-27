@@ -29,14 +29,14 @@ interface HandlerInterface {
 	 *
 	 * @return void
 	 */
-	public static function debug( $stuff, bool $die = false, bool $force = false ): void;
+	public function debug( $stuff, bool $die = false, bool $force = false ): void;
 
 	/**
 	 * Returns true when WP_DEBUG exists and is set.
 	 *
 	 * @return bool
 	 */
-	public static function isDebug(): bool;
+	public function isDebug(): bool;
 
 	/**
 	 * Calling this method should write $data to the WordPress debug.log file.
@@ -45,7 +45,7 @@ interface HandlerInterface {
 	 *
 	 * @return void
 	 */
-	public static function writeLog( $data ): void;
+	public function writeLog( $data ): void;
 
 	/**
 	 * This serves as a general-purpose Exception handler which displays
@@ -56,5 +56,5 @@ interface HandlerInterface {
 	 *
 	 * @return void
 	 */
-	public static function catcher( Throwable $thrown ): void;
+	public function catcher( Throwable $thrown ): void;
 }

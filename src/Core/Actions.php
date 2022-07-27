@@ -1,9 +1,10 @@
 <?php
 
-namespace Chipmunk;
+namespace Chipmunk\Core;
 
 use WP_Query;
 use Timber\Timber;
+use Chipmunk\Theme;
 use Chipmunk\Extensions\Bookmarks;
 use Chipmunk\Extensions\Submissions;
 use Chipmunk\Extensions\Upvotes;

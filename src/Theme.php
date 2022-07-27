@@ -3,9 +3,11 @@
 namespace Chipmunk;
 
 use Piotrkulpinski\Framework\Handler\ThemeHandler;
-use Chipmunk\Options;
-use Chipmunk\Templates;
-use Chipmunk\Assets;
+use Chipmunk\Core\Options;
+use Chipmunk\Core\Templates;
+use Chipmunk\Core\Assets;
+use Chipmunk\Core\Actions;
+use Chipmunk\Core\Shortcodes;
 use Chipmunk\Helper\HooksTrait;
 use Chipmunk\Helper\ShortcodesTrait;
 

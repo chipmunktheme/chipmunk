@@ -66,8 +66,8 @@ abstract class ThemeHandler implements HandlerInterface {
 	 *
 	 * @return void
 	 */
-	public static function debug( $stuff, bool $die = false, bool $force = false ): void {
-		if ( self::isDebug() || $force ) {
+	public function debug( $stuff, bool $die = false, bool $force = false ): void {
+		if ( $this->isDebug() || $force ) {
 			$message = '<pre>' . print_r( $stuff, true ) . '</pre>';
 
 			if ( $die ) {
@@ -83,7 +83,7 @@ abstract class ThemeHandler implements HandlerInterface {
 	 *
 	 * @return bool
 	 */
-	public static function isDebug(): bool {
+	public function isDebug(): bool {
 		return defined( 'WP_DEBUG' ) && WP_DEBUG;
 	}
 
@@ -94,7 +94,7 @@ abstract class ThemeHandler implements HandlerInterface {
 	 *
 	 * @return void
 	 */
-	public static function writeLog( $data ): void {
+	public function writeLog( $data ): void {
 		// source:  https://www.elegantthemes.com/blog/tips-tricks/using-the-wordpress-debug-log
 		// accessed:  2018-07-09
 
@@ -120,7 +120,7 @@ abstract class ThemeHandler implements HandlerInterface {
 	 *
 	 * @return void
 	 */
-	public static function catcher( Throwable $thrown ): void {
-		self::isDebug() ? self::debug( $thrown, true ) : self::writeLog( $thrown );
+	public function catcher( Throwable $thrown ): void {
+		$this->isDebug() ? $this->debug( $thrown, true ) : $this->writeLog( $thrown );
 	}
 }

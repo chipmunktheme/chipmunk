@@ -1,11 +1,12 @@
 <?php
 
-namespace Chipmunk;
+namespace Chipmunk\Core;
 
 use WP_Customize_Manager;
 use WP_Customize_Color_Control;
 use WP_Customize_Image_Control;
 
+use Chipmunk\Theme;
 use Chipmunk\Helper\FontsTrait;
 
 use function Chipmunk\config;

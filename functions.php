@@ -21,7 +21,7 @@ try {
 	$theme->initialize();
 
 } catch ( Exception $e ) {
-	$theme::catcher( $e );
+	$theme->catcher( $e );
 }
 
 // $theme->getConfig( 'name' );

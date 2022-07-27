@@ -1,7 +1,8 @@
 <?php
 
-namespace Chipmunk;
+namespace Chipmunk\Core;
 
+use Chipmunk\Theme;
 use Chipmunk\Helper\AssetsTrait;
 use Chipmunk\Helper\EnqueueTrait;
 use Chipmunk\Helper\HelpersTrait;
