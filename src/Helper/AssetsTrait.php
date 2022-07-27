@@ -15,9 +15,9 @@ trait AssetsTrait {
 	/**
 	 * Stored manifest JSON file
 	 *
-	 * @var ?array
+	 * @var array
 	 */
-	public $manifest;
+	private $manifest;
 
 	/**
 	 * Verifies existence of the given file in manifest
@@ -31,21 +31,21 @@ trait AssetsTrait {
 	}
 
 	/**
-	 * Returns the real path of the revisioned file.
+	 * Returns the real url of the revisioned file.
 	 * based on the manifest file content.
 	 *
 	 * @param $asset
 	 *
 	 * @return string
 	 */
-	protected function revisionedPath( $asset ) {
+	protected function revisionedUrl( $asset ) {
 		$manifest = $this->getManifest();
 
 		if ( ! array_key_exists( $asset, $manifest ) ) {
 			return 'FILE-NOT-REVISIONED';
 		}
 
-		return $this->buildPath( config()->getDistPath(), $manifest[ $asset ] );
+		return $this->getTemplateUrl( config()->getDistPath(), $manifest[ $asset ] );
 	}
 
 	/**
@@ -55,8 +55,8 @@ trait AssetsTrait {
 	 *
 	 * @return string
 	 */
-	protected function assetPath( $asset ) {
-		return $this->revisionedPath( $this->buildPath( config()->getAssetsPath(), $asset ) );
+	protected function assetUrl( $asset ) {
+		return $this->revisionedUrl( $this->getPath( config()->getAssetsPath(), $asset ) );
 	}
 
 	/**
@@ -75,22 +75,24 @@ trait AssetsTrait {
 	 */
 	private function getManifest() {
 		if ( empty( $this->manifest ) ) {
-			$this->initManifest();
+			$this->manifest = $this->fetchManifest();
 		}
 
 		return $this->manifest;
 	}
 
 	/**
-	 * Loads data from manifest file.
+	 * Fetches data from remote manifest file
 	 */
-	private function initManifest() {
-		$manifestPath = defined( 'THEME_DEV_ENV' )
+	private function fetchManifest() {
+		$manifestPath = $this->isDev()
 			? config()->getManifestDevPath()
 			: config()->getManifestPath();
 
-		if ( file_exists( $manifestPath ) ) {
-			$this->manifest = json_decode( file_get_contents( $manifestPath ), true );
+		$response = wp_remote_get( $this->getTemplateUrl( $manifestPath ) );
+
+		if ( ! is_wp_error( $response ) && 200 === wp_remote_retrieve_response_code( $response ) ) {
+			return (array) json_decode( $response['body'] );
 		}
 	}
 }

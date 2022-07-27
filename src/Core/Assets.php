@@ -59,27 +59,23 @@ class Assets extends Theme {
 		$customCss       = Helpers::getOption( 'custom_css' );
 		$logoHeight      = Helpers::getOption( 'logo_height' );
 		$disableBorders  = Helpers::getOption( 'disable_section_borders' );
-		$customStyle     = ( ! empty( $customCss ) ) ? $customCss : '';
-		$primaryFont     = ( ! empty( $primaryFont ) && $primaryFont != 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
-		$headingFont     = ( ! empty( $headingFont ) && $headingFont != 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
+		$primaryFont     = ( ! empty( $primaryFont ) && $primaryFont !== 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
+		$headingFont     = ( ! empty( $headingFont ) && $headingFont !== 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
 		$contentWidth    = ( ! empty( $post ) ) ? get_field( $this->getThemeSlug( 'page_content_width' ), $post->ID ) : Helpers::getOption( 'content_width' );
 
-		$customStyle .= '
-			body {
-				' . ( ! empty( $primaryFont ) ? "--chipmunk--typography--font-family: '$primaryFont';" : '' ) . '
-				' . ( ! empty( $headingFont ) ? "--chipmunk--typography--heading-font-family: '$headingFont';" : '' ) . "
-				--chipmunk--color--primary: $primaryColor;
-				--chipmunk--color--link: $linkColor;
-				--chipmunk--color--background: $backgroundColor;
-				--chipmunk--color--section: $sectionColor;
-				--chipmunk--typography--content-size: $contentSize;
-				--chipmunk--layout--content-width: $contentWidth;
-				--chipmunk--border-opacity: " . ( empty( $disableBorders ) ? '0.075' : '0' ) . ';
-				--chipmunk--logo-height: ' . $logoHeight / 10 . 'rem;
-			}
-		';
+		$customStyle  = ( ! empty( $customCss ) ) ? $customCss : '';
+		$customStyle .= ! empty( $primaryFont ) ? $this->getThemeSlug( 'typography--font-family', '--', '' ) . ": $primaryFont" : '';
+		$customStyle .= ! empty( $headingFont ) ? $this->getThemeSlug( 'typography--heading-font-family', '--', '' ) . ": $headingFont" : '';
+		$customStyle .= $this->getThemeSlug( 'color--primary', '--', '' ) . ": $primaryColor";
+		$customStyle .= $this->getThemeSlug( 'color--link', '--', '' ) . ": $linkColor";
+		$customStyle .= $this->getThemeSlug( 'color--background', '--', '' ) . ": $backgroundColor";
+		$customStyle .= $this->getThemeSlug( 'color--section', '--', '' ) . ": $sectionColor";
+		$customStyle .= $this->getThemeSlug( 'typography--content-size', '--', '' ) . ": $contentSize";
+		$customStyle .= $this->getThemeSlug( 'layout--content-width', '--', '' ) . ": $contentWidth";
+		$customStyle .= $this->getThemeSlug( 'border-opacity', '--', '' ) . ': ' . ( empty( $disableBorders ) ? '0.075' : '0' );
+		$customStyle .= $this->getThemeSlug( 'logo-height', '--', '' ) . ': ' . $logoHeight / 10 . 'rem';
 
-		$this->addInlineStyle( 'chipmunk-styles', $customStyle );
+		$this->addInlineStyle( 'chipmunk-styles', ":root {{$customStyle}}" );
 	}
 
 	/**

@@ -97,7 +97,7 @@ trait EnqueueTrait {
 		if ( URLHelper::is_url( $src ) ) {
 			$function( $handle, $src, ...$args );
 		} elseif ( $this->hasFile( $src ) ) {
-			$function( $handle, $this->revisionedPath( $src ), ...$args );
+			$function( $handle, $this->revisionedUrl( $src ), ...$args );
 		}
 	}
 }

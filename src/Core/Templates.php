@@ -2,6 +2,7 @@
 
 namespace Chipmunk\Core;
 
+use Chipmunk\Helper\FileTrait;
 use Chipmunk\Theme;
 use function Chipmunk\config;
 
@@ -9,6 +10,8 @@ use function Chipmunk\config;
  * Theme templates
  */
 class Templates extends Theme {
+
+	use FileTrait;
 
 	/**
 	 * Class constructor.
@@ -35,7 +38,7 @@ class Templates extends Theme {
 	 * @return array
 	 */
 	public function setTimberLocation( array $paths ): array {
-		$paths[] = [ config()->getTemplatesPath() ];
+		$paths[] = [ $this->getTemplatePath( config()->getTemplatesPath() ) ];
 
 		return $paths;
 	}

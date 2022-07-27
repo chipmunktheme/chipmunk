@@ -37,13 +37,15 @@ class Shortcodes extends Theme {
 	 * @return string
 	 */
 	public function renderCounter( $atts, string $content, string $shortcode ): string {
-		return $this->getShortcodeTemplate( 'shortcodes/counter.twig', shortcode_atts(
+		$atts = shortcode_atts(
 			[
 				'type'   => 'resource',
 				'status' => 'publish',
 			],
 			$atts
-		) );
+		);
+
+		return $this->getShortcodeTemplate( 'shortcodes/counter.twig', $atts );
 	}
 
 	/**
@@ -56,11 +58,13 @@ class Shortcodes extends Theme {
 	 * @return string
 	 */
 	public function renderSubmit( $atts, string $content, string $shortcode ): string {
-		return $this->getShortcodeTemplate( 'shortcodes/counter.twig', shortcode_atts(
+		$atts = shortcode_atts(
 			[
 				'title' => '',
 			],
 			$atts
-		) );
+		);
+
+		return $this->getShortcodeTemplate( 'shortcodes/counter.twig', $atts );
 	}
 }

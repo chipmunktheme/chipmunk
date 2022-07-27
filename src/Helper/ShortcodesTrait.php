@@ -22,6 +22,25 @@ trait ShortcodesTrait {
 	}
 
 	/**
+	 * Calls a shortcode function by tag name.
+	 *
+	 * @param string       $tag The shortcode whose function to call.
+	 * @param array<mixed> $atts The attributes to pass to the shortcode function. Optional.
+	 * @param ?string      $content The shortcode's content. Default is null (none).
+	 *
+	 * @return string|bool False on failure, the result of the shortcode on success.
+	 */
+	public function getShortcode( string $tag, array $attr = [], string $content = null ) {
+		global $shortcode_tags;
+
+		if ( ! isset( $shortcode_tags[ $tag ] ) ) {
+			return false;
+		}
+
+		return call_user_func( $shortcode_tags[ $tag ], $attr, $content, $tag );
+	}
+
+	/**
 	 * Retrieves shortcode template and passes attributes to it.
 	 *
 	 * @param string $template

@@ -2,14 +2,7 @@
 
 namespace Piotrkulpinski\Framework\Handler;
 
-use Closure;
 use Throwable;
-use ReflectionClass;
-use ReflectionException;
-use Piotrkulpinski\Framework\Hook\HookFactory;
-use Piotrkulpinski\Framework\Hook\HookCollection;
-use Piotrkulpinski\Framework\Exception\HookException;
-use Piotrkulpinski\Framework\Exception\HandlerException;
 
 /**
  * Class AbstractThemeHandler

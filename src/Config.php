@@ -22,10 +22,97 @@ final class Config {
 	private static $instance;
 
 	/**
+	 * @var string The name of the theme
+	 */
+	private $name = 'Chipmunk';
+
+	/**
+	 * @var string The author of the theme
+	 */
+	private $author = 'Made by Less';
+
+	/**
+	 * @var string The path to the templates folder
+	 */
+	private $templatesPath = 'templates';
+
+	/**
+	 * @var string The path to the dist folder
+	 */
+	private $distPath = 'resources/output';
+
+	/**
+	 * @var string The path to the assets folder
+	 */
+	private $assetsPath = 'assets';
+
+	/**
+	 * @var string The path to the manifest file
+	 */
+	private $manifestPath = 'manifest.json';
+
+	/**
+	 * @var string The path to the manifest development file
+	 */
+	private $manifestDevPath = 'manifest.json';
+
+	/**
+	 * @var string The url of the demo site
+	 */
+	private $demoUrl = 'https://demos.chipmunktheme.com';
+
+	/**
+	 * @var string The url of the shop site
+	 */
+	private $shopUrl = 'https://chipmunktheme.com';
+
+	/**
+	 * @var string The ID of the shop item
+	 */
+	private $shopItemId = '893';
+
+	/**
+	 * @var array The array of plans available for the theme
+	 */
+	private $plans = [
+		'1' => 'Basic',
+		'2' => 'Plus',
+		'3' => 'Pro',
+	];
+
+	/**
+	 * @var array The array of social profiles supported
+	 */
+	private $socials = [
+		'Facebook',
+		'Twitter',
+		'Instagram',
+		'LinkedIn',
+		'Pinterest',
+		'YouTube',
+		'Vimeo',
+		'TikTok',
+		'ProductHunt',
+		'Twitch',
+		'Discord',
+		'Email',
+	];
+
+	/**
+	 * @var string The Google API key
+	 */
+	private $googleApiKey = 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE';
+
+	/**
+	 * @var string The name of the settings property
+	 */
+	private $settingsName = 'settings';
+
+	/**
 	 * Insures that only one instance of Config exists in memory at any one
 	 * time. Also prevents needing to define globals all over the place.
 	 *
-	 * @return object|Config The one true Config
+	 * @return Config
 	 */
 	public static function instance() {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Config ) ) {
@@ -43,7 +130,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getName(): string {
-		return 'Chipmunk';
+		return $this->name;
 	}
 
 	/**
@@ -76,7 +163,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getAuthor(): string {
-		return 'Made by Less';
+		return $this->author;
 	}
 
 	/**
@@ -87,7 +174,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getTemplatesPath(): string {
-		return $this->buildPath( get_template_directory(), 'templates' );
+		return $this->templatesPath;
 	}
 
 	/**
@@ -98,7 +185,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getDistPath(): string {
-		return $this->buildPath( get_template_directory(), 'resources/output' );
+		return $this->distPath;
 	}
 
 	/**
@@ -109,7 +196,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getAssetsPath(): string {
-		return $this->buildPath( $this->getDistPath(), 'assets' );
+		return $this->getPath( $this->getDistPath(), $this->assetsPath );
 	}
 
 	/**
@@ -120,7 +207,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getManifestPath(): string {
-		return $this->buildPath( $this->getDistPath(), 'manifest.json' );
+		return $this->getPath( $this->getDistPath(), $this->manifestPath );
 	}
 
 	/**
@@ -131,7 +218,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getManifestDevPath(): string {
-		return $this->buildPath( $this->getDistPath(), 'manifest-dev.json' );
+		return $this->getPath( $this->getDistPath(), $this->manifestDevPath );
 	}
 
 	/**
@@ -142,7 +229,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getDemoUrl(): string {
-		return 'https://demos.chipmunktheme.com';
+		return $this->demoUrl;
 	}
 
 	/**
@@ -153,7 +240,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getShopUrl(): string {
-		return 'https://chipmunktheme.com';
+		return $this->shopUrl;
 	}
 
 	/**
@@ -164,7 +251,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getShopItemId(): string {
-		return '893';
+		return $this->shopItemId;
 	}
 
 	/**
@@ -175,11 +262,7 @@ final class Config {
 	 * @return array
 	 */
 	public function getPlans(): array {
-		return [
-			'1' => 'Basic',
-			'2' => 'Plus',
-			'3' => 'Pro',
-		];
+		return $this->plans;
 	}
 
 	/**
@@ -190,23 +273,7 @@ final class Config {
 	 * @return array
 	 */
 	public function getSocials(): array {
-		return $this->applyFilter(
-			'social',
-			[
-				'Facebook',
-				'Twitter',
-				'Instagram',
-				'LinkedIn',
-				'Pinterest',
-				'YouTube',
-				'Vimeo',
-				'TikTok',
-				'ProductHunt',
-				'Twitch',
-				'Discord',
-				'Email',
-			]
-		);
+		return $this->applyFilter( 'socials', $this->socials );
 	}
 
 	/**
@@ -217,7 +284,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getGoogleApiKey(): string {
-		return 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE';
+		return $this->googleApiKey;
 	}
 
 	/**
@@ -228,7 +295,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getSettingsName(): string {
-		return $this->getThemeSlug( 'settings' );
+		return $this->getThemeSlug( $this->settingsName );
 	}
 }
 
@@ -236,7 +303,7 @@ final class Config {
  * The main function responsible for returning the one true Config
  * Instance to functions everywhere.
  *
- * @return object|Config The one true Config
+ * @return Config
  */
 function config() {
 	return Config::instance();
