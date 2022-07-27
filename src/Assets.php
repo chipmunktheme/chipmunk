@@ -16,7 +16,7 @@ class Assets extends Theme {
 	use HelpersTrait;
 
 	/**
-	 * Assets class constructor.
+	 * Class constructor.
 	 */
 	public function __construct() {}
 

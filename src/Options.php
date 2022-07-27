@@ -32,28 +32,9 @@ class Options extends Theme {
 	private $capability = 'edit_theme_options';
 
 	/**
-	 * Assets class constructor.
+	 * Class constructor.
 	 */
-	public function __construct() {}
-
-	/**
-	 * Hooks methods of this object into the WordPress ecosystem
-	 *
-	 * @return void
-	 */
-	public function initialize(): void {
-		$this->addAction( 'init', [ $this, 'setSections' ] );
-
-		if ( is_customize_preview() ) {
-			$this->addAction( 'customize_register', [ $this, 'removeSections' ] );
-			$this->addAction( 'customize_register', [ $this, 'addSections' ] );
-		}
-	}
-
-	/**
-	 * Set the customizer sections
-	 */
-	public function setSections() {
+	public function __construct() {
 		$this->sections = [
 			[
 				'title'  => esc_html__( 'Site Identity', 'chipmunk' ),
@@ -818,13 +799,14 @@ class Options extends Theme {
 	}
 
 	/**
-	 * Remove unnecessary sections from Customize panel
+	 * Hooks methods of this object into the WordPress ecosystem
 	 *
-	 * @param WP_Customize_Manager $customize
+	 * @return void
 	 */
-	public function removeSections( WP_Customize_Manager $customize ) {
-		$customize->remove_section( 'themes' );
-		$customize->remove_section( 'static_front_page' );
+	public function initialize(): void {
+		if ( is_customize_preview() ) {
+			$this->addAction( 'customize_register', [ $this, 'addSections' ] );
+		}
 	}
 
 	/**

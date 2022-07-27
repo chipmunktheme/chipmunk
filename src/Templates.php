@@ -11,7 +11,7 @@ use function Chipmunk\config;
 class Templates extends Theme {
 
 	/**
-	 * Tempalate class constructor.
+	 * Class constructor.
 	 */
 	public function __construct() {}
 
