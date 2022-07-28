@@ -15,7 +15,14 @@ class Admin extends Theme {
 	use HelperTrait;
 
 	/**
-	 * A list of type for adding custom permalink settings
+	 * A list of technical requirements of the theme
+	 *
+	 * @var array
+	 */
+	private array $requirements;
+
+	/**
+	 * A list of types that supports permalink settings
 	 *
 	 * @var array
 	 */
@@ -25,6 +32,17 @@ class Admin extends Theme {
 	 * Class constructor
 	 */
 	public function __construct() {
+		$this->requirements = [
+			'PHP'   => [
+				'required' => config()->getMinPHPVersion(),
+				'current' => phpversion(),
+			],
+			'WordPress'   => [
+				'required' => config()->getMinWPVersion(),
+				'current' => get_bloginfo( 'version' ),
+			],
+		];
+
 		$this->permalinkTypes = [
 			'resource'   => __( 'Resource base', 'chipmunk' ),
 			'collection' => __( 'Collection base', 'chipmunk' ),
@@ -100,24 +118,18 @@ class Admin extends Theme {
 	 * @return array
 	 */
 	private function checkRequirements( array $notices = [] ): array {
-		if ( version_compare( config()->getMinPHPVersion(), phpversion(), '>' ) ) {
-			$notices[] = [
-				'type'    => 'error',
-				'message' => sprintf(
-					__( 'Chipmunk requires PHP %1$s or greater. You have %2$s.', 'chipmunk' ),
-					config()->getMinPHPVersion()
-				),
-			];
-		}
-
-		if ( version_compare( config()->getMinWPVersion(), get_bloginfo( 'version' ), '>' ) ) {
-			$notices[] = [
-				'type'    => 'error',
-				'message' => sprintf(
-					__( 'Chipmunk requires WordPress %1$s or greater. You have %2$s.', 'chipmunk' ),
-					config()->getMinWPVersion()
-				),
-			];
+		foreach ( $this->requirements as $key => $requirement ) {
+			if ( version_compare( $requirement['required'], $requirement['current'], '>' ) ) {
+				$notices[] = [
+					'type'    => 'error',
+					'message' => sprintf(
+						__( 'Chipmunk requires %1$s %2$s or greater. You have %3$s.', 'chipmunk' ),
+						$key,
+						$requirement['required'],
+						$requirement['current'],
+					),
+				];
+			}
 		}
 
 		return $notices;
