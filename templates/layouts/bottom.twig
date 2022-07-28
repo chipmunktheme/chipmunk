@@ -1,14 +1,14 @@
-<div class="c-page-foot l-section l-section--compact">
+<div class="c-page-foot {{ class('l-section', 'compact') }}">
   <div class="l-container">
     <div class="c-page-foot__inner">
       <p class="c-page-foot__copy">
-        {{ get_option('copyright_text') | e('wp_kses_post') | shortcodes }}
+        {{ get_option('copyright_text') | wp_kses_post | shortcodes }}
       </p>
 
       {% if not get_option('disable_credits') %}
         {% set credits %}
           {{ __('Made with Chipmunk', 'chipmunk') }}
-          {{ asset_path('images/logo.svg') | svg_content }}
+          {{ asset('images/logo.svg') | svg_content }}
         {% endset %}
 
         {{ get_external_link('https://chipmunktheme.com', credits, {

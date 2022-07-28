@@ -1,7 +1,7 @@
 {% embed 'wrappers/shortcode.twig' %}
   {% block content %}
     {% if show_title %}
-      <h2 class="{{ cn('c-heading', 'h2') }}">
+      <h2 class="{{ class('c-heading', 'h2') }}">
         {{ __('Edit Profile', 'chipmunk') }}
       </h2>
     {% endif %}
@@ -14,43 +14,43 @@
       <form class="c-form" action="{{ post.link }}" method="post" novalidate data-validate>
         {% include 'partials/alerts.twig' %}
 
-        <div class="{{ cn('c-form__field', 'wide') }}">
+        <div class="{{ class('c-form__field', 'wide') }}">
           <input type="email" name="email" placeholder="{{ __('Email address', 'chimpunk') }}*" value="{{ user.user_email }}" required class="c-form__input">
         </div>
 
-        <div class="{{ cn('c-form__field') }}">
+        <div class="{{ class('c-form__field') }}">
           <input type="text" name="first_name" placeholder="{{ __('First name', 'chimpunk') }}" value="{{ user.meta('first_name') }}" class="c-form__input">
         </div>
 
-        <div class="{{ cn('c-form__field') }}">
+        <div class="{{ class('c-form__field') }}">
           <input type="text" name="last_name" placeholder="{{ __('Last name', 'chimpunk') }}" value="{{ user.meta('last_name') }}" class="c-form__input">
         </div>
 
-        <div class="{{ cn('c-form__field', 'wide') }}">
+        <div class="{{ class('c-form__field', 'wide') }}">
           <input type="url" name="url" placeholder="{{ __('Website', 'chimpunk') }}" value="{{ user.user_url }}" class="c-form__input">
         </div>
 
-        <div class="{{ cn('c-form__field', 'wide') }}">
+        <div class="{{ class('c-form__field', 'wide') }}">
           <textarea rows="1" name="description" placeholder="{{ __('Description', 'chipmunk') }}" class="c-form__input" data-dynamic-rows="10">{{ user.meta('description') }}</textarea>
         </div>
 
         {% if socials %}
-          <h3 class="{{ cn('c-form__field', 'wide', 'separated') }} {{ cn('c-heading', 'h3') }}">
+          <h3 class="{{ class('c-form__field', 'wide', 'separated') }} {{ class('c-heading', 'h3') }}">
             {{ __('Socials', 'chipmunk') }}
           </h3>
 
           {% for key, value in socials %}
-            <div class="{{ cn('c-form__field', 'wide') }}">
+            <div class="{{ class('c-form__field', 'wide') }}">
               <input type="url" name="{{ key | e }}" placeholder="{{ value | e }}" value="{{ user.meta(key) | e }}" class="c-form__input">
             </div>
           {% endfor %}
         {% endif %}
 
-        <div class="{{ cn('c-form__field', 'wide', 'cta') }}">
+        <div class="{{ class('c-form__field', 'wide', 'cta') }}">
           <input type="hidden" name="action" value="chipmunk_update_user" />
           <input type="hidden" name="user_id" value="{{ user.id }}">
 
-          <button type="submit" class="{{ cn('c-button', 'primary-outline') }}">
+          <button type="submit" class="{{ class('c-button', 'primary-outline') }}">
             {{ __('Update', 'chipmunk') }}
           </button>
         </div>

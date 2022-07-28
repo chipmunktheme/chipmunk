@@ -1,13 +1,13 @@
 {# TODO: return a proper query from posts #}
 {% if pagination.pages and not query.related and not query.latest %}
-  <nav class="c-pagination {{ cn('l-component', 'md') }}">
+  <nav class="c-pagination {{ class('l-component', 'md') }}">
     {% if get_option('pagination_type') in ['load_more', 'infinite'] %}
       {# TODO: Set a correct query vars to the button #}
-      <button class="c-pagination__button {{ cn('c-button', 'primary-outline') }} u-loader" data-action="load_posts" data-query-vars="{{ query.query_vars | json_encode }}" data-page="{{ pagination.current + 1 }}"{{ get_option('pagination_type') == 'infinite' ? ' data-view-trigger="click"' }}>
+      <button class="c-pagination__button {{ class('c-button', 'primary-outline') }} u-loader" data-action="load_posts" data-query-vars="{{ query.query_vars | json_encode }}" data-page="{{ pagination.current + 1 }}"{{ get_option('pagination_type') == 'infinite' ? ' data-view-trigger="click"' }}>
 				<span>{{ __('Load more', 'chipmunk') }}</span>
 			</button>
     {% else %}
-      <{{ pagination.prev ? "a href='#{ pagination.prev.link }'" : 'div' }} class="{{ cn('c-pagination__item', not pagination.prev ? 'disabled') }}">
+      <{{ pagination.prev ? "a href='#{ pagination.prev.link }'" : 'div' }} class="{{ class('c-pagination__item', not pagination.prev ? 'disabled') }}">
         {% include 'partials/icon.twig' with { icon: 'arrow-left' } only %}
         <span class="u-visible-md-inline">{{ __('Previous', 'chipmunk') }}</span>
       </{{ pagination.prev ? 'a' : 'div' }}>
@@ -16,7 +16,7 @@
 				{{ __('Page %d of %d', 'chipmunk') | format(pagination.current, pagination.total) }}
 			</div>
 
-      <{{ pagination.next ? "a href='#{ pagination.next.link }'" : 'div' }} class="{{ cn('c-pagination__item', not pagination.next ? 'disabled') }}">
+      <{{ pagination.next ? "a href='#{ pagination.next.link }'" : 'div' }} class="{{ class('c-pagination__item', not pagination.next ? 'disabled') }}">
         <span class="u-visible-md-inline">{{ __('Next', 'chipmunk') }}</span>
         {% include 'partials/icon.twig' with { icon: 'arrow-right' } only %}
       </{{ pagination.next ? 'a' : 'div' }}>

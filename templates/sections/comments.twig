@@ -1,7 +1,7 @@
 {% if post.password_required %}
 	{{ __('This post is password protected. Enter the password to view any comments.', 'chipmunk') }}
 {% elseif post.comment_status == 'open' or post.comment_count %}
-  <div class="{{ cn('l-section', 'theme-light') }}">
+  <div class="{{ class('l-section', 'theme-light') }}">
     <div class="l-container">
       <div class="l-wrapper">
         {% include 'sections/comments/list.twig' %}

@@ -1,5 +1,5 @@
 {% if is_option_enabled('views', post.type) %}
-  <li class="{{ cn('c-stats__item', 'views') }}" title="{{ __('Views', 'chipmunk') }}">
+  <li class="{{ class('c-stats__item', 'views') }}" title="{{ __('Views', 'chipmunk') }}">
     {% include 'partials/icon.twig' with { icon: 'eye' } only %}
     {{ get_views(post.id) | format_number }}
   </li>

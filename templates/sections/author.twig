@@ -3,17 +3,17 @@
 
 	{% set author_socials = fn('wp_get_user_contact_methods') | filter((value, key) => author.meta(key)) %}
 
-	<div class="{{ cn('l-section', 'theme-light') }}" id="author-profile">
+	<div class="{{ class('l-section', 'theme-light') }}" id="author-profile">
 		<div class="l-container">
 			<div class="l-wrapper">
 				<div class="l-component">
-					<h1 class="{{ cn('c-heading', 'h4') }}">
+					<h1 class="{{ class('c-heading', 'h4') }}">
 						{{ __('%s', 'chipmunk') | apply_filters('chipmunk_author_title') | format(author.name) }}
 					</h1>
 				</div>
 
 				<div class="c-profile l-component">
-					<div class="c-profile__avatar {{ cn('u-avatar', 'lg') }}">
+					<div class="c-profile__avatar {{ class('u-avatar', 'lg') }}">
             <img src="{{ author.avatar({ size: 256 }) }}" alt="">
 					</div>
 

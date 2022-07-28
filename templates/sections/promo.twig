@@ -11,7 +11,7 @@
 {% set has_content = has_image or ad_code %}
 
 {% if enabled and enabled_home and has_content %}
-  <div class="{{ cn('l-section', ['theme-light', 'compact', 'sticky']) }}">
+  <div class="{{ class('l-section', ['theme-light', 'compact', 'sticky']) }}">
     <div class="l-container">
       {% if has_image and ad_link %}
         <a href="{{ ad_link | esc_url }}" target="_blank" class="c-promo">

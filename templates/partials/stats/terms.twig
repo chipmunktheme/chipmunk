@@ -3,7 +3,7 @@
   {% set terms = post.terms(taxonomy) %}
 
   {% if terms %}
-    <li class="{{ cn('c-stats__item', 'terms') }}{{ term_args.desktop_only ? ' u-visible-lg-flex' }}" title="{{ __('Terms', 'chipmunk') }}">
+    <li class="{{ class('c-stats__item', 'terms') }}{{ term_args.desktop_only ? ' u-visible-lg-flex' }}" title="{{ __('Terms', 'chipmunk') }}">
       {% include 'partials/icon.twig' with { icon: (taxonomy == 'resource-collection' ? 'collection' : 'tag') } only %}
       {{ get_term_list(terms, term_args ?? []) }}
     </li>

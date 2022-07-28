@@ -1,6 +1,6 @@
 {% if post.thumbnail and is_option_enabled('single_thumbs', 'resource') %}
   {% set thumbnail = "<img src='#{ post.thumbnail.src('1280x960') }' alt='' itemprop='image' />" %}
-  {% set media_class = 'c-resource__media ' ~ cn('c-media', get_option('resource_image_aspect_ratio')) %}
+  {% set media_class = 'c-resource__media ' ~ class('c-media', get_option('resource_image_aspect_ratio')) %}
 
   {% if not is_single %}
     <a href="{{ post.link }}" class="{{ media_class }}">

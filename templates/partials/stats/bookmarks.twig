@@ -1,5 +1,5 @@
 {% if is_option_enabled('bookmarks', post.type) and is_addon_enabled('members') %}
-  <li class="{{ cn('c-stats__item', 'bookmarks') }}">
+  <li class="{{ class('c-stats__item', 'bookmarks') }}">
     {{ bookmark_button }}
   </li>
 {% endif %}

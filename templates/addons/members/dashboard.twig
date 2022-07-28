@@ -1,7 +1,7 @@
 {% embed 'wrappers/shortcode.twig' %}
   {% block content %}
     {% if show_title %}
-      <h2 class="{{ cn('c-heading', 'h2') }}">
+      <h2 class="{{ class('c-heading', 'h2') }}">
         {{ __('Dashboard', 'chipmunk') }}
       </h2>
     {% endif %}
@@ -20,7 +20,7 @@
 
       <div class="c-tabs" data-tabs role="tablist">
         <div class="l-component l-header">
-          <div class="c-tabs__title {{ cn('c-heading', 'h6') }}">
+          <div class="c-tabs__title {{ class('c-heading', 'h6') }}">
             {% for tab in tabs %}
               {% if not get_option(tab.option) %}
                 <a href="{{ fn('add_query_arg', 'tab', tab.name | sanitize_title, dashboard_link) | esc_url }}" class="c-heading__link{{ current_tab == tab.name | sanitize_title ? ' is-active' }}">
@@ -32,7 +32,7 @@
 
           {% if not get_option('disable_submissions') %}
             <div class="c-filter__group u-visible-md-flex">
-              {% include 'partials/submit-button.twig' with { class: cn('c-button', 'primary') } %}
+              {% include 'partials/submit-button.twig' with { class: class('c-button', 'primary') } %}
             </div>
           {% endif %}
         </div>

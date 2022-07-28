@@ -1,5 +1,5 @@
 {% if is_option_enabled('date', post.type) %}
-  <li class="{{ cn('c-stats__item', 'date') }}" title="{{ __('Published', 'chipmunk') }}: {{ post.date('Y-m-d H:i') }}">
+  <li class="{{ class('c-stats__item', 'date') }}" title="{{ __('Published', 'chipmunk') }}: {{ post.date('Y-m-d H:i') }}">
     {% include 'partials/icon.twig' with { icon: 'clock' } only %}
 
     <time datetime="{{ post.date('c') }}" itemprop="datePublished">

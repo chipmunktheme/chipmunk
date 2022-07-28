@@ -14,7 +14,7 @@ trait FileTrait {
 	 *
 	 * @return string Path
 	 */
-	public function getTemplatePath( ...$segments ): string {
+	protected function getTemplatePath( ...$segments ): string {
 		array_unshift( $segments, get_template_directory() );
 
 		return $this->getPath( ...$segments );
@@ -27,7 +27,7 @@ trait FileTrait {
 	 *
 	 * @return string Path
 	 */
-	public function getTemplateUrl( ...$segments ): string {
+	protected function getTemplateUrl( ...$segments ): string {
 		array_unshift( $segments, get_template_directory_uri() );
 
 		return $this->getPath( ...$segments );
@@ -40,7 +40,7 @@ trait FileTrait {
 	 *
 	 * @return string Path
 	 */
-	public function getPath( ...$segments ): string {
+	protected function getPath( ...$segments ): string {
 		return join( DIRECTORY_SEPARATOR, $segments );
 	}
 }

@@ -58,7 +58,7 @@
 		<div class="l-container">
       <div class="c-tabs" data-tabs role="tablist">
         {% if tabs | length > 1 %}
-          <div class="c-tabs__title {{ cn('c-heading', 'h5') }}">
+          <div class="c-tabs__title {{ class('c-heading', 'h5') }}">
             {% for tab in tabs %}
               <a href="#{{ sections[tab].label | sanitize_title }}" class="c-heading__link{{ loop.first ? ' is-active' }}" data-tabs-toggle role="tab">
                 {{ sections[tab].label }}

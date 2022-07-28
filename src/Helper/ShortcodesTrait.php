@@ -15,7 +15,7 @@ trait ShortcodesTrait {
 	 * @param string   $tag
 	 * @param callable $callback
 	 */
-	public function addShortcode( string $tag, callable $callback ) {
+	protected function addShortcode( string $tag, callable $callback ) {
 		return is_string( $callback )
 			? add_shortcode( $tag, [ $this, $callback ] )
 			: add_shortcode( $tag, $callback );
@@ -30,7 +30,7 @@ trait ShortcodesTrait {
 	 *
 	 * @return string|bool False on failure, the result of the shortcode on success.
 	 */
-	public function getShortcode( string $tag, array $attr = [], string $content = null ) {
+	protected function getShortcode( string $tag, array $attr = [], string $content = null ) {
 		global $shortcode_tags;
 
 		if ( ! isset( $shortcode_tags[ $tag ] ) ) {
@@ -48,7 +48,7 @@ trait ShortcodesTrait {
 	 *
 	 * @return string
 	 */
-	public function getShortcodeTemplate( string $template, array $atts = [] ): string {
+	protected function getShortcodeTemplate( string $template, array $atts = [] ): string {
 		return Timber::compile( $template, array_merge( Timber::context(), $atts ) );
 	}
 }

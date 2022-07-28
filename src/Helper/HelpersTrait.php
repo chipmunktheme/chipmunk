@@ -19,7 +19,7 @@ trait HelpersTrait {
 	 *
 	 * @return string
 	 */
-	public function getThemeSlug( string $slug, string $separator = '_', ?string $prefix = null, ?string $suffix = null ): string {
+	protected function getThemeSlug( string $slug, string $separator = '_', ?string $prefix = null, ?string $suffix = null ): string {
 		$segments = [ $prefix, config()->getSlug(), $slug, $suffix ];
 		$segments = array_filter( $segments, fn( $value ) => ! is_null( $value ) );
 

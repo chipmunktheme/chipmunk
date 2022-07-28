@@ -1,18 +1,18 @@
-<div class="{{ cn('c-resource__content', not post.thumbnail ? 'full') }}">
+<div class="{{ class('c-resource__content', not post.thumbnail ? 'full') }}">
   <div class="c-resource__info">
-    <h2 class="c-resource__title {{ cn('c-heading', 'h3') }}">
+    <h2 class="c-resource__title {{ class('c-heading', 'h3') }}">
       <a href="{{ post.link }}">{{ post.title }}</a>
     </h2>
 
     {% if post.content %}
-      <div class="c-resource__description {{ cn('c-content', 'type', 'clamp-3') }}">
+      <div class="c-resource__description {{ class('c-content', 'type', 'clamp-3') }}">
         {{ post.excerpt({ chars: 300 }).read_more(null) | apply_filters('the_content') }}
       </div>
     {% endif %}
   </div>
 
   <div class="c-resource__actions">
-    <a href="{{ post.link }}" class="{{ cn('c-button', 'primary-outline') }}">
+    <a href="{{ post.link }}" class="{{ class('c-button', 'primary-outline') }}">
       {{ __('Read more', 'chipmunk') }}
     </a>
   </div>

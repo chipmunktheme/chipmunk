@@ -1,6 +1,6 @@
 {% macro alert(alert) %}
-  <div class="{{ cn('c-form__field', 'wide') }}">
-    <p class="{{ cn('c-form__info', alert.type) }}">
+  <div class="{{ class('c-form__field', 'wide') }}">
+    <p class="{{ class('c-form__info', alert.type) }}">
       {{ alert.message }}
     </p>
   </div>

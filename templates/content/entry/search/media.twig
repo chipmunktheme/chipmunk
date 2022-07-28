@@ -1,5 +1,5 @@
 {% if post.thumbnail %}
-  <a href="{{ post.link }}" class="c-resource__media {{ cn('c-media', get_option('resource_image_aspect_ratio')) }}">
+  <a href="{{ post.link }}" class="c-resource__media {{ class('c-media', get_option('resource_image_aspect_ratio')) }}">
     <img src="{{ post.thumbnail.src('1280x960') }}" alt="" />
   </a>
 {% endif %}

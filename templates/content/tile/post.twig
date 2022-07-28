@@ -1,6 +1,6 @@
-<div class="{{ cn('c-tile', 'blank') }}">
+<div class="{{ class('c-tile', 'blank') }}">
 	<div class="c-tile__inner">
-		<a href="{{ post.link }}" class="c-tile__image  {{ cn('c-media', get_option('post_image_aspect_ratio')) }}">
+		<a href="{{ post.link }}" class="c-tile__image  {{ class('c-media', get_option('post_image_aspect_ratio')) }}">
 			{% if post.thumbnail %}
         <img src="{{ post.thumbnail.src('640x480') }}" alt="" />
       {% endif %}
@@ -31,7 +31,7 @@
         },
       } %}
 
-			<a href="{{ post.link }}" class="c-tile__button {{ cn('c-button', 'primary-outline') }} u-visible-lg-block">
+			<a href="{{ post.link }}" class="c-tile__button {{ class('c-button', 'primary-outline') }} u-visible-lg-block">
 				{{ __('Read more', 'chipmunk') }}
 			</a>
 		</div>

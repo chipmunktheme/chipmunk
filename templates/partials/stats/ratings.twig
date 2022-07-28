@@ -1,6 +1,6 @@
 {% if average_rating and is_option_enabled('ratings', post.type) and is_addon_enabled('ratings') %}
   {# TODO: Get the proper average rating for a post #}
-  <li class="{{ cn('c-stats__item', 'ratings') }}" title="{{ __('Ratings', 'chipmunk') }}">
+  <li class="{{ class('c-stats__item', 'ratings') }}" title="{{ __('Ratings', 'chipmunk') }}">
     {% include 'partials/icon.twig' with { icon: 'star' } only %}
     {{ average_rating }}
   </li>

@@ -1,5 +1,5 @@
 {% if collections | length %}
-  <div class="{{ cn('l-component', spacer ?? 'sm') }}">
+  <div class="{{ class('l-component', spacer ?? 'sm') }}">
     <div class="c-tile__list">
       {% for collection in collections %}
         {% include 'content/tile/collection.twig' %}

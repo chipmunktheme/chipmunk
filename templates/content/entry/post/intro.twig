@@ -1,6 +1,6 @@
 {% if not post.thumbnail or get_option('blog_post_layout') == 'no_hero' %}
   {% if post.thumbnail %}
-    <div class="c-entry__image {{ cn('c-media', '16-9') }}">
+    <div class="c-entry__image {{ class('c-media', '16-9') }}">
       <img src="{{ post.thumbnail.src('1280x720') }}" alt="" itemprop="image" />
     </div>
   {% endif %}

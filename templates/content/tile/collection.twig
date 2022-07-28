@@ -13,10 +13,10 @@
   'card_blank': ['blank']
 } %}
 
-<div class="{{ cn('c-tile', tile_classes[options.display_as]) }}">
+<div class="{{ class('c-tile', tile_classes[options.display_as]) }}">
 	<a href="{{ collection.link }}" class="c-tile__inner">
     {% if not options.disable_thumbs or options.display_as == 'tile' %}
-      <div class="c-tile__image {{ cn('c-media', get_option('resource_image_aspect_ratio')) }}">
+      <div class="c-tile__image {{ class('c-media', get_option('resource_image_aspect_ratio')) }}">
         {% if not options.disable_thumbs %}
           {# TODO: Pull the proper collection image from the DB #}
           {% set collection_image = collection.meta('_' ~ THEME_SLUG ~ '_collection_image') %}
@@ -32,9 +32,9 @@
       </div>
     {% endif %}
 
-		<div class="{{ cn('c-tile__content', options.display_as == 'tile' ? (options.disable_thumbs ? 'primary' : 'dimmed')) }}">
+		<div class="{{ class('c-tile__content', options.display_as == 'tile' ? (options.disable_thumbs ? 'primary' : 'dimmed')) }}">
 			<div class="c-tile__head">
-				<{{ is_front_page or is_single ? 'h3' : 'h2' }} class="c-tile__title {{ cn('c-heading', 'h5') }}">
+				<{{ is_front_page or is_single ? 'h3' : 'h2' }} class="c-tile__title {{ class('c-heading', 'h5') }}">
 					{{ collection.name }}
 				</{{ is_front_page or is_single ? 'h3' : 'h2' }}>
 

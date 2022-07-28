@@ -1,6 +1,6 @@
 {% do action('chipmunk_before_post_content') %}
 
-<div class="c-entry__content {{ cn('c-content', 'type') }}" itemprop="articleBody">
+<div class="c-entry__content {{ class('c-content', 'type') }}" itemprop="articleBody">
   {{ post.content }}
 </div>
 

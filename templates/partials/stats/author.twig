@@ -1,5 +1,5 @@
 {% if is_option_enabled('author', post.type) %}
-  <li class="{{ cn('c-stats__item', 'author') }}" title="{{ __('Author', 'chipmunk') }}">
+  <li class="{{ class('c-stats__item', 'author') }}" title="{{ __('Author', 'chipmunk') }}">
     {% if show_avatar %}
       <div class="u-avatar">
         <img src="{{ post.author.avatar({ size: 32 }) }}" alt="">

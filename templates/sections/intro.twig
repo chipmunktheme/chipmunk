@@ -1,9 +1,9 @@
 {% set intro = get_option('intro_text') %}
 
 {% if intro %}
-  <div class="{{ cn('l-section', 'intro') }}">
+  <div class="{{ class('l-section', 'intro') }}">
     <div class="l-container">
-      <h2 class="l-section__intro {{ cn('c-heading', 'h1') }}">
+      <h2 class="l-section__intro {{ class('c-heading', 'h1') }}">
         {{ intro | apply_filters('the_content') }}
       </h2>
     </div>

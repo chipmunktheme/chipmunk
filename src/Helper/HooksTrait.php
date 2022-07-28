@@ -15,14 +15,19 @@ trait HooksTrait {
 	/**
 	 * Passes its arguments to add_action().
 	 *
-	 * @param string   $hook
-	 * @param callable $callback
-	 * @param int      $priority
-	 * @param int      $args
+	 * @param string $hook
+	 * @param mixed  $callback
+	 * @param int    $priority
+	 * @param int    $args
 	 *
 	 * @return bool
 	 */
-	public function addAction( string $hook, callable $callback, int $priority = 10, int $args = 1 ): bool {
+	protected function addAction( string $hook, $callback, int $priority = 10, int $args = 1 ): bool {
+		if ( ! is_callable( $callback ) ) {
+			// TODO: Implement a proper error logging here
+			return false;
+		}
+
 		return is_string( $callback )
 			? add_action( $hook, [ $this, $callback ], $priority, $args )
 			: add_action( $hook, $callback, $priority, $args );
@@ -31,14 +36,19 @@ trait HooksTrait {
 	/**
 	 * Passes its arguments to add_filter.
 	 *
-	 * @param string   $hook
-	 * @param callable $callback
-	 * @param int      $priority
-	 * @param int      $args
+	 * @param string $hook
+	 * @param mixed  $callback
+	 * @param int    $priority
+	 * @param int    $args
 	 *
 	 * @return bool
 	 */
-	public function addFilter( string $hook, callable $callback, int $priority = 10, int $args = 1 ): bool {
+	protected function addFilter( string $hook, $callback, int $priority = 10, int $args = 1 ): bool {
+		if ( ! is_callable( $callback ) ) {
+			// TODO: Implement a proper error logging here
+			return false;
+		}
+
 		return is_string( $callback )
 			? add_filter( $hook, [ $this, $callback ], $priority, $args )
 			: add_filter( $hook, $callback, $priority, $args );
@@ -47,14 +57,19 @@ trait HooksTrait {
 	/**
 	 * Generate proper AJAX hook names and asses its arguments to add_action().
 	 *
-	 * @param string   $hook
-	 * @param callable $callback
-	 * @param int      $priority
-	 * @param int      $args
+	 * @param string $hook
+	 * @param mixed  $callback
+	 * @param int    $priority
+	 * @param int    $args
 	 *
 	 * @return bool
 	 */
-	public function addAjaxAction( string $hook, callable $callback, int $priority = 10, int $args = 1 ): bool {
+	protected function addAjaxAction( string $hook, $callback, int $priority = 10, int $args = 1 ): bool {
+		if ( ! is_callable( $callback ) ) {
+			// TODO: Implement a proper error logging here
+			return false;
+		}
+
 		$this->addAction( 'wp_ajax_' . $this->getThemeSlug( $hook ), $callback, $priority, $args );
 		$this->addAction( 'wp_ajax_nopriv_' . $this->getThemeSlug( $hook ), $callback, $priority, $args );
 
@@ -70,7 +85,7 @@ trait HooksTrait {
 	 *
 	 * @return mixed
 	 */
-	public function applyFilter( string $hook, $value, ...$args ) {
+	protected function applyFilter( string $hook, $value, ...$args ) {
 		return apply_filters( join( '_', [ config()->getSlug(), $hook ] ), $value, ...$args );
 	}
 }

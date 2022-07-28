@@ -17,7 +17,7 @@ trait SelectorsTrait {
 	 *
 	 * @return string
 	 */
-	public static function className( $name, $modifiers = null ): string {
+	protected static function className( $name, $modifiers = null ): string {
 		if ( ! is_string( $name ) ) {
 			return '';
 		}
@@ -52,7 +52,7 @@ trait SelectorsTrait {
 	 *
 	 * @return string
 	 */
-	public static function ensureString( $variable ): string {
+	protected static function ensureString( $variable ): string {
 		$output = '';
 
 		if ( is_array( $variable ) ) {

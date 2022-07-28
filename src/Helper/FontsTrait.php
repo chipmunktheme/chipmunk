@@ -37,7 +37,7 @@ trait FontsTrait {
 	 *
 	 * @return ?array
 	 */
-	public function fetchGoogleFonts( $sort = 'popularity' ) {
+	protected function fetchGoogleFonts( $sort = 'popularity' ) {
 		$apiKey = config()->getGoogleApiKey();
 
 		$ch = curl_init( "https://www.googleapis.com/webfonts/v1/webfonts?key=$apiKey&sort=$sort" );

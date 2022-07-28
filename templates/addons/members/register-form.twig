@@ -1,7 +1,7 @@
 {% embed 'wrappers/shortcode.twig' %}
   {% block content %}
     {% if show_title %}
-      <h2 class="{{ cn('c-heading', 'h2') }}">
+      <h2 class="{{ class('c-heading', 'h2') }}">
       {{ __('Register', 'chipmunk') }}
       </h2>
     {% endif %}
@@ -12,35 +12,35 @@
       <form class="c-form" action="{{ fn('wp_registration_url') | esc_url }}" method="post" novalidate data-validate>
         {% include 'partials/alerts.twig' %}
 
-        <div class="{{ cn('c-form__field', 'wide') }}">
+        <div class="{{ class('c-form__field', 'wide') }}">
           <input type="text" name="username" placeholder="{{ __('Username', 'chipmunk') }}*" required class="c-form__input">
         </div>
 
-        <div class="{{ cn('c-form__field', 'wide') }}">
+        <div class="{{ class('c-form__field', 'wide') }}">
           <input type="email" name="email" placeholder="{{ __('Email address', 'chipmunk') }}*" required class="c-form__input">
         </div>
 
-        <div class="{{ cn('c-form__field') }}">
+        <div class="{{ class('c-form__field') }}">
           <input type="password" name="password" placeholder="{{ __('Password', 'chipmunk') }}*" required minlength="6" class="c-form__input">
         </div>
 
-        <div class="{{ cn('c-form__field') }}">
+        <div class="{{ class('c-form__field') }}">
           <input type="password" name="password2" placeholder="{{ __('Confirm password', 'chipmunk') }}*" required minlength="6" class="c-form__input">
         </div>
 
         {% if get_option('recaptcha_enabled') and get_option('recaptcha_site_key') %}
-          <div class="{{ cn('c-form__field', 'wide') }}">
+          <div class="{{ class('c-form__field', 'wide') }}">
             <div class="g-recaptcha" id="register-recaptcha"></div>
           </div>
         {% endif %}
 
-        <div class="{{ cn('c-form__field', 'wide', 'cta') }}">
-          <button type="submit" class="{{ cn('c-button', 'primary-outline') }}">
+        <div class="{{ class('c-form__field', 'wide', 'cta') }}">
+          <button type="submit" class="{{ class('c-button', 'primary-outline') }}">
             {{ __('Register', 'chipmunk') }}
           </button>
         </div>
 
-        <div class="{{ cn('c-form__field', 'wide', 'cta') }}">
+        <div class="{{ class('c-form__field', 'wide', 'cta') }}">
           <a href="{{ fn('wp_login_url') | esc_url }}" class="c-form__link">
             {{ __('Already have an account?', 'chipmunk') }}
           </a>

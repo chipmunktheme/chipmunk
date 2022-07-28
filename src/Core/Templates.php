@@ -2,8 +2,12 @@
 
 namespace Chipmunk\Core;
 
-use Chipmunk\Helper\FileTrait;
+use Timber\URLHelper;
 use Chipmunk\Theme;
+use Chipmunk\Helper\AssetsTrait;
+use Chipmunk\Helper\FileTrait;
+use Chipmunk\Helper\SelectorsTrait;
+
 use function Chipmunk\config;
 
 /**
@@ -11,7 +15,9 @@ use function Chipmunk\config;
  */
 class Templates extends Theme {
 
+	use AssetsTrait;
 	use FileTrait;
+	use SelectorsTrait;
 
 	/**
 	 * Class constructor.
@@ -31,7 +37,7 @@ class Templates extends Theme {
 	}
 
 	/**
-	 * Sets custom locations for twig files
+	 * Sets custom locations for twig templates
 	 *
 	 * @param array $paths
 	 *
@@ -44,7 +50,7 @@ class Templates extends Theme {
 	}
 
 	/**
-	 * You can add custom global data to twig context
+	 * Adds custom global data to the twig context
 	 *
 	 * @param array $context
 	 *
@@ -77,7 +83,7 @@ class Templates extends Theme {
 	}
 
 	/**
-	 * You can add custom global data to twig context
+	 * Adds custom functions to the twig templates
 	 *
 	 * @param array $functions
 	 *
@@ -89,15 +95,9 @@ class Templates extends Theme {
 			'is_singular' => [ 'callable' => 'is_singular' ],
 			'is_tax'      => [ 'callable' => 'is_tax' ],
 
-			// Generic Helpers
-			// 'revisioned_path'    => [ 'callable' => [ Assets::class, 'revisionedPath' ] ],
-			// 'asset_path'         => [ 'callable' => [ Assets::class, 'assetPath' ] ],
-			// 'has_file'           => [ 'callable' => [ Assets::class, 'hasFile' ] ],
-			// 'get_dist_path'      => [ 'callable' => [ Assets::class, 'getDistPath' ] ],
-			// 'is_dev'             => [ 'callable' => [ Assets::class, 'isDev' ] ],
-
 			// Theme Helpers
-			// 'cn'                 => [ 'callable' => [ Helpers::class, 'className' ] ],
+			'asset'         => [ 'callable' => [ $this, 'assetPath' ] ],
+			'class'                 => [ 'callable' => [ $this, 'className' ] ],
 			// 'get_salt'           => [ 'callable' => [ Helpers::class, 'getSalt' ] ],
 			// 'get_param'          => [ 'callable' => [ Helpers::class, 'getParam' ] ],
 			// 'get_option'         => [ 'callable' => [ Helpers::class, 'getOption' ] ],
@@ -115,15 +115,15 @@ class Templates extends Theme {
 			// 'get_members_link'   => [ 'callable' => [ MembersHelpers::class, 'getPagePermalink' ] ],
 
 			// Third-party Helpers
-			// 'get_current_url'    => [ 'callable' => [ URLHelper::class, 'get_current_url' ] ],
-			// 'is_external'        => [ 'callable' => [ URLHelper::class, 'is_external' ] ],
+			'get_current_url'    => [ 'callable' => [ URLHelper::class, 'get_current_url' ] ],
+			'is_external'        => [ 'callable' => [ URLHelper::class, 'is_external' ] ],
 		];
 
-		return array_merge( $functions, $extend );
+		return array_replace( $functions, $extend );
 	}
 
 	/**
-	 * You can add custom global data to twig context
+	 * Adds custom filters to the twig templates
 	 *
 	 * @param array $filters
 	 *
@@ -135,6 +135,7 @@ class Templates extends Theme {
 			'esc_url'        => [ 'callable' => 'esc_url' ],
 			'esc_attr'       => [ 'callable' => 'esc_attr' ],
 			'esc_html'       => [ 'callable' => 'esc_html' ],
+			'wp_kses_post'       => [ 'callable' => 'wp_kses_post' ],
 			'lcfirst'        => [ 'callable' => 'lcfirst' ],
 			'stripslashes'   => [ 'callable' => 'stripslashes' ],
 			'sanitize_title' => [ 'callable' => 'sanitize_title' ],
@@ -145,6 +146,6 @@ class Templates extends Theme {
 			// 'external_url'   => [ 'callable' => [ Helpers::class, 'getExternalUrl' ] ],
 		];
 
-		return array_merge( $filters, $extend );
+		return array_replace( $filters, $extend );
 	}
 }

@@ -1,6 +1,6 @@
 {% set items = items ?? menu.items %}
 
-<ul class="{{ cn("c-menu-#{ type }", modifiers) }}">
+<ul class="{{ class("c-menu-#{ type }", modifiers) }}">
   {% set class = "c-menu-#{ type }#{ modifiers ? '-' : '__' }" %}
   {% set item_class = class ~ 'item' %}
   {% set link_class = class ~ 'link' %}
@@ -9,10 +9,10 @@
   {% for item in items %}
     {% set is_expandable = item.children and expandable %}
 
-    <li class="{{ cn(item_class, item.children ? 'parent') }} {{ item.classes | join(' ') }}">
+    <li class="{{ class(item_class, item.children ? 'parent') }} {{ item.classes | join(' ') }}">
       {# Not clickable button if there's no link... #}
       {% if item.link == '#' %}
-        <button class="{{ cn(link_class, is_expandable ? 'expandable') }}" {{ is_expandable ? "data-dropdown='responsive' data-dropdown-block='true'" }}>
+        <button class="{{ class(link_class, is_expandable ? 'expandable') }}" {{ is_expandable ? "data-dropdown='responsive' data-dropdown-block='true'" }}>
           {{ item.title }}
 
           {% if is_expandable %}

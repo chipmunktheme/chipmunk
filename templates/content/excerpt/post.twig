@@ -1,6 +1,6 @@
 <div class="c-entry c-entry__tile l-wrapper">
   {% if post.thumbnail %}
-    <a href="{{ post.link }}" class="c-entry__image {{ cn('c-media', '16-9') }}">
+    <a href="{{ post.link }}" class="c-entry__image {{ class('c-media', '16-9') }}">
       <img src="{{ post.thumbnail.src('1280x720') }}" alt="" />
     </a>
   {% endif %}
@@ -10,12 +10,12 @@
   </div>
 
   {% if post.content %}
-    <div class="c-entry__description {{ cn('c-content', 'type') }}">
+    <div class="c-entry__description {{ class('c-content', 'type') }}">
       {{ post.excerpt({ chars: 250 }).read_more(null) }}
     </div>
   {% endif %}
 
-  <a href="{{ post.link }}" class="{{ cn('c-button', 'primary-outline') }}">
+  <a href="{{ post.link }}" class="{{ class('c-button', 'primary-outline') }}">
     {{ __('Read more', 'chipmunk') }}
   </a>
 </div>

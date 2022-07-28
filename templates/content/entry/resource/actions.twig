@@ -4,7 +4,7 @@
   <div class="c-resource__actions">
     {% for link in links %}
       {{ get_external_link(link.url, link.title, {
-        class: 'c-resource__button ' ~ cn('c-button', 'primary-outline'),
+        class: 'c-resource__button ' ~ class('c-button', 'primary-outline'),
       }) }}
     {% endfor %}
   </div>

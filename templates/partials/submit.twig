@@ -4,13 +4,13 @@
 
 {% if title %}
   <div class="l-component">
-    <h4 class="{{ cn('c-heading', 'h1') }} u-text--{{ alignment }}">
+    <h4 class="{{ class('c-heading', 'h1') }} u-text--{{ alignment }}">
       {{ title }}
     </h4>
   </div>
 {% endif %}
 
-<form action="#" class="c-form u-loader {{ popup ? cn('l-component', 'md') }}" novalidate data-validate data-action="{{ action }}" data-action-event="submit">
+<form action="#" class="c-form u-loader {{ popup ? class('l-component', 'md') }}" novalidate data-validate data-action="{{ action }}" data-action-event="submit">
   <p class="c-form__message c-content c-content--type" data-action-message="{{ action }}"></p>
 
   <input type="hidden" name="filter" value="">
@@ -51,20 +51,20 @@
     {% endif %}
 
     {% if get_option('submission_consent') %}
-      <label class="{{ cn('c-form__field', 'wide') }} c-form__checkbox" data-consent>
+      <label class="{{ class('c-form__field', 'wide') }} c-form__checkbox" data-consent>
         <input type="checkbox" name="consent" required>
         <p>{{ get_option('submission_consent') }}</p>
       </label>
     {% endif %}
 
     {% if get_option('recaptcha_enabled') and not user %}
-      <div class="{{ cn('c-form__field', 'wide', alignment) }}">
+      <div class="{{ class('c-form__field', 'wide', alignment) }}">
         <div class="g-recaptcha" id="submit-recaptcha"></div>
       </div>
     {% endif %}
 
-    <div class="{{ cn('c-form__field', 'wide', 'cta', alignment) }}">
-      <button type="submit" class="{{ cn('c-button', 'primary-outline') }}">
+    <div class="{{ class('c-form__field', 'wide', 'cta', alignment) }}">
+      <button type="submit" class="{{ class('c-button', 'primary-outline') }}">
         {{ __('Submit', 'chipmunk') }}
       </button>
     </div>

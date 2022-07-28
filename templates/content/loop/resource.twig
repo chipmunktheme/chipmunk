@@ -1,5 +1,5 @@
 {% if posts | length %}
-  <div class="{{ cn('l-component', spacer ?? 'sm') }}">
+  <div class="{{ class('l-component', spacer ?? 'sm') }}">
     <div class="c-tile__list" data-action-element="load_posts">
       {% for post in posts %}
         {% include "content/tile/#{ post.type }.twig" %}

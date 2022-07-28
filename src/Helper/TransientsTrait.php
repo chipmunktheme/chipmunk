@@ -19,7 +19,7 @@ trait TransientsTrait {
 	 *
 	 * @return mixed Value of transient
 	 */
-	public function getTransient( string $transient ) {
+	protected function getTransient( string $transient ) {
 		return unserialize( get_transient( $this->getThemeSlug( $transient ) ) );
 	}
 
@@ -32,7 +32,7 @@ trait TransientsTrait {
 	 *
 	 * @return bool True if the value was set, false otherwise.
 	 */
-	public function setTransient( string $transient, $value, int $expiration = 0 ): bool {
+	protected function setTransient( string $transient, $value, int $expiration = 0 ): bool {
 		return set_transient( $this->getThemeSlug( $transient ), serialize( $value ), $expiration );
 	}
 }
