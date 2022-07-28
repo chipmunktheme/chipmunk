@@ -28,7 +28,7 @@ class Admin extends Theme {
 		$this->permalinkTypes = [
 			'resource'   => __( 'Resource base', 'chipmunk' ),
 			'collection' => __( 'Collection base', 'chipmunk' ),
-			'tag'        => __( 'Collection base', 'chipmunk' ),
+			'tag'        => __( 'Tag base', 'chipmunk' ),
 		];
 	}
 
@@ -40,12 +40,12 @@ class Admin extends Theme {
 	public function initialize(): void {
 		$this->addAction( 'admin_notices', [ $this, 'displayAdminNotices' ] );
 		$this->addAction( 'admin_init', [ $this, 'addPermalinkSettings' ] );
-		$this->addAction( 'admin_init', [ $this, 'addCollectionPermalinkSetting' ] );
-		$this->addAction( 'admin_init', [ $this, 'addTagPermalinkSetting' ] );
 	}
 
 	/**
 	 * Displays admin notices if there are any
+	 *
+	 * @return void
 	 */
 	public function displayAdminNotices() {
 		$notices = $this->applyFilter( 'admin_notices', $this->checkRequirements() );
@@ -59,7 +59,9 @@ class Admin extends Theme {
 	}
 
 	/**
-	 * Add extra option to Permalinks settings page
+	 * Loops through supported types and adds settings page
+	 *
+	 * @return void
 	 */
 	public function addPermalinkSettings() {
 		foreach ( $this->permalinkTypes as $type => $label ) {
@@ -68,89 +70,26 @@ class Admin extends Theme {
 	}
 
 	/**
-	 * Add extra option to Permalinks settings page
+	 * Add extra option to permalinks settings page
+	 *
+	 * @param string $type
+	 * @param string $label
+	 *
+	 * @return void
 	 */
-	public function addPermalinkSetting( string $type, string $label ) {
-		// TODO: Finish settings up permalink settings
+	private function addPermalinkSetting( string $type, string $label ) {
 		$settingName = $this->getThemeSlug( [ $type, 'cpt_base' ] );
 
 		if ( isset( $_POST[ $settingName ] ) ) {
 			update_option( $settingName, $_POST[ $settingName ] );
 		}
 
-		add_settings_field(
-			$settingName,
-			$label,
-			[ $this, 'addPermalinkSettingCallback' ],
-			'permalink',
-			'optional'
-		);
-	}
+		$callback = function() use ( $settingName ) {
+			$value = esc_attr( get_option( $settingName ) );
+			echo "<input type='text' value='$value' name='$settingName' class='regular-text code' />";
+		};
 
-	/**
-	 * Add extra option to Permalinks settings page
-	 */
-	public function addResourcePermalinkSetting() {
-		if ( isset( $_POST['chipmunk_resource_cpt_base'] ) ) {
-			update_option( 'chipmunk_resource_cpt_base', $_POST['chipmunk_resource_cpt_base'] );
-		}
-
-		add_settings_field(
-			'chipmunk_resource_cpt_base',
-			__( 'Resource base', 'chipmunk' ),
-			[ $this, 'add_resource_permalink_setting_callback' ],
-			'permalink',
-			'optional'
-		);
-	}
-
-	public function addPermalinkSettingCallback() {
-		$value = get_option( 'chipmunk_resource_cpt_base' );
-		echo '<input type="text" value="' . esc_attr( $value ) . '" name="chipmunk_resource_cp t_base" id="chipmunk_resource_cpt_base" class="regular-text code" />';
-	}
-
-	/**
-	 * Add extra option to Permalinks settings page
-	 */
-	public function addCollectionPermalinkSetting() {
-		if ( isset( $_POST['chipmunk_collection_cpt_base'] ) ) {
-			update_option( 'chipmunk_collection_cpt_base', $_POST['chipmunk_collection_cpt_base'] );
-		}
-
-		add_settings_field(
-			'chipmunk_collection_cpt_base',
-			__( 'Collection base', 'chipmunk' ),
-			[ $this, 'add_collection_permalink_setting_callback' ],
-			'permalink',
-			'optional'
-		);
-	}
-
-	public function addCollectionPermalinkSettingCallback() {
-		$value = get_option( 'chipmunk_collection_cpt_base' );
-		echo '<input type="text" value="' . esc_attr( $value ) . '" name="chipmunk_collection_cpt_base" id="chipmunk_collection_cpt_base" class="regular-text code" />';
-	}
-
-	/**
-	 * Add extra option to Permalinks settings page
-	 */
-	public function addTagPermalinkSetting() {
-		if ( isset( $_POST['chipmunk_tag_cpt_base'] ) ) {
-			update_option( 'chipmunk_tag_cpt_base', $_POST['chipmunk_tag_cpt_base'] );
-		}
-
-		add_settings_field(
-			'chipmunk_tag_cpt_base',
-			__( 'Resource tag base', 'chipmunk' ),
-			[ $this, 'add_tag_permalink_setting_callback' ],
-			'permalink',
-			'optional'
-		);
-	}
-
-	public static function addTagPermalinkSettingCallback() {
-		$value = get_option( 'chipmunk_tag_cpt_base' );
-		echo '<input type="text" value="' . esc_attr( $value ) . '" name="chipmunk_tag_cpt_base" id="chipmunk_tag_cpt_base" class="regular-text code" />';
+		add_settings_field( $settingName, $label, $callback, 'permalink', 'optional' );
 	}
 
 	/**

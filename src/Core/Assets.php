@@ -51,19 +51,19 @@ class Assets extends Theme {
 	public function enqueueInlineStyles() {
 		global $post;
 
-		$primaryFont     = Helpers::getOption( 'primary_font' );
-		$headingFont     = Helpers::getOption( 'heading_font' );
-		$primaryColor    = Helpers::getOption( 'primary_color' );
-		$linkColor       = Helpers::getOption( 'link_color' );
-		$backgroundColor = Helpers::getOption( 'background_color' );
-		$sectionColor    = Helpers::getOption( 'section_color' );
-		$contentSize     = Helpers::getOption( 'content_size' );
-		$customCss       = Helpers::getOption( 'custom_css' );
-		$logoHeight      = Helpers::getOption( 'logo_height' );
-		$disableBorders  = Helpers::getOption( 'disable_section_borders' );
+		$primaryFont     = $this->getOption( 'primary_font' );
+		$headingFont     = $this->getOption( 'heading_font' );
+		$primaryColor    = $this->getOption( 'primary_color' );
+		$linkColor       = $this->getOption( 'link_color' );
+		$backgroundColor = $this->getOption( 'background_color' );
+		$sectionColor    = $this->getOption( 'section_color' );
+		$contentSize     = $this->getOption( 'content_size' );
+		$customCss       = $this->getOption( 'custom_css' );
+		$logoHeight      = $this->getOption( 'logo_height' );
+		$disableBorders  = $this->getOption( 'disable_section_borders' );
 		$primaryFont     = ( ! empty( $primaryFont ) && $primaryFont !== 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
 		$headingFont     = ( ! empty( $headingFont ) && $headingFont !== 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
-		$contentWidth    = ( ! empty( $post ) ) ? get_field( $this->getThemeSlug( 'page_content_width' ), $post->ID ) : Helpers::getOption( 'content_width' );
+		$contentWidth    = ( ! empty( $post ) ) ? get_field( $this->getThemeSlug( 'page_content_width' ), $post->ID ) : $this->getOption( 'content_width' );
 
 		$customStyle  = ( ! empty( $customCss ) ) ? $customCss : '';
 		$customStyle .= ! empty( $primaryFont ) ? $this->getThemeSlug( [ '', 'typography--font-family' ], '--', 1 ) . ": $primaryFont" : '';
@@ -86,8 +86,8 @@ class Assets extends Theme {
 	public function enqueueGoogleFonts() {
 		$fonts = [];
 
-		$primaryFont = Helpers::getOption( 'primary_font' );
-		$headingFont = Helpers::getOption( 'heading_font' );
+		$primaryFont = $this->getOption( 'primary_font' );
+		$headingFont = $this->getOption( 'heading_font' );
 
 		if ( ! empty( $primaryFont ) && $primaryFont !== 'System' ) {
 			$fonts[] = $primaryFont;
@@ -106,8 +106,8 @@ class Assets extends Theme {
 	 * Enqueue external scripts
 	 */
 	public function enqueueExternalScripts() {
-		$enabled = Helpers::getOption( 'recaptcha_enabled' );
-		$siteKey = Helpers::getOption( 'recaptcha_site_key' );
+		$enabled = $this->getOption( 'recaptcha_enabled' );
+		$siteKey = $this->getOption( 'recaptcha_site_key' );
 
 		if ( $enabled && $siteKey ) {
 			$this->addScript( 'chipmunk-recaptcha', 'https://google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit', false, null, true );
