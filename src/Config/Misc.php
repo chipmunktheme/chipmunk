@@ -2,87 +2,83 @@
 
 namespace Chipmunk\Config;
 
-use Chipmunk\Customizer;
-use Chipmunk\Helpers;
+use Piotrkulpinski\Framework\Helper\HelperTrait;
+use Chipmunk\Theme;
+use Chipmunk\Helper\PostTrait;
+use function Chipmunk\config;
 
 /**
- * Miscellaneous config hooks
- *
- * @package WordPress
- * @subpackage Chipmunk
+ * Miscellaneous config hooks.
  */
-class Misc {
+class Misc extends Theme {
+
+	use HelperTrait;
+	use PostTrait;
 
 	/**
-	 * Used to register custom hooks
+	 * Class constructor.
 	 */
-	public function __construct() {
-		add_action( 'wp_insert_post', [ $this, 'addDefaultMeta' ] );
-		add_action( 'after_setup_theme', [ $this, 'setupComments' ] );
-		add_filter( 'the_content', [ $this, 'normalizeContentWhitespace' ], 10, 1 );
-		add_filter( 'user_contactmethods', [ $this, 'addContactMethods' ], 99, 2 );
+	public function __construct() {}
+
+	/**
+	 * Hooks methods of this object into the WordPress ecosystem.
+	 */
+	public function initialize() {
+		$this->addAction( 'wp_insert_post', [ $this, 'addDefaultMeta' ] );
+		$this->addFilter( 'the_content', [ $this, 'normalizeContentWhitespace' ], 10, 1 );
+		$this->addFilter( 'user_contactmethods', [ $this, 'addContactMethods' ], 99, 2 );
 	}
 
 	/**
-	 * Set default meta values for likes, upvotes and ratings
+	 * Sets default meta values for likes, upvotes and ratings.
 	 *
-	 * @return mixed
+	 * @see https://developer.wordpress.org/reference/hooks/wp_insert_post
+	 *
+	 * @param int $postId
 	 */
-	public function addDefaultMeta( $postId ) {
-		$defaut = [
-			'_' . THEME_SLUG . '_post_view_count' => 0,
-			'_' . THEME_SLUG . '_upvote_count'    => 0,
+	public function addDefaultMeta( int $postId ) {
+		$defaultMeta = [
+			$this->getPrefixedThemeSlug( 'post_view_count' ) => 0,
+			$this->getPrefixedThemeSlug( 'upvote_count' ) => 0,
 		];
 
 		if ( Helpers::isAddonEnabled( 'ratings' ) ) {
-			$defaut = array_merge(
-				$defaut,
+			$meta = array_merge(
+				$defaultMeta,
 				[
-					'_' . THEME_SLUG . '_rating_count'   => 0,
-					'_' . THEME_SLUG . '_rating_average' => 0,
-					'_' . THEME_SLUG . '_rating_rank'    => 0,
+					$this->getPrefixedThemeSlug( 'rating_count' ) => 0,
+					$this->getPrefixedThemeSlug( 'rating_average' ) => 0,
+					$this->getPrefixedThemeSlug( 'rating_rank' ) => 0,
 				]
 			);
 		}
 
-		return Helpers::addPostMeta( $postId, $defaut, [ 'post', 'resource' ] );
-	}
-
-	/**
-	 * Theme configuration setup
-	 * Load comment reply link in case of page and post pages
-	 * if threaded comments are enabled
-	 *
-	 * @hook after_setup_theme
-	 */
-	public function setupComments() {
-		// add threaded comments
-		if ( ! is_admin() ) {
-			if ( is_singular() && get_option( 'thread_comments' ) ) {
-				wp_enqueue_script( 'comment-reply' );
-			}
-		}
+		$this->addPostMeta( $postId, $meta, [ 'post', 'resource' ] );
 	}
 
 	/**
 	 * Normalize EOL characters and strip duplicate whitespace.
 	 *
-	 * @return string
+	 * @see https://developer.wordpress.org/reference/hooks/the_content
+	 *
+	 * @param string $content
 	 */
-	public function normalizeContentWhitespace( $content ) {
+	public function normalizeContentWhitespace( string $content ): string {
 		return normalize_whitespace( $content );
 	}
 
 	/**
-	 * Changes the user contact methods
+	 * Changes the user contact methods.
 	 *
-	 * @return array
+	 * @see https://developer.wordpress.org/reference/hooks/user_contactmethods
+	 *
+	 * @param string[] $methods
 	 */
-	public function addContactMethods() {
-		$socials    = Customizer::getSocials();
+	public function addContactMethods( array $methods ): array {
+		$socials    = config()->getSocials();
 		$socials    = array_filter( $socials, fn( $el ) => $el != 'Email' );
 		$socialKeys = array_map( fn( $el ) => sanitize_title( $socials[ $el ] ), array_keys( $socials ) );
 
-		return array_combine( $socialKeys, $socials );
+		return array_merge( $methods, array_combine( $socialKeys, $socials ) );
 	}
 }

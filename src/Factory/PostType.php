@@ -81,7 +81,7 @@ class PostType {
 	 *
 	 * @return void
 	 */
-	public function register(): void {
+	public function register() {
 		$slug = $this->getSlug( $this->getSingularName() );
 
 		if ( ! post_type_exists( $slug ) ) {
@@ -101,7 +101,7 @@ class PostType {
 	 *
 	 * @return void
 	 */
-	public function addTaxonomy( string $singularName, string $pluralName, array $args = [] ): void {
+	public function addTaxonomy( string $singularName, string $pluralName, array $args = [] ) {
 		$slug         = $this->getSlug( $singularName );
 		$postTypeSlug = $this->getSlug( $this->getSingularName() );
 

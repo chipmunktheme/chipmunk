@@ -29,10 +29,8 @@ abstract class ThemeHandler implements HandlerInterface {
 	/**
 	 * Uses addAction and/or addFilter to attach protected methods of this object
 	 * to the ecosystem of WordPress action and filter hooks.
-	 *
-	 * @return void
 	 */
-	abstract public function initialize(): void;
+	abstract public function initialize();
 
 	/**
 	 * Returns the value of the initialized property at the start of the method

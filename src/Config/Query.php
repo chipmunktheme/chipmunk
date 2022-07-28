@@ -3,36 +3,41 @@
 namespace Chipmunk\Config;
 
 use WP_Query;
-use Chipmunk\Helpers;
+use Piotrkulpinski\Framework\Helper\HelperTrait;
+use Chipmunk\Theme;
 
 /**
- * Query config hooks
- *
- * @package WordPress
- * @subpackage Chipmunk
+ * Query config hooks.
  */
-class Query {
+class Query extends Theme {
+
+	use HelperTrait;
 
 	/**
-	 * Used to register custom hooks
+	 * Class constructor.
 	 */
-	public function __construct() {
-		add_filter( 'pre_get_posts', [ $this, 'updatePerPageParams' ] );
-		add_filter( 'pre_get_posts', [ $this, 'updateSearchParams' ] );
-		add_filter( 'pre_get_posts', [ $this, 'updateAuthorParams' ] );
-		add_filter( 'pre_get_posts', [ $this, 'updateRelatedParams' ] );
-		add_filter( 'pre_get_posts', [ $this, 'updateOrderbyParams' ] );
-		add_filter( 'pre_get_posts', [ $this, 'excludeTaxChildren' ] );
+	public function __construct() {}
+
+	/**
+	 * Hooks methods of this object into the WordPress ecosystem.
+	 */
+	public function initialize() {
+		$this->addFilter( 'pre_get_posts', [ $this, 'updatePerPageParams' ] );
+		$this->addFilter( 'pre_get_posts', [ $this, 'updateSearchParams' ] );
+		$this->addFilter( 'pre_get_posts', [ $this, 'updateAuthorParams' ] );
+		$this->addFilter( 'pre_get_posts', [ $this, 'updateRelatedParams' ] );
+		$this->addFilter( 'pre_get_posts', [ $this, 'updateOrderbyParams' ] );
+		$this->addFilter( 'pre_get_posts', [ $this, 'excludeTaxChildren' ] );
 	}
 
 	/**
-	 * Update results per page for different queries
+	 * Update results per page for different queries.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/pre_get_posts
 	 *
 	 * @param WP_Query $query
-	 *
-	 * @return WP_Query
 	 */
-	public function updatePerPageParams( $query ) {
+	public function updatePerPageParams( WP_Query $query ) {
 		// Don't change the value it has been already set
 		if ( is_admin() || $query->get( 'posts_per_page' ) ) {
 			return $query;
@@ -40,35 +45,35 @@ class Query {
 
 		// Related
 		if ( $query->get( 'related' ) ) {
-			$query->set( 'posts_per_page', apply_filters( 'chipmunk_related_resources_count', 3 ) );
+			$query->set( 'posts_per_page', $this->applyFilter( 'related_resources_count', 3 ) );
 
 			return $query;
 		}
 
 		// Latest
 		if ( $query->get( 'latest' ) ) {
-			$query->set( 'posts_per_page', apply_filters( 'chipmunk_latest_posts_count', 3 ) );
+			$query->set( 'posts_per_page', $this->applyFilter( 'latest_posts_count', 3 ) );
 
 			return $query;
 		}
 
 		// Search results
 		if ( $query->is_search ) {
-			$query->set( 'posts_per_page', Helpers::getOption( 'results_per_page' ) );
+			$query->set( 'posts_per_page', $this->getOption( 'results_per_page' ) );
 
 			return $query;
 		}
 
 		// Posts
 		if ( $this->isQueryForPostType( $query, 'post' ) ) {
-			$query->set( 'posts_per_page', Helpers::getOption( 'posts_per_page' ) );
+			$query->set( 'posts_per_page', $this->getOption( 'posts_per_page' ) );
 
 			return $query;
 		}
 
 		// Resources
 		if ( $this->isQueryForPostType( $query, 'resource' ) ) {
-			$query->set( 'posts_per_page', Helpers::getOption( 'resources_per_page' ) );
+			$query->set( 'posts_per_page', $this->getOption( 'resources_per_page' ) );
 
 			return $query;
 		}
@@ -77,13 +82,13 @@ class Query {
 	}
 
 	/**
-	 * Update search params to include resources
+	 * Update search params to include resources.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/pre_get_posts
 	 *
 	 * @param WP_Query $query
-	 *
-	 * @return WP_Query
 	 */
-	public function updateSearchParams( $query ) {
+	public function updateSearchParams( WP_Query $query ) {
 		if ( is_admin() || ! $query->is_search ) {
 			return $query;
 		}
@@ -98,13 +103,13 @@ class Query {
 	}
 
 	/**
-	 * Update author params to only include resources
+	 * Update author params to only include resources.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/pre_get_posts
 	 *
 	 * @param WP_Query $query
-	 *
-	 * @return WP_Query
 	 */
-	public function updateAuthorParams( $query ) {
+	public function updateAuthorParams( WP_Query $query ) {
 		if ( is_admin() || ! $query->is_author ) {
 			return $query;
 		}
@@ -115,13 +120,13 @@ class Query {
 	}
 
 	/**
-	 * Update orderby params
+	 * Update orderby params.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/pre_get_posts
 	 *
 	 * @param WP_Query $query
-	 *
-	 * @return WP_Query
 	 */
-	public function updateRelatedParams( $query ) {
+	public function updateRelatedParams( WP_Query $query ) {
 		global $post;
 
 		if ( is_admin() || ! $query->get( 'related' ) or empty( $post ) ) {
@@ -153,26 +158,26 @@ class Query {
 	}
 
 	/**
-	 * Update orderby params for resources
+	 * Update orderby params for resources.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/pre_get_posts
 	 *
 	 * @param WP_Query $query
-	 *
-	 * @return WP_Query
 	 */
-	public function updateOrderbyParams( $query ) {
+	public function updateOrderbyParams( WP_Query $query ) {
 		if ( is_admin() || ! $this->isQueryForPostType( $query, 'resource' ) ) {
 			return $query;
 		}
 
 		// TODO: Check if the custom ordering is working
 		$customOrderby = [
-			'views'   => '_' . THEME_SLUG . '_post_view_count',
-			'upvotes' => '_' . THEME_SLUG . '_upvote_count',
-			'ratings' => '_' . THEME_SLUG . '_rating_rank',
+			'views'   => $this->getPrefixedThemeSlug( 'post_view_count' ),
+			'upvotes' => $this->getPrefixedThemeSlug( 'upvote_count' ),
+			'ratings' => $this->getPrefixedThemeSlug( 'rating_rank' ),
 		];
 
-		$orderby = $query->get( 'orderby' ) ?: Helpers::getOption( 'default_resource_orderby' );
-		$order   = $query->get( 'order' ) ?: Helpers::getOption( 'default_resource_order' );
+		$orderby = $query->get( 'orderby' ) ?: $this->getOption( 'default_resource_orderby' );
+		$order   = $query->get( 'order' ) ?: $this->getOption( 'default_resource_order' );
 
 		if ( array_key_exists( $orderby, $customOrderby ) ) {
 			$query->set( 'meta_key', $customOrderby[ $orderby ] );
@@ -187,13 +192,13 @@ class Query {
 	}
 
 	/**
-	 * Exclude children from taxonomy listing for resources
+	 * Exclude children from taxonomy listing for resources.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/pre_get_posts
 	 *
 	 * @param WP_Query $query
-	 *
-	 * @return WP_Query
 	 */
-	public function excludeTaxChildren( $query ) {
+	public function excludeTaxChildren( WP_Query $query ) {
 		if ( is_admin() || ! $this->isQueryForPostType( $query, 'resource' ) || empty( $query->query_vars['resource-collection'] ) ) {
 			return $query;
 		}
@@ -214,15 +219,15 @@ class Query {
 	}
 
 	/**
-	 * Checks if current query is quering given post type
+	 * Checks if current query is quering given post type.
 	 *
 	 * @param WP_Query $query
 	 * @param string   $postType
 	 *
 	 * @return bool
 	 */
-	private function isQueryForPostType( $query, $postType ) {
-		if ( $postType == 'post' ) {
+	private function isQueryForPostType( WP_Query $query, string $postType ): bool {
+		if ( $postType === 'post' ) {
 			if ( $query->is_posts_page || $query->is_date ) {
 				return true;
 			}
@@ -236,7 +241,7 @@ class Query {
 			}
 		}
 
-		if ( $postType == 'resource' ) {
+		if ( $postType === 'resource' ) {
 			if ( $query->is_author ) {
 				return true;
 			}
@@ -250,6 +255,6 @@ class Query {
 			}
 		}
 
-		return $query->get( 'post_type' ) == $postType;
+		return $query->get( 'post_type' ) === $postType;
 	}
 }

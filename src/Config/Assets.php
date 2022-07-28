@@ -2,38 +2,47 @@
 
 namespace Chipmunk\Config;
 
+use Chipmunk\Theme;
+
 /**
- * Assets config hooks
- *
- * @package WordPress
- * @subpackage Chipmunk
+ * Assets config hooks.
  */
-class Assets {
+class Assets extends Theme {
 
 	/**
-	 * Used to register custom hooks
+	 * Class constructor.
 	 */
-	function construct() {
-		add_filter( 'script_loader_tag', [ $this, 'removeTypeAttr' ], 10, 2 );
-		add_filter( 'style_loader_tag', [ $this, 'removeTypeAttr' ], 10, 2 );
-		add_filter( 'upload_mimes', [ $this, 'customMimeTypes' ], 99, 1 );
+	public function __construct() {}
+
+	/**
+	 * Hooks methods of this object into the WordPress ecosystem.
+	 */
+	public function initialize() {
+		$this->addFilter( 'script_loader_tag', [ $this, 'removeTypeAttr' ], 10, 2 );
+		$this->addFilter( 'style_loader_tag', [ $this, 'removeTypeAttr' ], 10, 2 );
+		$this->addFilter( 'upload_mimes', [ $this, 'customMimeTypes' ], 99, 1 );
 	}
 
 	/**
-	 * Remove type attribute for scripts and styles
+	 * Removes type attribute for scripts and styles.
 	 *
-	 * @return string
+	 * @see https://developer.wordpress.org/reference/hooks/script_loader_tag
+	 * @see https://developer.wordpress.org/reference/hooks/style_loader_tag
+	 *
+	 * @param string $tag
 	 */
-	public function removeTypeAttr( $tag ) {
+	public function removeTypeAttr( string $tag ): string {
 		return preg_replace( "/type=['\"]text\/(javascript|css)['\"]/", '', $tag );
 	}
 
 	/**
-	 * Allow SVG Upload
+	 * Allows SVG Upload.
 	 *
-	 * @param $mimes
+	 * @see https://developer.wordpress.org/reference/hooks/upload_mimes
+	 *
+	 * @param array $mimes
 	 */
-	public function customMimeTypes( $mimes ) {
+	public function customMimeTypes( array $mimes ): array {
 		$mimes['svg']  = 'image/svg+xml';
 		$mimes['svgz'] = 'image/svg+xml';
 		return $mimes;

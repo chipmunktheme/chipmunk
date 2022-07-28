@@ -80,14 +80,15 @@ class Theme extends ThemeHandler {
 		$this->actions     = new Core\Actions();
 		$this->shortcodes  = new Core\Shortcodes();
 		$this->configAdmin = new Config\Admin();
+		$this->configAssets = new Config\Assets();
+		$this->configMisc = new Config\Misc();
+		$this->configQuery = new Config\Query();
 	}
 
 	/**
 	 * Hooks methods of this object into the WordPress ecosystem
-	 *
-	 * @return void
 	 */
-	public function initialize(): void {
+	public function initialize() {
 		if ( ! $this->isInitialized() ) {
 			$this->options->initialize();
 			$this->setup->initialize();
@@ -96,6 +97,9 @@ class Theme extends ThemeHandler {
 			$this->actions->initialize();
 			$this->shortcodes->initialize();
 			$this->configAdmin->initialize();
+			$this->configAssets->initialize();
+			$this->configMisc->initialize();
+			$this->configQuery->initialize();
 		}
 	}
 }

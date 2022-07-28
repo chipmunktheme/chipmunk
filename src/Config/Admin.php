@@ -8,21 +8,21 @@ use Chipmunk\Theme;
 use function Chipmunk\config;
 
 /**
- * Admin config hooks
+ * Admin config hooks.
  */
 class Admin extends Theme {
 
 	use HelperTrait;
 
 	/**
-	 * A list of technical requirements of the theme
+	 * A list of technical requirements of the theme.
 	 *
 	 * @var array
 	 */
 	private array $requirements;
 
 	/**
-	 * A list of types that supports permalink settings
+	 * A list of types that supports permalink settings.
 	 *
 	 * @var array
 	 */
@@ -51,19 +51,17 @@ class Admin extends Theme {
 	}
 
 	/**
-	 * Hooks methods of this object into the WordPress ecosystem
-	 *
-	 * @return void
+	 * Hooks methods of this object into the WordPress ecosystem.
 	 */
-	public function initialize(): void {
+	public function initialize() {
 		$this->addAction( 'admin_notices', [ $this, 'displayAdminNotices' ] );
 		$this->addAction( 'admin_init', [ $this, 'addPermalinkSettings' ] );
 	}
 
 	/**
-	 * Displays admin notices if there are any
+	 * Displays admin notices if there are any.
 	 *
-	 * @return void
+	 * @see https://developer.wordpress.org/reference/hooks/admin_notices
 	 */
 	public function displayAdminNotices() {
 		$notices = $this->applyFilter( 'admin_notices', $this->checkRequirements() );
@@ -77,9 +75,9 @@ class Admin extends Theme {
 	}
 
 	/**
-	 * Loops through supported types and adds settings page
+	 * Loops through supported types and adds settings page.
 	 *
-	 * @return void
+	 * @see https://developer.wordpress.org/reference/hooks/admin_init
 	 */
 	public function addPermalinkSettings() {
 		foreach ( $this->permalinkTypes as $type => $label ) {
@@ -88,12 +86,10 @@ class Admin extends Theme {
 	}
 
 	/**
-	 * Add extra option to permalinks settings page
+	 * Add extra option to permalinks settings page.
 	 *
 	 * @param string $type
 	 * @param string $label
-	 *
-	 * @return void
 	 */
 	private function addPermalinkSetting( string $type, string $label ) {
 		$settingName = $this->getThemeSlug( [ $type, 'cpt_base' ] );

@@ -11,7 +11,7 @@ use Chipmunk\Theme;
 use function Chipmunk\config;
 
 /**
- * Theme options
+ * Theme options.
  */
 final class Options extends Theme {
 
@@ -23,14 +23,14 @@ final class Options extends Theme {
 	private static $instance;
 
 	/**
-	 * An array of Customzer sections
+	 * An array of Customzer sections.
 	 *
 	 * @var array
 	 */
 	private array $sections;
 
 	/**
-	 * Define settings access
+	 * Define settings access.
 	 *
 	 * @var string
 	 */
@@ -818,18 +818,16 @@ final class Options extends Theme {
 	}
 
 	/**
-	 * Hooks methods of this object into the WordPress ecosystem
-	 *
-	 * @return void
+	 * Hooks methods of this object into the WordPress ecosystem.
 	 */
-	public function initialize(): void {
+	public function initialize() {
 		if ( is_customize_preview() ) {
 			$this->addAction( 'customize_register', [ $this, 'addSections' ] );
 		}
 	}
 
 	/**
-	 * Returns the sections array
+	 * Returns the sections array.
 	 *
 	 * @return array
 	 */
@@ -838,7 +836,9 @@ final class Options extends Theme {
 	}
 
 	/**
-	 * Add custom sections to Customize panel
+	 * Add custom sections to Customize panel.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/customize_register
 	 *
 	 * @param WP_Customize_Manager $customize
 	 */
@@ -862,7 +862,7 @@ final class Options extends Theme {
 	}
 
 	/**
-	 * Add setting and control for each field
+	 * Add setting and control for each field.
 	 *
 	 * @param WP_Customize_Manager $customize
 	 * @param array                $section
@@ -909,7 +909,7 @@ final class Options extends Theme {
 	}
 
 	/**
-	 * Gets social fields list
+	 * Gets social fields list.
 	 *
 	 * @return array
 	 */

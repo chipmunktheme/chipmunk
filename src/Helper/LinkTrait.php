@@ -2,6 +2,7 @@
 
 namespace Chipmunk\Helper;
 
+use Piotrkulpinski\Framework\Helper\HelperTrait;
 use Piotrkulpinski\Framework\Helper\OptionTrait;
 use Piotrkulpinski\Framework\Helper\SelectorTrait;
 
@@ -10,6 +11,7 @@ use Piotrkulpinski\Framework\Helper\SelectorTrait;
  */
 trait LinkTrait {
 
+	use HelperTrait;
 	use OptionTrait;
 	use SelectorTrait;
 
@@ -49,5 +51,33 @@ trait LinkTrait {
 		);
 
 		return '<a href="' . esc_url( $this->getExternalUrl( $url ) ) . '"' . $this->ensureString( $atts ) . '>' . $title . '</a>';
+	}
+
+	/**
+	 * Get resource links
+	 *
+	 * @param int $postId ID of the resource
+	 *
+	 * @return array
+	 */
+	public function getResourceLinks( int $postId ): array {
+		$links     = [];
+
+		$metaWebsite = get_post_meta( $postId, $this->getPrefixedThemeSlug( [ 'resource', 'website' ] ), true );
+		$metaLinks   = get_field( $this->getPrefixedThemeSlug( [ 'resource', 'links' ] ), $postId );
+
+		if ( ! empty( $metaWebsite ) ) {
+			$links[] = [
+				'title'  => $this->applyFilter( 'submission_website_label', __( 'Visit website', 'chipmunk' ) ),
+				'url'    => $metaWebsite,
+				'target' => '_blank',
+			];
+		}
+
+		if ( ! empty( $metaLinks ) ) {
+			$links = array_merge( $links, array_column( $metaLinks, 'link' ) );
+		}
+
+		return $links;
 	}
 }

@@ -61,9 +61,9 @@ trait HelperTrait {
 	/**
 	 * Builds a slug based on the theme slug config
 	 *
-	 * @param string|array $slug      A slug to generate.
-	 * @param string       $separator Separator used to generate the final slug.
-	 * @param string|null  $prefix    String to add to the beginning of slug.
+	 * @param string|array $slug         A slug to generate.
+	 * @param string       $separator    Separator used to generate the final slug.
+	 * @param int          $slugPosition A position of the theme slug in the segments
 	 *
 	 * @return string
 	 */
@@ -74,6 +74,21 @@ trait HelperTrait {
 		$segments     = array_merge( $segmentsHead, [ config()->getSlug() ], $segmentsTail );
 
 		return join( $separator, $segments );
+	}
+
+	/**
+	 * Builds a prefixed slug based on the theme slug config
+	 *
+	 * @param string|array $slug      A slug to generate.
+	 * @param string       $separator Separator used to generate the final slug.
+	 *
+	 * @return string
+	 */
+	protected function getPrefixedThemeSlug( $slug, string $separator = '_' ): string {
+		$segments     = is_array( $slug ) ? $slug : [ $slug ];
+		array_unshift( $segments, '' );
+
+		return $this->getThemeSlug( $segments, $separator, 1 );
 	}
 
 	/**
@@ -135,5 +150,50 @@ trait HelperTrait {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Retrieves user's IP address
+	 *
+	 * @return string
+	 */
+	protected function getIp(): string {
+		if ( isset( $_SERVER['HTTP_CLIENT_IP'] ) && ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		} elseif ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		} else {
+			$ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+		}
+
+		$ip = filter_var( $ip, FILTER_VALIDATE_IP );
+		$ip = ( $ip === false ) ? '0.0.0.0' : $ip;
+
+		return $ip;
+	}
+
+	/**
+	 * Utility function to format the numbers,
+	 * appending "K" if one thousand or greater,
+	 * "M" if one million or greater,
+	 * and "B" if one billion or greater (unlikely).
+	 *
+	 * @param int $number       Number to format
+	 * @param int $precision    How many decimal points to display (1.25K)
+	 *
+	 * @return string
+	 */
+	protected function formatNumber( int $number, int $precision = 1 ): string {
+		if ( $number >= 1000 && $number < 1000000 ) {
+			$formatted = number_format( $number / 1000, $precision ) . 'K';
+		} elseif ( $number >= 1000000 && $number < 1000000000 ) {
+			$formatted = number_format( $number / 1000000, $precision ) . 'M';
+		} elseif ( $number >= 1000000000 ) {
+			$formatted = number_format( $number / 1000000000, $precision ) . 'B';
+		} else {
+			$formatted = $number; // Number is less than 1000
+		}
+
+		return preg_replace( '/\.[0]+([KMB]?)$/i', '$1', $formatted );
 	}
 }

@@ -30,10 +30,8 @@ class Templates extends Theme {
 
 	/**
 	 * Hooks methods of this object into the WordPress ecosystem
-	 *
-	 * @return void
 	 */
-	public function initialize(): void {
+	public function initialize() {
 		$this->addFilter( 'timber/locations', [ $this, 'setTimberLocation' ] );
 		$this->addFilter( 'timber/context', [ $this, 'setTimberContext' ] );
 		$this->addFilter( 'timber/twig/functions', [ $this, 'setTwigFunctions' ] );
@@ -43,9 +41,9 @@ class Templates extends Theme {
 	/**
 	 * Sets custom locations for twig templates
 	 *
-	 * @param array $paths
+	 * @see https://developer.wordpress.org/reference/hooks/timber/locations
 	 *
-	 * @return array
+	 * @param array $paths
 	 */
 	public function setTimberLocation( array $paths ): array {
 		$paths[] = [ $this->getTemplatePath( config()->getTemplatesPath() ) ];
@@ -56,9 +54,9 @@ class Templates extends Theme {
 	/**
 	 * Adds custom global data to the twig context
 	 *
-	 * @param array $context
+	 * @see https://developer.wordpress.org/reference/hooks/timber/context
 	 *
-	 * @return array
+	 * @param array $context
 	 */
 	public function setTimberContext( array $context ): array {
 		$conditionals = [
@@ -89,9 +87,9 @@ class Templates extends Theme {
 	/**
 	 * Adds custom functions to the twig templates
 	 *
-	 * @param array $functions
+	 * @see https://developer.wordpress.org/reference/hooks/timber/twig/functions
 	 *
-	 * @return array
+	 * @param array $functions
 	 */
 	public function setTwigFunctions( array $functions ): array {
 		$extend = [
@@ -130,9 +128,9 @@ class Templates extends Theme {
 	/**
 	 * Adds custom filters to the twig templates
 	 *
-	 * @param array $filters
+	 * @see https://developer.wordpress.org/reference/hooks/timber/twig/filters
 	 *
-	 * @return array
+	 * @param array $filters
 	 */
 	public function setTwigFilters( array $filters ): array {
 		$extend = [

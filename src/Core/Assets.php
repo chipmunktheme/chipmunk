@@ -9,7 +9,7 @@ use Piotrkulpinski\Framework\Helper\HelperTrait;
 use Chipmunk\Theme;
 
 /**
- * Theme assets
+ * Theme assets.
  */
 class Assets extends Theme {
 
@@ -24,11 +24,9 @@ class Assets extends Theme {
 	public function __construct() {}
 
 	/**
-	 * Hooks methods of this object into the WordPress ecosystem
-	 *
-	 * @return void
+	 * Hooks methods of this object into the WordPress ecosystem.
 	 */
-	public function initialize(): void {
+	public function initialize() {
 		$this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueCustomAssets' ] );
 		// $this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueInlineStyles' ] );
 		// $this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueGoogleFonts' ] );
@@ -38,7 +36,9 @@ class Assets extends Theme {
 	}
 
 	/**
-	 * Enqueue front end styles and scripts
+	 * Enqueue front end styles and scripts.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts
 	 */
 	public function enqueueCustomAssets() {
 		$this->addStyle( 'chipmunk-styles', 'styles/theme.css' );
@@ -46,7 +46,9 @@ class Assets extends Theme {
 	}
 
 	/**
-	 * Enqueue custom CSS styles
+	 * Enqueue custom CSS styles.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts
 	 */
 	public function enqueueInlineStyles() {
 		global $post;
@@ -66,22 +68,24 @@ class Assets extends Theme {
 		$contentWidth    = ( ! empty( $post ) ) ? get_field( $this->getThemeSlug( 'page_content_width' ), $post->ID ) : $this->getOption( 'content_width' );
 
 		$customStyle  = ( ! empty( $customCss ) ) ? $customCss : '';
-		$customStyle .= ! empty( $primaryFont ) ? $this->getThemeSlug( [ '', 'typography--font-family' ], '--', 1 ) . ": $primaryFont" : '';
-		$customStyle .= ! empty( $headingFont ) ? $this->getThemeSlug( [ '', 'typography--heading-font-family' ], '--', 1 ) . ": $headingFont" : '';
-		$customStyle .= $this->getThemeSlug( [ '', 'color--primary' ], '--', 1 ) . ": $primaryColor";
-		$customStyle .= $this->getThemeSlug( [ '', 'color--link' ], '--', 1 ) . ": $linkColor";
-		$customStyle .= $this->getThemeSlug( [ '', 'color--background' ], '--', 1 ) . ": $backgroundColor";
-		$customStyle .= $this->getThemeSlug( [ '', 'color--section' ], '--', 1 ) . ": $sectionColor";
-		$customStyle .= $this->getThemeSlug( [ '', 'typography--content-size' ], '--', 1 ) . ": $contentSize";
-		$customStyle .= $this->getThemeSlug( [ '', 'layout--content-width' ], '--', 1 ) . ": $contentWidth";
-		$customStyle .= $this->getThemeSlug( [ '', 'border-opacity' ], '--', 1 ) . ': ' . ( empty( $disableBorders ) ? '0.075' : '0' );
-		$customStyle .= $this->getThemeSlug( [ '', 'logo-height' ], '--', 1 ) . ': ' . $logoHeight / 10 . 'rem';
+		$customStyle .= ! empty( $primaryFont ) ? $this->getPrefixedThemeSlug( 'typography--font-family', '--' ) . ": $primaryFont" : '';
+		$customStyle .= ! empty( $headingFont ) ? $this->getPrefixedThemeSlug( 'typography--heading-font-family', '--' ) . ": $headingFont" : '';
+		$customStyle .= $this->getPrefixedThemeSlug( 'color--primary', '--' ) . ": $primaryColor";
+		$customStyle .= $this->getPrefixedThemeSlug( 'color--link', '--' ) . ": $linkColor";
+		$customStyle .= $this->getPrefixedThemeSlug( 'color--background', '--' ) . ": $backgroundColor";
+		$customStyle .= $this->getPrefixedThemeSlug( 'color--section', '--' ) . ": $sectionColor";
+		$customStyle .= $this->getPrefixedThemeSlug( 'typography--content-size', '--' ) . ": $contentSize";
+		$customStyle .= $this->getPrefixedThemeSlug( 'layout--content-width', '--' ) . ": $contentWidth";
+		$customStyle .= $this->getPrefixedThemeSlug( 'border-opacity', '--' ) . ': ' . ( empty( $disableBorders ) ? '0.075' : '0' );
+		$customStyle .= $this->getPrefixedThemeSlug( 'logo-height', '--' ) . ': ' . $logoHeight / 10 . 'rem';
 
 		$this->addInlineStyle( 'chipmunk-styles', ":root {{$customStyle}}" );
 	}
 
 	/**
-	 * Enqueue Google Fonts styles
+	 * Enqueue Google Fonts styles.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts
 	 */
 	public function enqueueGoogleFonts() {
 		$fonts = [];
@@ -103,7 +107,9 @@ class Assets extends Theme {
 	}
 
 	/**
-	 * Enqueue external scripts
+	 * Enqueue external scripts.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts
 	 */
 	public function enqueueExternalScripts() {
 		$enabled = $this->getOption( 'recaptcha_enabled' );
@@ -130,14 +136,18 @@ class Assets extends Theme {
 	}
 
 	/**
-	 * Enqueue admin end styles and scripts
+	 * Enqueue admin end styles and scripts.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/admin_enqueue_scripts
 	 */
 	public function enqueueAdminScripts() {
 		$this->addStyle( 'chipmunk-admin-styles', 'styles/admin.css' );
 	}
 
 	/**
-	 * Add async attribute to WordPress scripts
+	 * Add async attribute to WordPress scripts.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/script_loader_tag
 	 *
 	 * @param string $tag    The <script> tag for the enqueued script.
 	 * @param string $handle The script's registered handle.
@@ -146,7 +156,6 @@ class Assets extends Theme {
 	 * @return string
 	 */
 	public function addAsyncAttribute( string $tag, string $handle, string $src ): string {
-		// add script handles to the array below
 		$scripts = [
 			'defer' => [ 'chipmunk-scripts' ],
 			'async' => [ 'chipmunk-recaptcha' ],

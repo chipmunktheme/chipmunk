@@ -9,7 +9,7 @@ use Chipmunk\Factory\PostType;
 use function Chipmunk\config;
 
 /**
- * Theme setup
+ * Theme setup.
  */
 class Setup extends Theme {
 
@@ -17,21 +17,20 @@ class Setup extends Theme {
 	use CoreTrait;
 
 	/**
-	 * Class constructor
+	 * Class constructor.
 	 */
 	public function __construct() {}
 
 	/**
-	 * Hooks methods of this object into the WordPress ecosystem
-	 *
-	 * @return void
+	 * Hooks methods of this object into the WordPress ecosystem.
 	 */
-	public function initialize(): void {
+	public function initialize() {
 		$this->addAction( 'after_setup_theme', [ $this, 'addSupports' ] );
 		$this->addAction( 'after_setup_theme', [ $this, 'addImageSizes' ] );
 		$this->addAction( 'after_setup_theme', [ $this, 'addNavMenus' ] );
 		$this->addAction( 'after_setup_theme', [ $this, 'addTextDomains' ] );
 		$this->addAction( 'after_setup_theme', [ $this, 'addPostTypes' ] );
+		$this->addAction( 'after_setup_theme', [ $this, 'setupThreadedComments' ] );
 	}
 
 	/**
@@ -41,9 +40,9 @@ class Setup extends Theme {
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 *
-	 * @return void
+	 * @see https://developer.wordpress.org/reference/hooks/after_setup_theme
 	 */
-	public function addSupports(): void {
+	public function addSupports() {
 		// Theme Support
 		$this->addSupport( 'title-tag' );
 		$this->addSupport( 'automatic-feed-links' );
@@ -65,11 +64,6 @@ class Setup extends Theme {
 		$this->addSupport( 'align-wide' );
 		$this->addSupport( 'responsive-embeds' );
 
-		/**
-		 * Adds support for editor color palette.
-		 *
-		 * @see https://developer.wordpress.org/reference/functions/add_theme_support/#editor-color-palette
-		 */
 		$this->addSupport(
 			'editor-color-palette',
 			[
@@ -91,11 +85,6 @@ class Setup extends Theme {
 			]
 		);
 
-		/**
-		 * Adds support for editor font sizes.
-		 *
-		 * @see https://developer.wordpress.org/reference/functions/add_theme_support/#editor-color-palette
-		 */
 		$this->addSupport(
 			'editor-font-sizes',
 			[
@@ -129,11 +118,11 @@ class Setup extends Theme {
 	}
 
 	/**
-	 * Registers custom image sizes
+	 * Registers custom image sizes.
 	 *
-	 * @return void
+	 * @see https://developer.wordpress.org/reference/hooks/after_setup_theme
 	 */
-	public function addImageSizes(): void {
+	public function addImageSizes() {
 		$this->addImageSize( '1920x1080', 1920, 1080 );
 		$this->addImageSize( '1280x960', 1280, 960 );
 		$this->addImageSize( '1280x720', 1280, 720 );
@@ -141,11 +130,11 @@ class Setup extends Theme {
 	}
 
 	/**
-	 * Registers custom navigation menus
+	 * Registers custom navigation menus.
 	 *
-	 * @return void
+	 * @see https://developer.wordpress.org/reference/hooks/after_setup_theme
 	 */
-	public function addNavMenus(): void {
+	public function addNavMenus() {
 		$this->addNavMenu( 'nav-primary', __( 'Header nav', 'chipmunk' ) );
 		$this->addNavMenu( 'nav-secondary', __( 'Footer nav', 'chipmunk' ) );
 	}
@@ -154,18 +143,18 @@ class Setup extends Theme {
 	 * Makes theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
 	 *
-	 * @return void
+	 * @see https://developer.wordpress.org/reference/hooks/after_setup_theme
 	 */
-	public function addTextDomains(): void {
+	public function addTextDomains() {
 		$this->addTextDomain( config()->getSlug(), $this->getTemplatePath( 'languages' ) );
 	}
 
 	/**
-	 * Register custom post types and their related taxonomies
+	 * Register custom post types and their related taxonomies.
 	 *
-	 * @return void
+	 * @see https://developer.wordpress.org/reference/hooks/after_setup_theme
 	 */
-	public function addPostTypes(): void {
+	public function addPostTypes() {
 		$resource = new PostType(
 			__( 'Resource', 'chipmunk' ),
 			__( 'Resources', 'chipmunk' ),
@@ -187,5 +176,19 @@ class Setup extends Theme {
 				'hierarchical' => false,
 			],
 		);
+	}
+
+	/**
+	 * Loads comment reply link in case of page and post pages
+	 * if threaded comments are enabled.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/after_setup_theme
+	 */
+	public function setupThreadedComments() {
+		if ( ! is_admin() ) {
+			if ( is_singular() && get_option( 'thread_comments' ) ) {
+				wp_enqueue_script( 'comment-reply' );
+			}
+		}
 	}
 }

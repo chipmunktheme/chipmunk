@@ -19,10 +19,8 @@ class Shortcodes extends Theme {
 
 	/**
 	 * Hooks methods of this object into the WordPress ecosystem
-	 *
-	 * @return void
 	 */
-	public function initialize(): void {
+	public function initialize() {
 		$this->addShortcode( $this->getThemeSlug( 'counter', '-' ), [ $this, 'renderCounter' ] );
 		$this->addShortcode( $this->getThemeSlug( 'submit', '-' ), [ $this, 'renderSubmit' ] );
 	}

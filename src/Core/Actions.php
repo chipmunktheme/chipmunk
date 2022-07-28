@@ -10,21 +10,19 @@ use Chipmunk\Extensions\Submissions;
 use Chipmunk\Extensions\Upvotes;
 
 /**
- * Theme AJAX callbacks
+ * Theme AJAX callbacks.
  */
 class Actions extends Theme {
 
 	/**
-	 * Class constructor
+	 * Class constructor.
 	 */
 	public function __construct() {}
 
 	/**
-	 * Hooks methods of this object into the WordPress ecosystem
-	 *
-	 * @return void
+	 * Hooks methods of this object into the WordPress ecosystem.
 	 */
-	public function initialize(): void {
+	public function initialize() {
 		$this->addAjaxAction( 'load_posts', [ $this, 'loadPosts' ] );
 		$this->addAjaxAction( 'submit_resource', [ $this, 'submitResource' ] );
 		$this->addAjaxAction( 'toggle_bookmark', [ $this, 'toggleBookmark' ] );
@@ -32,7 +30,9 @@ class Actions extends Theme {
 	}
 
 	/**
-	 * Process lazy loading posts
+	 * Processes lazy loading posts.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/load_posts
 	 */
 	public function loadPosts() {
 		$context            = Timber::context();
@@ -59,7 +59,9 @@ class Actions extends Theme {
 	}
 
 	/**
-	 * Process submission callback
+	 * Processes submission callback.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/submit_resource
 	 */
 	public function submitResource() {
 		// Validate nonce token.
@@ -70,7 +72,9 @@ class Actions extends Theme {
 	}
 
 	/**
-	 * Process bookmark callback
+	 * Processes bookmark callback.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/toggle_bookmark
 	 */
 	public function toggleBookmark() {
 		$bookmarks = new Bookmarks( $_REQUEST['actionPostId'] );
@@ -78,7 +82,9 @@ class Actions extends Theme {
 	}
 
 	/**
-	 * Process upvote callback
+	 * Processes upvote callback.
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/toggle_upvote
 	 */
 	public function toggleUpvote() {
 		$upvotes = new Upvotes( $_REQUEST['actionPostId'] );
