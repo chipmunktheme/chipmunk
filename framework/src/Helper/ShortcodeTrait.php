@@ -1,13 +1,13 @@
 <?php
 
-namespace Chipmunk\Helper;
+namespace Piotrkulpinski\Framework\Helper;
 
 use Timber\Timber;
 
 /**
  * Provides methods to register new shortcodes in the theme
  */
-trait ShortcodesTrait {
+trait ShortcodeTrait {
 
 	/**
 	 * Passes its arguments to add_shortcode().
@@ -26,11 +26,11 @@ trait ShortcodesTrait {
 	 *
 	 * @param string       $tag The shortcode whose function to call.
 	 * @param array<mixed> $atts The attributes to pass to the shortcode function. Optional.
-	 * @param ?string      $content The shortcode's content. Default is null (none).
+	 * @param string|null  $content The shortcode's content. Default is null (none).
 	 *
 	 * @return string|bool False on failure, the result of the shortcode on success.
 	 */
-	protected function getShortcode( string $tag, array $attr = [], string $content = null ) {
+	protected function getShortcode( string $tag, array $attr = [], ?string $content = null ) {
 		global $shortcode_tags;
 
 		if ( ! isset( $shortcode_tags[ $tag ] ) ) {

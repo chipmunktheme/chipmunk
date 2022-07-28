@@ -2,15 +2,15 @@
 
 namespace Chipmunk\Core;
 
+use Piotrkulpinski\Framework\Helper\HelperTrait;
 use Chipmunk\Theme;
-use Chipmunk\Helper\HelpersTrait;
 
 /**
  * Theme shortcodes
  */
 class Shortcodes extends Theme {
 
-	use HelpersTrait;
+	use HelperTrait;
 
 	/**
 	 * Class constructor
@@ -30,9 +30,9 @@ class Shortcodes extends Theme {
 	/**
 	 * Render the total count of resources
 	 *
-	 * @param ?string|array $atts
-	 * @param string        $content
-	 * @param string        $shortcode
+	 * @param string|array|null $atts
+	 * @param string            $content
+	 * @param string            $shortcode
 	 *
 	 * @return string
 	 */
@@ -51,9 +51,9 @@ class Shortcodes extends Theme {
 	/**
 	 * Render the submit template
 	 *
-	 * @param ?string|array $atts
-	 * @param string        $content
-	 * @param string        $shortcode
+	 * @param string|array|null $atts
+	 * @param string            $content
+	 * @param string            $shortcode
 	 *
 	 * @return string
 	 */

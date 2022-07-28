@@ -61,7 +61,7 @@ abstract class ThemeHandler implements HandlerInterface {
 	 */
 	public function debug( $stuff, bool $die = false, bool $force = false ): void {
 		if ( $this->isDebug() || $force ) {
-			$message = '<pre>' . print_r( $stuff, true ) . '</pre>';
+			$message = '<pre>' . var_export( $stuff, true ) . '</pre>';
 
 			if ( $die ) {
 				die( $message );

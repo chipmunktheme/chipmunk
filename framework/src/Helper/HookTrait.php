@@ -1,16 +1,15 @@
 <?php
 
-namespace Chipmunk\Helper;
+namespace Piotrkulpinski\Framework\Helper;
 
-use Chipmunk\Helper\HelpersTrait;
-use function Chipmunk\config;
+use Piotrkulpinski\Framework\Helper\HelperTrait;
 
 /**
  * Provides methods to register new hooks in the theme
  */
-trait HooksTrait {
+trait HookTrait {
 
-	use HelpersTrait;
+	use HelperTrait;
 
 	/**
 	 * Passes its arguments to add_action().
@@ -20,12 +19,12 @@ trait HooksTrait {
 	 * @param int    $priority
 	 * @param int    $args
 	 *
-	 * @return bool
+	 * @return bool|null
 	 */
-	protected function addAction( string $hook, $callback, int $priority = 10, int $args = 1 ): bool {
+	protected function addAction( string $hook, $callback, int $priority = 10, int $args = 1 ): ?bool {
 		if ( ! is_callable( $callback ) ) {
 			// TODO: Implement a proper error logging here
-			return false;
+			return null;
 		}
 
 		return is_string( $callback )
@@ -41,12 +40,12 @@ trait HooksTrait {
 	 * @param int    $priority
 	 * @param int    $args
 	 *
-	 * @return bool
+	 * @return bool|null
 	 */
-	protected function addFilter( string $hook, $callback, int $priority = 10, int $args = 1 ): bool {
+	protected function addFilter( string $hook, $callback, int $priority = 10, int $args = 1 ): ?bool {
 		if ( ! is_callable( $callback ) ) {
 			// TODO: Implement a proper error logging here
-			return false;
+			return null;
 		}
 
 		return is_string( $callback )
@@ -62,12 +61,12 @@ trait HooksTrait {
 	 * @param int    $priority
 	 * @param int    $args
 	 *
-	 * @return bool
+	 * @return bool|null
 	 */
-	protected function addAjaxAction( string $hook, $callback, int $priority = 10, int $args = 1 ): bool {
+	protected function addAjaxAction( string $hook, $callback, int $priority = 10, int $args = 1 ): ?bool {
 		if ( ! is_callable( $callback ) ) {
 			// TODO: Implement a proper error logging here
-			return false;
+			return null;
 		}
 
 		$this->addAction( 'wp_ajax_' . $this->getThemeSlug( $hook ), $callback, $priority, $args );
@@ -85,7 +84,9 @@ trait HooksTrait {
 	 *
 	 * @return mixed
 	 */
-	protected function applyFilter( string $hook, $value, ...$args ) {
-		return apply_filters( join( '_', [ config()->getSlug(), $hook ] ), $value, ...$args );
+	protected function applyFilter( string $hook, $value, bool $prefix = true, ...$args ) {
+		$hookName = $prefix ? $this->getThemeSlug( $hook ) : $hook;
+
+		return apply_filters( $hookName, $value, ...$args );
 	}
 }

@@ -8,7 +8,7 @@
       {% if not get_option('disable_credits') %}
         {% set credits %}
           {{ __('Made with Chipmunk', 'chipmunk') }}
-          {{ asset('images/logo.svg') | svg_content }}
+          {{ get_svg_content(asset('images/logo.svg')) }}
         {% endset %}
 
         {{ get_external_link('https://chipmunktheme.com', credits, {

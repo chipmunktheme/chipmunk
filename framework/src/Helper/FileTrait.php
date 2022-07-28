@@ -1,6 +1,6 @@
 <?php
 
-namespace Chipmunk\Helper;
+namespace Piotrkulpinski\Framework\Helper;
 
 /**
  * Provides methods to run file-related tasks

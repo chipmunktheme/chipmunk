@@ -1,16 +1,15 @@
 <?php
 
-namespace Chipmunk\Helper;
+namespace Piotrkulpinski\Framework\Helper;
 
-use Chipmunk\Helper\HelpersTrait;
-use function Chipmunk\config;
+use Piotrkulpinski\Framework\Helper\HelperTrait;
 
 /**
  * Provides methods to run file-related tasks
  */
-trait TransientsTrait {
+trait TransientTrait {
 
-	use HelpersTrait;
+	use HelperTrait;
 
 	/**
 	 * Retrieves the value of a transient.

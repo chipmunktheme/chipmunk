@@ -1,14 +1,14 @@
 <?php
 
-namespace Chipmunk\Helper;
+namespace Piotrkulpinski\Framework\Helper;
 
-use Chipmunk\Helper\FileTrait;
+use Piotrkulpinski\Framework\Helper\FileTrait;
 use function Chipmunk\config;
 
 /**
  * Provides methods to manipulate static asset files
  */
-trait AssetsTrait {
+trait AssetTrait {
 
 	use FileTrait;
 
@@ -18,6 +18,17 @@ trait AssetsTrait {
 	 * @var array
 	 */
 	private $manifest;
+
+	/**
+	 * Returns the real path of the asset file.
+	 *
+	 * @param $asset
+	 *
+	 * @return string
+	 */
+	public function assetUrl( $asset ) {
+		return $this->revisionedUrl( $this->getPath( config()->getAssetsPath(), $asset ) );
+	}
 
 	/**
 	 * Verifies existence of the given file in manifest
@@ -46,17 +57,6 @@ trait AssetsTrait {
 		}
 
 		return $this->getTemplateUrl( config()->getDistPath(), $manifest[ $asset ] );
-	}
-
-	/**
-	 * Returns the real path of the asset file.
-	 *
-	 * @param $asset
-	 *
-	 * @return string
-	 */
-	protected function assetUrl( $asset ) {
-		return $this->revisionedUrl( $this->getPath( config()->getAssetsPath(), $asset ) );
 	}
 
 	/**

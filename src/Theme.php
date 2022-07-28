@@ -3,15 +3,11 @@
 namespace Chipmunk;
 
 use Piotrkulpinski\Framework\Handler\ThemeHandler;
+use Piotrkulpinski\Framework\Helper\HookTrait;
+use Piotrkulpinski\Framework\Helper\OptionTrait;
+use Piotrkulpinski\Framework\Helper\ShortcodeTrait;
 use Chipmunk\Config;
-use Chipmunk\Core\Setup;
 use Chipmunk\Core\Options;
-use Chipmunk\Core\Templates;
-use Chipmunk\Core\Assets;
-use Chipmunk\Core\Actions;
-use Chipmunk\Core\Shortcodes;
-use Chipmunk\Helper\HooksTrait;
-use Chipmunk\Helper\ShortcodesTrait;
 
 /**
  * Main theme setup class
@@ -19,63 +15,71 @@ use Chipmunk\Helper\ShortcodesTrait;
  * @package Chipmunk
  */
 class Theme extends ThemeHandler {
-	use HooksTrait;
-	use ShortcodesTrait;
+	use HookTrait;
+	use OptionTrait;
+	use ShortcodeTrait;
 
 	/**
-	 * Theme setup
+	 * Theme config
 	 *
-	 * @var Setup
+	 * @var Config
 	 */
-	protected $setup;
+	protected Config $config;
 
 	/**
 	 * Theme options
 	 *
-	 * @var Options
+	 * @var Theme
 	 */
-	protected $options;
+	protected Theme $options;
+
+	/**
+	 * Theme setup
+	 *
+	 * @var Theme
+	 */
+	protected Theme $setup;
 
 	/**
 	 * Theme templates
 	 *
-	 * @var Templates
+	 * @var Theme
 	 */
-	protected $templates;
+	protected Theme $templates;
 
 	/**
 	 * Theme assets
 	 *
-	 * @var Assets
+	 * @var Theme
 	 */
-	protected $assets;
+	protected Theme $assets;
 
 	/**
 	 * Theme AJAX callbacks
 	 *
-	 * @var Actions
+	 * @var Theme
 	 */
-	protected $actions;
+	protected Theme $actions;
 
 	/**
 	 * Theme shortcodes
 	 *
-	 * @var Shortcodes
+	 * @var Theme
 	 */
-	protected $shortcodes;
+	protected Theme $shortcodes;
 
 	/**
 	 * Theme constructor.
 	 */
 	public function __construct() {
-		new Config();
-
-		$this->setup      = new Setup();
-		$this->options    = new Options();
-		$this->templates  = new Templates();
-		$this->assets     = new Assets();
-		$this->actions    = new Actions();
-		$this->shortcodes = new Shortcodes();
+		$this->config      = Config::instance();
+		$this->options     = Options::instance();
+		$this->setup       = new Core\Setup();
+		$this->templates   = new Core\Templates();
+		$this->assets      = new Core\Assets();
+		$this->actions     = new Core\Actions();
+		$this->shortcodes  = new Core\Shortcodes();
+		$this->configAdmin = new Config\Admin();
 	}
 
 	/**
@@ -85,12 +89,13 @@ class Theme extends ThemeHandler {
 	 */
 	public function initialize(): void {
 		if ( ! $this->isInitialized() ) {
-			$this->setup->initialize();
 			$this->options->initialize();
+			$this->setup->initialize();
 			$this->templates->initialize();
 			$this->assets->initialize();
 			$this->actions->initialize();
 			$this->shortcodes->initialize();
+			$this->configAdmin->initialize();
 		}
 	}
 }

@@ -2,16 +2,16 @@
 
 namespace Chipmunk\Factory;
 
-use Chipmunk\Helper\HelpersTrait;
-use Chipmunk\Helper\HooksTrait;
+use Piotrkulpinski\Framework\Helper\HelperTrait;
+use Piotrkulpinski\Framework\Helper\HookTrait;
 
 /**
  * Post Type Factory
  */
 class PostType {
 
-	use HelpersTrait;
-	use HooksTrait;
+	use HelperTrait;
+	use HookTrait;
 
 	/**
 	 * Post type singular name
@@ -105,7 +105,7 @@ class PostType {
 		$slug         = $this->getSlug( $singularName );
 		$postTypeSlug = $this->getSlug( $this->getSingularName() );
 
-		if ( ! post_type_exists( $slug ) ) {
+		if ( ! taxonomy_exists( $slug ) ) {
 
 			// Create taxonomy and attach it to the object type (post type).
 			$defaults = $this->getArguments( $singularName, $pluralName, 'getTaxonomyArguments' );
@@ -127,9 +127,14 @@ class PostType {
 	 * @param string $pluralName
 	 * @param string $callback
 	 *
-	 * @return array
+	 * @return array|null
 	 */
-	private function getArguments( string $singularName, string $pluralName, string $callback ): array {
+	private function getArguments( string $singularName, string $pluralName, string $callback ): ?array {
+		if ( ! is_callable( [ $this, $callback ] ) ) {
+			// TODO: Implement a proper error logging here
+			return null;
+		}
+
 		$nouns = [
 			$singularName,
 			strtolower( $singularName ),
@@ -139,7 +144,7 @@ class PostType {
 
 		$slug       = $this->getSlug( $singularName );
 		$labels     = $this->getGeneratedLabels( $nouns );
-		$slugOption = get_option( $this->getThemeSlug( $slug, '_', null, 'cpt_base' ) );
+		$slugOption = get_option( $this->getThemeSlug( [ $slug, 'cpt_base' ] ) );
 
 		return call_user_func( [ $this, $callback ], $labels, $slug, $slugOption ?: $slug );
 	}

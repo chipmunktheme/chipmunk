@@ -6,31 +6,35 @@ use WP_Customize_Manager;
 use WP_Customize_Color_Control;
 use WP_Customize_Image_Control;
 
+use Piotrkulpinski\Framework\Helper\FontTrait;
 use Chipmunk\Theme;
-use Chipmunk\Helper\FontsTrait;
-
 use function Chipmunk\config;
 
 /**
  * Theme options
  */
-class Options extends Theme {
+final class Options extends Theme {
 
-	use FontsTrait;
+	use FontTrait;
+
+	/**
+	 * @var Options The one true Options
+	 */
+	private static $instance;
 
 	/**
 	 * An array of Customzer sections
 	 *
 	 * @var array
 	 */
-	private $sections;
+	private array $sections;
 
 	/**
 	 * Define settings access
 	 *
 	 * @var string
 	 */
-	private $capability = 'edit_theme_options';
+	private string $capability = 'edit_theme_options';
 
 	/**
 	 * Class constructor.
@@ -800,6 +804,20 @@ class Options extends Theme {
 	}
 
 	/**
+	 * Insures that only one instance of Options exists in memory at any one
+	 * time. Also prevents needing to define globals all over the place.
+	 *
+	 * @return Options
+	 */
+	public static function instance() {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Options ) ) {
+			self::$instance = new Options();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Hooks methods of this object into the WordPress ecosystem
 	 *
 	 * @return void
@@ -808,6 +826,15 @@ class Options extends Theme {
 		if ( is_customize_preview() ) {
 			$this->addAction( 'customize_register', [ $this, 'addSections' ] );
 		}
+	}
+
+	/**
+	 * Returns the sections array
+	 *
+	 * @return array
+	 */
+	public function getSections(): array {
+		return $this->sections;
 	}
 
 	/**

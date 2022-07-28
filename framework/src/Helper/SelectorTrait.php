@@ -1,23 +1,21 @@
 <?php
 
-namespace Chipmunk\Helper;
-
-use Piotrkulpinski\Framework\Exception\TypeException;
+namespace Piotrkulpinski\Framework\Helper;
 
 /**
  * Provides methods for selectors and HTML elements
  */
-trait SelectorsTrait {
+trait SelectorTrait {
 
 	/**
 	 * Builds class string based on name and modifiers
 	 *
-	 * @param string           $name          Base class name
-	 * @param ?string[]|string $modifiers,... Class name modifiers
+	 * @param string               $name          Base class name
+	 * @param string[]|string|null $modifiers,... Class name modifiers
 	 *
 	 * @return string
 	 */
-	protected static function className( $name, $modifiers = null ): string {
+	public function className( string $name, $modifiers = null ): string {
 		if ( ! is_string( $name ) ) {
 			return '';
 		}
@@ -48,11 +46,9 @@ trait SelectorsTrait {
 	 *
 	 * @param array<string, mixed>|string[]|string $variable Variable we need to convert into a string.
 	 *
-	 * @throws TypeException When $variable is not a string or array.
-	 *
-	 * @return string
+	 * @return ?string
 	 */
-	protected static function ensureString( $variable ): string {
+	public function ensureString( $variable ): string {
 		$output = '';
 
 		if ( is_array( $variable ) ) {
@@ -68,10 +64,8 @@ trait SelectorsTrait {
 		} elseif ( is_string( $variable ) ) {
 			$output = $variable;
 		} else {
-			throw new TypeException(
-				'Not a string nor array: ' . $variable,
-				TypeException::NOT_STRING_OR_ARRAY
-			);
+			// TODO: Implement a proper error logging here
+			return null;
 		}
 
 		return $output;

@@ -1,21 +1,21 @@
 <?php
 
-namespace Chipmunk\Helper;
+namespace Piotrkulpinski\Framework\Helper;
 
-use Chipmunk\Helper\TransientsTrait;
+use Piotrkulpinski\Framework\Helper\TransientTrait;
 use function Chipmunk\config;
 
 /**
  * Provides methods for getting and manipulating fonts
  */
-trait FontsTrait {
+trait FontTrait {
 
-	use TransientsTrait;
+	use TransientTrait;
 
 	/**
 	 * Get Google fonts list
 	 */
-	private function getGoogleFonts() {
+	protected function getGoogleFonts() {
 		if ( ! is_customize_preview() ) {
 			return [];
 		}
@@ -33,11 +33,11 @@ trait FontsTrait {
 	/**
 	 * Fetches fonts from Google Fonts API
 	 *
-	 * @param array $sort Optional. Sort option to pass to the Google Fonts API
+	 * @param string $sort Optional. Sort option to pass to the Google Fonts API
 	 *
-	 * @return ?array
+	 * @return array|null
 	 */
-	protected function fetchGoogleFonts( $sort = 'popularity' ) {
+	protected function fetchGoogleFonts( string $sort = 'popularity' ): ?array {
 		$apiKey = config()->getGoogleApiKey();
 
 		$ch = curl_init( "https://www.googleapis.com/webfonts/v1/webfonts?key=$apiKey&sort=$sort" );
@@ -56,5 +56,33 @@ trait FontsTrait {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Parses Google Fonts url
+	 *
+	 * @param array $fonts Array of Google Font names
+	 *
+	 * @return string|null
+	 */
+	protected function getGoogleFontsUrl( array $fonts ): ?string {
+		if ( empty( $fonts ) ) {
+			return null;
+		}
+
+		$fontFamilies = [];
+
+		foreach ( $fonts as $font ) {
+			if ( ! array_key_exists( $font, $fontFamilies ) ) {
+				$fontFamilies[ $font ] = "{$font}:400,700";
+			}
+		}
+
+		$args = [
+			'family' => urlencode( implode( '|', array_values( $fontFamilies ) ) ),
+			'subset' => urlencode( 'latin,latin-ext' ),
+		];
+
+		return add_query_arg( $args, 'https://fonts.googleapis.com/css' );
 	}
 }

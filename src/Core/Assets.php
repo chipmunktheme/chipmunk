@@ -2,19 +2,21 @@
 
 namespace Chipmunk\Core;
 
+use Piotrkulpinski\Framework\Helper\AssetTrait;
+use Piotrkulpinski\Framework\Helper\EnqueueTrait;
+use Piotrkulpinski\Framework\Helper\FontTrait;
+use Piotrkulpinski\Framework\Helper\HelperTrait;
 use Chipmunk\Theme;
-use Chipmunk\Helper\AssetsTrait;
-use Chipmunk\Helper\EnqueueTrait;
-use Chipmunk\Helper\HelpersTrait;
 
 /**
  * Theme assets
  */
 class Assets extends Theme {
 
-	use AssetsTrait;
+	use AssetTrait;
+	use FontTrait;
 	use EnqueueTrait;
-	use HelpersTrait;
+	use HelperTrait;
 
 	/**
 	 * Class constructor.
@@ -64,16 +66,16 @@ class Assets extends Theme {
 		$contentWidth    = ( ! empty( $post ) ) ? get_field( $this->getThemeSlug( 'page_content_width' ), $post->ID ) : Helpers::getOption( 'content_width' );
 
 		$customStyle  = ( ! empty( $customCss ) ) ? $customCss : '';
-		$customStyle .= ! empty( $primaryFont ) ? $this->getThemeSlug( 'typography--font-family', '--', '' ) . ": $primaryFont" : '';
-		$customStyle .= ! empty( $headingFont ) ? $this->getThemeSlug( 'typography--heading-font-family', '--', '' ) . ": $headingFont" : '';
-		$customStyle .= $this->getThemeSlug( 'color--primary', '--', '' ) . ": $primaryColor";
-		$customStyle .= $this->getThemeSlug( 'color--link', '--', '' ) . ": $linkColor";
-		$customStyle .= $this->getThemeSlug( 'color--background', '--', '' ) . ": $backgroundColor";
-		$customStyle .= $this->getThemeSlug( 'color--section', '--', '' ) . ": $sectionColor";
-		$customStyle .= $this->getThemeSlug( 'typography--content-size', '--', '' ) . ": $contentSize";
-		$customStyle .= $this->getThemeSlug( 'layout--content-width', '--', '' ) . ": $contentWidth";
-		$customStyle .= $this->getThemeSlug( 'border-opacity', '--', '' ) . ': ' . ( empty( $disableBorders ) ? '0.075' : '0' );
-		$customStyle .= $this->getThemeSlug( 'logo-height', '--', '' ) . ': ' . $logoHeight / 10 . 'rem';
+		$customStyle .= ! empty( $primaryFont ) ? $this->getThemeSlug( [ '', 'typography--font-family' ], '--', 1 ) . ": $primaryFont" : '';
+		$customStyle .= ! empty( $headingFont ) ? $this->getThemeSlug( [ '', 'typography--heading-font-family' ], '--', 1 ) . ": $headingFont" : '';
+		$customStyle .= $this->getThemeSlug( [ '', 'color--primary' ], '--', 1 ) . ": $primaryColor";
+		$customStyle .= $this->getThemeSlug( [ '', 'color--link' ], '--', 1 ) . ": $linkColor";
+		$customStyle .= $this->getThemeSlug( [ '', 'color--background' ], '--', 1 ) . ": $backgroundColor";
+		$customStyle .= $this->getThemeSlug( [ '', 'color--section' ], '--', 1 ) . ": $sectionColor";
+		$customStyle .= $this->getThemeSlug( [ '', 'typography--content-size' ], '--', 1 ) . ": $contentSize";
+		$customStyle .= $this->getThemeSlug( [ '', 'layout--content-width' ], '--', 1 ) . ": $contentWidth";
+		$customStyle .= $this->getThemeSlug( [ '', 'border-opacity' ], '--', 1 ) . ': ' . ( empty( $disableBorders ) ? '0.075' : '0' );
+		$customStyle .= $this->getThemeSlug( [ '', 'logo-height' ], '--', 1 ) . ': ' . $logoHeight / 10 . 'rem';
 
 		$this->addInlineStyle( 'chipmunk-styles', ":root {{$customStyle}}" );
 	}
@@ -96,7 +98,7 @@ class Assets extends Theme {
 		}
 
 		if ( ! empty( $fonts ) ) {
-			$this->addStyle( 'chipmunk-fonts', Helpers::getGoogleFontsUrl( $fonts ) );
+			$this->addStyle( 'chipmunk-fonts', $this->getGoogleFontsUrl( $fonts ) );
 		}
 	}
 

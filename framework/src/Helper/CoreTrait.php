@@ -1,6 +1,6 @@
 <?php
 
-namespace Chipmunk\Helper;
+namespace Piotrkulpinski\Framework\Helper;
 
 /**
  * Provides aliases for main core WordPress features

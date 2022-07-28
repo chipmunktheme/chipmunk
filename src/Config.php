@@ -3,9 +3,9 @@
 namespace Chipmunk;
 
 use Timber\Theme;
-use Chipmunk\Helper\FileTrait;
-use Chipmunk\Helper\HelpersTrait;
-use Chipmunk\Helper\HooksTrait;
+use Piotrkulpinski\Framework\Helper\FileTrait;
+use Piotrkulpinski\Framework\Helper\HelperTrait;
+use Piotrkulpinski\Framework\Helper\HookTrait;
 
 /**
  * Provides methods for the getting config options
@@ -13,8 +13,8 @@ use Chipmunk\Helper\HooksTrait;
 final class Config {
 
 	use FileTrait;
-	use HelpersTrait;
-	use HooksTrait;
+	use HelperTrait;
+	use HookTrait;
 
 	/**
 	 * @var Config The one true Config
@@ -107,6 +107,16 @@ final class Config {
 	 * @var string The name of the settings property
 	 */
 	private $settingsName = 'settings';
+
+	/**
+	 * @var string Mininum required PHP version
+	 */
+	private $minPHPVersion = '7.4';
+
+	/**
+	 * @var string Mininum required WP version
+	 */
+	private $minWPVersion = '5.4';
 
 	/**
 	 * Insures that only one instance of Config exists in memory at any one
@@ -296,6 +306,28 @@ final class Config {
 	 */
 	public function getSettingsName(): string {
 		return $this->getThemeSlug( $this->settingsName );
+	}
+
+	/**
+	 * Method that returns minimum required PHP version.
+	 *
+	 * Used for checking if environment meets given requirements.
+	 *
+	 * @return string
+	 */
+	public function getMinPHPVersion(): string {
+		return $this->minPHPVersion;
+	}
+
+	/**
+	 * Method that returns minimum required WP version.
+	 *
+	 * Used for checking if environment meets given requirements.
+	 *
+	 * @return string
+	 */
+	public function getMinWPVersion(): string {
+		return $this->minWPVersion;
 	}
 }
 

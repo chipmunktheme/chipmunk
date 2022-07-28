@@ -2,10 +2,10 @@
 
 namespace Chipmunk\Core;
 
+use Piotrkulpinski\Framework\Helper\FileTrait;
+use Piotrkulpinski\Framework\Helper\CoreTrait;
 use Chipmunk\Theme;
-use Chipmunk\Helper\FileTrait;
 use Chipmunk\Factory\PostType;
-use Chipmunk\Helper\CoreTrait;
 use function Chipmunk\config;
 
 /**

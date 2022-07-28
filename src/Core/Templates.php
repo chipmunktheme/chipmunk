@@ -3,10 +3,12 @@
 namespace Chipmunk\Core;
 
 use Timber\URLHelper;
+use Piotrkulpinski\Framework\Helper\AssetTrait;
+use Piotrkulpinski\Framework\Helper\FileTrait;
+use Piotrkulpinski\Framework\Helper\OptionTrait;
+use Piotrkulpinski\Framework\Helper\MediaTrait;
+use Piotrkulpinski\Framework\Helper\SelectorTrait;
 use Chipmunk\Theme;
-use Chipmunk\Helper\AssetsTrait;
-use Chipmunk\Helper\FileTrait;
-use Chipmunk\Helper\SelectorsTrait;
 
 use function Chipmunk\config;
 
@@ -15,9 +17,11 @@ use function Chipmunk\config;
  */
 class Templates extends Theme {
 
-	use AssetsTrait;
+	use AssetTrait;
 	use FileTrait;
-	use SelectorsTrait;
+	use OptionTrait;
+	use MediaTrait;
+	use SelectorTrait;
 
 	/**
 	 * Class constructor.
@@ -92,31 +96,32 @@ class Templates extends Theme {
 	public function setTwigFunctions( array $functions ): array {
 		$extend = [
 			// WordPress Helpers
-			'is_singular' => [ 'callable' => 'is_singular' ],
-			'is_tax'      => [ 'callable' => 'is_tax' ],
+			'is_singular'       => [ 'callable' => 'is_singular' ],
+			'is_tax'            => [ 'callable' => 'is_tax' ],
 
 			// Theme Helpers
-			'asset'         => [ 'callable' => [ $this, 'assetPath' ] ],
-			'class'                 => [ 'callable' => [ $this, 'className' ] ],
-			// 'get_salt'           => [ 'callable' => [ Helpers::class, 'getSalt' ] ],
-			// 'get_param'          => [ 'callable' => [ Helpers::class, 'getParam' ] ],
-			// 'get_option'         => [ 'callable' => [ Helpers::class, 'getOption' ] ],
-			// 'is_option_enabled'  => [ 'callable' => [ Helpers::class, 'isOptionEnabled' ] ],
-			// 'is_addon_enabled'   => [ 'callable' => [ Helpers::class, 'isAddonEnabled' ] ],
-			// 'get_external_link'  => [ 'callable' => [ Helpers::class, 'getExternalLink' ] ],
-			// 'get_resource_links' => [ 'callable' => [ Helpers::class, 'getResourceLinks' ] ],
-			// 'get_term_list'      => [ 'callable' => [ Helpers::class, 'getTermList' ] ],
-			// 'get_term_options'   => [ 'callable' => [ Helpers::class, 'getTermOptions' ] ],
-			// 'get_related_posts'  => [ 'callable' => [ Helpers::class, 'getRelatedPosts' ] ],
-			// 'get_current_page'   => [ 'callable' => [ Helpers::class, 'getCurrentPage' ] ],
+			'asset'             => [ 'callable' => [ $this, 'assetUrl' ] ],
+			'class'             => [ 'callable' => [ $this, 'className' ] ],
+			// 'get_salt'           => [ 'callable' => [ $this, 'getSalt' ] ],
+			// 'get_param'          => [ 'callable' => [ $this, 'getParam' ] ],
+			'get_option'        => [ 'callable' => [ $this, 'getOption' ] ],
+			'is_option_enabled' => [ 'callable' => [ $this, 'isOptionEnabled' ] ],
+			// 'is_addon_enabled'   => [ 'callable' => [ $this, 'isAddonEnabled' ] ],
+			'get_svg_content'   => [ 'callable' => [ $this, 'getSvgContent' ] ],
+			// 'get_external_link'  => [ 'callable' => [ $this, 'getExternalLink' ] ],
+			// 'get_resource_links' => [ 'callable' => [ $this, 'getResourceLinks' ] ],
+			// 'get_term_list'      => [ 'callable' => [ $this, 'getTermList' ] ],
+			// 'get_term_options'   => [ 'callable' => [ $this, 'getTermOptions' ] ],
+			// 'get_related_posts'  => [ 'callable' => [ $this, 'getRelatedPosts' ] ],
+			// 'get_current_page'   => [ 'callable' => [ $this, 'getCurrentPage' ] ],
 			// 'get_views'          => [ 'callable' => [ Views::class, 'getViews' ] ],
 
 			// Addon Helpers
 			// 'get_members_link'   => [ 'callable' => [ MembersHelpers::class, 'getPagePermalink' ] ],
 
 			// Third-party Helpers
-			'get_current_url'    => [ 'callable' => [ URLHelper::class, 'get_current_url' ] ],
-			'is_external'        => [ 'callable' => [ URLHelper::class, 'is_external' ] ],
+			'get_current_url'   => [ 'callable' => [ URLHelper::class, 'get_current_url' ] ],
+			'is_external'       => [ 'callable' => [ URLHelper::class, 'is_external' ] ],
 		];
 
 		return array_replace( $functions, $extend );
@@ -135,14 +140,13 @@ class Templates extends Theme {
 			'esc_url'        => [ 'callable' => 'esc_url' ],
 			'esc_attr'       => [ 'callable' => 'esc_attr' ],
 			'esc_html'       => [ 'callable' => 'esc_html' ],
-			'wp_kses_post'       => [ 'callable' => 'wp_kses_post' ],
+			'wp_kses_post'   => [ 'callable' => 'wp_kses_post' ],
 			'lcfirst'        => [ 'callable' => 'lcfirst' ],
 			'stripslashes'   => [ 'callable' => 'stripslashes' ],
 			'sanitize_title' => [ 'callable' => 'sanitize_title' ],
 
 			// Custom filters
 			// 'format_number'  => [ 'callable' => [ Helpers::class, 'formatNumber' ] ],
-			// 'svg_content'    => [ 'callable' => [ Helpers::class, 'getSvgContent' ] ],
 			// 'external_url'   => [ 'callable' => [ Helpers::class, 'getExternalUrl' ] ],
 		];
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace Chipmunk\Helper;
+namespace Piotrkulpinski\Framework\Helper;
 
 use Timber\URLHelper;
-use Chipmunk\Helper\AssetsTrait;
+use Piotrkulpinski\Framework\Helper\AssetTrait;
 
 /**
  * Provides methods to enqueue/dequeue static files
  */
 trait EnqueueTrait {
 
-	use AssetsTrait;
+	use AssetTrait;
 
 	/**
 	 * Adds style file after making sure it exists
