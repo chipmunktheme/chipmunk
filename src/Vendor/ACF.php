@@ -1,41 +1,49 @@
 <?php
 
-namespace Chipmunk\Vendors;
+namespace Chipmunk\Vendor;
 
-use Chipmunk\Helpers;
+use Piotrkulpinski\Framework\Helper\FileTrait;
+use Chipmunk\Theme;
+use function Chipmunk\config;
 
 /**
  * Configure ACF plugin
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
-class ACF {
+class ACF extends Theme {
+
+	use FileTrait;
 
 	/**
-	 * ACF directory paths
+	 * ACF directory path
 	 *
 	 * @var string
 	 */
-	const ACF_PATH = THEME_TEMPLATE_DIR . '/vendor/advanced-custom-fields/advanced-custom-fields-pro/';
-	const ACF_URL  = THEME_TEMPLATE_URI . '/vendor/advanced-custom-fields/advanced-custom-fields-pro/';
+	private string $path = 'vendor/advanced-custom-fields/advanced-custom-fields-pro';
 
 	/**
-	 * Create a new ACF Config object
+	 * Class constructor.
 	 */
-	public function __construct() {
-		// Include the ACF plugin.
-		include_once self::ACF_PATH . 'acf.php';
+	public function __construct() {}
 
-		add_filter( 'acf/init', [ $this, 'acfRegisterFields' ] );
-		add_filter( 'acf/settings/url', [ $this, 'acfSettingsUrl' ] );
-		add_filter( 'acf/settings/show_admin', [ $this, 'acfSettingsShowAdmin' ] );
+	/**
+	 * Hooks methods of this object into the WordPress ecosystem.
+	 */
+	public function initialize() {
+		// Include the ACF plugin.
+		include_once $this->getTemplatePath( $this->path, 'acf.php' );
+
+		add_filter( 'acf/init', [ $this, 'registerFields' ] );
+		add_filter( 'acf/settings/url', [ $this, 'setSettingsUrl' ] );
+		add_filter( 'acf/settings/show_admin', [ $this, 'setSettingsShowAdmin' ] );
+		add_filter( 'acf/settings/google_api_key', [ $this, 'setSettingsGoogleApiKey' ] );
 	}
 
 	/**
-	 * Register the proper custom fields via ACF
+	 * Registers the proper custom fields via ACF
+	 *
+	 * @see https://advancedcustomfields.com/resources/acf-init/
 	 */
-	public function acfRegisterFields() {
+	public function registerFields() {
 		$groups = [
 
 			// Resource
@@ -154,7 +162,7 @@ class ACF {
 							'10' => sprintf( __( 'Wide (%d%%)', 'chipmunk' ), ( 10 / 12 * 100 ) ),
 							'12' => sprintf( __( 'Full (%d%%)', 'chipmunk' ), ( 12 / 12 * 100 ) ),
 						],
-						'default_value' => Helpers::getOption( 'content_width' ),
+						'default_value' => $this->getOption( 'content_width' ),
 						'required'      => true,
 						'ui'            => true,
 					],
@@ -166,7 +174,7 @@ class ACF {
 			// Normalize group fields
 			array_walk(
 				$group['fields'],
-				[ $this, 'acfNormalizeFields' ],
+				[ $this, 'normalizeFields' ],
 				[
 					'group'      => $group,
 					'prefix_key' => true,
@@ -179,11 +187,17 @@ class ACF {
 	}
 
 	/**
-	 * Register the proper custom fields via ACF
+	 * Normalizes the field object to be used for registering.
+	 *
+	 * @param array $field
+	 * @param mixed $key
+	 * @param array $params
 	 */
-	private function acfNormalizeFields( &$field, $key, $params ) {
+	private function normalizeFields( array &$field, $key, array $params ) {
 		// Generate proper field key
-		$key = ( isset( $params['prefix_key'] ) && isset( $params['group'] ) ? '_' . THEME_SLUG . '_' . $params['group']['key'] . '_' : '' ) . $field['key'];
+		$key = isset( $params['prefix_key'] ) && isset( $params['group'] )
+			? $this->getPrefixedThemeSlug( [ $params['group']['key'], $field['key'] ] )
+			: $this->getPrefixedThemeSlug( $field['key'] );
 
 		// Normalized field
 		$normField = [
@@ -218,7 +232,7 @@ class ACF {
 
 		if ( isset( $field['sub_fields'] ) ) {
 			// Normalize sub-fields
-			array_walk( $field['sub_fields'], [ $this, 'acfNormalizeFields' ], [ 'group' => $params['group'] ] );
+			array_walk( $field['sub_fields'], [ $this, 'normalizeFields' ], [ 'group' => $params['group'] ] );
 
 			$normField['sub_fields'] = $field['sub_fields'];
 		}
@@ -228,20 +242,37 @@ class ACF {
 	}
 
 	/**
-	 * Customize the url setting to fix incorrect asset URLs.
+	 * Set the url setting to fix incorrect asset URLs.
+	 *
+	 * @see https://www.advancedcustomfields.com/resources/acf-settings/
 	 *
 	 * @return string
 	 */
-	public function acfSettingsUrl( $url ) {
-		return self::ACF_URL;
+	public function setSettingsUrl( string $url ): string {
+		return $this->getTemplateUrl( $this->path );
 	}
 
 	/**
 	 * Hide the ACF admin menu item.
 	 *
+	 * @see https://www.advancedcustomfields.com/resources/acf-settings/
+	 *
 	 * @return bool
 	 */
-	public function acfSettingsShowAdmin( $show_admin ) {
+	public function setSettingsShowAdmin( bool $showAdmin ): bool {
 		return false;
+	}
+
+	/**
+	 * Set the Google API Key for ACF
+	 *
+	 * @see https://www.advancedcustomfields.com/resources/acf-settings/
+	 *
+	 * @param string $apiKey
+	 *
+	 * @return string
+	 */
+	public function setSettingsGoogleApiKey( string $apiKey ): string {
+		return config()->getGoogleApiKey();
 	}
 }

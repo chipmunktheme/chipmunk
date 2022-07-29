@@ -2,7 +2,9 @@
 
 namespace Chipmunk\Config;
 
+use Piotrkulpinski\Framework\Helper\FileTrait;
 use Piotrkulpinski\Framework\Helper\HelperTrait;
+use Piotrkulpinski\Framework\Helper\TransientTrait;
 use Chipmunk\Theme;
 
 use function Chipmunk\config;
@@ -12,7 +14,9 @@ use function Chipmunk\config;
  */
 class Admin extends Theme {
 
+	use FileTrait;
 	use HelperTrait;
+	use TransientTrait;
 
 	/**
 	 * A list of technical requirements of the theme.
@@ -29,17 +33,24 @@ class Admin extends Theme {
 	private array $permalinkTypes;
 
 	/**
+	 * A list of theme plugins that are deprecated and should be removed.
+	 *
+	 * @var array
+	 */
+	private array $deprecatedPlugins;
+
+	/**
 	 * Class constructor
 	 */
 	public function __construct() {
 		$this->requirements = [
-			'PHP'   => [
+			'PHP'       => [
 				'required' => config()->getMinPHPVersion(),
-				'current' => phpversion(),
+				'current'  => phpversion(),
 			],
-			'WordPress'   => [
+			'WordPress' => [
 				'required' => config()->getMinWPVersion(),
-				'current' => get_bloginfo( 'version' ),
+				'current'  => get_bloginfo( 'version' ),
 			],
 		];
 
@@ -47,6 +58,11 @@ class Admin extends Theme {
 			'resource'   => __( 'Resource base', 'chipmunk' ),
 			'collection' => __( 'Collection base', 'chipmunk' ),
 			'tag'        => __( 'Tag base', 'chipmunk' ),
+		];
+
+		$this->deprecatedPlugins = [
+			'members' => __( 'Members', 'chipmunk' ),
+			'ratings' => __( 'Ratings', 'chipmunk' ),
 		];
 	}
 
@@ -56,6 +72,11 @@ class Admin extends Theme {
 	public function initialize() {
 		$this->addAction( 'admin_notices', [ $this, 'displayAdminNotices' ] );
 		$this->addAction( 'admin_init', [ $this, 'addPermalinkSettings' ] );
+
+		// Add theme related notices
+		$this->addFilter( $this->getThemeSlug( 'admin_notices' ), [ $this, 'checkRequirements' ] );
+		$this->addFilter( $this->getThemeSlug( 'admin_notices' ), [ $this, 'checkUpdate' ] );
+		$this->addFilter( $this->getThemeSlug( 'admin_notices' ), [ $this, 'checkDeprecatedPlugins' ] );
 	}
 
 	/**
@@ -64,11 +85,11 @@ class Admin extends Theme {
 	 * @see https://developer.wordpress.org/reference/hooks/admin_notices
 	 */
 	public function displayAdminNotices() {
-		$notices = $this->applyFilter( 'admin_notices', $this->checkRequirements() );
+		$notices = $this->applyFilter( 'admin_notices', [] );
 
 		foreach ( $notices as $notice ) {
 			$type    = esc_attr( $notice['type'] ?? 'error' );
-			$message = esc_html( $notice['message'] );
+			$message = $notice['message'];
 
 			echo "<div class='notice notice-$type'><p>$message</p></div>";
 		}
@@ -110,19 +131,83 @@ class Admin extends Theme {
 	 * Checks if the technical requirements are met.
 	 *
 	 * @param array $notices
-	 *
-	 * @return array
 	 */
-	private function checkRequirements( array $notices = [] ): array {
+	public function checkRequirements( array $notices ): array {
 		foreach ( $this->requirements as $key => $requirement ) {
 			if ( version_compare( $requirement['required'], $requirement['current'], '>' ) ) {
 				$notices[] = [
 					'type'    => 'error',
 					'message' => sprintf(
-						__( 'Chipmunk requires %1$s %2$s or greater. You have %3$s.', 'chipmunk' ),
+						__( '%1$s requires %2$s %3$s or greater. You have %4$s.', 'chipmunk' ),
+						config()->getName(),
 						$key,
 						$requirement['required'],
 						$requirement['current'],
+					),
+				];
+			}
+		}
+
+		return $notices;
+	}
+
+	/**
+	 * Checks if any theme update is available
+	 *
+	 * @param array $notices
+	 */
+	public function checkUpdate( array $notices ): array {
+		// TODO: Find a way to pull this directly from the Updater class
+		$apiResponse = $this->getTransient( 'update_response' );
+
+		if ( $apiResponse === false ) {
+			return $notices;
+		}
+
+		if ( version_compare( config()->getVersion(), $apiResponse->new_version, '<' ) ) {
+			if ( current_user_can( 'update_themes' ) ) {
+				$notices[] = [
+					'type'    => 'warning',
+					'message' => sprintf(
+						__( '<a href="%1$s" target="_blank">%2$s %3$s</a> is available! <a href="%4$s">Please update now</a>.', 'chipmunk' ),
+						config()->getChangelogUrl(),
+						config()->getName(),
+						$apiResponse->new_version,
+						network_admin_url( 'update.php?action=upgrade-theme&amp;theme=' . urlencode( config()->getSlug() ) )
+					),
+				];
+			} else {
+				$notices[] = [
+					'type'    => 'warning',
+					'message' => sprintf(
+						__( '<a href="%1$s" target="_blank">%2$s %3$s</a> is available! Please notify the site administrator.', 'chipmunk' ),
+						config()->getChangelogUrl(),
+						config()->getName(),
+						$apiResponse->new_version
+					),
+				];
+			}
+		}
+
+		return $notices;
+	}
+
+	/**
+	 * Checks if there are any deprecated plugins activated
+	 *
+	 * @param array $notices
+	 */
+	public function checkDeprecatedPlugins( array $notices ): array {
+		foreach ( $this->deprecatedPlugins as $key => $name ) {
+			$slug = $this->getThemeSlug( $key, '-' );
+
+			if ( is_plugin_active( $this->getPath( $slug, "$slug.php" ) ) ) {
+				$notices[] = [
+					'type'    => 'warning',
+					'message' => sprintf(
+						__( '<strong>Addon No Longer Required</strong> - As of %1$s v1.17.0, %2$s addon is no longer needed and can be safely deleted.', 'chipmunk' ),
+						config()->getName(),
+						$name,
 					),
 				];
 			}

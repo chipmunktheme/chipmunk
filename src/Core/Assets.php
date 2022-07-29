@@ -28,9 +28,9 @@ class Assets extends Theme {
 	 */
 	public function initialize() {
 		$this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueCustomAssets' ] );
-		// $this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueInlineStyles' ] );
-		// $this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueGoogleFonts' ] );
-		// $this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueExternalScripts' ] );
+		$this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueInlineStyles' ] );
+		$this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueGoogleFonts' ] );
+		$this->addAction( 'wp_enqueue_scripts', [ $this, 'enqueueExternalScripts' ] );
 		$this->addAction( 'admin_enqueue_scripts', [ $this, 'enqueueAdminScripts' ] );
 		$this->addFilter( 'script_loader_tag', [ $this, 'addAsyncAttribute' ], 10, 3 );
 	}

@@ -76,7 +76,7 @@ class Misc extends Theme {
 	 */
 	public function addContactMethods( array $methods ): array {
 		$socials    = config()->getSocials();
-		$socials    = array_filter( $socials, fn( $el ) => $el != 'Email' );
+		$socials    = array_filter( $socials, fn( $el ) => $el !== 'Email' );
 		$socialKeys = array_map( fn( $el ) => sanitize_title( $socials[ $el ] ), array_keys( $socials ) );
 
 		return array_merge( $methods, array_combine( $socialKeys, $socials ) );

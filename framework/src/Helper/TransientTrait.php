@@ -19,7 +19,7 @@ trait TransientTrait {
 	 * @return mixed Value of transient
 	 */
 	protected function getTransient( string $transient ) {
-		return unserialize( get_transient( $this->getThemeSlug( $transient ) ) );
+		return get_transient( $this->getThemeSlug( $transient ) );
 	}
 
 	/**
@@ -32,6 +32,17 @@ trait TransientTrait {
 	 * @return bool True if the value was set, false otherwise.
 	 */
 	protected function setTransient( string $transient, $value, int $expiration = 0 ): bool {
-		return set_transient( $this->getThemeSlug( $transient ), serialize( $value ), $expiration );
+		return set_transient( $this->getThemeSlug( $transient ), $value, $expiration );
+	}
+
+	/**
+	 * Removes the transient completely.
+	 *
+	 * @param string $transient Transient name.
+	 *
+	 * @return bool True if the value was deleted, false otherwise.
+	 */
+	protected function deleteTransient( string $transient ): bool {
+		return delete_transient( $this->getThemeSlug( $transient ) );
 	}
 }

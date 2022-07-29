@@ -62,6 +62,11 @@ final class Config {
 	private $demoUrl = 'https://demos.chipmunktheme.com';
 
 	/**
+	 * @var string The url of the theme changelog
+	 */
+	private $changelogUrl = 'https://chipmunktheme.com/changelog';
+
+	/**
 	 * @var string The url of the shop site
 	 */
 	private $shopUrl = 'https://chipmunktheme.com';
@@ -99,11 +104,6 @@ final class Config {
 	];
 
 	/**
-	 * @var string The Google API key
-	 */
-	private $googleApiKey = 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE';
-
-	/**
 	 * @var string The name of the settings property
 	 */
 	private $settingsName = 'settings';
@@ -117,6 +117,11 @@ final class Config {
 	 * @var string Mininum required WP version
 	 */
 	private $minWPVersion = '5.4';
+
+	/**
+	 * @var string The Google API key
+	 */
+	private $googleApiKey = 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE';
 
 	/**
 	 * Insures that only one instance of Config exists in memory at any one
@@ -243,6 +248,17 @@ final class Config {
 	}
 
 	/**
+	 * Method that returns theme changelog url.
+	 *
+	 * Used for linking update nag to the changelog page
+	 *
+	 * @return string
+	 */
+	public function getChangelogUrl(): string {
+		return $this->changelogUrl;
+	}
+
+	/**
 	 * Method that returns theme shop url.
 	 *
 	 * Used for linking to the theme shop in various places.
@@ -287,17 +303,6 @@ final class Config {
 	}
 
 	/**
-	 * Method that returns Google API key.
-	 *
-	 * Used for pulling the list of Google Fonts from their API.
-	 *
-	 * @return string
-	 */
-	public function getGoogleApiKey(): string {
-		return $this->googleApiKey;
-	}
-
-	/**
 	 * Method that returns settings name.
 	 *
 	 * Used for getting the name of the settings in Customizer.
@@ -328,6 +333,17 @@ final class Config {
 	 */
 	public function getMinWPVersion(): string {
 		return $this->minWPVersion;
+	}
+
+	/**
+	 * Method that returns Google API key.
+	 *
+	 * Used for pulling the list of Google Fonts from their API.
+	 *
+	 * @return string
+	 */
+	public function getGoogleApiKey(): string {
+		return $this->googleApiKey;
 	}
 }
 

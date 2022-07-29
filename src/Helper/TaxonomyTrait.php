@@ -94,11 +94,11 @@ trait TaxonomyTrait {
 
 		foreach ( $terms as $key => $term ) {
 			if ( $args['quantity'] < 0 || $args['quantity'] > $key ) {
-				if ( $args['type'] == 'link' ) {
+				if ( $args['type'] === 'link' ) {
 					$output .= '<a href="' . esc_url( get_term_link( $term->term_id ) ) . '">' . esc_html( $this->truncateString( $term->name, $termMaxLength ) ) . '</a>';
 				}
 
-				if ( $args['type'] == 'text' ) {
+				if ( $args['type'] === 'text' ) {
 					$output .= '<span>' . esc_html( $this->truncateString( $term->name, $termMaxLength ) ) . '</span>';
 				}
 			}

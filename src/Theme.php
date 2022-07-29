@@ -69,20 +69,30 @@ class Theme extends ThemeHandler {
 	protected Theme $shortcodes;
 
 	/**
+	 * Theme updater
+	 *
+	 * @var Theme
+	 */
+	protected Theme $updater;
+
+	/**
 	 * Theme constructor.
 	 */
 	public function __construct() {
-		$this->config      = Config::instance();
-		$this->options     = Options::instance();
-		$this->setup       = new Core\Setup();
-		$this->templates   = new Core\Templates();
-		$this->assets      = new Core\Assets();
-		$this->actions     = new Core\Actions();
-		$this->shortcodes  = new Core\Shortcodes();
-		$this->configAdmin = new Config\Admin();
+		$this->config       = Config::instance();
+		$this->options      = Options::instance();
+		$this->setup        = new Core\Setup();
+		$this->templates    = new Core\Templates();
+		$this->assets       = new Core\Assets();
+		$this->actions      = new Core\Actions();
+		$this->shortcodes   = new Core\Shortcodes();
+		$this->updater      = new Core\Updater();
+		$this->vendorACF    = new Vendor\ACF();
+		$this->vendorMerlin = new Vendor\Merlin();
+		$this->configAdmin  = new Config\Admin();
 		$this->configAssets = new Config\Assets();
-		$this->configMisc = new Config\Misc();
-		$this->configQuery = new Config\Query();
+		$this->configMisc   = new Config\Misc();
+		$this->configQuery  = new Config\Query();
 	}
 
 	/**
@@ -96,6 +106,9 @@ class Theme extends ThemeHandler {
 			$this->assets->initialize();
 			$this->actions->initialize();
 			$this->shortcodes->initialize();
+			$this->updater->initialize();
+			$this->vendorACF->initialize();
+			$this->vendorMerlin->initialize();
 			$this->configAdmin->initialize();
 			$this->configAssets->initialize();
 			$this->configMisc->initialize();

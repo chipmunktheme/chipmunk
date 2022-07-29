@@ -1,31 +1,85 @@
 <?php
 
-namespace Chipmunk\Vendors;
+namespace Chipmunk\Vendor;
+
+use Piotrkulpinski\Framework\Helper\EnqueueTrait;
+use Piotrkulpinski\Framework\Helper\FileTrait;
+use Chipmunk\Theme;
+use function Chipmunk\config;
 
 /**
  * Configure MerlinWP plugin
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
-class Merlin {
+class Merlin extends Theme {
+
+	use EnqueueTrait;
+	use FileTrait;
 
 	/**
-	 * Create a new Merlin Config object
+	 * Shop URL
+	 *
+	 * @var string
+	 */
+	private string $shopUrl;
+
+	/**
+	 * Demo URL
+	 *
+	 * @var string
+	 */
+	private string $demoUrl;
+
+	/**
+	 * Demo file path
+	 *
+	 * @var string
+	 */
+	private string $demoPath = 'chipmunk-theme-demo-content.xml';
+
+	/**
+	 * Customizer file path
+	 *
+	 * @var string
+	 */
+	private string $customizerPath = 'chipmunk-theme-customizer.dat';
+
+	/**
+	 * Merlin directory path
+	 *
+	 * @var string
+	 */
+	private string $path = 'vendor/richtabor/merlin-wp';
+
+	/**
+	 * Class constructor.
 	 */
 	public function __construct() {
+		$this->shopUrl = config()->getShopUrl();
+		$this->demoUrl = config()->getDemoUrl();
+		$this->demoPath = $this->getPath( $this->shopUrl, 'wp-content', 'uploads', $this->demoPath );
+		$this->customizerPath = $this->getPath( $this->shopUrl, 'wp-content', 'uploads', $this->customizerPath );
+	}
+
+	/**
+	 * Hooks methods of this object into the WordPress ecosystem.
+	 */
+	public function initialize() {
+		$this->addAction( 'admin_enqueue_scripts', [ $this, 'enqueueMerlinStyles' ] );
+		$this->addAction( 'merlin_after_all_import', [ $this, 'setThemeNavMenus' ] );
+		$this->addFilter( 'merlin_import_files', [ $this, 'importMerlinFiles' ] );
+
 		new \Merlin(
 			// Config settings
 			[
-				'directory'            => 'vendor/richtabor/merlin-wp', // Location / directory where Merlin WP is placed in your theme.
+				'directory'            => $this->path, // Location / directory where Merlin WP is placed in your theme.
 				'child_action_btn_url' => 'https://developer.wordpress.org/themes/advanced-topics/child-themes', // URL for the 'child-action-link'.
 				'dev_mode'             => false, // Enable development mode for testing.
 				'license_step'         => true, // EDD license activation step.
 				'license_required'     => true, // Require the license activation step.
 				'license_help_url'     => '', // URL for the 'license-tooltip'.
-				'edd_remote_api_url'   => THEME_SHOP_URL, // EDD_Theme_Updater_Admin remote_api_url.
-				'edd_item_name'        => THEME_TITLE, // EDD_Theme_Updater_Admin item_name.
-				'edd_theme_slug'       => THEME_SLUG, // EDD_Theme_Updater_Admin item_slug.
+				'edd_remote_api_url'   => $this->shopUrl, // EDD_Theme_Updater_Admin remote_api_url.
+				'edd_item_name'        => config()->getName(), // EDD_Theme_Updater_Admin item_name.
+				'edd_theme_slug'       => config()->getSlug(), // EDD_Theme_Updater_Admin item_slug.
 			],
 			// Strings
 			[
@@ -90,17 +144,15 @@ class Merlin {
 				'ready-big-button'         => esc_html__( 'View your website', 'chipmunk' ),
 			]
 		);
-
-		add_action( 'admin_head', [ $this, 'addMerlinStyles' ] );
-		add_filter( 'merlin_import_files', [ $this, 'importMerlinFiles' ] );
-		add_action( 'merlin_after_all_import', [ $this, 'afterImportMerlinFiles' ] );
 	}
 
 	/**
-	 * Set up custom styles for the Merlin wizard
+	 * Enqueues custom styles for the Merlin wizard
+	 *
+	 * @see https://developer.wordpress.org/reference/hooks/admin_enqueue_scripts
 	 */
 	public function addMerlinStyles() {
-		echo '<style>
+		$this->addInlineStyle( 'chipmunk-merlin-styles', "
 			.merlin__button--knockout {
 				margin-top: 1em;
 				padding-right: 35px;
@@ -127,7 +179,7 @@ class Merlin {
 			.merlin__content .icon svg {
 				width: auto !important;
 			}
-		</style>';
+		" );
 	}
 
 	/**
@@ -135,21 +187,21 @@ class Merlin {
 	 *
 	 * @return array
 	 */
-	public function importMerlinFiles() {
+	public function importMerlinFiles(): array {
 		return [
 			[
 				'import_file_name'           => __( 'Demo Import', 'chipmunk' ),
-				'import_file_url'            => THEME_SHOP_URL . '/wp-content/uploads/chipmunk-theme-demo-content.xml',
-				'import_customizer_file_url' => THEME_SHOP_URL . '/wp-content/uploads/chipmunk-theme-customizer.dat',
-				'preview_url'                => THEME_DEMO_URL,
+				'import_file_url'            => $this->demoPath,
+				'import_customizer_file_url' => $this->customizerPath,
+				'preview_url'                => $this->demoUrl,
 			],
 		];
 	}
 
 	/**
-	 * Execute custom code after the whole import has finished.
+	 * Sets proper nav menus after the whole import has finished.
 	 */
-	public function afterImportMerlinFiles() {
+	public function setThemeNavMenus() {
 		$headerNav = get_term_by( 'name', 'Header nav', 'nav_menu' );
 		$footerNav = get_term_by( 'name', 'Footer nav', 'nav_menu' );
 

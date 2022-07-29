@@ -1,6 +1,6 @@
 <?php
 
-namespace Chipmunk\Vendors;
+namespace Chipmunk\Vendor;
 
 /**
  * Copyright 2010 Scott MacVicar
@@ -10,9 +10,6 @@ namespace Chipmunk\Vendors;
  * You may obtain a copy of the License at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class OpenGraph implements \Iterator {
 	/**

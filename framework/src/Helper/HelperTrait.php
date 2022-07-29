@@ -85,7 +85,7 @@ trait HelperTrait {
 	 * @return string
 	 */
 	protected function getPrefixedThemeSlug( $slug, string $separator = '_' ): string {
-		$segments     = is_array( $slug ) ? $slug : [ $slug ];
+		$segments = is_array( $slug ) ? $slug : [ $slug ];
 		array_unshift( $segments, '' );
 
 		return $this->getThemeSlug( $segments, $separator, 1 );

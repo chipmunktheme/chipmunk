@@ -61,7 +61,7 @@ trait LinkTrait {
 	 * @return array
 	 */
 	public function getResourceLinks( int $postId ): array {
-		$links     = [];
+		$links = [];
 
 		$metaWebsite = get_post_meta( $postId, $this->getPrefixedThemeSlug( [ 'resource', 'website' ] ), true );
 		$metaLinks   = get_field( $this->getPrefixedThemeSlug( [ 'resource', 'links' ] ), $postId );
