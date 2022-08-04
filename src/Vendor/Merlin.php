@@ -7,8 +7,6 @@ use MadeByLess\Lessi\Helper\FileTrait;
 use MadeByLess\Lessi\Helper\ThemeTrait;
 use Chipmunk\Theme;
 
-use function Chipmunk\config;
-
 /**
  * Configure MerlinWP plugin
  */

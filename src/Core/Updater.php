@@ -7,8 +7,6 @@ use MadeByLess\Lessi\Helper\ThemeTrait;
 use MadeByLess\Lessi\Helper\TransientTrait;
 use Chipmunk\Theme;
 
-use function Chipmunk\config;
-
 /**
  * Easy Digital Downloads Theme Updater
  */

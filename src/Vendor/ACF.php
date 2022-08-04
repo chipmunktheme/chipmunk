@@ -4,7 +4,6 @@ namespace Chipmunk\Vendor;
 
 use MadeByLess\Lessi\Helper\FileTrait;
 use Chipmunk\Theme;
-use function Chipmunk\config;
 
 /**
  * Configure ACF plugin

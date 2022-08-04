@@ -8,8 +8,6 @@ use MadeByLess\Lessi\Helper\ThemeTrait;
 use MadeByLess\Lessi\Helper\TransientTrait;
 use Chipmunk\Theme;
 
-use function Chipmunk\config;
-
 /**
  * Admin config hooks.
  */

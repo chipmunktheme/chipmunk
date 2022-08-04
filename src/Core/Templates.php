@@ -13,8 +13,6 @@ use Chipmunk\Theme;
 use Chipmunk\Helper\LinkTrait;
 use Chipmunk\Helper\TaxonomyTrait;
 
-use function Chipmunk\config;
-
 /**
  * Theme templates
  */

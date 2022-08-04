@@ -6,7 +6,6 @@ use Timber\Timber;
 use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Theme;
 use Chipmunk\Core\Settings;
-use function Chipmunk\config;
 
 /**
  * A Addons settings class

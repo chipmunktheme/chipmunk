@@ -2,7 +2,6 @@
 
 namespace Chipmunk;
 
-use Timber\Theme;
 use MadeByLess\Lessi\Config\ConfigInterface;
 use MadeByLess\Lessi\Helper\FileTrait;
 use MadeByLess\Lessi\Helper\HelperTrait;
@@ -344,14 +343,4 @@ final class Config implements ConfigInterface {
 	public function getGoogleApiKey(): string {
 		return $this->googleApiKey;
 	}
-}
-
-/**
- * The main function responsible for returning the one true Config
- * Instance to functions everywhere.
- *
- * @return Config
- */
-function config() {
-	return Config::instance();
 }

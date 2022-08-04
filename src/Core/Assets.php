@@ -7,7 +7,6 @@ use MadeByLess\Lessi\Helper\EnqueueTrait;
 use MadeByLess\Lessi\Helper\FontTrait;
 use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Theme;
-use function Chipmunk\config;
 
 /**
  * Theme assets.

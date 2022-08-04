@@ -8,7 +8,6 @@ use WP_Customize_Image_Control;
 
 use MadeByLess\Lessi\Helper\FontTrait;
 use Chipmunk\Theme;
-use function Chipmunk\config;
 
 /**
  * Theme options.

@@ -5,7 +5,6 @@ namespace Chipmunk\Helper;
 use MadeByLess\Lessi\Helper\HelperTrait;
 use MadeByLess\Lessi\Helper\HookTrait;
 use Chipmunk\Core\Options;
-use function Chipmunk\config;
 
 /**
  * Provides methods to retrieve theme options in a better way

@@ -5,7 +5,6 @@ namespace Chipmunk\Config;
 use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Theme;
 use Chipmunk\Helper\PostTrait;
-use function Chipmunk\config;
 
 /**
  * Miscellaneous config hooks.
