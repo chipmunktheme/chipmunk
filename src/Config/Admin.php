@@ -138,7 +138,7 @@ class Admin extends Theme {
 					'type'    => 'error',
 					'message' => sprintf(
 						__( '%1$s requires %2$s %3$s or greater. You have %4$s.', 'chipmunk' ),
-						config()->getName(),
+						$this->getThemeName(),
 						$key,
 						$requirement['required'],
 						$requirement['current'],
@@ -205,7 +205,7 @@ class Admin extends Theme {
 					'type'    => 'warning',
 					'message' => sprintf(
 						__( '<strong>Addon No Longer Required</strong> - As of %1$s v1.17.0, %2$s addon is no longer needed and can be safely deleted.', 'chipmunk' ),
-						config()->getName(),
+						$this->getThemeName(),
 						$name,
 					),
 				];

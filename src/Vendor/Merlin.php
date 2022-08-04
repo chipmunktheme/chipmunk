@@ -4,6 +4,7 @@ namespace Chipmunk\Vendor;
 
 use MadeByLess\Lessi\Helper\EnqueueTrait;
 use MadeByLess\Lessi\Helper\FileTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
 use MadeByLess\Lessi\Helper\ThemeTrait;
 use Chipmunk\Theme;
 
@@ -13,6 +14,7 @@ use Chipmunk\Theme;
 class Merlin extends Theme {
 	use EnqueueTrait;
 	use FileTrait;
+	use HelperTrait;
 	use ThemeTrait;
 
 	/**
@@ -152,7 +154,7 @@ class Merlin extends Theme {
 	 * @see https://developer.wordpress.org/reference/hooks/admin_enqueue_scripts
 	 */
 	public function addMerlinStyles() {
-		$this->addInlineStyle( 'chipmunk-merlin-styles', "
+		$this->addInlineStyle( $this->buildThemeSlug( 'merlin-styles', '-' ), "
 			.merlin__button--knockout {
 				margin-top: 1em;
 				padding-right: 35px;

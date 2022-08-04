@@ -133,7 +133,7 @@ final class Options extends Theme {
 					[
 						'name'        => 'logo_height',
 						'type'        => 'range',
-						'label'       => esc_html__( 'Logo height', 'chipmunk-lite' ),
+						'label'       => esc_html__( 'Logo height', 'chipmunk' ),
 						'default'     => 40,
 						'description' => esc_html__( 'Width will be calculated automatically.', 'chipmunk' ),
 						'input_attrs' => [

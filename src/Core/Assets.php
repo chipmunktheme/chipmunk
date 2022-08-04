@@ -49,8 +49,8 @@ class Assets extends Theme {
 	 * @see https://developer.wordpress.org/reference/hooks/wp_enqueue_scripts
 	 */
 	public function enqueueCustomAssets() {
-		$this->addStyle( 'chipmunk-styles', 'styles/theme.css' );
-		$this->addScript( 'chipmunk-scripts', 'scripts/theme.js' );
+		$this->addStyle( $this->buildThemeSlug( 'styles', '-' ), 'styles/theme.css' );
+		$this->addScript( $this->buildThemeSlug( 'scripts', '-' ), 'scripts/theme.js', false, null, true );
 	}
 
 	/**
@@ -87,7 +87,7 @@ class Assets extends Theme {
 		$customStyle .= $this->buildPrefixedThemeSlug( 'border-opacity', '--' ) . ': ' . ( empty( $disableBorders ) ? '0.075' : '0' );
 		$customStyle .= $this->buildPrefixedThemeSlug( 'logo-height', '--' ) . ': ' . $logoHeight / 10 . 'rem';
 
-		$this->addInlineStyle( 'chipmunk-styles', ":root {{$customStyle}}" );
+		$this->addInlineStyle( $this->buildThemeSlug( 'styles', '-' ), ":root {{$customStyle}}" );
 	}
 
 	/**
@@ -110,7 +110,7 @@ class Assets extends Theme {
 		}
 
 		if ( ! empty( $fonts ) ) {
-			$this->addStyle( 'chipmunk-fonts', $this->getGoogleFontsUrl( $fonts ) );
+			$this->addStyle( $this->buildThemeSlug( 'fonts', '-' ), $this->getGoogleFontsUrl( $fonts ) );
 		}
 	}
 
@@ -124,10 +124,10 @@ class Assets extends Theme {
 		$siteKey = $this->getOption( 'recaptcha_site_key' );
 
 		if ( $enabled && $siteKey ) {
-			$this->addScript( 'chipmunk-recaptcha', 'https://google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit', false, null, true );
+			$this->addScript( $this->buildThemeSlug( 'recaptcha', '-' ), 'https://google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit', false, null, true );
 
 			$this->addInlineScript(
-				'chipmunk-recaptcha',
+				$this->buildThemeSlug( 'recaptcha', '-' ),
 				"
 				var CaptchaCallback = function() {
 					if (document.getElementById('submit-recaptcha')) {
@@ -149,7 +149,7 @@ class Assets extends Theme {
 	 * @see https://developer.wordpress.org/reference/hooks/admin_enqueue_scripts
 	 */
 	public function enqueueAdminScripts() {
-		$this->addStyle( 'chipmunk-admin-styles', 'styles/admin.css' );
+		$this->addStyle( $this->buildThemeSlug( 'admin-styles', '-' ), 'styles/admin.css' );
 	}
 
 	/**
@@ -165,8 +165,8 @@ class Assets extends Theme {
 	 */
 	public function addAsyncAttribute( string $tag, string $handle, string $src ): string {
 		$scripts = [
-			'defer' => [ 'chipmunk-scripts' ],
-			'async' => [ 'chipmunk-recaptcha' ],
+			'defer' => [ $this->buildThemeSlug( 'scripts', '-' ) ],
+			'async' => [ $this->buildThemeSlug( 'recaptcha', '-' ) ],
 		];
 
 		if ( in_array( $handle, $scripts['defer'], true ) ) {
