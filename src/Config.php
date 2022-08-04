@@ -34,7 +34,7 @@ final class Config implements ConfigInterface {
 	 *
 	 * @var string
 	 */
-	private $distPath = 'resources/output';
+	private $distPath = 'static/dist';
 
 	/**
 	 * The path to the assets folder
