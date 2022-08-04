@@ -3,14 +3,13 @@
 namespace Chipmunk\Config;
 
 use WP_Query;
-use Piotrkulpinski\Framework\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Theme;
 
 /**
  * Query config hooks.
  */
 class Query extends Theme {
-
 	use HelperTrait;
 
 	/**
@@ -171,9 +170,9 @@ class Query extends Theme {
 
 		// TODO: Check if the custom ordering is working
 		$customOrderby = [
-			'views'   => $this->getPrefixedThemeSlug( 'post_view_count' ),
-			'upvotes' => $this->getPrefixedThemeSlug( 'upvote_count' ),
-			'ratings' => $this->getPrefixedThemeSlug( 'rating_rank' ),
+			'views'   => $this->buildPrefixedThemeSlug( 'post_view_count' ),
+			'upvotes' => $this->buildPrefixedThemeSlug( 'upvote_count' ),
+			'ratings' => $this->buildPrefixedThemeSlug( 'rating_rank' ),
 		];
 
 		$orderby = $query->get( 'orderby' ) ?: $this->getOption( 'default_resource_orderby' );

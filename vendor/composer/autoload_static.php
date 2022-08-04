@@ -30,12 +30,12 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
             'Psr\\Log\\' => 8,
             'ProteusThemes\\WPContentImporter2\\' => 33,
             'PivvenIT\\Composer\\Installers\\ACFPro\\' => 36,
-            'Piotrkulpinski\\Framework\\' => 25,
             'PhpOption\\' => 10,
         ),
         'M' => 
         array (
             'Monolog\\' => 8,
+            'MadeByLess\\Lessi\\' => 17,
         ),
         'G' => 
         array (
@@ -44,10 +44,6 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         'D' => 
         array (
             'Dotenv\\' => 7,
-            'Dashifen\\Repository\\' => 20,
-            'Dashifen\\Exception\\' => 19,
-            'Dashifen\\Collection\\' => 20,
-            'Dashifen\\CaseChangingTrait\\' => 27,
         ),
         'C' => 
         array (
@@ -89,10 +85,6 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         array (
             0 => __DIR__ . '/..' . '/pivvenit/acf-pro-installer/src',
         ),
-        'Piotrkulpinski\\Framework\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/piotrkulpinski/framework/src',
-        ),
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
@@ -101,6 +93,10 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'MadeByLess\\Lessi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/madebyless/lessi/src',
+        ),
         'GrahamCampbell\\ResultType\\' => 
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
@@ -108,22 +104,6 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
-        ),
-        'Dashifen\\Repository\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dashifen/repository/src',
-        ),
-        'Dashifen\\Exception\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dashifen/exception/src',
-        ),
-        'Dashifen\\Collection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dashifen/collection/src',
-        ),
-        'Dashifen\\CaseChangingTrait\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dashifen/case-changing-trait/src',
         ),
         'Composer\\Installers\\' => 
         array (

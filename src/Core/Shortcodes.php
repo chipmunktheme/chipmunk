@@ -2,14 +2,13 @@
 
 namespace Chipmunk\Core;
 
-use Piotrkulpinski\Framework\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Theme;
 
 /**
  * Theme shortcodes
  */
 class Shortcodes extends Theme {
-
 	use HelperTrait;
 
 	/**
@@ -20,9 +19,9 @@ class Shortcodes extends Theme {
 	/**
 	 * Hooks methods of this object into the WordPress ecosystem
 	 */
-	public function initialize() {
-		$this->addShortcode( $this->getThemeSlug( 'counter', '-' ), [ $this, 'renderCounter' ] );
-		$this->addShortcode( $this->getThemeSlug( 'submit', '-' ), [ $this, 'renderSubmit' ] );
+	public function initialize(): void {
+		$this->addShortcode( $this->buildThemeSlug( 'counter', '-' ), [ $this, 'renderCounter' ] );
+		$this->addShortcode( $this->buildThemeSlug( 'submit', '-' ), [ $this, 'renderSubmit' ] );
 	}
 
 	/**

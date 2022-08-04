@@ -2,9 +2,10 @@
 
 namespace Chipmunk\Config;
 
-use Piotrkulpinski\Framework\Helper\FileTrait;
-use Piotrkulpinski\Framework\Helper\HelperTrait;
-use Piotrkulpinski\Framework\Helper\TransientTrait;
+use MadeByLess\Lessi\Helper\FileTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\ThemeTrait;
+use MadeByLess\Lessi\Helper\TransientTrait;
 use Chipmunk\Theme;
 
 use function Chipmunk\config;
@@ -13,9 +14,9 @@ use function Chipmunk\config;
  * Admin config hooks.
  */
 class Admin extends Theme {
-
 	use FileTrait;
 	use HelperTrait;
+	use ThemeTrait;
 	use TransientTrait;
 
 	/**
@@ -74,9 +75,9 @@ class Admin extends Theme {
 		$this->addAction( 'admin_init', [ $this, 'addPermalinkSettings' ] );
 
 		// Add theme related notices
-		$this->addFilter( $this->getThemeSlug( 'admin_notices' ), [ $this, 'checkRequirements' ] );
-		$this->addFilter( $this->getThemeSlug( 'admin_notices' ), [ $this, 'checkUpdate' ] );
-		$this->addFilter( $this->getThemeSlug( 'admin_notices' ), [ $this, 'checkDeprecatedPlugins' ] );
+		$this->addFilter( $this->buildThemeSlug( 'admin_notices' ), [ $this, 'checkRequirements' ] );
+		$this->addFilter( $this->buildThemeSlug( 'admin_notices' ), [ $this, 'checkUpdate' ] );
+		$this->addFilter( $this->buildThemeSlug( 'admin_notices' ), [ $this, 'checkDeprecatedPlugins' ] );
 	}
 
 	/**
@@ -113,7 +114,7 @@ class Admin extends Theme {
 	 * @param string $label
 	 */
 	private function addPermalinkSetting( string $type, string $label ) {
-		$settingName = $this->getThemeSlug( [ $type, 'cpt_base' ] );
+		$settingName = $this->buildThemeSlug( [ $type, 'cpt_base' ] );
 
 		if ( isset( $_POST[ $settingName ] ) ) {
 			update_option( $settingName, $_POST[ $settingName ] );
@@ -173,7 +174,7 @@ class Admin extends Theme {
 						config()->getChangelogUrl(),
 						config()->getName(),
 						$apiResponse->new_version,
-						network_admin_url( 'update.php?action=upgrade-theme&amp;theme=' . urlencode( config()->getSlug() ) )
+						network_admin_url( 'update.php?action=upgrade-theme&amp;theme=' . urlencode( $this->getThemeSlug() ) )
 					),
 				];
 			} else {
@@ -199,7 +200,7 @@ class Admin extends Theme {
 	 */
 	public function checkDeprecatedPlugins( array $notices ): array {
 		foreach ( $this->deprecatedPlugins as $key => $name ) {
-			$slug = $this->getThemeSlug( $key, '-' );
+			$slug = $this->buildThemeSlug( $key, '-' );
 
 			if ( is_plugin_active( $this->getPath( $slug, "$slug.php" ) ) ) {
 				$notices[] = [

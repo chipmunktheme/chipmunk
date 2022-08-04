@@ -2,12 +2,13 @@
 
 namespace Chipmunk;
 
-use Piotrkulpinski\Framework\Handler\ThemeHandler;
-use Piotrkulpinski\Framework\Helper\HookTrait;
-use Piotrkulpinski\Framework\Helper\OptionTrait;
-use Piotrkulpinski\Framework\Helper\ShortcodeTrait;
+use Exception;
+use MadeByLess\Lessi\Handler\ThemeHandler;
+use MadeByLess\Lessi\Helper\HookTrait;
+use MadeByLess\Lessi\Helper\ShortcodeTrait;
 use Chipmunk\Config;
 use Chipmunk\Core\Options;
+use Chipmunk\Helper\OptionTrait;
 
 /**
  * Main theme setup class
@@ -20,79 +21,36 @@ class Theme extends ThemeHandler {
 	use ShortcodeTrait;
 
 	/**
-	 * Theme config
+	 * A list of theme classes
 	 *
-	 * @var Config
+	 * @var array
 	 */
-	protected Config $config;
+	private array $classes;
 
 	/**
-	 * Theme options
-	 *
-	 * @var Theme
-	 */
-	protected Theme $options;
-
-	/**
-	 * Theme setup
-	 *
-	 * @var Theme
-	 */
-	protected Theme $setup;
-
-	/**
-	 * Theme templates
-	 *
-	 * @var Theme
-	 */
-	protected Theme $templates;
-
-	/**
-	 * Theme assets
-	 *
-	 * @var Theme
-	 */
-	protected Theme $assets;
-
-	/**
-	 * Theme AJAX callbacks
-	 *
-	 * @var Theme
-	 */
-	protected Theme $actions;
-
-	/**
-	 * Theme shortcodes
-	 *
-	 * @var Theme
-	 */
-	protected Theme $shortcodes;
-
-	/**
-	 * Theme updater
-	 *
-	 * @var Theme
-	 */
-	protected Theme $updater;
-
-	/**
-	 * Theme constructor.
+	 * Class constructor.
 	 */
 	public function __construct() {
-		$this->config       = Config::instance();
-		$this->options      = Options::instance();
-		$this->setup        = new Core\Setup();
-		$this->templates    = new Core\Templates();
-		$this->assets       = new Core\Assets();
-		$this->actions      = new Core\Actions();
-		$this->shortcodes   = new Core\Shortcodes();
-		$this->updater      = new Core\Updater();
-		$this->vendorACF    = new Vendor\ACF();
-		$this->vendorMerlin = new Vendor\Merlin();
-		$this->configAdmin  = new Config\Admin();
-		$this->configAssets = new Config\Assets();
-		$this->configMisc   = new Config\Misc();
-		$this->configQuery  = new Config\Query();
+		$this->coreClasses = [
+			// Core classes
+			'Core\Setup',
+			'Core\Templates',
+			'Core\Assets',
+			'Core\Actions',
+			'Core\Shortcodes',
+			'Core\Settings',
+			'Core\Updater',
+
+			// Config classes
+			'Config\Admin',
+			'Config\Assets',
+			'Config\Query',
+			'Config\Misc',
+
+			// Vendor classes
+			'Vendor\ACF',
+			'Vendor\Merlin',
+		];
 	}
 
 	/**
@@ -100,19 +58,20 @@ class Theme extends ThemeHandler {
 	 */
 	public function initialize() {
 		if ( ! $this->isInitialized() ) {
-			$this->options->initialize();
-			$this->setup->initialize();
-			$this->templates->initialize();
-			$this->assets->initialize();
-			$this->actions->initialize();
-			$this->shortcodes->initialize();
-			$this->updater->initialize();
-			$this->vendorACF->initialize();
-			$this->vendorMerlin->initialize();
-			$this->configAdmin->initialize();
-			$this->configAssets->initialize();
-			$this->configMisc->initialize();
-			$this->configQuery->initialize();
+			Config::instance();
+			( Options::instance() )->initialize();
+
+			// Initialize theme classes
+			foreach ( $this->coreClasses as $class ) {
+				$className = "\Chipmunk\\${class}";
+				$instance  = new $className();
+
+				if ( ! $instance instanceof Theme ) {
+					throw new Exception( __( 'Theme class has to implement Theme interface', 'chipmunk' ) );
+				}
+
+				$instance->initialize();
+			}
 		}
 	}
 }

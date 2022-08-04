@@ -3,12 +3,15 @@
 namespace Chipmunk\Core;
 
 use Timber\URLHelper;
-use Piotrkulpinski\Framework\Helper\AssetTrait;
-use Piotrkulpinski\Framework\Helper\FileTrait;
-use Piotrkulpinski\Framework\Helper\OptionTrait;
-use Piotrkulpinski\Framework\Helper\MediaTrait;
-use Piotrkulpinski\Framework\Helper\SelectorTrait;
+use MadeByLess\Lessi\Helper\AssetTrait;
+use MadeByLess\Lessi\Helper\FileTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\MediaTrait;
+use MadeByLess\Lessi\Helper\SelectorTrait;
+use MadeByLess\Lessi\Helper\ThemeTrait;
 use Chipmunk\Theme;
+use Chipmunk\Helper\LinkTrait;
+use Chipmunk\Helper\TaxonomyTrait;
 
 use function Chipmunk\config;
 
@@ -16,12 +19,15 @@ use function Chipmunk\config;
  * Theme templates
  */
 class Templates extends Theme {
-
 	use AssetTrait;
 	use FileTrait;
-	use OptionTrait;
+	use HelperTrait;
 	use MediaTrait;
 	use SelectorTrait;
+	use ThemeTrait;
+
+	use LinkTrait;
+	use TaxonomyTrait;
 
 	/**
 	 * Class constructor.
@@ -81,6 +87,21 @@ class Templates extends Theme {
 		// $context['socials']      = Helpers::getSocials();
 		// $context['menus']        = Helpers::getRegisteredMenus();
 
+		// Config
+		$context['config'] = [
+			'name'          => $this->getThemeName(),
+			'slug'          => $this->getThemeSlug(),
+			'version'       => $this->getThemeVersion(),
+			'author'        => $this->getThemeAuthor(),
+			'demo_url'      => config()->getDemoUrl(),
+			'changelog_url' => config()->getChangelogUrl(),
+			'shop_url'      => config()->getShopUrl(),
+			'shop_item_id'  => config()->getShopItemId(),
+			'plans'         => config()->getPlans(),
+			'addons'        => config()->getAddons(),
+			'socials'       => config()->getSocials(),
+		];
+
 		return $context;
 	}
 
@@ -100,16 +121,16 @@ class Templates extends Theme {
 			// Theme Helpers
 			'asset'             => [ 'callable' => [ $this, 'assetUrl' ] ],
 			'class'             => [ 'callable' => [ $this, 'className' ] ],
-			// 'get_salt'           => [ 'callable' => [ $this, 'getSalt' ] ],
-			// 'get_param'          => [ 'callable' => [ $this, 'getParam' ] ],
+			'get_theme_slug'    => [ 'callable' => [ $this, 'buildThemeSlug' ] ],
+			'get_param'         => [ 'callable' => [ $this, 'getParam' ] ],
 			'get_option'        => [ 'callable' => [ $this, 'getOption' ] ],
 			'is_option_enabled' => [ 'callable' => [ $this, 'isOptionEnabled' ] ],
 			// 'is_addon_enabled'   => [ 'callable' => [ $this, 'isAddonEnabled' ] ],
 			'get_svg_content'   => [ 'callable' => [ $this, 'getSvgContent' ] ],
-			// 'get_external_link'  => [ 'callable' => [ $this, 'getExternalLink' ] ],
+			'get_external_link' => [ 'callable' => [ $this, 'getExternalLink' ] ],
 			// 'get_resource_links' => [ 'callable' => [ $this, 'getResourceLinks' ] ],
-			// 'get_term_list'      => [ 'callable' => [ $this, 'getTermList' ] ],
-			// 'get_term_options'   => [ 'callable' => [ $this, 'getTermOptions' ] ],
+			'get_term_list'     => [ 'callable' => [ $this, 'getTermList' ] ],
+			'get_term_options'  => [ 'callable' => [ $this, 'getTermOptions' ] ],
 			// 'get_related_posts'  => [ 'callable' => [ $this, 'getRelatedPosts' ] ],
 			// 'get_current_page'   => [ 'callable' => [ $this, 'getCurrentPage' ] ],
 			// 'get_views'          => [ 'callable' => [ Views::class, 'getViews' ] ],

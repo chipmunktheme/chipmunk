@@ -1,0 +1,38 @@
+{
+  "name": "madebyless/lessi",
+  "description": "A dead simple WordPress class collection to help with theme development.",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Made by Less",
+      "email": "hello@madebyless.com",
+      "role": "developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "MadeByLess\\Lessi\\": "src"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "timber/timber": "^2.0.0-alpha.6"
+  },
+  "require-dev": {
+    "wp-cli/wp-cli": "^2.6",
+    "wp-coding-standards/wpcs": "^2.3",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+    "phpcompatibility/phpcompatibility-wp": "^2.1"
+  },
+  "scripts": {
+    "lint": "phpcs",
+    "fix": "phpcbf"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "composer/installers": true
+    }
+  }
+}

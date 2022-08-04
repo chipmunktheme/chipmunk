@@ -6,7 +6,7 @@ use WP_Customize_Manager;
 use WP_Customize_Color_Control;
 use WP_Customize_Image_Control;
 
-use Piotrkulpinski\Framework\Helper\FontTrait;
+use MadeByLess\Lessi\Helper\FontTrait;
 use Chipmunk\Theme;
 use function Chipmunk\config;
 
@@ -14,7 +14,6 @@ use function Chipmunk\config;
  * Theme options.
  */
 final class Options extends Theme {
-
 	use FontTrait;
 
 	/**
@@ -93,14 +92,14 @@ final class Options extends Theme {
 						'type'    => 'select',
 						'label'   => esc_html__( 'Primary Font', 'chipmunk' ),
 						'default' => '',
-						'choices' => array_merge( [ '' => esc_html__( 'System font', 'chipmunk' ) ], $this->getGoogleFonts() ),
+						'choices' => array_merge( [ '' => esc_html__( 'System font', 'chipmunk' ) ], $this->getGoogleFonts( config()->getGoogleApiKey() ) ),
 					],
 					[
 						'name'    => 'heading_font',
 						'type'    => 'select',
 						'label'   => esc_html__( 'Heading Font', 'chipmunk' ),
 						'default' => '',
-						'choices' => array_merge( [ '' => esc_html__( 'System font', 'chipmunk' ) ], $this->getGoogleFonts() ),
+						'choices' => array_merge( [ '' => esc_html__( 'System font', 'chipmunk' ) ], $this->getGoogleFonts( config()->getGoogleApiKey() ) ),
 					],
 					[
 						'name'        => 'content_size',

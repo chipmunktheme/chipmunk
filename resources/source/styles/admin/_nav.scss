@@ -3,18 +3,16 @@
 ** ----------------------------------------------------------------------------- */
 
 .chipmunk__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2em;
   padding-top: 1.5em;
   background-color: var(--chipmunk--color--white);
   border-top: 1px solid var(--chipmunk--color--gray-light);
   border-bottom: 1px solid var(--chipmunk--color--gray-light);
 
-  ul {
-    display: flex;
-    gap: 2em;
-  }
-
   a {
-    display: block;
     padding: 0.5em 0;
     border-bottom: 3px solid transparent;
     color: var(--chipmunk--color--gray);

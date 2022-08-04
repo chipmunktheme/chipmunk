@@ -2,13 +2,12 @@
 
 namespace Chipmunk\Helper;
 
-use Piotrkulpinski\Framework\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
 
 /**
  * Provides methods related to taxonomies
  */
 trait TaxonomyTrait {
-
 	use HelperTrait;
 
 	/**

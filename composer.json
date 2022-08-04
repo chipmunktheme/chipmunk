@@ -20,17 +20,13 @@
     {
       "type": "composer",
       "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/library/"
-    },
-    {
-      "type": "path",
-      "url": "./framework/"
     }
   ],
   "require": {
     "advanced-custom-fields/advanced-custom-fields-pro": "5.*",
     "richtabor/merlin-wp": "dev-master",
     "timber/timber": "^2.0.0-alpha.6",
-    "piotrkulpinski/framework": "@dev"
+    "madebyless/lessi": "^1.0"
   },
   "config": {
     "allow-plugins": {

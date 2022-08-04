@@ -2,26 +2,35 @@
 
 namespace Chipmunk\Core;
 
-use Piotrkulpinski\Framework\Helper\AssetTrait;
-use Piotrkulpinski\Framework\Helper\EnqueueTrait;
-use Piotrkulpinski\Framework\Helper\FontTrait;
-use Piotrkulpinski\Framework\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\AssetTrait;
+use MadeByLess\Lessi\Helper\EnqueueTrait;
+use MadeByLess\Lessi\Helper\FontTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Theme;
+use function Chipmunk\config;
 
 /**
  * Theme assets.
  */
 class Assets extends Theme {
-
 	use AssetTrait;
 	use FontTrait;
 	use EnqueueTrait;
 	use HelperTrait;
 
 	/**
+	 * The one true Config
+	 *
+	 * @var Config
+	 */
+	private $config;
+
+	/**
 	 * Class constructor.
 	 */
-	public function __construct() {}
+	public function __construct() {
+		$this->config = config();
+	}
 
 	/**
 	 * Hooks methods of this object into the WordPress ecosystem.
@@ -65,19 +74,19 @@ class Assets extends Theme {
 		$disableBorders  = $this->getOption( 'disable_section_borders' );
 		$primaryFont     = ( ! empty( $primaryFont ) && $primaryFont !== 'System' ) ? str_replace( '+', ' ', $primaryFont ) : '';
 		$headingFont     = ( ! empty( $headingFont ) && $headingFont !== 'System' ) ? str_replace( '+', ' ', $headingFont ) : '';
-		$contentWidth    = ( ! empty( $post ) ) ? get_field( $this->getThemeSlug( 'page_content_width' ), $post->ID ) : $this->getOption( 'content_width' );
+		$contentWidth    = ( ! empty( $post ) ) ? get_field( $this->buildThemeSlug( 'page_content_width' ), $post->ID ) : $this->getOption( 'content_width' );
 
 		$customStyle  = ( ! empty( $customCss ) ) ? $customCss : '';
-		$customStyle .= ! empty( $primaryFont ) ? $this->getPrefixedThemeSlug( 'typography--font-family', '--' ) . ": $primaryFont" : '';
-		$customStyle .= ! empty( $headingFont ) ? $this->getPrefixedThemeSlug( 'typography--heading-font-family', '--' ) . ": $headingFont" : '';
-		$customStyle .= $this->getPrefixedThemeSlug( 'color--primary', '--' ) . ": $primaryColor";
-		$customStyle .= $this->getPrefixedThemeSlug( 'color--link', '--' ) . ": $linkColor";
-		$customStyle .= $this->getPrefixedThemeSlug( 'color--background', '--' ) . ": $backgroundColor";
-		$customStyle .= $this->getPrefixedThemeSlug( 'color--section', '--' ) . ": $sectionColor";
-		$customStyle .= $this->getPrefixedThemeSlug( 'typography--content-size', '--' ) . ": $contentSize";
-		$customStyle .= $this->getPrefixedThemeSlug( 'layout--content-width', '--' ) . ": $contentWidth";
-		$customStyle .= $this->getPrefixedThemeSlug( 'border-opacity', '--' ) . ': ' . ( empty( $disableBorders ) ? '0.075' : '0' );
-		$customStyle .= $this->getPrefixedThemeSlug( 'logo-height', '--' ) . ': ' . $logoHeight / 10 . 'rem';
+		$customStyle .= ! empty( $primaryFont ) ? $this->buildPrefixedThemeSlug( 'typography--font-family', '--' ) . ": $primaryFont" : '';
+		$customStyle .= ! empty( $headingFont ) ? $this->buildPrefixedThemeSlug( 'typography--heading-font-family', '--' ) . ": $headingFont" : '';
+		$customStyle .= $this->buildPrefixedThemeSlug( 'color--primary', '--' ) . ": $primaryColor";
+		$customStyle .= $this->buildPrefixedThemeSlug( 'color--link', '--' ) . ": $linkColor";
+		$customStyle .= $this->buildPrefixedThemeSlug( 'color--background', '--' ) . ": $backgroundColor";
+		$customStyle .= $this->buildPrefixedThemeSlug( 'color--section', '--' ) . ": $sectionColor";
+		$customStyle .= $this->buildPrefixedThemeSlug( 'typography--content-size', '--' ) . ": $contentSize";
+		$customStyle .= $this->buildPrefixedThemeSlug( 'layout--content-width', '--' ) . ": $contentWidth";
+		$customStyle .= $this->buildPrefixedThemeSlug( 'border-opacity', '--' ) . ': ' . ( empty( $disableBorders ) ? '0.075' : '0' );
+		$customStyle .= $this->buildPrefixedThemeSlug( 'logo-height', '--' ) . ': ' . $logoHeight / 10 . 'rem';
 
 		$this->addInlineStyle( 'chipmunk-styles', ":root {{$customStyle}}" );
 	}

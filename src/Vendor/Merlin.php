@@ -2,18 +2,20 @@
 
 namespace Chipmunk\Vendor;
 
-use Piotrkulpinski\Framework\Helper\EnqueueTrait;
-use Piotrkulpinski\Framework\Helper\FileTrait;
+use MadeByLess\Lessi\Helper\EnqueueTrait;
+use MadeByLess\Lessi\Helper\FileTrait;
+use MadeByLess\Lessi\Helper\ThemeTrait;
 use Chipmunk\Theme;
+
 use function Chipmunk\config;
 
 /**
  * Configure MerlinWP plugin
  */
 class Merlin extends Theme {
-
 	use EnqueueTrait;
 	use FileTrait;
+	use ThemeTrait;
 
 	/**
 	 * Shop URL
@@ -78,8 +80,8 @@ class Merlin extends Theme {
 				'license_required'     => true, // Require the license activation step.
 				'license_help_url'     => '', // URL for the 'license-tooltip'.
 				'edd_remote_api_url'   => $this->shopUrl, // EDD_Theme_Updater_Admin remote_api_url.
-				'edd_item_name'        => config()->getName(), // EDD_Theme_Updater_Admin item_name.
-				'edd_theme_slug'       => config()->getSlug(), // EDD_Theme_Updater_Admin item_slug.
+				'edd_item_name'        => $this->getThemeName(), // EDD_Theme_Updater_Admin item_name.
+				'edd_theme_slug'       => $this->getThemeSlug(), // EDD_Theme_Updater_Admin item_slug.
 			],
 			// Strings
 			[

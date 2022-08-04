@@ -2,15 +2,14 @@
 
 namespace Chipmunk\Helper;
 
-use Piotrkulpinski\Framework\Helper\HelperTrait;
-use Piotrkulpinski\Framework\Helper\OptionTrait;
-use Piotrkulpinski\Framework\Helper\SelectorTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\SelectorTrait;
+use Chipmunk\Helper\OptionTrait;
 
 /**
  * Provides methods related to links
  */
 trait LinkTrait {
-
 	use HelperTrait;
 	use OptionTrait;
 	use SelectorTrait;
@@ -63,8 +62,8 @@ trait LinkTrait {
 	public function getResourceLinks( int $postId ): array {
 		$links = [];
 
-		$metaWebsite = get_post_meta( $postId, $this->getPrefixedThemeSlug( [ 'resource', 'website' ] ), true );
-		$metaLinks   = get_field( $this->getPrefixedThemeSlug( [ 'resource', 'links' ] ), $postId );
+		$metaWebsite = get_post_meta( $postId, $this->buildPrefixedThemeSlug( [ 'resource', 'website' ] ), true );
+		$metaLinks   = get_field( $this->buildPrefixedThemeSlug( [ 'resource', 'links' ] ), $postId );
 
 		if ( ! empty( $metaWebsite ) ) {
 			$links[] = [

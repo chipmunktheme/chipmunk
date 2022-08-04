@@ -2,7 +2,7 @@
 
 namespace Chipmunk\Config;
 
-use Piotrkulpinski\Framework\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Theme;
 use Chipmunk\Helper\PostTrait;
 use function Chipmunk\config;
@@ -11,7 +11,6 @@ use function Chipmunk\config;
  * Miscellaneous config hooks.
  */
 class Misc extends Theme {
-
 	use HelperTrait;
 	use PostTrait;
 
@@ -38,17 +37,17 @@ class Misc extends Theme {
 	 */
 	public function addDefaultMeta( int $postId ) {
 		$defaultMeta = [
-			$this->getPrefixedThemeSlug( 'post_view_count' ) => 0,
-			$this->getPrefixedThemeSlug( 'upvote_count' ) => 0,
+			$this->buildPrefixedThemeSlug( 'post_view_count' ) => 0,
+			$this->buildPrefixedThemeSlug( 'upvote_count' ) => 0,
 		];
 
 		if ( Helpers::isAddonEnabled( 'ratings' ) ) {
 			$meta = array_merge(
 				$defaultMeta,
 				[
-					$this->getPrefixedThemeSlug( 'rating_count' ) => 0,
-					$this->getPrefixedThemeSlug( 'rating_average' ) => 0,
-					$this->getPrefixedThemeSlug( 'rating_rank' ) => 0,
+					$this->buildPrefixedThemeSlug( 'rating_count' ) => 0,
+					$this->buildPrefixedThemeSlug( 'rating_average' ) => 0,
+					$this->buildPrefixedThemeSlug( 'rating_rank' ) => 0,
 				]
 			);
 		}

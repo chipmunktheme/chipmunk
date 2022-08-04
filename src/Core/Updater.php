@@ -2,8 +2,9 @@
 
 namespace Chipmunk\Core;
 
-use Piotrkulpinski\Framework\Helper\HelperTrait;
-use Piotrkulpinski\Framework\Helper\TransientTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\ThemeTrait;
+use MadeByLess\Lessi\Helper\TransientTrait;
 use Chipmunk\Theme;
 
 use function Chipmunk\config;
@@ -12,8 +13,8 @@ use function Chipmunk\config;
  * Easy Digital Downloads Theme Updater
  */
 class Updater extends Theme {
-
 	use HelperTrait;
+	use ThemeTrait;
 	use TransientTrait;
 
 	/**
@@ -55,10 +56,10 @@ class Updater extends Theme {
 	 * Class constructor.
 	 */
 	public function __construct() {
-		$this->licenseKey = get_option( $this->getThemeSlug( 'license_key' ) );
+		$this->licenseKey = get_option( $this->buildThemeSlug( 'license_key' ) );
 		$this->shopUrl    = config()->getShopUrl();
-		$this->shopItemId = config()->getName();
-		$this->itemSlug   = config()->getSlug();
+		$this->shopItemId = $this->getThemeName();
+		$this->itemSlug   = $this->getThemeSlug();
 	}
 
 	/**
@@ -95,7 +96,7 @@ class Updater extends Theme {
 		}
 
 		/* If there is no valid license key status, don't allow updates. */
-		if ( get_option( $this->getThemeSlug( 'license_key_status' ), false ) !== 'valid' ) {
+		if ( get_option( $this->buildThemeSlug( 'license_key_status' ), false ) !== 'valid' ) {
 			return false;
 		}
 

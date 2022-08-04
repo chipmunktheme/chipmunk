@@ -1,0 +1,28 @@
+<h2>{{ __('Fake counter generators', 'chipmunk') | esc_html }}</h2>
+
+<p class="description">
+  {{ __('Adds fake values for your upvote or view counters.', 'chipmunk') | esc_html }}
+</p>
+
+<table class="form-table">
+  <tbody>
+    {% for type in types %}
+      <tr>
+        <th>{{ type.name | esc_html }}</th>
+
+        <td>
+          <form method="post" action="">
+            <input type="number" class="small-text" name="{{ get_theme_slug(['generator', type.slug, 'start']) | esc_attr }}" value="" min="0" placeholder="{{ __('Start', 'chipmunk') | esc_attr }}" />
+            <input type="number" class="small-text" name="{{ get_theme_slug(['generator', type.slug, 'end']) | esc_attr }}" value="" min="0" placeholder="{{ __('End', 'chipmunk') | esc_attr }}" />
+            {{ fn('submit_button', __('Generate', 'chipmunk') | esc_html, 'primary', get_theme_slug(['generator', type.slug]), false) }}
+            {{ fn('wp_nonce_field', get_theme_slug(['generator', type.slug, 'nonce'])) }}
+          </form>
+
+          <p class="description">
+            {{ __('Pick a range to generate %1$s from.', 'chipmunk') | format(type.name | lower) | esc_html }}
+          </p>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

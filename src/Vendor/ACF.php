@@ -2,7 +2,7 @@
 
 namespace Chipmunk\Vendor;
 
-use Piotrkulpinski\Framework\Helper\FileTrait;
+use MadeByLess\Lessi\Helper\FileTrait;
 use Chipmunk\Theme;
 use function Chipmunk\config;
 
@@ -10,7 +10,6 @@ use function Chipmunk\config;
  * Configure ACF plugin
  */
 class ACF extends Theme {
-
 	use FileTrait;
 
 	/**
@@ -196,8 +195,8 @@ class ACF extends Theme {
 	private function normalizeFields( array &$field, $key, array $params ) {
 		// Generate proper field key
 		$key = isset( $params['prefix_key'] ) && isset( $params['group'] )
-			? $this->getPrefixedThemeSlug( [ $params['group']['key'], $field['key'] ] )
-			: $this->getPrefixedThemeSlug( $field['key'] );
+			? $this->buildPrefixedThemeSlug( [ $params['group']['key'], $field['key'] ] )
+			: $this->buildPrefixedThemeSlug( $field['key'] );
 
 		// Normalized field
 		$normField = [

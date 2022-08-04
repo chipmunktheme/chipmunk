@@ -2,19 +2,21 @@
 
 namespace Chipmunk\Core;
 
-use Piotrkulpinski\Framework\Helper\FileTrait;
-use Piotrkulpinski\Framework\Helper\CoreTrait;
+use MadeByLess\Lessi\Factory\PostType;
+use MadeByLess\Lessi\Helper\EnqueueTrait;
+use MadeByLess\Lessi\Helper\FileTrait;
+use MadeByLess\Lessi\Helper\CoreTrait;
+use MadeByLess\Lessi\Helper\ThemeTrait;
 use Chipmunk\Theme;
-use Chipmunk\Factory\PostType;
-use function Chipmunk\config;
 
 /**
  * Theme setup.
  */
 class Setup extends Theme {
-
-	use FileTrait;
 	use CoreTrait;
+	use EnqueueTrait;
+	use FileTrait;
+	use ThemeTrait;
 
 	/**
 	 * Class constructor.
@@ -146,7 +148,7 @@ class Setup extends Theme {
 	 * @see https://developer.wordpress.org/reference/hooks/after_setup_theme
 	 */
 	public function addTextDomains() {
-		$this->addTextDomain( config()->getSlug(), $this->getTemplatePath( 'languages' ) );
+		$this->addTextDomain( $this->getThemeSlug(), $this->getTemplatePath( 'languages' ) );
 	}
 
 	/**
@@ -187,7 +189,7 @@ class Setup extends Theme {
 	public function setupThreadedComments() {
 		if ( ! is_admin() ) {
 			if ( is_singular() && get_option( 'thread_comments' ) ) {
-				wp_enqueue_script( 'comment-reply' );
+				$this->addScript( 'comment-reply' );
 			}
 		}
 	}

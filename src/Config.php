@@ -3,81 +3,93 @@
 namespace Chipmunk;
 
 use Timber\Theme;
-use Piotrkulpinski\Framework\Helper\FileTrait;
-use Piotrkulpinski\Framework\Helper\HelperTrait;
-use Piotrkulpinski\Framework\Helper\HookTrait;
+use MadeByLess\Lessi\Config\ConfigInterface;
+use MadeByLess\Lessi\Helper\FileTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\HookTrait;
 
 /**
  * Provides methods for the getting config options
  */
-final class Config {
-
+final class Config implements ConfigInterface {
 	use FileTrait;
 	use HelperTrait;
 	use HookTrait;
 
 	/**
-	 * @var Config The one true Config
+	 * The one true Config
+	 *
+	 * @var Config
 	 */
 	private static $instance;
 
 	/**
-	 * @var string The name of the theme
-	 */
-	private $name = 'Chipmunk';
-
-	/**
-	 * @var string The author of the theme
-	 */
-	private $author = 'Made by Less';
-
-	/**
-	 * @var string The path to the templates folder
+	 * The path to the templates folder
+	 *
+	 * @var string
 	 */
 	private $templatesPath = 'templates';
 
 	/**
-	 * @var string The path to the dist folder
+	 * The path to the dist folder
+	 *
+	 * @var string
 	 */
 	private $distPath = 'resources/output';
 
 	/**
-	 * @var string The path to the assets folder
+	 * The path to the assets folder
+	 *
+	 * @var string
 	 */
 	private $assetsPath = 'assets';
 
 	/**
-	 * @var string The path to the manifest file
+	 * The path to the manifest file
+	 *
+	 * @var string
 	 */
 	private $manifestPath = 'manifest.json';
 
 	/**
-	 * @var string The path to the manifest development file
+	 * The path to the manifest development file
+	 *
+	 * @var string
 	 */
-	private $manifestDevPath = 'manifest.json';
+	private $manifestDevPath = 'manifest-dev.json';
 
 	/**
-	 * @var string The url of the demo site
+	 * The url of the demo site
+	 *
+	 * @var string
 	 */
 	private $demoUrl = 'https://demos.chipmunktheme.com';
 
 	/**
-	 * @var string The url of the theme changelog
+	 * The url of the theme changelog
+	 *
+	 * @var string
 	 */
 	private $changelogUrl = 'https://chipmunktheme.com/changelog';
 
 	/**
-	 * @var string The url of the shop site
+	 * The url of the shop site
+	 *
+	 * @var string
 	 */
 	private $shopUrl = 'https://chipmunktheme.com';
 
 	/**
-	 * @var string The ID of the shop item
+	 * The ID of the shop item
+	 *
+	 * @var string
 	 */
 	private $shopItemId = '893';
 
 	/**
-	 * @var array The array of plans available for the theme
+	 * The array of plans available for the theme
+	 *
+	 * @var array
 	 */
 	private $plans = [
 		'1' => 'Basic',
@@ -86,7 +98,19 @@ final class Config {
 	];
 
 	/**
-	 * @var array The array of social profiles supported
+	 * The array of addons available for the theme
+	 *
+	 * @var array
+	 */
+	private $addons = [
+		'members' => '3',
+		'ratings' => '2',
+	];
+
+	/**
+	 * The array of social profiles supported
+	 *
+	 * @var array
 	 */
 	private $socials = [
 		'Facebook',
@@ -104,22 +128,30 @@ final class Config {
 	];
 
 	/**
-	 * @var string The name of the settings property
+	 * The name of the settings property
+	 *
+	 * @var string
 	 */
 	private $settingsName = 'settings';
 
 	/**
-	 * @var string Mininum required PHP version
+	 * Mininum required PHP version
+	 *
+	 * @var string
 	 */
 	private $minPHPVersion = '7.4';
 
 	/**
-	 * @var string Mininum required WP version
+	 * Mininum required WP version
+	 *
+	 * @var string
 	 */
 	private $minWPVersion = '5.4';
 
 	/**
-	 * @var string The Google API key
+	 * The Google API key
+	 *
+	 * @var string
 	 */
 	private $googleApiKey = 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE';
 
@@ -135,50 +167,6 @@ final class Config {
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Method that returns project name.
-	 *
-	 * Generally used for naming assets handlers, languages, etc.
-	 *
-	 * @return string
-	 */
-	public function getName(): string {
-		return $this->name;
-	}
-
-	/**
-	 * Method that returns project slug.
-	 *
-	 * Generally used for naming settings, customizer options etc.
-	 *
-	 * @return string
-	 */
-	public function getSlug(): string {
-		return sanitize_title( $this->getName() );
-	}
-
-	/**
-	 * Method that returns project version.
-	 *
-	 * Generally used for versioning asset handlers while enqueueing them.
-	 *
-	 * @return string
-	 */
-	public function getVersion(): string {
-		return ( new Theme() )->version;
-	}
-
-	/**
-	 * Method that returns project author.
-	 *
-	 * Used for displaying author on theme settings.
-	 *
-	 * @return string
-	 */
-	public function getAuthor(): string {
-		return $this->author;
 	}
 
 	/**
@@ -281,14 +269,25 @@ final class Config {
 	}
 
 	/**
-	 * Method that returns project author.
+	 * Method that returns a list of available plans.
 	 *
-	 * Used for determining theme user access to certain parts of the theme.
+	 * Used for determining if theme user has access to certain parts of the theme.
 	 *
 	 * @return array
 	 */
 	public function getPlans(): array {
 		return $this->plans;
+	}
+
+	/**
+	 * Method that returns a list of available addons.
+	 *
+	 * Used for determining if theme user has access to certain parts of the theme.
+	 *
+	 * @return array
+	 */
+	public function getAddons(): array {
+		return $this->addons;
 	}
 
 	/**
@@ -310,7 +309,7 @@ final class Config {
 	 * @return string
 	 */
 	public function getSettingsName(): string {
-		return $this->getThemeSlug( $this->settingsName );
+		return $this->buildThemeSlug( $this->settingsName );
 	}
 
 	/**
