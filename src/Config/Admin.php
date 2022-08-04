@@ -165,14 +165,14 @@ class Admin extends Theme {
 			return $notices;
 		}
 
-		if ( version_compare( config()->getVersion(), $apiResponse->new_version, '<' ) ) {
+		if ( version_compare( $this->getThemeVersion(), $apiResponse->new_version, '<' ) ) {
 			if ( current_user_can( 'update_themes' ) ) {
 				$notices[] = [
 					'type'    => 'warning',
 					'message' => sprintf(
 						__( '<a href="%1$s" target="_blank">%2$s %3$s</a> is available! <a href="%4$s">Please update now</a>.', 'chipmunk' ),
 						config()->getChangelogUrl(),
-						config()->getName(),
+						$this->getThemeName(),
 						$apiResponse->new_version,
 						network_admin_url( 'update.php?action=upgrade-theme&amp;theme=' . urlencode( $this->getThemeSlug() ) )
 					),
@@ -183,7 +183,7 @@ class Admin extends Theme {
 					'message' => sprintf(
 						__( '<a href="%1$s" target="_blank">%2$s %3$s</a> is available! Please notify the site administrator.', 'chipmunk' ),
 						config()->getChangelogUrl(),
-						config()->getName(),
+						$this->getThemeName(),
 						$apiResponse->new_version
 					),
 				];
