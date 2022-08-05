@@ -4,15 +4,17 @@ namespace Chipmunk\Core;
 
 use WP_Query;
 use Timber\Timber;
+use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Theme;
-use Chipmunk\Extensions\Bookmarks;
-use Chipmunk\Extensions\Submissions;
-use Chipmunk\Extensions\Upvotes;
+use Chipmunk\Extension\BookmarkExtension;
+use Chipmunk\Extension\SubmissionExtension;
+use Chipmunk\Extension\UpvoteExtension;
 
 /**
  * Theme AJAX callbacks.
  */
 class Actions extends Theme {
+    use HelperTrait;
 
 	/**
 	 * Class constructor.
@@ -31,13 +33,11 @@ class Actions extends Theme {
 
 	/**
 	 * Processes lazy loading posts.
-	 *
-	 * @see https://developer.wordpress.org/reference/hooks/load_posts
 	 */
 	public function loadPosts() {
 		$context            = Timber::context();
-		$queryVars          = json_decode( stripslashes( $_REQUEST['queryVars'] ), true );
-		$queryVars['paged'] = $_REQUEST['page'];
+		$queryVars          = json_decode( stripslashes( $this->getParam( 'queryVars' ) ), true );
+		$queryVars['paged'] = $this->getParam( 'page' );
 
 		$query               = new WP_Query( $queryVars );
 		$GLOBALS['wp_query'] = $query;
@@ -60,34 +60,31 @@ class Actions extends Theme {
 
 	/**
 	 * Processes submission callback.
-	 *
-	 * @see https://developer.wordpress.org/reference/hooks/submit_resource
 	 */
 	public function submitResource() {
 		// Validate nonce token.
 		check_ajax_referer( 'submit_resource', 'nonce' );
 
-		$submissions = new Submissions( $_REQUEST );
-		$submissions->process();
+		$submission = SubmissionExtension::getInstance();
+		$submission->setData( $this->getParams() );
+		$submission->process();
 	}
 
 	/**
 	 * Processes bookmark callback.
-	 *
-	 * @see https://developer.wordpress.org/reference/hooks/toggle_bookmark
 	 */
 	public function toggleBookmark() {
-		$bookmarks = new Bookmarks( $_REQUEST['actionPostId'] );
-		$bookmarks->process();
+		$bookmark = BookmarkExtension::getInstance();
+        $bookmark->setPostId( $this->getParam( 'actionPostId' ) );
+		$bookmark->process();
 	}
 
 	/**
 	 * Processes upvote callback.
-	 *
-	 * @see https://developer.wordpress.org/reference/hooks/toggle_upvote
 	 */
 	public function toggleUpvote() {
-		$upvotes = new Upvotes( $_REQUEST['actionPostId'] );
-		$upvotes->process();
+		$upvote = UpvoteExtension::getInstance();
+        $upvote->setPostId( $this->getParam( 'actionPostId' ) );
+		$upvote->process();
 	}
 }

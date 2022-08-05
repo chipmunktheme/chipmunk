@@ -7,11 +7,13 @@ use WP_Customize_Color_Control;
 use WP_Customize_Image_Control;
 use MadeByLess\Lessi\Helper\FontTrait;
 use Chipmunk\Theme;
+use Chipmunk\Helper\AddonTrait;
 
 /**
  * Theme options.
  */
 final class Options extends Theme {
+    use AddonTrait;
 	use FontTrait;
 
 	/**
@@ -398,7 +400,7 @@ final class Options extends Theme {
 							'title'   => esc_html__( 'Title', 'chipmunk' ),
 							'views'   => esc_html__( 'Views', 'chipmunk' ),
 							'upvotes' => esc_html__( 'Upvotes', 'chipmunk' ),
-							// 'ratings' => Helpers::isAddonEnabled( 'ratings' ) ? esc_html__( 'Ratings', 'chipmunk' ) : null,
+							'ratings' => $this->isAddonEnabled( 'ratings' ) ? esc_html__( 'Ratings', 'chipmunk' ) : null,
 						],
 					],
 					[
@@ -867,9 +869,9 @@ final class Options extends Theme {
 	 */
 	private function registerField( WP_Customize_Manager $customize, array $section, array $field ) {
 		// Plugin restricted fields
-		// if ( ! empty( $field['restrict'] ) && ! Helpers::isAddonEnabled( $field['restrict'] ) ) {
-		// return null;
-		// }
+		if ( ! empty( $field['restrict'] ) && ! $this->isAddonEnabled( $field['restrict'] ) ) {
+            return;
+		}
 
 		$settingArgs = [
 			'capability' => $this->capability,

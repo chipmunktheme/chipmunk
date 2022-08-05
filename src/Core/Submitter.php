@@ -1,45 +1,44 @@
 <?php
 
-namespace Chipmunk;
+namespace Chipmunk\Core;
 
-use Chipmunk\Helpers;
-use Chipmunk\Vendors\OpenGraph;
+use MadeByLess\Lessi\Helper\FileTrait;
+use MadeByLess\Lessi\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\HookTrait;
+use MadeByLess\Lessi\Helper\MediaTrait;
+use Chipmunk\ThirdParty\OpenGraph;
+use Chipmunk\Helper\OptionTrait;
 
 /**
  * Submits resource to the database
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Submitter {
+    use FileTrait;
+    use HelperTrait;
+    use HookTrait;
+    use MediaTrait;
+    use OptionTrait;
 
 	/**
 	 * Post type of the submission
 	 *
 	 * @var string
 	 */
-	private $postType;
+	private string $postType;
 
 	/**
 	 * Determine whether allow creating new terms or not
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
-	private $allowNewTerms = false;
+	private bool $allowNewTerms = false;
 
 	/**
 	 * Required fields from the form
 	 *
 	 * @var array
 	 */
-	private $required = [ 'name' ];
-
-	/**
-	 * A meta field name to store post info in
-	 *
-	 * @var string
-	 */
-	private $metaPrefix = '_' . THEME_SLUG . '_resource';
+	private array $required = [ 'name' ];
 
 	/**
 	 * Used to register custom hooks
@@ -54,11 +53,11 @@ class Submitter {
 	/**
 	 * Fetches the OG Image from the url
 	 *
-	 * @param  string $url
+	 * @param string $url
 	 *
-	 * @return string/null
+	 * @return string|null
 	 */
-	private function fetchOgImage( $url ) {
+	private function fetchOgImage( string $url ): ?string {
 		if ( empty( $url ) ) {
 			return null;
 		}
@@ -72,44 +71,27 @@ class Submitter {
 	}
 
 	/**
-	 * Get submitter user ID
-	 *
-	 * @param  string $email
-	 *
-	 * @return integer/null
-	 */
-	private function getSubmitterId( $email ) {
-		if ( is_user_logged_in() ) {
-			return get_current_user_id();
-		}
-
-		if ( ! empty( $email ) && $user = get_user_by( 'email', $email ) ) {
-			return $user->ID;
-		}
-
-		return null;
-	}
-
-	/**
 	 * Uploads thumbnail image from URL
+     *
+     * @param string|null $url
 	 *
-	 * @return int
+	 * @return ?int
 	 */
-	private function uploadThumbnail( $url ) {
+	private function uploadThumbnail( ?string $url ): ?int {
 		require_once ABSPATH . 'wp-admin/includes/image.php';
 
 		$response = wp_remote_request( $url );
 
-		if ( is_wp_error( $response ) || $response['response']['code'] != 200 ) {
-			return false;
+		if ( ! $this->isValidResponse( $response ) ) {
+			return null;
 		}
 
-		$fileExtension = Helpers::getExtensionByMime( $response['headers']['content-type'] );
-		$wpUploadDir   = wp_upload_dir();
-		$upload        = wp_upload_bits( basename( $url ) . $fileExtension, null, $response['body'] );
+		$fileExtension = $this->getExtensionByMime( wp_remote_retrieve_header( $response, 'content-type' ) );
+		$uploadDir     = wp_upload_dir();
+		$upload        = wp_upload_bits( basename( $url ) . $fileExtension, null, wp_remote_retrieve_body( $response ) );
 
 		if ( ! empty( $upload['error'] ) ) {
-			return false;
+			return null;
 		}
 
 		$filePath        = $upload['file'];
@@ -119,7 +101,7 @@ class Submitter {
 
 		// Set up our images post data
 		$attachmentInfo = [
-			'guid'           => $wpUploadDir['url'] . '/' . $fileName,
+			'guid'           => $this->getPath( $uploadDir['url'], $fileName ),
 			'post_mime_type' => $fileType['type'],
 			'post_title'     => $attachmentTitle,
 			'post_content'   => '',
@@ -141,11 +123,11 @@ class Submitter {
 	/**
 	 * Validates data against the rewquired fields
 	 *
-	 * @param  object $data
+	 * @param object $data
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
-	private function validate( $data ) {
+	private function validate( object $data ): bool {
 		foreach ( $this->required as $field ) {
 			if ( empty( $data->{$field} ) ) {
 				return false;
@@ -158,9 +140,9 @@ class Submitter {
 	/**
 	 * Sets post terms from an comma separated values
 	 *
-	 * @param  int          $objectId
-	 * @param  string/array $terms
-	 * @param  string       $axonomy
+	 * @param int          $objectId
+	 * @param string|array $terms
+	 * @param string       $axonomy
 	 */
 	private function setTerms( $objectId, $terms, $taxonomy ) {
 		if ( empty( $terms ) ) {
@@ -191,59 +173,56 @@ class Submitter {
 			);
 		}
 
-		@ wp_set_object_terms( $objectId, $terms, $taxonomy );
+		@wp_set_object_terms( $objectId, $terms, $taxonomy );
 	}
 
 	/**
 	 * Sets post thumbnail
 	 *
-	 * @param  int $objectId
-	 * @param  int $thumbnailId
+	 * @param int $objectId
+	 * @param int $thumbnailId
+     *
+     * @return bool
 	 */
-	private function set_thumbnail( $objectId, $thumbnailId ) {
+	private function setThumbnail( int $objectId, int $thumbnailId ): bool {
 		if ( empty( $thumbnailId ) ) {
-			return null;
+			return false;
 		}
 
-		@ set_post_thumbnail( $objectId, $thumbnailId );
+		return @set_post_thumbnail( $objectId, $thumbnailId );
 	}
 
 	/**
 	 * Submit a post into the database and adds related terms and thumbnail
 	 *
-	 * @param  object $data
+	 * @param object $data
 	 */
-	public function submit( $data ) {
+	public function submit( object $data ): ?int {
 		// Validate data
 		if ( ! $this->validate( $data ) ) {
-			return false;
+			return null;
 		}
-
-		// Meta keys
-		$metaKeyLinks     = '_links';
-		$metaKeyFeatured  = '_is_featured';
-		$metaKeySubmitter = '_submitter';
 
 		// Meta values
 		if ( ! empty( $data->url ) ) {
 			$data->url = rtrim( $data->url, '/' );
 
 			$link = [
-				'title'  => apply_filters( 'chipmunk_submission_website_label', __( 'Visit website', 'chipmunk' ) ),
+				'title'  => $this->applyFilter( 'submission_website_label', __( 'Visit website', 'chipmunk' ) ),
 				'url'    => $data->url,
 				'target' => '_blank',
 			];
 
-			$data->meta[ $this->metaPrefix . $metaKeyLinks ]             = '1';
-			$data->meta[ $this->metaPrefix . $metaKeyLinks . '_0_link' ] = $link;
+			$data->meta[ $this->buildPrefixedThemeSlug( 'links' ) ]        = '1';
+			$data->meta[ $this->buildPrefixedThemeSlug( 'links_0_link' ) ] = $link;
 		}
 
-		if ( ! ( $data->author = $this->getSubmitterId( $data->submitterEmail ?? '' ) ) && ! empty( $data->submitterEmail ) && ! empty( $data->submitterName ) ) {
-			$data->meta[ $this->metaPrefix . $metaKeySubmitter ] = "{$data->submitterName} <{$data->submitterEmail}>";
+		if ( ! ( $data->author = $this->getCurrentUserOrByEmail( $data->submitterEmail ) ) && ! empty( $data->submitterEmail ) && ! empty( $data->submitterName ) ) {
+			$data->meta[ $this->buildPrefixedThemeSlug( 'submitter' ) ] = "{$data->submitterName} <{$data->submitterEmail}>";
 		}
 
 		if ( ! empty( $data->featured ) ) {
-			$data->meta[ $this->metaPrefix . $metaKeyFeatured ] = $data->featured ?? 0;
+			$data->meta[ $this->buildPrefixedThemeSlug( 'is_featured' ) ] = $data->featured ?? 0;
 		}
 
 		// Post array
@@ -258,10 +237,10 @@ class Submitter {
 
 		if ( $postId = @wp_insert_post( $post_array ) ) {
 			// Set thumbnail
-			if ( ! empty( $data->url ) && ! Helpers::getOption( 'disable_submission_image_fetch' ) ) {
+			if ( ! empty( $data->url ) && ! $this->getOption( 'disable_submission_image_fetch' ) ) {
 				if ( $ogImage = $this->fetchOgImage( $data->url ) ) {
 					if ( $thumbnailId = $this->uploadThumbnail( $ogImage ) ) {
-						$this->set_thumbnail( $postId, $thumbnailId );
+						$this->setThumbnail( $postId, $thumbnailId );
 					}
 				}
 			}

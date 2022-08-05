@@ -11,6 +11,15 @@ trait HelperTrait {
 	use ThemeTrait;
 
 	/**
+	 * Retrieves the server param as an object
+	 *
+	 * @return ?object
+	 */
+	public function getParams(): object {
+		return (object) ( $_REQUEST ?: [] );
+	}
+
+	/**
 	 * Retrieves the server param if not empty
 	 *
 	 * @param string $key Key of the param
@@ -18,7 +27,7 @@ trait HelperTrait {
 	 * @return ?string
 	 */
 	public function getParam( string $key ): ?string {
-		return $_REQUEST[ $key ] ?? null;
+		return $this->getParams()->{$key} ?? null;
 	}
 
 	/**
@@ -148,6 +157,25 @@ trait HelperTrait {
 			}
 
 			$i++;
+		}
+
+		return null;
+	}
+
+	/**
+	 * Get currently logged in user or by email if not logged
+	 *
+	 * @param string $email
+	 *
+	 * @return int|null
+	 */
+	private function getCurrentUserOrByEmail( string $email = '' ): ?int {
+		if ( ! empty( $currentUser = get_current_user_id() ) ) {
+			return $currentUser;
+		}
+
+		if ( ! empty( $email ) && $user = get_user_by( 'email', $email ) ) {
+			return $user->ID;
 		}
 
 		return null;

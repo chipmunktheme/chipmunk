@@ -35,7 +35,9 @@
 
 .c-menu-primary__link,
 .c-menu-primary__submenu-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex: 1;
 
   &:hover {
