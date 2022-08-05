@@ -85,8 +85,11 @@ class Addons extends Theme {
 	/**
 	 * Returns the settings markup for upvote faker
 	 */
-	private function getSettingsContent() {
-		$addons  = $this->applyFilter( 'settings_addons', [] );
+	private function getSettingsContent(): string {
+		if ( empty( $addons = $this->applyFilter( 'settings_addons', [] ) ) ) {
+			return '';
+		}
+
 		$options = get_option( $this->option );
 		$args    = [
 			'addons'           => $addons,
@@ -103,13 +106,9 @@ class Addons extends Theme {
 	 *
 	 * @param string $addon
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isAddonAllowed( string $addon ): bool {
-		if ( ! $this->settings->isValidLicense() ) {
-			return false;
-		}
-
 		return $this->settings->getLicensePrice() >= config()->getAddons()[ $addon ];
 	}
 
@@ -118,7 +117,7 @@ class Addons extends Theme {
 	 *
 	 * @param string $addon
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isAddonEnabled( string $addon ): bool {
 		$option = get_option( $this->option );

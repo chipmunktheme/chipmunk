@@ -179,7 +179,7 @@ class OpenGraph implements \Iterator {
 	/**
 	 * Will return true if the page has location data embedded
 	 *
-	 * @return boolean Check if the page has location data
+	 * @return bool Check if the page has location data
 	 */
 	public function hasLocation() {
 		if ( array_key_exists( 'latitude', $this->_values ) && array_key_exists( 'longitude', $this->_values ) ) {

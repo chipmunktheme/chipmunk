@@ -28,6 +28,10 @@
     }
   }
 
+  p {
+    color: inherit;
+  }
+
   a {
     text-decoration: none;
     outline: none;
@@ -36,17 +40,23 @@
 
 .chipmunk__wrap {
   width: 100%;
+  margin: 0;
   padding-right: clamp(1.5em, 2.5vw, 2.5em);
   padding-left: clamp(1.5em, 2.5vw, 2.5em);
 }
 
-.chipmunk__head-wrap {
+.chipmunk__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: var(--chipmunk--color--green);
   color: var(--chipmunk--color--black);
+}
 
-  .notice {
-    margin: 0 0 2em;
-  }
+.chipmunk__head,
+.chipmunk__main {
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 .chipmunk__title {
@@ -57,6 +67,7 @@
   margin: 0;
   padding: 0;
   font-size: 1.75em;
+  font-weight: 600;
   color: inherit;
 
   svg {
@@ -74,18 +85,6 @@
   }
 }
 
-.chipmunk__head-wrap,
-.chipmunk__main {
-  padding-top: 2em;
-  padding-bottom: 2em;
-}
-
-.chipmunk__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .chipmunk__logo {
   padding: 0.4em;
   background-color: var(--chipmunk--color--white);
@@ -98,13 +97,11 @@
     margin: 0;
 
     &:not(:last-child) {
-      margin-bottom: 3em;
+      margin-bottom: 2em;
     }
 
-    p {
-      margin: 0.75em 0;
-      padding: 0;
-      color: inherit;
+    + .notice {
+      margin-top: -1em;
     }
   }
 
@@ -115,6 +112,15 @@
   }
 }
 
-.toplevel_page_chipmunk #wpbody-content > .notice {
-  display: none;
+.chipmunk__hide {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
 }

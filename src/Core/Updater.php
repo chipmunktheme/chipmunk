@@ -85,7 +85,7 @@ class Updater extends Theme {
 	 *
 	 * @param  object $value   The default update values.
 	 *
-	 * @return array|boolean  If an update is available, returns the update parameters,
+	 * @return array|bool  If an update is available, returns the update parameters,
 	 *                        if no update is needed or the request fails, returns false.
 	 */
 	public function addThemeUpdateTransient( object $value ) {
@@ -153,7 +153,7 @@ class Updater extends Theme {
 	/**
 	 * Call the EDD SL API (using the URL in the construct) to get the latest version information
 	 *
-	 * @return array|boolean  If an update is available, returns the update parameters,
+	 * @return array|bool  If an update is available, returns the update parameters,
 	 *                        if no update is needed or the request fails, returns false.
 	 */
 	private function checkForUpdate() {

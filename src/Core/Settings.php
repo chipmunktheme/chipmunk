@@ -86,7 +86,7 @@ class Settings extends Theme {
 	 *
 	 * @return bool
 	 */
-	public function isValidLicense() {
+	public function isValidLicense(): bool {
 		return ! empty( $this->license ) && 'valid' === $this->license->license;
 	}
 
@@ -95,8 +95,8 @@ class Settings extends Theme {
 	 *
 	 * @return int
 	 */
-	public function getLicensePrice() {
-		return $this->isValidLicense() ? (int) $this->license->price_id : 0;
+	public function getLicensePrice(): int {
+		return $this->isValidLicense() ? (int) $this->license->price_id : -1;
 	}
 
 	/**

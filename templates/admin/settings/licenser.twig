@@ -1,4 +1,6 @@
 <form action="options.php" method="post">
+  {{ fn('settings_fields', option) }}
+
   <div class="chipmunk__grid">
     <div class="chipmunk__license chipmunk__box">
       <h3 class="chipmunk__license-head">
@@ -6,8 +8,6 @@
       </h3>
 
       <div class="chipmunk__license-body">
-        {{ fn('settings_fields', option) }}
-
         <input id="{{ option | esc_attr }}" name="{{ option | esc_attr }}" type="password" class="regular-text" value="{{ key | esc_attr }}" placeholder="{{ strings['license-key'] | esc_attr }}" />
 
         {% if data and data.license == 'valid' %}
