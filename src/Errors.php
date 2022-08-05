@@ -11,6 +11,7 @@ use WP_Error;
  * @subpackage Chipmunk
  */
 class Errors {
+
 	/**
 	 * Stores global instance of WP_Error
 	 */

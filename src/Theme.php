@@ -45,9 +45,9 @@ class Theme extends ThemeHandler {
 			'Config\Query',
 			'Config\Misc',
 
-			// Vendor classes
-			'Vendor\ACF',
-			'Vendor\Merlin',
+			// ThirdParty classes
+			'ThirdParty\ACF',
+			'ThirdParty\Merlin',
 		];
 	}
 

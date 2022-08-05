@@ -5,7 +5,6 @@ namespace Chipmunk\Core;
 use WP_Customize_Manager;
 use WP_Customize_Color_Control;
 use WP_Customize_Image_Control;
-
 use MadeByLess\Lessi\Helper\FontTrait;
 use Chipmunk\Theme;
 
@@ -869,7 +868,7 @@ final class Options extends Theme {
 	private function registerField( WP_Customize_Manager $customize, array $section, array $field ) {
 		// Plugin restricted fields
 		// if ( ! empty( $field['restrict'] ) && ! Helpers::isAddonEnabled( $field['restrict'] ) ) {
-		// 	return null;
+		// return null;
 		// }
 
 		$settingArgs = [

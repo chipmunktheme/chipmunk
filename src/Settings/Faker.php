@@ -93,10 +93,10 @@ class Faker extends Theme {
 	/**
 	 * Generate fake values for upvote and view counters
 	 *
-	 * @param string $type
+	 * @param string  $type
 	 * @param integer $start
 	 * @param integer $end
-	 * @param array $postTypes
+	 * @param array   $postTypes
 	 *
 	 * @return void
 	 */
@@ -145,7 +145,7 @@ class Faker extends Theme {
 	}
 
 	/**
-	 * Returns the settings markup for upvote faker
+	 * Returns the settings markup for counter fakers
 	 *
 	 * @return string
 	 */

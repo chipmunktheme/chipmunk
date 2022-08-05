@@ -54,7 +54,7 @@ class Updater extends Theme {
 	 * Class constructor.
 	 */
 	public function __construct() {
-		$this->licenseKey = get_option( $this->buildThemeSlug( 'license_key' ) );
+		 $this->licenseKey = get_option( $this->buildThemeSlug( 'license_key' ) );
 		$this->shopUrl    = config()->getShopUrl();
 		$this->shopItemId = $this->getThemeProperty( 'name' );
 		$this->itemSlug   = $this->getThemeProperty( 'text-domain' );
@@ -126,7 +126,7 @@ class Updater extends Theme {
 	 *
 	 * @see https://developer.wordpress.org/reference/hooks/http_request_args
 	 *
-	 * @param array $args
+	 * @param array  $args
 	 * @param string $url
 	 */
 	public function disableOfficialRequest( array $args, string $url ) {
@@ -157,7 +157,7 @@ class Updater extends Theme {
 	 *                        if no update is needed or the request fails, returns false.
 	 */
 	private function checkForUpdate() {
-		$updateData = $this->getTransient( $this->transientName );
+		 $updateData = $this->getTransient( $this->transientName );
 
 		if ( $updateData === false ) {
 			$failed = false;

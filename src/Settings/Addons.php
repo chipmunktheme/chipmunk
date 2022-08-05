@@ -42,6 +42,13 @@ class Addons extends Theme {
 	private string $option;
 
 	/**
+	 * A list of available addons
+	 *
+	 * @var array
+	 */
+	private array $addons;
+
+	/**
 	 * Class constructor.
 	 *
 	 * @param Settings $settings
@@ -50,6 +57,7 @@ class Addons extends Theme {
 		$this->settings = $settings;
 		$this->slug     = sanitize_title( $this->name );
 		$this->option   = $this->buildThemeSlug( $this->slug );
+		$this->addons   = $this->applyFilter( 'settings_addons', [] );
 	}
 
 	/**
@@ -73,26 +81,26 @@ class Addons extends Theme {
 	 * Adds settings tab to the list
 	 */
 	public function addSettingsTab( $tabs ) {
-		$tabs[] = [
-			'name'    => $this->name,
-			'slug'    => $this->slug,
-			'content' => $this->getSettingsContent(),
-		];
+		if ( ! empty( $this->addons ) ) {
+			$tabs[] = [
+				'name'    => $this->name,
+				'slug'    => $this->slug,
+				'content' => $this->getSettingsContent(),
+			];
+		}
 
 		return $tabs;
 	}
 
 	/**
-	 * Returns the settings markup for upvote faker
+	 * Returns the settings markup for addons
+	 *
+	 * @return string
 	 */
 	private function getSettingsContent(): string {
-		if ( empty( $addons = $this->applyFilter( 'settings_addons', [] ) ) ) {
-			return '';
-		}
-
 		$options = get_option( $this->option );
 		$args    = [
-			'addons'           => $addons,
+			'addons'           => $this->addons,
 			'options'          => $options,
 			'option'           => $this->option,
 			'is_valid_license' => $this->settings->isValidLicense(),
@@ -102,18 +110,7 @@ class Addons extends Theme {
 	}
 
 	/**
-	 * Check if Chipmunk plugin is allowed
-	 *
-	 * @param string $addon
-	 *
-	 * @return bool
-	 */
-	public function isAddonAllowed( string $addon ): bool {
-		return $this->settings->getLicensePrice() >= config()->getAddons()[ $addon ];
-	}
-
-	/**
-	 * Check if Chipmunk plugin is enabled
+	 * Check if theme addon is enabled
 	 *
 	 * @param string $addon
 	 *
@@ -122,6 +119,21 @@ class Addons extends Theme {
 	public function isAddonEnabled( string $addon ): bool {
 		$option = get_option( $this->option );
 
-		return $this->isAddonAllowed( $addon ) && ! empty( $option[ $addon ] );
+		// Addon doesn't exists
+		if ( empty( $this->addons[ $addon ] ) ) {
+			return false;
+		}
+
+		// Addon is disabled
+		if ( empty( $option[ $addon ] ) ) {
+			return false;
+		}
+
+		// Addon is not allowed
+		if ( $this->settings->getLicensePrice() < $this->addons[ $addon ] ) {
+			return false;
+		}
+
+		return true;
 	}
 }

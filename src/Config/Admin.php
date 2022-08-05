@@ -118,7 +118,7 @@ class Admin extends Theme {
 			update_option( $settingName, $_POST[ $settingName ] );
 		}
 
-		$callback = function() use ( $settingName ) {
+		$callback = function () use ( $settingName ) {
 			$value = esc_attr( get_option( $settingName ) );
 			echo "<input type='text' value='$value' name='$settingName' class='regular-text code' />";
 		};

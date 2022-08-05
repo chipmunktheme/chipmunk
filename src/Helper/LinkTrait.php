@@ -36,7 +36,7 @@ trait LinkTrait {
 	 *
 	 * @param string $url   URL to convert to an external one
 	 * @param string $title Link content
-	 * @param array $atts   A list of HTML attributes to apply
+	 * @param array  $atts   A list of HTML attributes to apply
 	 *
 	 * @return string
 	 */

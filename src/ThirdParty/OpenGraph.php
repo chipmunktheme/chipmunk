@@ -1,6 +1,6 @@
 <?php
 
-namespace Chipmunk\Vendor;
+namespace Chipmunk\ThirdParty;
 
 /**
  * Copyright 2010 Scott MacVicar
@@ -12,6 +12,7 @@ namespace Chipmunk\Vendor;
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 class OpenGraph implements \Iterator {
+
 	/**
 	 * There are base schema's based on type, this is just
 	 * a map so that the schema can be obtained
@@ -86,15 +87,19 @@ class OpenGraph implements \Iterator {
 		$nonOgDescription = null;
 
 		foreach ( $tags as $tag ) {
-			if ( $tag->hasAttribute( 'property' ) &&
-				strpos( $tag->getAttribute( 'property' ), 'og:' ) === 0 ) {
+			if (
+				$tag->hasAttribute( 'property' ) &&
+				strpos( $tag->getAttribute( 'property' ), 'og:' ) === 0
+			) {
 				$key                   = strtr( substr( $tag->getAttribute( 'property' ), 3 ), '-', '_' );
 				$page->_values[ $key ] = $tag->getAttribute( 'content' );
 			}
 
 			// Added this if loop to retrieve description values from sites like the New York Times who have malformed it.
-			if ( $tag->hasAttribute( 'value' ) && $tag->hasAttribute( 'property' ) &&
-				strpos( $tag->getAttribute( 'property' ), 'og:' ) === 0 ) {
+			if (
+				$tag->hasAttribute( 'value' ) && $tag->hasAttribute( 'property' ) &&
+				strpos( $tag->getAttribute( 'property' ), 'og:' ) === 0
+			) {
 				$key                   = strtr( substr( $tag->getAttribute( 'property' ), 3 ), '-', '_' );
 				$page->_values[ $key ] = $tag->getAttribute( 'value' );
 			}
@@ -202,14 +207,19 @@ class OpenGraph implements \Iterator {
 	private $_position = 0;
 	public function rewind() {
 		reset( $this->_values );
-		$this->_position = 0; }
+		$this->_position = 0;
+	}
 	public function current() {
-		return current( $this->_values ); }
+		return current( $this->_values );
+	}
 	public function key() {
-		return key( $this->_values ); }
+		return key( $this->_values );
+	}
 	public function next() {
 		next( $this->_values );
-		++$this->_position; }
+		++$this->_position;
+	}
 	public function valid() {
-		return $this->_position < sizeof( $this->_values ); }
+		return $this->_position < sizeof( $this->_values );
+	}
 }

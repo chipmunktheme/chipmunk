@@ -1,6 +1,6 @@
 <?php
 
-namespace Chipmunk\Vendor;
+namespace Chipmunk\ThirdParty;
 
 use MadeByLess\Lessi\Helper\EnqueueTrait;
 use MadeByLess\Lessi\Helper\FileTrait;
@@ -154,7 +154,9 @@ class Merlin extends Theme {
 	 * @see https://developer.wordpress.org/reference/hooks/admin_enqueue_scripts
 	 */
 	public function addMerlinStyles() {
-		$this->addInlineStyle( $this->buildThemeSlug( 'merlin-styles', '-' ), "
+		$this->addInlineStyle(
+			$this->buildThemeSlug( 'merlin-styles', '-' ),
+			'
 			.merlin__button--knockout {
 				margin-top: 1em;
 				padding-right: 35px;
@@ -181,7 +183,8 @@ class Merlin extends Theme {
 			.merlin__content .icon svg {
 				width: auto !important;
 			}
-		" );
+		'
+		);
 	}
 
 	/**
@@ -204,6 +207,7 @@ class Merlin extends Theme {
 	 * Sets proper nav menus after the whole import has finished.
 	 */
 	public function setThemeNavMenus() {
+		// TODO: Make sure those menus are properly attached
 		$headerNav = get_term_by( 'name', 'Header nav', 'nav_menu' );
 		$footerNav = get_term_by( 'name', 'Footer nav', 'nav_menu' );
 

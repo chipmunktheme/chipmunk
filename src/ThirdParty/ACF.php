@@ -1,6 +1,6 @@
 <?php
 
-namespace Chipmunk\Vendor;
+namespace Chipmunk\ThirdParty;
 
 use MadeByLess\Lessi\Helper\FileTrait;
 use Chipmunk\Theme;
@@ -21,7 +21,7 @@ class ACF extends Theme {
 	/**
 	 * Class constructor.
 	 */
-	public function __construct() {}
+	public function __construct() {     }
 
 	/**
 	 * Hooks methods of this object into the WordPress ecosystem.
@@ -194,8 +194,8 @@ class ACF extends Theme {
 	private function normalizeFields( array &$field, $key, array $params ) {
 		// Generate proper field key
 		$key = isset( $params['prefix_key'] ) && isset( $params['group'] )
-			? $this->buildPrefixedThemeSlug( [ $params['group']['key'], $field['key'] ] )
-			: $this->buildPrefixedThemeSlug( $field['key'] );
+		? $this->buildPrefixedThemeSlug( [ $params['group']['key'], $field['key'] ] )
+		: $this->buildPrefixedThemeSlug( $field['key'] );
 
 		// Normalized field
 		$normField = [

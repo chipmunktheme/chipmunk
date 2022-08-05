@@ -50,6 +50,13 @@ class Licenser extends Theme {
 		$this->settings = $settings;
 		$this->slug = sanitize_title( $this->name );
 
+		// Set license option names
+		$this->optionKey  = $this->buildThemeSlug( [ $this->slug, 'key' ] );
+		$this->optionData = $this->buildThemeSlug( [ $this->slug, 'data' ] );
+
+		// Set license key
+		$this->key = get_option( $this->optionKey );
+
 		// Set default strings
 		$this->strings = wp_parse_args(
 			$strings,
@@ -89,13 +96,6 @@ class Licenser extends Theme {
 				'license-unknown'       => __( 'An error occurred, please try again.', 'chipmunk' ),
 			]
 		);
-
-		// Set license option names
-		$this->optionKey  = $this->buildThemeSlug( 'license_key' );
-		$this->optionData = $this->buildThemeSlug( 'license_data' );
-
-		// Set license key
-		$this->key = get_option( $this->optionKey );
 	}
 
 	/**
@@ -252,7 +252,7 @@ class Licenser extends Theme {
 	 * Displays the error on the page
 	 *
 	 * @param object|null $response Remote API response object
-	 * @param string $error Fallback error message
+	 * @param string      $error Fallback error message
 	 */
 	private function displaySettingsError( ?object $response, string $error = '' ) {
 		$message = is_wp_error( $response ) ? $response->get_error_message() : $error;
