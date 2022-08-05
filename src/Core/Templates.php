@@ -88,9 +88,6 @@ class Templates extends Theme {
 			$context[ $conditional ] = $conditional();
 		}
 
-		$context['search_query'] = get_search_query();
-		// $context['socials']      = Helpers::getSocials();
-
 		// Config
 		$context['config'] = [
 			'demo_url'      => config()->getDemoUrl(),
@@ -115,6 +112,7 @@ class Templates extends Theme {
 	public function setTwigFunctions( array $functions ): array {
 		$extend = [
 			// WordPress Helpers
+			'get_search_query'   => [ 'callable' => 'get_search_query' ],
 			'is_singular'        => [ 'callable' => 'is_singular' ],
 			'is_tax'             => [ 'callable' => 'is_tax' ],
 
@@ -128,15 +126,18 @@ class Templates extends Theme {
 			'is_option_enabled'  => [ 'callable' => [ $this, 'isOptionEnabled' ] ],
 			'is_addon_enabled'   => [ 'callable' => [ $this, 'isAddonEnabled' ] ],
 			'get_svg_content'    => [ 'callable' => [ $this, 'getSvgContent' ] ],
+			'get_external_url'   => [ 'callable' => [ $this, 'getExternalUrl' ] ],
 			'get_external_link'  => [ 'callable' => [ $this, 'getExternalLink' ] ],
 			// 'get_resource_links'  => [ 'callable' => [ $this, 'getResourceLinks' ] ],
 			'get_term_list'      => [ 'callable' => [ $this, 'getTermList' ] ],
 			'get_term_options'   => [ 'callable' => [ $this, 'getTermOptions' ] ],
+			'get_social_links'   => [ 'callable' => [ $this, 'getSocialLinks' ] ],
 			// 'get_related_posts'   => [ 'callable' => [ $this, 'getRelatedPosts' ] ],
 			// 'get_current_page'    => [ 'callable' => [ $this, 'getCurrentPage' ] ],
 			// 'get_views'           => [ 'callable' => [ Views::class, 'getViews' ] ],
 
 			// Addon Helpers
+            // TODO: Add proper Members funciton here
 			'get_members_link'    => [ 'callable' => [ $this, 'getParam' ] ],
 
 			// Third-party Helpers
@@ -168,7 +169,6 @@ class Templates extends Theme {
 
 			// Custom filters
 			// 'format_number'  => [ 'callable' => [ Helpers::class, 'formatNumber' ] ],
-			// 'external_url'   => [ 'callable' => [ Helpers::class, 'getExternalUrl' ] ],
 		];
 
 		return array_replace( $filters, $extend );

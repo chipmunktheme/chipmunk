@@ -3,6 +3,7 @@
 namespace Chipmunk;
 
 use MadeByLess\Lessi\Config\ConfigInterface;
+use MadeByLess\Lessi\Factory\Singleton;
 use MadeByLess\Lessi\Helper\FileTrait;
 use MadeByLess\Lessi\Helper\HelperTrait;
 use MadeByLess\Lessi\Helper\HookTrait;
@@ -10,17 +11,10 @@ use MadeByLess\Lessi\Helper\HookTrait;
 /**
  * Provides methods for the getting config options
  */
-final class Config implements ConfigInterface {
+final class Config extends Singleton implements ConfigInterface {
 	use FileTrait;
 	use HelperTrait;
 	use HookTrait;
-
-	/**
-	 * The one true Config
-	 *
-	 * @var Config
-	 */
-	private static $instance;
 
 	/**
 	 * The path to the templates folder
@@ -153,20 +147,6 @@ final class Config implements ConfigInterface {
 	 * @var string
 	 */
 	private $googleApiKey = 'AIzaSyBF71G0SfVTAJVZGC5dilfzC1PunP0qAtE';
-
-	/**
-	 * Insures that only one instance of Config exists in memory at any one
-	 * time. Also prevents needing to define globals all over the place.
-	 *
-	 * @return Config
-	 */
-	public static function getInstance() {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Config ) ) {
-			self::$instance = new Config();
-		}
-
-		return self::$instance;
-	}
 
 	/**
 	 * Method that returns templates path.

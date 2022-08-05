@@ -3,18 +3,14 @@
 namespace Chipmunk\Extension;
 
 use Timber\Timber;
+use MadeByLess\Lessi\Factory\Singleton;
 use MadeByLess\Lessi\Helper\HelperTrait;
 
 /**
  * Bookmark extension class
  */
-class BookmarkExtension {
+class BookmarkExtension extends Singleton {
     use HelperTrait;
-
-	/**
-	 * @var BookmarkExtension The one true BookmarkExtension
-	 */
-	private static $instance;
 
 	/**
 	 * Database key name for bookmarks
@@ -43,20 +39,6 @@ class BookmarkExtension {
 	public function __construct() {
 		$this->dbKey = $this->buildPrefixedThemeSlug( 'bookmark' );
 		$this->userId = get_current_user_id();
-	}
-
-	/**
-	 * Insures that only one instance of UpvoteExtension exists in memory at any one
-	 * time. Also prevents needing to define globals all over the place.
-	 *
-	 * @return UpvoteExtension
-	 */
-	public static function getInstance() {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof UpvoteExtension ) ) {
-			self::$instance = new UpvoteExtension();
-		}
-
-		return self::$instance;
 	}
 
 	/**

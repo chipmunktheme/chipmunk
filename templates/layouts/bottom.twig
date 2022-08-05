@@ -1,5 +1,6 @@
 {% set menu = get_menu('secondary') %}
 {% set about = get_option('about_copy') %}
+{% set social_links = get_social_links() %}
 
 <section class="c-page-foot {{ class('l-section', 'theme-light') }}">
   <div class="l-container">
@@ -34,14 +35,14 @@
         </div>
       {% endif %}
 
-      {% if socials %}
+      {% if social_links %}
         <div class="c-page-foot__column u-visible-lg-flex">
           <h5 class="c-page-foot__heading {{ class('c-heading', 'h6') }}">
             {{ __('Follow', 'chipmunk') }}
           </h5>
 
           <nav class="c-menu-secondary">
-            {% for key, value in socials %}
+            {% for key, value in social_links %}
               <a href="{{ value | esc_url }}" class="c-menu-secondary__link" target="_blank" rel="nofollow">
                 {{ key | esc_html }}
               </a>

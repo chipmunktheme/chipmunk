@@ -4,6 +4,7 @@
 
 .c-menu-secondary {
   display: inline-flex;
+  align-items: flex-start;
   flex-direction: column;
   gap: spacer-clamped(0.5);
 }

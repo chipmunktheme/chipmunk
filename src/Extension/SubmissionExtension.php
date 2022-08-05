@@ -5,6 +5,7 @@ namespace Chipmunk\Extension;
 use Exception;
 use Timber\Timber;
 use Timber\Post;
+use MadeByLess\Lessi\Factory\Singleton;
 use MadeByLess\Lessi\Helper\HookTrait;
 
 use Chipmunk\Core\Submitter;
@@ -14,15 +15,10 @@ use Chipmunk\Helper\OptionTrait;
 /**
  * Submission extension class
  */
-class SubmissionExtension {
+class SubmissionExtension extends Singleton {
     use HookTrait;
     use CaptchaTrait;
     use OptionTrait;
-
-	/**
-	 * @var SubmissionExtension The one true SubmissionExtension
-	 */
-	private static $instance;
 
 	/**
 	 * Required fields from the form
@@ -43,20 +39,6 @@ class SubmissionExtension {
 	 */
 	public function __construct() {
 		$this->submitter = new Submitter( 'resource' );
-	}
-
-	/**
-	 * Insures that only one instance of SubmissionExtension exists in memory at any one
-	 * time. Also prevents needing to define globals all over the place.
-	 *
-	 * @return SubmissionExtension
-	 */
-	public static function getInstance() {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof SubmissionExtension ) ) {
-			self::$instance = new SubmissionExtension();
-		}
-
-		return self::$instance;
 	}
 
 	/**

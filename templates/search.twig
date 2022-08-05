@@ -6,7 +6,7 @@
       <div class="l-header">
         <h1 class="{{ class('c-heading', 'h4') }}">
           <small>{{ __('Search results for:', 'chipmunk') }}</small>
-          {{ search_query }}
+          {{ get_search_query() }}
         </h1>
 
         {% include 'partials/search.twig' with { narrow: true } %}

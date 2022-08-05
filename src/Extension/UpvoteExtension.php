@@ -3,6 +3,7 @@
 namespace Chipmunk\Extension;
 
 use Timber\Timber;
+use MadeByLess\Lessi\Factory\Singleton;
 use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Helper\AddonTrait;
 use Chipmunk\Helper\OptionTrait;
@@ -10,15 +11,10 @@ use Chipmunk\Helper\OptionTrait;
 /**
  * Upvote extension class
  */
-class UpvoteExtension {
+class UpvoteExtension extends Singleton {
     use AddonTrait;
     use HelperTrait;
     use OptionTrait;
-
-	/**
-	 * @var UpvoteExtension The one true UpvoteExtension
-	 */
-	private static $instance;
 
 	/**
 	 * Database key name for upvotes
@@ -57,20 +53,6 @@ class UpvoteExtension {
 		$this->dbKey = $this->buildPrefixedThemeSlug( 'upvote' );
 		$this->dbKeyCount = $this->buildPrefixedThemeSlug( 'upvote_count' );
         $this->userId = get_current_user_id() ?: ( $useIP ? $this->getIP() : null );
-	}
-
-	/**
-	 * Insures that only one instance of UpvoteExtension exists in memory at any one
-	 * time. Also prevents needing to define globals all over the place.
-	 *
-	 * @return UpvoteExtension
-	 */
-	public static function getInstance() {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof UpvoteExtension ) ) {
-			self::$instance = new UpvoteExtension();
-		}
-
-		return self::$instance;
 	}
 
 	/**

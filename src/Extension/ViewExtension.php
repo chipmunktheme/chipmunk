@@ -2,20 +2,16 @@
 
 namespace Chipmunk\Extension;
 
+use MadeByLess\Lessi\Factory\Singleton;
 use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Helper\OptionTrait;
 
 /**
  * View extension class
  */
-class ViewExtension {
+class ViewExtension extends Singleton {
     use HelperTrait;
     use OptionTrait;
-
-	/**
-	 * @var ViewExtension The one true ViewExtension
-	 */
-	private static $instance;
 
 	/**
 	 * Database key name
@@ -29,20 +25,6 @@ class ViewExtension {
 	 */
 	public function __construct() {
 		$this->dbKey = $this->buildPrefixedThemeSlug( 'post_view_count' );
-	}
-
-	/**
-	 * Insures that only one instance of ViewExtension exists in memory at any one
-	 * time. Also prevents needing to define globals all over the place.
-	 *
-	 * @return ViewExtension
-	 */
-	public static function getInstance() {
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof ViewExtension ) ) {
-			self::$instance = new ViewExtension();
-		}
-
-		return self::$instance;
 	}
 
 	/**

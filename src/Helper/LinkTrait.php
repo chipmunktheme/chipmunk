@@ -81,4 +81,21 @@ trait LinkTrait {
 
 		return $links;
 	}
+
+	/**
+	 * Gets the array of social links to display
+	 *
+	 * @return array
+	 */
+	public function getSocialLinks(): array {
+		$socials = [];
+
+		foreach ( config()->getSocials() as $social ) {
+			if ( ! empty( $value = $this->getOption( strtolower( $social ) ) ) ) {
+				$socials[ $social ] = $value;
+			}
+		}
+
+		return $socials;
+	}
 }
