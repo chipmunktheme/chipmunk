@@ -1,6 +1,6 @@
 {% set action = 'submit_resource' %}
 {% set alignment = popup ? 'center' : 'left' %}
-{% set required_fields = ['name', 'collection', 'url'] | apply_filters('chipmunk_submission_required_fields') %}
+{% set required_fields = ['name', 'collection', 'url'] | apply_filters(get_theme_slug('submission_required_fields')) %}
 
 {% if title %}
   <div class="l-component">

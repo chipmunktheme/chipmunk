@@ -1,4 +1,4 @@
-{% do action('chipmunk_before_post_footer') %}
+{% do action(get_theme_slug('before_post_footer')) %}
 
 {% if is_option_enabled('sharing', 'post') or is_option_enabled('tags', 'post') %}
   <div class="c-entry__footer">
@@ -19,4 +19,4 @@
   </div>
 {% endif %}
 
-{% do action('chipmunk_after_post_footer') %}
+{% do action(get_theme_slug('after_post_footer')) %}

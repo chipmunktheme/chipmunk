@@ -30,7 +30,7 @@
         <p class="description">{{ status | esc_html }}</p>
       </div>
 
-      {% do action('chipmunk_license_content') %}
+      {% do action(get_theme_slug('license_content')) %}
     </div>
   </div>
 </form>

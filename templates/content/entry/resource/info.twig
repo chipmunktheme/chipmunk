@@ -1,4 +1,4 @@
-{% do action('chipmunk_before_resource_info') %}
+{% do action(get_theme_slug('before_resource_info')) %}
 
 <div class="c-resource__info">
   {% if is_single %}
@@ -35,4 +35,4 @@
   } %}
 </div>
 
-{% do action('chipmunk_after_resource_info') %}
+{% do action(get_theme_slug('after_resource_info')) %}

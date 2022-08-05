@@ -1,11 +1,11 @@
 {% if post.content and is_content_separated %}
-  <div class="l-section">
-    <div class="l-container">
+  {% embed 'wrappers/section.twig' %}
+    {% block content %}
       <div class="l-wrapper">
         <div class="c-entry__content {{ class('c-content', 'type') }}">
           {{ post.content }}
         </div>
       </div>
-    </div>
-  </div>
+    {% endblock %}
+  {% endembed %}
 {% endif %}

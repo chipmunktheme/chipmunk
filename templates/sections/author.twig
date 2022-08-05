@@ -1,14 +1,14 @@
 {% if author and not get_option('disable_user_profiles') %}
-  {% do action('chipmunk_author_before', author.id) %}
+  {% do action(get_theme_slug('author_before'), author.id) %}
 
 	{% set author_socials = fn('wp_get_user_contact_methods') | filter((value, key) => author.meta(key)) %}
 
-	<div class="{{ class('l-section', 'theme-light') }}" id="author-profile">
-		<div class="l-container">
+  {% embed 'wrappers/section.twig' with { id: 'author-profile', modifiers: 'theme-light' } %}
+    {% block content %}
 			<div class="l-wrapper">
 				<div class="l-component">
 					<h1 class="{{ class('c-heading', 'h4') }}">
-						{{ __('%s', 'chipmunk') | apply_filters('chipmunk_author_title') | format(author.name) }}
+						{{ __('%s', 'chipmunk') | apply_filters(get_theme_slug('author_title')) | format(author.name) }}
 					</h1>
 				</div>
 
@@ -45,7 +45,7 @@
               {% endif %}
 
 							<ul class="c-profile__stats c-stats">
-								{% do action('chipmunk_user_profile_stats_before', author.id) %}
+								{% do action(get_theme_slug('user_profile_stats_before'), author.id) %}
 
 								<li class="c-stats__item">
                   {% include 'partials/icon.twig' with { icon: 'clock' } only %}
@@ -55,14 +55,14 @@
                   </time>
 								</li>
 
-								{% do action('chipmunk_user_profile_stats_after', author.id) %}
+								{% do action(get_theme_slug('user_profile_stats_after'), author.id) %}
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+    {% endblock %}
+  {% endembed %}
 
-	{% do action('chipmunk_author_after', author.id) %}
+	{% do action(get_theme_slug('author_after'), author.id) %}
 {% endif %}

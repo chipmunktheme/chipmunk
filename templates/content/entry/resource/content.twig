@@ -1,7 +1,7 @@
 <div class="{{ class('c-resource__content', (not post.thumbnail or not is_option_enabled('single_thumbs', 'resource')) ? 'full') }}">
   {% include 'content/entry/resource/info.twig' %}
 
-  <div class="c-resource__extras">{% do action('chipmunk_resource_extras') %}</div>
+  <div class="c-resource__extras">{% do action(get_theme_slug('resource_extras')) %}</div>
 
   {% include 'content/entry/resource/actions.twig' %}
 </div>

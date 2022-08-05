@@ -1,12 +1,12 @@
 {% if post.password_required %}
 	{{ __('This post is password protected. Enter the password to view any comments.', 'chipmunk') }}
 {% elseif post.comment_status == 'open' or post.comment_count %}
-  <div class="{{ class('l-section', 'theme-light') }}">
-    <div class="l-container">
+  {% embed 'wrappers/section.twig' with { modifiers: 'theme-light' } %}
+    {% block content %}
       <div class="l-wrapper">
         {% include 'sections/comments/list.twig' %}
         {% include 'sections/comments/form.twig' %}
       </div>
-    </div>
-  </div>
+    {% endblock %}
+  {% endembed %}
 {% endif %}

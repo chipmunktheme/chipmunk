@@ -17,8 +17,8 @@
 {% endif %}
 
 {% if (not is_front_page and not is_single) or posts | length %}
-  <div class="l-section">
-    <div class="l-container">
+  {% embed 'wrappers/section.twig' %}
+    {% block content %}
       {% if title and layout == 'tiles' %}
         <div class="l-component l-header">
           <h2 class="{{ class('c-heading', 'h4') }}">{{ title }}</h2>
@@ -26,6 +26,6 @@
       {% endif %}
 
       {% include 'content/loop/post.twig' %}
-    </div>
-  </div>
+    {% endblock %}
+  {% endembed %}
 {% endif %}

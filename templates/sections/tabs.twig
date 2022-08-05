@@ -48,14 +48,14 @@
 } %}
 
 {# Get the proper tab order #}
-{% set tabs = ['featured', 'latest', 'popular'] | apply_filters('chipmunk_resource_tabs') %}
+{% set tabs = ['featured', 'latest', 'popular'] | apply_filters(get_theme_slug('resource_tabs')) %}
 
 {# Filter out empty resource tabs #}
 {% set tabs = tabs | filter(tab => sections[tab].results | length) %}
 
 {% if tabs %}
-	<div class="l-section">
-		<div class="l-container">
+  {% embed 'wrappers/section.twig' %}
+    {% block content %}
       <div class="c-tabs" data-tabs role="tablist">
         {% if tabs | length > 1 %}
           <div class="c-tabs__title {{ class('c-heading', 'h5') }}">
@@ -77,6 +77,6 @@
           </div>
         {% endfor %}
       </div>
-		</div>
-	</div>
+    {% endblock %}
+  {% endembed %}
 {% endif %}

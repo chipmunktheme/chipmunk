@@ -1,31 +1,33 @@
 {% set social_links = get_social_links() %}
 
 {% if social_links or not get_option('disable_submissions') %}
-  <div class="{{ class('l-section', ['theme-light', 'compact', 'sticky']) }}">
-    <div class="l-container c-toolbox">
-      {% if social_links %}
-        <div class="c-toolbox__share">
-          <div class="c-menu-socials">
-            <h5 class="c-menu-socials__title">{{ __('Follow us', 'chipmunk') }}</h5>
+  {% embed 'wrappers/section.twig' with { modifiers: ['theme-light', 'compact', 'sticky'] } %}
+    {% block content %}
+      <div class="c-toolbox">
+        {% if social_links %}
+          <div class="c-toolbox__share">
+            <div class="c-menu-socials">
+              <h5 class="c-menu-socials__title">{{ __('Follow us', 'chipmunk') }}</h5>
 
-            <nav class="c-menu-socials__list">
-              {% for key, value in social_links %}
-                <a href="{{ value | esc_url }}" class="c-menu-socials__link" target="_blank" rel="nofollow" title="{{ key | esc_html }}">
-                  {% include 'partials/icon.twig' with { icon: "social-#{ key | lower }" } only %}
-                  <span class="u-hidden-visually">{{ key | esc_html }}</span>
-                </a>
-              {% endfor %}
-            </nav>
+              <nav class="c-menu-socials__list">
+                {% for key, value in social_links %}
+                  <a href="{{ value | esc_url }}" class="c-menu-socials__link" target="_blank" rel="nofollow" title="{{ key | esc_html }}">
+                    {% include 'partials/icon.twig' with { icon: "social-#{ key | lower }" } only %}
+                    <span class="u-hidden-visually">{{ key | esc_html }}</span>
+                  </a>
+                {% endfor %}
+              </nav>
+            </div>
           </div>
-        </div>
-      {% endif %}
+        {% endif %}
 
-      {% if not get_option('disable_submissions') %}
-        <div class="c-toolbox__cta {{ social_links ? 'u-visible-md-flex' }}">
-          <p class="{{ social_links ? 'u-visible-lg-block' }}">{{ get_option('submit_tagline') | esc_html }}</p>
-          {% include 'partials/submit-button.twig' with { class: 'c-toolbox__button ' ~ class('c-button', 'primary') } %}
-        </div>
-      {% endif %}
-    </div>
-  </div>
+        {% if not get_option('disable_submissions') %}
+          <div class="c-toolbox__cta {{ social_links ? 'u-visible-md-flex' }}">
+            <p class="{{ social_links ? 'u-visible-lg-block' }}">{{ get_option('submit_tagline') | esc_html }}</p>
+            {% include 'partials/submit-button.twig' with { class: 'c-toolbox__button ' ~ class('c-button', 'primary') } %}
+          </div>
+        {% endif %}
+      </div>
+    {% endblock %}
+  {% endembed %}
 {% endif %}

@@ -1,5 +1,5 @@
-<footer class="c-page-foot {{ class('l-section', 'compact') }}">
-  <div class="l-container">
+{% embed 'wrappers/section.twig' with { class: 'c-page-foot', modifiers: 'compact' } %}
+  {% block content %}
     <div class="c-page-foot__inner">
       <p class="c-page-foot__copy">
         {{ get_option('copyright_text') | wp_kses_post | shortcodes }}
@@ -17,5 +17,5 @@
         }) }}
       {% endif %}
     </div>
-  </div>
-</footer>
+  {% endblock %}
+{% endembed %}

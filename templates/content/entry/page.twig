@@ -1,5 +1,5 @@
-<div class="l-section">
-  <div class="l-container">
+{% embed 'wrappers/section.twig' %}
+  {% block content %}
     <div class="l-wrapper">
       <div class="c-entry">
         <h1 class="c-entry__title {{ class('c-heading', 'h2') }}">
@@ -11,5 +11,5 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+  {% endblock %}
+{% endembed %}

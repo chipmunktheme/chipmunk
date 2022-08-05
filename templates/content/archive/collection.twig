@@ -2,12 +2,12 @@
   taxonomy: 'resource-collection',
   orderby: 'name',
   pad_counts: true,
+  hide_empty: false,
+  parent: 0,
 }) %}
 
-{% set collections = collections | filter(collection => not collection.parent) %}
-
-<div class="l-section">
-	<div class="l-container">
+{% embed 'wrappers/section.twig' %}
+  {% block content %}
 		<div class="l-component l-header">
 			<{{ is_front_page ? 'h2' : 'h1' }} class="{{ class('c-heading', 'h4') }}">
 				{{ __('Collections', 'chipmunk') }}
@@ -15,5 +15,5 @@
 		</div>
 
     {% include 'content/loop/collection.twig' %}
-	</div>
-</div>
+  {% endblock %}
+{% endembed %}

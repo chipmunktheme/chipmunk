@@ -21,9 +21,15 @@ trait TaxonomyTrait {
 	 */
 	public function getTaxonomyHierarchy( string $taxonomy, array $args = [], int $parent = 0 ): ?array {
 		$children = [];
-		$taxonomy = is_array( $taxonomy ) ? array_shift( $taxonomy ) : $taxonomy;
+        $taxonomy = is_array( $taxonomy ) ? array_shift( $taxonomy ) : $taxonomy;
 
-		$terms = get_terms( $taxonomy, wp_parse_args( $args, [ 'parent' => $parent ] ) );
+		$terms = get_terms( $taxonomy, wp_parse_args(
+            $args,
+            [
+                'parent' => $parent,
+                'hide_empty' => 0,
+            ]
+        ) );
 
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			foreach ( $terms as $term ) {
@@ -54,13 +60,16 @@ trait TaxonomyTrait {
 			$terms = $this->getTaxonomyHierarchy( $taxonomy );
 		}
 
-		foreach ( $terms as $term ) {
-			$output .= '<option value="' . $term->name . '">' . str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' ) . $term->name . '</option>';
+        if ( ! empty( $terms ) ) {
+            foreach ( $terms as $term ) {
+                $prefix = str_repeat( '&horbar;', $level ) . ( $level ? '&nbsp;' : '' );
+                $output .= "<option value='{$term->name}'>{$prefix}{$term->name}</option>";
 
-			if ( $term->children ) {
-				$output .= $this->getTermOptions( $taxonomy, $term->children, $level + 1 );
-			}
-		}
+                if ( $term->children ) {
+                    $output .= $this->getTermOptions( $taxonomy, $term->children, $level + 1 );
+                }
+            }
+        }
 
 		return $output;
 	}

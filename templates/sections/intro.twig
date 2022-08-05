@@ -1,11 +1,11 @@
 {% set intro = get_option('intro_text') %}
 
 {% if intro %}
-  <div class="{{ class('l-section', 'intro') }}">
-    <div class="l-container">
+  {% embed 'wrappers/section.twig' with { modifiers: 'intro' } %}
+    {% block content %}
       <h2 class="l-section__intro {{ class('c-heading', 'h1') }}">
         {{ intro | apply_filters('the_content') }}
       </h2>
-    </div>
-  </div>
+    {% endblock %}
+  {% endembed %}
 {% endif %}

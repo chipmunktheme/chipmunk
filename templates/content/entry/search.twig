@@ -1,8 +1,8 @@
-<div class="{{ class('l-section', not loop or loop.index0 % 2 == 0 ? 'theme-light') }}">
-	<div class="l-container">
+{% embed 'wrappers/section.twig' with { modifiers: not loop or loop.index0 % 2 == 0 ? 'theme-light' } %}
+  {% block content %}
 		<article class="c-resource">
       {% include 'content/entry/search/content.twig' %}
       {% include 'content/entry/search/media.twig' %}
 		</article>
-	</div>
-</div>
+  {% endblock %}
+{% endembed %}

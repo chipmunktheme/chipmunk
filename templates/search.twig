@@ -1,8 +1,8 @@
 {% extends '_layout.twig' %}
 
 {% block content %}
-  <div class="{{ class('l-section', posts ? 'compact-bottom') }}">
-    <div class="l-container">
+  {% embed 'wrappers/section.twig' with { modifiers: posts ? 'compact-bottom' } %}
+    {% block content %}
       <div class="l-header">
         <h1 class="{{ class('c-heading', 'h4') }}">
           <small>{{ __('Search results for:', 'chipmunk') }}</small>
@@ -17,8 +17,8 @@
           </p>
         {% endif %}
       </div>
-    </div>
-  </div>
+    {% endblock %}
+  {% endembed %}
 
   {% if posts %}
     <div data-action-element="load_posts">
@@ -29,10 +29,10 @@
   {% endif %}
 
   {% if posts.pagination %}
-    <div class="l-section">
-      <div class="l-container">
+    {% embed 'wrappers/section.twig' %}
+      {% block content %}
         {% include 'sections/pagination.twig' with { pagination: posts.pagination } %}
-      </div>
-    </div>
+      {% endblock %}
+    {% endembed %}
   {% endif %}
 {% endblock %}

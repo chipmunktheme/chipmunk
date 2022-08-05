@@ -2,8 +2,8 @@
 {% set about = get_option('about_copy') %}
 {% set social_links = get_social_links() %}
 
-<section class="c-page-foot {{ class('l-section', 'theme-light') }}">
-  <div class="l-container">
+{% embed 'wrappers/section.twig' with { class: 'c-page-foot', modifiers: 'theme-light' } %}
+  {% block content %}
     <div class="c-page-foot__inner">
       {% if about %}
         <div class="c-page-foot__column">
@@ -51,5 +51,5 @@
         </div>
       {% endif %}
     </div>
-  </div>
-</section>
+  {% endblock %}
+{% endembed %}

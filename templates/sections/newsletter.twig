@@ -18,8 +18,8 @@
 {% endif %}
 
 {% if not get_option('disable_newsletter') and action %}
-	<div class="{{ class('l-section', 'theme-primary') }}">
-		<div class="l-container">
+  {% embed 'wrappers/section.twig' with { modifiers: 'theme-primary' } %}
+    {% block content %}
 			<div class="l-wrapper">
 				<div class="{{ class('c-lead', 'center') }}">
 					<h4 class="c-lead__title {{ class('c-heading', 'h1') }}">{{ __('Newsletter', 'chipmunk') }}</h4>
@@ -27,7 +27,7 @@
 
 					<form action="{{ action | stripslashes | trim('" ') | esc_url }}" method="post" class="c-lead__cta {{ class('c-form', 'inline', 'narrow') }}" target="_blank" novalidate data-validate>
 						<div class="c-form__field">
-							<input type="email" name="{{ email_field | apply_filters('chipmunk_newsletter_email_field') | esc_html }}" placeholder="{{ __('Email address', 'chipmunk') }}" class="c-form__input" required autocomplete="off">
+							<input type="email" name="{{ email_field | apply_filters(get_theme_slug('newsletter_email_field')) | esc_html }}" placeholder="{{ __('Email address', 'chipmunk') }}" class="c-form__input" required autocomplete="off">
 							<button type="submit" class="c-form__button">{% include 'partials/icon.twig' with { icon: 'arrow-right' } only %}</button>
 						</div>
 
@@ -38,12 +38,12 @@
 							</label>
             {% endif %}
 
-            {% for key, value in args | apply_filters('chipmunk_newsletter_args') %}
+            {% for key, value in args | apply_filters(get_theme_slug('newsletter_args')) %}
               <input type="hidden" name="{{ key }}" value="{{ value }}">
             {% endfor %}
 					</form>
 				</div>
 			</div>
-		</div>
-	</div>
+    {% endblock %}
+  {% endembed %}
 {% endif %}

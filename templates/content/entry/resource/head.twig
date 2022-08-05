@@ -1,5 +1,5 @@
 <div class="c-resource__head">
-  {% do action('chipmunk_before_resource_head') %}
+  {% do action(get_theme_slug('before_resource_head')) %}
 
   {% include 'partials/stats.twig' with {
     class: 'c-resource__stats',
@@ -26,5 +26,5 @@
     </div>
   {% endif %}
 
-  {% do action('chipmunk_after_resource_head') %}
+  {% do action(get_theme_slug('after_resource_head')) %}
 </div>

@@ -21,8 +21,8 @@
 {% endif %}
 
 {% if posts | length or not is_singular('resource') %}
-  <div class="l-section">
-    <div class="l-container">
+  {% embed 'wrappers/section.twig' %}
+    {% block content %}
       <div class="l-component l-header">
         <h2 class="l-section__title {{ class('c-heading', 'h4') }}">
           {{ title }}
@@ -44,6 +44,6 @@
       {% endif %}
 
       {% include 'content/loop/resource.twig' with { spacer: collections ? 'lg' } %}
-    </div>
-  </div>
+    {% endblock %}
+  {% endembed %}
 {% endif %}

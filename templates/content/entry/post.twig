@@ -3,28 +3,28 @@
     <section class="c-entry__hero">
       <img src="{{ post.thumbnail.src('1920x1080') }}" alt="" itemprop="image" />
 
-      <div class="c-entry__details l-section">
-        <div class="l-container">
+      {% embed 'wrappers/section.twig' with { class: 'c-entry__details' } %}
+        {% block content %}
           <div class="l-wrapper">
             {% include 'content/entry/post/head.twig' %}
           </div>
-        </div>
-      </div>
+        {% endblock %}
+      {% endembed %}
     </section>
   {% endif %}
 
-  <section class="l-section">
-    <div class="l-container">
+  {% embed 'wrappers/section.twig' %}
+    {% block content %}
       <div class="l-wrapper">
         <div class="c-entry">
           {% include 'content/entry/post/intro.twig' %}
           {% include 'content/entry/post/content.twig' %}
 
-          <div class="c-entry__extras">{% do action('chipmunk_post_extras') %}</div>
+          <div class="c-entry__extras">{% do action(get_theme_slug('post_extras')) %}</div>
 
           {% include 'content/entry/post/foot.twig' %}
         </div>
       </div>
-    </div>
-  </section>
+    {% endblock %}
+  {% endembed %}
 </article>

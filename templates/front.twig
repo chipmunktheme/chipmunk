@@ -1,12 +1,12 @@
 {% extends '_layout.twig' %}
 
 {% block content %}
-  {# {% include 'sections/intro.twig' %}
+  {% include 'sections/intro.twig' %}
 
   {% if is_option_enabled('listings', 'homepage', false) %}
-    {% do action('chipmunk_before_resources_tabs') %}
+    {% do action(get_theme_slug('before_resources_tabs')) %}
     {% include 'sections/tabs.twig' %}
-    {% do action('chipmunk_after_resources_tabs') %}
+    {% do action(get_theme_slug('after_resources_tabs')) %}
 
     {% include 'sections/toolbox.twig' %}
   {% endif %}
@@ -16,6 +16,6 @@
   {% endif %}
 
   {% if is_option_enabled('posts', 'homepage', false) %}
-    {% include 'content/archive/post.twig' %}
-  {% endif %} #}
+    {# {% include 'content/archive/post.twig' %} #}
+  {% endif %}
 {% endblock %}
