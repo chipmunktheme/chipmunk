@@ -23,27 +23,31 @@ class Settings extends Theme {
 	use ThemeTrait;
 
 	/**
-	 * License data object
-	 *
-	 * @var object|null
+	 * @var Settings The one true Settings
 	 */
-	private ?object $license;
+	private static $instance;
 
 	/**
 	 * Class constructor.
 	 */
 	public function __construct() {
-		$licenser = new Licenser( $this );
-		$licenser->initialize();
+		Licenser::getInstance()->initialize();
+		Faker::getInstance()->initialize();
+		Addons::getInstance()->initialize();
+	}
 
-		$faker = new Faker( $this );
-		$faker->initialize();
+	/**
+	 * Insures that only one instance of Settings exists in memory at any one
+	 * time. Also prevents needing to define globals all over the place.
+	 *
+	 * @return Settings
+	 */
+	public static function getInstance() {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Settings ) ) {
+			self::$instance = new Settings();
+		}
 
-		$addons = new Addons( $this );
-		$addons->initialize();
-
-		// Store license data
-		$this->license = $licenser->getData();
+		return self::$instance;
 	}
 
 	/**
@@ -51,7 +55,6 @@ class Settings extends Theme {
 	 */
 	public function initialize() {
 		$this->addAction( 'admin_menu', [ $this, 'addMenuPage' ], 1 );
-		$this->addAction( 'chipmunk_settings_nav', [ $this, 'addMenuPage' ], 1 );
 		$this->addAction( 'admin_init', [ $this, 'displayErrors' ], 99 );
 	}
 
@@ -74,29 +77,11 @@ class Settings extends Theme {
 	 */
 	public function renderAdminSettings() {
 		$args = [
-			'license'  => $this->license,
+			'license'  => Licenser::getInstance()->getLicense(),
 			'tabs' => $this->applyFilter( 'settings_tabs', [] ),
 		];
 
 		Timber::render( 'admin/settings.twig', array_merge( Timber::context(), $args ) );
-	}
-
-	/**
-	 * Is valid license activated
-	 *
-	 * @return bool
-	 */
-	public function isValidLicense(): bool {
-		return ! empty( $this->license ) && 'valid' === $this->license->license;
-	}
-
-	/**
-	 * Get the price ID if the license is valid and activated
-	 *
-	 * @return int
-	 */
-	public function getLicensePrice(): int {
-		return $this->isValidLicense() ? (int) $this->license->price_id : -1;
 	}
 
 	/**

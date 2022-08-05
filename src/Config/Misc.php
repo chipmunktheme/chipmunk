@@ -4,12 +4,14 @@ namespace Chipmunk\Config;
 
 use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Theme;
+use Chipmunk\Helper\AddonTrait;
 use Chipmunk\Helper\PostTrait;
 
 /**
  * Miscellaneous config hooks.
  */
 class Misc extends Theme {
+    use AddonTrait;
 	use HelperTrait;
 	use PostTrait;
 
@@ -30,20 +32,15 @@ class Misc extends Theme {
 	 * @param int $postId
 	 */
 	public function addDefaultMeta( int $postId ) {
-		$defaultMeta = [
+		$meta = [
 			$this->buildPrefixedThemeSlug( 'post_view_count' ) => 0,
 			$this->buildPrefixedThemeSlug( 'upvote_count' ) => 0,
 		];
 
-		if ( Helpers::isAddonEnabled( 'ratings' ) ) {
-			$meta = array_merge(
-				$defaultMeta,
-				[
-					$this->buildPrefixedThemeSlug( 'rating_count' ) => 0,
-					$this->buildPrefixedThemeSlug( 'rating_average' ) => 0,
-					$this->buildPrefixedThemeSlug( 'rating_rank' ) => 0,
-				]
-			);
+		if ( $this->isAddonEnabled( 'ratings' ) ) {
+            $meta[ $this->buildPrefixedThemeSlug( 'rating_count' ) ] = 0;
+            $meta[ $this->buildPrefixedThemeSlug( 'rating_average' ) ] = 0;
+            $meta[ $this->buildPrefixedThemeSlug( 'rating_rank' ) ] = 0;
 		}
 
 		$this->addPostMeta( $postId, $meta, [ 'post', 'resource' ] );

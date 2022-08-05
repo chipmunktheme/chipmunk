@@ -14,11 +14,9 @@ class Faker extends Theme {
 	use HelperTrait;
 
 	/**
-	 * Setting class
-	 *
-	 * @var Settings
+	 * @var Faker The one true Faker
 	 */
-	protected Settings $settings;
+	private static $instance;
 
 	/**
 	 * Setting name
@@ -43,11 +41,8 @@ class Faker extends Theme {
 
 	/**
 	 * Class constructor.
-	 *
-	 * @param Settings $settings
 	 */
-	public function __construct( Settings $settings ) {
-		$this->settings = $settings;
+	public function __construct() {
 		$this->slug     = sanitize_title( $this->name );
 
 		$this->types = [
@@ -62,6 +57,20 @@ class Faker extends Theme {
 				'types' => [ 'post', 'resource' ],
 			],
 		];
+	}
+
+	/**
+	 * Insures that only one instance of Faker exists in memory at any one
+	 * time. Also prevents needing to define globals all over the place.
+	 *
+	 * @return Faker
+	 */
+	public static function getInstance() {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Faker ) ) {
+			self::$instance = new Faker();
+		}
+
+		return self::$instance;
 	}
 
 	/**
@@ -104,7 +113,7 @@ class Faker extends Theme {
 		check_admin_referer( $this->buildThemeSlug( [ 'generator', $type, 'nonce' ] ) );
 
 		if ( empty( $start ) || empty( $end ) ) {
-			$this->settings->addMessage( $this->slug, __( 'You need to provide both values for the range!', 'chipmunk' ) );
+			Settings::getInstance()->addMessage( $this->slug, __( 'You need to provide both values for the range!', 'chipmunk' ) );
 			return null;
 		}
 
@@ -126,7 +135,7 @@ class Faker extends Theme {
 			update_post_meta( $post->ID, $dbKey, $newCount );
 		}
 
-		$this->settings->addMessage( $this->slug, __( 'Fake counters successfully generated!', 'chipmunk' ), 'success' );
+		Settings::getInstance()->addMessage( $this->slug, __( 'Fake counters successfully generated!', 'chipmunk' ), 'success' );
 	}
 
 	/**

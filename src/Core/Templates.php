@@ -4,20 +4,26 @@ namespace Chipmunk\Core;
 
 use Timber\Timber;
 use Timber\URLHelper;
-use MadeByLess\Lessi\Helper\AssetTrait;
-use MadeByLess\Lessi\Helper\FileTrait;
-use MadeByLess\Lessi\Helper\HelperTrait;
-use MadeByLess\Lessi\Helper\MediaTrait;
-use MadeByLess\Lessi\Helper\SelectorTrait;
-use MadeByLess\Lessi\Helper\ThemeTrait;
+use MadeByLess\Lessi\Helper\{
+    AssetTrait,
+    FileTrait,
+    HelperTrait,
+    MediaTrait,
+    SelectorTrait,
+    ThemeTrait,
+};
 use Chipmunk\Theme;
-use Chipmunk\Helper\LinkTrait;
-use Chipmunk\Helper\TaxonomyTrait;
+use Chipmunk\Helper\{
+    AddonTrait,
+    LinkTrait,
+    TaxonomyTrait,
+};
 
 /**
  * Theme templates
  */
 class Templates extends Theme {
+	use AddonTrait;
 	use AssetTrait;
 	use FileTrait;
 	use HelperTrait;
@@ -120,7 +126,7 @@ class Templates extends Theme {
 			'get_param'          => [ 'callable' => [ $this, 'getParam' ] ],
 			'get_option'         => [ 'callable' => [ $this, 'getOption' ] ],
 			'is_option_enabled'  => [ 'callable' => [ $this, 'isOptionEnabled' ] ],
-			// 'is_addon_enabled'    => [ 'callable' => [ $this, 'isAddonEnabled' ] ],
+			'is_addon_enabled'   => [ 'callable' => [ $this, 'isAddonEnabled' ] ],
 			'get_svg_content'    => [ 'callable' => [ $this, 'getSvgContent' ] ],
 			'get_external_link'  => [ 'callable' => [ $this, 'getExternalLink' ] ],
 			// 'get_resource_links'  => [ 'callable' => [ $this, 'getResourceLinks' ] ],
@@ -131,7 +137,7 @@ class Templates extends Theme {
 			// 'get_views'           => [ 'callable' => [ Views::class, 'getViews' ] ],
 
 			// Addon Helpers
-			// 'get_members_link'    => [ 'callable' => [ MembersHelpers::class, 'getPagePermalink' ] ],
+			'get_members_link'    => [ 'callable' => [ $this, 'getParam' ] ],
 
 			// Third-party Helpers
 			'get_menu'           => [ 'callable' => [ Timber::class, 'get_menu' ] ],

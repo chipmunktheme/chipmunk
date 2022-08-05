@@ -3,9 +3,8 @@
 namespace Chipmunk;
 
 use MadeByLess\Lessi\Handler\ThemeHandler;
-use MadeByLess\Lessi\Helper\HookTrait;
-use MadeByLess\Lessi\Helper\ShortcodeTrait;
-use Chipmunk\Core\Options;
+use MadeByLess\Lessi\Helper\{HookTrait, ShortcodeTrait};
+use Chipmunk\Core\{Options, Settings};
 use Chipmunk\Helper\OptionTrait;
 
 /**
@@ -36,7 +35,6 @@ class Theme extends ThemeHandler {
 			'Core\Assets',
 			'Core\Actions',
 			'Core\Shortcodes',
-			'Core\Settings',
 			'Core\Updater',
 
 			// Config classes
@@ -56,8 +54,9 @@ class Theme extends ThemeHandler {
 	 */
 	public function initialize() {
 		if ( ! $this->isInitialized() ) {
-			// Initialize Options object
-			( Options::getInstance() )->initialize();
+			// Initialize singleton object
+			Options::getInstance()->initialize();
+			Settings::getInstance()->initialize();
 
 			// Initialize theme classes
 			$this->initializeClasses( $this->classes );

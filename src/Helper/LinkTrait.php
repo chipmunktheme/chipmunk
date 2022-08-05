@@ -3,6 +3,7 @@
 namespace Chipmunk\Helper;
 
 use MadeByLess\Lessi\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\HookTrait;
 use MadeByLess\Lessi\Helper\SelectorTrait;
 use Chipmunk\Helper\OptionTrait;
 
@@ -11,8 +12,9 @@ use Chipmunk\Helper\OptionTrait;
  */
 trait LinkTrait {
 	use HelperTrait;
-	use OptionTrait;
+    use HookTrait;
 	use SelectorTrait;
+	use OptionTrait;
 
 	/**
 	 * Creates an external URL

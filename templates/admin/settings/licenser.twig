@@ -8,9 +8,14 @@
       </h3>
 
       <div class="chipmunk__license-body">
-        <input id="{{ option | esc_attr }}" name="{{ option | esc_attr }}" type="password" class="regular-text" value="{{ key | esc_attr }}" placeholder="{{ strings['license-key'] | esc_attr }}" />
+        <input
+          type="password"
+          class="regular-text"
+          name="{{ option | esc_attr }}"
+          value="{{ key | esc_attr }}"
+          placeholder="{{ strings['license-key'] | esc_attr }}" />
 
-        {% if data and data.license == 'valid' %}
+        {% if license and license.license == 'valid' %}
           <button type="submit" class="button-secondary" name="{{ option | esc_attr }}_deactivate">
             {{ strings['deactivate-license'] | esc_html }}
           </button>
@@ -21,7 +26,7 @@
         {% endif %}
       </div>
 
-      <div class="chipmunk__license-data is-{{ data.license | esc_attr }}">
+      <div class="chipmunk__license-data is-{{ license.license | esc_attr }}">
         <p class="description">{{ status | esc_html }}</p>
       </div>
 

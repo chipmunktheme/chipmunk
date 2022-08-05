@@ -5,7 +5,7 @@ namespace Chipmunk\Settings;
 use Timber\Timber;
 use MadeByLess\Lessi\Helper\HelperTrait;
 use Chipmunk\Theme;
-use Chipmunk\Core\Settings;
+use Chipmunk\Settings\Licenser;
 
 /**
  * A Addons settings class
@@ -14,11 +14,9 @@ class Addons extends Theme {
 	use HelperTrait;
 
 	/**
-	 * Setting class
-	 *
-	 * @var Settings
+	 * @var Addons The one true Addons
 	 */
-	protected Settings $settings;
+	private static $instance;
 
 	/**
 	 * Setting name
@@ -50,14 +48,25 @@ class Addons extends Theme {
 
 	/**
 	 * Class constructor.
-	 *
-	 * @param Settings $settings
 	 */
-	public function __construct( Settings $settings ) {
-		$this->settings = $settings;
+	public function __construct() {
 		$this->slug     = sanitize_title( $this->name );
 		$this->option   = $this->buildThemeSlug( $this->slug );
 		$this->addons   = $this->applyFilter( 'settings_addons', [] );
+	}
+
+	/**
+	 * Insures that only one instance of Addons exists in memory at any one
+	 * time. Also prevents needing to define globals all over the place.
+	 *
+	 * @return Addons
+	 */
+	public static function getInstance() {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Addons ) ) {
+			self::$instance = new Addons();
+		}
+
+		return self::$instance;
 	}
 
 	/**
@@ -69,6 +78,22 @@ class Addons extends Theme {
 		// Output settings content
 		$this->addFilter( $this->buildThemeSlug( 'settings_tabs' ), [ $this, 'addSettingsTab' ] );
 	}
+
+    /**
+     * Returns the list of available addons
+     *
+     * @return array
+     */
+    public function getAddons(): array {
+        return $this->addons;
+    }
+
+    /**
+     * Returns the option containing addon options
+     */
+    public function getAddonsOptions() {
+        return get_option( $this->option );
+    }
 
 	/**
 	 * Registers the option used to store the license key in the options table.
@@ -103,37 +128,9 @@ class Addons extends Theme {
 			'addons'           => $this->addons,
 			'options'          => $options,
 			'option'           => $this->option,
-			'is_valid_license' => $this->settings->isValidLicense(),
+			'is_valid_license' => Licenser::getInstance()->isValidLicense(),
 		];
 
 		return Timber::compile( 'admin/settings/addons.twig', array_merge( Timber::context(), $args ) );
-	}
-
-	/**
-	 * Check if theme addon is enabled
-	 *
-	 * @param string $addon
-	 *
-	 * @return bool
-	 */
-	public function isAddonEnabled( string $addon ): bool {
-		$option = get_option( $this->option );
-
-		// Addon doesn't exists
-		if ( empty( $this->addons[ $addon ] ) ) {
-			return false;
-		}
-
-		// Addon is disabled
-		if ( empty( $option[ $addon ] ) ) {
-			return false;
-		}
-
-		// Addon is not allowed
-		if ( $this->settings->getLicensePrice() < $this->addons[ $addon ] ) {
-			return false;
-		}
-
-		return true;
 	}
 }

@@ -16,11 +16,9 @@ class Licenser extends Theme {
 	use TransientTrait;
 
 	/**
-	 * Setting class
-	 *
-	 * @var Settings
+	 * @var Licenser The one true Licenser
 	 */
-	protected Settings $settings;
+	private static $instance;
 
 	/**
 	 * License key
@@ -44,10 +42,9 @@ class Licenser extends Theme {
 	private string $slug;
 
 	/**
-	 * Initialize the class
+	 * Class constructor.
 	 */
-	public function __construct( Settings $settings, array $strings = [], array $errors = [] ) {
-		$this->settings = $settings;
+	public function __construct( array $strings = [], array $errors = [] ) {
 		$this->slug = sanitize_title( $this->name );
 
 		// Set license option names
@@ -96,6 +93,20 @@ class Licenser extends Theme {
 				'license-unknown'       => __( 'An error occurred, please try again.', 'chipmunk' ),
 			]
 		);
+	}
+
+	/**
+	 * Insures that only one instance of Licenser exists in memory at any one
+	 * time. Also prevents needing to define globals all over the place.
+	 *
+	 * @return Licenser
+	 */
+	public static function getInstance() {
+		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Licenser ) ) {
+			self::$instance = new Licenser();
+		}
+
+		return self::$instance;
 	}
 
 	/**
@@ -203,7 +214,7 @@ class Licenser extends Theme {
 	 * @return object|null
 	 */
 	public function checkLicense( bool $forceRefresh = false ): ?object {
-		if ( ! $forceRefresh && $data = $this->getData() ) {
+		if ( ! $forceRefresh && $data = $this->getLicense() ) {
 			return $data;
 		}
 
@@ -258,7 +269,7 @@ class Licenser extends Theme {
 		$message = is_wp_error( $response ) ? $response->get_error_message() : $error;
 
 		// Add proper error message
-		$this->settings->addMessage( $this->slug, $message );
+		Settings::getInstance()->addMessage( $this->slug, $message );
 	}
 
 	/**
@@ -266,7 +277,7 @@ class Licenser extends Theme {
 	 *
 	 * @return ?object
 	 */
-	public function getData(): ?object {
+	public function getLicense(): ?object {
 		$data = get_transient( $this->optionData );
 
 		if ( ! empty( $data ) ) {
@@ -405,17 +416,43 @@ class Licenser extends Theme {
 	 * @return string
 	 */
 	private function getSettingsContent(): string {
-		$data   = $this->getData();
-		$status = $this->getStatus( $data );
+		$license   = $this->getLicense();
+		$status = $this->getStatus( $license );
 
 		$args    = [
 			'strings' => $this->strings,
 			'option'   => $this->optionKey,
 			'key' => $this->key,
-			'data' => $data,
+			'license' => $license,
 			'status' => $status,
 		];
 
 		return Timber::compile( 'admin/settings/licenser.twig', array_merge( Timber::context(), $args ) );
+	}
+
+	/**
+	 * Is valid license activated
+     *
+     * @param object|null $license
+	 *
+	 * @return bool
+	 */
+	public function isValidLicense( ?object $license = null ): bool {
+        $license ??= $this->getLicense();
+
+		return ! empty( $license ) && 'valid' === $license->license;
+	}
+
+	/**
+	 * Get the price ID if the license is valid and activated
+     *
+     * @param object|null $license
+	 *
+	 * @return int
+	 */
+	public function getLicensePrice( ?object $license = null ): int {
+        $license ??= $this->getLicense();
+
+		return $this->isValidLicense( $license ) ? (int) $license->price_id : -1;
 	}
 }

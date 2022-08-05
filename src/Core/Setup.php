@@ -137,8 +137,8 @@ class Setup extends Theme {
 	 * @see https://developer.wordpress.org/reference/hooks/after_setup_theme
 	 */
 	public function addNavMenus() {
-		$this->addNavMenu( 'nav-primary', __( 'Header menu', 'chipmunk' ) );
-		$this->addNavMenu( 'nav-secondary', __( 'Footer menu', 'chipmunk' ) );
+		$this->addNavMenu( 'primary', __( 'Header menu', 'chipmunk' ) );
+		$this->addNavMenu( 'secondary', __( 'Footer menu', 'chipmunk' ) );
 	}
 
 	/**
