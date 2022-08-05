@@ -21,7 +21,7 @@
           <p class="chipmunk__addon-error">
             {{ __('Please use a valid license to enable.', 'chipmunk') | esc_html }}
           </p>
-        {% elseif not self::isAddonAllowed(addon.slug) %}
+        {% elseif not true %} {# self::isAddonAllowed(addon.slug) #}
           <p class="chipmunk__addon-error">
             <a href="{{ config.shop_url | esc_url }}/account/licenses" target="_blank" class="button-secondary">
               {{ __('Upgrade now', 'chipmunk') | esc_html }}

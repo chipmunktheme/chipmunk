@@ -2,11 +2,9 @@
 
 namespace Chipmunk;
 
-use Exception;
 use MadeByLess\Lessi\Handler\ThemeHandler;
 use MadeByLess\Lessi\Helper\HookTrait;
 use MadeByLess\Lessi\Helper\ShortcodeTrait;
-use Chipmunk\Config;
 use Chipmunk\Core\Options;
 use Chipmunk\Helper\OptionTrait;
 
@@ -31,7 +29,7 @@ class Theme extends ThemeHandler {
 	 * Class constructor.
 	 */
 	public function __construct() {
-		$this->coreClasses = [
+		$this->classes = [
 			// Core classes
 			'Core\Setup',
 			'Core\Templates',
@@ -58,20 +56,11 @@ class Theme extends ThemeHandler {
 	 */
 	public function initialize() {
 		if ( ! $this->isInitialized() ) {
-			Config::instance();
-			( Options::instance() )->initialize();
+			// Initialize Options object
+			( Options::getInstance() )->initialize();
 
 			// Initialize theme classes
-			foreach ( $this->coreClasses as $class ) {
-				$className = "\Chipmunk\\${class}";
-				$instance  = new $className();
-
-				if ( ! $instance instanceof Theme ) {
-					throw new Exception( __( 'Theme class has to implement Theme interface', 'chipmunk' ) );
-				}
-
-				$instance->initialize();
-			}
+			$this->initializeClasses( $this->classes );
 		}
 	}
 }

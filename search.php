@@ -1,6 +1,4 @@
 <?php
-namespace Chipmunk;
-
 use Timber\Timber;
 use Chipmunk\Helpers;
 

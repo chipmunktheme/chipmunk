@@ -44,6 +44,7 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         'D' => 
         array (
             'Dotenv\\' => 7,
+            'Dashifen\\CaseChangingTrait\\' => 27,
         ),
         'C' => 
         array (
@@ -104,6 +105,10 @@ class ComposerStaticInit8ab664e00aa7e268cb43cfc63b5dca09
         'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
+        ),
+        'Dashifen\\CaseChangingTrait\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dashifen/case-changing-trait/src',
         ),
         'Composer\\Installers\\' => 
         array (

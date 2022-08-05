@@ -11,8 +11,24 @@
     padding-bottom: spacer-clamped(2.5);
   }
 
+  &--compact-top {
+    padding-top: spacer-clamped(2.5);
+  }
+
+  &--compact-bottom {
+    padding-bottom: spacer-clamped(2.5);
+  }
+
   &--double {
     padding-top: spacer-clamped(10);
+    padding-bottom: spacer-clamped(10);
+  }
+
+  &--double-top {
+    padding-top: spacer-clamped(10);
+  }
+
+  &--double-bottom {
     padding-bottom: spacer-clamped(10);
   }
 

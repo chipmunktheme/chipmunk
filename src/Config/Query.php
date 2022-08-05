@@ -13,11 +13,6 @@ class Query extends Theme {
 	use HelperTrait;
 
 	/**
-	 * Class constructor.
-	 */
-	public function __construct() {}
-
-	/**
 	 * Hooks methods of this object into the WordPress ecosystem.
 	 */
 	public function initialize() {

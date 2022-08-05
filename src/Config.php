@@ -160,7 +160,7 @@ final class Config implements ConfigInterface {
 	 *
 	 * @return Config
 	 */
-	public static function instance() {
+	public static function getInstance() {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Config ) ) {
 			self::$instance = new Config();
 		}
@@ -198,7 +198,7 @@ final class Config implements ConfigInterface {
 	 * @return string
 	 */
 	public function getAssetsPath(): string {
-		return $this->getPath( $this->getDistPath(), $this->assetsPath );
+		return $this->assetsPath;
 	}
 
 	/**
@@ -209,7 +209,7 @@ final class Config implements ConfigInterface {
 	 * @return string
 	 */
 	public function getManifestPath(): string {
-		return $this->getPath( $this->getDistPath(), $this->manifestPath );
+		return $this->manifestPath;
 	}
 
 	/**
@@ -220,7 +220,7 @@ final class Config implements ConfigInterface {
 	 * @return string
 	 */
 	public function getManifestDevPath(): string {
-		return $this->getPath( $this->getDistPath(), $this->manifestDevPath );
+		return $this->manifestDevPath;
 	}
 
 	/**

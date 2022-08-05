@@ -69,6 +69,8 @@ class Faker extends Theme {
 	 */
 	public function initialize() {
 		$this->addAction( 'admin_init', [ $this, 'maybeGenerate' ] );
+
+		// Output settings content
 		$this->addFilter( $this->buildThemeSlug( 'settings_tabs' ), [ $this, 'addSettingsTab' ] );
 	}
 

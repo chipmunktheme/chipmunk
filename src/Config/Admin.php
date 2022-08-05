@@ -138,7 +138,7 @@ class Admin extends Theme {
 					'type'    => 'error',
 					'message' => sprintf(
 						__( '%1$s requires %2$s %3$s or greater. You have %4$s.', 'chipmunk' ),
-						$this->getThemeName(),
+						$this->getThemeProperty( 'name' ),
 						$key,
 						$requirement['required'],
 						$requirement['current'],
@@ -163,16 +163,16 @@ class Admin extends Theme {
 			return $notices;
 		}
 
-		if ( version_compare( $this->getThemeVersion(), $apiResponse->new_version, '<' ) ) {
+		if ( version_compare( $this->getThemeProperty( 'version' ), $apiResponse->new_version, '<' ) ) {
 			if ( current_user_can( 'update_themes' ) ) {
 				$notices[] = [
 					'type'    => 'warning',
 					'message' => sprintf(
 						__( '<a href="%1$s" target="_blank">%2$s %3$s</a> is available! <a href="%4$s">Please update now</a>.', 'chipmunk' ),
 						config()->getChangelogUrl(),
-						$this->getThemeName(),
+						$this->getThemeProperty( 'name' ),
 						$apiResponse->new_version,
-						network_admin_url( 'update.php?action=upgrade-theme&amp;theme=' . urlencode( $this->getThemeSlug() ) )
+						network_admin_url( 'update.php?action=upgrade-theme&amp;theme=' . urlencode( $this->getThemeProperty( 'text-domain' ) ) )
 					),
 				];
 			} else {
@@ -181,7 +181,7 @@ class Admin extends Theme {
 					'message' => sprintf(
 						__( '<a href="%1$s" target="_blank">%2$s %3$s</a> is available! Please notify the site administrator.', 'chipmunk' ),
 						config()->getChangelogUrl(),
-						$this->getThemeName(),
+						$this->getThemeProperty( 'name' ),
 						$apiResponse->new_version
 					),
 				];
@@ -205,7 +205,7 @@ class Admin extends Theme {
 					'type'    => 'warning',
 					'message' => sprintf(
 						__( '<strong>Addon No Longer Required</strong> - As of %1$s v1.17.0, %2$s addon is no longer needed and can be safely deleted.', 'chipmunk' ),
-						$this->getThemeName(),
+						$this->getThemeProperty( 'name' ),
 						$name,
 					),
 				];

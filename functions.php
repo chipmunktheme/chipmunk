@@ -1,6 +1,6 @@
 <?php
 /**
- * Chipmunk: Theme specific functionalities
+ * Theme specific functionalities
  *
  * @package WordPress
  * @subpackage Chipmunk
@@ -20,7 +20,7 @@ if ( ! file_exists( $composer = __DIR__ . '/vendor/autoload.php' ) ) {
     wp_die( __( 'Error locating autoloader. Please run <code>composer install</code>.', 'chipmunk' ) );
 }
 
-require $composer;
+require_once $composer;
 
 /**
  * Register The Theme
@@ -45,5 +45,5 @@ try {
  * @return Config
  */
 function config() {
-	return Config::instance();
+	return Config::getInstance();
 }

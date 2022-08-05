@@ -159,7 +159,7 @@ trait OptionTrait {
 	 * @return mixed|null
 	 */
 	private function getOptionObject( string $option ) {
-		$sections = Options::instance()->getSections();
+		$sections = Options::getInstance()->getSections();
 		$option   = $this->findByProperty( $sections, $this->optionsPath, $option );
 
 		return $option ?? null;

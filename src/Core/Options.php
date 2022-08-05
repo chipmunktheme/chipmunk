@@ -807,7 +807,7 @@ final class Options extends Theme {
 	 *
 	 * @return Options
 	 */
-	public static function instance() {
+	public static function getInstance() {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Options ) ) {
 			self::$instance = new Options();
 		}

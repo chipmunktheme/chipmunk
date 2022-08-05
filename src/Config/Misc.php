@@ -14,11 +14,6 @@ class Misc extends Theme {
 	use PostTrait;
 
 	/**
-	 * Class constructor.
-	 */
-	public function __construct() {}
-
-	/**
 	 * Hooks methods of this object into the WordPress ecosystem.
 	 */
 	public function initialize() {

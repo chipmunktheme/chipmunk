@@ -2,22 +2,32 @@
 
 namespace Chipmunk\Settings;
 
-use \Chipmunk\Settings;
+use Timber\Timber;
+use MadeByLess\Lessi\Helper\HelperTrait;
+use MadeByLess\Lessi\Helper\TransientTrait;
+use Chipmunk\Theme;
+use Chipmunk\Core\Settings;
 
 /**
  * A License settings class
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
-class Licenser {
+class Licenser extends Theme {
+	use HelperTrait;
+	use TransientTrait;
+
+	/**
+	 * Setting class
+	 *
+	 * @var Settings
+	 */
+	protected Settings $settings;
 
 	/**
 	 * License key
 	 *
 	 * @var string
 	 */
-	private $licenseKey;
+	private $key;
 
 	/**
 	 * Setting name
@@ -31,23 +41,14 @@ class Licenser {
 	 *
 	 * @var string
 	 */
-	private $slug = 'license';
+	private string $slug;
 
 	/**
 	 * Initialize the class
 	 */
-	public function __construct( $config = [], $strings = [], $errors = [] ) {
-		// Set config defaults
-		$config = wp_parse_args(
-			$config,
-			[
-				'remoteApiUrl' => '',
-				'itemId'       => '',
-				'itemName'     => '',
-				'itemSlug'     => '',
-				'renewUrl'     => '',
-			]
-		);
+	public function __construct( Settings $settings, array $strings = [], array $errors = [] ) {
+		$this->settings = $settings;
+		$this->slug = sanitize_title( $this->name );
 
 		// Set default strings
 		$this->strings = wp_parse_args(
@@ -89,59 +90,57 @@ class Licenser {
 			]
 		);
 
-		// Set config arguments
-		foreach ( $config as $key => $value ) {
-			$this->$key = $value;
-		}
-
 		// Set license option names
-		$this->licenseKeyOption  = "{$this->itemSlug}_license_key";
-		$this->licenseDataOption = "{$this->itemSlug}_license_data";
+		$this->optionKey  = $this->buildThemeSlug( 'license_key' );
+		$this->optionData = $this->buildThemeSlug( 'license_data' );
 
 		// Set license key
-		$this->licenseKey = get_option( $this->licenseKeyOption );
-
-		// Set hooks
-		$this->hooks();
+		$this->key = get_option( $this->optionKey );
 	}
 
 	/**
-	 * Setup hooks
-	 *
-	 * @return  void
+	 * Hooks methods of this object into the WordPress ecosystem.
 	 */
-	private function hooks() {
-		// Licensing hooks
-		add_action( 'admin_init', [ $this, 'registerOption' ] );
-		add_action( 'admin_init', [ $this, 'activateLicense' ] );
-		add_action( 'admin_init', [ $this, 'deactivateLicense' ] );
-		add_action( 'admin_init', [ $this, 'checkLicense' ] );
+	public function initialize() {
+		$this->addAction( 'admin_init', [ $this, 'registerOption' ] );
+		$this->addAction( 'admin_init', [ $this, 'activateLicense' ] );
+		$this->addAction( 'admin_init', [ $this, 'deactivateLicense' ] );
+		$this->addAction( 'admin_init', [ $this, 'checkLicense' ] );
 
 		// Output settings content
-		add_filter( 'chipmunk_settings_tabs', [ $this, 'addSettingsTab' ] );
+		$this->addAction( $this->buildThemeSlug( 'settings_tabs' ), [ $this, 'addSettingsTab' ] );
+	}
+
+	/**
+	 * Registers the option used to store the license key in the options table.
+	 */
+	public function registerOption() {
+		register_setting( $this->optionKey, $this->optionKey );
 	}
 
 	/**
 	 * Activates the license key.
+	 *
+	 * @return void
 	 */
-	public function activateLicense() {
-		if ( ! isset( $_POST[ $this->licenseKeyOption ] ) ) {
-			return null;
+	public function activateLicense(): void {
+		if ( ! isset( $_POST[ $this->optionKey ] ) ) {
+			return;
 		}
 
-		if ( ! isset( $_POST[ "{$this->licenseKeyOption}_activate" ] ) ) {
-			return null;
+		if ( ! isset( $_POST[ "{$this->optionKey}_activate" ] ) ) {
+			return;
 		}
 
-		$this->licenseKey = sanitize_text_field( $_POST[ $this->licenseKeyOption ] );
+		$this->key = sanitize_text_field( $_POST[ $this->optionKey ] );
 
 		if ( $this->getApiResponse( 'activate_license' ) ) {
-			$licenseData = $this->checkLicense( true );
+			$data = $this->checkLicense( true );
 
-			if ( 'valid' != $licenseData->license ) {
-				switch ( $licenseData->license ) {
+			if ( 'valid' != $data->license ) {
+				switch ( $data->license ) {
 					case 'expired':
-						$message = sprintf( $this->errors['license-expired'], date_i18n( 'F j, Y', strtotime( $licenseData->expires, current_time( 'timestamp' ) ) ) );
+						$message = sprintf( $this->errors['license-expired'], date_i18n( 'F j, Y', strtotime( $data->expires, current_time( 'timestamp' ) ) ) );
 						break;
 
 					case 'disabled':
@@ -160,7 +159,7 @@ class Licenser {
 						break;
 
 					case 'item_name_mismatch':
-						$message = sprintf( $this->errors['license-item-mismatch'], $this->itemName );
+						$message = sprintf( $this->errors['license-item-mismatch'], $this->getThemeProperty( 'name' ) );
 						break;
 
 					case 'no_activations_left':
@@ -179,14 +178,16 @@ class Licenser {
 
 	/**
 	 * Deactivates the license key.
+	 *
+	 * @return void
 	 */
-	public function deactivateLicense() {
-		if ( ! isset( $_POST[ $this->licenseKeyOption ] ) ) {
-			return null;
+	public function deactivateLicense(): void {
+		if ( ! isset( $_POST[ $this->optionKey ] ) ) {
+			return;
 		}
 
-		if ( ! isset( $_POST[ "{$this->licenseKeyOption}_deactivate" ] ) ) {
-			return null;
+		if ( ! isset( $_POST[ "{$this->optionKey}_deactivate" ] ) ) {
+			return;
 		}
 
 		if ( $this->getApiResponse( 'deactivate_license' ) ) {
@@ -199,33 +200,22 @@ class Licenser {
 	 *
 	 * @param bool $forceRefresh Force connecting to the API and retrieving new license data
 	 *
-	 * @return object
+	 * @return object|null
 	 */
-	public function checkLicense( $forceRefresh = false ) {
-		if ( ! $forceRefresh && $licenseData = $this->getLicenseData() ) {
-			return $licenseData;
+	public function checkLicense( bool $forceRefresh = false ): ?object {
+		if ( ! $forceRefresh && $data = $this->getData() ) {
+			return $data;
 		}
 
 		if ( $response = $this->getApiResponse( 'check_license' ) ) {
-			$licenseData = json_decode( wp_remote_retrieve_body( $response ) );
+			$data = json_decode( wp_remote_retrieve_body( $response ) );
 
-			set_transient( $this->licenseDataOption, $licenseData, WEEK_IN_SECONDS );
+			set_transient( $this->optionData, $data, WEEK_IN_SECONDS );
 
-			return $licenseData;
+			return $data;
 		}
-	}
 
-	/**
-	 * Returns the license data (either from db or API call)
-	 *
-	 * @return object
-	 */
-	public function getLicenseData() {
-		$licenseData = get_transient( $this->licenseDataOption );
-
-		if ( ! empty( $licenseData ) ) {
-			return maybe_unserialize( $licenseData );
-		}
+		return null;
 	}
 
 	/**
@@ -233,18 +223,18 @@ class Licenser {
 	 *
 	 * @param string $action Name of the API action
 	 *
-	 * @return array Encoded JSON response.
+	 * @return ?array Encoded JSON response.
 	 */
-	private function getApiResponse( $action ) {
+	private function getApiResponse( string $action ): ?array {
 		$response = wp_remote_post(
-			$this->remoteApiUrl,
+			config()->getShopUrl(),
 			[
 				'timeout'   => 15,
 				'sslverify' => false,
 				'body'      => [
 					'edd_action' => $action,
-					'license'    => trim( $this->licenseKey ),
-					'item_id'    => $this->itemId,
+					'license'    => trim( $this->key ),
+					'item_id'    => config()->getShopItemId(),
 					'url'        => home_url(),
 				],
 			]
@@ -259,86 +249,63 @@ class Licenser {
 	}
 
 	/**
-	 * Check if the API response is valid
-	 *
-	 * @param object $response Remote API response object
-	 *
-	 * @return boolean
-	 */
-	private function isValidResponse( $response ) {
-		return ! is_wp_error( $response ) && 200 == wp_remote_retrieve_response_code( $response );
-	}
-
-	/**
 	 * Displays the error on the page
 	 *
-	 * @param object $response Remote API response object
+	 * @param object|null $response Remote API response object
 	 * @param string $error Fallback error message
 	 */
-	private function displaySettingsError( $response, $error = '' ) {
+	private function displaySettingsError( ?object $response, string $error = '' ) {
 		$message = is_wp_error( $response ) ? $response->get_error_message() : $error;
 
 		// Add proper error message
-		Settings::addSettingsError( $this->slug, $message );
+		$this->settings->addMessage( $this->slug, $message );
 	}
 
 	/**
-	 * Constructs a renewal link
+	 * Returns the license data (either from db or API call)
 	 *
-	 * @return string Renewal link.
+	 * @return ?object
 	 */
-	private function getRenewalLink() {
-		// If a renewal link was passed in the config, use that
-		if ( ! empty( $this->renewUrl ) ) {
-			return esc_url( $this->renewUrl );
+	public function getData(): ?object {
+		$data = get_transient( $this->optionData );
+
+		if ( ! empty( $data ) ) {
+			return maybe_unserialize( $data );
 		}
 
-		if ( ! empty( $this->itemId ) && ! empty( $this->licenseKey ) ) {
-			$renewUrl = add_query_arg(
-				[
-					'edd_license_key' => $this->licenseKey,
-					'download_id'     => $this->itemId,
-				],
-				$this->remoteApiUrl . '/checkout/'
-			);
-
-			return esc_url( $renewUrl );
-		}
-
-		// Otherwise return the remoteApiUrl
-		return esc_url( $this->remoteApiUrl );
+		return null;
 	}
 
 	/**
 	 * Returns a license status
 	 *
-	 * @param object $licenseData License data object
+	 * @param object $data License data object
 	 *
-	 * @return string/object License status.
+	 * @return string|object License status.
 	 */
-	public function getLicenseStatus( $licenseData ) {
+	public function getStatus( object $data ) {
 		$messages = [];
 
 		// If response doesn't include license data, return
-		if ( ! isset( $licenseData->license ) ) {
+		if ( ! isset( $data->license ) ) {
 			return $this->strings['license-status-unknown'];
 		}
 
-		if ( isset( $licenseData->expires ) && 'lifetime' != $licenseData->expires ) {
-			$expires   = date_i18n( 'F j, Y', strtotime( $licenseData->expires, current_time( 'timestamp' ) ) );
+		if ( isset( $data->expires ) && 'lifetime' != $data->expires ) {
+			$expires   = date_i18n( 'F j, Y', strtotime( $data->expires, current_time( 'timestamp' ) ) );
 			$renewLink = '<a href="' . esc_url( $this->getRenewalLink() ) . '" target="_blank">' . $this->strings['renew'] . '</a>';
 		}
 
 		// Get site counts
-		$siteCount    = isset( $licenseData->site_count ) ? $licenseData->site_count : null;
-		$licenseLimit = isset( $licenseData->license_limit ) ? $licenseData->license_limit : null;
+		$siteCount    = isset( $data->site_count ) ? $data->site_count : null;
+		$licenseLimit = isset( $data->license_limit ) ? $data->license_limit : null;
 
 		// If unlimited
 		if ( 0 == $licenseLimit ) {
 			$licenseLimit = $this->strings['unlimited'];
 		}
 
-		switch ( $licenseData->license ) {
+		switch ( $data->license ) {
 			case 'valid':
 				$messages[] = $this->strings['license-key-is-active'];
 
@@ -391,19 +358,38 @@ class Licenser {
 	}
 
 	/**
-	 * Registers the option used to store the license key in the options table.
+	 * Constructs a renewal link
+	 *
+	 * @return string Renewal link.
 	 */
-	public function registerOption() {
-		register_setting(
-			$this->licenseKeyOption,
-			$this->licenseKeyOption
-		);
+	private function getRenewalLink(): string {
+		// If a renewal link was passed in the config, use that
+		if ( ! empty( $this->renewUrl ) ) {
+			return esc_url( $this->renewUrl );
+		}
+
+		if ( ! empty( config()->getShopItemId() ) && ! empty( $this->key ) ) {
+			$renewUrl = add_query_arg(
+				[
+					'edd_license_key' => $this->key,
+					'download_id'     => config()->getShopItemId(),
+				],
+				config()->getShopUrl() . '/checkout/'
+			);
+
+			return esc_url( $renewUrl );
+		}
+
+		// Otherwise return the remoteApiUrl
+		return esc_url( config()->getShopUrl() );
 	}
 
 	/**
 	 * Adds settings tab to the list
+	 *
+	 * @param array $tabs
 	 */
-	public function addSettingsTab( $tabs ) {
+	public function addSettingsTab( array $tabs ): array {
 		$tabs[] = [
 			'name'    => $this->name,
 			'slug'    => $this->slug,
@@ -415,43 +401,21 @@ class Licenser {
 
 	/**
 	 * Returns the markup used on the theme license page.
+	 *
+	 * @return string
 	 */
-	private function getSettingsContent() {
-		ob_start();
+	private function getSettingsContent(): string {
+		$data   = $this->getData();
+		$status = $this->getStatus( $data );
 
-		$licenseData   = $this->getLicenseData();
-		$licenseStatus = $this->getLicenseStatus( $licenseData );
-		?>
+		$args    = [
+			'strings' => $this->strings,
+			'option'   => $this->optionKey,
+			'key' => $this->key,
+			'data' => $data,
+			'status' => $status,
+		];
 
-		<form action="options.php" method="post">
-			<div class="chipmunk__grid">
-				<div class="chipmunk__license chipmunk__box">
-					<h3 class="chipmunk__license-head">
-						<?php echo $this->itemName; ?>
-					</h3>
-
-					<div class="chipmunk__license-body">
-						<?php settings_fields( $this->licenseKeyOption ); ?>
-
-						<input id="<?php echo $this->licenseKeyOption; ?>" name="<?php echo $this->licenseKeyOption; ?>" type="text" class="regular-text" value="<?php echo esc_attr( $this->licenseKey ); ?>" placeholder="<?php echo esc_attr( $this->strings['license-key'] ); ?>" />
-
-						<?php if ( ! empty( $licenseData ) && 'valid' == $licenseData->license ) : ?>
-							<button type="submit" class="button-secondary" name="<?php echo $this->licenseKeyOption; ?>_deactivate"><?php echo esc_attr( $this->strings['deactivate-license'] ); ?></button>
-						<?php else : ?>
-							<button type="submit" class="button-primary" name="<?php echo $this->licenseKeyOption; ?>_activate"><?php echo esc_attr( $this->strings['activate-license'] ); ?></button>
-						<?php endif; ?>
-					</div>
-
-					<div class="chipmunk__license-data is-<?php echo $licenseData->license ?? ''; ?>">
-						<p class="description"><?php echo $licenseStatus; ?></p>
-					</div>
-
-					<?php do_action( 'chipmunk_license_content' ); ?>
-				</div>
-			</div>
-		</form>
-
-		<?php
-		return ob_get_clean();
+		return Timber::compile( 'admin/settings/licenser.twig', array_merge( Timber::context(), $args ) );
 	}
 }

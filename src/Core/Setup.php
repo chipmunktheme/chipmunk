@@ -137,8 +137,8 @@ class Setup extends Theme {
 	 * @see https://developer.wordpress.org/reference/hooks/after_setup_theme
 	 */
 	public function addNavMenus() {
-		$this->addNavMenu( 'nav-primary', __( 'Header nav', 'chipmunk' ) );
-		$this->addNavMenu( 'nav-secondary', __( 'Footer nav', 'chipmunk' ) );
+		$this->addNavMenu( 'nav-primary', __( 'Header menu', 'chipmunk' ) );
+		$this->addNavMenu( 'nav-secondary', __( 'Footer menu', 'chipmunk' ) );
 	}
 
 	/**
@@ -148,7 +148,7 @@ class Setup extends Theme {
 	 * @see https://developer.wordpress.org/reference/hooks/after_setup_theme
 	 */
 	public function addTextDomains() {
-		$this->addTextDomain( $this->getThemeSlug(), $this->getTemplatePath( 'languages' ) );
+		$this->addTextDomain( $this->getThemeProperty( 'text-domain' ), $this->getTemplatePath( 'languages' ) );
 	}
 
 	/**

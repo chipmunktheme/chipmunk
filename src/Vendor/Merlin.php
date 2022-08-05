@@ -80,8 +80,8 @@ class Merlin extends Theme {
 				'license_required'     => true, // Require the license activation step.
 				'license_help_url'     => '', // URL for the 'license-tooltip'.
 				'edd_remote_api_url'   => $this->shopUrl, // EDD_Theme_Updater_Admin remote_api_url.
-				'edd_item_name'        => $this->getThemeName(), // EDD_Theme_Updater_Admin item_name.
-				'edd_theme_slug'       => $this->getThemeSlug(), // EDD_Theme_Updater_Admin item_slug.
+				'edd_item_name'        => $this->getThemeProperty( 'name' ), // EDD_Theme_Updater_Admin item_name.
+				'edd_theme_slug'       => $this->getThemeProperty( 'text-domain' ), // EDD_Theme_Updater_Admin item_slug.
 			],
 			// Strings
 			[

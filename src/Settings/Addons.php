@@ -57,6 +57,8 @@ class Addons extends Theme {
 	 */
 	public function initialize() {
 		$this->addAction( 'admin_init', [ $this, 'registerOption' ] );
+
+		// Output settings content
 		$this->addFilter( $this->buildThemeSlug( 'settings_tabs' ), [ $this, 'addSettingsTab' ] );
 	}
 
@@ -64,10 +66,7 @@ class Addons extends Theme {
 	 * Registers the option used to store the license key in the options table.
 	 */
 	public function registerOption() {
-		register_setting(
-			$this->option,
-			$this->option
-		);
+		register_setting( $this->option, $this->option );
 	}
 
 	/**
@@ -96,7 +95,7 @@ class Addons extends Theme {
 			'is_valid_license' => $this->settings->isValidLicense(),
 		];
 
-		return Timber::compile( 'admin/settings/faker.twig', array_merge( Timber::context(), $args ) );
+		return Timber::compile( 'admin/settings/addons.twig', array_merge( Timber::context(), $args ) );
 	}
 
 	/**

@@ -3,8 +3,8 @@
 ** ----------------------------------------------------------------------------- */
 
 .wp-block-columns {
-  row-gap: calc(var(--column-gutter) * 2);
-  column-gap: var(--column-gutter);
+  row-gap: calc(var(--chipmunk--layout--column-gutter) * 2);
+  column-gap: var(--chipmunk--layout--column-gutter);
 }
 
 .wp-block-column[class] {

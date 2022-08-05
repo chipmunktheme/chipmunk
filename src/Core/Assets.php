@@ -18,18 +18,9 @@ class Assets extends Theme {
 	use HelperTrait;
 
 	/**
-	 * The one true Config
-	 *
-	 * @var Config
-	 */
-	private $config;
-
-	/**
 	 * Class constructor.
 	 */
-	public function __construct() {
-		$this->config = config();
-	}
+	public function __construct() {}
 
 	/**
 	 * Hooks methods of this object into the WordPress ecosystem.

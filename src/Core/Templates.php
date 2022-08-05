@@ -2,6 +2,7 @@
 
 namespace Chipmunk\Core;
 
+use Timber\Timber;
 use Timber\URLHelper;
 use MadeByLess\Lessi\Helper\AssetTrait;
 use MadeByLess\Lessi\Helper\FileTrait;
@@ -83,14 +84,9 @@ class Templates extends Theme {
 
 		$context['search_query'] = get_search_query();
 		// $context['socials']      = Helpers::getSocials();
-		// $context['menus']        = Helpers::getRegisteredMenus();
 
 		// Config
 		$context['config'] = [
-			'name'          => $this->getThemeName(),
-			'slug'          => $this->getThemeSlug(),
-			'version'       => $this->getThemeVersion(),
-			'author'        => $this->getThemeAuthor(),
 			'demo_url'      => config()->getDemoUrl(),
 			'changelog_url' => config()->getChangelogUrl(),
 			'shop_url'      => config()->getShopUrl(),
@@ -113,32 +109,34 @@ class Templates extends Theme {
 	public function setTwigFunctions( array $functions ): array {
 		$extend = [
 			// WordPress Helpers
-			'is_singular'       => [ 'callable' => 'is_singular' ],
-			'is_tax'            => [ 'callable' => 'is_tax' ],
+			'is_singular'        => [ 'callable' => 'is_singular' ],
+			'is_tax'             => [ 'callable' => 'is_tax' ],
 
 			// Theme Helpers
-			'asset'             => [ 'callable' => [ $this, 'assetUrl' ] ],
-			'class'             => [ 'callable' => [ $this, 'className' ] ],
-			'get_theme_slug'    => [ 'callable' => [ $this, 'buildThemeSlug' ] ],
-			'get_param'         => [ 'callable' => [ $this, 'getParam' ] ],
-			'get_option'        => [ 'callable' => [ $this, 'getOption' ] ],
-			'is_option_enabled' => [ 'callable' => [ $this, 'isOptionEnabled' ] ],
-			// 'is_addon_enabled'   => [ 'callable' => [ $this, 'isAddonEnabled' ] ],
-			'get_svg_content'   => [ 'callable' => [ $this, 'getSvgContent' ] ],
-			'get_external_link' => [ 'callable' => [ $this, 'getExternalLink' ] ],
-			// 'get_resource_links' => [ 'callable' => [ $this, 'getResourceLinks' ] ],
-			'get_term_list'     => [ 'callable' => [ $this, 'getTermList' ] ],
-			'get_term_options'  => [ 'callable' => [ $this, 'getTermOptions' ] ],
-			// 'get_related_posts'  => [ 'callable' => [ $this, 'getRelatedPosts' ] ],
-			// 'get_current_page'   => [ 'callable' => [ $this, 'getCurrentPage' ] ],
-			// 'get_views'          => [ 'callable' => [ Views::class, 'getViews' ] ],
+			'asset'              => [ 'callable' => [ $this, 'assetUrl' ] ],
+			'class'              => [ 'callable' => [ $this, 'className' ] ],
+			'get_theme_slug'     => [ 'callable' => [ $this, 'buildThemeSlug' ] ],
+			'get_theme_property' => [ 'callable' => [ $this, 'getThemeProperty' ] ],
+			'get_param'          => [ 'callable' => [ $this, 'getParam' ] ],
+			'get_option'         => [ 'callable' => [ $this, 'getOption' ] ],
+			'is_option_enabled'  => [ 'callable' => [ $this, 'isOptionEnabled' ] ],
+			// 'is_addon_enabled'    => [ 'callable' => [ $this, 'isAddonEnabled' ] ],
+			'get_svg_content'    => [ 'callable' => [ $this, 'getSvgContent' ] ],
+			'get_external_link'  => [ 'callable' => [ $this, 'getExternalLink' ] ],
+			// 'get_resource_links'  => [ 'callable' => [ $this, 'getResourceLinks' ] ],
+			'get_term_list'      => [ 'callable' => [ $this, 'getTermList' ] ],
+			'get_term_options'   => [ 'callable' => [ $this, 'getTermOptions' ] ],
+			// 'get_related_posts'   => [ 'callable' => [ $this, 'getRelatedPosts' ] ],
+			// 'get_current_page'    => [ 'callable' => [ $this, 'getCurrentPage' ] ],
+			// 'get_views'           => [ 'callable' => [ Views::class, 'getViews' ] ],
 
 			// Addon Helpers
-			// 'get_members_link'   => [ 'callable' => [ MembersHelpers::class, 'getPagePermalink' ] ],
+			// 'get_members_link'    => [ 'callable' => [ MembersHelpers::class, 'getPagePermalink' ] ],
 
 			// Third-party Helpers
-			'get_current_url'   => [ 'callable' => [ URLHelper::class, 'get_current_url' ] ],
-			'is_external'       => [ 'callable' => [ URLHelper::class, 'is_external' ] ],
+			'get_menu'           => [ 'callable' => [ Timber::class, 'get_menu' ] ],
+			'get_current_url'    => [ 'callable' => [ URLHelper::class, 'get_current_url' ] ],
+			'is_external'        => [ 'callable' => [ URLHelper::class, 'is_external' ] ],
 		];
 
 		return array_replace( $functions, $extend );

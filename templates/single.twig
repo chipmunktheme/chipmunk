@@ -1,8 +1,12 @@
 {% extends '_layout.twig' %}
 
 {% block content %}
-  {% include "content/entry/#{ post.type }.twig" %}
-  {% include 'sections/comments.twig' %}
+  {% if content %}
+    {{ content }}
+  {% else %}
+    {% include "content/entry/#{ post.type }.twig" %}
+    {% include 'sections/comments.twig' %}
 
-  {% include "content/archive/#{ post.type }.twig" ignore missing %}
+    {% include "content/archive/#{ post.type }.twig" ignore missing %}
+  {% endif %}
 {% endblock %}

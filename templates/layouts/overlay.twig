@@ -1,12 +1,13 @@
+{% set menu = get_menu('primary') %}
 {% set button_class = class('c-button', 'primary-outline') %}
 
 <div class="c-overlay u-hidden-lg">
   <div class="c-overlay__inner">
-    {% if menus.primary.items %}
+    {% if menu.items %}
       <nav class="c-overlay__menu">
         {% include 'partials/menu.twig' with {
           type: 'primary',
-          items: menus.primary.items,
+          items: menu.items,
           expandable: true,
         } %}
       </nav>

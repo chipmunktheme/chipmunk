@@ -1,6 +1,5 @@
 # OS or Editor folders
-.DS_Store
-.DS_Store.*
+.DS_Store*
 ._*
 Desktop.ini
 Thumbs.db

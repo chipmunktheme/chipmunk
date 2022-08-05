@@ -1,0 +1,31 @@
+<form action="options.php" method="post">
+  <div class="chipmunk__grid">
+    <div class="chipmunk__license chipmunk__box">
+      <h3 class="chipmunk__license-head">
+        {{ get_theme_property('name') }}
+      </h3>
+
+      <div class="chipmunk__license-body">
+        {{ fn('settings_fields', option) }}
+
+        <input id="{{ option | esc_attr }}" name="{{ option | esc_attr }}" type="password" class="regular-text" value="{{ key | esc_attr }}" placeholder="{{ strings['license-key'] | esc_attr }}" />
+
+        {% if data and data.license == 'valid' %}
+          <button type="submit" class="button-secondary" name="{{ option | esc_attr }}_deactivate">
+            {{ strings['deactivate-license'] | esc_html }}
+          </button>
+        {% else %}
+          <button type="submit" class="button-primary" name="{{ option | esc_attr }}_activate">
+            {{ strings['activate-license'] | esc_html }}
+          </button>
+        {% endif %}
+      </div>
+
+      <div class="chipmunk__license-data is-{{ data.license | esc_attr }}">
+        <p class="description">{{ status | esc_html }}</p>
+      </div>
+
+      {% do action('chipmunk_license_content') %}
+    </div>
+  </div>
+</form>

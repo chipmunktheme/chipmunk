@@ -1,3 +1,5 @@
+{% set menu = get_menu('primary') %}
+
 <header class="{{ class('c-page-head', get_option('sticky_header') ? 'sticky') }}" data-placehold-height="header">
   <div class="l-container">
     <div class="c-page-head__inner">
@@ -14,11 +16,11 @@
         </a>
       </{{ is_front_page ? 'h1' : 'div' }}>
 
-      {% if menus.primary.items %}
+      {% if menu.items %}
         <nav class="c-page-head__menu u-visible-lg-block">
           {% include 'partials/menu.twig' with {
             type: 'primary',
-            items: menus.primary.items,
+            items: menu.items,
             expandable: true,
           } %}
         </nav>

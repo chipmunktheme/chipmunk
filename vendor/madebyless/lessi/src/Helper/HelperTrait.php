@@ -61,7 +61,7 @@ trait HelperTrait {
 		$segments     = is_array( $slug ) ? $slug : [ $slug ];
 		$segmentsHead = array_slice( $segments, 0, $slugPosition );
 		$segmentsTail = array_slice( $segments, $slugPosition );
-		$segments     = array_merge( $segmentsHead, [ $this->getThemeSlug() ], $segmentsTail );
+		$segments     = array_merge( $segmentsHead, [ $this->getThemeProperty( 'text-domain' ) ], $segmentsTail );
 
 		return join( $separator, $segments );
 	}
@@ -79,6 +79,17 @@ trait HelperTrait {
 		array_unshift( $segments, '' );
 
 		return $this->buildThemeSlug( $segments, $separator, 1 );
+	}
+
+	/**
+	 * Check if the API response is valid
+	 *
+	 * @param array $response Remote API response array
+	 *
+	 * @return bool
+	 */
+	protected function isValidResponse( array $response ): bool {
+		return ! is_wp_error( $response ) && 200 == wp_remote_retrieve_response_code( $response );
 	}
 
 	/**

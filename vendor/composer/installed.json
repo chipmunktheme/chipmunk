@@ -185,6 +185,50 @@
             "install-path": "./installers"
         },
         {
+            "name": "dashifen/case-changing-trait",
+            "version": "1.0.1",
+            "version_normalized": "1.0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dashifen/case-changing-trait.git",
+                "reference": "950e54a87a77f0fc960ad4c2d3e43e4cde04e144"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dashifen/case-changing-trait/zipball/950e54a87a77f0fc960ad4c2d3e43e4cde04e144",
+                "reference": "950e54a87a77f0fc960ad4c2d3e43e4cde04e144",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 7.4"
+            },
+            "time": "2021-04-07T12:54:46+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Dashifen\\CaseChangingTrait\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Dashifen Kees",
+                    "email": "dashifen@dashifen.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "A PHP trait that converts between common programming character cases.",
+            "support": {
+                "issues": "https://github.com/dashifen/case-changing-trait/issues",
+                "source": "https://github.com/dashifen/case-changing-trait/tree/1.0.1"
+            },
+            "install-path": "../dashifen/case-changing-trait"
+        },
+        {
             "name": "graham-campbell/result-type",
             "version": "v1.1.0",
             "version_normalized": "1.1.0.0",
@@ -251,20 +295,21 @@
         },
         {
             "name": "madebyless/lessi",
-            "version": "1.0.10",
-            "version_normalized": "1.0.10.0",
+            "version": "1.0.14",
+            "version_normalized": "1.0.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/madebyless/lessi.git",
-                "reference": "79fae779295e037cdd828fdf00c730a3929cba74"
+                "reference": "aabab72e75130ee7a91a2d2953ee96d3665720f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/madebyless/lessi/zipball/79fae779295e037cdd828fdf00c730a3929cba74",
-                "reference": "79fae779295e037cdd828fdf00c730a3929cba74",
+                "url": "https://api.github.com/repos/madebyless/lessi/zipball/aabab72e75130ee7a91a2d2953ee96d3665720f6",
+                "reference": "aabab72e75130ee7a91a2d2953ee96d3665720f6",
                 "shasum": ""
             },
             "require": {
+                "dashifen/case-changing-trait": "^1.0",
                 "php": ">=7.4",
                 "timber/timber": "^2.0.0-alpha.6"
             },
@@ -274,7 +319,7 @@
                 "wp-cli/wp-cli": "^2.6",
                 "wp-coding-standards/wpcs": "^2.3"
             },
-            "time": "2022-08-02T19:29:57+00:00",
+            "time": "2022-08-04T13:08:48+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -296,7 +341,7 @@
             "description": "A dead simple WordPress class collection to help with theme development.",
             "support": {
                 "issues": "https://github.com/madebyless/lessi/issues",
-                "source": "https://github.com/madebyless/lessi/tree/1.0.10"
+                "source": "https://github.com/madebyless/lessi/tree/1.0.14"
             },
             "install-path": "../madebyless/lessi"
         },
@@ -957,17 +1002,17 @@
         },
         {
             "name": "timber/timber",
-            "version": "2.0.0-alpha.6",
-            "version_normalized": "2.0.0.0-alpha6",
+            "version": "2.0.0-beta.1",
+            "version_normalized": "2.0.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/timber/timber.git",
-                "reference": "52e3fcb263a5165c0aadeb1dc0a562903bae8a39"
+                "reference": "1b91b3c31589162b2bc1872d0ff946fa7b68665d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/timber/timber/zipball/52e3fcb263a5165c0aadeb1dc0a562903bae8a39",
-                "reference": "52e3fcb263a5165c0aadeb1dc0a562903bae8a39",
+                "url": "https://api.github.com/repos/timber/timber/zipball/1b91b3c31589162b2bc1872d0ff946fa7b68665d",
+                "reference": "1b91b3c31589162b2bc1872d0ff946fa7b68665d",
                 "shasum": ""
             },
             "require": {
@@ -988,13 +1033,13 @@
                 "wp-coding-standards/wpcs": "^2.0",
                 "wpackagist-plugin/advanced-custom-fields": "^5.0",
                 "wpackagist-plugin/co-authors-plus": "^3.3",
-                "yoast/phpunit-polyfills": "^1.0.1"
+                "yoast/wp-test-utils": "^1.0"
             },
             "suggest": {
                 "php-coveralls/php-coveralls": "^2.0 for code coverage",
                 "twig/cache-extra": "For using the cache tag in Twig"
             },
-            "time": "2022-06-29T16:00:27+00:00",
+            "time": "2022-08-04T19:34:07+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {

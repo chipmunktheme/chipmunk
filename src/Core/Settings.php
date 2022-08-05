@@ -9,6 +9,7 @@ use MadeByLess\Lessi\Helper\HelperTrait;
 use MadeByLess\Lessi\Helper\ThemeTrait;
 use Chipmunk\Theme;
 use Chipmunk\Errors;
+use Chipmunk\Settings\Licenser;
 use Chipmunk\Settings\Faker;
 use Chipmunk\Settings\Addons;
 
@@ -24,30 +25,25 @@ class Settings extends Theme {
 	/**
 	 * License data object
 	 *
-	 * @var object
+	 * @var object|null
 	 */
-	private object $license;
+	private ?object $license;
 
 	/**
 	 * Class constructor.
 	 */
 	public function __construct() {
-		// $licenser = new Settings\Licenser(
-		// 	[
-		// 		'remoteApiUrl' => config()->getShopUrl(),
-		// 		'itemId'       => config()->getShopItemId(),
-		// 		'itemName'     => $this->getThemeName(),
-		// 		'itemSlug'     => $this->getThemeSlug(),
-		// 	]
-		// );
+		$licenser = new Licenser( $this );
+		$licenser->initialize();
 
-		// // Store license data
-		// $this->license = $licenser->getLicenseData();
+		$faker = new Faker( $this );
+		$faker->initialize();
 
-		// Initialize other settings
-		( new Faker( $this ) )->initialize();
-		( new Addons( $this ) )->initialize();
-		// new Settings\Addons();
+		$addons = new Addons( $this );
+		$addons->initialize();
+
+		// Store license data
+		$this->license = $licenser->getData();
 	}
 
 	/**
@@ -64,10 +60,10 @@ class Settings extends Theme {
 	 */
 	public function addMenuPage() {
 		add_menu_page(
-			$this->getThemeName(),
-			$this->getThemeName(),
+			$this->getThemeProperty( 'name' ),
+			$this->getThemeProperty( 'name' ),
 			'edit_theme_options',
-			$this->getThemeSlug(),
+			$this->getThemeProperty( 'text-domain' ),
 			[ $this, 'renderAdminSettings' ],
 			$this->svgToBase64( $this->assetUrl( 'images/logo.svg' ) ),
 		);
@@ -78,7 +74,7 @@ class Settings extends Theme {
 	 */
 	public function renderAdminSettings() {
 		$args = [
-			// 'license'  => $this->license,
+			'license'  => $this->license,
 			'tabs' => $this->applyFilter( 'settings_tabs', [] ),
 		];
 

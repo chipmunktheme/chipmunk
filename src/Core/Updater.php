@@ -56,8 +56,8 @@ class Updater extends Theme {
 	public function __construct() {
 		$this->licenseKey = get_option( $this->buildThemeSlug( 'license_key' ) );
 		$this->shopUrl    = config()->getShopUrl();
-		$this->shopItemId = $this->getThemeName();
-		$this->itemSlug   = $this->getThemeSlug();
+		$this->shopItemId = $this->getThemeProperty( 'name' );
+		$this->itemSlug   = $this->getThemeProperty( 'text-domain' );
 	}
 
 	/**

@@ -19,6 +19,7 @@ return array(
     'MadeByLess\\Lessi\\' => array($vendorDir . '/madebyless/lessi/src'),
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
+    'Dashifen\\CaseChangingTrait\\' => array($vendorDir . '/dashifen/case-changing-trait/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
     'Chipmunk\\' => array($baseDir . '/src'),
 );

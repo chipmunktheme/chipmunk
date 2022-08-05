@@ -1,34 +1,39 @@
 <div class="chipmunk">
-  <div class="chipmunk__head chipmunk__wrap">
-    <h2 style="display: none;"></h2>
+  <div class="chipmunk__head-wrap chipmunk__wrap">
+    {% do action( 'admin_notices' ) %}
 
-    <h1 class="chipmunk__title">
-      {{ get_svg_content(asset('images/logo.svg')) }}
-      {{ config.name }}
-    </h1>
-
-    {% if license and license.license == 'valid' %}
-      <a href="{{ config.shop_url | esc_url }}/account" target="_blank" class="chipmunk__status">
-        <div class="{{ class('chipmunk__status-icon', 'success') }}">✓</div>
-
-        <div class="chipmunk__status-content">
-          {% if license.price_id %}
-            <strong>{{ __('%s License', 'chipmunk') | format(config.plans[license.price_id]) | esc_html }}</strong>
-          {% endif %}
-
-          {{ license.customer_email | esc_html }}
+    <div class="chipmunk__head">
+      <h1 class="chipmunk__title">
+        <div class="chipmunk__logo">
+          {{ get_svg_content(asset('images/logo.svg')) }}
         </div>
-      </a>
-    {% else %}
-      <a href="?page=chipmunk&tab=license" class="chipmunk__status">
-        <div class="{{ class('chipmunk__status-icon', 'error') }}">⤫</div>
 
-        <div class="chipmunk__status-content">
-          <strong>{{ __('License is invalid', 'chipmunk') | esc_html }}</strong>
-          {{ __('Please activate your license', 'chipmunk') | esc_html }}
-        </div>
-      </a>
-    {% endif %}
+        {{ get_theme_property('name') }}
+      </h1>
+
+      {% if license and license.license == 'valid' %}
+        <a href="{{ config.shop_url | esc_url }}/account" target="_blank" class="chipmunk__status">
+          <div class="{{ class('chipmunk__status-icon', 'success') }}">✓</div>
+
+          <div class="chipmunk__status-content">
+            {% if license.price_id %}
+              <strong>{{ __('%s License', 'chipmunk') | format(config.plans[license.price_id]) | esc_html }}</strong>
+            {% endif %}
+
+            {{ license.customer_email | esc_html }}
+          </div>
+        </a>
+      {% else %}
+        <a href="?page=chipmunk&tab=license" class="chipmunk__status">
+          <div class="{{ class('chipmunk__status-icon', 'error') }}">⤫</div>
+
+          <div class="chipmunk__status-content">
+            <strong>{{ __('License is invalid', 'chipmunk') | esc_html }}</strong>
+            {{ __('Please activate your license', 'chipmunk') | esc_html }}
+          </div>
+        </a>
+      {% endif %}
+    </div>
   </div>
 
   {% if tabs %}
