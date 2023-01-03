@@ -1,0 +1,40 @@
+/*
+** Admin / Status
+** -------------------------------------------------------------------------- */
+
+.chipmunk__status {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-top: -0.5em;
+  margin-bottom: -0.5em;
+  padding: 1em;
+  background-color: var(--chipmunk--color--white);
+  box-shadow: 0 1px 4px rgba(0 0 0 / 20%);
+  border-radius: 0.25rem;
+  color: var(--chipmunk--color--gray-dark);
+}
+
+.chipmunk__status-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 50%;
+  color: var(--chipmunk--color--white);
+
+  &--success {
+    background-color: var(--chipmunk--color--status-success);
+  }
+
+  &--error {
+    background-color: var(--chipmunk--color--status-error);
+  }
+}
+
+.chipmunk__status-content {
+  display: flex;
+  flex-direction: column;
+}

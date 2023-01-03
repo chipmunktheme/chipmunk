@@ -4,9 +4,6 @@ namespace Chipmunk\Addons\Members;
 
 /**
  * Initializes the plugin settings.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Settings {
 

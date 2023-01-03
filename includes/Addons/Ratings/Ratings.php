@@ -7,9 +7,6 @@ use Chipmunk\Addons\Ratings\Helpers as RatingsHelpers;
 
 /**
  * Main ratings class
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Ratings {
 

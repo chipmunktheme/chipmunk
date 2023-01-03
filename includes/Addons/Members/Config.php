@@ -6,9 +6,6 @@ use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 
 /**
  * Main plugin configuration
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Config {
 

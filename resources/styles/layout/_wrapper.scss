@@ -1,0 +1,13 @@
+/*
+** Layout - Wrapper
+** -------------------------------------------------------------------------- */
+
+.l-wrapper {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include bp(lg) {
+    width: calc((var(--chipmunk--layout--content-width) / 12 * 100%));
+  }
+}

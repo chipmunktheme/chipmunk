@@ -7,9 +7,6 @@ use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 
 /**
  * AJAX action callbacks
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Actions {
 

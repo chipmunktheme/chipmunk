@@ -1,0 +1,42 @@
+/*
+** Tools - Align
+** -------------------------------------------------------------------------- */
+
+// Add negative spacing to make the element full width
+// @param {Boolean} $container  - Contain the max width
+// @param {Boolean} $gutters  - Add paddings at the sides
+@mixin align-full($container: false, $gutters: false) {
+  @include bp-down(lg) {
+    &.wp-block-image,
+    &.wp-block-cover,
+    &.wp-block-cover-image,
+    &.wp-block-gallery,
+    &.wp-block-embed,
+    &.wp-block-columns {
+      width: 100vw;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @include bp(lg) {
+    width: calc(100vw #{if($gutters, '- calc(var(--chipmunk--layout--container-gutter) * 2)', null)});
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    @if ($container) {
+      max-width: var(--chipmunk--layout--container-width);
+    }
+
+    @else {
+      max-width: 256rem;
+    }
+  }
+}
+
+// Add negative spacing to make the element
+@function negative-margin() {
+  @return calc(
+    ((12 - var(--chipmunk--layout--content-width)) / 2) / var(--chipmunk--layout--content-width) * 100% * -1
+  );
+}

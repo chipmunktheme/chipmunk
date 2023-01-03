@@ -6,9 +6,6 @@ use Chipmunk\Helpers as ChipmunkHelpers;
 
 /**
  * Imports a large amount of resources from a CSV file.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Init {
 

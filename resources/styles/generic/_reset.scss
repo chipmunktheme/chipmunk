@@ -1,0 +1,98 @@
+/*
+** Generic - Reset
+** -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  text-transform: inherit;
+  scroll-margin-top: var(--header-height, 0);
+}
+
+:root {
+  height: 100%;
+  font-size: 62.5%;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow-y: scroll;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  scroll-behavior: smooth;
+
+  :where(img) {
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+body {
+  // These values will not show up in content, but can be
+  // queried by JavaScript to know which breakpoint is active.
+  &::before {
+    display: none;
+
+    @each $breakpoint, $size in $breakpoints {
+      @include bp($breakpoint) {
+        content: '#{$breakpoint}';
+      }
+    }
+  }
+}
+
+[data-action-element]:not([class]) {
+  display: contents;
+}
+
+a,
+button {
+  @extend %link-transition;
+}
+
+button {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  appearance: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.4em;
+}

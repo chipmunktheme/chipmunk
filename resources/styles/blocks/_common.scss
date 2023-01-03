@@ -1,0 +1,100 @@
+/*
+** Blocks / Common
+** -------------------------------------------------------------------------- */
+
+.wp-block-button,
+.wp-block-audio,
+.wp-block-archives,
+.wp-block-categories,
+.wp-block-latest-posts {
+  &[class] {
+    @include spacer-relative(1, 'top');
+
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.wp-block-buttons,
+.wp-block-code,
+.wp-block-table,
+.wp-block-verse,
+.wp-block-preformatted {
+  &[class] {
+    @include spacer-clamped(2.5, 'top');
+
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.wp-block-image,
+.wp-block-cover,
+.wp-block-cover-image,
+.wp-block-gallery,
+.wp-block-embed,
+.wp-block-quote,
+.wp-block-pullquote,
+.wp-block-columns,
+.wp-block-text-columns {
+  &[class] {
+    @include spacer-clamped(2.5, 'top');
+    @include spacer-clamped(2.5, 'bottom');
+
+    margin-top: 0;
+    margin-bottom: 0;
+
+    &.alignwide,
+    &.alignfull {
+      @include spacer-clamped(5, 'top');
+      @include spacer-clamped(5, 'bottom');
+    }
+  }
+}
+
+.wp-block-separator {
+  &[class] {
+    @include spacer-clamped(5, 'top');
+    @include spacer-clamped(5, 'bottom');
+
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+// Align
+.alignleft {
+  @include bp(md) {
+    float: left;
+    max-width: 66.6%;
+    margin-right: spacer-relative(1);
+  }
+
+  @include bp(lg) {
+    margin-left: negative-margin();
+  }
+}
+
+.alignright {
+  @include bp(md) {
+    float: right;
+    max-width: 66.6%;
+    margin-left: spacer-relative(1);
+  }
+
+  @include bp(lg) {
+    margin-right: negative-margin();
+  }
+}
+
+.alignwide {
+  @include align-full(true, true);
+}
+
+.alignfull {
+  @include align-full(false, true);
+
+  &.wp-block-separator {
+    @include align-full(false, false);
+  }
+}

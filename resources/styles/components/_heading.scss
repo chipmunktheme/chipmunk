@@ -1,0 +1,51 @@
+/*
+** Component - Heading
+** -------------------------------------------------------------------------- */
+
+.c-heading {
+  @extend %heading;
+
+  &--h1 {
+    @extend %heading-huge !optional;
+  }
+
+  &--h2 {
+    @extend %heading-xlarge !optional;
+  }
+
+  &--h3 {
+    @extend %heading-large !optional;
+  }
+
+  &--h4 {
+    @extend %heading-medium !optional;
+  }
+
+  &--h5 {
+    @extend %heading-normal !optional;
+  }
+
+  &--h6 {
+    @extend %heading-small !optional;
+  }
+
+  small {
+    color: var(--chipmunk--color--gray);
+  }
+}
+
+.c-heading__link {
+  display: inline-block;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity var(--chipmunk--transition-duration);
+
+  &:hover,
+  &:focus {
+    opacity: 0.75;
+  }
+
+  &.is-active {
+    opacity: 1;
+  }
+}

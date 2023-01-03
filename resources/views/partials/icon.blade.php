@@ -1,0 +1,3 @@
+<svg class="{{ Helper::class('u-icon', $icon, $size ?? 'md') }}">
+  <use xlink:href="@asset('images/icons.svg')#{{ $icon }}"></use>
+</svg>

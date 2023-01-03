@@ -1,0 +1,78 @@
+/*
+** Component - Comment
+** -------------------------------------------------------------------------- */
+
+$comment-avatar-size: 3.2rem;
+
+.c-comment {
+  @include spacer-clamped(2);
+
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.c-comment__image {
+  width: $comment-avatar-size;
+  margin-right: spacer-fixed(1);
+
+  img {
+    border-radius: var(--chipmunk--button--border-radius);
+  }
+}
+
+.c-comment__info {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: spacer-relative(0.5);
+}
+
+.c-comment__title {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.c-comment__date {
+  display: block;
+  color: var(--chipmunk--color--gray);
+  font-size: 0.9em;
+  transition: color var(--chipmunk--transition-duration);
+
+  @include bp(lg) {
+    color: var(--chipmunk--color--gray-light);
+
+    .c-comment__body:hover & {
+      color: var(--chipmunk--color--gray);
+    }
+  }
+}
+
+.c-comment__content {
+  width: 100%;
+}
+
+.c-comment__reply {
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: spacer-clamped(0.5);
+    color: var(--chipmunk--color--gray);
+    font-size: 0.875em;
+
+    &:hover {
+      color: var(--chipmunk--color--black);
+    }
+  }
+}
+
+.c-comment__note {
+  color: var(--chipmunk--color--gray);
+  font-size: 0.875em;
+}
+
+.c-comment__children,
+.comment-respond {
+  @include spacer-clamped(2);
+}

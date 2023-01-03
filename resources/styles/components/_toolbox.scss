@@ -1,0 +1,26 @@
+/*
+** Component - Toolbox
+** -------------------------------------------------------------------------- */
+
+.c-toolbox {
+  display: flex;
+  flex-direction: column;
+
+  @include bp(md) {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+}
+
+.c-toolbox__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: spacer-clamped(1.5);
+  margin-left: auto;
+
+  @include bp(md) {
+    justify-content: flex-end;
+  }
+}

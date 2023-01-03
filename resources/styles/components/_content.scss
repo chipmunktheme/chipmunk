@@ -1,0 +1,18 @@
+/*
+** Component - Content
+** -------------------------------------------------------------------------- */
+
+.c-content {
+  @extend %copy;
+
+  &--type {
+    @extend %copy-type;
+  }
+
+  // Line Clamp
+  @for $i from 1 through 5 {
+    &--clamp-#{$i} {
+      @include line-clamp($i);
+    }
+  }
+}

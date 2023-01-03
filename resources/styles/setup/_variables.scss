@@ -1,0 +1,108 @@
+/*
+** Setup - Variables
+** -------------------------------------------------------------------------- */
+
+// SASS display values
+$display-values: (inline, inline-block, block, flex) !default;
+
+// SASS breakpoints
+$breakpoints: (
+  sm: 0,
+  md: 680px,
+  lg: 1024px,
+) !default;
+
+body {
+  /* Colors
+  ------------------------------------- */
+  --chipmunk--color--primary: #5b5c89;
+  --chipmunk--color--black: #1d1d1d;
+  --chipmunk--color--gray-dark: #444;
+  --chipmunk--color--gray: #777;
+  --chipmunk--color--gray-light: #cdcdcd;
+  --chipmunk--color--gray-lighter: #e6e6e6;
+  --chipmunk--color--gray-lightest: #ededed;
+  --chipmunk--color--white: #fafafa;
+  --chipmunk--color--green: #e6efe7;
+  --chipmunk--color--creme: #f5f3ed;
+
+  // Status colors
+  --chipmunk--color--status-success: #4f8a10;
+  --chipmunk--color--status-warning: #9f6000;
+  --chipmunk--color--status-info: #369bf8;
+  --chipmunk--color--status-error: #f74444;
+
+  // Customizable colors
+  --chipmunk--color--link: var(--chipmunk--color--primary);
+  --chipmunk--color--background: var(--chipmunk--color--gray-lightest);
+  --chipmunk--color--section: var(--chipmunk--color--white);
+
+  /* Layers
+  * ---------------------------------- */
+  --chipmunk--layer--negative: -1;
+  --chipmunk--layer--neutral: 0;
+  --chipmunk--layer--base: 1;
+  --chipmunk--layer--utils: 5;
+  --chipmunk--layer--dropdown: 15;
+  --chipmunk--layer--overlay: 20;
+  --chipmunk--layer--head: 25;
+  --chipmunk--layer--top: 30;
+  --chipmunk--layer--search: 35;
+  --chipmunk--layer--popup: 40;
+
+  /* Typography
+  ------------------------------------- */
+  // Fonts
+  --chipmunk--font--system:
+    -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen, ubuntu, cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
+  --chipmunk--font--mono: menlo, consolas, monaco, monospace;
+
+  // Typography
+  --chipmunk--typography--font-family: var(--chipmunk--font--system);
+  --chipmunk--typography--font-size: 1.6rem;
+  --chipmunk--typography--line-height: 1.618;
+
+  // Headings
+  --chipmunk--typography--scale: 1.25;
+  --chipmunk--typography--small: var(--chipmunk--typography--font-size);
+  --chipmunk--typography--normal: var(--chipmunk--typography--small) * var(--chipmunk--typography--scale);
+  --chipmunk--typography--medium: var(--chipmunk--typography--normal) * var(--chipmunk--typography--scale);
+  --chipmunk--typography--large: var(--chipmunk--typography--medium) * var(--chipmunk--typography--scale);
+  --chipmunk--typography--xlarge: var(--chipmunk--typography--large) * var(--chipmunk--typography--scale);
+  --chipmunk--typography--huge: var(--chipmunk--typography--xlarge) * var(--chipmunk--typography--scale);
+  --chipmunk--typography--heading-font-family: var(--chipmunk--font--system);
+
+  // Content
+  --chipmunk--typography--content-size: 1.25em;
+
+  /* Layout
+  ------------------------------------- */
+  --chipmunk--layout--container-width: 110rem;
+  --chipmunk--layout--container-gutter: clamp(2.4rem, 5vw, 7.2rem);
+  --chipmunk--layout--column-gutter: calc(var(--chipmunk--layout--container-width) * 0.025);
+  --chipmunk--layout--content-width: 8;
+  --chipmunk--layout--popup-width: 80rem;
+  --chipmunk--layout--tile-padding: 1rem;
+
+  /* Buttons
+  ------------------------------------- */
+  --chipmunk--button--border-width: 1px;
+  --chipmunk--button--border-radius: 100vmin;
+  --chipmunk--button--font-size: 0.875em;
+
+  /* Miscellaneous
+  ------------------------------------- */
+  // Transitions
+  --chipmunk--transition-duration: 0.25s;
+
+  // Spacers
+  --chipmunk--spacer: 1.25em;
+
+  // Borders
+  --chipmunk--border-opacity: 0.075;
+  --chipmunk--border-radius: 0.5rem;
+
+  // Logo
+  --chipmunk--logo-height: 4rem;
+}

@@ -1,18 +1,14 @@
 <?php
 use Timber\Timber;
-use Chipmunk\Extensions\Views;
+use Chipmunk\Extension\ViewExtension;
 use Chipmunk\Extensions\Upvotes;
 use Chipmunk\Extensions\Bookmarks;
 use Chipmunk\Addons\Ratings\Helpers as RatingsHelpers;
 
 /**
  * The Template for displaying all single posts
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
-
-Views::setViews( get_the_ID() );
+ViewExtension::getInstance()->setViews( get_the_ID() );
 $context = Timber::context();
 $upvotes = new Upvotes( get_the_ID() );
 $bookmarks = new Bookmarks( get_the_ID() );

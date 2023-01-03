@@ -6,9 +6,6 @@ use Chipmunk\Helpers;
 
 /**
  * Adds a 5-star rating system to the theme
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Init {
 

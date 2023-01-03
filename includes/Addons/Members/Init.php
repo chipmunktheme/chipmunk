@@ -7,9 +7,6 @@ use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 
 /**
  * Allows users to sign-up and improve the experience of the theme
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Init {
 

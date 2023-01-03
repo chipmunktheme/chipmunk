@@ -1,0 +1,26 @@
+/*
+** Utils - Dropdown
+** -------------------------------------------------------------------------- */
+
+.u-dropdown {
+  &--light {
+    @include dropdown(2.25rem, 'light', 'right');
+  }
+
+  &--dark {
+    @include dropdown(2.25rem, 'dark', 'right');
+  }
+
+  .is-open & {
+    @include dropdown-open;
+  }
+}
+
+.u-dropdown__link {
+  min-width: 10rem;
+  white-space: nowrap;
+}
+
+.u-dropdown__trigger {
+  position: relative;
+}

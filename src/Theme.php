@@ -12,54 +12,57 @@ use Chipmunk\Helper\OptionTrait;
  *
  * @package Chipmunk
  */
-class Theme extends ThemeHandler {
-	use HookTrait;
-	use OptionTrait;
-	use ShortcodeTrait;
+class Theme extends ThemeHandler
+{
+    use HookTrait;
+    use OptionTrait;
+    use ShortcodeTrait;
 
-	/**
-	 * A list of theme classes
-	 *
-	 * @var array
-	 */
-	private array $classes;
+    /**
+     * A list of theme classes
+     *
+     * @var array
+     */
+    private array $classes;
 
-	/**
-	 * Class constructor.
-	 */
-	public function __construct() {
-		$this->classes = [
-			// Core classes
-			'Core\Setup',
-			'Core\Templates',
-			'Core\Assets',
-			'Core\Actions',
-			'Core\Shortcodes',
-			'Core\Updater',
+    /**
+     * Class constructor.
+     */
+    public function __construct()
+    {
+        $this->classes = [
+            // Core classes
+            'Core\Setup',
+            'Core\Templates',
+            'Core\Assets',
+            'Core\Actions',
+            'Core\Shortcodes',
+            'Core\Updater',
 
-			// Config classes
-			'Config\Admin',
-			'Config\Assets',
-			'Config\Query',
-			'Config\Misc',
+            // Config classes
+            'Config\Admin',
+            'Config\Assets',
+            'Config\Query',
+            'Config\Misc',
 
-			// ThirdParty classes
-			'ThirdParty\ACF',
-			'ThirdParty\Merlin',
-		];
-	}
+            // ThirdParty classes
+            'ThirdParty\ACF',
+            'ThirdParty\Merlin',
+        ];
+    }
 
-	/**
-	 * Hooks methods of this object into the WordPress ecosystem
-	 */
-	public function initialize() {
-		if ( ! $this->isInitialized() ) {
-			// Initialize singleton object
-			Options::getInstance()->initialize();
-			Settings::getInstance()->initialize();
+    /**
+     * Hooks methods of this object into the WordPress ecosystem
+     */
+    public function initialize()
+    {
+        if (! $this->isInitialized()) {
+            // Initialize singleton object
+            Options::getInstance()->initialize();
+            Settings::getInstance()->initialize();
 
-			// Initialize theme classes
-			$this->initializeClasses( $this->classes );
-		}
-	}
+            // Initialize theme classes
+            $this->initializeClasses($this->classes);
+        }
+    }
 }

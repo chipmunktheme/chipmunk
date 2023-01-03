@@ -1,0 +1,35 @@
+{
+  "name": "chipmunk",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "description": "Chipmunk",
+  "author": "Piotr Kulpinski",
+  "scripts": {
+    "dev": "bud dev",
+    "build": "bud build",
+    "clean": "bud clean"
+  },
+  "browserslist": [
+    "extends @roots/browserslist-config/current"
+  ],
+  "dependencies": {
+    "axios": "^0.27",
+    "flickity": "^2.3",
+    "query-string": "^7.1.1"
+  },
+  "devDependencies": {
+    "@roots/bud": "^6.3.5",
+    "@roots/bud-sass": "^6.3.5",
+    "@roots/bud-stylelint": "^6.3.5",
+    "@roots/sage": "^6.3.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}

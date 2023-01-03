@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkchipmunk=self.webpackChunkchipmunk||[]).push([[575],{4575:(n,e,i)=>{i.d(e,{Z:()=>t});const t=n=>{window.requestAnimationFrame((async function e(){document.body?await n():window.requestAnimationFrame(e)}))}}}]);

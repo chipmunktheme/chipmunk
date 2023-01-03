@@ -1,19 +1,21 @@
 {
   "name": "chipmunk-theme/chipmunk-theme",
-  "homepage": "https://chipmunktheme.com/",
+  "homepage": "https://chipmunktheme.com",
   "description": "Chipmunk WordPress Theme makes it ridiculously easy to make a content curation website.",
   "authors": [
     {
       "name": "Made by Less",
-      "email": "hello@madebyless.com"
+      "email": "hello@madebyless.com",
+      "homepage": "https://madebyless.com"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Chipmunk\\": "src"
+      "Chipmunk\\": "src",
+      "App\\": "app"
     },
     "files": [
-      "vendor/richtabor/merlin-wp/class-merlin.php"
+      "vendor/madebyless/merlin-wp/class-merlin.php"
     ]
   },
   "repositories": [
@@ -24,14 +26,22 @@
   ],
   "require": {
     "advanced-custom-fields/advanced-custom-fields-pro": "5.*",
-    "richtabor/merlin-wp": "dev-master",
-    "timber/timber": "^2.0.0-alpha.6",
-    "madebyless/lessi": "^1.0"
+    "log1x/acf-composer": "^2.0",
+    "log1x/sage-directives": "^1.1",
+    "madebyless/lessi": "^1.0",
+    "madebyless/merlin-wp": "dev-master",
+    "roots/acorn": "^2.1",
+    "timber/timber": "^2.0.0-alpha.6"
   },
   "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true,
     "allow-plugins": {
       "composer/installers": true,
       "pivvenit/acf-pro-installer": true
     }
+  },
+  "scripts": {
+    "post-autoload-dump": "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
   }
 }

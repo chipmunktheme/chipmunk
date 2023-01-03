@@ -1,0 +1,125 @@
+/*
+** Component - Menu primary
+** -------------------------------------------------------------------------- */
+
+.c-menu-primary {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1em spacer-clamped(2);
+
+  @include bp(lg) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+.c-menu-primary__item,
+.c-menu-primary__submenu-item {
+  &--parent {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.c-menu-primary__item {
+  &--parent {
+    @include bp(lg) {
+      margin-right: -0.5em;
+    }
+  }
+}
+
+.c-menu-primary__link,
+.c-menu-primary__submenu-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  .current-menu-item &,
+  .current-menu-ancestor &,
+  .current-page-ancestor & {
+    color: var(--chipmunk--color--black);
+  }
+}
+
+.c-menu-primary__toggle,
+.c-menu-primary__submenu-toggle {
+  position: relative;
+  z-index: var(--chipmunk--layer--base);
+  padding: 0 0.5em;
+  margin-left: -0.125em;
+
+  &[data-expand]:hover {
+    opacity: 0.75;
+  }
+
+  .u-icon {
+    opacity: 0.5;
+
+    .is-open > & {
+      transform: scale(-1);
+    }
+
+    @include bp(lg) {
+      font-size: 0.8em;
+    }
+  }
+}
+
+.c-menu-primary__submenu-toggle {
+  @include bp(lg) {
+    padding-right: 0;
+
+    .u-icon {
+      transform: rotate(-90deg);
+
+      .is-open > & {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
+
+.c-menu-primary__submenu {
+  display: none;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 100%;
+  padding-left: 1em;
+  margin: 0.5em 0;
+  border-left: 1px solid var(--chipmunk--color--gray-lighter);
+
+  .is-open > & {
+    display: flex;
+  }
+
+  @include bp(lg) {
+    display: flex;
+    gap: 0;
+    min-width: 17.5rem;
+    max-width: 20rem;
+    padding: 0;
+    margin: 0;
+    border: 0;
+
+    &--light {
+      @include dropdown(1.5rem, 'light');
+    }
+
+    &--dark {
+      @include dropdown(1.5rem, 'dark');
+    }
+
+    .is-open > & {
+      @include dropdown-open;
+    }
+  }
+}

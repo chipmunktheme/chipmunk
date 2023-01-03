@@ -1,0 +1,15 @@
+/*
+** Tools - Typography
+** -------------------------------------------------------------------------- */
+
+@use 'sass:map';
+
+@mixin typography-properties($typography, $excluded: null) {
+  $properties: color, font-family, font-size, font-weight, font-style, line-height, letter-spacing, text-transform;
+
+  @each $property in $properties {
+    @if map.has-key($typography, $property) and not index($excluded, $property) {
+      #{$property}: map.get($typography, $property);
+    }
+  }
+}

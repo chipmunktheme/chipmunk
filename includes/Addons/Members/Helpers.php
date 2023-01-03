@@ -4,9 +4,6 @@ namespace Chipmunk\Addons\Members;
 
 /**
  * Plugin specific helpers.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Helpers {
 

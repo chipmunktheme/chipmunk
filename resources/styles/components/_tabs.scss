@@ -1,0 +1,26 @@
+/*
+** Component - Tabs
+** -------------------------------------------------------------------------- */
+
+.c-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.c-tabs__title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: spacer-clamped(0.5) spacer-clamped(1.5);
+  padding-right: 3.5em;
+}
+
+.c-tabs__item {
+  display: none;
+  margin-top: var(--chipmunk--layout--column-gutter);
+
+  &.is-active {
+    display: block;
+  }
+}

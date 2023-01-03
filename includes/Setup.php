@@ -7,9 +7,6 @@ use Chipmunk\Customizer;
 
 /**
  * Main theme setup class
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Setup {
 

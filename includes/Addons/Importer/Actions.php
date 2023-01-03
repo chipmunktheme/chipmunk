@@ -8,9 +8,6 @@ use \Chipmunk\FileHandler;
 
 /**
  * AJAX action callbacks
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Actions {
 

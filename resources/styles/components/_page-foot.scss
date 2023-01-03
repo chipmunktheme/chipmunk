@@ -1,0 +1,77 @@
+/*
+** Component - Page foot
+** -------------------------------------------------------------------------- */
+
+.c-page-foot {
+  a,
+  button {
+    &:hover {
+      color: var(--chipmunk--color--black);
+    }
+  }
+}
+
+.c-page-foot__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--chipmunk--layout--column-gutter);
+
+  @include bp(md) {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.c-page-foot__column {
+  display: flex;
+  flex-direction: column;
+  gap: spacer-clamped(1);
+  width: 100%;
+
+  &:first-child {
+    @include bp(md) {
+      width: calc(1 / 2 * 100%);
+      margin-right: auto;
+    }
+  }
+
+  &:not(:first-child) {
+    @include bp(md) {
+      width: calc(1 / 3 * 100%);
+    }
+
+    @include bp(lg) {
+      width: calc(1 / 6 * 100%);
+    }
+  }
+}
+
+.c-page-foot__description {
+  color: var(--chipmunk--color--gray);
+}
+
+.c-page-foot__copy,
+.c-page-foot__credits {
+  color: var(--chipmunk--color--gray);
+  text-align: center;
+
+  @include bp(md) {
+    text-align: left;
+  }
+}
+
+.c-page-foot__credits {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: spacer-fixed(0.5);
+  white-space: nowrap;
+
+  svg {
+    width: auto;
+    height: spacer-relative(1);
+    fill: currentcolor;
+  }
+}

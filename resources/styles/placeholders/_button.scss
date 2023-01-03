@@ -1,0 +1,91 @@
+/*
+** Placeholders - Button
+** -------------------------------------------------------------------------- */
+
+%button {
+  display: inline-block;
+  padding: 0.5em 1.75em;
+  background-color: transparent;
+  border: var(--chipmunk--button--border-width) solid transparent;
+  font-size: var(--chipmunk--button--font-size);
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+}
+
+%button-rounded {
+  border-radius: var(--chipmunk--button--border-radius);
+}
+
+%button-squared {
+  border-radius: 0;
+}
+
+%button-primary {
+  background-color: var(--chipmunk--color--primary);
+  color: var(--chipmunk--color--white);
+
+  &:not([disabled]):hover {
+    background-color: transparent;
+    border-color: currentcolor;
+    color: var(--chipmunk--color--primary);
+  }
+}
+
+%button-primary-outline {
+  background-color: transparent;
+  border-color: currentcolor;
+  color: var(--chipmunk--color--primary);
+
+  &:not([disabled]):hover {
+    background-color: var(--chipmunk--color--primary);
+    border-color: transparent;
+    color: var(--chipmunk--color--white);
+  }
+}
+
+%button-secondary {
+  background-color: var(--chipmunk--color--gray);
+  color: var(--chipmunk--color--white);
+
+  &:not([disabled]):hover {
+    background-color: transparent;
+    border-color: currentcolor;
+    color: var(--chipmunk--color--gray);
+  }
+}
+
+%button-secondary-outline {
+  background-color: transparent;
+  border-color: currentcolor;
+  color: var(--chipmunk--color--gray);
+
+  &:not([disabled]):hover {
+    background-color: var(--chipmunk--color--gray);
+    border-color: transparent;
+    color: var(--chipmunk--color--white);
+  }
+}
+
+%button-white {
+  background-color: var(--chipmunk--color--white);
+  color: var(--chipmunk--color--white);
+
+  &:not([disabled]):hover {
+    background-color: transparent;
+    border-color: currentcolor;
+    color: var(--chipmunk--color--white);
+  }
+}
+
+%button-white-outline {
+  background-color: transparent;
+  border-color: currentcolor;
+  color: var(--chipmunk--color--white);
+
+  &:not([disabled]):hover {
+    background-color: var(--chipmunk--color--white);
+    border-color: transparent;
+    color: var(--chipmunk--color--primary);
+  }
+}

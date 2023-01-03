@@ -1,0 +1,29 @@
+/*
+** Utils - Avatar
+** -------------------------------------------------------------------------- */
+
+.u-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2em;
+  width: 2em;
+  background-color: var(--chipmunk--color--background);
+  border-radius: 50%;
+  color: var(--chipmunk--color--black);
+  font-size: 1em;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+
+  &--md {
+    font-size: 2em;
+  }
+
+  &--lg {
+    font-size: clamp(3em, 10vw, 4em);
+  }
+}

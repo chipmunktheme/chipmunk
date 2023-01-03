@@ -7,9 +7,6 @@ use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 
 /**
  * Initializes the plugin renderers.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Renderers {
 

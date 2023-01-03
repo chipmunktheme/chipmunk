@@ -4,9 +4,6 @@ namespace Chipmunk\Addons\Ratings;
 
 /**
  * AJAX action callbacks
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Actions {
 

@@ -1,0 +1,32 @@
+/*
+** Component - Button
+** -------------------------------------------------------------------------- */
+
+.c-button {
+  @extend %button;
+  @extend %button-rounded;
+
+  &--primary {
+    @extend %button-primary;
+  }
+
+  &--primary-outline {
+    @extend %button-primary-outline;
+  }
+
+  &--secondary {
+    @extend %button-secondary;
+  }
+
+  &--secondary-outline {
+    @extend %button-secondary-outline;
+  }
+
+  &--white {
+    @extend %button-white;
+  }
+
+  &--white-outline {
+    @extend %button-white-outline;
+  }
+}

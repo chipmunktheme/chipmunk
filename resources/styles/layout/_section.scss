@@ -1,0 +1,65 @@
+/*
+** Layout - Section
+** -------------------------------------------------------------------------- */
+
+.l-section {
+  padding-top: spacer-clamped(5);
+  padding-bottom: spacer-clamped(5);
+
+  &--compact {
+    padding-top: spacer-clamped(2.5);
+    padding-bottom: spacer-clamped(2.5);
+  }
+
+  &--compact-top {
+    padding-top: spacer-clamped(2.5);
+  }
+
+  &--compact-bottom {
+    padding-bottom: spacer-clamped(2.5);
+  }
+
+  &--double {
+    padding-top: spacer-clamped(10);
+    padding-bottom: spacer-clamped(10);
+  }
+
+  &--double-top {
+    padding-top: spacer-clamped(10);
+  }
+
+  &--double-bottom {
+    padding-bottom: spacer-clamped(10);
+  }
+
+  &--theme-light {
+    @extend %bordered-box;
+
+    background-color: var(--chipmunk--color--section);
+  }
+
+  &--theme-primary {
+    background-color: var(--chipmunk--color--primary);
+    color: var(--chipmunk--color--white);
+  }
+
+  &--intro + &:not([class*='theme']) {
+    padding-top: 0;
+  }
+
+  &:not([class*='theme']):not([class*='intro']) + &:not([class*='theme']) {
+    @extend %bordered-box;
+  }
+
+  &--sticky {
+    margin-top: auto;
+
+    & + & {
+      margin-top: 0;
+    }
+  }
+}
+
+.l-section__title {
+  margin-right: auto;
+}

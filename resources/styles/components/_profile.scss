@@ -1,0 +1,32 @@
+/*
+** Component - Profile
+** -------------------------------------------------------------------------- */
+
+.c-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: spacer-clamped(1.5);
+}
+
+.c-profile__avatar {
+  flex-shrink: 1;
+}
+
+.c-profile__content {
+  flex: 1;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: spacer-clamped(1.5);
+}
+
+.c-profile__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: spacer-clamped(1.5);
+}
+
+.c-profile__stats {
+  color: var(--chipmunk--color--gray);
+}

@@ -1,0 +1,19 @@
+/*
+** Layout - Component
+** -------------------------------------------------------------------------- */
+
+.l-component {
+  @include spacer-fixed(1.25);
+
+  &--md {
+    @include spacer-fixed(2.5);
+  }
+
+  &--lg {
+    @include spacer-fixed(5);
+  }
+
+  &--none {
+    @include spacer-fixed(0);
+  }
+}

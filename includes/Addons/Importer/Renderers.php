@@ -4,9 +4,6 @@ namespace Chipmunk\Addons\Importer;
 
 /**
  * Initializes the plugin renderers.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Renderers {
 

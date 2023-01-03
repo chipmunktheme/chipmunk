@@ -1,0 +1,22 @@
+{
+  "theme": {
+    "js": [
+      "js/theme.js"
+    ],
+    "dependencies": []
+  },
+  "editor": {
+    "js": [
+      "js/editor.js"
+    ],
+    "dependencies": [
+      "wp-blocks"
+    ]
+  },
+  "admin": {
+    "js": [
+      "js/admin.js"
+    ],
+    "dependencies": []
+  }
+}

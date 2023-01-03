@@ -4,9 +4,6 @@ use Chipmunk\Helpers;
 
 /**
  * Search results page
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 
 // If the search query is shorter than 3 letters redirect to homepage

@@ -1,0 +1,15 @@
+{
+  "theme.js": "js/theme.js",
+  "editor.js": "js/editor.js",
+  "admin.js": "js/admin.js",
+  "images/icons.svg": "images/icons.svg",
+  "images/logo.png": "images/logo.png",
+  "images/logo.svg": "images/logo.svg",
+  "images/.gitkeep": "images/.gitkeep",
+  "theme.js.map": "js/theme.js.map",
+  "theme.hot-update.js.map": "theme.4c8af3623d24bb2c3dfb.hot-update.js.map",
+  "editor.js.map": "js/editor.js.map",
+  "editor.hot-update.js.map": "editor.4c8af3623d24bb2c3dfb.hot-update.js.map",
+  "admin.js.map": "js/admin.js.map",
+  "admin.hot-update.js.map": "admin.4c8af3623d24bb2c3dfb.hot-update.js.map"
+}

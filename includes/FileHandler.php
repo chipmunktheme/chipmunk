@@ -6,9 +6,6 @@ use Chipmunk\Errors;
 
 /**
  * Used to handle file upload and archive unzipping.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class FileHandler {
 

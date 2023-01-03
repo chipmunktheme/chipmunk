@@ -1,0 +1,31 @@
+/*
+** Admin / Nav
+** -------------------------------------------------------------------------- */
+
+.chipmunk__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2em;
+  padding-top: 1.5em;
+  background-color: var(--chipmunk--color--white);
+  border-top: 1px solid var(--chipmunk--color--gray-light);
+  border-bottom: 1px solid var(--chipmunk--color--gray-light);
+
+  a {
+    padding: 0.5em 0;
+    border-bottom: 3px solid transparent;
+    color: var(--chipmunk--color--gray);
+    font-size: 1.25em;
+    outline: none;
+
+    &:hover {
+      color: var(--chipmunk--color--gray-dark);
+    }
+
+    &.active {
+      border-bottom-color: currentcolor;
+      color: var(--chipmunk--color--black);
+    }
+  }
+}

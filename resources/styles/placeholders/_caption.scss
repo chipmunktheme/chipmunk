@@ -1,0 +1,25 @@
+/*
+** Placeholders - Caption
+** -------------------------------------------------------------------------- */
+
+%caption {
+  margin: spacer-clamped(1) 0 0;
+  color: var(--chipmunk--color--gray);
+  font-size: 0.875em;
+  word-wrap: break-word;
+}
+
+%caption-indented {
+  margin-left: var(--chipmunk--layout--container-gutter);
+  margin-right: var(--chipmunk--layout--container-gutter);
+}
+
+%caption-quote {
+  @include spacer-relative(1);
+
+  display: inline-block;
+
+  &::before {
+    content: '– ';
+  }
+}

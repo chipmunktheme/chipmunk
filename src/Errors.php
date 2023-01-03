@@ -6,25 +6,23 @@ use WP_Error;
 
 /**
  * Encapsulates WP_Error class. Should be used to globally store application errors.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
-class Errors {
+class Errors
+{
+    /**
+     * Stores global instance of WP_Error
+     */
+    private static WP_Error $instance;
 
-	/**
-	 * Stores global instance of WP_Error
-	 */
-	private static WP_Error $instance;
+    /**
+     * Returns global instance of WP_Error.
+     */
+    public static function getInstance(): WP_Error
+    {
+        if (empty(self::$instance)) {
+            self::$instance = new WP_Error();
+        }
 
-	/**
-	 * Returns global instance of WP_Error.
-	 */
-	public static function getInstance(): WP_Error {
-		if ( empty( self::$instance ) ) {
-			self::$instance = new WP_Error();
-		}
-
-		return self::$instance;
-	}
+        return self::$instance;
+    }
 }

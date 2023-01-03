@@ -10,11 +10,13 @@ Thumbs.db
 .settings
 .tmproj
 *.esproj
-nbproject
-*.sublime-project
-*.sublime-workspace
 
 # Project specific
-.env
-composer.lock
 /vendor/**/.git
+/node_modules
+.env
+.budfiles
+npm-debug.log
+yarn-error.log
+yarn.lock
+composer.lock

@@ -1,0 +1,25 @@
+/*
+** Utils - Responsive display
+** -------------------------------------------------------------------------- */
+
+@if length($display-values) > 1 {
+  @each $breakpoint, $opts in $breakpoints {
+    @each $value in $display-values {
+      .u-visible-#{$breakpoint}-#{$value} {
+        display: none !important;
+      }
+    }
+
+    @include bp($breakpoint) {
+      @each $value in $display-values {
+        .u-visible-#{$breakpoint}-#{$value} {
+          display: #{$value} !important;
+        }
+      }
+
+      .u-hidden-#{$breakpoint} {
+        display: none !important;
+      }
+    }
+  }
+}

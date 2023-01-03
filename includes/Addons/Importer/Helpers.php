@@ -4,9 +4,6 @@ namespace Chipmunk\Addons\Importer;
 
 /**
  * Plugin specific helpers.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Helpers {
 

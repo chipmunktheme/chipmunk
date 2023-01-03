@@ -1,0 +1,28 @@
+/*
+** Admin / Addons
+** -------------------------------------------------------------------------- */
+
+.chipmunk__addon {
+  align-items: flex-start;
+  gap: 1.5em;
+  padding: 1.5em;
+}
+
+.chipmunk__addon-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
+}
+
+.chipmunk__addon-title {
+  margin: 0;
+}
+
+.chipmunk__addon-error {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  color: var(--chipmunk--color--status-error) !important;
+}

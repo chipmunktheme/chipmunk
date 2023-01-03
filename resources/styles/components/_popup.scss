@@ -1,0 +1,66 @@
+/*
+** Component - Popup
+** -------------------------------------------------------------------------- */
+
+.c-popup {
+  position: fixed;
+  inset: 0;
+  z-index: var(--chipmunk--layer--popup);
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateX(-300%);
+  transition: transform 0s var(--chipmunk--transition-duration);
+
+  .has-popup-open & {
+    transform: translateX(0);
+    pointer-events: all;
+    transition: none;
+  }
+}
+
+.c-popup__close {
+  position: absolute;
+  top: spacer-clamped(2);
+  right: spacer-clamped(2);
+  z-index: var(--chipmunk--layer--utils);
+  color: var(--chipmunk--color--black);
+  line-height: 1;
+  transition-property: opacity, color;
+  transition-duration: calc(var(--chipmunk--transition-duration) * 1.5);
+
+  &:hover {
+    color: var(--chipmunk--color--primary);
+  }
+}
+
+.c-popup__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - (var(--chipmunk--layout--container-gutter) * 2));
+  max-height: calc(100% - (var(--chipmunk--layout--column-gutter) * 2));
+  max-width: min(var(--chipmunk--layout--popup-width), calc(100vw - var(--chipmunk--layout--container-gutter) * 2));
+  margin-top: 5%;
+  padding: spacer-clamped(4);
+  background-color: var(--chipmunk--color--section);
+  color: var(--chipmunk--color--black);
+  opacity: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  transform: translate3d(-50%, -50%, 0);
+  transition:
+    opacity calc(var(--chipmunk--transition-duration) * 1.5),
+    margin calc(var(--chipmunk--transition-duration) * 1.5);
+
+  .has-popup-open & {
+    opacity: 1;
+    margin-top: 0;
+  }
+
+  > img {
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    margin: auto;
+  }
+}

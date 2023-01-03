@@ -1,0 +1,58 @@
+/*
+** Tools - Spacers
+** -------------------------------------------------------------------------- */
+
+// Adds spacer to the element
+@mixin _spacer($value, $direction, $property) {
+  @if ($property == margin) {
+    @if index(top left, $direction) {
+      &:not(:first-child) {
+        #{$property}-#{$direction}: $value;
+      }
+    }
+
+    @else {
+      &:not(:last-child) {
+        #{$property}-#{$direction}: $value;
+      }
+    }
+  }
+
+  @else {
+    #{$property}-#{$direction}: $value;
+  }
+}
+
+// Adds relative spacer to the element
+@function spacer-relative($size: 1) {
+  @return calc(var(--chipmunk--typography--line-height) * $size * 1em);
+}
+
+@mixin spacer-relative($size: 1, $direction: 'top', $property: 'margin') {
+  @include _spacer(spacer-relative($size), $direction, $property);
+}
+
+// Adds fixed spacer to the element
+@function spacer-fixed($size: 1) {
+  @return calc(var(--chipmunk--spacer) * #{$size});
+}
+
+@mixin spacer-fixed($size: 1, $direction: 'top', $property: 'margin') {
+  @include _spacer(spacer-fixed($size), $direction, $property);
+}
+
+// Adds clamped spacer to the element
+@function spacer-clamped($size: 1, $scale: 1vw) {
+  $clamp-min: calc(var(--chipmunk--spacer) * #{$size * 0.5});
+  $clamp-max: calc(var(--chipmunk--spacer) * #{$size});
+
+  @return clamp(
+    #{if($size < 0, $clamp-max, $clamp-min)},
+    #{$size} * #{$scale},
+    #{if($size < 0, $clamp-min, $clamp-max)}
+  );
+}
+
+@mixin spacer-clamped($size: 1, $direction: 'top', $property: 'margin', $scale: 1vw) {
+  @include _spacer(spacer-clamped($size, $scale), $direction, $property);
+}

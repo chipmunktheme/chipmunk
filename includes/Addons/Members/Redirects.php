@@ -6,9 +6,6 @@ use Chipmunk\Addons\Members\Helpers as MembersHelpers;
 
 /**
  * Initializes the plugin redirects.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Redirects {
 

@@ -1,0 +1,60 @@
+/*
+** Layout - Body
+** -------------------------------------------------------------------------- */
+
+.l-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  background-color: var(--chipmunk--color--background);
+  color: var(--chipmunk--color--black);
+  font-size: var(--chipmunk--typography--font-size);
+  font-family: var(--chipmunk--typography--font-family);
+  line-height: var(--chipmunk--typography--line-height);
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: calc(var(--chipmunk--layer--popup) - 1);
+    background-color: rgba(0 0 0 / 85%);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-300%);
+    transition: opacity var(--chipmunk--transition-duration), transform 0s var(--chipmunk--transition-duration);
+  }
+
+  &.has-popup-open {
+    &::after {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+      transition: opacity var(--chipmunk--transition-duration) 0s, transform 0s 0s;
+    }
+  }
+
+  > #wpadminbar {
+    position: fixed;
+  }
+}
+
+.l-body__bag {
+  position: relative;
+  z-index: var(--chipmunk--layer--base);
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.l-body__placeholder {
+  .c-page-head--sticky ~ * > & {
+    min-height: var(--header-height, 0);
+  }
+}
+
+.l-body__area {
+  flex: 1;
+}

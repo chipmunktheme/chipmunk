@@ -4,9 +4,6 @@ namespace Chipmunk\Addons\Importer;
 
 /**
  * Initializes the plugin settings.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Settings {
 

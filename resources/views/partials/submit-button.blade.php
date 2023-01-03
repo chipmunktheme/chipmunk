@@ -1,0 +1,5 @@
+@set($submit_page, get_option('submit_page'))
+
+<{{ $submit_page ? "a href='$submit_page'" : 'button data-popup="submit"' }} class="{{ $class }}">
+  {{ __('Submit', 'chipmunk') }}
+</{{ $submit_page ? 'a' : 'button' }}>

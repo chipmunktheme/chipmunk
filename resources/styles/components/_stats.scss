@@ -1,0 +1,83 @@
+/*
+** Component - Stats
+** -------------------------------------------------------------------------- */
+
+.c-stats {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: spacer-fixed(0.5) spacer-fixed(1);
+  font-size: 0.8125em;
+}
+
+.c-stats__item,
+.c-stats__button > span {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.c-stats__item {
+  color: var(--chipmunk--color--gray);
+
+  a:hover {
+    color: var(--chipmunk--color--gray-dark);
+  }
+
+  .u-icon {
+    font-size: 1.25em;
+  }
+
+  > span:not([class]) {
+    display: contents;
+  }
+
+  > a,
+  > span {
+    &:not([class]):not(:last-child)::after {
+      content: ',';
+    }
+  }
+
+  .c-entry__hero &,
+  .c-tile--tile & {
+    color: inherit;
+    opacity: 0.75;
+
+    a:hover {
+      color: inherit;
+      opacity: 0.8;
+    }
+  }
+}
+
+.c-stats__button {
+  @extend %link-transition;
+  @extend %button;
+  @extend %button-rounded;
+
+  @include loader;
+
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border-color: var(--chipmunk--color--gray);
+  font-size: inherit;
+  backface-visibility: hidden;
+
+  &:not(.is-active):hover {
+    color: var(--chipmunk--color--primary);
+    border-color: var(--chipmunk--color--primary);
+  }
+
+  &.is-active {
+    background-color: var(--chipmunk--color--primary);
+    border-color: transparent;
+    color: var(--chipmunk--color--white);
+  }
+
+  .u-icon {
+    display: inline-block;
+    backface-visibility: hidden;
+  }
+}

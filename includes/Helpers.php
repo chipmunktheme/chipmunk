@@ -8,9 +8,6 @@ use Chipmunk\Settings\Addons;
 
 /**
  * Theme specific helpers.
- *
- * @package WordPress
- * @subpackage Chipmunk
  */
 class Helpers {
 
