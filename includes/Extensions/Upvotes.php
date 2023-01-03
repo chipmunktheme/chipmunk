@@ -11,140 +11,160 @@ use Chipmunk\Customizer;
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Upvotes {
+class Upvotes
+{
+    /**
+     * Current post ID
+     *
+     * @var int
+     */
+    private $post_id;
 
-	/**
-	 * Database meta key
-	 *
-	 * @var string
-	 */
-	public static $db_key = '_' . THEME_SLUG . '_upvote';
-	public static $db_key_count = '_' . THEME_SLUG . '_upvote_count';
-	public static $db_old_key = '_' . THEME_SLUG . '_post_upvote_count';
+    /**
+     * Current user ID
+     *
+     * @var int
+     */
+    private $user_id;
 
-	/**
-	 * Create a new upvotes object
-	 *
-	 * @param  object $post_id
-	 *
-	 * @return void
-	 */
-	function __construct( $post_id ) {
-		global $current_user;
+    /**
+     * Database meta key
+     *
+     * @var string
+     */
+    public static $db_key = '_' . THEME_SLUG . '_upvote';
+    public static $db_key_count = '_' . THEME_SLUG . '_upvote_count';
+    public static $db_old_key = '_' . THEME_SLUG . '_post_upvote_count';
 
-		$this->post_id = intval( wp_filter_kses( $post_id ) );
-		$this->user_id = ! empty( $current_user->ID ) ? $current_user->ID : ( Helpers::is_addon_enabled( 'members' ) && Helpers::get_theme_option( 'restrict_guest_upvotes' ) ? null : Helpers::get_ip() );
-	}
+    /**
+     * Create a new upvotes object
+     *
+     * @param  object $post_id
+     *
+     * @return void
+     */
+    function __construct($post_id)
+    {
+        global $current_user;
 
-	/**
-	 * Output the upvote button
-	 *
-	 * @param  string $class
-	 *
-	 * @return string
-	 */
-	public function get_button( $action, $class = '' ) {
-		$upvoted = $this->is_upvoted();
-		$content = $this->get_content( $upvoted );
+        $this->post_id = intval(wp_filter_kses($post_id));
+        $this->user_id = !empty($current_user->ID) ? $current_user->ID : (Helpers::is_addon_enabled('members') && Helpers::get_theme_option('restrict_guest_upvotes') ? null : Helpers::get_ip());
+    }
 
-		if ( $upvoted ) {
-			$class = $class . ' is-active';
-			$title = esc_html__( 'Remove upvote', 'chipmunk' );
-		}
-		else {
-			$title = esc_html__( 'Upvote', 'chipmunk' );
-		}
+    /**
+     * Output the upvote button
+     *
+     * @param  string $class
+     *
+     * @return string
+     */
+    public function get_button($action, $class = '')
+    {
+        $upvoted = $this->is_upvoted();
+        $content = $this->get_content($upvoted);
 
-		$button = "<span class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$content</span>";
-		return $button;
-	}
+        if ($upvoted) {
+            $class = $class . ' is-active';
+            $title = esc_html__('Remove upvote', 'chipmunk');
+        } else {
+            $title = esc_html__('Upvote', 'chipmunk');
+        }
 
-	/**
-	 * Retrieves proper content template
-	 *
-	 * @return string
-	 */
-	public function get_content() {
-		$icon = Helpers::get_template_part( 'partials/icon', array( 'icon' => 'thumbs-up' ), false );
+        $button = "<span class='$class' title='$title' data-action='$action' data-action-event='click' data-action-post-id='$this->post_id'>$content</span>";
+        return $button;
+    }
 
-		$count = $this->get_upvote_count();
-		$label = ( is_numeric( $count ) && $count > 0 ) ? Helpers::format_number( $count ) : 0;
+    /**
+     * Retrieves proper content template
+     *
+     * @return string
+     */
+    public function get_content()
+    {
+        $icon = Helpers::get_template_part('partials/icon', array('icon' => 'thumbs-up'), false);
 
-		return "<span>$icon$label</span";
-	}
+        $count = $this->get_upvote_count();
+        $label = (is_numeric($count) && $count > 0) ? Helpers::format_number($count) : 0;
 
-	/**
-	 * Toggles post upvote status
-	 *
-	 * @return object
-	 */
-	private function toggle_upvote() {
-		$upvoted = $this->is_upvoted();
-		$current_counter = (int) get_post_meta( $this->post_id, self::$db_key_count, true );
+        return "<span>$icon$label</span";
+    }
 
-		// Remove upvote from the post
-		if ( $upvoted ) {
-			delete_post_meta( $this->post_id, self::$db_key, $this->user_id );
-			update_post_meta( $this->post_id, self::$db_key_count, ( $current_counter == 0 ? 0 : $current_counter - 1 ) );
+    /**
+     * Toggles post upvote status
+     *
+     * @return object
+     */
+    private function toggle_upvote()
+    {
+        $upvoted = $this->is_upvoted();
+        $current_counter = (int) get_post_meta($this->post_id, self::$db_key_count, true);
 
-			$response['status'] = 'remove';
-		}
+        // Remove upvote from the post
+        if ($upvoted) {
+            delete_post_meta($this->post_id, self::$db_key, $this->user_id);
+            update_post_meta($this->post_id, self::$db_key_count, ($current_counter == 0 ? 0 : $current_counter - 1));
 
-		// Upvote the post
-		else {
-			add_post_meta( $this->post_id, self::$db_key, $this->user_id );
-			update_post_meta( $this->post_id, self::$db_key_count, ( $current_counter + 1 ) );
+            $response['status'] = 'remove';
+        }
 
-			$response['status'] = 'add';
-		}
+        // Upvote the post
+        else {
+            add_post_meta($this->post_id, self::$db_key, $this->user_id);
+            update_post_meta($this->post_id, self::$db_key_count, ($current_counter + 1));
 
-		// Set proper resounse params
-		$response['post'] = $this->post_id;
-		$response['content'] = $this->get_content( ! $upvoted );
+            $response['status'] = 'add';
+        }
 
-		return $response;
-	}
+        // Set proper resounse params
+        $response['post'] = $this->post_id;
+        $response['content'] = $this->get_content(!$upvoted);
 
-	/**
-	 * Tests if the post is already upvoted
-	 *
-	 * @return boolean
-	 */
-	private function is_upvoted() {
-		return in_array( $this->user_id, get_post_meta( $this->post_id, self::$db_key ) );
-	}
+        return $response;
+    }
 
-	/**
-	 * Utility retrieves upvote count for post,
-	 * returns appropriate number
-	 *
-	 * @return integer
-	 */
-	private function get_upvote_count() {
-		$old_count = (int) get_post_meta( $this->post_id, self::$db_old_key, true );
-		$old_count = ( isset( $old_count ) && is_numeric( $old_count ) ) ? $old_count : 0;
+    /**
+     * Tests if the post is already upvoted
+     *
+     * @return boolean
+     */
+    private function is_upvoted()
+    {
+        return in_array($this->user_id, get_post_meta($this->post_id, self::$db_key));
+    }
 
-		$count = (int) get_post_meta( $this->post_id, self::$db_key_count, true );
-		$count = ( isset( $count ) && is_numeric( $count ) ) ? $count : 0;
+    /**
+     * Utility retrieves upvote count for post,
+     * returns appropriate number
+     *
+     * @return integer
+     */
+    private function get_upvote_count()
+    {
+        $old_count = (int) get_post_meta($this->post_id, self::$db_old_key, true);
+        $old_count = (isset($old_count) && is_numeric($old_count)) ? $old_count : 0;
 
-		return $count + $old_count;
-	}
+        $count = (int) get_post_meta($this->post_id, self::$db_key_count, true);
+        $count = (isset($count) && is_numeric($count)) ? $count : 0;
 
-	/**
-	 * Processes the upvote request
-	 *
-	 * @return void
-	 */
-	public function process() {
-		// Check required attributes
-		if ( ! $this->post_id || ! $this->user_id ) {
-			wp_send_json_error( __( 'Not permitted.', 'chipmunk' ) );
-		}
+        return $count + $old_count;
+    }
 
-		// Set proper Post meta values
-		$params = $this->toggle_upvote();
+    /**
+     * Processes the upvote request
+     *
+     * @return void
+     */
+    public function process()
+    {
+        // Check required attributes
+        if (!$this->post_id || !$this->user_id) {
+            wp_send_json_error(__('Not permitted.', 'chipmunk'));
+        }
 
-		// Return success response
-		wp_send_json_success( $params );
-	}
+        // Set proper Post meta values
+        $params = $this->toggle_upvote();
+
+        // Return success response
+        wp_send_json_success($params);
+    }
 }

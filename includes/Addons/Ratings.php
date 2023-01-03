@@ -10,112 +10,130 @@ use Chipmunk\Helpers;
  * @package WordPress
  * @subpackage Chipmunk
  */
-class Ratings {
+class Ratings
+{
+    /**
+     * Config object
+     * @var object
+     */
+    private static $config;
 
-	/**
-	 * Allowed post types supporting ChipmunkRatings
-	 *
-	 * @since 1.0
-	 * @var array
-	 */
-	private $allowed_types = array( 'post', 'resource' );
+    /**
+     * Transient name
+     * @var string
+     */
+    private static $transient;
 
-	/**
-	 * Initializes the addon.
-	 *
-	 * To keep the initialization fast, only add filter and action
-	 * hooks in the constructor.
-	 *
-	 * @return void
-	 */
-	public function __construct( $config = array() ) {
-		// Set config defaults
-		$this->config = wp_parse_args( $config, array(
-			'name'         => '',
-			'slug'         => '',
-			'excerpt'      => '',
-			'url'          => '',
-		) );
+    /**
+     * Allowed post types supporting ChipmunkRatings
+     *
+     * @since 1.0
+     * @var array
+     */
+    private $allowed_types = array('post', 'resource');
 
-		$this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
+    /**
+     * Initializes the addon.
+     *
+     * To keep the initialization fast, only add filter and action
+     * hooks in the constructor.
+     *
+     * @return void
+     */
+    public function __construct($config = array())
+    {
+        // Set config defaults
+        $this->config = wp_parse_args($config, array(
+            'name'         => '',
+            'slug'         => '',
+            'excerpt'      => '',
+            'url'          => '',
+        ));
 
-		// Set hooks
-		$this->hooks();
-	}
+        $this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
 
-	/**
-	 * Setup hooks
-	 *
-	 * @return  void
-	 */
-	private function hooks() {
-		add_action( 'init', array( $this, 'setup_addon' ) );
-		add_filter( 'chipmunk_settings_addons', array( $this, 'add_settings_addon' ) );
-	}
+        // Set hooks
+        $this->hooks();
+    }
 
-	/**
-	 * Page initialization
-	 *
-	 * Generates default post meta for all posts
-	 */
-	private function register_post_meta() {
-		$posts = get_posts( array(
-			'posts_per_page' => -1,
-			'post_type'      => $this->allowed_types,
-		) );
+    /**
+     * Setup hooks
+     *
+     * @return  void
+     */
+    private function hooks()
+    {
+        add_action('init', array($this, 'setup_addon'));
+        add_filter('chipmunk_settings_addons', array($this, 'add_settings_addon'));
+    }
 
-		foreach ( $posts as $post ) {
-			$this->add_default_meta( $post->ID, $this->allowed_types );
-		}
-	}
+    /**
+     * Page initialization
+     *
+     * Generates default post meta for all posts
+     */
+    private function register_post_meta()
+    {
+        $posts = get_posts(array(
+            'posts_per_page' => -1,
+            'post_type'      => $this->allowed_types,
+        ));
 
-	/**
-	 * Sets the default values for posts
-	 *
-	 * @param string $post_id Post ID
-	 *
-	 * @return array
-	*/
-	private function add_default_meta( $post_ID, $allowed_types ) {
-		$defaut_values = array(
-			'_' . THEME_SLUG . '_rating_count'   => 0,
-			'_' . THEME_SLUG . '_rating_average' => 0,
-			'_' . THEME_SLUG . '_rating_rank'    => 0,
-		);
+        foreach ($posts as $post) {
+            $this->add_default_meta($post->ID, $this->allowed_types);
+        }
+    }
 
-		return \Chipmunk\Helpers::add_post_meta( $post_ID, $defaut_values, $allowed_types );
-	}
+    /**
+     * Sets the default values for posts
+     *
+     * @param string $post_id Post ID
+     *
+     * @return array
+     */
+    private function add_default_meta($post_ID, $allowed_types)
+    {
+        $defaut_values = array(
+            '_' . THEME_SLUG . '_rating_count'   => 0,
+            '_' . THEME_SLUG . '_rating_average' => 0,
+            '_' . THEME_SLUG . '_rating_rank'    => 0,
+        );
 
-	/**
- 	 * Setup main components and features of the addon
-	 *
-	 * @return void
-	 */
-	public function setup_addon() {
-		if ( ! Helpers::is_addon_enabled( $this->config['slug'] ) ) {
-			return;
-		}
+        return \Chipmunk\Helpers::add_post_meta($post_ID, $defaut_values, $allowed_types);
+    }
 
-		if ( ! get_transient( $this->transient ) ) {
-			// Register post meta
-			$this->register_post_meta();
+    /**
+     * Setup main components and features of the addon
+     *
+     * @return void
+     */
+    public function setup_addon()
+    {
+        if (!Helpers::is_addon_enabled($this->config['slug'])) {
+            return;
+        }
 
-			// Set transient
-			set_transient( $this->transient, true );
-		}
+        if (!get_transient($this->transient)) {
+            // Register post meta
+            $this->register_post_meta();
 
-		new Ratings\Actions();
-		new Ratings\Renderers();
-	}
+            // Set transient
+            set_transient($this->transient, true);
+        }
 
-	/**
- 	 * Add settings addon component
-	 *
-	 * @return array
-	 */
-	public function add_settings_addon( $addons ) {
-		$addons[] = $this->config;
+        new Ratings\Actions();
+        new Ratings\Renderers();
+    }
 
-		return $addons;
-	}
+    /**
+     * Add settings addon component
+     *
+     * @return array
+     */
+    public function add_settings_addon($addons)
+    {
+        $addons[] = $this->config;
+
+        return $addons;
+    }
 }
