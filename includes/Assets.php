@@ -299,13 +299,9 @@ class Assets
      */
     private static function init_manifest()
     {
-        $manifest_path = defined('THEME_DEV_ENV')
-            ? THEME_MANIFEST_DEV_PATH
-            : THEME_MANIFEST_PATH;
-
-        if (file_exists(THEME_TEMPLATE_DIR . "/{$manifest_path}")) {
+        if (file_exists(THEME_TEMPLATE_DIR . "/" . THEME_MANIFEST_PATH)) {
             self::$manifest = json_decode(
-                file_get_contents(THEME_TEMPLATE_DIR . "/{$manifest_path}"),
+                file_get_contents(THEME_TEMPLATE_DIR . "/" . THEME_MANIFEST_PATH),
                 true
             );
         }

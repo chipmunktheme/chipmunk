@@ -79,9 +79,9 @@ class Settings
                             ✓
                         </div>
 
-                        <?php if (!is_null(self::$license->meta->variant_id) && array_key_exists(self::$license->meta->variant_id, THEME_VARIANTS)) : ?>
+                        <?php if ($variant = self::get_license_variant()) : ?>
                             <div class="chipmunk__status-content">
-                                <strong><?php printf(esc_html__('%s License', 'chipmunk'), THEME_VARIANTS[self::$license->meta->variant_id]); ?></strong><br>
+                                <strong><?php printf(esc_html__('%s License', 'chipmunk'), $variant['name']); ?></strong><br>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -146,11 +146,19 @@ class Settings
     /**
      * Get the variant ID if the license is active and activated
      *
-     * @return int
+     * @return array|null
      */
     protected static function get_license_variant()
     {
-        return self::is_active_license() ? (int) self::$license->meta->variant_id : 0;
+        if (!self::is_active_license()) {
+            return null;
+        }
+
+        if (is_null(self::$license->meta->variant_id) || !array_key_exists(self::$license->meta->variant_id, THEME_VARIANTS)) {
+            return null;
+        }
+
+        return THEME_VARIANTS[self::$license->meta->variant_id];
     }
 
     /**
