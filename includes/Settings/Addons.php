@@ -98,21 +98,23 @@ class Addons extends Settings
                             <a href="<?php echo esc_attr($addon['url']); ?>" target="_blank" class="link"><?php esc_html_e('Read more', 'chipmunk'); ?> &rarr;</a>
                         </p>
 
-                        <?php if (!self::is_active_license()) : ?>
-                            <p class="chipmunk__addons-error">
-                                <?php esc_html_e('Please use a valid license to enable.', 'chipmunk'); ?>
-                            </p>
-                        <?php elseif (!self::is_addon_allowed($addon['slug'])) : ?>
-                            <p class="chipmunk__addons-error">
-                                <a href="<?php echo esc_url(THEME_SHOP_URL); ?>/account/licenses" target="_blank" class="button-secondary"><?php esc_html_e('Upgrade now', 'chipmunk'); ?></a>
-                                <?php printf(esc_html__('Available in the %s plan.', 'chipmunk'), THEME_VARIANTS[THEME_ADDONS[$addon['slug']]]); ?>
-                            </p>
-                        <?php else : ?>
-                            <label for="<?php echo esc_attr($addon['slug']); ?>">
-                                <input type="checkbox" name="<?php echo esc_attr($setting_name); ?>" id="<?php echo esc_attr($addon['slug']); ?>" value="1" <?php checked(1, $options[$addon['slug']] ?? '0'); ?> />
-                                <?php printf(esc_html__('Enable %s Addon', 'chipmunk'), $addon['name']); ?>
-                            </label>
-                        <?php endif; ?>
+                        <div class="chipmunk__addons-cta">
+                            <?php if (!self::is_active_license()) : ?>
+                                <p class="chipmunk__addons-error">
+                                    <?php esc_html_e('Please use a valid license to enable.', 'chipmunk'); ?>
+                                </p>
+                            <?php elseif (!self::is_addon_allowed($addon['slug'])) : ?>
+                                <p class="chipmunk__addons-error">
+                                    <a href="<?php echo esc_url(THEME_SHOP_URL); ?>/account/licenses" target="_blank" class="button-secondary"><?php esc_html_e('Upgrade now', 'chipmunk'); ?></a>
+                                    <span><?php printf(esc_html__('Available in the %s plan.', 'chipmunk'), array_column(self::get_allowed_variants($addon['slug']), 'name')[0]); ?></span>
+                                </p>
+                            <?php else : ?>
+                                <label for="<?php echo esc_attr($addon['slug']); ?>">
+                                    <input type="checkbox" name="<?php echo esc_attr($setting_name); ?>" id="<?php echo esc_attr($addon['slug']); ?>" value="1" <?php checked(1, $options[$addon['slug']] ?? '0'); ?> />
+                                    <?php printf(esc_html__('Enable %s Addon', 'chipmunk'), $addon['name']); ?>
+                                </label>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -125,15 +127,25 @@ class Addons extends Settings
     }
 
     /**
+     * Get the allowed variants for given addon
+     */
+    public static function get_allowed_variants($addon)
+    {
+        return array_filter(THEME_VARIANTS, function ($variant) use ($addon) {
+            return in_array($addon, $variant['addons']);
+        });
+    }
+
+    /**
      * Check if Chipmunk plugin is allowed
      */
     public static function is_addon_allowed($addon)
     {
-        if (!self::is_active_license()) {
+        if (!self::is_active_license() || !self::get_license_variant()) {
             return false;
         }
 
-        return self::get_license_variant() >= THEME_ADDONS[$addon];
+        return in_array($addon, self::get_license_variant()['addons']);
     }
 
     /**

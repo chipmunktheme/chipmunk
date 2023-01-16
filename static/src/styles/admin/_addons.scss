@@ -25,10 +25,17 @@
   margin: 0;
 }
 
+.chipmunk__addons-excerpt a {
+  white-space: nowrap;
+}
+
+.chipmunk__addons-cta {
+  margin-top: auto;
+}
+
 .chipmunk__addons-error {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 1em;
   color: var(--chipmunk--color--status-error) !important;
 }
