@@ -134,6 +134,7 @@ class Licenser extends Settings
 
         // Output settings content
         add_filter('chipmunk_settings_tabs', array($this, 'add_settings_tab'));
+        add_filter('chipmunk_admin_notices', array($this, 'add_inactive_license_notice'));
     }
 
     /**
@@ -406,5 +407,32 @@ class Licenser extends Settings
 
 <?php
         return ob_get_clean();
+    }
+
+    /**
+     * Adds a notice to the admin dashboard if the license is inactive.
+     *
+     * @param array $notices Array of notices.
+     *
+     * @return array Array of notices.
+     */
+    public function add_inactive_license_notice($notices)
+    {
+        if ((!$data = $this->get_license_data()) || 'toplevel_page_chipmunk' === get_current_screen()->id) {
+            return $notices;
+        }
+
+        if ('active' !== $data->license_key->status) {
+            $notices[] = array(
+                'type' => 'warning',
+                'message' => sprintf(
+                    __('Please <a href="%1$s">activate</a> your %2$s license to <strong>unlock all functionalities</strong>.', 'chipmunk'),
+                    get_admin_url(null, 'admin.php?page=chipmunk'),
+                    $this->config['item_name']
+                ),
+            );
+        }
+
+        return $notices;
     }
 }

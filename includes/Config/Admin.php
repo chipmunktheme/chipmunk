@@ -36,7 +36,7 @@ class Admin
 
         foreach ($notices as $notice) { ?>
             <div class="notice notice-<?php echo esc_attr($notice['type'] ?? 'error'); ?>">
-                <p><?php echo esc_html($notice['message']); ?></p>
+                <p><?php echo $notice['message']; ?></p>
             </div>
 <?php }
     }
