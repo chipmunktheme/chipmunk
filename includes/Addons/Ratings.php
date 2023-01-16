@@ -16,13 +16,13 @@ class Ratings
      * Config object
      * @var object
      */
-    private static $config;
+    private $config;
 
     /**
      * Transient name
      * @var string
      */
-    private static $transient;
+    private $transient;
 
     /**
      * Allowed post types supporting ChipmunkRatings

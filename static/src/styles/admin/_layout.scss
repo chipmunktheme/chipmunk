@@ -40,7 +40,7 @@
     box-shadow: none;
   }
 
-  .notice + & {
+  .notice+& {
     margin-top: 1.5rem;
   }
 }
@@ -53,10 +53,30 @@
 
 .chipmunk__head {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   background-color: var(--chipmunk--color--primary);
   color: var(--chipmunk--color--white);
+
+  .wrap {
+    width: 100%;
+    margin: 2em 0 0 !important;
+    color: var(--chipmunk--color--black);
+  }
+
+  .notice {
+    margin: 0 !important;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    border-radius: 0.25rem;
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  .notice:not(:first-of-type) {
+    margin-top: 1em !important;
+  }
 }
 
 .chipmunk__title {
@@ -75,7 +95,7 @@
     font-size: 1.25em;
   }
 
-  > span {
+  >span {
     position: absolute;
     top: 0;
     left: 100%;

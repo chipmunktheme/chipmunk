@@ -5,13 +5,89 @@
  ** ------------------------------------
  */
 
-@import 'tools/*';
-@import 'variables/*';
-@import 'placeholders/*';
-@import 'generic/*';
-@import 'vendor/*';
-@import 'layout/*';
-@import 'components/*';
-@import 'blocks/*';
-@import 'utilities/*';
-@import 'plugins/*';
+@import 'tools/_align.scss';
+@import 'tools/_breakpoints.scss';
+@import 'tools/_cover.scss';
+@import 'tools/_dropdown.scss';
+@import 'tools/_line-clamp.scss';
+@import 'tools/_loader.scss';
+@import 'tools/_settings.scss';
+@import 'tools/_spacers.scss';
+@import 'tools/_typography.scss';
+
+@import 'variables/_buttons.scss';
+@import 'variables/_colors.scss';
+@import 'variables/_layers.scss';
+@import 'variables/_layout.scss';
+@import 'variables/_misc.scss';
+@import 'variables/_typography.scss';
+
+@import 'placeholders/_box.scss';
+@import 'placeholders/_button.scss';
+@import 'placeholders/_caption.scss';
+@import 'placeholders/_container.scss';
+@import 'placeholders/_copy.scss';
+@import 'placeholders/_dropdown.scss';
+@import 'placeholders/_form.scss';
+@import 'placeholders/_heading.scss';
+@import 'placeholders/_link.scss';
+
+@import 'generic/_animations.scss';
+@import 'generic/_reset.scss';
+
+@import 'vendor/_flickity.scss';
+
+@import 'layout/_body.scss';
+@import 'layout/_component.scss';
+@import 'layout/_container.scss';
+@import 'layout/_header.scss';
+@import 'layout/_section.scss';
+@import 'layout/_wrapper.scss';
+
+@import 'components/_button.scss';
+@import 'components/_comment.scss';
+@import 'components/_content.scss';
+@import 'components/_entry.scss';
+@import 'components/_filter.scss';
+@import 'components/_form.scss';
+@import 'components/_heading.scss';
+@import 'components/_lead.scss';
+@import 'components/_media.scss';
+@import 'components/_members.scss';
+@import 'components/_menu-mobile.scss';
+@import 'components/_menu-primary.scss';
+@import 'components/_menu-secondary.scss';
+@import 'components/_menu-socials.scss';
+@import 'components/_menu-toolbox.scss';
+@import 'components/_overlay.scss';
+@import 'components/_page-foot.scss';
+@import 'components/_page-head.scss';
+@import 'components/_pagination.scss';
+@import 'components/_popup.scss';
+@import 'components/_profile.scss';
+@import 'components/_promo.scss';
+@import 'components/_ratings.scss';
+@import 'components/_resource.scss';
+@import 'components/_stats.scss';
+@import 'components/_tabs.scss';
+@import 'components/_tile.scss';
+@import 'components/_toolbox.scss';
+
+@import 'blocks/_buttons.scss';
+@import 'blocks/_code.scss';
+@import 'blocks/_columns.scss';
+@import 'blocks/_common.scss';
+@import 'blocks/_embeds.scss';
+@import 'blocks/_gallery.scss';
+@import 'blocks/_pullquote.scss';
+@import 'blocks/_quote.scss';
+@import 'blocks/_separator.scss';
+
+@import 'utilities/_avatar.scss';
+@import 'utilities/_display.scss';
+@import 'utilities/_dropdown.scss';
+@import 'utilities/_hamburger.scss';
+@import 'utilities/_hide.scss';
+@import 'utilities/_icon.scss';
+@import 'utilities/_loader.scss';
+@import 'utilities/_text.scss';

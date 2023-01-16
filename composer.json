@@ -23,7 +23,7 @@
     }
   ],
   "require": {
-    "advanced-custom-fields/advanced-custom-fields-pro": "^5.12",
+    "advanced-custom-fields/advanced-custom-fields-pro": "^6.0",
     "richtabor/merlin-wp": "dev-master"
   },
   "config": {

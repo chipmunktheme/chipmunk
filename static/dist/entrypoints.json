@@ -1,0 +1,17 @@
+{
+  "theme": {
+    "css": [
+      "css/theme.css"
+    ],
+    "js": [
+      "js/theme.js"
+    ],
+    "dependencies": []
+  },
+  "admin": {
+    "css": [
+      "css/admin.css"
+    ],
+    "dependencies": []
+  }
+}

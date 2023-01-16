@@ -24,7 +24,7 @@ class Merlin
                 'child_action_btn_url' => 'https://developer.wordpress.org/themes/advanced-topics/child-themes', // URL for the 'child-action-link'.
                 'dev_mode'             => false, // Enable development mode for testing.
                 'license_step'         => true, // EDD license activation step.
-                'license_required'     => true, // Require the license activation step.
+                'license_required'     => false, // Require the license activation step.
                 'license_help_url'     => '', // URL for the 'license-tooltip'.
                 'edd_remote_api_url'   => THEME_SHOP_URL, // EDD_Theme_Updater_Admin remote_api_url.
                 'edd_item_name'        => THEME_TITLE, // EDD_Theme_Updater_Admin item_name.
@@ -108,6 +108,10 @@ class Merlin
     public static function add_merlin_styles()
     {
         echo '<style>
+			.merlin__body {
+                flex-direction: column;
+			}
+
 			.merlin__button--knockout {
 				margin-top: 1em;
 				padding-right: 35px;
