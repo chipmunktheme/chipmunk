@@ -5,10 +5,39 @@
  ** ------------------------------------
  */
 
-@import 'tools/*';
-@import 'variables/*';
-@import 'placeholders/*';
-@import 'admin/*';
+@import 'tools/_align.scss';
+@import 'tools/_breakpoints.scss';
+@import 'tools/_cover.scss';
+@import 'tools/_dropdown.scss';
+@import 'tools/_line-clamp.scss';
+@import 'tools/_loader.scss';
+@import 'tools/_settings.scss';
+@import 'tools/_spacers.scss';
+@import 'tools/_typography.scss';
+
+@import 'variables/_buttons.scss';
+@import 'variables/_colors.scss';
+@import 'variables/_layers.scss';
+@import 'variables/_layout.scss';
+@import 'variables/_misc.scss';
+@import 'variables/_typography.scss';
+
+@import 'placeholders/_box.scss';
+@import 'placeholders/_button.scss';
+@import 'placeholders/_caption.scss';
+@import 'placeholders/_container.scss';
+@import 'placeholders/_copy.scss';
+@import 'placeholders/_dropdown.scss';
+@import 'placeholders/_form.scss';
+@import 'placeholders/_heading.scss';
+@import 'placeholders/_link.scss';
+
+@import 'admin/_addons.scss';
+@import 'admin/_box.scss';
+@import 'admin/_layout.scss';
+@import 'admin/_license.scss';
+@import 'admin/_nav.scss';
+@import 'admin/_status.scss';
 
 .toplevel_page_chipmunk #wpcontent {
   padding-left: 0;

@@ -11,6 +11,33 @@ namespace Chipmunk\Vendors\ThemeUpdater;
 class Updater
 {
     /**
+     * Config object
+     * @var object
+     */
+    private $config;
+
+    /**
+     * Strings array
+     *
+     * @var array
+     */
+    private $strings;
+
+    /**
+     * License key
+     *
+     * @var string
+     */
+    private $response_key;
+
+    /**
+     * License key
+     *
+     * @var string
+     */
+    private $item_slug;
+
+    /**
      * Initiate the Theme updater
      *
      * @param array $config    Array of arguments from the theme requesting an update check
@@ -18,16 +45,9 @@ class Updater
      */
     public function __construct($config = array(), $strings = array())
     {
-        $config = wp_parse_args($config, array());
-
-        $this->license        = $config['license'];
-        $this->item_name      = $config['item_name'];
-        $this->version        = $config['version'];
+        $this->config         = wp_parse_args($config, array());
         $this->item_slug      = sanitize_key($config['item_slug']);
-        $this->author         = $config['author'];
-        $this->beta           = $config['beta'];
-        $this->remote_api_url = $config['remote_api_url'];
-        $this->response_key   = $this->item_slug . '-' . $this->beta . '-update-response';
+        $this->response_key   = $this->config['item_slug'] . '-' . $this->config['beta'] . '-update-response';
         $this->strings        = $strings;
 
         // Theme Version Checker
@@ -40,7 +60,7 @@ class Updater
     /**
      * Update the theme update transient with the response from the version check
      *
-     * @param  array $value   The default update values.
+     * @param  object $value   The default update values.
      * @return array|boolean  If an update is available, returns the update parameters, if no update is needed returns false, if
      *                        the request fails returns false.
      */
@@ -85,16 +105,16 @@ class Updater
         if (false === $update_data) {
             $failed = false;
 
-            $response = wp_remote_post($this->remote_api_url, array(
+            $response = wp_remote_post($this->config['remote_api_url'], array(
                 'timeout'   => 15,
                 'body'      => array(
                     'edd_action' => 'get_version',
-                    'license'    => $this->license,
-                    'name'       => $this->item_name,
+                    'license'    => $this->config['license'],
+                    'name'       => $this->config['item_name'],
                     'slug'       => $this->item_slug,
-                    'version'    => $this->version,
-                    'author'     => $this->author,
-                    'beta'       => $this->beta,
+                    'version'    => $this->config['version'],
+                    'author'     => $this->config['author'],
+                    'beta'       => $this->config['beta'],
                 ),
             ));
 
@@ -111,8 +131,8 @@ class Updater
 
             // If the response failed, try again in 30 minutes
             if ($failed) {
-                $data = new stdClass;
-                $data->new_version = $this->version;
+                $data = new \stdClass;
+                $data->new_version = $this->config['version'];
                 set_transient($this->response_key, $data, strtotime('+30 minutes', time()));
                 return false;
             } else {
@@ -121,7 +141,7 @@ class Updater
             }
         }
 
-        if (version_compare($this->version, $update_data->new_version, '<')) {
+        if (version_compare($this->config['version'], $update_data->new_version, '<')) {
             return (array) $update_data;
         }
     }

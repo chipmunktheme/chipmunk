@@ -16,13 +16,13 @@ class Members
      * Config object
      * @var object
      */
-    private static $config;
+    private $config;
 
     /**
      * Transient name
      * @var string
      */
-    private static $transient;
+    private $transient;
 
     /**
      * Initializes the addon.
@@ -112,7 +112,7 @@ class Members
             $option_slug = "chipmunk_{$normalized_slug}_page_id";
             $current_page = $options[$option_slug];
 
-            if (empty($current_page) || !get_page($current_page) || get_post_status($current_page) != 'publish') {
+            if (empty($current_page) || !get_post($current_page) || get_post_status($current_page) != 'publish') {
                 // Add the page using the data from the array above
                 $post_id = wp_insert_post(
                     array(
@@ -128,7 +128,7 @@ class Members
                 );
 
                 $options[$option_slug] = $post_id;
-            } elseif (get_page($current_page) && get_post_status($current_page) != 'publish') {
+            } elseif (get_post($current_page) && get_post_status($current_page) != 'publish') {
                 wp_update_post(
                     array(
                         'ID'             => $current_page,

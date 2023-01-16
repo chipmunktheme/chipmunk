@@ -76,7 +76,7 @@ class Faker extends Settings
             $count = (int) get_post_meta($post->ID, $db_key, true);
 
             if (isset($count) && is_numeric($count)) {
-                update_post_meta($post->ID, $db_key, $count + \rand($start, ($start > $end ? $start : $end)));
+                update_post_meta($post->ID, $db_key, $count + rand($start, ($start > $end ? $start : $end)));
             }
         }
 

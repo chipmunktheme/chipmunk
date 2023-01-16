@@ -37,21 +37,16 @@
     text-decoration: none;
   }
 
-  &.is-valid {
+  &.is-active {
     color: var(--chipmunk--color--status-success);
   }
 
-  &.is-expires-soon,
-  &.is-site_inactive,
-  &.is-item_name_mismatch {
+  &.is-inactive,
+  &.is-disabled {
     color: var(--chipmunk--color--status-warning);
   }
 
-  &.is-expired,
-  &.is-error,
-  &.is-missing,
-  &.is-invalid,
-  &.is-invalid_item_id {
+  &.is-expired {
     color: var(--chipmunk--color--status-error);
   }
 }

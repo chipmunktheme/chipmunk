@@ -40,13 +40,13 @@ class Assets
     public static function enqueue_custom_assets()
     {
         // Load Chipmunk main stylesheet
-        if (self::has_file('styles/theme.css')) {
-            wp_enqueue_style('chipmunk-styles', self::revisioned_path('styles/theme.css'));
+        if (self::has_file('theme.css')) {
+            wp_enqueue_style('chipmunk-styles', self::revisioned_path('theme.css'));
         }
 
         // Load Chipmunk main script
-        if (self::has_file('scripts/theme.js')) {
-            wp_enqueue_script('chipmunk-scripts', self::revisioned_path('scripts/theme.js'));
+        if (self::has_file('theme.js')) {
+            wp_enqueue_script('chipmunk-scripts', self::revisioned_path('theme.js'));
         }
     }
 
@@ -183,8 +183,8 @@ class Assets
      */
     public static function enqueue_admin_scripts()
     {
-        if (self::has_file('styles/theme.css')) {
-            wp_enqueue_style('chipmunk-admin-styles', self::revisioned_path('styles/admin.css'));
+        if (self::has_file('admin.css')) {
+            wp_enqueue_style('chipmunk-admin-styles', self::revisioned_path('admin.css'));
         }
     }
 

@@ -13,6 +13,12 @@ use \Chipmunk\Settings;
 class Licenser extends Settings
 {
     /**
+     * Config object
+     * @var object
+     */
+    private $config;
+
+    /**
      * Strings array
      *
      * @var array
@@ -20,18 +26,18 @@ class Licenser extends Settings
     private $strings;
 
     /**
-     * Errors array
-     *
-     * @var array
-     */
-    private $errors;
-
-    /**
      * License key
      *
      * @var string
      */
     private $license_key;
+
+    /**
+     * Instance ID
+     *
+     * @var string
+     */
+    private $instance_id;
 
     /**
      * License key option
@@ -46,6 +52,13 @@ class Licenser extends Settings
      * @var string
      */
     private $license_data_option;
+
+    /**
+     * Instance ID option
+     *
+     * @var string
+     */
+    private $instance_id_option;
 
     /**
      * Setting name
@@ -67,7 +80,7 @@ class Licenser extends Settings
     function __construct($config = array(), $strings = array(), $errors = array())
     {
         // Set config defaults
-        $config = wp_parse_args($config, array(
+        $this->config = wp_parse_args($config, array(
             'remote_api_url'    => '',
             'item_id'           => '',
             'item_name'         => '',
@@ -82,44 +95,25 @@ class Licenser extends Settings
             'license-action'            => __('License Action', 'chipmunk'),
             'deactivate-license'        => __('Deactivate License', 'chipmunk'),
             'activate-license'          => __('Activate License', 'chipmunk'),
-            'status-unknown'            => __('License status is unknown.', 'chipmunk'),
-            'renew'                     => __('Renew?', 'chipmunk'),
+            'renew'                     => __('Renew License', 'chipmunk'),
             'unlimited'                 => __('unlimited', 'chipmunk'),
-            'license-key-is-active'     => __('License key is active.', 'chipmunk'),
             'expires%s'                 => __('Expires %s.', 'chipmunk'),
             '%1$s/%2$-sites'            => __('You have %1$s / %2$s sites activated.', 'chipmunk'),
-            'license-key-expired-%s'    => __('License key expired %s.', 'chipmunk'),
-            'license-key-expired'       => __('License key has expired.', 'chipmunk'),
-            'license-keys-do-not-match' => __('License keys do not match.', 'chipmunk'),
-            'license-is-invalid'        => __('License is invalid.', 'chipmunk'),
+            'license-is-active'         => __('License is active.', 'chipmunk'),
             'license-is-inactive'       => __('License is inactive.', 'chipmunk'),
-            'license-key-is-disabled'   => __('License key is disabled.', 'chipmunk'),
-            'site-is-inactive'          => __('Site is inactive.', 'chipmunk'),
-            'license-status-unknown'    => __('License status is unknown.', 'chipmunk'),
+            'license-is-disabled'       => __('License is disabled.', 'chipmunk'),
+            'license-is-expired'        => __('License is expired.', 'chipmunk'),
+            'license-is-unknown'        => __('License is unknown.', 'chipmunk'),
         ));
-
-        // Set default errors
-        $this->errors = wp_parse_args($errors, array(
-            'license-expired'           => __('Your license key expired on %s.', 'chipmunk'),
-            'license-disabled'          => __('Your license key has been disabled.', 'chipmunk'),
-            'license-missing'           => __('Your license key is invalid.', 'chipmunk'),
-            'license-invalid'           => __('Your license key is invalid.', 'chipmunk'),
-            'license-name-mismatch'     => __('This appears to be an invalid license key for %s.', 'chipmunk'),
-            'license-exceeded'          => __('Your license key has reached its activation limit.', 'chipmunk'),
-            'license-unknown'           => __('An error occurred, please try again.', 'chipmunk'),
-        ));
-
-        // Set config arguments
-        foreach ($config as $key => $value) {
-            $this->$key = $value;
-        }
 
         // Set license option names
-        $this->license_key_option = "{$this->item_slug}_license_key";
-        $this->license_data_option = "{$this->item_slug}_license_data";
+        $this->license_key_option = "{$this->config['item_slug']}_license_key";
+        $this->instance_id_option = "{$this->config['item_slug']}_instance_id";
+        $this->license_data_option = "{$this->config['item_slug']}_license_data";
 
-        // Set license key
+        // Set license options
         $this->license_key = get_option($this->license_key_option);
+        $this->instance_id = get_transient($this->instance_id_option);
 
         // Set hooks
         $this->hooks();
@@ -136,7 +130,7 @@ class Licenser extends Settings
         add_action('admin_init', array($this, 'register_option'));
         add_action('admin_init', array($this, 'activate_license'));
         add_action('admin_init', array($this, 'deactivate_license'));
-        add_action('admin_init', array($this, 'check_license'));
+        add_action('admin_init', array($this, 'validate_license'));
 
         // Output settings content
         add_filter('chipmunk_settings_tabs', array($this, 'add_settings_tab'));
@@ -149,55 +143,17 @@ class Licenser extends Settings
      */
     public function activate_license()
     {
-        if (!isset($_POST[$this->license_key_option])) {
-            return;
-        }
-
-        if (!isset($_POST["{$this->license_key_option}_activate"])) {
+        if (!isset($_POST["{$this->config['item_slug']}_activate"])) {
             return;
         }
 
         $this->license_key = sanitize_text_field($_POST[$this->license_key_option]);
 
-        if ($response = $this->get_api_response('activate_license')) {
-            $license_data = $this->check_license(true);
+        if ($data = $this->get_api_response('activate')) {
+            set_transient($this->instance_id_option, $data->instance->id);
 
-            if ('valid' != $license_data->license) {
-                switch ($license_data->license) {
-                    case 'expired':
-                        $message = sprintf($this->errors['license-expired'], date_i18n('F j, Y', strtotime($license_data->expires, current_time('timestamp'))));
-                        break;
-
-                    case 'disabled':
-                    case 'revoked':
-                        $message = $this->errors['license-disabled'];
-                        break;
-
-                    case 'missing':
-                        $message = $this->errors['license-missing'];
-                        break;
-
-                    case 'invalid':
-                    case 'site_inactive':
-                    case 'invalid_item_id':
-                        $message = $this->errors['license-invalid'];
-                        break;
-
-                    case 'item_name_mismatch':
-                        $message = sprintf($this->errors['license-item-mismatch'], $this->item_name);
-                        break;
-
-                    case 'no_activations_left':
-                        $message = $this->errors['license-exceeded'];
-                        break;
-
-                    default:
-                        $message = $this->errors['license-unknown'];
-                        break;
-                }
-
-                $this->display_settings_error(null, $message);
-            }
+            // Set fresh license data
+            $this->set_license_data($data);
         }
     }
 
@@ -208,43 +164,50 @@ class Licenser extends Settings
      */
     public function deactivate_license()
     {
-        if (!isset($_POST[$this->license_key_option])) {
+        if (!isset($_POST["{$this->config['item_slug']}_deactivate"])) {
             return;
         }
 
-        if (!isset($_POST["{$this->license_key_option}_deactivate"])) {
-            return;
-        }
+        if ($data = $this->get_api_response('deactivate')) {
+            delete_transient($this->instance_id_option);
 
-        if ($this->get_api_response('deactivate_license')) {
-            $this->check_license(true);
+            // Set fresh license data
+            $this->set_license_data($data);
         }
     }
 
     /**
      * Checks the license key and stores the license data in db.
      *
-     * @param bool $force_refresh Force connecting to the API and retrieving new license data
-     *
      * @return object
      */
-    public function check_license($force_refresh = false)
+    public function validate_license()
     {
-        if (!$force_refresh && $license_data = $this->get_license_data()) {
-            return $license_data;
-        }
-
-        if ($response = $this->get_api_response('check_license')) {
-            $license_data = json_decode(wp_remote_retrieve_body($response));
-
-            set_transient($this->license_data_option, $license_data, WEEK_IN_SECONDS);
-
-            return $license_data;
+        if (!$this->get_license_data() && $data = $this->get_api_response('validate')) {
+            // Set fresh license data
+            $this->set_license_data($data);
         }
     }
 
     /**
-     * Returns the license data (either from db or API call)
+     * Sets the license data.
+     *
+     * @return void
+     */
+    public function set_license_data($license_data)
+    {
+        // Unset unneeded data
+        unset($license_data->activated);
+        unset($license_data->deactivated);
+        unset($license_data->valid);
+        unset($license_data->error);
+
+        // Set license data
+        set_transient($this->license_data_option, serialize($license_data), WEEK_IN_SECONDS);
+    }
+
+    /**
+     * Returns the license data.
      *
      * @return object
      */
@@ -262,27 +225,28 @@ class Licenser extends Settings
      *
      * @param string $action Name of the API action
      *
-     * @return array Encoded JSON response.
+     * @return object JSON response.
      */
     private function get_api_response($action)
     {
-        $response = wp_remote_post($this->remote_api_url, array(
-            'timeout'   => 15,
-            'sslverify' => false,
-            'body'      => array(
-                'edd_action' => $action,
-                'license'    => trim($this->license_key),
-                'item_id'    => $this->item_id,
-                'url'        => home_url(),
-            ),
+        $license_param = array('license_key' => $this->license_key);
+        $instance_param = !empty($this->instance_id)
+            ? array('instance_id' => $this->instance_id)
+            : array('instance_name' => get_bloginfo('name'));
+
+        $response = wp_remote_post("https://api.lemonsqueezy.com/v1/licenses/{$action}", array(
+            'headers' => array('Accept' => 'application/json'),
+            'body'    => array_merge($license_param, $instance_param),
         ));
 
+        $body = json_decode(wp_remote_retrieve_body($response));
+
         if (!$this->is_valid_response($response)) {
-            $this->display_settings_error($response, $this->errors['license-unknown']);
+            $this->display_settings_error($response, $body->error);
             return;
         }
 
-        return $response;
+        return $body;
     }
 
     /**
@@ -312,80 +276,43 @@ class Licenser extends Settings
     }
 
     /**
-     * Constructs a renewal link
-     *
-     * @return string Renewal link.
-     */
-    private function get_renewal_link()
-    {
-        // If a renewal link was passed in the config, use that
-        if (!empty($this->renew_url)) {
-            return esc_url($this->renew_url);
-        }
-
-        if (!empty($this->item_id) && !empty($this->license_key)) {
-            $renew_url = add_query_arg(array(
-                'edd_license_key'   => $this->license_key,
-                'download_id'       => $this->item_id,
-            ), $this->remote_api_url . '/checkout/');
-
-            return esc_url($renew_url);
-        }
-
-        // Otherwise return the remote_api_url
-        return esc_url($this->remote_api_url);
-    }
-
-    /**
      * Returns a license status
      *
-     * @param object $license_data License data object
+     * @param object $data License data object
      *
      * @return string/object License status.
      */
-    public function get_license_status($license_data)
+    public function get_license_status($data)
     {
         $messages = array();
+        $license = $data->license_key;
 
         // If response doesn't include license data, return
-        if (!isset($license_data->license)) {
-            return $this->strings['license-status-unknown'];
+        if (empty($license)) {
+            return $this->strings['license-is-unknown'];
         }
 
-        if (isset($license_data->expires) && 'lifetime' != $license_data->expires) {
-            $expires = date_i18n('F j, Y', strtotime($license_data->expires, current_time('timestamp')));
-            $renew_link = '<a href="' . esc_url($this->get_renewal_link()) . '" target="_blank">' . $this->strings['renew'] . '</a>';
+        if ($license->expires_at) {
+            $expires_at = date_i18n('F j, Y', strtotime($license->expires_at, current_time('timestamp')));
+            $renew_link = '<a href="' . esc_url(THEME_SHOP_URL) . '" target="_blank">' . $this->strings['renew'] . '</a>';
         }
 
-        // Get site counts
-        $site_count = isset($license_data->site_count) ? $license_data->site_count : null;
-        $license_limit = isset($license_data->license_limit) ? $license_data->license_limit : null;
+        switch ($license->status) {
+            case 'active':
+                $messages[] = $this->strings['license-is-active'];
 
-        // If unlimited
-        if (0 == $license_limit) {
-            $license_limit = $this->strings['unlimited'];
-        }
-
-        switch ($license_data->license) {
-            case 'valid':
-                $messages[] = $this->strings['license-key-is-active'];
-
-                if (!empty($expires)) {
-                    $messages[] = sprintf($this->strings['expires%s'], $expires);
+                if (!empty($expires_at)) {
+                    $messages[] = sprintf($this->strings['expires%s'], $expires_at);
                 }
 
-                if ($site_count && $license_limit) {
-                    $messages[] = sprintf($this->strings['%1$s/%2$-sites'], $site_count, $license_limit);
+                if ($license->activation_usage) {
+                    $messages[] = sprintf($this->strings['%1$s/%2$-sites'], $license->activation_usage, $license->activation_limit ?? $this->strings['unlimited']);
                 }
 
                 break;
 
             case 'expired':
-                if (!empty($expires)) {
-                    $messages[] = sprintf($this->strings['license-key-expired-%s'], $expires);
-                } else {
-                    $messages[] = $this->strings['license-key-expired'];
-                }
+                $messages[] = $this->strings['license-is-expired'];
 
                 if (!empty($renew_link)) {
                     $messages[] = $renew_link;
@@ -393,25 +320,16 @@ class Licenser extends Settings
 
                 break;
 
-            case 'invalid':
-            case 'invalid_item_id':
-                $messages[] = $this->strings['license-is-invalid'];
-                break;
-
             case 'inactive':
                 $messages[] = $this->strings['license-is-inactive'];
                 break;
 
             case 'disabled':
-                $messages[] = $this->strings['license-key-is-disabled'];
-                break;
-
-            case 'site_inactive':
-                $messages[] = $this->strings['site-is-inactive'];
+                $messages[] = $this->strings['license-is-disabled'];
                 break;
 
             default:
-                $messages[] = $this->strings['license-status-unknown'];
+                $messages[] = $this->strings['license-is-unknown'];
                 break;
         }
 
@@ -450,14 +368,14 @@ class Licenser extends Settings
     {
         ob_start();
 
-        $license_data   = $this->get_license_data();
-        $license_status = $this->get_license_status($license_data);
+        $data   = $this->get_license_data();
+        $status = $this->get_license_status($data);
 ?>
 
         <form action="options.php" method="post">
             <div class="chipmunk__license chipmunk__box">
                 <h3 class="chipmunk__license-head">
-                    <?php echo $this->item_name; ?>
+                    <?php echo $this->config['item_name']; ?>
                 </h3>
 
                 <div class="chipmunk__license-body">
@@ -465,16 +383,22 @@ class Licenser extends Settings
 
                     <input id="<?php echo $this->license_key_option; ?>" name="<?php echo $this->license_key_option; ?>" type="text" class="regular-text" value="<?php echo esc_attr($this->license_key); ?>" placeholder="<?php echo esc_attr($this->strings['license-key']); ?>" />
 
-                    <?php if (!empty($license_data) && 'valid' == $license_data->license) : ?>
-                        <button type="submit" class="button-secondary" name="<?php echo $this->license_key_option; ?>_deactivate"><?php echo esc_attr($this->strings['deactivate-license']); ?></button>
+                    <?php if ('active' === $data->license_key->status) : ?>
+                        <button type="submit" class="button-secondary" name="<?php echo $this->config['item_slug']; ?>_deactivate"><?php echo esc_attr($this->strings['deactivate-license']); ?></button>
                     <?php else : ?>
-                        <button type="submit" class="button-primary" name="<?php echo $this->license_key_option; ?>_activate"><?php echo esc_attr($this->strings['activate-license']); ?></button>
+                        <button type="submit" class="button-primary" name="<?php echo $this->config['item_slug']; ?>_activate"><?php echo esc_attr($this->strings['activate-license']); ?></button>
                     <?php endif; ?>
                 </div>
 
-                <div class="chipmunk__license-data is-<?php echo $license_data->license ?? ''; ?>">
-                    <p class="description"><?php echo $license_status; ?></p>
-                </div>
+                <?php if (empty($this->license_key)) : ?>
+                    <div class="chipmunk__license-data is-inactive">
+                        <p class="description"><?php echo __('Please activate your license to unlock all functionalities.', 'chipmunk'); ?></p>
+                    </div>
+                <?php else : ?>
+                    <div class="chipmunk__license-data is-<?php echo $data->license_key->status; ?>">
+                        <p class="description"><?php echo $status; ?></p>
+                    </div>
+                <?php endif; ?>
 
                 <?php do_action('chipmunk_license_content'); ?>
             </div>

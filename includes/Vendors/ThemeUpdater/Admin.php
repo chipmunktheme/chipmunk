@@ -11,6 +11,12 @@ namespace Chipmunk\Vendors\ThemeUpdater;
 class Admin
 {
     /**
+     * Config object
+     * @var object
+     */
+    private $config;
+
+    /**
      * Strings array
      *
      * @var array
@@ -24,7 +30,7 @@ class Admin
      */
     function __construct($config = array(), $strings = array())
     {
-        $config = wp_parse_args($config, array(
+        $this->config = wp_parse_args($config, array(
             'remote_api_url'    => '',
             'item_id'           => '',
             'item_name'         => '',
@@ -62,20 +68,20 @@ class Admin
         }
 
         /* If there is no valid license key status, don't allow updates. */
-        if (get_option($this->item_slug . '_license_key_status', false) != 'valid') {
+        if (get_option($this->config['item_slug'] . '_license_key_status', false) != 'valid') {
             return false;
         }
 
         new Updater(
             array(
-                'remote_api_url'    => $this->remote_api_url,
-                'version'           => $this->version,
-                'license'           => get_option($this->item_slug . '_license_key'),
-                'item_id'           => $this->item_id,
-                'item_name'         => $this->item_name,
-                'item_slug'         => $this->item_slug,
-                'author'            => $this->author,
-                'beta'              => $this->beta,
+                'remote_api_url'    => $this->config['remote_api_url'],
+                'version'           => $this->config['version'],
+                'license'           => get_option($this->config['item_slug'] . '_license_key'),
+                'item_id'           => $this->config['item_id'],
+                'item_name'         => $this->config['item_name'],
+                'item_slug'         => $this->config['item_slug'],
+                'author'            => $this->config['author'],
+                'beta'              => $this->config['beta'],
             ),
 
             $this->strings

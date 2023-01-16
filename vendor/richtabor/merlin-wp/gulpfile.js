@@ -3,42 +3,41 @@
 * Project Configuration for gulp tasks.
 */
 
-const pkg                     = require('./package.json');
-
-const project                 = pkg.name;
-const {slug} = pkg;
-const {version} = pkg;
-const projectURL              = 'http://demo.merlinwp.dev/wp-admin/themes.php?page=merlin';
+var pkg                     = require('./package.json');
+var project                 = pkg.name;
+var slug                    = pkg.slug;
+var version                 = pkg.version;
+var projectURL              = 'http://demo.merlinwp.dev/wp-admin/themes.php?page=merlin';
 
 // Translations.
-const text_domain             = '@@textdomain';
-const destFile                = `${slug}.pot`;
-const packageName             = project;
-const bugReport               = pkg.author_uri;
-const lastTranslator          = pkg.author;
-const team                    = pkg.author_shop;
-const translatePath           = `./languages/${  destFile}`;
-const translatableFiles       = ['./**/*.php', '!merlin-config-sample.php', '!merlin-filters-sample.php' ];
+var text_domain             = '@@textdomain';
+var destFile                = slug+'.pot';
+var packageName             = project;
+var bugReport               = pkg.author_uri;
+var lastTranslator          = pkg.author;
+var team                    = pkg.author_shop;
+var translatePath           = './languages/' + destFile;
+var translatableFiles       = ['./**/*.php', '!merlin-config-sample.php', '!merlin-filters-sample.php' ];
 
 // Styles.
-const merlinStyleSRC          = './assets/scss/merlin.scss'; // Path to main .scss file.
-const merlinStyleDestination  = './assets/css/'; // Path to place the compiled CSS file.
-const merlinCssFiles          = './assets/css/**/*.css'; // Path to main .scss file.
-const merlinStyleWatchFiles   = './assets/scss/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
+var merlinStyleSRC          = './assets/scss/merlin.scss'; // Path to main .scss file.
+var merlinStyleDestination  = './assets/css/'; // Path to place the compiled CSS file.
+var merlinCssFiles          = './assets/css/**/*.css'; // Path to main .scss file.
+var merlinStyleWatchFiles   = './assets/scss/**/*.scss'; // Path to all *.scss files inside css folder and inside them.
 
 // Scripts.
-const merlinScriptSRC         = './assets/js/merlin.js'; // Path to JS custom scripts folder.
-const merlinScriptDestination = './assets/js/'; // Path to place the compiled JS custom scripts file.
-const merlinScriptFile        = 'merlin'; // Compiled JS file name.
-const merlinScriptWatchFiles  = './assets/js/*.js'; // Path to all *.scss files inside css folder and inside them.
+var merlinScriptSRC         = './assets/js/merlin.js'; // Path to JS custom scripts folder.
+var merlinScriptDestination = './assets/js/'; // Path to place the compiled JS custom scripts file.
+var merlinScriptFile        = 'merlin'; // Compiled JS file name.
+var merlinScriptWatchFiles  = './assets/js/*.js'; // Path to all *.scss files inside css folder and inside them.
 
 // Watch files.
-const projectPHPWatchFiles    = ['./**/*.php', '!_dist'];
+var projectPHPWatchFiles    = ['./**/*.php', '!_dist'];
 
 // Build files.
-const buildFiles              = ['./**', '!node_modules/**', '!dist/', '!demo/**', '!composer.json', '!composer.lock', '!.gitattributes', '!phpcs.xml', '!package.json', '!package-lock.json', '!gulpfile.js', '!LICENSE', '!README.md', '!assets/scss/**', '!merlin-config-sample.php', '!merlin-filters-sample.php', '!CODE_OF_CONDUCT.md' ];
-const buildDestination        = './dist/merlin/';
-const distributionFiles       = './dist/merlin/**/*';
+var buildFiles              = ['./**', '!node_modules/**', '!dist/', '!demo/**', '!composer.json', '!composer.lock', '!.gitattributes', '!phpcs.xml', '!package.json', '!package-lock.json', '!gulpfile.js', '!LICENSE', '!README.md', '!assets/scss/**', '!merlin-config-sample.php', '!merlin-filters-sample.php', '!CODE_OF_CONDUCT.md' ];
+var buildDestination        = './dist/merlin/';
+var distributionFiles       = './dist/merlin/**/*';
 
 // Browsers you care about for autoprefixing. https://github.com/ai/browserslist
 const AUTOPREFIXER_BROWSERS = [
@@ -58,28 +57,27 @@ const AUTOPREFIXER_BROWSERS = [
 /**
 * Load Plugins.
 */
-const gulp         = require('gulp');
-const autoprefixer = require('gulp-autoprefixer');
-const browserSync  = require('browser-sync').create();
-const cache        = require('gulp-cache');
-const cleaner      = require('gulp-clean');
-const copy         = require('gulp-copy');
-const csscomb      = require('gulp-csscomb');
-const filter       = require('gulp-filter');
-const lineec       = require('gulp-line-ending-corrector');
-const minifycss    = require('gulp-clean-css');
-const notify       = require('gulp-notify');
-
-const {reload} = browserSync;
-const rename       = require('gulp-rename');
-const replace      = require('gulp-replace-task');
-const runSequence  = require('gulp-run-sequence');
-const sass         = require('gulp-sass');
-const sort         = require('gulp-sort');
-const uglify       = require('gulp-uglify');
-const wpPot        = require('gulp-wp-pot');
-const zip          = require('gulp-zip');
-const composer     = require('gulp-composer');
+var gulp         = require('gulp');
+var autoprefixer = require('gulp-autoprefixer');
+var browserSync  = require('browser-sync').create();
+var cache        = require('gulp-cache');
+var cleaner      = require('gulp-clean');
+var copy         = require('gulp-copy');
+var csscomb      = require('gulp-csscomb');
+var filter       = require('gulp-filter');
+var lineec       = require('gulp-line-ending-corrector');
+var minifycss    = require('gulp-clean-css');
+var notify       = require('gulp-notify');
+var reload       = browserSync.reload;
+var rename       = require('gulp-rename');
+var replace      = require('gulp-replace-task');
+var runSequence  = require('gulp-run-sequence');
+var sass         = require('gulp-sass');
+var sort         = require('gulp-sort');
+var uglify       = require('gulp-uglify');
+var wpPot        = require('gulp-wp-pot');
+var zip          = require('gulp-zip');
+var composer     = require('gulp-composer');
 
 /**
  * Development Tasks.
@@ -166,11 +164,11 @@ gulp.task( 'build-translate', function () {
 	.pipe( sort() )
 	.pipe( wpPot( {
 		domain        : text_domain,
-		destFile,
+		destFile      : destFile,
 		package       : project,
-		bugReport,
-		lastTranslator,
-		team
+		bugReport     : bugReport,
+		lastTranslator: lastTranslator,
+		team          : team
 	} ))
 	.pipe( gulp.dest( translatePath ) )
 
@@ -206,13 +204,13 @@ gulp.task('build-variables', ['build-clean-and-copy'], function () {
 });
 
 gulp.task( 'build-zip', ['build-variables'] , function() {
-    return gulp.src( `${buildDestination}/**` , { base: 'dist' } )
+    return gulp.src( buildDestination+'/**' , { base: 'dist' } )
     .pipe( zip( 'merlin.zip' ) )
     .pipe( gulp.dest( './dist/' ) );
 });
 
 gulp.task( 'build-clean-after-zip', ['build-zip'], function () {
-	return gulp.src( [ buildDestination, `!/dist/${  slug  }-wp.zip`] , { read: false } )
+	return gulp.src( [ buildDestination, '!/dist/' + slug + '-wp.zip'] , { read: false } )
 	.pipe(cleaner());
 });
 
@@ -220,7 +218,7 @@ gulp.task( 'build-zip-and-clean', ['build-zip', 'build-clean-after-zip' ], funct
 
 gulp.task( 'build-notification', function () {
 	return gulp.src( '' )
-	.pipe( notify( { message: `Your build of ${  packageName  } is complete.`, onLast: true } ) );
+	.pipe( notify( { message: 'Your build of ' + packageName + ' is complete.', onLast: true } ) );
 });
 
 gulp.task('build', function(callback) {

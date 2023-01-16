@@ -73,20 +73,23 @@ class Settings
                     <?php echo THEME_TITLE; ?>
                 </h1>
 
-                <?php if (!empty(self::$license) && 'valid' == self::$license->license) : ?>
-                    <a href="<?php echo THEME_SHOP_URL; ?>/account" target="_blank" class="chipmunk__status">
+                <?php if (!empty(self::$license) && 'active' == self::$license->license_key->status) : ?>
+                    <div class="chipmunk__status">
                         <div class="chipmunk__status-icon">
                             ✓
                         </div>
 
-                        <div class="chipmunk__status-content">
-                            <?php if (!empty(self::$license->price_id)) : ?>
-                                <strong><?php printf(esc_html__('%s License', 'chipmunk'), THEME_PLANS[self::$license->price_id]); ?></strong><br>
-                            <?php endif; ?>
-                            <?php echo esc_html(self::$license->customer_email); ?>
-                        </div>
-                    </a>
+                        <?php if (!is_null(self::$license->meta->variant_id) && array_key_exists(self::$license->meta->variant_id, THEME_VARIANTS)) : ?>
+                            <div class="chipmunk__status-content">
+                                <strong><?php printf(esc_html__('%s License', 'chipmunk'), THEME_VARIANTS[self::$license->meta->variant_id]); ?></strong><br>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 <?php endif; ?>
+
+                <div class="wrap">
+                    <h2></h2>
+                </div>
             </div>
 
             <div class="chipmunk__nav chipmunk__wrap">
@@ -131,23 +134,23 @@ class Settings
     }
 
     /**
-     * Is valid license activated
+     * Is active license activated
      *
      * @return bool
      */
-    protected static function is_valid_license()
+    protected static function is_active_license()
     {
-        return !empty(self::$license) && 'valid' == self::$license->license;
+        return !empty(self::$license) && 'active' == self::$license->license_key->status;
     }
 
     /**
-     * Get the price ID if the license is valid and activated
+     * Get the variant ID if the license is active and activated
      *
      * @return int
      */
-    protected static function get_license_price()
+    protected static function get_license_variant()
     {
-        return self::is_valid_license() ? (int) self::$license->price_id : 0;
+        return self::is_active_license() ? (int) self::$license->meta->variant_id : 0;
     }
 
     /**
