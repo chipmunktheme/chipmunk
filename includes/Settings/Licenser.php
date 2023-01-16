@@ -33,13 +33,6 @@ class Licenser extends Settings
     private $license_key;
 
     /**
-     * Instance ID
-     *
-     * @var string
-     */
-    private $instance_id;
-
-    /**
      * License key option
      *
      * @var string
@@ -113,7 +106,6 @@ class Licenser extends Settings
 
         // Set license options
         $this->license_key = get_option($this->license_key_option);
-        $this->instance_id = get_transient($this->instance_id_option);
 
         // Set hooks
         $this->hooks();
@@ -226,13 +218,14 @@ class Licenser extends Settings
      *
      * @param string $action Name of the API action
      *
-     * @return object JSON response.
+     * @return object|null JSON response.
      */
     private function get_api_response($action)
     {
-        $license_param = array('license_key' => $this->license_key);
-        $instance_param = !empty($this->instance_id)
-            ? array('instance_id' => $this->instance_id)
+        $license_param = array('license_key' => empty($this->license_key) ? 'invalid' : $this->license_key);
+        $instance_id = get_transient($this->instance_id_option);
+        $instance_param = !empty($instance_id)
+            ? array('instance_id' => $instance_id)
             : array('instance_name' => get_bloginfo('name'));
 
         $response = wp_remote_post("https://api.lemonsqueezy.com/v1/licenses/{$action}", array(
@@ -286,19 +279,18 @@ class Licenser extends Settings
     public function get_license_status($data)
     {
         $messages = array();
-        $license = $data->license_key;
 
         // If response doesn't include license data, return
-        if (empty($license)) {
+        if (empty($data->license_key)) {
             return $this->strings['license-is-unknown'];
         }
 
-        if ($license->expires_at) {
-            $expires_at = date_i18n('F j, Y', strtotime($license->expires_at, current_time('timestamp')));
+        if ($data->license_key->expires_at) {
+            $expires_at = date_i18n('F j, Y', strtotime($data->license_key->expires_at, current_time('timestamp')));
             $renew_link = '<a href="' . esc_url(THEME_SHOP_URL) . '" target="_blank">' . $this->strings['renew'] . '</a>';
         }
 
-        switch ($license->status) {
+        switch ($data->license_key->status) {
             case 'active':
                 $messages[] = $this->strings['license-is-active'];
 
@@ -306,8 +298,8 @@ class Licenser extends Settings
                     $messages[] = sprintf($this->strings['expires%s'], $expires_at);
                 }
 
-                if ($license->activation_usage) {
-                    $messages[] = sprintf($this->strings['%1$s/%2$-sites'], $license->activation_usage, $license->activation_limit ?? $this->strings['unlimited']);
+                if ($data->license_key->activation_usage) {
+                    $messages[] = sprintf($this->strings['%1$s/%2$-sites'], $data->license_key->activation_usage, $data->license_key->activation_limit ?? $this->strings['unlimited']);
                 }
 
                 break;
@@ -384,14 +376,14 @@ class Licenser extends Settings
 
                     <input id="<?php echo $this->license_key_option; ?>" name="<?php echo $this->license_key_option; ?>" type="text" class="regular-text" value="<?php echo esc_attr($this->license_key); ?>" placeholder="<?php echo esc_attr($this->strings['license-key']); ?>" />
 
-                    <?php if ('active' === $data->license_key->status) : ?>
+                    <?php if (!empty($data->license_key) && 'active' === $data->license_key->status) : ?>
                         <button type="submit" class="button-secondary" name="<?php echo $this->config['item_slug']; ?>_deactivate"><?php echo esc_attr($this->strings['deactivate-license']); ?></button>
                     <?php else : ?>
                         <button type="submit" class="button-primary" name="<?php echo $this->config['item_slug']; ?>_activate"><?php echo esc_attr($this->strings['activate-license']); ?></button>
                     <?php endif; ?>
                 </div>
 
-                <?php if (empty($this->license_key)) : ?>
+                <?php if (empty($data->license_key)) : ?>
                     <div class="chipmunk__license-data is-inactive">
                         <p class="description"><?php echo __('Please activate your license to unlock all functionalities.', 'chipmunk'); ?></p>
                     </div>
@@ -418,11 +410,13 @@ class Licenser extends Settings
      */
     public function add_inactive_license_notice($notices)
     {
-        if ((!$data = $this->get_license_data()) || 'toplevel_page_chipmunk' === get_current_screen()->id) {
+        if ('toplevel_page_chipmunk' === get_current_screen()->id) {
             return $notices;
         }
 
-        if ('active' !== $data->license_key->status) {
+        $data = $this->get_license_data();
+
+        if (empty($data->license_key) || 'active' !== $data->license_key->status) {
             $notices[] = array(
                 'type' => 'warning',
                 'message' => sprintf(
