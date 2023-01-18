@@ -14,7 +14,7 @@
 }
 
 .c-entry__hero {
-  @include cover(0.5);
+  @include cover(rgba(0 0 0 / 0.5));
 
   position: relative;
   display: flex;
@@ -25,9 +25,9 @@
   max-height: 70rem;
   overflow: hidden;
 
-  > img,
-  > svg,
-  > video {
+  >img,
+  >svg,
+  >video {
     position: absolute;
     inset: 0;
     height: 100%;

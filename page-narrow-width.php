@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Layout - Narrow Width
  * Chipmunk: Page Narrow Width
@@ -7,4 +8,4 @@
  * @subpackage Chipmunk
  */
 
-get_template_part( 'page' );
+get_template_part('page');

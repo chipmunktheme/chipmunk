@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Listing - Resources
  * Chipmunk: Page Resources
@@ -9,6 +10,6 @@
 
 get_header(); ?>
 
-	<?php Chipmunk\Helpers::get_template_part( array( 'sections/loop', 'resource' ) ); ?>
+	<?php Chipmunk\Helpers::get_template_part(['sections/loop', 'resource']); ?>
 
 <?php get_footer(); ?>

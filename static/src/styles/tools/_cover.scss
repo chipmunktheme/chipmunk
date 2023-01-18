@@ -2,12 +2,12 @@
 ** Tools - Cover
 ** ----------------------------------------------------------------------------- */
 
-@mixin cover($alpha: 0.1, $color: rgba(0, 0, 0)) {
+@mixin cover($color: rgba(0 0 0 / 0.1)) {
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba($color, 0), rgba($color, $alpha));
+    background-image: linear-gradient(rgba(0 0 0 / 0), $color);
     pointer-events: none;
   }
 }

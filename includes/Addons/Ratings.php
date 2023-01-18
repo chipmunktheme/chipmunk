@@ -30,7 +30,7 @@ class Ratings
      * @since 1.0
      * @var array
      */
-    private $allowed_types = array('post', 'resource');
+    private $allowed_types = ['post', 'resource'];
 
     /**
      * Initializes the addon.
@@ -40,15 +40,15 @@ class Ratings
      *
      * @return void
      */
-    public function __construct($config = array())
+    public function __construct($config = [])
     {
         // Set config defaults
-        $this->config = wp_parse_args($config, array(
+        $this->config = wp_parse_args($config, [
             'name'         => '',
             'slug'         => '',
             'excerpt'      => '',
             'url'          => '',
-        ));
+        ]);
 
         $this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
 
@@ -63,8 +63,8 @@ class Ratings
      */
     private function hooks()
     {
-        add_action('init', array($this, 'setup_addon'));
-        add_filter('chipmunk_settings_addons', array($this, 'add_settings_addon'));
+        add_action('init', [$this, 'setup_addon']);
+        add_filter('chipmunk_settings_addons', [$this, 'add_settings_addon']);
     }
 
     /**
@@ -74,10 +74,10 @@ class Ratings
      */
     private function register_post_meta()
     {
-        $posts = get_posts(array(
+        $posts = get_posts([
             'posts_per_page' => -1,
             'post_type'      => $this->allowed_types,
-        ));
+        ]);
 
         foreach ($posts as $post) {
             $this->add_default_meta($post->ID, $this->allowed_types);
@@ -93,11 +93,11 @@ class Ratings
      */
     private function add_default_meta($post_ID, $allowed_types)
     {
-        $defaut_values = array(
+        $defaut_values = [
             '_' . THEME_SLUG . '_rating_count'   => 0,
             '_' . THEME_SLUG . '_rating_average' => 0,
             '_' . THEME_SLUG . '_rating_rank'    => 0,
-        );
+        ];
 
         return \Chipmunk\Helpers::add_post_meta($post_ID, $defaut_values, $allowed_types);
     }

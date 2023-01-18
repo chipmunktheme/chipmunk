@@ -4,6 +4,7 @@ namespace Chipmunk;
 
 use Chipmunk\Customizer;
 use Chipmunk\Settings\Addons;
+use Chipmunk\Settings\Licenser;
 
 /**
  * Theme specific helpers.
@@ -14,19 +15,103 @@ use Chipmunk\Settings\Addons;
 class Helpers
 {
     /**
-     * Check if Chipmunk plugin is enabled
-     */
-    public static function is_addon_enabled($addon)
-    {
-        return Addons::is_addon_enabled($addon);
-    }
-
-    /**
      * Get theme option alias
+     *
+     * @param string $name    Option name
+     * @param mixed  $default Default value
      */
     public static function get_theme_option($name, $default = false)
     {
         return Customizer::get_theme_option($name, $default);
+    }
+
+    /**
+     * Is active license activated
+     *
+     * @return bool
+     */
+    public static function is_active_license()
+    {
+        $license = Licenser::get_instance()->get_license_data();
+
+        return !empty($license) && 'active' == $license->license_key->status;
+    }
+
+    /**
+     * Get the variant ID if the license is active and activated
+     *
+     * @return array|null
+     */
+    public static function get_license_variant()
+    {
+        $license = Licenser::get_instance()->get_license_data();
+
+        if (empty($license) || !self::is_active_license($license)) {
+            return null;
+        }
+
+        if (is_null($license->meta->variant_id) || !array_key_exists($license->meta->variant_id, THEME_VARIANTS)) {
+            return null;
+        }
+
+        return THEME_VARIANTS[$license->meta->variant_id];
+    }
+
+    /**
+     * Check if Chipmunk plugin is allowed
+     */
+    public static function is_addon_allowed($addon)
+    {
+        $license = Licenser::get_instance()->get_license_data();
+
+        if (!Helpers::is_active_license($license) || !Helpers::get_license_variant($license)) {
+            return false;
+        }
+
+        return in_array($addon, Helpers::get_license_variant($license)['addons']);
+    }
+
+    /**
+     * Check if Chipmunk plugin is enabled
+     *
+     * @param string $addon   Addon slug
+     *
+     * @return bool
+     */
+    public static function is_addon_enabled($addon)
+    {
+        $license = Licenser::get_instance()->get_license_data();
+        $option_name = Addons::get_instance()->get_option_name();
+        $option = get_option($option_name);
+
+        return self::is_addon_allowed($license, $addon) && !empty($option[$addon]);
+    }
+
+    /**
+     * Get the allowed variants for given addon
+     *
+     * @param string $addon Addon slug
+     */
+    public static function get_allowed_variants($addon)
+    {
+        return array_filter(THEME_VARIANTS, function ($variant) use ($addon) {
+            return in_array($addon, $variant['addons']);
+        });
+    }
+
+    /**
+     * Check if the API response is valid
+     *
+     * @param object $response Remote API response object
+     *
+     * @return boolean
+     */
+    public static function is_valid_response($response)
+    {
+        return
+            !is_wp_error($response)
+            && 200 == wp_remote_retrieve_response_code($response)
+            && !empty(wp_remote_retrieve_body($response));
     }
 
     /**
@@ -46,7 +131,7 @@ class Helpers
      *
      * @return string           The contents of the template.
      */
-    public static function get_template_part($template, $params = array(), $output = true)
+    public static function get_template_part($template, $params = [], $output = true)
     {
         if (!$output) {
             ob_start();
@@ -78,28 +163,28 @@ class Helpers
         $php_version = phpversion();
         $php_min_version = '7.4.0';
         $wp_min_version = '5.0';
-        $notices = array();
+        $notices = [];
 
         if (version_compare($php_min_version, $php_version, '>')) {
-            $notices[] = array(
+            $notices[] = [
                 'type' => 'error',
                 'message' => sprintf(
                     __('Chipmunk requires PHP %1$s or greater. You have %2$s.', 'chipmunk'),
                     $php_min_version,
                     $php_version
                 ),
-            );
+            ];
         }
 
         if (version_compare($wp_min_version, $wp_version, '>')) {
-            $notices[] = array(
+            $notices[] = [
                 'type' => 'error',
                 'message' => sprintf(
                     __('Chipmunk requires WordPress %1$s or greater. You have %2$s.', 'chipmunk'),
                     $wp_min_version,
                     $wp_version
                 ),
-            );
+            ];
         }
 
         return $notices;
@@ -120,7 +205,7 @@ class Helpers
         }
 
         $modifiers = array_slice(func_get_args(), 1);
-        $classes   = array($name);
+        $classes   = [$name];
 
         foreach ($modifiers as $modifier) {
             if (!empty($modifier)) {
@@ -169,12 +254,12 @@ class Helpers
             // Verify the captcha response from Google
             $remote_response = wp_remote_post(
                 'https://www.google.com/recaptcha/api/siteverify',
-                array(
-                    'body' => array(
+                [
+                    'body' => [
                         'secret' => $secret_key,
                         'response' => $response
-                    )
-                )
+                    ]
+                ]
             );
 
             $success = false;
@@ -195,7 +280,7 @@ class Helpers
      */
     public static function get_socials()
     {
-        $socials = array();
+        $socials = [];
 
         foreach (Customizer::get_socials() as $social) {
             $value = self::get_theme_option(strtolower($social));
@@ -299,12 +384,12 @@ class Helpers
     /**
      * Recursively get taxonomy and its children
      */
-    public static function get_taxonomy_hierarchy($taxonomy, $args = array(), $parent = 0)
+    public static function get_taxonomy_hierarchy($taxonomy, $args = [], $parent = 0)
     {
-        $children = array();
+        $children = [];
         $taxonomy = is_array($taxonomy) ? array_shift($taxonomy) : $taxonomy;
 
-        $terms = get_terms($taxonomy, wp_parse_args($args, array('parent' => $parent)));
+        $terms = get_terms($taxonomy, wp_parse_args($args, ['parent' => $parent]));
 
         if (!empty($terms) && !is_wp_error($terms)) {
             foreach ($terms as $term) {
@@ -336,12 +421,12 @@ class Helpers
     /**
      * Conditionally display post terms
      */
-    public static function display_term_list($terms, $args = array())
+    public static function display_term_list($terms, $args = [])
     {
-        $args = array_merge(array(
+        $args = array_merge([
             'type'     => 'link',
             'quantity' => -1,
-        ), $args);
+        ], $args);
 
         $output = '';
         $count = count($terms);
@@ -436,7 +521,7 @@ class Helpers
                     </div>
 
                     <div class="c-comment__reply">
-                        <?php comment_reply_link(array_merge($args, array('reply_text' => self::get_template_part('partials/icon', array('icon' => 'reply'), false) . esc_html__('Reply', 'chipmunk'), 'depth' => $depth, 'max_depth' => $args['max_depth']))); ?>
+                        <?php comment_reply_link(array_merge($args, ['reply_text' => self::get_template_part('partials/icon', ['icon' => 'reply'], false) . esc_html__('Reply', 'chipmunk'), 'depth' => $depth, 'max_depth' => $args['max_depth']])); ?>
                     </div>
 
                     <?php if (!$comment->comment_approved) : ?>
@@ -504,7 +589,7 @@ class Helpers
     public static function get_google_fonts($api_key, $sort = 'popularity')
     {
         $ch = curl_init("https://www.googleapis.com/webfonts/v1/webfonts?key=$api_key&sort=$sort");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
@@ -524,9 +609,9 @@ class Helpers
     /**
      * Parse Google Fonts url
      */
-    public static function get_google_fonts_url($fonts = array())
+    public static function get_google_fonts_url($fonts = [])
     {
-        $font_families = array();
+        $font_families = [];
 
         foreach ($fonts as $font) {
             if (!array_key_exists($font, $font_families)) {
@@ -534,10 +619,10 @@ class Helpers
             }
         }
 
-        $query_args = array(
+        $query_args = [
             'family' => urlencode(implode('|', array_values($font_families))),
             'subset' => urlencode('latin,latin-ext'),
-        );
+        ];
 
         return esc_url(add_query_arg($query_args, '//fonts.googleapis.com/css'));
     }
@@ -547,7 +632,7 @@ class Helpers
      */
     public static function get_extension_by_mime($mime)
     {
-        $extensions = array(
+        $extensions = [
             'image/jpeg'     => '.jpeg',
             'image/jpg'     => '.jpg',
             'image/png'     => '.png',
@@ -555,7 +640,7 @@ class Helpers
             'image/bmp'     => '.bmp',
             'image/webp'     => '.webp',
             'image/svg+xml' => '.svg',
-        );
+        ];
 
         return $extensions[$mime];
     }
@@ -664,7 +749,7 @@ class Helpers
         if (strlen($color) == 6) {
             list($r, $g, $b) = array_map('hexdec', str_split($color, 2));
 
-            return $implode ? implode(', ', array($r, $g, $b)) : array($r, $g, $b);
+            return $implode ? implode(', ', [$r, $g, $b]) : [$r, $g, $b];
         }
 
         return false;

@@ -50,12 +50,12 @@ class Views
             delete_post_meta($id, $db_key);
             add_post_meta($id, $db_key, 0);
         } else {
-            if (!isset($_COOKIE[$db_key . '-' . $id])) {
+            if (!isset($_COOKIE["{$db_key}-{$id}"])) {
                 $count++;
                 update_post_meta($id, $db_key, $count);
 
                 if (!Helpers::get_theme_option('disable_cookies')) {
-                    setcookie($db_key . '-' . $id, true);
+                    setcookie("{$db_key}-{$id}", true);
                 }
             }
         }

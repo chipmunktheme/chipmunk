@@ -17,8 +17,8 @@ class Setup
      */
     function __construct()
     {
-        add_action('after_setup_theme', array($this, 'setup_support'));
-        add_action('after_setup_theme', array($this, 'setup_theme'));
+        add_action('after_setup_theme', [$this, 'setup_support']);
+        add_action('after_setup_theme', [$this, 'setup_theme']);
     }
 
     /**
@@ -41,13 +41,13 @@ class Setup
         // Theme Support
         add_theme_support('title-tag');
         add_theme_support('automatic-feed-links');
-        add_theme_support('html5', array(
+        add_theme_support('html5', [
             'search-form',
             'comment-form',
             'comment-list',
             'gallery',
             'caption',
-        ));
+        ]);
         add_theme_support('comments');
         add_theme_support('threaded-comments');
 
@@ -60,69 +60,69 @@ class Setup
          *
          * @see https://developer.wordpress.org/reference/functions/add_theme_support/#editor-color-palette
          */
-        add_theme_support('editor-color-palette', array(
-            array(
+        add_theme_support('editor-color-palette', [
+            [
                 'name'  => __('Black', 'chipmunk'),
                 'slug'  => 'black',
                 'color'    => '#000000',
-            ),
-            array(
+            ],
+            [
                 'name'  => __('Gray', 'chipmunk'),
                 'slug'  => 'gray',
                 'color' => '#666',
-            ),
-            array(
+            ],
+            [
                 'name'  => __('White', 'chipmunk'),
                 'slug'  => 'white',
                 'color' => '#FFF',
-            ),
-        ));
+            ],
+        ]);
 
         /**
          * Adds support for editor font sizes.
          *
          * @see https://developer.wordpress.org/reference/functions/add_theme_support/#editor-color-palette
          */
-        add_theme_support('editor-font-sizes', array(
-            array(
+        add_theme_support('editor-font-sizes', [
+            [
                 'name'      => __('Small', 'chipmunk'),
                 'size'      => 16,
                 'slug'      => 'small'
-            ),
-            array(
+            ],
+            [
                 'name'      => __('Normal', 'chipmunk'),
                 'size'      => 21,
                 'slug'      => 'normal'
-            ),
-            array(
+            ],
+            [
                 'name'      => __('Medium', 'chipmunk'),
                 'size'      => 24,
                 'slug'      => 'medium'
-            ),
-            array(
+            ],
+            [
                 'name'      => __('Large', 'chipmunk'),
                 'size'      => 36,
                 'slug'      => 'large'
-            ),
-            array(
+            ],
+            [
                 'name'      => __('Huge', 'chipmunk'),
                 'size'      => 48,
                 'slug'      => 'huge'
-            )
-        ));
+            ]
+        ]);
 
-        add_theme_support('posts', array(
-            'resource' => array(
+        add_theme_support('posts', [
+            'resource' => [
                 'singular'              => esc_html__('Resource', 'chipmunk'),
                 'plural'                => esc_html__('Resources', 'chipmunk'),
-                'rewrite'               => array('slug' => (!empty(get_option('chipmunk_resource_cpt_base')) ? get_option('chipmunk_resource_cpt_base') : lcfirst(esc_html__('Resource', 'chipmunk')))),
-                'supports'              => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'publicize'),
+                'rewrite'               => ['slug' => (!empty(get_option('chipmunk_resource_cpt_base')) ? get_option('chipmunk_resource_cpt_base') : lcfirst(esc_html__('Resource', 'chipmunk')))],
+                'supports'              => ['title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'publicize'],
                 'menu_icon'             => 'dashicons-screenoptions',
                 'menu_position'         => 20,
                 'show_in_rest'          => true,
                 'rest_base'             => 'resources',
                 'rest_controller_class' => 'WP_REST_Posts_Controller',
-                'labels'                => array(
+                'labels'                => [
                     'add_new_item'        => esc_html__('Add New Resource', 'chipmunk'),
                     'edit_item'           => esc_html__('Edit Resource', 'chipmunk'),
                     'new_item'            => esc_html__('New Resource', 'chipmunk'),
@@ -131,19 +131,19 @@ class Setup
                     'search_items'        => esc_html__('Search Resources', 'chipmunk'),
                     'not_found'           => esc_html__('No Resources found.', 'chipmunk'),
                     'not_found_in_trash'  => esc_html__('No Resources found in trash.', 'chipmunk'),
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
-        add_theme_support('taxonomies', array(
-            'resource-collection' => array(
+        add_theme_support('taxonomies', [
+            'resource-collection' => [
                 'singular'              => esc_html__('Collection', 'chipmunk'),
                 'plural'                => esc_html__('Collections', 'chipmunk'),
-                'posts'                 => array('resource'),
-                'rewrite'               => array('slug' => (!empty(get_option('chipmunk_collection_cpt_base')) ? get_option('chipmunk_collection_cpt_base') : sanitize_title(esc_html__('Collection', 'chipmunk'))), 'with_front' => false, 'hierarchical' => true),
+                'posts'                 => ['resource'],
+                'rewrite'               => ['slug' => (!empty(get_option('chipmunk_collection_cpt_base')) ? get_option('chipmunk_collection_cpt_base') : sanitize_title(esc_html__('Collection', 'chipmunk'))), 'with_front' => false, 'hierarchical' => true],
                 'rest_base'             => 'collections',
                 'rest_controller_class' => 'WP_REST_Terms_Controller',
-                'labels'                => array(
+                'labels'                => [
                     'add_new_item'        => esc_html__('Add Collection', 'chipmunk'),
                     'new_item_name'       => esc_html__('New Collection Name', 'chipmunk'),
                     'edit_item'           => esc_html__('Edit Collection', 'chipmunk'),
@@ -152,16 +152,16 @@ class Setup
                     'parent_item_colon'   => esc_html__('Parent Collection:', 'chipmunk'),
                     'all_items'           => esc_html__('All Collections', 'chipmunk'),
                     'search_items'        => esc_html__('Search Collections', 'chipmunk'),
-                ),
-            ),
+                ],
+            ],
 
-            'resource-tag' => array(
+            'resource-tag' => [
                 'singular'              => esc_html__('Tag', 'chipmunk'),
                 'plural'                => esc_html__('Tags', 'chipmunk'),
-                'posts'                 => array('resource'),
-                'rewrite'               => array('slug' => (!empty(get_option('chipmunk_tag_cpt_base')) ? get_option('chipmunk_tag_cpt_base') : sanitize_title(esc_html__('Resource Tag', 'chipmunk'))), 'with_front' => false, 'hierarchical' => true),
+                'posts'                 => ['resource'],
+                'rewrite'               => ['slug' => (!empty(get_option('chipmunk_tag_cpt_base')) ? get_option('chipmunk_tag_cpt_base') : sanitize_title(esc_html__('Resource Tag', 'chipmunk'))), 'with_front' => false, 'hierarchical' => true],
                 'hierarchical'          => false,
-                'labels'                => array(
+                'labels'                => [
                     'add_new_item'        => esc_html__('Add Tag', 'chipmunk'),
                     'new_item_name'       => esc_html__('New Tag Name', 'chipmunk'),
                     'edit_item'           => esc_html__('Edit Tag', 'chipmunk'),
@@ -170,37 +170,37 @@ class Setup
                     'parent_item_colon'   => esc_html__('Parent Tag:', 'chipmunk'),
                     'all_items'           => esc_html__('All Tags', 'chipmunk'),
                     'search_items'        => esc_html__('Search Tags', 'chipmunk'),
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
-        add_theme_support('images', array(
-            '1920x1080' => array(
+        add_theme_support('images', [
+            '1920x1080' => [
                 'width'   => 1920,
                 'height'  => 1080,
                 'crop'    => false,
-            ),
-            '1280x960' => array(
+            ],
+            '1280x960' => [
                 'width'   => 1280,
                 'height'  => 960,
                 'crop'    => false,
-            ),
-            '1280x720' => array(
+            ],
+            '1280x720' => [
                 'width'   => 1280,
                 'height'  => 720,
                 'crop'    => false,
-            ),
-            '640x480' => array(
+            ],
+            '640x480' => [
                 'width'   => 640,
                 'height'  => 480,
                 'crop'    => false,
-            ),
-        ));
+            ],
+        ]);
 
-        add_theme_support('menus', array(
+        add_theme_support('menus', [
             'nav-primary'   => 'Header nav',
             'nav-secondary' => 'Footer nav'
-        ));
+        ]);
     }
 
     /**
@@ -226,22 +226,22 @@ class Setup
 
         new Vendors\ACF();
         new Vendors\Merlin();
-        new Vendors\ThemeUpdater\Init();
+        new Vendors\Updater();
 
         // Addons
-        new Addons\Members(array(
+        new Addons\Members([
             'name'      => 'Members',
             'slug'      => 'members',
             'excerpt'   => 'Makes it a breeze for users to sign-up and become members of your website.',
             'url'       => THEME_SHOP_URL . '/addons/members',
-        ));
+        ]);
 
-        new Addons\Ratings(array(
+        new Addons\Ratings([
             'name'      => 'Ratings',
             'slug'      => 'ratings',
             'excerpt'   => 'Adds 5-star rating system to your website and increases user engagement.',
             'url'       => THEME_SHOP_URL . '/addons/ratings',
-        ));
+        ]);
 
         // Customizer
         Customizer::register_sections();

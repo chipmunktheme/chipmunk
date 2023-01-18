@@ -12,6 +12,10 @@ use \Chipmunk\Settings;
  */
 class Faker extends Settings
 {
+    /**
+     * The Singleton's instance is stored in a static field.
+     */
+    private static $instances = [];
 
     /**
      * Setting name
@@ -28,16 +32,22 @@ class Faker extends Settings
     private $slug = 'faker';
 
     /**
-     * Initialize the class.
-     *
-     * @since 1.0.0
+     * The Addons's constructor should always be private to prevent direct
+     * construction calls with the `new` operator.
      */
-    function __construct()
+    protected function __construct()
     {
-        add_action('admin_init', array($this, 'action'));
+    }
+
+    /**
+     * Initialize the class
+     */
+    public function init()
+    {
+        add_action('admin_init', [$this, 'action']);
 
         // Output settings content
-        add_filter('chipmunk_settings_tabs', array($this, 'add_settings_tab'));
+        add_filter('chipmunk_settings_tabs', [$this, 'add_settings_tab']);
     }
 
     /**
@@ -46,11 +56,11 @@ class Faker extends Settings
     public function action()
     {
         if (isset($_POST[THEME_SLUG . '_generator_upvote'])) {
-            self::generate('upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'], array('resource'));
+            self::generate('upvote', (int) $_POST[THEME_SLUG . '_generator_upvote_start'], (int) $_POST[THEME_SLUG . '_generator_upvote_end'], ['resource']);
         }
 
         if (isset($_POST[THEME_SLUG . '_generator_view'])) {
-            self::generate('post_view', (int) $_POST[THEME_SLUG . '_generator_view_start'], (int) $_POST[THEME_SLUG . '_generator_view_end'], array('post', 'resource'));
+            self::generate('post_view', (int) $_POST[THEME_SLUG . '_generator_view_start'], (int) $_POST[THEME_SLUG . '_generator_view_end'], ['post', 'resource']);
         }
     }
 
@@ -66,11 +76,11 @@ class Faker extends Settings
 
         $db_key = '_' . THEME_SLUG . '_' . $type . '_count';
 
-        $posts = get_posts(array(
+        $posts = get_posts([
             'post_type'         => $post_types,
             'post_status'       => 'any',
             'posts_per_page'    => -1,
-        ));
+        ]);
 
         foreach ($posts as $post) {
             $count = (int) get_post_meta($post->ID, $db_key, true);
@@ -88,11 +98,11 @@ class Faker extends Settings
      */
     public function add_settings_tab($tabs)
     {
-        $tabs[] = array(
+        $tabs[] = [
             'name'      => $this->name,
             'slug'      => $this->slug,
             'content'   => $this->get_settings_content(),
-        );
+        ];
 
         return $tabs;
     }
@@ -103,7 +113,6 @@ class Faker extends Settings
     private function get_settings_content()
     {
         ob_start();
-
 ?>
         <h2><?php esc_html_e('Fake counter generators', 'chipmunk'); ?></h2>
 
@@ -149,5 +158,25 @@ class Faker extends Settings
 
 <?php
         return ob_get_clean();
+    }
+
+    /**
+     * This is the static method that controls the access to the Licenser
+     * instance. On the first run, it creates a singleton object and places it
+     * into the static field. On subsequent runs, it returns the client existing
+     * object stored in the static field.
+     *
+     * This implementation lets you subclass the Singleton class while keeping
+     * just one instance of each subclass around.
+     */
+    public static function get_instance(): Faker
+    {
+        $cls = static::class;
+
+        if (!isset(self::$instances[$cls])) {
+            self::$instances[$cls] = new static();
+        }
+
+        return self::$instances[$cls];
     }
 }

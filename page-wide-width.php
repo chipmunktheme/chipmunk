@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Layout - Wide Width
  * Chipmunk: Page Wide Width
@@ -7,4 +8,4 @@
  * @subpackage Chipmunk
  */
 
-get_template_part( 'page' );
+get_template_part('page');

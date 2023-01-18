@@ -19,10 +19,10 @@ class Misc
      */
     function __construct()
     {
-        add_action('wp_insert_post', array($this, 'add_default_meta'));
-        add_action('wp_head', array($this, 'add_og_tags'));
-        add_action('after_setup_theme', array($this, 'setup_comments'));
-        add_filter('the_content', array($this, 'normalize_content_whitespace'), 10, 1);
+        add_action('wp_insert_post', [$this, 'add_default_meta']);
+        add_action('wp_head', [$this, 'add_og_tags']);
+        add_action('after_setup_theme', [$this, 'setup_comments']);
+        add_filter('the_content', [$this, 'normalize_content_whitespace'], 10, 1);
     }
 
     /**
@@ -32,20 +32,20 @@ class Misc
      */
     public static function add_default_meta($post_ID)
     {
-        $defaut_values = array(
+        $defaut_values = [
             '_' . THEME_SLUG . '_post_view_count'   => 0,
             '_' . THEME_SLUG . '_upvote_count'      => 0,
-        );
+        ];
 
         if (Helpers::is_addon_enabled('ratings')) {
-            $defaut_values = array_merge($defaut_values, array(
+            $defaut_values = array_merge($defaut_values, [
                 '_' . THEME_SLUG . '_rating_count'   => 0,
                 '_' . THEME_SLUG . '_rating_average' => 0,
                 '_' . THEME_SLUG . '_rating_rank'    => 0,
-            ));
+            ]);
         }
 
-        return Helpers::add_post_meta($post_ID, $defaut_values, array('post', 'resource'));
+        return Helpers::add_post_meta($post_ID, $defaut_values, ['post', 'resource']);
     }
 
     /**
