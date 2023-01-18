@@ -117,7 +117,7 @@ class Bookmarks
      */
     private function get_content($active)
     {
-        $icon = Helpers::get_template_part('partials/icon', array('icon' => 'bookmark'), false);
+        $icon = Helpers::get_template_part('partials/icon', ['icon' => 'bookmark'], false);
         $label = $active ? __('Bookmarked', 'chipmunk') : __('Bookmark', 'chipmunk');
 
         return '<span>' . $icon . $label . '</span>';

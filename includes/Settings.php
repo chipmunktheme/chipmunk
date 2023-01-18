@@ -2,6 +2,10 @@
 
 namespace Chipmunk;
 
+use Chipmunk\Settings\Licenser;
+use Chipmunk\Settings\Faker;
+use Chipmunk\Settings\Addons;
+
 /**
  * Custom settings pages for the theme
  *
@@ -15,7 +19,7 @@ class Settings
      *
      * @var object
      */
-    public static $license;
+    private static $license;
 
     /**
      * Used to register custom hooks
@@ -24,23 +28,19 @@ class Settings
      */
     function __construct()
     {
-        add_action('admin_menu', array($this, 'add_menu_page'), 1);
-        add_action('chipmunk_settings_nav', array($this, 'add_menu_page'), 1);
+        add_action('admin_menu', [$this, 'add_menu_page'], 1);
+        add_action('chipmunk_settings_nav', [$this, 'add_menu_page'], 1);
 
         // Initialize theme licenser
-        $licenser = new Settings\Licenser(array(
-            'remote_api_url' => THEME_SHOP_URL,
-            'item_id'        => THEME_ITEM_ID,
+        Licenser::get_instance()->init([
+            'remote_api_url' => THEME_API_URL,
             'item_name'      => THEME_TITLE,
             'item_slug'      => THEME_SLUG,
-        ));
-
-        // Store license data
-        self::$license = $licenser->get_license_data();
+        ]);
 
         // Initialize other settings
-        new Settings\Faker();
-        new Settings\Addons();
+        Faker::get_instance()->init();
+        Addons::get_instance()->init();
     }
 
     /**
@@ -53,7 +53,7 @@ class Settings
             THEME_TITLE,
             'edit_theme_options',
             THEME_SLUG,
-            array($this, 'admin_settings'),
+            [$this, 'admin_settings'],
             Helpers::svg_to_base64(Assets::asset_path('images/logo.svg')),
         );
     }
@@ -63,7 +63,7 @@ class Settings
      */
     public function admin_settings()
     {
-        $tabs = apply_filters('chipmunk_settings_tabs', array());
+        $tabs = apply_filters('chipmunk_settings_tabs', []);
 ?>
 
         <div class="chipmunk">
@@ -73,13 +73,13 @@ class Settings
                     <?php echo THEME_TITLE; ?>
                 </h1>
 
-                <?php if (!empty(self::$license) && 'active' == self::$license->license_key->status) : ?>
+                <?php if (Helpers::is_active_license(self::$license)) : ?>
                     <div class="chipmunk__status">
                         <div class="chipmunk__status-icon">
                             ✓
                         </div>
 
-                        <?php if ($variant = self::get_license_variant()) : ?>
+                        <?php if ($variant = Helpers::get_license_variant(self::$license)) : ?>
                             <div class="chipmunk__status-content">
                                 <strong><?php printf(esc_html__('%s License', 'chipmunk'), $variant['name']); ?></strong><br>
                             </div>
@@ -134,34 +134,6 @@ class Settings
     }
 
     /**
-     * Is active license activated
-     *
-     * @return bool
-     */
-    protected static function is_active_license()
-    {
-        return !empty(self::$license) && 'active' == self::$license->license_key->status;
-    }
-
-    /**
-     * Get the variant ID if the license is active and activated
-     *
-     * @return array|null
-     */
-    protected static function get_license_variant()
-    {
-        if (!self::is_active_license()) {
-            return null;
-        }
-
-        if (is_null(self::$license->meta->variant_id) || !array_key_exists(self::$license->meta->variant_id, THEME_VARIANTS)) {
-            return null;
-        }
-
-        return THEME_VARIANTS[self::$license->meta->variant_id];
-    }
-
-    /**
      * Adds setting error using Settings API
      *
      * @param string $message Error message
@@ -175,5 +147,15 @@ class Settings
         if (!empty($message) && !Helpers::find_key_value($errors, 'code', $setting)) {
             add_settings_error($setting, $setting, $message, $type);
         }
+    }
+
+    /**
+     * Returns the license data
+     *
+     * @return object
+     */
+    public static function get_license()
+    {
+        return self::$license;
     }
 }

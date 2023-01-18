@@ -42,7 +42,8 @@ $grid-columns: (
   gap: var(--chipmunk--layout--column-gutter);
 
   // Grid variants
-  @each $breakpoint, $columns in $grid-columns {
+  @each $breakpoint,
+  $columns in $grid-columns {
     @include bp($breakpoint) {
       grid-template-columns: repeat($columns, 1fr);
     }
@@ -93,7 +94,8 @@ $grid-columns: (
   .c-tile--wide & {
     background-color: var(--chipmunk--color--section);
     border-radius: var(--chipmunk--border-radius);
-    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
   }
 
   .c-tile--wide & {
@@ -113,10 +115,10 @@ $grid-columns: (
     aspect-ratio: 4 / 3;
   }
 
-  > img,
-  > svg,
-  > video,
-  > iframe {
+  >img,
+  >svg,
+  >video,
+  >iframe {
     transition: transform var(--chipmunk--transition-duration) ease-in-out 0.05s;
 
     &:not(:first-child) {
@@ -188,7 +190,7 @@ $grid-columns: (
   }
 
   &--dimmed {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0 0 0 / 0.75);
     color: var(--chipmunk--color--white);
   }
 

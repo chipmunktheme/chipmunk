@@ -2,7 +2,8 @@
 
 namespace Chipmunk\Settings;
 
-use \Chipmunk\Settings;
+use Chipmunk\Helpers;
+use Chipmunk\Settings;
 
 /**
  * A License settings class
@@ -12,6 +13,11 @@ use \Chipmunk\Settings;
  */
 class Licenser extends Settings
 {
+    /**
+     * The Singleton's instance is stored in a static field.
+     */
+    private static $instances = [];
+
     /**
      * Config object
      * @var object
@@ -68,21 +74,30 @@ class Licenser extends Settings
     private $slug = 'license';
 
     /**
-     * Initialize the class
+     * The Licenser's constructor should always be private to prevent direct
+     * construction calls with the `new` operator.
      */
-    function __construct($config = array(), $strings = array(), $errors = array())
+    protected function __construct()
+    {
+    }
+
+    /**
+     * Initialize the class
+     *
+     * @param array $config Config array
+     * @param array $strings Strings array
+     */
+    public function init($config = [], $strings = [])
     {
         // Set config defaults
-        $this->config = wp_parse_args($config, array(
+        $this->config = wp_parse_args($config, [
             'remote_api_url'    => '',
-            'item_id'           => '',
             'item_name'         => '',
             'item_slug'         => '',
-            'renew_url'         => '',
-        ));
+        ]);
 
         // Set default strings
-        $this->strings = wp_parse_args($strings, array(
+        $this->strings = wp_parse_args($strings, [
             'enter-key'                 => __('To receive updates, please enter your valid license key.', 'chipmunk'),
             'license-key'               => __('License Key', 'chipmunk'),
             'license-action'            => __('License Action', 'chipmunk'),
@@ -97,7 +112,7 @@ class Licenser extends Settings
             'license-is-disabled'       => __('License is disabled.', 'chipmunk'),
             'license-is-expired'        => __('License is expired.', 'chipmunk'),
             'license-is-unknown'        => __('License is unknown.', 'chipmunk'),
-        ));
+        ]);
 
         // Set license option names
         $this->license_key_option = "{$this->config['item_slug']}_license_key";
@@ -108,25 +123,14 @@ class Licenser extends Settings
         $this->license_key = get_option($this->license_key_option);
 
         // Set hooks
-        $this->hooks();
-    }
-
-    /**
-     * Setup hooks
-     *
-     * @return  void
-     */
-    private function hooks()
-    {
-        // Licensing hooks
-        add_action('admin_init', array($this, 'register_option'));
-        add_action('admin_init', array($this, 'activate_license'));
-        add_action('admin_init', array($this, 'deactivate_license'));
-        add_action('admin_init', array($this, 'validate_license'));
+        add_action('admin_init', [$this, 'register_option']);
+        add_action('admin_init', [$this, 'activate_license']);
+        add_action('admin_init', [$this, 'deactivate_license']);
+        add_action('admin_init', [$this, 'validate_license']);
 
         // Output settings content
-        add_filter('chipmunk_settings_tabs', array($this, 'add_settings_tab'));
-        add_filter('chipmunk_admin_notices', array($this, 'add_inactive_license_notice'));
+        add_filter('chipmunk_settings_tabs', [$this, 'add_settings_tab']);
+        add_filter('chipmunk_admin_notices', [$this, 'add_inactive_license_notice']);
     }
 
     /**
@@ -222,37 +226,30 @@ class Licenser extends Settings
      */
     private function get_api_response($action)
     {
-        $license_param = array('license_key' => empty($this->license_key) ? 'invalid' : $this->license_key);
+        if (empty($this->license_key)) {
+            return;
+        }
+
+        $license_param = ['license_key' => $this->license_key];
         $instance_id = get_transient($this->instance_id_option);
         $instance_param = !empty($instance_id)
-            ? array('instance_id' => $instance_id)
-            : array('instance_name' => get_bloginfo('name'));
+            ? ['instance_id' => $instance_id]
+            : ['instance_name' => get_bloginfo('name')];
 
-        $response = wp_remote_post("https://api.lemonsqueezy.com/v1/licenses/{$action}", array(
-            'headers' => array('Accept' => 'application/json'),
+        $response = wp_remote_post("{$this->config['remote_api_url']}/licenses/{$action}", [
+            'timeout' => 15,
+            'headers' => ['Accept' => 'application/json'],
             'body'    => array_merge($license_param, $instance_param),
-        ));
+        ]);
 
         $body = json_decode(wp_remote_retrieve_body($response));
 
-        if (!$this->is_valid_response($response)) {
+        if (!Helpers::is_valid_response($response)) {
             $this->display_settings_error($response, $body->error);
             return;
         }
 
         return $body;
-    }
-
-    /**
-     * Check if the API response is valid
-     *
-     * @param object $response Remote API response object
-     *
-     * @return boolean
-     */
-    private function is_valid_response($response)
-    {
-        return !is_wp_error($response) && 200 == wp_remote_retrieve_response_code($response);
     }
 
     /**
@@ -278,7 +275,7 @@ class Licenser extends Settings
      */
     public function get_license_status($data)
     {
-        $messages = array();
+        $messages = [];
 
         // If response doesn't include license data, return
         if (empty($data->license_key)) {
@@ -345,11 +342,11 @@ class Licenser extends Settings
      */
     public function add_settings_tab($tabs)
     {
-        $tabs[] = array(
+        $tabs[] = [
             'name'      => $this->name,
             'slug'      => $this->slug,
             'content'   => $this->get_settings_content(),
-        );
+        ];
 
         return $tabs;
     }
@@ -417,16 +414,36 @@ class Licenser extends Settings
         $data = $this->get_license_data();
 
         if (empty($data->license_key) || 'active' !== $data->license_key->status) {
-            $notices[] = array(
+            $notices[] = [
                 'type' => 'warning',
                 'message' => sprintf(
                     __('Please <a href="%1$s">activate</a> your %2$s license to <strong>unlock all functionalities</strong>.', 'chipmunk'),
                     get_admin_url(null, 'admin.php?page=chipmunk'),
                     $this->config['item_name']
                 ),
-            );
+            ];
         }
 
         return $notices;
+    }
+
+    /**
+     * This is the static method that controls the access to the Licenser
+     * instance. On the first run, it creates a singleton object and places it
+     * into the static field. On subsequent runs, it returns the client existing
+     * object stored in the static field.
+     *
+     * This implementation lets you subclass the Singleton class while keeping
+     * just one instance of each subclass around.
+     */
+    public static function get_instance(): Licenser
+    {
+        $cls = static::class;
+
+        if (!isset(self::$instances[$cls])) {
+            self::$instances[$cls] = new static();
+        }
+
+        return self::$instances[$cls];
     }
 }

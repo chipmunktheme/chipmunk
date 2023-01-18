@@ -81,7 +81,7 @@ class Upvotes
      */
     public function get_content()
     {
-        $icon = Helpers::get_template_part('partials/icon', array('icon' => 'thumbs-up'), false);
+        $icon = Helpers::get_template_part('partials/icon', ['icon' => 'thumbs-up'], false);
 
         $count = $this->get_upvote_count();
         $label = (is_numeric($count) && $count > 0) ? Helpers::format_number($count) : 0;

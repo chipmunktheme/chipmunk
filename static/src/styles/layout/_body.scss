@@ -19,7 +19,7 @@
     position: absolute;
     inset: 0;
     z-index: calc(var(--chipmunk--layer--popup) - 1);
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0 0 0 / 0.85);
     opacity: 0;
     pointer-events: none;
     transform: translateX(-300%);
@@ -35,7 +35,7 @@
     }
   }
 
-  > #wpadminbar {
+  >#wpadminbar {
     position: fixed;
   }
 }

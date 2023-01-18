@@ -25,10 +25,10 @@ class Settings
     {
         $this->config = $config;
 
-        add_action('admin_init', array($this, 'register_settings_init'), 20);
+        add_action('admin_init', [$this, 'register_settings_init'], 20);
 
         // Output settings content
-        add_filter('chipmunk_settings_tabs', array($this, 'add_settings_tab'));
+        add_filter('chipmunk_settings_tabs', [$this, 'add_settings_tab']);
     }
 
     /**
@@ -39,14 +39,14 @@ class Settings
         $setting_name = THEME_SLUG . '_members_pages';
         $pages = get_pages();
 
-        $fields = array(
+        $fields = [
             'chipmunk_login_page_id'            => __('Login Page', 'chipmunk'),
             'chipmunk_register_page_id'         => __('Register Page', 'chipmunk'),
             'chipmunk_lost_password_page_id'    => __('Forgot Password Page', 'chipmunk'),
             'chipmunk_reset_password_page_id'   => __('Reset Password Page', 'chipmunk'),
             'chipmunk_profile_page_id'          => __('Profile Page', 'chipmunk'),
             'chipmunk_dashboard_page_id'        => __('Dashboard Page', 'chipmunk'),
-        );
+        ];
 
         // If the option don't exist, create it.
         if (false == get_option($setting_name)) {
@@ -65,14 +65,14 @@ class Settings
             add_settings_field(
                 $field,
                 $title,
-                array($this, 'page_settings_cb'),
+                [$this, 'page_settings_cb'],
                 $setting_name,
                 $setting_name . '_section',
-                array(
+                [
                     'option' => $setting_name,
                     'pages' => $pages,
                     'field' => $field,
-                )
+                ]
             );
         }
 
@@ -104,11 +104,11 @@ class Settings
      */
     public function add_settings_tab($tabs)
     {
-        $tabs[] = array(
+        $tabs[] = [
             'name'      => $this->config['name'],
             'slug'      => $this->config['slug'],
             'content'   => $this->get_settings_content(),
-        );
+        ];
 
         return $tabs;
     }

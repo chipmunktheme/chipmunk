@@ -28,9 +28,9 @@ class ACF
         // Include the ACF plugin.
         include_once(self::ACF_PATH . 'acf.php');
 
-        add_filter('acf/init', array($this, 'acf_register_fields'));
-        add_filter('acf/settings/url', array($this, 'acf_settings_url'));
-        add_filter('acf/settings/show_admin', array($this, 'acf_settings_show_admin'));
+        add_filter('acf/init', [$this, 'acf_register_fields']);
+        add_filter('acf/settings/url', [$this, 'acf_settings_url']);
+        add_filter('acf/settings/show_admin', [$this, 'acf_settings_show_admin']);
     }
 
     /**
@@ -38,86 +38,86 @@ class ACF
      */
     public static function acf_register_fields()
     {
-        $groups = array(
+        $groups = [
 
             // Resource
-            array(
+            [
                 'key'      => 'resource',
                 'title'     => __('Resource', 'chipmunk'),
 
-                'location' => array(array(array(
+                'location' => [[[
                     'param'     => 'post_type',
                     'operator'  => '==',
                     'value'     => 'resource',
-                ))),
+                ]]],
 
-                'fields'   => array(
-                    array(
+                'fields'   => [
+                    [
                         'key' => 'is_featured',
                         'label' => __('Featured on homepage', 'chipmunk'),
                         'type' => 'true_false',
                         'ui' => 1,
                         'width' => '50',
-                    ),
-                    array(
+                    ],
+                    [
                         'key' => 'links',
                         'label' => __('Links', 'chipmunk'),
                         'type' => 'repeater',
                         'width' => '50',
                         'layout' => 'table',
                         'button_label' => __('Add link', 'chipmunk'),
-                        'sub_fields' => array(
-                            array(
+                        'sub_fields' => [
+                            [
                                 'key' => 'link',
                                 'label' => __('Link', 'chipmunk'),
                                 'type' => 'link',
                                 'required' => 1,
-                            ),
-                        ),
-                    ),
-                    array(
+                            ],
+                        ],
+                    ],
+                    [
                         'key' => 'website',
                         'label' => __('Website', 'chipmunk'),
                         'type' => 'text',
                         'width' => '50',
                         'instructions' => __('Deprecated. Please use "Links" functionality above.', 'chipmunk'),
-                    ),
-                    array(
+                    ],
+                    [
                         'key' => 'submitter',
                         'label' => __('Submitter', 'chipmunk'),
                         'type' => 'text',
                         'width' => '50',
                         'instructions' => __('Read only, will contain the email of resource submitter.', 'chipmunk'),
                         'readonly' => 1,
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
 
             // Collection
-            array(
+            [
                 'key'      => 'collection',
                 'title'     => __('Collection', 'chipmunk'),
 
-                'location' => array(array(array(
+                'location' => [[[
                     'param'     => 'taxonomy',
                     'operator'  => '==',
                     'value'     => 'resource-collection',
-                ))),
+                ]]],
 
-                'fields'   => array(
-                    array(
+                'fields'   => [
+                    [
                         'key' => 'image',
                         'label' => __('Image', 'chipmunk'),
                         'type' => 'image',
                         'return_format' => 'id',
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
 
         foreach ($groups as $key => $group) {
             // Normalize group fields
-            array_walk($group['fields'], array(self::class, 'acf_normalize_fields'), array('group' => $group, 'prefix_key' => true));
+            array_walk($group['fields'], [self::class, 'acf_normalize_fields'], ['group' => $group, 'prefix_key' => true]);
 
             // Register ACF Group
             acf_add_local_field_group($group);
@@ -135,14 +135,14 @@ class ACF
         $key = (isset($params['prefix_key']) && isset($params['group']) ? '_' . THEME_SLUG . '_' . $params['group']['key'] . '_' : '') . $field['key'];
 
         // Normalized field
-        $norm_field = array(
+        $norm_field = [
             'key' => $key,
             'name' => $key,
             'label' => $field['label'],
             'type' => $field['type'],
-        );
+        ];
 
-        $optional_values = array(
+        $optional_values = [
             'required',
             'readonly',
             'instructions',
@@ -151,7 +151,7 @@ class ACF
             'button_label',
             'return_format',
             'preview_size',
-        );
+        ];
 
         foreach ($optional_values as $value) {
             if (isset($field[$value])) {
@@ -160,12 +160,12 @@ class ACF
         }
 
         if (isset($field['width'])) {
-            $norm_field['wrapper'] = array('width' => $field['width']);
+            $norm_field['wrapper'] = ['width' => $field['width']];
         }
 
         if (isset($field['sub_fields'])) {
             // Normalize sub-fields
-            array_walk($field['sub_fields'], array(self::class, 'acf_normalize_fields'), array('group' => $params['group']));
+            array_walk($field['sub_fields'], [self::class, 'acf_normalize_fields'], ['group' => $params['group']]);
 
             $norm_field['sub_fields'] = $field['sub_fields'];
         }

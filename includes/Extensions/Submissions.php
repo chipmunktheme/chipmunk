@@ -26,14 +26,14 @@ class Submissions
      *
      * @var array
      */
-    private $required = array('name', 'collection', 'website');
+    private $required = ['name', 'collection', 'website'];
 
     /**
      * Required fields to be left empty
      *
      * @var array
      */
-    private $required_empty = array('filter');
+    private $required_empty = ['filter'];
 
     /**
      * Create a new submission form object
@@ -123,10 +123,10 @@ class Submissions
         $post       = get_post($post_id);
         $name       = get_bloginfo('name');
         $admin      = get_bloginfo('admin_email');
-        $headers    = array('Content-Type: text/html; charset=UTF-8');
+        $headers    = ['Content-Type: text/html; charset=UTF-8'];
 
         $subject    = sprintf(esc_html__('%s: New user submission', 'chipmunk'), $name);
-        $template   = Helpers::get_template_part('emails/submission', array('subject' => $subject, 'post' => $post), false);
+        $template   = Helpers::get_template_part('emails/submission', ['subject' => $subject, 'post' => $post], false);
 
         wp_mail($admin, $subject, $template, $headers);
     }
@@ -164,13 +164,13 @@ class Submissions
         $attachment_title = sanitize_file_name(pathinfo($file_name, PATHINFO_FILENAME));
 
         // Set up our images post data
-        $attachment_info = array(
+        $attachment_info = [
             'guid'           => $wp_upload_dir['url'] . '/' . $file_name,
             'post_mime_type' => $file_type['type'],
             'post_title'     => $attachment_title,
             'post_content'   => '',
             'post_status'    => 'inherit',
-        );
+        ];
 
         // Attach/upload image
         $attachment_id = wp_insert_attachment($attachment_info, $file_path);
@@ -192,7 +192,7 @@ class Submissions
     private function submit_post()
     {
         $meta_prefix        = '_' . THEME_SLUG . '_resource';
-        $meta_input         = array();
+        $meta_input         = [];
 
         $name               = wp_filter_nohtml_kses(isset($this->data['name']) ? $this->data['name'] : '');
         $website            = wp_filter_nohtml_kses(isset($this->data['website']) ? $this->data['website'] : '');
@@ -211,14 +211,14 @@ class Submissions
 
         $meta_input[$meta_prefix . '_website'] = esc_url($website);
 
-        $post_object = array(
+        $post_object = [
             'post_type'     => 'resource',
             'post_status'   => apply_filters('chipmunk_submission_post_status', 'pending'),
             'post_title'    => $name,
             'post_content'  => $content,
             'post_author'   => $author_id,
             'meta_input'    => $meta_input,
-        );
+        ];
 
         if ($post_id = wp_insert_post($post_object)) {
             // Insert taxonomy information

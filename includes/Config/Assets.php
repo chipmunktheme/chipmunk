@@ -17,9 +17,9 @@ class Assets
      */
     function __construct()
     {
-        add_filter('script_loader_tag', array($this, 'remove_type_attr'), 10, 2);
-        add_filter('style_loader_tag', array($this, 'remove_type_attr'), 10, 2);
-        add_filter('upload_mimes',  array($this, 'custom_mime_types'), 99, 1);
+        add_filter('script_loader_tag', [$this, 'remove_type_attr'], 10, 2);
+        add_filter('style_loader_tag', [$this, 'remove_type_attr'], 10, 2);
+        add_filter('upload_mimes',  [$this, 'custom_mime_types'], 99, 1);
     }
 
     /**
