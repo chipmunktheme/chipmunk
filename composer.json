@@ -13,24 +13,17 @@
       "Chipmunk\\": "includes"
     },
     "files": [
-      "vendor/chipmunk-theme/chipmunk-wizard/class-almond.php"
+      "vendor/chipmunk-theme/almond/class-almond.php"
     ]
   },
   "repositories": [
     {
         "type":"composer",
         "url": "https://connect.advancedcustomfields.com"
-    },
-    {
-        "type": "path",
-        "url": "../chipmunk-wizard",
-        "options": {
-            "symlink": true
-        }
     }
   ],
   "require": {
-    "chipmunk-theme/chipmunk-wizard": "@dev",
+    "chipmunk-theme/almond": "dev-master",
     "wpengine/advanced-custom-fields-pro": "^6.0"
   },
   "config": {

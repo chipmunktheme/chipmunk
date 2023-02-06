@@ -4,10 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit1d9d97ed3d7f2edd1479e77b5a6b6ed4
+class ComposerStaticInita89c6001e0a9c11056c9c98b07d4a1a9
 {
     public static $files = array (
-        'fe4a79559ee8de411cdf1904b3409eb2' => __DIR__ . '/..' . '/chipmunk-theme/chipmunk-wizard/class-almond.php',
+        '45d7a640c15384e6f135680e4f4be8db' => __DIR__ . '/..' . '/chipmunk-theme/almond/class-almond.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -57,9 +57,9 @@ class ComposerStaticInit1d9d97ed3d7f2edd1479e77b5a6b6ed4
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit1d9d97ed3d7f2edd1479e77b5a6b6ed4::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit1d9d97ed3d7f2edd1479e77b5a6b6ed4::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit1d9d97ed3d7f2edd1479e77b5a6b6ed4::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInita89c6001e0a9c11056c9c98b07d4a1a9::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInita89c6001e0a9c11056c9c98b07d4a1a9::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInita89c6001e0a9c11056c9c98b07d4a1a9::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'fe4a79559ee8de411cdf1904b3409eb2' => $vendorDir . '/chipmunk-theme/chipmunk-wizard/class-almond.php',
+    '45d7a640c15384e6f135680e4f4be8db' => $vendorDir . '/chipmunk-theme/almond/class-almond.php',
 );
