@@ -1,13 +1,16 @@
 {
   "theme": {
+    "css": [
+      "css/theme.css"
+    ],
     "js": [
       "js/theme.js"
     ],
     "dependencies": []
   },
   "admin": {
-    "js": [
-      "js/admin.js"
+    "css": [
+      "css/admin.css"
     ],
     "dependencies": []
   }
