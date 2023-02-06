@@ -4,40 +4,21 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d
+class ComposerStaticInit1d9d97ed3d7f2edd1479e77b5a6b6ed4
 {
     public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        'db16dc5d3d092a561768f6cd8a0da824' => __DIR__ . '/..' . '/richtabor/merlin-wp/class-merlin.php',
+        'fe4a79559ee8de411cdf1904b3409eb2' => __DIR__ . '/..' . '/chipmunk-theme/chipmunk-wizard/class-almond.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'S' => 
-        array (
-            'Symfony\\Polyfill\\Php80\\' => 23,
-            'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Polyfill\\Ctype\\' => 23,
-        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
             'ProteusThemes\\WPContentImporter2\\' => 33,
-            'PivvenIT\\Composer\\Installers\\ACFPro\\' => 36,
-            'PhpOption\\' => 10,
         ),
         'M' => 
         array (
             'Monolog\\' => 8,
-        ),
-        'G' => 
-        array (
-            'GrahamCampbell\\ResultType\\' => 26,
-        ),
-        'D' => 
-        array (
-            'Dotenv\\' => 7,
         ),
         'C' => 
         array (
@@ -47,18 +28,6 @@ class ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Polyfill\\Php80\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
-        ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Polyfill\\Ctype\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -67,25 +36,9 @@ class ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d
         array (
             0 => __DIR__ . '/..' . '/proteusthemes/wp-content-importer-v2/src',
         ),
-        'PivvenIT\\Composer\\Installers\\ACFPro\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/pivvenit/acf-pro-installer/src',
-        ),
-        'PhpOption\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
-        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
-        ),
-        'GrahamCampbell\\ResultType\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
-        ),
-        'Dotenv\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
         'Composer\\Installers\\' => 
         array (
@@ -98,20 +51,15 @@ class ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d
     );
 
     public static $classMap = array (
-        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
-        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
-        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
-        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb3ef50060de051c2c9225f2fbe1e7d5d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1d9d97ed3d7f2edd1479e77b5a6b6ed4::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1d9d97ed3d7f2edd1479e77b5a6b6ed4::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit1d9d97ed3d7f2edd1479e77b5a6b6ed4::$classMap;
 
         }, null, ClassLoader::class);
     }

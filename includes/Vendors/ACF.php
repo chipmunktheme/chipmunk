@@ -15,8 +15,8 @@ class ACF
      *
      * @var string
      */
-    const ACF_PATH = THEME_TEMPLATE_DIR . '/vendor/advanced-custom-fields/advanced-custom-fields-pro/';
-    const ACF_URL = THEME_TEMPLATE_URI . '/vendor/advanced-custom-fields/advanced-custom-fields-pro/';
+    const ACF_PATH = THEME_TEMPLATE_DIR . '/vendor/advanced-custom-fields-pro/';
+    const ACF_URL = THEME_TEMPLATE_URI . '/vendor/advanced-custom-fields-pro/';
 
     /**
      * Create a new ACF Config object

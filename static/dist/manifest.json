@@ -1,7 +1,9 @@
 {
-  "theme.css": "css/theme.css",
   "theme.js": "js/theme.js",
-  "admin.css": "css/admin.css",
+  "admin.js": "js/admin.js",
+  "js/dynamic/node_modules_roots_bud-client_lib_hot_client_js.chunk.js": "js/dynamic/node_modules_roots_bud-client_lib_hot_client_js.chunk.js",
+  "js/dynamic/node_modules_roots_bud-client_lib_hot_components_indicator_index_js.chunk.js": "js/dynamic/node_modules_roots_bud-client_lib_hot_components_indicator_index_js.chunk.js",
+  "js/dynamic/node_modules_roots_bud-client_lib_hot_components_overlay_index_js.chunk.js": "js/dynamic/node_modules_roots_bud-client_lib_hot_components_overlay_index_js.chunk.js",
   "assets/images/icons.svg": "assets/images/icons.svg",
   "assets/images/logo.png": "assets/images/logo.png",
   "assets/images/logo.svg": "assets/images/logo.svg"

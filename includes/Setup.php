@@ -225,7 +225,7 @@ class Setup
         new Config\Misc();
 
         new Vendors\ACF();
-        new Vendors\Merlin();
+        new Vendors\Almond();
         new Vendors\Updater();
 
         // Addons
