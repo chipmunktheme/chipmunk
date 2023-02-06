@@ -1,20 +1,29 @@
 {
     "packages": [
         {
-            "name": "chipmunk-theme/chipmunk-wizard",
+            "name": "chipmunk-theme/almond",
             "version": "dev-master",
             "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chipmunk-theme/almond.git",
+                "reference": "345cd614e70c7f08435c631b83a8ab87a6887803"
+            },
             "dist": {
-                "type": "path",
-                "url": "../chipmunk-wizard",
-                "reference": "69992817dd184d1093a67cc94efcf9684b8f43b3"
+                "type": "zip",
+                "url": "https://api.github.com/repos/chipmunk-theme/almond/zipball/345cd614e70c7f08435c631b83a8ab87a6887803",
+                "reference": "345cd614e70c7f08435c631b83a8ab87a6887803",
+                "shasum": ""
             },
             "require": {
                 "monolog/monolog": "^1.23",
                 "proteusthemes/wp-content-importer-v2": "^2.1.0"
             },
+            "time": "2023-02-06T21:47:40+00:00",
+            "default-branch": true,
             "type": "library",
             "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0+"
             ],
@@ -33,11 +42,10 @@
                 "wordpress",
                 "wp"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
+            "support": {
+                "source": "https://github.com/chipmunk-theme/almond/tree/1.0.1"
             },
-            "install-path": "../chipmunk-theme/chipmunk-wizard"
+            "install-path": "../chipmunk-theme/almond"
         },
         {
             "name": "composer/installers",

@@ -1,0 +1,349 @@
+# Copyright (C) 2018 Almond
+# This file is distributed under the same license as the Almond package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Almond\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: Almond\n"
+"Last-Translator: Rich Tabor <hello@almondwp.com>\n"
+"Report-Msgid-Bugs-To: https://almondwp.com\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: class-almond.php:453
+msgid "Something went wrong. Please refresh the page and try again!"
+msgstr ""
+
+#: class-almond.php:599
+msgid "Please define default parameters in the form of an array."
+msgstr ""
+
+#: class-almond.php:604
+msgid "Please define an SVG icon filename."
+msgstr ""
+
+#: class-almond.php:713
+msgid "Welcome"
+msgstr ""
+
+#: class-almond.php:720
+msgid "Child"
+msgstr ""
+
+#: class-almond.php:726
+msgid "License"
+msgstr ""
+
+#: class-almond.php:734
+msgid "Plugins"
+msgstr ""
+
+#: class-almond.php:742, class-almond.php:1982
+msgid "Content"
+msgstr ""
+
+#: class-almond.php:748
+msgid "Ready"
+msgstr ""
+
+#: class-almond.php:853
+msgid "The welcome step has been displayed"
+msgstr ""
+
+#: class-almond.php:947
+msgid "The license activation step has been displayed"
+msgstr ""
+
+#: class-almond.php:1017
+msgid "The child theme installation step has been displayed"
+msgstr ""
+
+#: class-almond.php:1104
+msgid "Required"
+msgstr ""
+
+#: class-almond.php:1105
+msgid "req"
+msgstr ""
+
+#: class-almond.php:1145
+msgid "The plugin installation step has been displayed"
+msgstr ""
+
+#: class-almond.php:1191
+msgid "Select Demo"
+msgstr ""
+
+#: class-almond.php:1229
+msgid "The content import step has been displayed"
+msgstr ""
+
+#: class-almond.php:1309
+msgid "The final step has been displayed"
+msgstr ""
+
+#: class-almond.php:1386
+msgid "The existing child theme was activated"
+msgstr ""
+
+#: class-almond.php:1403
+msgid "The newly generated child theme was activated"
+msgstr ""
+
+#: class-almond.php:1424
+msgid "Yikes! The theme activation failed. Please try again or contact support."
+msgstr ""
+
+#: class-almond.php:1433
+msgid "Please add your license key before attempting to activate one."
+msgstr ""
+
+#: class-almond.php:1446
+msgid "The license activation was performed with the following results"
+msgstr ""
+
+#: class-almond.php:1492, class-almond.php:1533
+msgid "An error occurred, please try again."
+msgstr ""
+
+#: class-almond.php:1505
+msgid "Your license key expired on %s."
+msgstr ""
+
+#: class-almond.php:1511
+msgid "Your license key has been disabled."
+msgstr ""
+
+#: class-almond.php:1515
+msgid "This appears to be an invalid license key. Please try again or contact support."
+msgstr ""
+
+#: class-almond.php:1520
+msgid "Your license is not active for this URL."
+msgstr ""
+
+#: class-almond.php:1525
+msgid "This appears to be an invalid license key for %s."
+msgstr ""
+
+#: class-almond.php:1529
+msgid "Your license key has reached its activation limit."
+msgstr ""
+
+#: class-almond.php:1623
+msgid "The child theme functions.php content was generated"
+msgstr ""
+
+#: class-almond.php:1654
+msgid "The child theme style.css content was generated"
+msgstr ""
+
+#: class-almond.php:1688
+msgid "The child theme screenshot was copied to the child theme, with the following result"
+msgstr ""
+
+#: class-almond.php:1690
+msgid "The child theme screenshot was not generated, because of these results"
+msgstr ""
+
+#: class-almond.php:1719
+msgid "Activating"
+msgstr ""
+
+#: class-almond.php:1735
+msgid "Updating"
+msgstr ""
+
+#: class-almond.php:1751, class-almond.php:1767, class-almond.php:1985, class-almond.php:1998, class-almond.php:2011, class-almond.php:2024, class-almond.php:2037, class-almond.php:2050, class-almond.php:2093
+msgid "Installing"
+msgstr ""
+
+#: class-almond.php:1759
+msgid "A plugin with the following data will be processed"
+msgstr ""
+
+#: class-almond.php:1771
+msgid "A plugin with the following data was processed"
+msgstr ""
+
+#: class-almond.php:1780, class-almond.php:1986, class-almond.php:1999, class-almond.php:2012, class-almond.php:2025, class-almond.php:2038, class-almond.php:2051
+msgid "Success"
+msgstr ""
+
+#: class-almond.php:1803
+msgid "The content importer AJAX call failed to start, because of incorrect data"
+msgstr ""
+
+#: class-almond.php:1808
+msgid "Invalid content!"
+msgstr ""
+
+#: class-almond.php:1819
+msgid "The content import AJAX call will be executed with this import data"
+msgstr ""
+
+#: class-almond.php:1861
+msgid "The content import AJAX call failed with this passed data"
+msgstr ""
+
+#: class-almond.php:1872
+msgid "Error"
+msgstr ""
+
+#: class-almond.php:1886
+msgid "The content importer AJAX call for retrieving total content import items failed to start, because of incorrect data."
+msgstr ""
+
+#: class-almond.php:1891
+msgid "Invalid data!"
+msgstr ""
+
+#: class-almond.php:1983
+msgid "Demo content data."
+msgstr ""
+
+#: class-almond.php:1984, class-almond.php:1997, class-almond.php:2010, class-almond.php:2023, class-almond.php:2036, class-almond.php:2049
+msgid "Pending"
+msgstr ""
+
+#: class-almond.php:1995
+msgid "Widgets"
+msgstr ""
+
+#: class-almond.php:1996
+msgid "Sample widgets data."
+msgstr ""
+
+#: class-almond.php:2008
+msgid "Revolution Slider"
+msgstr ""
+
+#: class-almond.php:2009
+msgid "Sample Revolution sliders data."
+msgstr ""
+
+#: class-almond.php:2021
+msgid "Options"
+msgstr ""
+
+#: class-almond.php:2022
+msgid "Sample theme options data."
+msgstr ""
+
+#: class-almond.php:2034
+msgid "Redux Options"
+msgstr ""
+
+#: class-almond.php:2035
+msgid "Redux framework options."
+msgstr ""
+
+#: class-almond.php:2047
+msgid "After import setup"
+msgstr ""
+
+#: class-almond.php:2048
+msgid "After import setup."
+msgstr ""
+
+#: class-almond.php:2077
+msgid "The revolution slider import was executed"
+msgstr ""
+
+#: class-almond.php:2114
+msgid "The home page was set"
+msgstr ""
+
+#: class-almond.php:2124
+msgid "The blog page was set"
+msgstr ""
+
+#: class-almond.php:2139
+msgid "The Hello world post status was set to draft"
+msgstr ""
+
+#: class-almond.php:2163
+msgid "This predefined demo import does not have the name parameter: import_file_name"
+msgstr ""
+
+#: includes/class-almond-customizer-importer.php:30
+msgid "The customizer import has finished successfully"
+msgstr ""
+
+#: includes/class-almond-customizer-importer.php:57
+msgid "Error: The customizer import file is missing! File path: %s"
+msgstr ""
+
+#: includes/class-almond-customizer-importer.php:70
+msgid "Error: The customizer import file does not have any content in it. Please make sure to use the correct customizer import file."
+msgstr ""
+
+#: includes/class-almond-customizer-importer.php:80
+msgid "Error: The customizer import file is not in a correct format. Please make sure to use the correct customizer import file."
+msgstr ""
+
+#: includes/class-almond-customizer-importer.php:86
+msgid "Error: The customizer import file is not suitable for current theme. You can only import customizer settings for the same theme or a child theme."
+msgstr ""
+
+#: includes/class-almond-downloader.php:49
+msgid "The file was not able to save to disk, while trying to download it"
+msgstr ""
+
+#: includes/class-almond-downloader.php:66
+msgid "Missing URL for downloading a file!"
+msgstr ""
+
+#: includes/class-almond-downloader.php:84
+msgid "An error occurred while fetching file from: %1$s%2$s%3$s!%4$sReason: %5$s - %6$s."
+msgstr ""
+
+#: includes/class-almond-redux-importer.php:32
+msgid "The Redux Framework data was imported"
+msgstr ""
+
+#: includes/class-almond-widget-importer.php:72
+msgid "Error: Widget import file could not be found."
+msgstr ""
+
+#: includes/class-almond-widget-importer.php:83
+msgid "Error: Widget import file does not have any content in it."
+msgstr ""
+
+#: includes/class-almond-widget-importer.php:105
+msgid "Error: Widget import data could not be read. Please try a different file."
+msgstr ""
+
+#: includes/class-almond-widget-importer.php:144
+msgid "Sidebar does not exist in theme (moving widget to Inactive)"
+msgstr ""
+
+#: includes/class-almond-widget-importer.php:165
+msgid "Site does not support widget"
+msgstr ""
+
+#: includes/class-almond-widget-importer.php:198
+msgid "Widget already exists"
+msgstr ""
+
+#: includes/class-almond-widget-importer.php:256
+msgid "Imported"
+msgstr ""
+
+#: includes/class-almond-widget-importer.php:260
+msgid "Imported to Inactive"
+msgstr ""
+
+#: includes/class-almond-widget-importer.php:266
+msgid "No Title"
+msgstr ""
+
+#: includes/class-almond-widget-importer.php:328
+msgid "No results for widget import!"
+msgstr ""

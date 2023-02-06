@@ -1,0 +1,16 @@
+{
+  "name": "chipmunk-theme/almond",
+  "description": "Onboarding for Chipmunk Theme.",
+  "keywords": ["wp", "wordpress", "theme", "onboarding", "import", "content"],
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name"     : "Chipmunk Theme",
+      "homepage" : "https://chipmunktheme.com"
+    }
+  ],
+  "require": {
+    "proteusthemes/wp-content-importer-v2": "^2.1.0",
+    "monolog/monolog": "^1.23"
+  }
+}

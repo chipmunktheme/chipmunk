@@ -22,15 +22,9 @@ class Almond
         new AlmondWizard(
             // Config settings
             [
-                'directory'            => 'vendor/chipmunk-theme/chipmunk-wizard', // Location / directory where Merlin WP is placed in your theme.
+                'directory'            => 'vendor/chipmunk-theme/almond', // Location / directory where Merlin WP is placed in your theme.
                 'child_action_btn_url' => 'https://developer.wordpress.org/themes/advanced-topics/child-themes', // URL for the 'child-action-link'.
                 'dev_mode'             => false, // Enable development mode for testing.
-                'license_step'         => false, // EDD license activation step.
-                'license_required'     => false, // Require the license activation step.
-                'license_help_url'     => '', // URL for the 'license-tooltip'.
-                'edd_remote_api_url'   => THEME_SHOP_URL, // EDD_Theme_Updater_Admin remote_api_url.
-                'edd_item_name'        => THEME_TITLE, // EDD_Theme_Updater_Admin item_name.
-                'edd_theme_slug'       => THEME_SLUG, // EDD_Theme_Updater_Admin item_slug.
             ],
 
             // Strings
