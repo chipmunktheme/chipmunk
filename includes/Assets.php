@@ -285,16 +285,6 @@ class Assets
     }
 
     /**
-     * Checks if request is in development environment
-     *
-     * @return boolean
-     */
-    public static function is_dev()
-    {
-        return defined('THEME_DEV_ENV');
-    }
-
-    /**
      * Loads data from manifest file.
      */
     private static function init_manifest()

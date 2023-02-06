@@ -13,23 +13,34 @@
       "Chipmunk\\": "includes"
     },
     "files": [
-      "vendor/richtabor/merlin-wp/class-merlin.php"
+      "vendor/chipmunk-theme/chipmunk-wizard/class-almond.php"
     ]
   },
   "repositories": [
     {
-      "type": "composer",
-      "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/library/"
+        "type":"composer",
+        "url": "https://connect.advancedcustomfields.com"
+    },
+    {
+        "type": "path",
+        "url": "../chipmunk-wizard",
+        "options": {
+            "symlink": true
+        }
     }
   ],
   "require": {
-    "advanced-custom-fields/advanced-custom-fields-pro": "^6.0",
-    "richtabor/merlin-wp": "dev-master"
+    "chipmunk-theme/chipmunk-wizard": "@dev",
+    "wpengine/advanced-custom-fields-pro": "^6.0"
   },
   "config": {
     "allow-plugins": {
-      "composer/installers": true,
-      "pivvenit/acf-pro-installer": true
+      "composer/installers": true
+    }
+  },
+  "extra": {
+    "installer-paths": {
+      "vendor/{$name}/": ["type:wordpress-plugin"]
     }
   }
 }

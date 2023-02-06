@@ -17,5 +17,7 @@ nbproject
 
 # Project specific
 .env
+auth.json
 composer.lock
 /vendor/**/.git
+/static/dist/js/dynamic/*
