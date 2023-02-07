@@ -49,12 +49,14 @@ class Updater
 
         // Transient options
         $this->transient_key     = THEME_SLUG . '_updater';
-        $this->transient_allowed = true; // Only disable this for debugging
+        $this->transient_allowed = false; // Only disable this for debugging
 
         // Set hooks
         add_filter('pre_set_site_transient_update_themes', [$this, 'theme_update_transient'], 10, 2);
         add_filter('delete_site_transient_update_themes',  [$this, 'delete_theme_update_transient']);
-        add_filter('http_request_args',                    [$this, 'disable_wporg_request'], 5, 2);
+        add_action('load-update-core.php',                 [$this, 'delete_theme_update_transient']);
+        add_action('load-themes.php',                      [$this, 'delete_theme_update_transient']);
+        // add_filter('http_request_args',                    [$this, 'disable_wporg_request'], 5, 2);
     }
 
     /**
@@ -66,33 +68,35 @@ class Updater
      */
     public function theme_update_transient($transient)
     {
-        if (isset($transient->response) && empty($transient->checked[$this->config['theme_slug']])) {
+        if (empty($transient->checked[$this->config['theme_slug']])) {
             return $transient;
         }
 
         if ($data = $this->check_for_update()) {
             if (version_compare($this->config['version'], $data->update->version, '<')) {
                 $transient->response[$this->config['theme_slug']] = [
-                    'theme'         => $this->config['theme_slug'],
-                    'new_version'   => $data->update->version,
-                    'url'           => THEME_SHOP_URL,
-                    'package'       => $data->update->download_link,
-                    'sections'      => (array) $data->update->sections,
-                    'requires'     => '',
-                    'requires_php' => '',
-                ];
-            } else {
-                // Adding the "mock" item to the `no_update` property is required
-                // for the enable/disable auto-updates links to correctly appear in UI.
-                $transient->no_update[$this->config['theme_slug']] = [
                     'theme'        => $this->config['theme_slug'],
-                    'new_version'  => $this->config['version'],
-                    'url'          => '',
-                    'package'      => '',
-                    'requires'     => '',
-                    'requires_php' => '',
+                    'new_version'  => $data->update->version,
+                    'url'          => THEME_SHOP_URL,
+                    'package'      => $data->update->download_link,
+                    'requires'     => $data->update->requires,
+                    'requires_php' => $data->update->requires_php,
+                    'sections'     => (array) $data->update->sections,
                 ];
             }
+        }
+
+        if (empty($transient->response[$this->config['theme_slug']])) {
+            // Adding the "mock" item to the `no_update` property is required
+            // for the enable/disable auto-updates links to correctly appear in UI.
+            $transient->no_update[$this->config['theme_slug']] = [
+                'theme'        => $this->config['theme_slug'],
+                'new_version'  => $this->config['version'],
+                'url'          => '',
+                'package'      => '',
+                'requires'     => '',
+                'requires_php' => '',
+            ];
         }
 
         return $transient;
