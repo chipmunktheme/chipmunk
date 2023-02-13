@@ -206,6 +206,8 @@ $grid-columns: (
   }
 
   .c-tile--card &:not(:first-child) {
+    padding-top: 0;
+
     @include bp(md) {
       padding: spacer-fixed(1);
       padding-top: 0;
