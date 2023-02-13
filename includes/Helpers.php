@@ -80,11 +80,10 @@ class Helpers
      */
     public static function is_addon_enabled($addon)
     {
-        $license = Licenser::get_instance()->get_license_data();
         $option_name = Addons::get_instance()->get_option_name();
         $option = get_option($option_name);
 
-        return self::is_addon_allowed($license, $addon) && !empty($option[$addon]);
+        return self::is_addon_allowed($addon) && !empty($option[$addon]);
     }
 
     /**
@@ -461,7 +460,7 @@ class Helpers
         $key_prefix = '_' . THEME_SLUG . '_resource_';
 
         $website = get_post_meta($resource_id, $key_prefix . 'website', true);
-        $links = get_field($key_prefix . 'links', $resource_id);
+        $links = \get_field($key_prefix . 'links', $resource_id);
 
         if (!empty($website)) {
             return esc_url($website);

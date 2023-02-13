@@ -149,7 +149,6 @@ class Almond
                 'import_file_name'             => __('Demo Import', 'chipmunk'),
                 'import_file_url'              => THEME_SHOP_URL . '/content/content.xml',
                 'import_customizer_file_url'   => THEME_SHOP_URL . '/content/customizer.dat',
-                'preview_url'                  => THEME_DEMO_URL,
             ],
         ];
     }

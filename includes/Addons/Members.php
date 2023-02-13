@@ -25,6 +25,12 @@ class Members
     private $transient;
 
     /**
+     * Order ID
+     * @var int
+     */
+    private $order_id = 2;
+
+    /**
      * Initializes the addon.
      *
      * To keep the initialization fast, only add filter and action
@@ -178,7 +184,7 @@ class Members
      */
     public function add_settings_addon($addons)
     {
-        $addons[] = $this->config;
+        $addons[$this->order_id] = $this->config;
 
         return $addons;
     }
