@@ -56,7 +56,7 @@ class Updater
         add_filter('delete_site_transient_update_themes',  [$this, 'delete_theme_update_transient']);
         add_action('load-update-core.php',                 [$this, 'delete_theme_update_transient']);
         add_action('load-themes.php',                      [$this, 'delete_theme_update_transient']);
-        // add_filter('http_request_args',                    [$this, 'disable_wporg_request'], 5, 2);
+        add_filter('http_request_args',                    [$this, 'disable_wporg_request'], 5, 2);
     }
 
     /**
@@ -130,14 +130,14 @@ class Updater
             return false;
         }
 
-        $transient_data = get_transient($this->transient_key);
+        $update_data = get_transient($this->transient_key);
 
-        if (false !== $transient_data && $this->transient_allowed) {
-            if ('error' === $transient_data) {
+        if (false !== $update_data && $this->transient_allowed) {
+            if ('error' === $update_data) {
                 return false;
             }
 
-            return $transient_data;
+            return $update_data;
         }
 
         $response = wp_remote_get("{$this->config['remote_api_url']}?license_key={$license->license_key->key}", [
@@ -151,12 +151,15 @@ class Updater
             return false;
         }
 
-        $payload = json_decode(wp_remote_retrieve_body($response));
+        $update_data = json_decode(wp_remote_retrieve_body($response));
 
         // Set the transient for a day
-        set_transient($this->transient_key, $payload, DAY_IN_SECONDS);
+        set_transient($this->transient_key, $update_data, DAY_IN_SECONDS);
 
-        return $payload;
+        // Check the version
+        if (version_compare($this->config['version'], $update_data->update->version, '<')) {
+            return $update_data;
+        }
     }
 
     /**
