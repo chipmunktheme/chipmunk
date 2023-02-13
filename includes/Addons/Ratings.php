@@ -25,6 +25,12 @@ class Ratings
     private $transient;
 
     /**
+     * Order ID
+     * @var int
+     */
+    private $order_id = 1;
+
+    /**
      * Allowed post types supporting ChipmunkRatings
      *
      * @since 1.0
@@ -132,7 +138,7 @@ class Ratings
      */
     public function add_settings_addon($addons)
     {
-        $addons[] = $this->config;
+        $addons[$this->order_id] = $this->config;
 
         return $addons;
     }

@@ -100,6 +100,9 @@ class Addons extends Settings
         $addons = apply_filters('chipmunk_settings_addons', []);
         $options = get_option($this->option);
 
+        // Sort addons by index
+        ksort($addons);
+
         ob_start();
 ?>
         <form action="options.php" method="post">
@@ -124,7 +127,7 @@ class Addons extends Settings
                                 </p>
                             <?php elseif (!Helpers::is_addon_allowed($addon['slug'])) : ?>
                                 <p class="chipmunk__addons-error">
-                                    <a href="<?php echo esc_url(THEME_SHOP_URL); ?>/account/licenses" target="_blank" class="button-secondary"><?php esc_html_e('Upgrade now', 'chipmunk'); ?></a>
+                                    <a href="<?php echo esc_url(THEME_SHOP_URL); ?>" target="_blank" class="button-secondary"><?php esc_html_e('Upgrade now', 'chipmunk'); ?></a>
                                     <span><?php printf(esc_html__('Available in the %s plan.', 'chipmunk'), array_column(Helpers::get_allowed_variants($addon['slug']), 'name')[0]); ?></span>
                                 </p>
                             <?php else : ?>
