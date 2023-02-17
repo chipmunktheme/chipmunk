@@ -33,9 +33,17 @@
   margin-top: auto;
 }
 
-.chipmunk__addons-error {
+.chipmunk__addons-error,
+.chipmunk__addons-warning {
   display: flex;
   align-items: center;
   gap: 1em;
+}
+
+.chipmunk__addons-error {
   color: var(--chipmunk--color--status-error) !important;
+}
+
+.chipmunk__addons-warning {
+  color: var(--chipmunk--color--status-warning) !important;
 }

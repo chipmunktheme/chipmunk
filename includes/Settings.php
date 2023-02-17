@@ -73,17 +73,18 @@ class Settings
                     <?php echo THEME_TITLE; ?>
                 </h1>
 
-                <?php if (Helpers::is_active_license(self::$license)) : ?>
+                <?php if ($license = Helpers::get_active_license()) : ?>
                     <div class="chipmunk__status">
                         <div class="chipmunk__status-icon">
                             ✓
                         </div>
 
-                        <?php if ($variant = Helpers::get_license_variant(self::$license)) : ?>
-                            <div class="chipmunk__status-content">
+                        <div class="chipmunk__status-content">
+                            <?php if ($variant = Helpers::get_license_variant()) : ?>
                                 <strong><?php printf(esc_html__('%s License', 'chipmunk'), $variant['name']); ?></strong><br>
-                            </div>
-                        <?php endif; ?>
+                            <?php endif; ?>
+                            <?php echo esc_html($license->meta->customer_email); ?>
+                        </div>
                     </div>
                 <?php endif; ?>
 

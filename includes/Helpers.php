@@ -26,15 +26,29 @@ class Helpers
     }
 
     /**
+     * Retrieves license data
+     *
+     * @return object|null
+     */
+    public static function get_active_license()
+    {
+        $license = Licenser::get_instance()->get_license_data();
+
+        if (!empty($license) && 'active' == $license->license_key->status) {
+            return $license;
+        }
+
+        return null;
+    }
+
+    /**
      * Is active license activated
      *
      * @return bool
      */
     public static function is_active_license()
     {
-        $license = Licenser::get_instance()->get_license_data();
-
-        return !empty($license) && 'active' == $license->license_key->status;
+        return !!self::get_active_license();
     }
 
     /**
@@ -44,9 +58,7 @@ class Helpers
      */
     public static function get_license_variant()
     {
-        $license = Licenser::get_instance()->get_license_data();
-
-        if (empty($license) || !self::is_active_license($license)) {
+        if (!$license = self::get_active_license()) {
             return null;
         }
 
@@ -59,16 +71,18 @@ class Helpers
 
     /**
      * Check if Chipmunk plugin is allowed
+     *
+     * @param string $addon   Addon slug
+     *
+     * @return bool
      */
     public static function is_addon_allowed($addon)
     {
-        $license = Licenser::get_instance()->get_license_data();
-
-        if (!Helpers::is_active_license($license) || !Helpers::get_license_variant($license)) {
+        if (!$license_variant = self::get_license_variant()) {
             return false;
         }
 
-        return in_array($addon, Helpers::get_license_variant($license)['addons']);
+        return in_array($addon, $license_variant['addons']);
     }
 
     /**

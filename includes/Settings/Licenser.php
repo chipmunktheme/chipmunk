@@ -165,22 +165,24 @@ class Licenser extends Settings
             return;
         }
 
-        if ($data = $this->get_api_response('deactivate')) {
+        if ($this->get_api_response('deactivate')) {
             delete_transient($this->instance_id_option);
-
-            // Set fresh license data
-            $this->set_license_data($data);
+            delete_transient($this->license_data_option);
         }
     }
 
     /**
      * Checks the license key and stores the license data in db.
      *
-     * @return object
+     * @return object|null
      */
     public function validate_license()
     {
-        if (!$this->get_license_data() && $data = $this->get_api_response('validate')) {
+        if ($this->get_license_data() || !get_transient($this->instance_id_option)) {
+            return null;
+        }
+
+        if ($data = $this->get_api_response('validate')) {
             // Set fresh license data
             $this->set_license_data($data);
         }
@@ -245,7 +247,7 @@ class Licenser extends Settings
         $body = json_decode(wp_remote_retrieve_body($response));
 
         if (!Helpers::is_valid_response($response)) {
-            $this->display_settings_error($response, $body->error);
+            $this->display_settings_error($response, $body->error ?? $body->message);
             return;
         }
 
@@ -407,18 +409,23 @@ class Licenser extends Settings
      */
     public function add_inactive_license_notice($notices)
     {
-        if ('toplevel_page_chipmunk' === get_current_screen()->id) {
-            return $notices;
-        }
-
-        $data = $this->get_license_data();
-
-        if (empty($data->license_key) || 'active' !== $data->license_key->status) {
+        if (!Helpers::is_active_license()) {
             $notices[] = [
                 'type' => 'warning',
                 'message' => sprintf(
                     __('Please <a href="%1$s">activate</a> your %2$s license to <strong>unlock all functionalities</strong>.', 'chipmunk'),
                     get_admin_url(null, 'admin.php?page=chipmunk'),
+                    $this->config['item_name']
+                ),
+            ];
+        }
+
+        if (32 === strlen(get_option($this->license_key_option))) {
+            $notices[] = [
+                'type' => 'warning',
+                'message' => sprintf(
+                    __('Your %2$s license key is no longer valid. Please <a href="%1$s">contact us</a> to renew your license.', 'chipmunk'),
+                    'mailto:hello@chipmunktheme.com',
                     $this->config['item_name']
                 ),
             ];

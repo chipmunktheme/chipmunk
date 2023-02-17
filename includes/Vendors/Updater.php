@@ -126,7 +126,7 @@ class Updater
         }
 
         // Check theme license
-        if (!Helpers::is_active_license() || empty($license = Licenser::get_instance()->get_license_data())) {
+        if (!$license = Helpers::get_active_license()) {
             return false;
         }
 

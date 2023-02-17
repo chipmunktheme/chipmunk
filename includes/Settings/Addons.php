@@ -122,11 +122,11 @@ class Addons extends Settings
 
                         <div class="chipmunk__addons-cta">
                             <?php if (!Helpers::is_active_license()) : ?>
-                                <p class="chipmunk__addons-error">
-                                    <?php esc_html_e('Please use a valid license to enable.', 'chipmunk'); ?>
+                                <p class="chipmunk__addons-warning">
+                                    <?php esc_html_e('Please activate your license to unlock.', 'chipmunk'); ?>
                                 </p>
                             <?php elseif (!Helpers::is_addon_allowed($addon['slug'])) : ?>
-                                <p class="chipmunk__addons-error">
+                                <p class="chipmunk__addons-warning">
                                     <a href="<?php echo esc_url(THEME_SHOP_URL); ?>" target="_blank" class="button-secondary"><?php esc_html_e('Upgrade now', 'chipmunk'); ?></a>
                                     <span><?php printf(esc_html__('Available in the %s plan.', 'chipmunk'), array_column(Helpers::get_allowed_variants($addon['slug']), 'name')[0]); ?></span>
                                 </p>
