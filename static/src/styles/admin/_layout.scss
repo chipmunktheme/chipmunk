@@ -61,7 +61,7 @@
 
   .wrap {
     width: 100%;
-    margin: 2em 0 0 !important;
+    margin: 0 !important;
     color: var(--chipmunk--color--black);
   }
 
@@ -72,6 +72,10 @@
     border-radius: 0.25rem;
     border-top: 0;
     border-bottom: 0;
+  }
+
+  h2+.notice {
+    margin-top: 2rem !important;
   }
 
   .notice:not(:first-of-type) {

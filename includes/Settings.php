@@ -89,7 +89,7 @@ class Settings
                 <?php endif; ?>
 
                 <div class="wrap">
-                    <h2></h2>
+                    <h2 style="display:none"></h2>
                 </div>
             </div>
 

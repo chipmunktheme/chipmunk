@@ -420,7 +420,7 @@ class Licenser extends Settings
             ];
         }
 
-        if (32 === strlen(get_option($this->license_key_option))) {
+        if (32 === strlen($this->license_key)) {
             $notices[] = [
                 'type' => 'warning',
                 'message' => sprintf(
