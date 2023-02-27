@@ -51,7 +51,7 @@ class ACF
                     'value'     => 'resource',
                 ]]],
 
-                'fields'   => [
+                'fields'   => apply_filters('chipmunk_acf_fields_resource', [
                     [
                         'key' => 'is_featured',
                         'label' => __('Featured on homepage', 'chipmunk'),
@@ -90,7 +90,7 @@ class ACF
                         'instructions' => __('Read only, will contain the email of resource submitter.', 'chipmunk'),
                         'readonly' => 1,
                     ],
-                ],
+                ]),
             ],
 
             // Collection
@@ -104,14 +104,14 @@ class ACF
                     'value'     => 'resource-collection',
                 ]]],
 
-                'fields'   => [
+                'fields'   => apply_filters('chipmunk_acf_fields_collection', [
                     [
                         'key' => 'image',
                         'label' => __('Image', 'chipmunk'),
                         'type' => 'image',
                         'return_format' => 'id',
                     ],
-                ],
+                ]),
             ],
         ];
 
@@ -145,6 +145,8 @@ class ACF
         $optional_values = [
             'required',
             'readonly',
+            'choices',
+            'default_value',
             'instructions',
             'ui',
             'layout',
