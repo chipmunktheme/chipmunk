@@ -21,7 +21,7 @@ define('THEME_DIST_PATH',          'static/dist/');
 define('THEME_ASSETS_PATH',        'assets/');
 define('THEME_TEMPLATES_PATH',     'templates/');
 define('THEME_MANIFEST_PATH',      THEME_DIST_PATH . 'manifest.json');
-define('THEME_VARIANTS',           unserialize(base64_decode('YTozOntpOjEwODc0O2E6Mjp7czo0OiJuYW1lIjtzOjU6IkJhc2ljIjtzOjY6ImFkZG9ucyI7YTowOnt9fWk6MTA4NzU7YToyOntzOjQ6Im5hbWUiO3M6NDoiUGx1cyI7czo2OiJhZGRvbnMiO2E6MTp7aTowO3M6NzoicmF0aW5ncyI7fX1pOjEwODc2O2E6Mjp7czo0OiJuYW1lIjtzOjM6IlBybyI7czo2OiJhZGRvbnMiO2E6Mjp7aTowO3M6NzoicmF0aW5ncyI7aToxO3M6NzoibWVtYmVycyI7fX19')));
+define('THEME_VARIANTS',           unserialize(base64_decode('YTo2OntpOjEwODc0O2E6Mjp7czo0OiJuYW1lIjtzOjU6IkJhc2ljIjtzOjY6ImFkZG9ucyI7YTowOnt9fWk6MTA4NzU7YToyOntzOjQ6Im5hbWUiO3M6NDoiUGx1cyI7czo2OiJhZGRvbnMiO2E6MTp7aTowO3M6NzoicmF0aW5ncyI7fX1pOjEwODc2O2E6Mjp7czo0OiJuYW1lIjtzOjM6IlBybyI7czo2OiJhZGRvbnMiO2E6Mjp7aTowO3M6NzoicmF0aW5ncyI7aToxO3M6NzoibWVtYmVycyI7fX1pOjQ1ODY1O2E6Mjp7czo0OiJuYW1lIjtzOjU6IkJhc2ljIjtzOjY6ImFkZG9ucyI7YTowOnt9fWk6NDU4NjY7YToyOntzOjQ6Im5hbWUiO3M6NDoiUGx1cyI7czo2OiJhZGRvbnMiO2E6MTp7aTowO3M6NzoicmF0aW5ncyI7fX1pOjQ1ODY3O2E6Mjp7czo0OiJuYW1lIjtzOjM6IlBybyI7czo2OiJhZGRvbnMiO2E6Mjp7aTowO3M6NzoicmF0aW5ncyI7aToxO3M6NzoibWVtYmVycyI7fX19')));
 
 /*
  * Composer autoload
