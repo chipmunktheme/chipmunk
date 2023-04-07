@@ -778,6 +778,12 @@ class Customizer
                         'default'     => false,
                     ],
                     [
+                        'name'        => 'affiliate_id',
+                        'type'        => 'text',
+                        'label'       => esc_html__('Affiliate ID', 'chipmunk'),
+                        'description' => sprintf(wp_kses(__('Makes the Chipmunk credits an affiliate link. To claim your ID, <a href="%1$s" target="_blank">become an affiliate</a> and earn 20%% for every person you refer.', 'chipmunk'), ['a' => ['href' => [], 'target' => []]]), esc_url('https://chipmunktheme.com/affiliates')),
+                    ],
+                    [
                         'name'        => 'about_copy',
                         'type'        => 'textarea',
                         'label'       => esc_html__('About copy (footer)', 'chipmunk'),

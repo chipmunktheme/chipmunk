@@ -490,16 +490,39 @@ class Helpers
     /**
      * Create external links
      */
-    public static function render_external_link($url)
+    public static function render_external_link($url, $affiliated = false)
     {
-        if (!self::get_theme_option('disable_ref')) {
-            $title = str_replace('-', '', sanitize_title(get_bloginfo('name')));
-            $prefix = (preg_match('(\&|\?)', $url) === 1) ? '&ref=' : '?ref=';
-
-            return $url . $prefix . $title;
+        // If affiliate ID is set
+        if ($affiliated && !empty(self::get_theme_option('affiliate_id'))) {
+            return self::get_external_link($url, [
+                'aff' => self::get_theme_option('affiliate_id')
+            ]);
         }
 
-        return esc_url($url);
+        // If referral is not disabled
+        if (!self::get_theme_option('disable_ref')) {
+            return self::get_external_link($url, [
+                'ref' => str_replace('-', '', sanitize_title(get_bloginfo('name')))
+            ]);
+        }
+
+        // Return original URL
+        return self::get_external_link($url);
+    }
+
+    /**
+     * Get external links
+     */
+    public static function get_external_link($url, $data = [])
+    {
+        // Check if URL contains any query parameters
+        $prefix = preg_match('(\&|\?)', $url) === 1 ? '&' : '?';
+
+        // Build query string
+        $query = http_build_query($data);
+
+        // Return original URL
+        return esc_url($url . (!empty($query) ? $prefix . $query : ''));
     }
 
     /**
