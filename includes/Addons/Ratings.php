@@ -19,10 +19,10 @@ class Ratings
     private $config;
 
     /**
-     * Transient name
+     * Option name
      * @var string
      */
-    private $transient;
+    private $option_name;
 
     /**
      * Order ID
@@ -56,7 +56,7 @@ class Ratings
             'url'          => '',
         ]);
 
-        $this->transient = THEME_SLUG . '_' . $this->config['slug'] . '_init';
+        $this->option_name = THEME_SLUG . '_' . $this->config['slug'] . '_init';
 
         // Set hooks
         $this->hooks();
@@ -119,12 +119,12 @@ class Ratings
             return;
         }
 
-        if (!get_transient($this->transient)) {
+        if (!get_option($this->option_name)) {
             // Register post meta
             $this->register_post_meta();
 
-            // Set transient
-            set_transient($this->transient, true);
+            // Update option
+            update_option($this->option_name, true);
         }
 
         new Ratings\Actions();

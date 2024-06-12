@@ -147,7 +147,7 @@ class Licenser extends Settings
         $this->license_key = sanitize_text_field($_POST[$this->license_key_option]);
 
         if ($data = $this->get_api_response('activate')) {
-            set_transient($this->instance_id_option, $data->instance->id);
+            update_option($this->instance_id_option, $data->instance->id);
 
             // Set fresh license data
             $this->set_license_data($data);
@@ -166,8 +166,8 @@ class Licenser extends Settings
         }
 
         if ($this->get_api_response('deactivate')) {
-            delete_transient($this->instance_id_option);
-            delete_transient($this->license_data_option);
+            delete_option($this->instance_id_option);
+            delete_option($this->license_data_option);
         }
     }
 
@@ -178,7 +178,7 @@ class Licenser extends Settings
      */
     public function validate_license()
     {
-        if ($this->get_license_data() || !get_transient($this->instance_id_option)) {
+        if ($this->get_license_data() || !get_option($this->instance_id_option)) {
             return null;
         }
 
@@ -202,7 +202,10 @@ class Licenser extends Settings
         unset($license_data->error);
 
         // Set license data
-        set_transient($this->license_data_option, serialize($license_data), WEEK_IN_SECONDS);
+        update_option($this->license_data_option, [
+            "license" => $license_data,
+            "expires" => time() + WEEK_IN_SECONDS,
+        ]);
     }
 
     /**
@@ -212,10 +215,10 @@ class Licenser extends Settings
      */
     public function get_license_data()
     {
-        $license_data = get_transient($this->license_data_option);
+        $license_data = get_option($this->license_data_option);
 
-        if (!empty($license_data)) {
-            return maybe_unserialize($license_data);
+        if (!empty($license_data) && isset($license_data['expires']) && time() < $license_data['expires']) {
+            return maybe_unserialize($license_data["license"]);
         }
     }
 
@@ -233,7 +236,7 @@ class Licenser extends Settings
         }
 
         $license_param = ['license_key' => $this->license_key];
-        $instance_id = get_transient($this->instance_id_option);
+        $instance_id = get_option($this->instance_id_option);
         $instance_param = !empty($instance_id)
             ? ['instance_id' => $instance_id]
             : ['instance_name' => get_bloginfo('name')];
