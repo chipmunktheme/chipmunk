@@ -18,7 +18,7 @@ $excerpt = Chipmunk\Helpers::truncate_string(get_the_excerpt(), 120);
 
 <div class="l-section<?php echo (!$wp_query->current_post || $wp_query->current_post % 2 == 0) ? ' l-section--theme-light' : ''; ?>">
     <div class="l-container">
-        <article class="c-resource" itemscope itemtype="http://schema.org/Product">
+        <article class="c-resource" itemscope itemtype="http://schema.org/<?php echo Chipmunk\Helpers::is_addon_enabled('ratings') ? 'Product' : 'Thing'; ?>">
             <meta itemprop="name" content="<?php echo esc_attr(strip_tags(get_the_title())); ?>" />
 
             <div class="c-resource__content<?php echo esc_attr((!has_post_thumbnail() || !Chipmunk\Helpers::is_feature_enabled('single_thumbs', 'resource')) ? ' c-resource__content--full' : ''); ?>">

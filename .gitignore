@@ -17,6 +17,7 @@ nbproject
 
 # Project specific
 .env
+.budfiles
 auth.json
 composer.lock
 /vendor/**/.git
