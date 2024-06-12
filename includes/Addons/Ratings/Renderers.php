@@ -17,13 +17,8 @@ class Renderers
      */
     public function __construct()
     {
-        // if ( \Chipmunk\Helpers::is_feature_enabled( 'ratings', 'resource' ) ) {
         add_action('chipmunk_resource_extras', [$this, 'render_rating_form']);
-        // }
-
-        // if ( \Chipmunk\Helpers::is_feature_enabled( 'ratings', 'post' ) ) {
         add_action('chipmunk_post_extras', [$this, 'render_rating_form']);
-        // }
     }
 
     /**

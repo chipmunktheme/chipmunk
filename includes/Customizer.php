@@ -143,7 +143,7 @@ class Customizer
                         'choices'     => [
                             '6'           => esc_html__('Narrow', 'chipmunk'),
                             '8'           => esc_html__('Normal', 'chipmunk'),
-                            '10'            => esc_html__('Wide', 'chipmunk'),
+                            '10'          => esc_html__('Wide', 'chipmunk'),
                             '12'          => esc_html__('Full', 'chipmunk'),
                         ],
                     ],
