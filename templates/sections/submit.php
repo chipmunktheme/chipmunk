@@ -2,6 +2,7 @@
 <?php $salt = Chipmunk\Helpers::get_salt(5); ?>
 <?php $alignment = isset($popup) ? 'center' : 'left'; ?>
 <?php $required_fields = apply_filters('chipmunk_submission_required_fields', ['name', 'collection', 'website']); ?>
+<?php $user = wp_get_current_user(); ?>
 
 <?php if (!empty($title)) : ?>
     <div class="l-component">
@@ -47,13 +48,13 @@
             <textarea rows="1" name="content" placeholder="<?php esc_attr_e('Description', 'chipmunk'); ?>" class="c-form__input" <?php echo in_array('content', $required_fields) ? 'required' : ''; ?> data-dynamic-rows></textarea>
         </div>
 
-        <?php if (!Chipmunk\Helpers::get_theme_option('disable_submitter_info') && !is_user_logged_in()) : ?>
+        <?php if (!Chipmunk\Helpers::get_theme_option('disable_submitter_info')) : ?>
             <div class="c-form__field">
-                <input type="text" name="submitter_name" placeholder="<?php esc_attr_e('Your name', 'chipmunk'); ?>" class="c-form__input" required>
+                <input type="text" name="submitter_name" value="<?php echo esc_attr($user->display_name); ?>" placeholder="<?php esc_attr_e('Your name', 'chipmunk'); ?>" class="c-form__input" required>
             </div>
 
             <div class="c-form__field">
-                <input type="email" name="submitter_email" placeholder="<?php esc_attr_e('Your email', 'chipmunk'); ?>" class="c-form__input" required>
+                <input type="email" name="submitter_email" value="<?php echo esc_attr($user->user_email); ?>" placeholder="<?php esc_attr_e('Your email', 'chipmunk'); ?>" class="c-form__input" required>
             </div>
         <?php endif; ?>
 

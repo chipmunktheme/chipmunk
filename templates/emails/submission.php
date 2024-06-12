@@ -15,6 +15,13 @@
     <a href="<?php echo esc_url(Chipmunk\Helpers::render_external_link(get_post_meta($post->ID, '_' . THEME_SLUG . '_resource_website', true))); ?>" target="_blank"><?php esc_html_e('Visit website', 'chipmunk'); ?></a>
 </p>
 
+<?php if (!empty($submitter)) : ?>
+    <p>
+        <strong><?php esc_html_e('Submitter', 'chipmunk'); ?>:</strong><br>
+        <?php echo esc_html($submitter); ?>
+    </p>
+<?php endif; ?>
+
 <?php if (!empty($post->post_content)) : ?>
     <p>
         <strong><?php esc_html_e('Description', 'chipmunk'); ?>:</strong><br>

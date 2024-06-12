@@ -36,6 +36,13 @@ class Submissions
     private $required_empty = ['filter'];
 
     /**
+     * Meta prefix
+     *
+     * @var string
+     */
+    private $meta_prefix = '_' . THEME_SLUG . '_resource';
+
+    /**
      * Create a new submission form object
      *
      * @param  object $data
@@ -123,10 +130,11 @@ class Submissions
         $post       = get_post($post_id);
         $name       = get_bloginfo('name');
         $admin      = get_bloginfo('admin_email');
+        $submitter  = get_field($this->meta_prefix . '_submitter', $post_id);
         $headers    = ['Content-Type: text/html; charset=UTF-8'];
 
         $subject    = sprintf(esc_html__('%s: New user submission', 'chipmunk'), $name);
-        $template   = Helpers::get_template_part('emails/submission', ['subject' => $subject, 'post' => $post], false);
+        $template   = Helpers::get_template_part('emails/submission', ['subject' => $subject, 'post' => $post, 'submitter' => $submitter], false);
 
         wp_mail($admin, $subject, $template, $headers);
     }
@@ -191,25 +199,13 @@ class Submissions
      */
     private function submit_post()
     {
-        $meta_prefix        = '_' . THEME_SLUG . '_resource';
-        $meta_input         = [];
-
         $name               = wp_filter_nohtml_kses(isset($this->data['name']) ? $this->data['name'] : '');
         $website            = wp_filter_nohtml_kses(isset($this->data['website']) ? $this->data['website'] : '');
         $collection         = wp_filter_kses(isset($this->data['collection']) ? $this->data['collection'] : '');
         $content            = wp_kses_post(wpautop(isset($this->data['content']) ? $this->data['content'] : ''));
         $submitter_email    = wp_filter_nohtml_kses(isset($this->data['submitter_email']) ? $this->data['submitter_email'] : '');
         $submitter_name     = wp_filter_nohtml_kses(isset($this->data['submitter_name']) ? $this->data['submitter_name'] : '');
-
         $author_id          = $this->get_submitter_id($submitter_email);
-
-        if (empty($author_id)) {
-            if (!empty($submitter_email) && !empty($submitter_name)) {
-                $meta_input[$meta_prefix . '_submitter'] = "{$submitter_name} <{$submitter_email}>";
-            }
-        }
-
-        $meta_input[$meta_prefix . '_website'] = esc_url($website);
 
         $post_object = [
             'post_type'     => 'resource',
@@ -217,12 +213,28 @@ class Submissions
             'post_title'    => $name,
             'post_content'  => $content,
             'post_author'   => $author_id,
-            'meta_input'    => $meta_input,
         ];
 
         if ($post_id = wp_insert_post($post_object)) {
             // Insert taxonomy information
             wp_set_object_terms($post_id, (int) $collection, 'resource-collection');
+
+            // Update ACF Links
+            update_field($this->meta_prefix . '_links', [
+                [
+                    'link' => [
+                        'title'  => apply_filters('chipmunk_submission_link_title', __('Visit website', 'chipmunk')),
+                        'url'    => esc_url($website),
+                        'target' => '_blank',
+                    ],
+                ],
+            ], $post_id);
+
+
+            // Update ACF Submitter
+            if (!empty($submitter_email) && !empty($submitter_name)) {
+                update_field($this->meta_prefix . '_submitter', "{$submitter_name} <{$submitter_email}>", $post_id);
+            }
 
             // Attach post thumbnail
             if (!Helpers::get_theme_option('disable_submission_image_fetch')) {
