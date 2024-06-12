@@ -40,7 +40,7 @@
     box-shadow: none;
   }
 
-  .notice+& {
+  .notice + & {
     margin-top: 1.5rem;
   }
 }
@@ -74,7 +74,7 @@
     border-bottom: 0;
   }
 
-  h2+.notice {
+  h2 + .notice {
     margin-top: 2rem !important;
   }
 
@@ -92,14 +92,15 @@
   padding: 0;
   color: inherit;
 
-  svg {
+  svg,
+  img {
     fill: currentColor;
     height: 1em;
     width: 1em;
     font-size: 1.25em;
   }
 
-  >span {
+  > span {
     position: absolute;
     top: 0;
     left: 100%;

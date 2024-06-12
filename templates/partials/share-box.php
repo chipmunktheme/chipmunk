@@ -5,7 +5,7 @@
     ],
     [
         'name' => 'Twitter',
-        'href' => 'https://twitter.com/share?url=%url%&amp;text=%title%',
+        'href' => 'https://x.com/share?url=%url%&amp;text=%title%',
     ],
     [
         'name' => 'Pinterest',
@@ -34,7 +34,7 @@
                 ?>
 
                 <a href="<?php echo $link; ?>" class="c-menu-socials__link" title="<?php echo $provider['name']; ?>" target="_blank">
-                    <?php Chipmunk\Helpers::get_template_part('partials/icon', ['icon' => "social-{$slug}"]); ?>
+                    <?php Chipmunk\Helpers::get_template_part('partials/icon', ['icon' => "social-{$slug}", 'stroke' => '2']); ?>
                     <span class="u-hidden-visually"><?php echo $provider['name']; ?></span>
                 </a>
             </li>

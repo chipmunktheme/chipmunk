@@ -12,7 +12,7 @@
                             <?php foreach ($socials as $social_key => $social_value) : ?>
                                 <li class="c-menu-socials__item">
                                     <a href="<?php echo esc_url($social_value); ?>" class="c-menu-socials__link" title="<?php echo $social_key; ?>" target="_blank">
-                                        <?php Chipmunk\Helpers::get_template_part('partials/icon', ['icon' => 'social-' . strtolower($social_key)]); ?>
+                                        <?php Chipmunk\Helpers::get_template_part('partials/icon', ['icon' => 'social-' . strtolower($social_key), 'stroke' => '2']); ?>
                                         <span class="u-hidden-visually"><?php echo $social_key; ?></span>
                                     </a>
                                 </li>

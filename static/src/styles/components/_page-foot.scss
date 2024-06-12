@@ -69,7 +69,8 @@
   gap: spacer-fixed(0.5);
   white-space: nowrap;
 
-  svg {
+  svg,
+  img {
     width: auto;
     height: spacer-relative(1);
     fill: currentColor;
