@@ -181,9 +181,9 @@ class ACF
      *
      * @return bool
      */
-    function acf_settings_show_admin($show_admin)
+    function acf_settings_show_admin()
     {
-        return false;
+        return apply_filters('chipmunk_acf_show_admin', false);
     }
 
     /**
