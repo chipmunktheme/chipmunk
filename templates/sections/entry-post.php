@@ -1,7 +1,7 @@
-<article itemscope itemtype="http://schema.org/BlogPosting">
+<article>
     <?php if (has_post_thumbnail() && Chipmunk\Helpers::get_theme_option('blog_post_layout') == 'hero') : ?>
         <section class="c-entry__hero">
-            <?php the_post_thumbnail('1920x1080', ['itemprop' => 'image']); ?>
+            <?php the_post_thumbnail('1920x1080'); ?>
 
             <div class="c-entry__details l-section">
                 <div class="l-container">
@@ -20,7 +20,7 @@
                     <?php if (!has_post_thumbnail() || Chipmunk\Helpers::get_theme_option('blog_post_layout') == 'no_hero') : ?>
                         <?php if (has_post_thumbnail()) : ?>
                             <div class="c-entry__image c-media c-media--16-9">
-                                <?php the_post_thumbnail('1280x720', ['itemprop' => 'image']); ?>
+                                <?php the_post_thumbnail('1280x720'); ?>
                             </div>
                         <?php endif; ?>
 
@@ -31,7 +31,7 @@
 
                     <?php do_action('chipmunk_before_post_content'); ?>
 
-                    <div class="c-entry__content c-content c-content--type" itemprop="articleBody">
+                    <div class="c-entry__content c-content c-content--type">
                         <?php the_content(); ?>
                     </div>
 
@@ -65,3 +65,34 @@
         </div>
     </section>
 </article>
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org/",
+    "@type": "BlogPosting",
+    "headline": "<?php echo esc_attr(strip_tags(get_the_title())); ?>",
+    "image": {
+        "@type": "ImageObject",
+        "url": "<?php the_post_thumbnail_url('thumbnail'); ?>",
+        "width": <?php echo get_option('thumbnail_size_w'); ?>,
+        "height": <?php echo get_option('thumbnail_size_h'); ?>
+    },
+    "author": {
+        "@type": "Person",
+        "name": "<?php the_author(); ?>",
+        "url": "<?php the_author_meta('url'); ?>"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "<?php bloginfo('name'); ?>",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "<?php echo Chipmunk\Helpers::get_theme_option('logo'); ?>"
+        }
+    },
+    "datePublished": "<?php the_time('c'); ?>",
+    "dateModified": "<?php the_modified_time('c'); ?>",
+    "mainEntityOfPage": "<?php the_permalink(); ?>",
+    "articleBody": "<?php the_content(); ?>"
+}
+</script>

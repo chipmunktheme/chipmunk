@@ -46,7 +46,7 @@ class Ratings
      *
      * @var int
      */
-    protected $max_rating = 5;
+    public static $max_rating = 5;
 
     /**
      * Minimum ratings required to be listed
@@ -196,12 +196,10 @@ class Ratings
     {
         $ratings = $this->get_ratings();
 
-        $summary = "<div itemprop='aggregateRating' itemscope itemtype='http://schema.org/AggregateRating' " . ($ratings['count'] == 0 ? "style='display: none'" : "") . ">"
-            . "<strong itemprop='ratingValue'>" . ($ratings['average'] > 1 ? $ratings['average'] : 5) . "</strong> " . __('out of', 'chipmunk') . " <span itemprop='bestRating'>" . $this->max_rating . "</span> " . __('stars', 'chipmunk')
-            . "<small class='u-visible-md-inline'>(<span itemprop='ratingCount'>" . ($ratings['count'] > 0 ? $ratings['count'] : 1) . "</span> " . _n('rating', 'ratings', $ratings['count'], 'chipmunk') . ")</small>"
-            . "</div>";
+        $summary = "<strong>" . $ratings['average'] . "</strong> " . __('out of', 'chipmunk') . " <span itemprop='bestRating'>" . self::$max_rating . "</span> " . __('stars', 'chipmunk')
+            . "<small class='u-visible-md-inline'>(" . $ratings['count'] . " " . _n('rating', 'ratings', $ratings['count'], 'chipmunk') . ")</small>";
 
-        return $summary;
+        return $ratings['count'] > 0 ? $summary : "";
     }
 
     /**
@@ -229,7 +227,7 @@ class Ratings
      */
     public function get_max_rating()
     {
-        return $this->max_rating;
+        return self::$max_rating;
     }
 
     /**

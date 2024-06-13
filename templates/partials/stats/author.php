@@ -6,12 +6,10 @@
             <?php Chipmunk\Helpers::get_template_part('partials/icon', ['icon' => 'user']); ?>
         <?php endif; ?>
 
-        <span itemprop="author">
-            <?php if (!empty($show_link)) : ?>
-                <?php the_author_posts_link(); ?>
-            <?php else : ?>
-                <?php the_author(); ?>
-            <?php endif; ?>
-        </span>
+        <?php if (!empty($show_link)) : ?>
+            <?php the_author_posts_link(); ?>
+        <?php else : ?>
+            <?php the_author(); ?>
+        <?php endif; ?>
     </li>
 <?php endif; ?>

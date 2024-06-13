@@ -6,6 +6,12 @@ $description = '';
 $excerpt = Chipmunk\Helpers::truncate_string(get_the_excerpt(), 120);
 ?>
 
+<?php if (Chipmunk\Helpers::is_feature_enabled('ratings', get_post_type()) && Chipmunk\Helpers::is_addon_enabled('ratings')) : ?>
+    <?php $addon = new Chipmunk\Addons\Ratings\Ratings(get_the_ID()); ?>
+    <?php $ratings = $addon->get_ratings(); ?>
+    <?php $ratings_enabled = $ratings['count'] > 0; ?>
+<?php endif; ?>
+
 <?php if (is_search()) : ?>
     <?php $description = $excerpt; ?>
 <?php elseif ($content_separated || empty(get_the_content())) : ?>
@@ -18,9 +24,7 @@ $excerpt = Chipmunk\Helpers::truncate_string(get_the_excerpt(), 120);
 
 <div class="l-section<?php echo (!$wp_query->current_post || $wp_query->current_post % 2 == 0) ? ' l-section--theme-light' : ''; ?>">
     <div class="l-container">
-        <article class="c-resource" itemscope itemtype="http://schema.org/<?php echo Chipmunk\Helpers::is_addon_enabled('ratings') ? 'Product' : 'Thing'; ?>">
-            <meta itemprop="name" content="<?php echo esc_attr(strip_tags(get_the_title())); ?>" />
-
+        <article class="c-resource">
             <div class="c-resource__content<?php echo esc_attr((!has_post_thumbnail() || !Chipmunk\Helpers::is_feature_enabled('single_thumbs', 'resource')) ? ' c-resource__content--full' : ''); ?>">
                 <?php do_action('chipmunk_before_resource_info'); ?>
 
@@ -36,7 +40,7 @@ $excerpt = Chipmunk\Helpers::truncate_string(get_the_excerpt(), 120);
                     <?php endif; ?>
 
                     <?php if (!empty($description)) : ?>
-                        <div class="c-resource__description c-content c-content--type" itemprop="description">
+                        <div class="c-resource__description c-content c-content--type">
                             <?php echo apply_filters('the_content', $description); ?>
                         </div>
                     <?php endif; ?>
@@ -91,11 +95,11 @@ $excerpt = Chipmunk\Helpers::truncate_string(get_the_excerpt(), 120);
                 <?php $media_class = "c-resource__media $media_class"; ?>
 
                 <?php if (!is_single()) : ?>
-                    <a href="<?php the_permalink(); ?>" class="<?php echo esc_attr($media_class); ?>"><?php the_post_thumbnail('1280x960', ['itemprop' => 'image']); ?></a>
+                    <a href="<?php the_permalink(); ?>" class="<?php echo esc_attr($media_class); ?>"><?php the_post_thumbnail('1280x960'); ?></a>
                 <?php elseif (!empty($primary_website)) : ?>
-                    <a href="<?php echo Chipmunk\Helpers::render_external_link($primary_website); ?>" class="<?php echo esc_attr($media_class); ?>" target="_blank" <?php echo Chipmunk\Helpers::get_theme_option('disable_nofollow') ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail('1280x960', ['itemprop' => 'image']); ?></a>
+                    <a href="<?php echo Chipmunk\Helpers::render_external_link($primary_website); ?>" class="<?php echo esc_attr($media_class); ?>" target="_blank" <?php echo Chipmunk\Helpers::get_theme_option('disable_nofollow') ? '' : ' rel="nofollow"'; ?>><?php the_post_thumbnail('1280x960'); ?></a>
                 <?php else : ?>
-                    <div class="<?php echo esc_attr($media_class); ?>"><?php the_post_thumbnail('1280x960', ['itemprop' => 'image']); ?></div>
+                    <div class="<?php echo esc_attr($media_class); ?>"><?php the_post_thumbnail('1280x960'); ?></div>
                 <?php endif; ?>
             <?php endif; ?>
 
@@ -148,3 +152,28 @@ $excerpt = Chipmunk\Helpers::truncate_string(get_the_excerpt(), 120);
         </div>
     <?php endif; ?>
 <?php endif; ?>
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org/",
+    "@type": "<?php echo $ratings_enabled ? 'Product' : 'WebPage'; ?>",
+    "name": "<?php echo esc_attr(strip_tags(get_the_title())); ?>",
+    "description": "<?php echo esc_attr(strip_tags(get_the_excerpt())); ?>",
+    "image": {
+        "@type": "ImageObject",
+        "url": "<?php the_post_thumbnail_url('thumbnail'); ?>",
+        "width": <?php echo get_option('thumbnail_size_w'); ?>,
+        "height": <?php echo get_option('thumbnail_size_h'); ?>
+    },
+    "mainEntityOfPage": "<?php the_permalink(); ?>"
+
+    <?php if ($ratings_enabled) : ?>
+        , "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "<?php echo $ratings['average']; ?>",
+            "reviewCount": "<?php echo $ratings['count']; ?>",
+            "bestRating": "<?php echo Chipmunk\Addons\Ratings\Ratings::$max_rating; ?>"
+        }
+    <?php endif; ?>
+}
+</script>

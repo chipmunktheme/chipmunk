@@ -2,7 +2,7 @@
     <li class="c-stats__item c-stats__item--date" title="<?php esc_attr_e('Published', 'chipmunk'); ?>: <?php the_time('Y-m-d H:i'); ?>">
         <?php Chipmunk\Helpers::get_template_part('partials/icon', ['icon' => 'clock']); ?>
 
-        <time datetime="<?php the_time('c'); ?>" itemprop="datePublished">
+        <time datetime="<?php the_time('c'); ?>">
             <?php the_time(get_option('date_format')); ?>
         </time>
     </li>
