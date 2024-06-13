@@ -12,7 +12,7 @@
   font-size: var(--chipmunk--typography--font-size);
   font-family: var(--chipmunk--typography--font-family);
   line-height: var(--chipmunk--typography--line-height);
-  overflow: hidden;
+  overflow: clip;
 
   &::after {
     content: '';

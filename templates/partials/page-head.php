@@ -1,4 +1,4 @@
-<header class="c-page-head<?php echo Chipmunk\Helpers::get_theme_option('sticky_header') ? ' is-sticky' : ''; ?>" data-placehold-height="header">
+<header class="c-page-head<?php echo Chipmunk\Helpers::get_theme_option('sticky_header') ? ' is-sticky' : ''; ?>">
     <div class="l-container">
         <div class="c-page-head__inner">
             <?php $logo = Chipmunk\Helpers::get_theme_option('logo'); ?>
@@ -89,7 +89,3 @@
         </div>
     </div>
 </header>
-
-<?php if (Chipmunk\Helpers::get_theme_option('sticky_header')) : ?>
-    <div class="c-page-head__placeholder"></div>
-<?php endif; ?>

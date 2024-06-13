@@ -9,7 +9,8 @@
   background-color: var(--chipmunk--color--section);
 
   &.is-sticky {
-    inset: 0 0 auto;
+    position: sticky;
+    top: 0;
 
     .admin-bar & {
       top: 4.6rem;
@@ -22,8 +23,8 @@
 }
 
 .c-page-head__inner {
-  padding-top: spacer-clamped(2);
-  padding-bottom: spacer-clamped(2);
+  padding-top: spacer-clamped(1.5);
+  padding-bottom: spacer-clamped(1.5);
   position: relative;
   display: flex;
   align-items: center;
@@ -32,11 +33,6 @@
   min-height: var(--chipmunk--logo-height);
   transition-property: padding;
   transition-duration: var(--chipmunk--transition-duration);
-
-  .is-condensed .is-sticky & {
-    padding-top: spacer-clamped(1);
-    padding-bottom: spacer-clamped(1);
-  }
 }
 
 .c-page-head__logo {

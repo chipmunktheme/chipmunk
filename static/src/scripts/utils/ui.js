@@ -11,7 +11,6 @@ import dynamicRows from '../modules/dynamic-rows';
 import viewTrigger from '../modules/view-trigger';
 import ratings from '../modules/ratings';
 import actions from '../modules/actions';
-import events from '../modules/events';
 
 const Ui = {
   init(element) {
@@ -28,7 +27,6 @@ const Ui = {
     viewTrigger.init(element);
     ratings.init(element);
     actions.init(element);
-    events.init(element);
   },
 };
 
