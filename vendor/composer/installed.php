@@ -3,7 +3,7 @@
         'name' => 'chipmunk-theme/chipmunk-theme',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'db0e8f318166ecddac6896e194d0aafe4428960d',
+        'reference' => '027c3b88788af69ce15ab7e701ac0ca707c3e1df',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -24,7 +24,7 @@
         'chipmunk-theme/chipmunk-theme' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'db0e8f318166ecddac6896e194d0aafe4428960d',
+            'reference' => '027c3b88788af69ce15ab7e701ac0ca707c3e1df',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -72,10 +72,16 @@
                 0 => '1.0.0',
             ),
         ),
+        'wpackagist-plugin/advanced-custom-fields' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '6.3.1.2',
+            ),
+        ),
         'wpengine/advanced-custom-fields-pro' => array(
-            'pretty_version' => '6.0.7',
-            'version' => '6.0.7.0',
-            'reference' => NULL,
+            'pretty_version' => '6.3.1.2',
+            'version' => '6.3.1.2',
+            'reference' => null,
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../advanced-custom-fields-pro',
             'aliases' => array(),

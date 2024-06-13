@@ -22,7 +22,7 @@ class Almond
         new AlmondWizard(
             // Config settings
             [
-                'directory'            => 'vendor/chipmunk-theme/almond', // Location / directory where Merlin WP is placed in your theme.
+                'directory'            => 'vendor/chipmunk-theme/almond', // Location / directory where Almond is placed in your theme.
                 'child_action_btn_url' => 'https://developer.wordpress.org/themes/advanced-topics/child-themes', // URL for the 'child-action-link'.
                 'dev_mode'             => false, // Enable development mode for testing.
             ],

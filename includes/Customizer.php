@@ -161,7 +161,7 @@ class Customizer
                         'name'        => 'logo_height',
                         'type'        => 'range',
                         'label'       => esc_html__('Logo height', 'chipmunk-lite'),
-                        'default'     => 40,
+                        'default'     => 32,
                         'description' => esc_html__('Width will be calculated automatically.', 'chipmunk'),
                         'input_attrs'     => [
                             'min'         => 20,
