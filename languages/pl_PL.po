@@ -2597,7 +2597,7 @@ msgstr "Zobacz kolekcję"
 
 #, fuzzy
 #~| msgid "https://chipmunktheme.com"
-#~ msgid "https://madebyless.com"
+#~ msgid "https://kulpinski.dev"
 #~ msgstr "https://chipmunktheme.com"
 
 #, fuzzy

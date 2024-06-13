@@ -3,8 +3,8 @@
 /**
  * Chipmunk: Theme specific functionalities
  *
- * Author:       Made by Less
- * Author URI:   https://madebyless.com
+ * Author:       Piotr Kulpinski
+ * Author URI:   https://kulpinski.dev
  *
  * @package WordPress
  * @subpackage Chipmunk

@@ -1807,11 +1807,11 @@ msgid ""
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Made by Less"
+msgid "Piotr Kulpinski"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://madebyless.com"
+msgid "https://kulpinski.dev"
 msgstr ""
 
 #. Template Name of the plugin/theme

@@ -4,8 +4,8 @@
   "description": "A WordPress Theme for Content Curation",
   "authors": [
     {
-      "name": "Made by Less",
-      "email": "hello@madebyless.com"
+      "name": "Piotr Kulpinski",
+      "email": "piotr@kulpinski.pl"
     }
   ],
   "autoload": {

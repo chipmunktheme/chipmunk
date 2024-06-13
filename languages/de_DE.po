@@ -988,12 +988,12 @@ msgstr ""
 "code and is built for speed. All of our customers and their users love it!"
 
 #. Author of the plugin/theme
-msgid "Made by Less"
-msgstr "Made by Less"
+msgid "Piotr Kulpinski"
+msgstr "Piotr Kulpinski"
 
 #. Author URI of the plugin/theme
-msgid "https://madebyless.com"
-msgstr "https://madebyless.com"
+msgid "https://kulpinski.dev"
+msgstr "https://kulpinski.dev"
 
 #. Template Name of the plugin/theme
 msgid "Listing - Blog"

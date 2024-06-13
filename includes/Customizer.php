@@ -99,7 +99,7 @@ class Customizer
                         'name'        => 'background_color',
                         'type'        => 'color',
                         'label'       => esc_html__('Background Color', 'chipmunk'),
-                        'default'     => '#EDEDED',
+                        'default'     => '#F3F3F3',
                     ],
                     [
                         'name'        => 'section_color',
@@ -111,7 +111,7 @@ class Customizer
                         'name'        => 'section_color',
                         'type'        => 'color',
                         'label'       => esc_html__('Section Border Color', 'chipmunk'),
-                        'default'     => '#E8E8E8',
+                        'default'     => '#E1E1E1',
                     ],
                     [
                         'name'        => 'primary_font',
