@@ -23,6 +23,8 @@
 }
 
 .c-page-head__inner {
+  position: relative;
+  z-index: var(--chipmunk--layer--head);
   padding-top: spacer-clamped(1.5);
   padding-bottom: spacer-clamped(1.5);
   position: relative;
@@ -31,8 +33,6 @@
   justify-content: space-between;
   gap: spacer-clamped(2);
   min-height: var(--chipmunk--logo-height);
-  transition-property: padding;
-  transition-duration: var(--chipmunk--transition-duration);
 }
 
 .c-page-head__logo {

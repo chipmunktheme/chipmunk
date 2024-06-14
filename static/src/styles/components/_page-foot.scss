@@ -16,7 +16,8 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--chipmunk--layout--column-gutter);
+  column-gap: var(--chipmunk--layout--column-gutter);
+  row-gap: spacer-clamped(1);
 
   @include bp(md) {
     flex-direction: row;

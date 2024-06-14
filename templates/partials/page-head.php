@@ -88,4 +88,6 @@
             <?php endif; ?>
         </div>
     </div>
+
+    <?php Chipmunk\Helpers::get_template_part('partials/page-overlay'); ?>
 </header>

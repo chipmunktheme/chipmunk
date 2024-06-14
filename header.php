@@ -23,4 +23,3 @@
     <?php wp_body_open(); ?>
 
     <?php Chipmunk\Helpers::get_template_part('partials/page-head'); ?>
-    <?php Chipmunk\Helpers::get_template_part('partials/page-overlay'); ?>
