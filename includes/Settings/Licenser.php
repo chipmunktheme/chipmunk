@@ -77,9 +77,7 @@ class Licenser extends Settings
      * The Licenser's constructor should always be private to prevent direct
      * construction calls with the `new` operator.
      */
-    protected function __construct()
-    {
-    }
+    protected function __construct() {}
 
     /**
      * Initialize the class
@@ -237,9 +235,11 @@ class Licenser extends Settings
 
         $license_param = ['license_key' => $this->license_key];
         $instance_id = get_option($this->instance_id_option);
-        $instance_param = !empty($instance_id)
-            ? ['instance_id' => $instance_id]
-            : ['instance_name' => get_bloginfo('name')];
+        $instance_param = ['instance_name' => get_bloginfo('name')];
+
+        if (!empty($instance_id)) {
+            $instance_param['instance_id'] = $instance_id;
+        }
 
         $response = wp_remote_post("{$this->config['remote_api_url']}/licenses/{$action}", [
             'timeout' => 15,

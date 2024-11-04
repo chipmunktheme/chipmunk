@@ -49,5 +49,5 @@
 }
 
 .c-overlay__bottom {
-  padding-top: spacer-clamped(1.5);
+  @include spacer-clamped(1.5);
 }

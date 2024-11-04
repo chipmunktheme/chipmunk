@@ -62,6 +62,7 @@ class Submissions
     {
         if (isset($this->data['g-recaptcha-response']) && !Helpers::verify_recaptcha($this->data['g-recaptcha-response'])) {
             throw new \Exception(esc_html__('Please verify that you are not a robot.', 'chipmunk'));
+            return false;
         }
 
         foreach (apply_filters('chipmunk_submission_required_fields', $this->required) as $field) {
@@ -105,21 +106,22 @@ class Submissions
      *
      * @param  integer $post_id
      * @param  string $website
-     * @return integer
      */
     private function attach_post_thumbnail($post_id, $website)
     {
-        if (!empty($website)) {
-            $og_data = OpenGraph::fetch($website);
+        try {
+            if (!empty($website)) {
+                $og_data = OpenGraph::fetch($website);
 
-            if (!empty($og_data) && !empty($og_data->image)) {
-                if ($attachment_id = $this->upload_attachment($og_data->image)) {
-                    return set_post_thumbnail($post_id, $attachment_id);
+                if (!empty($og_data) && !empty($og_data->image)) {
+                    if ($attachment_id = $this->upload_attachment($og_data->image)) {
+                        set_post_thumbnail($post_id, $attachment_id);
+                    }
                 }
             }
+        } catch (\Exception $e) {
+            // Fail silently
         }
-
-        return false;
     }
 
     /**
