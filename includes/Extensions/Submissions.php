@@ -154,13 +154,16 @@ class Submissions
 
         $http = new \WP_Http();
         $response = $http->request($url);
+
+        if (is_wp_error($response)) {
+            $error_message = $response->get_error_message();
+            error_log("Error: " . $error_message);
+            return false;
+        }
+
         $file_extension = Helpers::get_extension_by_mime($response['headers']['content-type']);
 
         $wp_upload_dir = wp_upload_dir();
-
-        if ($response['response']['code'] != 200) {
-            return false;
-        }
 
         $upload = wp_upload_bits(basename($url) . $file_extension, null, $response['body']);
 
