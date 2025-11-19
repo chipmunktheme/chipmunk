@@ -121,29 +121,16 @@ class Addons extends Settings
                         </p>
 
                         <div class="chipmunk__addons-cta">
-                            <?php if (!Helpers::is_active_license()) : ?>
-                                <p class="chipmunk__addons-warning">
-                                    <?php esc_html_e('Please activate your license to unlock.', 'chipmunk'); ?>
-                                </p>
-                            <?php elseif (!Helpers::is_addon_allowed($addon['slug'])) : ?>
-                                <p class="chipmunk__addons-warning">
-                                    <a href="<?php echo esc_url(THEME_SHOP_URL); ?>" target="_blank" class="button-secondary"><?php esc_html_e('Upgrade now', 'chipmunk'); ?></a>
-                                    <span><?php printf(esc_html__('Available in the %s plan.', 'chipmunk'), array_column(Helpers::get_allowed_variants($addon['slug']), 'name')[0]); ?></span>
-                                </p>
-                            <?php else : ?>
-                                <label for="<?php echo esc_attr($addon['slug']); ?>">
-                                    <input type="checkbox" name="<?php echo esc_attr($setting_name); ?>" id="<?php echo esc_attr($addon['slug']); ?>" value="1" <?php checked(1, $options[$addon['slug']] ?? '0'); ?> />
-                                    <?php printf(esc_html__('Enable %s Addon', 'chipmunk'), $addon['name']); ?>
-                                </label>
-                            <?php endif; ?>
+                            <label for="<?php echo esc_attr($addon['slug']); ?>">
+                                <input type="checkbox" name="<?php echo esc_attr($setting_name); ?>" id="<?php echo esc_attr($addon['slug']); ?>" value="1" <?php checked(1, $options[$addon['slug']] ?? '0'); ?> />
+                                <?php printf(esc_html__('Enable %s Addon', 'chipmunk'), $addon['name']); ?>
+                            </label>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
 
-            <?php if (Helpers::is_active_license()) : ?>
-                <?php submit_button(); ?>
-            <?php endif; ?>
+            <?php submit_button(); ?>
         </form>
 
 <?php
