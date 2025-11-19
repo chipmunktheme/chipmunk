@@ -158,6 +158,7 @@ class Members
      */
     public function setup_addon()
     {
+        // Check if addon is enabled in settings
         if (!Helpers::is_addon_enabled($this->config['slug'])) {
             return;
         }

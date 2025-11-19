@@ -3,7 +3,6 @@
 namespace Chipmunk\Vendors;
 
 use Chipmunk\Helpers;
-use Chipmunk\Settings\Licenser;
 
 /**
  * Theme updater class.
@@ -113,7 +112,7 @@ class Updater
     }
 
     /**
-     * Call the EDD SL API (using the URL in the construct) to get the latest version information
+     * Call the API (using the URL in the construct) to get the latest version information
      *
      * @return object|boolean  If an update is available, returns the update parameters, if no update is needed returns false, if
      *                        the request fails returns false.
@@ -122,11 +121,6 @@ class Updater
     {
         // Check permissions
         if (!current_user_can('manage_options')) {
-            return false;
-        }
-
-        // Check theme license
-        if (!$license = Helpers::get_active_license()) {
             return false;
         }
 
@@ -140,7 +134,8 @@ class Updater
             return $update_data;
         }
 
-        $response = wp_remote_get("{$this->config['remote_api_url']}?license_key={$license->license_key->key}", [
+        // Check for updates (no license required - open source)
+        $response = wp_remote_get($this->config['remote_api_url'], [
             'timeout'   => 15,
         ]);
 

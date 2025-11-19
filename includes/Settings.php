@@ -2,7 +2,6 @@
 
 namespace Chipmunk;
 
-use Chipmunk\Settings\Licenser;
 use Chipmunk\Settings\Faker;
 use Chipmunk\Settings\Addons;
 
@@ -15,13 +14,6 @@ use Chipmunk\Settings\Addons;
 class Settings
 {
     /**
-     * License data object
-     *
-     * @var object
-     */
-    private static $license;
-
-    /**
      * Used to register custom hooks
      *
      * @return void
@@ -30,13 +22,6 @@ class Settings
     {
         add_action('admin_menu', [$this, 'add_menu_page'], 1);
         add_action('chipmunk_settings_nav', [$this, 'add_menu_page'], 1);
-
-        // Initialize theme licenser
-        Licenser::get_instance()->init([
-            'remote_api_url' => THEME_API_URL,
-            'item_name'      => THEME_TITLE,
-            'item_slug'      => THEME_SLUG,
-        ]);
 
         // Initialize other settings
         Faker::get_instance()->init();
@@ -72,21 +57,6 @@ class Settings
                     <?php echo Helpers::get_svg_content(Assets::asset_path('images/logo.svg')); ?>
                     <?php echo THEME_TITLE; ?>
                 </h1>
-
-                <?php if ($license = Helpers::get_active_license()) : ?>
-                    <div class="chipmunk__status">
-                        <div class="chipmunk__status-icon">
-                            ✓
-                        </div>
-
-                        <div class="chipmunk__status-content">
-                            <?php if ($variant = Helpers::get_license_variant()) : ?>
-                                <strong><?php printf(esc_html__('%s License', 'chipmunk'), $variant['name']); ?></strong><br>
-                            <?php endif; ?>
-                            <?php echo esc_html($license->meta->customer_email); ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
 
                 <div class="wrap">
                     <h2 style="display:none"></h2>
@@ -150,13 +120,4 @@ class Settings
         }
     }
 
-    /**
-     * Returns the license data
-     *
-     * @return object
-     */
-    public static function get_license()
-    {
-        return self::$license;
-    }
 }

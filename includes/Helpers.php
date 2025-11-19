@@ -4,7 +4,6 @@ namespace Chipmunk;
 
 use Chipmunk\Customizer;
 use Chipmunk\Settings\Addons;
-use Chipmunk\Settings\Licenser;
 
 /**
  * Theme specific helpers.
@@ -26,67 +25,8 @@ class Helpers
     }
 
     /**
-     * Retrieves license data
-     *
-     * @return object|null
-     */
-    public static function get_active_license()
-    {
-        $license = Licenser::get_instance()->get_license_data();
-
-        if (!empty($license) && 'active' == $license->license_key->status) {
-            return $license;
-        }
-
-        return null;
-    }
-
-    /**
-     * Is active license activated
-     *
-     * @return bool
-     */
-    public static function is_active_license()
-    {
-        return !!self::get_active_license();
-    }
-
-    /**
-     * Get the variant ID if the license is active and activated
-     *
-     * @return array|null
-     */
-    public static function get_license_variant()
-    {
-        if (!$license = self::get_active_license()) {
-            return null;
-        }
-
-        if (is_null($license->meta->variant_id) || !array_key_exists($license->meta->variant_id, THEME_VARIANTS)) {
-            return null;
-        }
-
-        return THEME_VARIANTS[$license->meta->variant_id];
-    }
-
-    /**
-     * Check if Chipmunk plugin is allowed
-     *
-     * @param string $addon   Addon slug
-     *
-     * @return bool
-     */
-    public static function is_addon_allowed($addon)
-    {
-        if (!$license_variant = self::get_license_variant()) {
-            return false;
-        }
-
-        return in_array($addon, $license_variant['addons']);
-    }
-
-    /**
-     * Check if Chipmunk plugin is enabled
+     * Check if Chipmunk addon is enabled
+     * (All addons are now freely available)
      *
      * @param string $addon   Addon slug
      *
@@ -97,19 +37,8 @@ class Helpers
         $option_name = Addons::get_instance()->get_option_name();
         $option = get_option($option_name);
 
-        return self::is_addon_allowed($addon) && !empty($option[$addon]);
-    }
-
-    /**
-     * Get the allowed variants for given addon
-     *
-     * @param string $addon Addon slug
-     */
-    public static function get_allowed_variants($addon)
-    {
-        return array_filter(THEME_VARIANTS, function ($variant) use ($addon) {
-            return in_array($addon, $variant['addons']);
-        });
+        // All addons are now available, just check if enabled in settings
+        return !empty($option[$addon]);
     }
 
     /**
