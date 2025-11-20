@@ -1,4 +1,13 @@
 <?php
+/**
+ * @package ACF
+ * @author  WP Engine
+ *
+ * © 2025 Advanced Custom Fields (ACF®). All rights reserved.
+ * "ACF" is a trademark of WP Engine.
+ * Licensed under the GNU General Public License v2 or later.
+ * https://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -250,6 +259,8 @@ function acf_pro_get_translated_connect_message( $text ) {
 		$text .= ' ' . sprintf( __( '%1$s or %2$s.', 'acf' ), $view_license, $check_again );
 
 		return $text;
+	} elseif ( strpos( $text, 'Invalid Site URL' ) !== false ) { // Support for licenses which are locked to one URL.
+		return __( 'Your license is not valid for this site URL. Please contact support for assistance.', 'acf' );
 	} elseif ( strpos( $text, 'upstream API error' ) !== false ) {
 		return __( 'An upstream API error occurred when checking your ACF PRO license status. We will retry again shortly.', 'acf' );
 	} elseif ( strpos( $text, 'scheduled maintenance' ) !== false ) {
@@ -375,32 +386,6 @@ function acf_pro_get_license() {
 }
 
 /**
- * An ACF specific getter to replace `home_url` in our license checks to ensure we can avoid third party filters.
- *
- * @since 6.0.1
- * @since 6.2.8 - Renamed to acf_pro_get_home_url to match pro exclusive function naming.
- *
- * @return string $home_url The output from home_url, sans known third party filters which cause license activation issues.
- */
-function acf_pro_get_home_url() {
-	// Disable WPML and TranslatePress's home url overrides for our license check.
-	add_filter( 'wpml_get_home_url', 'acf_pro_license_ml_intercept', 99, 2 );
-	add_filter( 'trp_home_url', 'acf_pro_license_ml_intercept', 99, 2 );
-
-	if ( acf_pro_is_legacy_multisite() && acf_is_multisite_sub_site() ) {
-		$home_url = get_home_url( get_main_site_id() );
-	} else {
-		$home_url = home_url();
-	}
-
-	// Re-enable WPML and TranslatePress's home url overrides.
-	remove_filter( 'wpml_get_home_url', 'acf_pro_license_ml_intercept', 99 );
-	remove_filter( 'trp_home_url', 'acf_pro_license_ml_intercept', 99 );
-
-	return $home_url;
-}
-
-/**
  * Return the original home url inside ACF's home url getter.
  *
  * @since 6.0.1
@@ -477,7 +462,7 @@ function acf_pro_update_license( $key = '' ) {
 		// vars
 		$data = array(
 			'key' => $key,
-			'url' => acf_pro_get_home_url(),
+			'url' => acf_get_home_url(),
 		);
 
 		// encode
@@ -526,7 +511,7 @@ function acf_pro_activate_license( $license_key, $silent = false, $automatic = f
 		'acf_license'  => trim( $license_key ),
 		'acf_version'  => acf_get_setting( 'version' ),
 		'wp_name'      => get_bloginfo( 'name' ),
-		'wp_url'       => acf_pro_get_home_url(),
+		'wp_url'       => acf_get_home_url(),
 		'wp_version'   => get_bloginfo( 'version' ),
 		'wp_language'  => get_bloginfo( 'language' ),
 		'wp_timezone'  => get_option( 'timezone_string' ),
@@ -624,9 +609,13 @@ function acf_pro_deactivate_license( $silent = false ) {
 	// Connect to API.
 	$post     = array(
 		'acf_license' => $license,
-		'wp_url'      => acf_pro_get_home_url(),
+		'wp_url'      => acf_get_home_url(),
 	);
 	$response = acf_updates()->request( 'v2/plugins/deactivate?p=pro', $post );
+
+	// Remove license key and status from DB.
+	acf_pro_update_license( '' );
+	acf_pro_remove_license_status();
 
 	// Check response is expected JSON array (not string).
 	if ( is_string( $response ) ) {
@@ -640,10 +629,6 @@ function acf_pro_deactivate_license( $silent = false ) {
 		}
 		return $response;
 	}
-
-	// Remove license key and status from DB.
-	acf_pro_update_license( '' );
-	acf_pro_remove_license_status();
 
 	// Refresh plugins transient to fetch new update data.
 	acf_updates()->refresh_plugins_transient();
@@ -729,7 +714,7 @@ function acf_pro_get_license_status( $force_check = false ) {
 
 			$post = array(
 				'acf_license' => $license,
-				'wp_url'      => acf_pro_get_home_url(),
+				'wp_url'      => acf_get_home_url(),
 			);
 
 			$response   = acf_updates()->request( 'v2/plugins/validate?p=pro', $post );
@@ -894,7 +879,7 @@ function acf_pro_was_license_refunded( $status = array() ) {
  */
 function acf_pro_has_license_url_changed( $license = array(), $url = '' ) {
 	$license  = ! empty( $license ) ? $license : acf_pro_get_license();
-	$home_url = ! empty( $url ) ? $url : acf_pro_get_home_url();
+	$home_url = ! empty( $url ) ? $url : acf_get_home_url();
 
 	// We can't know without a license, so let's assume not.
 	if ( ! is_array( $license ) || empty( $license['url'] ) ) {

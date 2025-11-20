@@ -1,11 +1,12 @@
 <?php
 /**
- * ACF Admin Post Type Class
+ * @package ACF
+ * @author  WP Engine
  *
- * @class ACF_Admin_Post_Type
- *
- * @package    ACF
- * @subpackage Admin
+ * © 2025 Advanced Custom Fields (ACF®). All rights reserved.
+ * "ACF" is a trademark of WP Engine.
+ * Licensed under the GNU General Public License v2 or later.
+ * https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 if ( ! class_exists( 'ACF_Admin_Post_Type' ) ) :
@@ -311,6 +312,15 @@ if ( ! class_exists( 'ACF_Admin_Post_Type' ) ) :
 			// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized when saved.
 			$_POST['acf_post_type']['ID']    = $post_id;
 			$_POST['acf_post_type']['title'] = isset( $_POST['acf_post_type']['labels']['name'] ) ? $_POST['acf_post_type']['labels']['name'] : '';
+
+			if ( ! acf_get_setting( 'enable_meta_box_cb_edit' ) ) {
+				$_POST['acf_post_type']['register_meta_box_cb'] = '';
+
+				$existing_post = acf_maybe_unserialize( $post->post_content );
+				if ( ! empty( $existing_post['register_meta_box_cb'] ) ) {
+					$_POST['acf_post_type']['register_meta_box_cb'] = $existing_post['register_meta_box_cb'];
+				}
+			}
 
 			// Save the post type.
 			acf_update_internal_post_type( $_POST['acf_post_type'], $this->post_type ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Validated in verify_save_post

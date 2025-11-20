@@ -1,4 +1,13 @@
 <?php
+/**
+ * @package ACF
+ * @author  WP Engine
+ *
+ * © 2025 Advanced Custom Fields (ACF®). All rights reserved.
+ * "ACF" is a trademark of WP Engine.
+ * Licensed under the GNU General Public License v2 or later.
+ * https://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 $acf_plugin_name      = acf_is_pro() ? 'ACF PRO' : 'ACF';
 $acf_plugin_name      = '<strong>' . $acf_plugin_name . ' &mdash;</strong>';
@@ -28,7 +37,7 @@ if ( current_user_can( acf_get_setting( 'capability' ) ) ) {
 }
 
 $acf_error_msg = sprintf(
-/* translators: %1$s - name of the ACF plugin. %2$s - Link to documentation. %3$s - Link to show more details about the error */
+	/* translators: %1$s - name of the ACF plugin. %2$s - Link to documentation. */
 	__( '%1$s ACF now automatically escapes unsafe HTML when rendered by <code>the_field</code> or the ACF shortcode. We\'ve detected the output of some of your fields has been modified by this change, but this may not be a breaking change. %2$s.', 'acf' ),
 	$acf_plugin_name,
 	$acf_learn_how_to_fix

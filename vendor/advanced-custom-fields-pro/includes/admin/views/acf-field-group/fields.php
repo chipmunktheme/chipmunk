@@ -1,4 +1,14 @@
 <?php
+/**
+ * @package ACF
+ * @author  WP Engine
+ *
+ * © 2025 Advanced Custom Fields (ACF®). All rights reserved.
+ * "ACF" is a trademark of WP Engine.
+ * Licensed under the GNU General Public License v2 or later.
+ * https://www.gnu.org/licenses/gpl-2.0.html
+ */
+
 //phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- template include file
 $field_groups     = acf_get_field_groups();
 $num_field_groups = 0;
@@ -98,7 +108,7 @@ if ( $is_subfield ) {
 
 	<ul class="acf-hl acf-tfoot">
 		<li class="acf-fr">
-			<a href="#" class="acf-btn acf-btn-secondary add-field"><i class="acf-icon acf-icon-plus"></i><?php esc_html_e( 'Add Field', 'acf' ); ?></a>
+			<a href="#" class="acf-btn acf-btn-sm add-field"><i class="acf-icon acf-icon-plus"></i><?php esc_html_e( 'Add Field', 'acf' ); ?></a>
 		</li>
 	</ul>
 

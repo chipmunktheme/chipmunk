@@ -3,7 +3,7 @@
         'name' => 'chipmunk-theme/chipmunk-theme',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '027c3b88788af69ce15ab7e701ac0ca707c3e1df',
+        'reference' => '58b067a2ad0fcdd4c72b7d6f03547c722887c1f2',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -24,16 +24,16 @@
         'chipmunk-theme/chipmunk-theme' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '027c3b88788af69ce15ab7e701ac0ca707c3e1df',
+            'reference' => '58b067a2ad0fcdd4c72b7d6f03547c722887c1f2',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
         'composer/installers' => array(
-            'pretty_version' => 'v2.2.0',
-            'version' => '2.2.0.0',
-            'reference' => 'c29dc4b93137acb82734f672c37e029dfbd95b35',
+            'pretty_version' => 'v2.3.0',
+            'version' => '2.3.0.0',
+            'reference' => '12fb2dfe5e16183de69e784a7b84046c43d97e8e',
             'type' => 'composer-plugin',
             'install_path' => __DIR__ . '/./installers',
             'aliases' => array(),
@@ -75,12 +75,18 @@
         'wpackagist-plugin/advanced-custom-fields' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => '6.3.1.2',
+                0 => '6.6.2',
+            ),
+        ),
+        'wpengine/advanced-custom-fields' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '6.6.2',
             ),
         ),
         'wpengine/advanced-custom-fields-pro' => array(
-            'pretty_version' => '6.3.1.2',
-            'version' => '6.3.1.2',
+            'pretty_version' => '6.6.2',
+            'version' => '6.6.2.0',
             'reference' => null,
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../advanced-custom-fields-pro',

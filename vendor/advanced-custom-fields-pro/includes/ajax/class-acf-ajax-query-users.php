@@ -1,4 +1,13 @@
 <?php
+/**
+ * @package ACF
+ * @author  WP Engine
+ *
+ * © 2025 Advanced Custom Fields (ACF®). All rights reserved.
+ * "ACF" is a trademark of WP Engine.
+ * Licensed under the GNU General Public License v2 or later.
+ * https://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -10,6 +19,41 @@ if ( ! class_exists( 'ACF_Ajax_Query_Users' ) ) :
 
 		/** @var string The AJAX action name. */
 		var $action = 'acf/ajax/query_users';
+
+		/**
+		 * Verifies the request.
+		 *
+		 * @since 6.3.2
+		 *
+		 * @param array $request The request args.
+		 * @return  (bool|WP_Error) True on success, WP_Error on fail.
+		 */
+		public function verify_request( $request ) {
+			if ( empty( $request['nonce'] ) || empty( $request['field_key'] ) ) {
+				return new WP_Error( 'acf_invalid_args', __( 'Invalid request args.', 'acf' ), array( 'status' => 404 ) );
+			}
+
+			$nonce        = $request['nonce'];
+			$action       = $request['field_key'];
+			$field_action = true;
+
+			if ( isset( $request['conditional_logic'] ) && true === (bool) $request['conditional_logic'] ) {
+				if ( ! acf_current_user_can_admin() ) {
+					return new WP_Error( 'acf_invalid_permissions', __( 'Sorry, you do not have permission to do that.', 'acf' ) );
+				}
+
+				// Use the standard ACF admin nonce.
+				$nonce        = '';
+				$action       = '';
+				$field_action = false;
+			}
+
+			if ( ! acf_verify_ajax( $nonce, $action, $field_action ) ) {
+				return new WP_Error( 'acf_invalid_nonce', __( 'Invalid nonce.', 'acf' ), array( 'status' => 404 ) );
+			}
+
+			return true;
+		}
 
 		/**
 		 * init_request

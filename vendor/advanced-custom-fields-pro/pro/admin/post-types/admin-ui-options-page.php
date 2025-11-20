@@ -1,9 +1,12 @@
 <?php
 /**
- * ACF Admin Post Type Class
+ * @package ACF
+ * @author  WP Engine
  *
- * @package    ACF
- * @subpackage Admin
+ * © 2025 Advanced Custom Fields (ACF®). All rights reserved.
+ * "ACF" is a trademark of WP Engine.
+ * Licensed under the GNU General Public License v2 or later.
+ * https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 if ( ! class_exists( 'ACF_Admin_UI_Options_Page' ) ) :
@@ -396,9 +399,8 @@ if ( ! class_exists( 'ACF_Admin_UI_Options_Page' ) ) :
 						continue;
 					}
 
-					// Ensure that the current item is not an ACF page or that ACF pages are an empty array before adding to others.
-					if ( ! empty( $acf_parent_page_choices['acfOptionsPages'] ) && ! in_array( $page_name, $acf_parent_page_choices['acfOptionsPages'], true ) || empty( $acf_parent_page_choices['acfOptionsPages'] ) ) {
-						// If matched menu slug is not in the list add it to others.
+					// If the current item is not an ACF-created options page, add it to the "Others" list.
+					if ( empty( $acf_parent_page_choices['acfOptionsPages'][ $item[2] ] ) ) {
 						$acf_parent_page_choices['Others'][ $item[2] ] = acf_esc_html( $sanitized_name );
 					}
 				}

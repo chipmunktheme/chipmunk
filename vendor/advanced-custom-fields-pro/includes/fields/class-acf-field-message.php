@@ -1,4 +1,13 @@
 <?php
+/**
+ * @package ACF
+ * @author  WP Engine
+ *
+ * © 2025 Advanced Custom Fields (ACF®). All rights reserved.
+ * "ACF" is a trademark of WP Engine.
+ * Licensed under the GNU General Public License v2 or later.
+ * https://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 if ( ! class_exists( 'acf_field_message' ) ) :
 
@@ -24,7 +33,10 @@ if ( ! class_exists( 'acf_field_message' ) ) :
 			$this->category      = 'layout';
 			$this->description   = __( 'Used to display a message to editors alongside other fields. Useful for providing additional context or instructions around your fields.', 'acf' );
 			$this->preview_image = acf_get_url() . '/assets/images/field-type-previews/field-preview-message.png';
-			$this->supports      = array( 'required' => false );
+			$this->supports      = array(
+				'required' => false,
+				'bindings' => false,
+			);
 			$this->defaults      = array(
 				'message'   => '',
 				'esc_html'  => 0,
