@@ -22,49 +22,15 @@ Chipmunk is a clean, modern WordPress theme built specifically for **content cur
 Built with professional development practices and optimized for speed, Chipmunk combines powerful curation features with a highly customizable interface that both site owners and visitors will love.
  
 ## Features
- 
-### Content Curation
-- **Custom Resource Post Type** - Dedicated post type designed specifically for curated content
-- **Smart Taxonomies** - Organize resources with hierarchical collections and flexible tags
-- **AJAX-Powered Browsing** - Infinite scroll and lazy loading for seamless content discovery
-- **Advanced Filtering & Sorting** - Filter by collection, tag, date, popularity, ratings, and more
-- **REST API Ready** - Full REST API support for headless CMS implementations
- 
-### User Engagement
-- 🔖 **Bookmarks** - Let users save their favorite resources for later
-- ⬆️ **Upvotes** - Community-driven voting system to surface the best content
-- ⭐ **Ratings** - 5-star rating system for detailed feedback (optional addon)
-- 💬 **Threaded Comments** - Native WordPress comments with full threading support
-- 📊 **View Tracking** - Automatic view counting and display
- 
-### Community Features
-- 📝 **User Submissions** - Accept resource submissions from your community
-- 🛡️ **reCAPTCHA Integration** - Spam protection for submission forms
-- 👥 **Member System** - User registration, login, and member profiles (optional addon)
-- 🔔 **Email Notifications** - Automated emails for submissions and interactions
- 
-### Design & Customization
-- 🎨 **Visual Customizer** - 80+ theme options accessible through WordPress Customizer
-- 🌈 **Color Control** - Customize primary colors, links, backgrounds, and sections
-- 📝 **Typography Options** - Choose from hundreds of Google Fonts
-- 📱 **Fully Responsive** - Mobile-first design that looks great on all devices
-- 🎯 **Multiple Page Templates** - Full-width, wide, normal, narrow layouts plus custom pages
-- 🖼️ **Custom Image Sizes** - Optimized image sizes for different contexts
- 
-### Social & SEO
-- 🌐 **Open Graph Meta Tags** - Perfect social media sharing with rich previews
-- 🔗 **Social Profiles** - Link to 14+ social networks
-- 📣 **Share Buttons** - Built-in social sharing functionality
-- 🔍 **SEO-Friendly** - Semantic HTML5 markup and proper heading hierarchy
- 
-### Developer Experience
-- ⚡ **Modern Build Tools** - Gulp-based asset pipeline with SCSS and JavaScript minification
-- 📦 **Composer Dependencies** - Professional PHP dependency management
-- 🎯 **PSR-4 Autoloading** - Clean, namespaced object-oriented code
-- 🔧 **Modular Architecture** - Well-organized, extensible codebase
-- 🎨 **SCSS Stylesheets** - Maintainable styles with variables and mixins
-- 🚀 **Asset Versioning** - Automatic cache busting with manifest.json
-- 🌍 **Translation Ready** - Full i18n support with .pot files
+
+- **Custom Resource Post Type** - Dedicated post type with hierarchical collections and flexible tags
+- **AJAX-Powered Browsing** - Infinite scroll with advanced filtering and sorting options
+- **Community Engagement** - Bookmarks, upvotes, ratings, and user submissions
+- **Visual Customizer** - 80+ theme options for colors, typography, and layout
+- **Fully Responsive** - Mobile-first design that looks great on all devices
+- **Modern Build Tools** - Gulp-based asset pipeline with SCSS and PSR-4 autoloading
+- **Translation Ready** - Full i18n support with .pot files
+- **SEO & Social** - Open Graph meta tags and semantic HTML5 markup
  
 ## Requirements
  
