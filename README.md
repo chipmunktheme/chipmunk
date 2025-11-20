@@ -1,15 +1,15 @@
 # Chipmunk Theme
  
-<p align="center">
-  <strong>A modern WordPress theme for content curation websites</strong>
+<p>
+  <strong>A free and open-source WordPress theme for directory websites</strong>
 </p>
  
-<p align="center">
+<p>
   <a href="https://github.com/chipmunktheme/chipmunk/blob/main/LICENSE">
       <img src="https://img.shields.io/badge/license-GPL--3.0-blue.svg" alt="License">
     </a>
     <a href="https://github.com/chipmunktheme/chipmunk/releases">
-      <img src="https://img.shields.io/badge/version-1.19.1-green.svg" alt="Version">
+      <img src="https://img.shields.io/badge/version-2.0.0-green.svg" alt="Version">
     </a>
   </p>
  
