@@ -688,11 +688,11 @@ class Helpers
     public static function format_number($number, $precision = 1)
     {
         if ($number >= 1000 && $number < 1000000) {
-            $formatted = number_format($number / 1000, $precision) . 'K';
+            $formatted = number_format($number / 1000, (float) $precision) . 'K';
         } elseif ($number >= 1000000 && $number < 1000000000) {
-            $formatted = number_format($number / 1000000, $precision) . 'M';
+            $formatted = number_format($number / 1000000, (float) $precision) . 'M';
         } elseif ($number >= 1000000000) {
-            $formatted = number_format($number / 1000000000, $precision) . 'B';
+            $formatted = number_format($number / 1000000000, (float) $precision) . 'B';
         } else {
             $formatted = $number; // Number is less than 1000
         }

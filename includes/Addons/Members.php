@@ -45,7 +45,6 @@ class Members
             'name'         => '',
             'slug'         => '',
             'excerpt'      => '',
-            'url'          => '',
         ]);
 
         $this->option_name = THEME_SLUG . '_' . $this->config['slug'] . '_init';

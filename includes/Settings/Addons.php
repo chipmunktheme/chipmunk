@@ -117,7 +117,6 @@ class Addons extends Settings
 
                         <p class="chipmunk__addons-excerpt">
                             <?php echo esc_html($addon['excerpt']); ?>
-                            <a href="<?php echo esc_attr($addon['url']); ?>" target="_blank" class="link"><?php esc_html_e('Read more', 'chipmunk'); ?> &rarr;</a>
                         </p>
 
                         <div class="chipmunk__addons-cta">

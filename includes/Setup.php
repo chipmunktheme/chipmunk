@@ -233,14 +233,12 @@ class Setup
             'name'      => 'Members',
             'slug'      => 'members',
             'excerpt'   => 'Makes it a breeze for users to sign-up and become members of your website.',
-            'url'       => THEME_SHOP_URL . '/addons/members',
         ]);
 
         new Addons\Ratings([
             'name'      => 'Ratings',
             'slug'      => 'ratings',
             'excerpt'   => 'Adds 5-star rating system to your website and increases user engagement.',
-            'url'       => THEME_SHOP_URL . '/addons/ratings',
         ]);
 
         // Customizer
