@@ -44,24 +44,11 @@ class Almond
                 'btn-child-install'        => esc_html__('Install', 'chipmunk'),
                 'btn-content-install'      => esc_html__('Install', 'chipmunk'),
                 'btn-import'               => esc_html__('Import', 'chipmunk'),
-                'btn-license-activate'     => esc_html__('Activate', 'chipmunk'),
-                'btn-license-skip'         => esc_html__('Later', 'chipmunk'),
-
-                /* translators: Theme Name */
-                'license-header%s'         => esc_html__('Activate %s', 'chipmunk'),
-                /* translators: Theme Name */
-                'license-header-success%s' => esc_html__('%s is Activated', 'chipmunk'),
-                /* translators: Theme Name */
-                'license%s'                => esc_html__('Enter your license key to enable remote updates and theme support.', 'chipmunk'),
-                'license-label'            => esc_html__('License key', 'chipmunk'),
-                'license-success%s'        => esc_html__('The theme is already registered, so you can go to the next step!', 'chipmunk'),
-                'license-json-success%s'   => esc_html__('Your theme is activated! Remote updates and theme support are enabled.', 'chipmunk'),
-                'license-tooltip'          => esc_html__('Need help?', 'chipmunk'),
 
                 /* translators: Theme Name */
                 'welcome-header%s'         => esc_html__('Welcome to %s', 'chipmunk'),
                 'welcome-header-success%s' => esc_html__('Hi. Welcome back', 'chipmunk'),
-                'welcome%s'                => esc_html__('This wizard will set up your theme, import the demo content and activate the license. It should only take a few minutes.', 'chipmunk'),
+                'welcome%s'                => esc_html__('This wizard will set up your theme and import the demo content. It should only take a few minutes.', 'chipmunk'),
                 'welcome-success%s'        => esc_html__('You may have already run this theme setup wizard. If you would like to proceed anyway, click on the "Start" button below.', 'chipmunk'),
 
                 'child-header'             => esc_html__('Install Child Theme', 'chipmunk'),

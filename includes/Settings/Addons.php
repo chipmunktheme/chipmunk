@@ -68,7 +68,7 @@ class Addons extends Settings
     }
 
     /**
-     * Registers the option used to store the license key in the options table.
+     * Registers the option used to store the addon settings in the options table.
      */
     public function register_option()
     {
@@ -137,7 +137,7 @@ class Addons extends Settings
     }
 
     /**
-     * This is the static method that controls the access to the Licenser
+     * This is the static method that controls the access to the singleton
      * instance. On the first run, it creates a singleton object and places it
      * into the static field. On subsequent runs, it returns the client existing
      * object stored in the static field.
